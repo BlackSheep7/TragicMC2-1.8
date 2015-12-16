@@ -4429,8 +4429,12 @@ Bumping version number for a release now
 Fixed Aegar not displaying it's health (boss status)
 
 Post 1.7.10:
-I'm gonna work on porting the mod to 1.8.8 and when that's done and it's stable (and all of the json block files are done, ugh) I'm going to work
-on the first expansion's content
+Created new git repo for the 1.8 port, I'll try to keep bugfixes between the 1.7.10 and 1.8 versions parallel but at some
+point the 1.7.10 version will have support dropped in favor of this one
+
+3.46.2858 <212> (December 14, 2015) [Initial port to 1.8, just trying to get it to load in 1.8]
+Initial updates for import references (mostly with FML being moved into Forge)
+
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
