@@ -1,7 +1,5 @@
 package tragicneko.tragicmc;
 
-import org.apache.logging.log4j.core.helpers.Integers;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -4639,7 +4637,8 @@ public class TragicConfig {
 	}
 
 	public static int findEnchantID(int start) {
-		return findOpenID(Enchantment.enchantmentsList, start, true);
+		return findOpenID(Enchantment.enchantmentsBookList, start, true);
+		//return findOpenID(Enchantment.enchantmentsList, start, true); //TODO change to the actual enchantment list
 	}
 
 	public static int findPotionID(int start) {

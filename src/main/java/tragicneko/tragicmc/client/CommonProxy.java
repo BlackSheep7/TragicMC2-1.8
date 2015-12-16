@@ -1,18 +1,12 @@
 package tragicneko.tragicmc.client;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
+import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import tragicneko.tragicmc.client.gui.GuiAmuletInventory;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
-import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class CommonProxy implements IGuiHandler {
 	

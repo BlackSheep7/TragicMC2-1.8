@@ -25,14 +25,14 @@ public class TragicPotion extends Potion {
 
 	@Override
 	public void renderInventoryEffect(int x, int y, PotionEffect effect, net.minecraft.client.Minecraft mc)
-	{
+	{/*
 		x += 6;
 		y += 7;
 		net.minecraft.client.renderer.entity.RenderItem itemRender = new net.minecraft.client.renderer.entity.RenderItem();
 		if (this.stackIcon == null) this.stackIcon = new ItemStack(Items.apple);
 		net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
 		itemRender.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), this.stackIcon, x, y, false);
-		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting(); */
 	}
 
 	public static void load()

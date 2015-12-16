@@ -4,10 +4,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 import org.lwjgl.input.Keyboard;
 
@@ -170,10 +173,6 @@ import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 import tragicneko.tragicmc.events.ClientEvents;
 import tragicneko.tragicmc.events.MouseEvents;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientProxy extends CommonProxy {
 
@@ -194,7 +193,7 @@ public class ClientProxy extends CommonProxy {
 	public static final IRenderHandler collisionSkyRenderer = new TragicSkyRenderer();
 	public static final IRenderHandler synapseSkyRenderer = new SynapseSkyRenderer();
 
-	public static IIcon particleTextureSheet;
+	//public static IIcon particleTextureSheet;
 	public static TragicMusicTicker musicTicker;
 	
 	@Override
@@ -220,8 +219,8 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new TragicMusicTicker(mc));
 
 		//Particle registration
-		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
-		particleTextureSheet = map.registerIcon("tragicmc:ParticleTextures");
+		//TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
+		//particleTextureSheet = map.registerIcon("tragicmc:ParticleTextures");
 
 		//Tile Entity render registration (shouldn't be used too often)
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoulChest.class, new RenderSoulChest());

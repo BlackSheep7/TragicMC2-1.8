@@ -3,12 +3,12 @@ package tragicneko.tragicmc;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tragicneko.tragicmc.items.RecipeAmulets;
 import tragicneko.tragicmc.items.RecipeWeapons;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TragicRecipes {
 

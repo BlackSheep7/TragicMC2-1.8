@@ -12,6 +12,7 @@ import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
@@ -32,26 +33,21 @@ import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
-import tragicneko.tragicmc.entity.miniboss.EntityAggro;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.entity.miniboss.EntityKragul;
 import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
-import tragicneko.tragicmc.entity.miniboss.EntitySlangLeader;
 import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
-import tragicneko.tragicmc.entity.miniboss.EntityWarden;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityArchangel;
 import tragicneko.tragicmc.entity.mob.EntityAvris;
-import tragicneko.tragicmc.entity.mob.EntityBlist;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
-import tragicneko.tragicmc.entity.mob.EntityGirsh;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityHarvester;
 import tragicneko.tragicmc.entity.mob.EntityHunter;
@@ -71,9 +67,7 @@ import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntityRanmas;
 import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
-import tragicneko.tragicmc.entity.mob.EntitySlang;
 import tragicneko.tragicmc.entity.mob.EntityStin;
-import tragicneko.tragicmc.entity.mob.EntityThorg;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
@@ -105,7 +99,6 @@ import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 import tragicneko.tragicmc.util.TragicEntityList;
 import tragicneko.tragicmc.util.TragicEntityList.EnumEggType;
-import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class TragicEntities {
 
@@ -145,12 +138,12 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityJabba.class, TragicConfig.jabbaSC, TragicConfig.jabbaGS[0], TragicConfig.jabbaGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityJabba.class, TragicConfig.jabbaSC, TragicConfig.jabbaGS[0], TragicConfig.jabbaGS[1], EnumCreatureType.MONSTER, spawns);
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityJabba.class, TragicConfig.jabbaSC, TragicConfig.jabbaGS[0], TragicConfig.jabbaGS[1], EnumCreatureType.monster, BiomeGenBase.hell,
+					EntityRegistry.addSpawn(EntityJabba.class, TragicConfig.jabbaSC, TragicConfig.jabbaGS[0], TragicConfig.jabbaGS[1], EnumCreatureType.MONSTER, BiomeGenBase.hell,
 							BiomeGenBase.desert,
 							BiomeGenBase.desertHills,
 							BiomeGenBase.mesa,
@@ -184,13 +177,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityPlague.class, TragicConfig.plagueSC, TragicConfig.plagueGS[0], TragicConfig.plagueGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityPlague.class, TragicConfig.plagueSC, TragicConfig.plagueGS[0], TragicConfig.plagueGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityPlague.class, TragicConfig.plagueSC, TragicConfig.plagueGS[0], TragicConfig.plagueGS[1], EnumCreatureType.monster, BiomeGenBase.beach,
+					EntityRegistry.addSpawn(EntityPlague.class, TragicConfig.plagueSC, TragicConfig.plagueGS[0], TragicConfig.plagueGS[1], EnumCreatureType.MONSTER, BiomeGenBase.beach,
 							BiomeGenBase.birchForest,
 							BiomeGenBase.birchForestHills,
 							BiomeGenBase.coldBeach,
@@ -258,13 +251,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityGragul.class, TragicConfig.gragulSC, TragicConfig.gragulGS[0], TragicConfig.gragulGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityGragul.class, TragicConfig.gragulSC, TragicConfig.gragulGS[0], TragicConfig.gragulGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityGragul.class, TragicConfig.gragulSC, TragicConfig.gragulGS[0], TragicConfig.gragulGS[1], EnumCreatureType.monster, BiomeGenBase.desertHills,
+					EntityRegistry.addSpawn(EntityGragul.class, TragicConfig.gragulSC, TragicConfig.gragulGS[0], TragicConfig.gragulGS[1], EnumCreatureType.MONSTER, BiomeGenBase.desertHills,
 							BiomeGenBase.mesaPlateau,
 							BiomeGenBase.mesaPlateau_F,
 							BiomeGenBase.extremeHills,
@@ -303,13 +296,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityMinotaur.class, TragicConfig.minotaurSC, TragicConfig.minotaurGS[0], TragicConfig.minotaurGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityMinotaur.class, TragicConfig.minotaurSC, TragicConfig.minotaurGS[0], TragicConfig.minotaurGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityMinotaur.class, TragicConfig.minotaurSC, TragicConfig.minotaurGS[0], TragicConfig.minotaurGS[1], EnumCreatureType.monster, BiomeGenBase.plains,
+					EntityRegistry.addSpawn(EntityMinotaur.class, TragicConfig.minotaurSC, TragicConfig.minotaurGS[0], TragicConfig.minotaurGS[1], EnumCreatureType.MONSTER, BiomeGenBase.plains,
 							BiomeGenBase.savanna,
 							BiomeGenBase.savannaPlateau,
 							BiomeGenBase.forest,
@@ -351,13 +344,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityInkling.class, TragicConfig.inklingSC, TragicConfig.inklingGS[0], TragicConfig.inklingGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityInkling.class, TragicConfig.inklingSC, TragicConfig.inklingGS[0], TragicConfig.inklingGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityInkling.class, TragicConfig.inklingSC, TragicConfig.inklingGS[0], TragicConfig.inklingGS[1], EnumCreatureType.monster, BiomeGenBase.beach,
+					EntityRegistry.addSpawn(EntityInkling.class, TragicConfig.inklingSC, TragicConfig.inklingGS[0], TragicConfig.inklingGS[1], EnumCreatureType.MONSTER, BiomeGenBase.beach,
 							BiomeGenBase.birchForest,
 							BiomeGenBase.birchForestHills,
 							BiomeGenBase.coldBeach,
@@ -423,13 +416,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityRagr.class, TragicConfig.ragrSC, TragicConfig.ragrGS[0], TragicConfig.ragrGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityRagr.class, TragicConfig.ragrSC, TragicConfig.ragrGS[0], TragicConfig.ragrGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityRagr.class, TragicConfig.ragrSC, TragicConfig.ragrGS[0], TragicConfig.ragrGS[1], EnumCreatureType.monster,
+					EntityRegistry.addSpawn(EntityRagr.class, TragicConfig.ragrSC, TragicConfig.ragrGS[0], TragicConfig.ragrGS[1], EnumCreatureType.MONSTER,
 							BiomeGenBase.taiga,
 							BiomeGenBase.taigaHills,
 							BiomeGenBase.coldTaiga,
@@ -465,13 +458,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityPumpkinhead.class, TragicConfig.pumpkinheadSC, TragicConfig.pumpkinheadGS[0], TragicConfig.pumpkinheadGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityPumpkinhead.class, TragicConfig.pumpkinheadSC, TragicConfig.pumpkinheadGS[0], TragicConfig.pumpkinheadGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityPumpkinhead.class, TragicConfig.pumpkinheadSC, TragicConfig.pumpkinheadGS[0], TragicConfig.pumpkinheadGS[1], EnumCreatureType.monster,
+					EntityRegistry.addSpawn(EntityPumpkinhead.class, TragicConfig.pumpkinheadSC, TragicConfig.pumpkinheadGS[0], TragicConfig.pumpkinheadGS[1], EnumCreatureType.MONSTER,
 							BiomeGenBase.birchForest,
 							BiomeGenBase.birchForestHills,
 							BiomeGenBase.forest,
@@ -514,7 +507,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityTragicNeko.class, TragicConfig.tragicNekoSC, TragicConfig.tragicNekoGS[0], TragicConfig.tragicNekoGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityTragicNeko.class, TragicConfig.tragicNekoSC, TragicConfig.tragicNekoGS[0], TragicConfig.tragicNekoGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -542,13 +535,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityTox.class, TragicConfig.toxSC, TragicConfig.toxGS[0], TragicConfig.toxGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityTox.class, TragicConfig.toxSC, TragicConfig.toxGS[0], TragicConfig.toxGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityTox.class, TragicConfig.toxSC, TragicConfig.toxGS[0], TragicConfig.toxGS[1], EnumCreatureType.monster, BiomeGenBase.roofedForest,
+					EntityRegistry.addSpawn(EntityTox.class, TragicConfig.toxSC, TragicConfig.toxGS[0], TragicConfig.toxGS[1], EnumCreatureType.MONSTER, BiomeGenBase.roofedForest,
 							BiomeGenBase.forest,
 							BiomeGenBase.forestHills,
 							BiomeGenBase.birchForest,
@@ -583,13 +576,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityCryse.class, TragicConfig.cryseSC, TragicConfig.cryseGS[0], TragicConfig.cryseGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityCryse.class, TragicConfig.cryseSC, TragicConfig.cryseGS[0], TragicConfig.cryseGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityCryse.class, TragicConfig.cryseSC, TragicConfig.cryseGS[0], TragicConfig.cryseGS[1], EnumCreatureType.monster, BiomeGenBase.icePlains,
+					EntityRegistry.addSpawn(EntityCryse.class, TragicConfig.cryseSC, TragicConfig.cryseGS[0], TragicConfig.cryseGS[1], EnumCreatureType.MONSTER, BiomeGenBase.icePlains,
 							BiomeGenBase.iceMountains,
 							BiomeGenBase.coldTaiga,
 							BiomeGenBase.coldTaigaHills
@@ -621,13 +614,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityNorVox.class, TragicConfig.norVoxSC, TragicConfig.norVoxGS[0], TragicConfig.norVoxGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityNorVox.class, TragicConfig.norVoxSC, TragicConfig.norVoxGS[0], TragicConfig.norVoxGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityNorVox.class, TragicConfig.norVoxSC, TragicConfig.norVoxGS[0], TragicConfig.norVoxGS[1], EnumCreatureType.monster, BiomeGenBase.birchForest,
+					EntityRegistry.addSpawn(EntityNorVox.class, TragicConfig.norVoxSC, TragicConfig.norVoxGS[0], TragicConfig.norVoxGS[1], EnumCreatureType.MONSTER, BiomeGenBase.birchForest,
 							BiomeGenBase.birchForestHills,
 							BiomeGenBase.deepOcean,
 							BiomeGenBase.extremeHills,
@@ -683,13 +676,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityPirah.class, TragicConfig.pirahSC, TragicConfig.pirahGS[0], TragicConfig.pirahGS[1], EnumCreatureType.waterCreature, spawns);
+						EntityRegistry.addSpawn(EntityPirah.class, TragicConfig.pirahSC, TragicConfig.pirahGS[0], TragicConfig.pirahGS[1], EnumCreatureType.WATER_CREATURE, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityPirah.class, TragicConfig.pirahSC, TragicConfig.pirahGS[0], TragicConfig.pirahGS[1], EnumCreatureType.waterCreature, BiomeGenBase.deepOcean,
+					EntityRegistry.addSpawn(EntityPirah.class, TragicConfig.pirahSC, TragicConfig.pirahGS[0], TragicConfig.pirahGS[1], EnumCreatureType.WATER_CREATURE, BiomeGenBase.deepOcean,
 							BiomeGenBase.ocean,
 							BiomeGenBase.river
 							);
@@ -720,7 +713,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityStin.class, TragicConfig.stinSC, TragicConfig.stinGS[0], TragicConfig.stinGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityStin.class, TragicConfig.stinSC, TragicConfig.stinGS[0], TragicConfig.stinGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -748,13 +741,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityWisp.class, TragicConfig.kindlingSpiritSC, TragicConfig.kindlingSpiritGS[0], TragicConfig.kindlingSpiritGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityWisp.class, TragicConfig.kindlingSpiritSC, TragicConfig.kindlingSpiritGS[0], TragicConfig.kindlingSpiritGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityWisp.class, TragicConfig.kindlingSpiritSC, TragicConfig.kindlingSpiritGS[0], TragicConfig.kindlingSpiritGS[1], EnumCreatureType.monster, BiomeGenBase.roofedForest,
+					EntityRegistry.addSpawn(EntityWisp.class, TragicConfig.kindlingSpiritSC, TragicConfig.kindlingSpiritGS[0], TragicConfig.kindlingSpiritGS[1], EnumCreatureType.MONSTER, BiomeGenBase.roofedForest,
 							BiomeGenBase.forest,
 							BiomeGenBase.forestHills,
 							BiomeGenBase.birchForest,
@@ -792,13 +785,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityAbomination.class, TragicConfig.abominationSC, TragicConfig.abominationGS[0], TragicConfig.abominationGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityAbomination.class, TragicConfig.abominationSC, TragicConfig.abominationGS[0], TragicConfig.abominationGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityAbomination.class, TragicConfig.abominationSC, TragicConfig.abominationGS[0], TragicConfig.abominationGS[1], EnumCreatureType.monster, BiomeGenBase.icePlains,
+					EntityRegistry.addSpawn(EntityAbomination.class, TragicConfig.abominationSC, TragicConfig.abominationGS[0], TragicConfig.abominationGS[1], EnumCreatureType.MONSTER, BiomeGenBase.icePlains,
 							BiomeGenBase.iceMountains,
 							BiomeGenBase.frozenOcean,
 							BiomeGenBase.frozenRiver,
@@ -834,7 +827,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityErkel.class, TragicConfig.erkelSC, TragicConfig.erkelGS[0], TragicConfig.erkelGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityErkel.class, TragicConfig.erkelSC, TragicConfig.erkelGS[0], TragicConfig.erkelGS[1], EnumCreatureType.MONSTER, spawns);
 				}
 			}
 		}
@@ -861,7 +854,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntitySirv.class, TragicConfig.sirvSC, TragicConfig.sirvGS[0], TragicConfig.sirvGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntitySirv.class, TragicConfig.sirvSC, TragicConfig.sirvGS[0], TragicConfig.sirvGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -889,7 +882,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityPsygote.class, TragicConfig.psygoteSC, TragicConfig.psygoteGS[0], TragicConfig.psygoteGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityPsygote.class, TragicConfig.psygoteSC, TragicConfig.psygoteGS[0], TragicConfig.psygoteGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -917,7 +910,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntitySirv.class, TragicConfig.lockbotSC, TragicConfig.lockbotGS[0], TragicConfig.lockbotGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntitySirv.class, TragicConfig.lockbotSC, TragicConfig.lockbotGS[0], TragicConfig.lockbotGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -945,7 +938,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityNanoSwarm.class, TragicConfig.nanoSwarmSC, TragicConfig.nanoSwarmGS[0], TragicConfig.nanoSwarmGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityNanoSwarm.class, TragicConfig.nanoSwarmSC, TragicConfig.nanoSwarmGS[0], TragicConfig.nanoSwarmGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -973,7 +966,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityHunter.class, TragicConfig.hunterSC, TragicConfig.hunterGS[0], TragicConfig.hunterGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityHunter.class, TragicConfig.hunterSC, TragicConfig.hunterGS[0], TragicConfig.hunterGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1001,7 +994,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityHarvester.class, TragicConfig.harvesterSC, TragicConfig.harvesterGS[0], TragicConfig.harvesterGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityHarvester.class, TragicConfig.harvesterSC, TragicConfig.harvesterGS[0], TragicConfig.harvesterGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1029,7 +1022,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntitySeeker.class, TragicConfig.seekerSC, TragicConfig.seekerGS[0], TragicConfig.seekerGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntitySeeker.class, TragicConfig.seekerSC, TragicConfig.seekerGS[0], TragicConfig.seekerGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1057,7 +1050,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityArchangel.class, TragicConfig.archangelSC, TragicConfig.archangelGS[0], TragicConfig.archangelGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityArchangel.class, TragicConfig.archangelSC, TragicConfig.archangelGS[0], TragicConfig.archangelGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1085,7 +1078,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityIre.class, TragicConfig.ireSC, TragicConfig.ireGS[0], TragicConfig.ireGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityIre.class, TragicConfig.ireSC, TragicConfig.ireGS[0], TragicConfig.ireGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1113,7 +1106,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityFusea.class, TragicConfig.fuseaSC, TragicConfig.fuseaGS[0], TragicConfig.fuseaGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityFusea.class, TragicConfig.fuseaSC, TragicConfig.fuseaGS[0], TragicConfig.fuseaGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1141,7 +1134,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityRanmas.class, TragicConfig.ranmasSC, TragicConfig.ranmasGS[0], TragicConfig.ranmasGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityRanmas.class, TragicConfig.ranmasSC, TragicConfig.ranmasGS[0], TragicConfig.ranmasGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1169,7 +1162,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityParasmite.class, TragicConfig.parasmiteSC, TragicConfig.parasmiteGS[0], TragicConfig.parasmiteGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityParasmite.class, TragicConfig.parasmiteSC, TragicConfig.parasmiteGS[0], TragicConfig.parasmiteGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1197,7 +1190,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityAvris.class, TragicConfig.avrisSC, TragicConfig.avrisGS[0], TragicConfig.avrisGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityAvris.class, TragicConfig.avrisSC, TragicConfig.avrisGS[0], TragicConfig.avrisGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1292,13 +1285,13 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntitySnowman.class, TragicConfig.snowGolemSC, TragicConfig.snowGolemGS[0], TragicConfig.snowGolemGS[1], EnumCreatureType.creature, spawns);
+					EntityRegistry.addSpawn(EntitySnowman.class, TragicConfig.snowGolemSC, TragicConfig.snowGolemGS[0], TragicConfig.snowGolemGS[1], EnumCreatureType.CREATURE, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
 			else
 			{
-				EntityRegistry.addSpawn(EntitySnowman.class, TragicConfig.snowGolemSC, TragicConfig.snowGolemGS[0], TragicConfig.snowGolemGS[1], EnumCreatureType.creature, BiomeGenBase.icePlains, BiomeGenBase.iceMountains,
+				EntityRegistry.addSpawn(EntitySnowman.class, TragicConfig.snowGolemSC, TragicConfig.snowGolemGS[0], TragicConfig.snowGolemGS[1], EnumCreatureType.CREATURE, BiomeGenBase.icePlains, BiomeGenBase.iceMountains,
 						BiomeGenBase.frozenOcean,
 						BiomeGenBase.frozenRiver,
 						BiomeGenBase.coldBeach,
@@ -1336,13 +1329,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityJarra.class, TragicConfig.jarraSC, TragicConfig.jarraGS[0], TragicConfig.jarraGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityJarra.class, TragicConfig.jarraSC, TragicConfig.jarraGS[0], TragicConfig.jarraGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityJarra.class, TragicConfig.jarraSC, TragicConfig.jarraGS[0], TragicConfig.jarraGS[1], EnumCreatureType.monster, BiomeGenBase.hell,
+					EntityRegistry.addSpawn(EntityJarra.class, TragicConfig.jarraSC, TragicConfig.jarraGS[0], TragicConfig.jarraGS[1], EnumCreatureType.MONSTER, BiomeGenBase.hell,
 							BiomeGenBase.desert,
 							BiomeGenBase.desertHills,
 							BiomeGenBase.mesa,
@@ -1376,13 +1369,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityKragul.class, TragicConfig.kragulSC, TragicConfig.kragulGS[0], TragicConfig.kragulGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityKragul.class, TragicConfig.kragulSC, TragicConfig.kragulGS[0], TragicConfig.kragulGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityKragul.class, TragicConfig.kragulSC, TragicConfig.kragulGS[0], TragicConfig.kragulGS[1], EnumCreatureType.monster, BiomeGenBase.desertHills,
+					EntityRegistry.addSpawn(EntityKragul.class, TragicConfig.kragulSC, TragicConfig.kragulGS[0], TragicConfig.kragulGS[1], EnumCreatureType.MONSTER, BiomeGenBase.desertHills,
 							BiomeGenBase.mesaPlateau,
 							BiomeGenBase.mesaPlateau_F,
 							BiomeGenBase.extremeHills,
@@ -1422,13 +1415,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityMagmox.class, TragicConfig.magmoxSC, TragicConfig.magmoxGS[0], TragicConfig.magmoxGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityMagmox.class, TragicConfig.magmoxSC, TragicConfig.magmoxGS[0], TragicConfig.magmoxGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityMagmox.class, TragicConfig.magmoxSC, TragicConfig.magmoxGS[0], TragicConfig.magmoxGS[1], EnumCreatureType.monster, BiomeGenBase.hell);
+					EntityRegistry.addSpawn(EntityMagmox.class, TragicConfig.magmoxSC, TragicConfig.magmoxGS[0], TragicConfig.magmoxGS[1], EnumCreatureType.MONSTER, BiomeGenBase.hell);
 				}
 			}
 			TragicEntityList.addMapping(EntityMagmox.class, "TragicMC.Magmox", id++, 0xC20000, 0x550000, EnumEggType.MINIBOSS);
@@ -1456,13 +1449,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityMegaCryse.class, TragicConfig.megaCryseSC, TragicConfig.megaCryseGS[0], TragicConfig.megaCryseGS[1], EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityMegaCryse.class, TragicConfig.megaCryseSC, TragicConfig.megaCryseGS[0], TragicConfig.megaCryseGS[1], EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityMegaCryse.class, TragicConfig.megaCryseSC, TragicConfig.megaCryseGS[0], TragicConfig.megaCryseGS[1], EnumCreatureType.monster, BiomeGenBase.icePlains,
+					EntityRegistry.addSpawn(EntityMegaCryse.class, TragicConfig.megaCryseSC, TragicConfig.megaCryseGS[0], TragicConfig.megaCryseGS[1], EnumCreatureType.MONSTER, BiomeGenBase.icePlains,
 							BiomeGenBase.iceMountains,
 							BiomeGenBase.coldTaiga,
 							BiomeGenBase.coldTaigaHills
@@ -1494,7 +1487,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityGreaterStin.class, TragicConfig.greaterStinSC, TragicConfig.greaterStinGS[0], TragicConfig.greaterStinGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityGreaterStin.class, TragicConfig.greaterStinSC, TragicConfig.greaterStinGS[0], TragicConfig.greaterStinGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1522,7 +1515,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityStinKing.class, TragicConfig.stinKingSC, TragicConfig.stinKingGS[0], TragicConfig.stinKingGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityStinKing.class, TragicConfig.stinKingSC, TragicConfig.stinKingGS[0], TragicConfig.stinKingGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1550,7 +1543,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityStinQueen.class, TragicConfig.stinQueenSC, TragicConfig.stinQueenGS[0], TragicConfig.stinQueenGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityStinQueen.class, TragicConfig.stinQueenSC, TragicConfig.stinQueenGS[0], TragicConfig.stinQueenGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1578,7 +1571,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityStin.class, TragicConfig.voxStellarumSC, TragicConfig.voxStellarumGS[0], TragicConfig.voxStellarumGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityStin.class, TragicConfig.voxStellarumSC, TragicConfig.voxStellarumGS[0], TragicConfig.voxStellarumGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1606,7 +1599,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityAegar.class, TragicConfig.aegarSC, TragicConfig.aegarGS[0], TragicConfig.aegarGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityAegar.class, TragicConfig.aegarSC, TragicConfig.aegarGS[0], TragicConfig.aegarGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1634,7 +1627,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityVolatileFusea.class, TragicConfig.volatileFuseaSC, TragicConfig.volatileFuseaGS[0], TragicConfig.volatileFuseaGS[1], EnumCreatureType.monster, spawns);
+					EntityRegistry.addSpawn(EntityVolatileFusea.class, TragicConfig.volatileFuseaSC, TragicConfig.volatileFuseaGS[0], TragicConfig.volatileFuseaGS[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1706,13 +1699,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityApis.class, TragicConfig.apisSC, 0, 0, EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityApis.class, TragicConfig.apisSC, 0, 0, EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityApis.class, TragicConfig.apisSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.plains,
+					EntityRegistry.addSpawn(EntityApis.class, TragicConfig.apisSC, 0, 0, EnumCreatureType.MONSTER, BiomeGenBase.plains,
 							BiomeGenBase.savanna,
 							BiomeGenBase.savannaPlateau,
 							BiomeGenBase.forest,
@@ -1754,13 +1747,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityDeathReaper.class, TragicConfig.skultarSC, 0, 0, EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityDeathReaper.class, TragicConfig.skultarSC, 0, 0, EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityDeathReaper.class, TragicConfig.skultarSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.forest,
+					EntityRegistry.addSpawn(EntityDeathReaper.class, TragicConfig.skultarSC, 0, 0, EnumCreatureType.MONSTER, BiomeGenBase.forest,
 							BiomeGenBase.forestHills,
 							BiomeGenBase.birchForest,
 							BiomeGenBase.birchForestHills
@@ -1792,13 +1785,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityKitsune.class, TragicConfig.kitsunakumaSC, 0, 0, EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityKitsune.class, TragicConfig.kitsunakumaSC, 0, 0, EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityKitsune.class, TragicConfig.kitsunakumaSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.hell);
+					EntityRegistry.addSpawn(EntityKitsune.class, TragicConfig.kitsunakumaSC, 0, 0, EnumCreatureType.MONSTER, BiomeGenBase.hell);
 				}
 			}
 			TragicEntityList.addMapping(EntityKitsune.class, "TragicMC.Kitsune", id++, 0xFF0000, 0xFFD087, EnumEggType.BOSS);
@@ -1827,13 +1820,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityPolaris.class, TragicConfig.polarisSC, 0, 0, EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityPolaris.class, TragicConfig.polarisSC, 0, 0, EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-					EntityRegistry.addSpawn(EntityPolaris.class, TragicConfig.polarisSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.birchForest,
+					EntityRegistry.addSpawn(EntityPolaris.class, TragicConfig.polarisSC, 0, 0, EnumCreatureType.MONSTER, BiomeGenBase.birchForest,
 							BiomeGenBase.birchForestHills,
 							BiomeGenBase.deepOcean,
 							BiomeGenBase.extremeHills,
@@ -1890,13 +1883,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityYeti.class, TragicConfig.empariahSC, 0, 0, EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityYeti.class, TragicConfig.empariahSC, 0, 0, EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-				EntityRegistry.addSpawn(EntityYeti.class, TragicConfig.empariahSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.icePlains,
+				EntityRegistry.addSpawn(EntityYeti.class, TragicConfig.empariahSC, 0, 0, EnumCreatureType.MONSTER, BiomeGenBase.icePlains,
 						BiomeGenBase.iceMountains,
 						BiomeGenBase.frozenOcean,
 						BiomeGenBase.frozenRiver,
@@ -1932,13 +1925,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityTimeController.class, TragicConfig.timeControllerSC, 0, 0, EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityTimeController.class, TragicConfig.timeControllerSC, 0, 0, EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-				EntityRegistry.addSpawn(EntityTimeController.class, TragicConfig.timeControllerSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.birchForest,
+				EntityRegistry.addSpawn(EntityTimeController.class, TragicConfig.timeControllerSC, 0, 0, EnumCreatureType.MONSTER, BiomeGenBase.birchForest,
 						BiomeGenBase.birchForestHills,
 						BiomeGenBase.deepOcean,
 						BiomeGenBase.extremeHills,
@@ -1995,13 +1988,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityEnyvil.class, TragicConfig.enyvilSC, 0, 0, EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityEnyvil.class, TragicConfig.enyvilSC, 0, 0, EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-				EntityRegistry.addSpawn(EntityEnyvil.class, TragicConfig.enyvilSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.birchForest,
+				EntityRegistry.addSpawn(EntityEnyvil.class, TragicConfig.enyvilSC, 0, 0, EnumCreatureType.MONSTER, BiomeGenBase.birchForest,
 						BiomeGenBase.birchForestHills,
 						BiomeGenBase.deepOcean,
 						BiomeGenBase.extremeHills,
@@ -2058,13 +2051,13 @@ public class TragicEntities {
 					if (!list.isEmpty())
 					{
 						spawns = (BiomeGenBase[]) list.toArray(spawns);
-						EntityRegistry.addSpawn(EntityClaymation.class, TragicConfig.claymationSC, 0, 0, EnumCreatureType.monster, spawns);
+						EntityRegistry.addSpawn(EntityClaymation.class, TragicConfig.claymationSC, 0, 0, EnumCreatureType.MONSTER, spawns);
 						spawns = new BiomeGenBase[1];
 					}
 				}
 				else
 				{
-				EntityRegistry.addSpawn(EntityClaymation.class, TragicConfig.claymationSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.desert,
+				EntityRegistry.addSpawn(EntityClaymation.class, TragicConfig.claymationSC, 0, 0, EnumCreatureType.MONSTER, BiomeGenBase.desert,
 						BiomeGenBase.desertHills,
 						BiomeGenBase.mesa,
 						BiomeGenBase.mesaPlateau,
