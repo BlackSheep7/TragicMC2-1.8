@@ -18,7 +18,7 @@ public class SchematicHackerNet extends Schematic {
 	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		final int iterations = 400 + rand.nextInt(200);
-		world.setBlockToAir(x, y, z);
+		this.setBlockToAir(world, x, y, z);
 
 		for (int i = -14; i < 15; i++)
 		{
@@ -26,14 +26,14 @@ public class SchematicHackerNet extends Schematic {
 			{
 				for (int k = -14; k < 15; k++)
 				{
-					world.setBlockToAir(x + i, y + j, z + k);
+					this.setBlockToAir(world, x + i, y + j, z + k);
 				}
 			}
 		}
 
 		for (int i = 0; i < iterations; i++)
 		{
-			world.setBlock(x + rand.nextInt(14) - rand.nextInt(14), y + rand.nextInt(14) - rand.nextInt(14), z + rand.nextInt(14) - rand.nextInt(14), TragicBlocks.DigitalSea, 0, 2);
+			this.setBlock(world, x + rand.nextInt(14) - rand.nextInt(14), y + rand.nextInt(14) - rand.nextInt(14), z + rand.nextInt(14) - rand.nextInt(14), TragicBlocks.DigitalSea, 0, 2);
 		}
 
 		for (int i = 0; i < 20; i++)
@@ -43,7 +43,7 @@ public class SchematicHackerNet extends Schematic {
 				int xr = x + rand.nextInt(14) - rand.nextInt(14);
 				int yr = y + rand.nextInt(14) - rand.nextInt(14);
 				int zr = z + rand.nextInt(14) - rand.nextInt(14);
-				world.setBlock(xr, yr, zr, Blocks.mob_spawner, 0, 2);
+				this.setBlock(world, xr, yr, zr, Blocks.mob_spawner, 0, 2);
 				this.setSpawnerMob(world, xr, yr, zr, TragicConfig.allowHunter ? "TragicMC.Hunter" : "Ghast");
 			}
 		}
@@ -55,7 +55,7 @@ public class SchematicHackerNet extends Schematic {
 				int xr = x + rand.nextInt(14) - rand.nextInt(14);
 				int yr = y + rand.nextInt(14) - rand.nextInt(14);
 				int zr = z + rand.nextInt(14) - rand.nextInt(14);
-				world.setBlock(xr, yr, zr, Blocks.chest, 0, 2);
+				this.setBlock(world, xr, yr, zr, Blocks.chest, 0, 2);
 				this.applyChestContents(world, rand, xr, yr, zr, TragicItems.NetherStructureHook);
 			}
 		}

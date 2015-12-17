@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiome;
@@ -38,12 +39,12 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 		this.enableRain = false;
 		this.temperature = 2.0F;
 		this.rainfall = 0.0F;
-		this.heightVariation = heights[variant][0];
-		this.rootHeight = heights[variant][1];
+		this.maxHeight = heights[variant][0];
+		this.minHeight = heights[variant][1];
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = -999;
-		this.fillerBlock = TragicBlocks.ScorchedRock;
-		this.topBlock = TragicBlocks.MoltenRock;
+		this.fillerBlock = TragicBlocks.ScorchedRock.getDefaultState();
+		this.topBlock = TragicBlocks.MoltenRock.getDefaultState();
 		this.fireGen = new SurfaceWorldGen2((byte) (variant == 2 ? 16 : 4), Blocks.fire, (byte) 0, (byte) 8, (byte) 4);
 		this.pitGen = new PitWorldGen(Blocks.flowing_lava, (byte) 0, (byte) 12, (byte) 6, 4.0D, 3.0D);
 		this.scarGen = new InvertedSpikeWorldGen((byte) 6, 1.5, 2.5, 0.90977745D, 0.48943755D);
@@ -56,13 +57,13 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 	}
 
 	@Override
-	public void decorate(World world, Random rand, int x, int z)
+	public void decorate(World world, Random rand, BlockPos pos)
 	{
-		super.decorate(world, rand, x, z);
+		super.decorate(world, rand, pos);
 
-		int Xcoord = (x * 16) + rand.nextInt(16);
-		int Zcoord = (z * 16) + rand.nextInt(16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
+		int Xcoord = pos.getX() + rand.nextInt(16);
+		int Zcoord = pos.getZ() + rand.nextInt(16);
+		int Ycoord = world.getTopSolidOrLiquidBlock(pos).getY();
 
 		byte mew = (byte) (variant == 2 ? 8 : 2);
 		ArrayList<int[]> cands = new ArrayList<int[]>();
@@ -72,15 +73,15 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 
 		for (i = 0; i < mew; i++)
 		{
-			Xcoord = (x * 16) + rand.nextInt(16);
-			Zcoord = (z * 16) + rand.nextInt(16);
-			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
+			Xcoord = pos.getX() + rand.nextInt(16);
+			Zcoord = pos.getZ() + rand.nextInt(16);
+			Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).down().getY();
 
-			block = world.getBlock(Xcoord, Ycoord, Zcoord);
+			block = world.getBlockState(new BlockPos(Xcoord, Ycoord, Zcoord)).getBlock();
 			if (block == TragicBlocks.MoltenRock && rand.nextInt(4) == 0)
 			{
-				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.Geyser);
-				world.setBlock(Xcoord, Ycoord - 1, Zcoord, Blocks.lava);
+				world.setBlockState(new BlockPos(Xcoord, Ycoord, Zcoord), TragicBlocks.Geyser.getDefaultState());
+				world.setBlockState(new BlockPos(Xcoord, Ycoord - 1, Zcoord), Blocks.lava.getDefaultState());
 			}
 		}
 
@@ -88,23 +89,23 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 
 		for (i = 0; i < mew; i++)
 		{
-			Xcoord = (x * 16) + rand.nextInt(16);
-			Zcoord = (z * 16) + rand.nextInt(16);
-			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
+			Xcoord = pos.getX() + rand.nextInt(16);
+			Zcoord = pos.getZ() + rand.nextInt(16);
+			Ycoord = world.getTopSolidOrLiquidBlock(pos).down().getY();
 
-			block = world.getBlock(Xcoord, Ycoord, Zcoord);
-			if (block == TragicBlocks.MoltenRock && rand.nextInt(4) == 0) world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.SteamVent);
+			block = world.getBlockState(new BlockPos(Xcoord, Ycoord, Zcoord)).getBlock();
+			if (block == TragicBlocks.MoltenRock && rand.nextInt(4) == 0) world.setBlockState(new BlockPos(Xcoord, Ycoord, Zcoord), TragicBlocks.SteamVent.getDefaultState());
 		}
 
 		mew = (byte) (variant == 0 ? 8 : 2);
 
 		for (i = 0; i < mew; i++)
 		{
-			Xcoord = (x * 16) + rand.nextInt(16);
-			Zcoord = (z * 16) + rand.nextInt(16);
-			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
+			Xcoord = pos.getX() + rand.nextInt(16);
+			Zcoord = pos.getZ() + rand.nextInt(16);
+			Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).down().getY();
 
-			block = world.getBlock(Xcoord, Ycoord, Zcoord);
+			block = world.getBlockState(new BlockPos(Xcoord, Ycoord, Zcoord)).getBlock();
 
 			if (block == TragicBlocks.MoltenRock && rand.nextInt(4) == 0)
 			{
@@ -113,13 +114,13 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 
 				for (int[] coords : cands)
 				{
-					block = world.getBlock(coords[0], coords[1], coords[2]);
-					if (block.isReplaceable(world, coords[0], coords[1], coords[2])) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.ScorchedRock);
+					block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+					if (block.isReplaceable(world, new BlockPos(coords[0], coords[1], coords[2]))) world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.ScorchedRock.getDefaultState());
 				}
 			}
 		}
-		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world);
-		this.fireGen.generate(rand, x / 16, z / 16, world);
-		if (variant == 2 && rand.nextInt(100) > 3 && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world);
+		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		this.fireGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (variant == 2 && rand.nextInt(100) > 3 && rand.nextInt(6) != 0) this.scarGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 	}
 }

@@ -2,9 +2,9 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.schematic.SchematicCelestialTemple;
 
 public class StructureCelestialTemple extends StructureBoss {
@@ -26,10 +26,10 @@ public class StructureCelestialTemple extends StructureBoss {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		if (y < 128) return false;
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
+		if (pos.getY() < 128) return false;
+		return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
 	}
 
 	@Override

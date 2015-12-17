@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -24,12 +25,12 @@ public class CircuitWorldGen implements IWorldGen {
 			{
 				for (byte z1 = 0; z1 < 16; z1++)
 				{
-					if (chk.getBlock(x1, y1, z1) == TragicBlocks.CircuitBlock) chk.setBlockMetadata(x1, y1, z1, meta);
+					if (chk.getBlock(x1, y1, z1) == TragicBlocks.CircuitBlock) chk.setBlockState(new BlockPos(x1, y1, z1), TragicBlocks.CircuitBlock.getStateFromMeta(meta));
 					
 					if (y1 > 5 && y1 < 123)
 					{
 						byte yr = (byte) (random.nextInt(6) - random.nextInt(6));
-						if (chk.getBlock(x1, y1 + yr, z1) == TragicBlocks.CircuitBlock) chk.setBlockMetadata(x1, y1 + yr, z1, meta);
+						if (chk.getBlock(x1, y1 + yr, z1) == TragicBlocks.CircuitBlock) chk.setBlockState(new BlockPos(x1, y1 + yr, z1), TragicBlocks.CircuitBlock.getStateFromMeta(meta));
 					}
 				}
 			}

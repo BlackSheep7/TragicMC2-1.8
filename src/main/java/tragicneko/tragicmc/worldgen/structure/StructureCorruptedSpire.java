@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.SchematicCorruptedSpire;
@@ -25,15 +26,15 @@ public class StructureCorruptedSpire extends Structure {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
 		return false; //should not generate naturally
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z)
+	public boolean generate(World world, Random rand, BlockPos pos)
 	{
-		return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, x, y, z);
+		return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override

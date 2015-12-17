@@ -42,40 +42,40 @@ public class SchematicSpiderNest extends Schematic {
 						{
 							if (rand.nextInt(6) == 0)
 							{
-								world.setBlock(x + x1, y + y1, z + z1, Blocks.mob_spawner, 0, 2);
+								this.setBlock(world, x + x1, y + y1, z + z1, Blocks.mob_spawner, 0, 2);
 								this.setSpawnerMob(world, x + x1, y + y1, z + z1, TragicConfig.allowStin ? "TragicMC.Stin" : "Spider");
 							}
 							else if (rand.nextInt(16) == 0)
 							{
-								world.setBlock(x + x1, y + y1, z + z1, Blocks.chest, 0, 2);
+								this.setBlock(world, x + x1, y + y1, z + z1, Blocks.chest, 0, 2);
 								this.applyChestContents(world, rand, x + x1, y + y1, z + z1, TragicItems.NetherStructureHook);
 							}
 							else
 							{
-								world.setBlock(x + x1, y + y1, z + z1, TragicBlocks.Corsin, 8, 2);
+								this.setBlock(world, x + x1, y + y1, z + z1, TragicBlocks.Corsin, 8, 2);
 							}
 						}
 						else
 						{
-							world.setBlock(x + x1, y + y1, z + z1, TragicBlocks.Corsin, rand.nextInt(4) == 0 ? (rand.nextInt(10) == 0 ? 4 : 1) : 0, 2);
+							this.setBlock(world, x + x1, y + y1, z + z1, TragicBlocks.Corsin, rand.nextInt(4) == 0 ? (rand.nextInt(10) == 0 ? 4 : 1) : 0, 2);
 						}
 					}
 					else
 					{
 						if (rand.nextInt(12) == 0)
 						{
-							world.setBlock(x + x1, y + y1, z + z1, Blocks.web, 0, 2);
+							this.setBlock(world, x + x1, y + y1, z + z1, Blocks.web, 0, 2);
 						}
 						else
 						{
-							world.setBlockToAir(x + x1, y + y1, z + z1);
+							this.setBlockToAir(world, x + x1, y + y1, z + z1);
 						}
 					}
 				}
 			}
 		}
 
-		world.setBlockToAir(x, y, z);
+		this.setBlockToAir(world, x, y, z);
 		return true;
 	}
 

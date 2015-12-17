@@ -23,14 +23,14 @@ public class SchematicMemoryCache extends Schematic {
 
 		for (int[] coords : list)
 		{
-			world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.Conduit, 0, 2);
+			this.setBlock(world, coords[0], coords[1], coords[2], TragicBlocks.Conduit, 0, 2);
 		}
 
 		list = WorldHelper.getBlocksInSphericalRange(world, size - 1.0D, x, y, z);
 
 		for (int[] coords : list)
 		{
-			world.setBlockToAir(coords[0], coords[1], coords[2]);
+			this.setBlockToAir(world, coords[0], coords[1], coords[2]);
 		}
 
 		for (int x1 = -1; x1 < 2; x1++)
@@ -39,13 +39,13 @@ public class SchematicMemoryCache extends Schematic {
 			{
 				for (int y1 = -1; y1 < 2; y1++)
 				{
-					world.setBlock(x + x1, y + y1, z + z1, Blocks.mob_spawner, 0, 2);
+					this.setBlock(world, x + x1, y + y1, z + z1, Blocks.mob_spawner, 0, 2);
 					this.setSpawnerMob(world, x + x1, y + y1, z + z1, "TragicMC.NanoSwarm");
 				}
 			}
 		}
 
-		world.setBlock(x, y, z, Blocks.chest, 0, 2);
+		this.setBlock(world, x, y, z, Blocks.chest, 0, 2);
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		return true;

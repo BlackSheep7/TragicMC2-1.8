@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenHell;
@@ -28,13 +29,13 @@ public class StructureKitsuneDen extends StructureBoss {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		if (world.provider.dimensionId != -1 && y >= 62 || world.getTopSolidOrLiquidBlock(x, z) < y) return false;
-		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
+		if (world.provider.getDimensionId() != -1 && pos.getY() >= 62 || world.getTopSolidOrLiquidBlock(pos).getY() < pos.getY()) return false;
+		BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 		if (biome instanceof BiomeGenHell || biome instanceof BiomeGenScorchedWasteland)
 		{
-			return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
+			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
 		}
 		return false;
 	}

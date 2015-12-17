@@ -26,8 +26,8 @@ public class BiomeGenSynapse extends TragicBiome {
 		if (TragicConfig.allowHunter) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHunter.class, TragicConfig.hunterSC, TragicConfig.hunterGS[0], TragicConfig.hunterGS[1]));
 		if (TragicConfig.allowLockbot) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityLockbot.class, TragicConfig.lockbotSC, TragicConfig.lockbotGS[0], TragicConfig.lockbotGS[1]));
 		if (TragicConfig.allowHarvester) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHarvester.class, TragicConfig.harvesterSC, TragicConfig.harvesterGS[0], TragicConfig.harvesterGS[1]));
-		this.fillerBlock = TragicBlocks.CircuitBlock;
-		this.topBlock = TragicBlocks.CircuitBlock;
+		this.fillerBlock = TragicBlocks.CircuitBlock.getDefaultState();
+		this.topBlock = TragicBlocks.CircuitBlock.getDefaultState();
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package tragicneko.tragicmc.worldgen.biome;
 import java.util.Random;
 
 import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiome;
@@ -30,11 +31,11 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 		this.enableSnow = false;
 		this.temperature = 0.6F;
 		this.rainfall = 0F;
-		this.heightVariation = heights[variant][0];
-		this.rootHeight = heights[variant][1];
+		this.maxHeight = heights[variant][0];
+		this.minHeight = heights[variant][1];
 		this.theBiomeDecorator.mushroomsPerChunk = variant == 0 || variant == 3 ? 2 : 8;
-		this.fillerBlock = TragicBlocks.DarkStone;
-		this.topBlock = TragicBlocks.DeadDirt;
+		this.fillerBlock = TragicBlocks.DarkStone.getDefaultState();
+		this.topBlock = TragicBlocks.DeadDirt.getDefaultState();
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.voidPitGen = new VoidPitWorldGen(3.5D, 3.5D);
 		this.mixedDirtGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, (byte) 2, TragicBlocks.DeadDirt, (byte) 6, 3.0D, 4.0D, false, (byte) 8);
@@ -53,11 +54,11 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 	}
 
 	@Override
-	public void decorate(World world, Random rand, int x, int z)
+	public void decorate(World world, Random rand, BlockPos pos)
 	{
-		super.decorate(world, rand, x, z);
-		new CustomSpikesWorldGen((byte) (variant == 3 ? 8 : 2), TragicBlocks.BoneBlock, (byte) rand.nextInt(2), 0.8977735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world);
-		this.mixedDirtGen.generate(rand, x / 16, z / 16, world);
-		if (TragicConfig.allowVoidPitGen && rand.nextInt(200) >= 5 && rand.nextInt(6) == 0) this.voidPitGen.generate(rand, x / 16, z / 16, world);
+		super.decorate(world, rand, pos);
+		new CustomSpikesWorldGen((byte) (variant == 3 ? 8 : 2), TragicBlocks.BoneBlock, (byte) rand.nextInt(2), 0.8977735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		this.mixedDirtGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (TragicConfig.allowVoidPitGen && rand.nextInt(200) >= 5 && rand.nextInt(6) == 0) this.voidPitGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 	}
 }

@@ -27,7 +27,7 @@ public class SchematicOutlook extends Schematic {
 				{
 					for (z1 = -5; z1 < 6; z1++)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, TragicBlocks.ErodedStone, 1, 2);
+						this.setBlock(world, x + x1, y + y1, z + z1, TragicBlocks.ErodedStone, 1, 2);
 					}
 				}
 				
@@ -35,30 +35,30 @@ public class SchematicOutlook extends Schematic {
 				{
 					for (z1 = -6; z1 < 7; z1++)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, TragicBlocks.ErodedStone, 1, 2);
-						world.setBlock(x + z1, y + y1, z + x1, TragicBlocks.ErodedStone, 1, 2);
+						this.setBlock(world, x + x1, y + y1, z + z1, TragicBlocks.ErodedStone, 1, 2);
+						this.setBlock(world, x + z1, y + y1, z + x1, TragicBlocks.ErodedStone, 1, 2);
 					}
 				}
 				
 				byte b = 4;
-				world.setBlock(x + b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
+				this.setBlock(world, x + b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
 				this.setSpawnerMob(world, x + b, y + y1 + 1, z + b, "Skeleton");
-				world.setBlock(x + b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
+				this.setBlock(world, x + b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
 				this.setSpawnerMob(world, x + b, y + y1 + 1, z - b, "Skeleton");
-				world.setBlock(x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
+				this.setBlock(world, x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
 				this.setSpawnerMob(world, x - b, y + y1 + 1, z + b, "Skeleton");
-				world.setBlock(x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
+				this.setBlock(world, x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
 				this.setSpawnerMob(world, x - b, y + y1 + 1, z - b, "Skeleton");
 			}
-			world.setBlock(x, y + y1, z, TragicBlocks.ErodedStone, 1, 2);
-			world.setBlock(x - 1, y + y1, z, Blocks.ladder, 4, 2);
+			this.setBlock(world, x, y + y1, z, TragicBlocks.ErodedStone, 1, 2);
+			this.setBlock(world, x - 1, y + y1, z, Blocks.ladder, 4, 2);
 		}
 		
 		for (x1 = -6; x1 < 7; x1++)
 		{
 			for (z1 = -6; z1 < 7; z1++)
 			{
-				world.setBlock(x + x1, y + y1, z + z1, TragicBlocks.ErodedStone, 1, 2);
+				this.setBlock(world, x + x1, y + y1, z + z1, TragicBlocks.ErodedStone, 1, 2);
 			}
 		}
 		
@@ -66,26 +66,26 @@ public class SchematicOutlook extends Schematic {
 		{
 			for (z1 = -7; z1 < 8; z1++)
 			{
-				world.setBlock(x + x1, y + y1, z + z1, TragicBlocks.ErodedStone, 1, 2);
-				world.setBlock(x + z1, y + y1, z + x1, TragicBlocks.ErodedStone, 1, 2);
+				this.setBlock(world, x + x1, y + y1, z + z1, TragicBlocks.ErodedStone, 1, 2);
+				this.setBlock(world, x + z1, y + y1, z + x1, TragicBlocks.ErodedStone, 1, 2);
 			}
 		}
-		world.setBlock(x + 1, y + y1 + 1, z + 1, TragicBlocks.SoulChest, 0, 2);
-		world.setBlock(x + 1, y + y1 + 1, z + 2, TragicBlocks.SoulChest, 0, 2);
+		this.setBlock(world, x + 1, y + y1 + 1, z + 1, TragicBlocks.SoulChest, 0, 2);
+		this.setBlock(world, x + 1, y + y1 + 1, z + 2, TragicBlocks.SoulChest, 0, 2);
 		this.applyChestContents(world, rand, x + 1, y + y1 + 1, z + 1, TragicItems.BossStructureHook);
 		this.applyChestContents(world, rand, x + 1, y + y1 + 1, z + 2, TragicItems.BossStructureHook);
 		
-		world.setBlock(x, y + y1, z, TragicBlocks.ErodedStone, 1, 2);
-		world.setBlock(x - 1, y + y1, z, Blocks.ladder, 4, 2);
+		this.setBlock(world, x, y + y1, z, TragicBlocks.ErodedStone, 1, 2);
+		this.setBlock(world, x - 1, y + y1, z, Blocks.ladder, 4, 2);
 		
 		byte b = 5;
-		world.setBlock(x + b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
+		this.setBlock(world, x + b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
 		this.setSpawnerMob(world, x + b, y + y1 + 1, z + b, "Enderman");
-		world.setBlock(x + b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
+		this.setBlock(world, x + b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
 		this.setSpawnerMob(world, x + b, y + y1 + 1, z - b,  "Enderman");
-		world.setBlock(x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
+		this.setBlock(world, x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
 		this.setSpawnerMob(world, x - b, y + y1 + 1, z + b,  "Enderman");
-		world.setBlock(x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
+		this.setBlock(world, x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
 		this.setSpawnerMob(world, x - b, y + y1 + 1, z - b,  "Enderman");
 		
 		return true;

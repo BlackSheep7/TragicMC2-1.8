@@ -2,10 +2,10 @@ package tragicneko.tragicmc.worldgen.biome;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
@@ -32,10 +32,10 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 		this.enableSnow = false;
 		this.temperature = 1.0F;
 		this.rainfall = 0.6F;
-		this.heightVariation = heights[variant][0];
-		this.rootHeight = heights[variant][1];
-		this.fillerBlock = TragicBlocks.DeadDirt;
-		this.topBlock = TragicBlocks.StarlitGrass;
+		this.maxHeight = heights[variant][0];
+		this.minHeight = heights[variant][1];
+		this.fillerBlock = TragicBlocks.DeadDirt.getDefaultState();
+		this.topBlock = TragicBlocks.StarlitGrass.getDefaultState();
 		this.theBiomeDecorator.treesPerChunk = variant == 1 ? -999 : 2;
 		this.theBiomeDecorator.grassPerChunk = variant == 2 || variant == 1 ? 5 : 12;
 		byte relay = (byte) (variant == 1 ? 1 : (variant == 2 ? 6 : 3));
@@ -47,19 +47,19 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)
 	{
-		return new WorldGenTallGrass(TragicBlocks.StarlitTallGrass, 0);
+		return null; //new WorldGenTallGrass(TragicBlocks.StarlitTallGrass, 0);
 	}
 
 	@Override
-	public WorldGenAbstractTree func_150567_a(Random rand)
+	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		return new WorldGenBleachedOakTree(false, rand.nextBoolean());
 	}
 
 	@Override
-	public void decorate(World world, Random rand, int x, int z)
+	public void decorate(World world, Random rand, BlockPos pos)
 	{
-		super.decorate(world, rand, x, z);
-		if (rand.nextBoolean() && rand.nextInt(100) <= 12) this.crystalWorldGen.generate(rand, x / 16, z / 16, world);
+		super.decorate(world, rand, pos);
+		if (rand.nextBoolean() && rand.nextInt(100) <= 12) this.crystalWorldGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.blocks.BlockGenericTallGrass;
@@ -40,7 +41,7 @@ public class RuggedTerrainWorldGen implements IWorldGen {
 		
 		int x = (chunkX * 16) + random.nextInt(16);
 		int z = (chunkZ * 16) + random.nextInt(16);
-		int y = world.getTopSolidOrLiquidBlock(x, z);
+		int y = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
 
 		double radius;
 		ArrayList<int[]> list;
@@ -60,12 +61,12 @@ public class RuggedTerrainWorldGen implements IWorldGen {
 				{
 					if (random.nextInt(16) != 0) continue;
 
-					block = world.getBlock(coords[0], coords[1], coords[2]);
-					if (!world.getBlock(coords[0], coords[1] - 1, coords[2]).isOpaqueCube()) continue;
+					block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+					if (!world.getBlockState(new BlockPos(coords[0], coords[1] - 1, coords[2])).getBlock().isOpaqueCube()) continue;
 
 					if (block == this.toReplace || block.getMaterial() == Material.air && this.replacesAir || block instanceof BlockGenericTallGrass)
 					{
-						world.setBlock(coords[0], coords[1], coords[2], this.block, meta, 2);
+						world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), this.block.getStateFromMeta(meta), 2);
 					}
 				}
 			}

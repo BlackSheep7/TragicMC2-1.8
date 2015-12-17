@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -13,6 +14,7 @@ import net.minecraft.world.biome.BiomeGenPlains;
 import net.minecraft.world.biome.BiomeGenTaiga;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
+import net.minecraftforge.fml.common.IWorldGenerator;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -24,8 +26,6 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 
 import com.google.common.collect.Sets;
 
-import cpw.mods.fml.common.IWorldGenerator;
-
 public class FlowerWorldGen implements IWorldGenerator {
 
 	public static Set<BiomeGenBase> allowedBiomes = Sets.newHashSet(new BiomeGenBase[]{BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.birchForest, BiomeGenBase.birchForestHills,
@@ -35,12 +35,12 @@ public class FlowerWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if (world.provider.dimensionId == 0 && !TragicConfig.allowExtraOverworldFlowers || world.provider.dimensionId != 0 && !(world.provider instanceof TragicWorldProvider) || !TragicConfig.allowFlowerGen) return;
+		if (world.provider.getDimensionId() == 0 && !TragicConfig.allowExtraOverworldFlowers || world.provider.getDimensionId() != 0 && !(world.provider instanceof TragicWorldProvider) || !TragicConfig.allowFlowerGen) return;
 
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
-		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
+		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
+		BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(Xcoord, 0, Zcoord));
 		BlockTragicFlower flower = (BlockTragicFlower) TragicBlocks.TragicFlower;
 		boolean bushType = random.nextBoolean();
 
@@ -55,7 +55,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 		boolean flag5 = biome instanceof BiomeGenPaintedForest && world.provider instanceof TragicWorldProvider;
 		boolean flag6 = biome == TragicBiome.DecayingValley && world.provider instanceof TragicWorldProvider;
 
-		if (world.provider.dimensionId == 0) //discriminator based flower generation for the overworld
+		if (world.provider.getDimensionId() == 0) //discriminator based flower generation for the overworld
 		{
 			if (world.getWorldInfo().getTerrainType() == WorldType.FLAT) return;
 
@@ -102,9 +102,9 @@ public class FlowerWorldGen implements IWorldGenerator {
 				Zcoord += random.nextInt(8) - random.nextInt(8);
 				Ycoord += random.nextInt(2) - random.nextInt(2);
 
-				if (world.isAirBlock(Xcoord, Ycoord, Zcoord) && (!world.provider.hasNoSky || Ycoord < 255) && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
+				if (world.isAirBlock(new BlockPos(Xcoord, Ycoord, Zcoord)) && (!world.provider.getHasNoSky() || Ycoord < 255) && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
 				{
-					world.setBlock(Xcoord, Ycoord, Zcoord, flower, meta, 2);
+					world.setBlockState(new BlockPos(Xcoord, Ycoord, Zcoord), flower.getStateFromMeta(meta), 2);
 				}
 			}
 		}
@@ -123,9 +123,9 @@ public class FlowerWorldGen implements IWorldGenerator {
 				Zcoord += random.nextInt(8) - random.nextInt(8);
 				Ycoord += random.nextInt(2) - random.nextInt(2);
 
-				if (world.isAirBlock(Xcoord, Ycoord, Zcoord) &&  Ycoord < 255 && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
+				if (world.isAirBlock(new BlockPos(Xcoord, Ycoord, Zcoord)) &&  Ycoord < 255 && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
 				{
-					world.setBlock(Xcoord, Ycoord, Zcoord, flower, meta, 2);
+					world.setBlockState(new BlockPos(Xcoord, Ycoord, Zcoord), flower.getStateFromMeta(meta), 2);
 				}
 			}
 
@@ -138,8 +138,8 @@ public class FlowerWorldGen implements IWorldGenerator {
 					Xcoord += random.nextInt(8) - random.nextInt(8);
 					Zcoord += random.nextInt(8) - random.nextInt(8);
 					Ycoord += random.nextInt(2) - random.nextInt(2);
-
-					new WorldGenDeadBush(bush).generate(world, random, Xcoord, Ycoord, Zcoord);
+					//TODO fix
+					//new WorldGenDeadBush(bush).generate(world, random, Xcoord, Ycoord, Zcoord);
 				}
 			}
 			else if (trBiome instanceof BiomeGenDecayingWasteland)
@@ -149,8 +149,8 @@ public class FlowerWorldGen implements IWorldGenerator {
 					Xcoord += random.nextInt(8) - random.nextInt(8);
 					Zcoord += random.nextInt(8) - random.nextInt(8);
 					Ycoord += random.nextInt(2) - random.nextInt(2);
-
-					new WorldGenDeadBush(TragicBlocks.DeadBush).generate(world, random, Xcoord, Ycoord, Zcoord);
+					//TODO fix
+					//new WorldGenDeadBush(TragicBlocks.DeadBush).generate(world, random, Xcoord, Ycoord, Zcoord);
 				}
 			}
 		}

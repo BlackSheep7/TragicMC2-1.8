@@ -77,1009 +77,1009 @@ public class SchematicDesertTower extends Schematic {
 		//First layer
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z); //Starting block of the whole schematic
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z); //Starting block of the whole schematic
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, sandstone, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, sandstone, 1, 2);
 
 		//Second layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, sandstone, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, sandstone, 1, 2);
 
 		//Third layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, sandstone, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, sandstone, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, sandstone, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, sandstone, 1, 2);
 
 		//Fourth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, sandstone, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z, sandStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z, sandStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, sandStair, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, sandStair, 3, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, sandStair, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, sandStair, 3, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z, sandStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z, sandStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, sandstone, 1, 2);
 
 		//Fifth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, sandstone, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, sandstone, 1, 2);
 
 		//Sixth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, sandstone, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, sandstone, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, sandstone, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 2, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, sandstone, 1, 2);
 
 		//Seventh layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, sandstone, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z, sandStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 1, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z, sandStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, sandStair, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, sandStair, 3, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, sandStair, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, sandStair, 3, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z, sandStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 1, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z, sandStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, sandstone, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, sandstone, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, sandstone, 1, 2);
 
 		//Eighth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 1, 2);
 
 		//Ninth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlock(x, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x, y, z + 2, sandstone, 2, 2);
+		this.setBlock(world, x, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlock(world, x, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x, y, z + 2, sandstone, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 1, 2);
 
 		//Tenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z, sandStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z, sandStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandStair, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, sandStair, 3, 2);
+		this.setBlock(world, x, y, z - 2, sandStair, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, sandStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z, sandStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z, sandStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 1, 2);
 
 		//Eleventh layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 1, 2);
 
 		//Twelfth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x - 1, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x - 1, y, z, sandstone, 2, 2);
-		world.setBlock(x - 1, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x - 1, y, z + 2, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sandstone, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, sandstone, 2, 2);
+		this.setBlock(world, x, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sandstone, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, sandstone, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x + 1, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x + 1, y, z, sandstone, 2, 2);
-		world.setBlock(x + 1, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x + 1, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x + 1, y, z, sandstone, 2, 2);
+		this.setBlock(world, x + 1, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, sandstone, 1, 2);
 
 		//Thirteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z, sandStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z, sandStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandStair, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, sandStair, 3, 2);
+		this.setBlock(world, x, y, z - 2, sandStair, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, sandStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z, sandStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z, sandStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 1, 2);
 
 		//Fourteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 1, 2);
 
 		//Fifteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x - 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandstone, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, sandstone, 2, 2);
+		this.setBlock(world, x, y, z - 2, sandstone, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, sandstone, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z - 1, sandstone, 2, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, sandstone, 2, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, sandstone, 2, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, sandstone, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 1, 2);
 
 		//Sixteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, sandstone, 0, 2);
+		this.setBlock(world, x, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, sandstone, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x + 1, y, z, sandstone, 0, 2);
-		world.setBlock(x + 1, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 1, 2);
 
 		//Seventeenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z, redstone, 0, 2);
-		world.setBlock(x - 1, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x - 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z, redstone, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandstone, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, sandstone, 0, 2);
+		this.setBlock(world, x, y, z - 2, sandstone, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, sandstone, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z - 1, sandstone, 0, 2);
-		world.setBlock(x + 1, y, z, redstone, 0, 2);
-		world.setBlock(x + 1, y, z + 1, sandstone, 0, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z, redstone, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, sandstone, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 1, 2);
 
 		//Eighteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z, sandstone, 2, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z - 1, plate, 0, 2);
-		world.setBlock(x - 1, y, z, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z + 1, plate, 0, 2);
-		world.setBlock(x - 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, plate, 0, 2);
+		this.setBlock(world, x - 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, plate, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandstone, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, trapChest, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, sandstone, 2, 2);
+		this.setBlock(world, x, y, z - 2, sandstone, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, sandstone, 2, 2);
 
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z - 1, plate, 0, 2);
-		world.setBlock(x + 1, y, z, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z + 1, plate, 0, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, plate, 0, 2);
+		this.setBlock(world, x + 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, plate, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z, sandstone, 2, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 1, 2);
 
 		//Nineteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 1, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlock(x - 1, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlock(world, x - 1, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandStair, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, sandStair, 3, 2);
+		this.setBlock(world, x, y, z - 2, sandStair, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, sandStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 1, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlock(x + 1, y, z, sandstone, 1, 2);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlock(world, x + 1, y, z, sandstone, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 1, 2);
 
 		//Twentieth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 2, y, z, sandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandstone, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z + 1, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z + 2, sandstone, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z + 1, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z + 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandstone, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 2, y, z, sandstone, 0, 2);
-		world.setBlock(x + 2, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 2, y, z, sandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandstone, 1, 2);
 
 		//Twenty-first layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, sandStair, 2, 2);
-		world.setBlock(x - 2, y, z, sandStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, sandStair, 3, 2);
+		this.setBlock(world, x - 2, y, z - 1, sandStair, 2, 2);
+		this.setBlock(world, x - 2, y, z, sandStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, sandStair, 3, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, sandStair, 0, 2);
-		world.setBlock(x - 1, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z + 1, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z + 2, sandStair, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, sandStair, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z + 2, sandStair, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, sandStair, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, sandStair, 3, 2);
+		this.setBlock(world, x, y, z - 2, sandStair, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, sandStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, sandStair, 1, 2);
-		world.setBlock(x + 1, y, z - 1, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z + 1, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z + 2, sandStair, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, sandStair, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z + 2, sandStair, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, sandStair, 2, 2);
-		world.setBlock(x + 2, y, z, sandStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, sandStair, 3, 2);
+		this.setBlock(world, x + 2, y, z - 1, sandStair, 2, 2);
+		this.setBlock(world, x + 2, y, z, sandStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, sandStair, 3, 2);
 
 		//Twenty-second layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z - 1, sandStair, 0, 2);
-		world.setBlock(x - 1, y, z, sandstone, 1, 2);
-		world.setBlock(x - 1, y, z + 1, sandStair, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, sandStair, 0, 2);
+		this.setBlock(world, x - 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, sandStair, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 1, sandStair, 2, 2);
-		world.setBlockToAir(x, y, z);
-		world.setBlock(x, y, z + 1, sandStair, 3, 2);
+		this.setBlock(world, x, y, z - 1, sandStair, 2, 2);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlock(world, x, y, z + 1, sandStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 1, sandStair, 1, 2);
-		world.setBlock(x + 1, y, z, sandstone, 1, 2);
-		world.setBlock(x + 1, y, z + 1, sandStair, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, sandStair, 1, 2);
+		this.setBlock(world, x + 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, sandStair, 1, 2);
 
 		//Twenty-third layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x - 1, y, z, sandstone, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z);
+		this.setBlockToAir(world, x, y, z);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z, sandstone, 1, 2);
+		this.setBlock(world, x + 1, y, z, sandstone, 1, 2);
 
 		//Twenty-fourth layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z, sandStair, 0, 2);
+		this.setBlock(world, x - 1, y, z, sandStair, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
+		this.setBlock(world, x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z, sandStair, 1, 2);
+		this.setBlock(world, x + 1, y, z, sandStair, 1, 2);
 
 		//Twenty-fifth layer
 		y++;
 
 		//Fourth row
-		world.setBlock(x, y, z, slab, 1, 2);
+		this.setBlock(world, x, y, z, slab, 1, 2);
 
 	}
 
@@ -1087,2807 +1087,2807 @@ public class SchematicDesertTower extends Schematic {
 		//First layer
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 0, 2);
 
 		//Second layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 0, 2);
 
 		//Third layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 2, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, hardClay, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x, y, z - 2, hardClay, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, hardClay, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 2, 2);
 
 		//Fourth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 0, 2);
 
 		//Fifth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 0, 2);
 
 		//Sixth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 2, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, hardClay, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x, y, z - 2, hardClay, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, hardClay, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 2, 2);
 
 		//Seventh layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 1, 2);
 
 		//Eighth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 1, 2);
 
 		//Ninth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlock(x, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlock(world, x, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x, y, z + 2, hardClay, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 1, 2);
 
 		//Tenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 1, 2);
 
 		//Eleventh layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 1, 2);
 
 		//Twelfth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x - 1, y, z, hardClay, 2, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x - 1, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, hardClay, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, hardClay, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, hardClay, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x + 1, y, z, hardClay, 2, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, hardClay, 1, 2);
 
 		//Thirteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, hardClay, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, hardClay, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 1, 2);
 
 		//Fourteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, hardClay, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, hardClay, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 1, 2);
 
 		//Fifteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x - 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, hardClay, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, hardClay, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x, y, z - 2, hardClay, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, hardClay, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, hardClay, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 2, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 2, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 1, 2);
 
 		//Sixteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, hardClay, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, hardClay, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 1, 2);
 
 		//Seventeenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, hardClay, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, hardClay, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 1, 2);
 
 		//Eighteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z, hardClay, 2, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, hardClay, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, trapChest, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, hardClay, 2, 2);
+		this.setBlock(world, x, y, z - 2, hardClay, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, hardClay, 2, 2);
 
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z, hardClay, 2, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 1, 2);
 
 		//Nineteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x - 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, hardClay, 0, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, hardClay, 0, 2);
+		this.setBlock(world, x, y, z - 2, hardClay, 0, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, hardClay, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 0, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 1, 2);
 
 		//Twentieth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 2, y, z, hardClay, 0, 2);
-		world.setBlock(x - 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, hardClay, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z + 2, hardClay, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z + 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z + 2, hardClay, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 2, y, z, hardClay, 0, 2);
-		world.setBlock(x + 2, y, z + 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 2, y, z, hardClay, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, hardClay, 1, 2);
 
 		//Twenty-first layer
 		y++;
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 1);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlockToAir(x - 2, y, z + 1);
+		this.setBlockToAir(world, x - 2, y, z - 1);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlockToAir(world, x - 2, y, z + 1);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 2);
-		world.setBlock(x - 1, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z, hardClay, 1, 2);
-		world.setBlock(x - 1, y, z + 1, hardClay, 1, 2);
-		world.setBlockToAir(x - 1, y, z + 2);
+		this.setBlockToAir(world, x - 1, y, z - 2);
+		this.setBlock(world, x - 1, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z, hardClay, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, hardClay, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z + 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 2);
-		world.setBlock(x + 1, y, z - 1, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z, hardClay, 1, 2);
-		world.setBlock(x + 1, y, z + 1, hardClay, 1, 2);
-		world.setBlockToAir(x + 1, y, z + 2);
+		this.setBlockToAir(world, x + 1, y, z - 2);
+		this.setBlock(world, x + 1, y, z - 1, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z, hardClay, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, hardClay, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z + 2);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 1);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlockToAir(x + 2, y, z + 1);
+		this.setBlockToAir(world, x + 2, y, z - 1);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlockToAir(world, x + 2, y, z + 1);
 
 		//Twenty-second layer
 		y++;
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlock(x - 1, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x - 1, y, z + 1);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlock(world, x - 1, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z + 1);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
-		world.setBlockToAir(x, y, z + 1);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlock(x + 1, y, z, hardClay, 1, 2);
-		world.setBlockToAir(x + 1, y, z + 1);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlock(world, x + 1, y, z, hardClay, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z + 1);
 
 		//Twentiy-third layer
 		y++;
 
 		//Fourth row
-		world.setBlock(x, y, z, hardClay, 0, 2);
+		this.setBlock(world, x, y, z, hardClay, 0, 2);
 	}
 
 	public void generateVariant2(World world, Random rand, int x, int y, int z) {
 		//First layer
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z); //Starting block of the whole schematic
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x - 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z); //Starting block of the whole schematic
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, brick, 0, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, cobble, 0, 2);
-		world.setBlock(x - 2, y, z - 1, mossCob, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, mossCob, 0, 2);
-		world.setBlock(x - 2, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, mossCob, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, mossCob, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, cobble, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, mossCob, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, mossCob, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, mossCob, 0, 2);
-		world.setBlock(x + 2, y, z - 1, cobble, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, mossCob, 0, 2);
-		world.setBlock(x + 2, y, z + 2, mossCob, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, mossCob, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, cobble, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, mossCob, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, mossCob, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x + 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, brick, 0, 2);
 
 		//Second layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x - 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, brick, 0, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, cobble, 0, 2);
-		world.setBlock(x - 2, y, z - 1, cobble, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, mossCob, 0, 2);
-		world.setBlock(x - 2, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, cobble, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, mossCob, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, mossCob, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, mossCob, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, cobble, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, mossCob, 0, 2);
-		world.setBlock(x + 2, y, z - 1, cobble, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x + 2, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, mossCob, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, cobble, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x + 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, brick, 0, 2);
 
 		//Third layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x - 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, brick, 0, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, brick, 1, 2);
-		world.setBlock(x - 2, y, z - 1, brick, 1, 2);
-		world.setBlock(x - 2, y, z, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, brick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, brick, 1, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, brick, 1, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, brick, 1, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, brick, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, brick, 1, 2);
-		world.setBlock(x + 2, y, z - 1, brick, 1, 2);
-		world.setBlock(x + 2, y, z, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x + 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, brick, 0, 2);
 
 		//Fourth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x - 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, brick, 0, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, mossCob, 0, 2);
-		world.setBlock(x - 2, y, z - 1, cobble, 0, 2);
-		world.setBlock(x - 2, y, z, brickStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, mossCob, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z, brickStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, mossCob, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, mossCob, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, mossCob, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, mossCob, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, brickStair, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, brickStair, 3, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, brickStair, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, brickStair, 3, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, cobble, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, mossCob, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, mossCob, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, mossCob, 0, 2);
-		world.setBlock(x + 2, y, z - 1, cobble, 0, 2);
-		world.setBlock(x + 2, y, z, brickStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x + 2, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, mossCob, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z, brickStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x + 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, brick, 0, 2);
 
 		//Fifth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x - 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, brick, 0, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, mossCob, 0, 2);
-		world.setBlock(x - 2, y, z - 1, cobble, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, mossCob, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, cobble, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, cobble, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, mossCob, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, mossCob, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, cobble, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, cobble, 0, 2);
-		world.setBlock(x + 2, y, z - 1, cobble, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, mossCob, 0, 2);
-		world.setBlock(x + 2, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, cobble, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, mossCob, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x + 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, brick, 0, 2);
 
 		//Sixth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x - 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, brick, 0, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, brick, 1, 2);
-		world.setBlock(x - 2, y, z - 1, brick, 1, 2);
-		world.setBlock(x - 2, y, z, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, brick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, brick, 1, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, brick, 1, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, brick, 1, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, brick, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, brick, 1, 2);
-		world.setBlock(x + 2, y, z - 1, brick, 1, 2);
-		world.setBlock(x + 2, y, z, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 2, brick, 1, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 2, brick, 1, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x + 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, brick, 0, 2);
 
 		//Seventh layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x - 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, brick, 0, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, cobble, 0, 2);
-		world.setBlock(x - 2, y, z, brickStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 2, brick, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z, brickStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, brick, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, cobble, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, brickStair, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, brickStair, 3, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, brickStair, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, brickStair, 3, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, cobble, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, cobble, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, mossCob, 0, 2);
-		world.setBlock(x + 2, y, z, brickStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x + 2, y, z + 2, brick, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, mossCob, 0, 2);
+		this.setBlock(world, x + 2, y, z, brickStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, brick, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, brick, 0, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, brick, 0, 2);
+		this.setBlock(world, x + 3, y, z - 3, brick, 0, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, brick, 0, 2);
 
 		//Eighth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, mossCob, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, mossCob, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, cobble, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, cobble, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, cobble, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, cobble, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, cobble, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, cobble, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, mossCob, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x + 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, mossCob, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, brick, 0, 2);
 
 		//Ninth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, brick, 1, 2);
-		world.setBlock(x - 2, y, z, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 2, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, brick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, brick, 1, 2);
-		world.setBlock(x, y, z - 1, brick, 1, 2);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlock(x, y, z + 1, brick, 1, 2);
-		world.setBlock(x, y, z + 2, brick, 1, 2);
+		this.setBlock(world, x, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlock(world, x, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x, y, z + 2, brick, 1, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 1, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, brick, 1, 2);
-		world.setBlock(x + 2, y, z, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 2, brick, 0, 2);
 
 		//Tenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, cobble, 0, 2);
-		world.setBlock(x - 2, y, z, brickStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z, brickStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, mossCob, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, mossCob, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, cobble, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, brickStair, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, brickStair, 3, 2);
+		this.setBlock(world, x, y, z - 2, brickStair, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, brickStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, mossCob, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, cobble, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, mossCob, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, cobble, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, cobble, 0, 2);
-		world.setBlock(x + 2, y, z, brickStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x + 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z, brickStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, brick, 0, 2);
 
 		//Eleventh layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, mossCob, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, mossCob, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, cobble, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, cobble, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, cobble, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, mossCob, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, cobble, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, mossCob, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, cobble, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, cobble, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, cobble, 0, 2);
-		world.setBlock(x + 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, cobble, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, brick, 0, 2);
 
 		//Twelfth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, brick, 1, 2);
-		world.setBlock(x - 2, y, z, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 2, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, brick, 1, 2);
-		world.setBlock(x - 1, y, z, brick, 1, 2);
-		world.setBlock(x - 1, y, z + 1, brick, 1, 2);
-		world.setBlock(x - 1, y, z + 2, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z + 2, brick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, brick, 1, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, brick, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, brick, 1, 2);
+		this.setBlock(world, x, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, brick, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, brick, 1, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 1, 2);
-		world.setBlock(x + 1, y, z - 1, brick, 1, 2);
-		world.setBlock(x + 1, y, z, brick, 1, 2);
-		world.setBlock(x + 1, y, z + 1, brick, 1, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x + 1, y, z, brick, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, brick, 1, 2);
-		world.setBlock(x + 2, y, z, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 2, brick, 0, 2);
 
 		//Thirteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 2, y, z, brickStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z, brickStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, cobble, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, mossCob, 0, 2);
-		world.setBlock(x - 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, mossCob, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, brick, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, brickStair, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, brickStair, 3, 2);
+		this.setBlock(world, x, y, z - 2, brickStair, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, brickStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 1, y, z - 1, cobble, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, cobble, 0, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 2, y, z, brickStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z, brickStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 0, 2);
 
 		//Fourteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 2, y, z, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, mossCob, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, cobble, 0, 2);
-		world.setBlock(x - 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, mossCob, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, brick, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 1, y, z - 1, mossCob, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, mossCob, 0, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 1, mossCob, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, mossCob, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 2, y, z, mossCob, 0, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z, mossCob, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 0, 2);
 
 		//Fifteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 2, y, z, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, brick, 1, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, brick, 1, 2);
-		world.setBlock(x - 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x - 1, y, z + 2, brick, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, brick, 1, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, brick, 1, 2);
+		this.setBlock(world, x, y, z - 2, brick, 1, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, brick, 1, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 1, y, z - 1, brick, 1, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, brick, 1, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 1, brick, 1, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, brick, 1, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 2, y, z, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 0, 2);
 
 		//Sixteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 2, y, z, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, cobble, 0, 2);
-		world.setBlock(x - 1, y, z, cobble, 0, 2);
-		world.setBlock(x - 1, y, z + 1, cobble, 0, 2);
-		world.setBlock(x - 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, brick, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, mossCob, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, mossCob, 0, 2);
+		this.setBlock(world, x, y, z - 2, mossCob, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, mossCob, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 1, y, z - 1, cobble, 0, 2);
-		world.setBlock(x + 1, y, z, cobble, 0, 2);
-		world.setBlock(x + 1, y, z + 1, mossCob, 0, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x + 1, y, z, cobble, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, mossCob, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 2, y, z, cobble, 0, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 0, 2);
 
 		//Seventeenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 2, y, z, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, cobble, 0, 2);
-		world.setBlock(x - 1, y, z, redstone, 0, 2);
-		world.setBlock(x - 1, y, z + 1, cobble, 0, 2);
-		world.setBlock(x - 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z, redstone, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, brick, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, cobble, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, sand, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, cobble, 0, 2);
+		this.setBlock(world, x, y, z - 2, cobble, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, sand, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, cobble, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 1, y, z - 1, cobble, 0, 2);
-		world.setBlock(x + 1, y, z, redstone, 0, 2);
-		world.setBlock(x + 1, y, z + 1, cobble, 0, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 1, cobble, 0, 2);
+		this.setBlock(world, x + 1, y, z, redstone, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, cobble, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 2, y, z, cobble, 0, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 0, 2);
 
 		//Eighteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 2, y, z, brick, 1, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z, brick, 1, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, plateStone, 0, 2);
-		world.setBlock(x - 1, y, z, brick, 0, 2);
-		world.setBlock(x - 1, y, z + 1, plateStone, 0, 2);
-		world.setBlock(x - 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, plateStone, 0, 2);
+		this.setBlock(world, x - 1, y, z, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, plateStone, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, brick, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, brick, 1, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, trapChest, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, brick, 1, 2);
+		this.setBlock(world, x, y, z - 2, brick, 1, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, brick, 1, 2);
 
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 1, y, z - 1, plateStone, 0, 2);
-		world.setBlock(x + 1, y, z, brick, 0, 2);
-		world.setBlock(x + 1, y, z + 1, plateStone, 0, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 1, plateStone, 0, 2);
+		this.setBlock(world, x + 1, y, z, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, plateStone, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 2, y, z, brick, 1, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z, brick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 0, 2);
 
 		//Nineteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 2, y, z, mossCob, 0, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z, mossCob, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlock(x - 1, y, z, brick, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlock(world, x - 1, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, brick, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, brickStair, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, brickStair, 3, 2);
+		this.setBlock(world, x, y, z - 2, brickStair, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, brickStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlock(x + 1, y, z, brick, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlock(world, x + 1, y, z, brick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, brick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 2, y, z, cobble, 0, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z, cobble, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 0, 2);
 
 		//Twentieth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 2, y, z, cobble, 0, 2);
-		world.setBlock(x - 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 2, y, z, cobble, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, brick, 0, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 1, y, z, brick, 0, 2);
-		world.setBlock(x - 1, y, z + 1, brick, 0, 2);
-		world.setBlock(x - 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, brick, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brick, 0, 2);
-		world.setBlock(x + 1, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 1, y, z, brick, 0, 2);
-		world.setBlock(x + 1, y, z + 1, brick, 0, 2);
-		world.setBlock(x + 1, y, z + 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, brick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 2, y, z, mossCob, 0, 2);
-		world.setBlock(x + 2, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 2, y, z, mossCob, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, brick, 0, 2);
 
 		//Twenty-first layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, brickStair, 2, 2);
-		world.setBlock(x - 2, y, z, brickStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, brickStair, 3, 2);
+		this.setBlock(world, x - 2, y, z - 1, brickStair, 2, 2);
+		this.setBlock(world, x - 2, y, z, brickStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, brickStair, 3, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, brickStair, 0, 2);
-		world.setBlock(x - 1, y, z - 1, brick, 0, 2);
-		world.setBlock(x - 1, y, z, brick, 0, 2);
-		world.setBlock(x - 1, y, z + 1, brick, 0, 2);
-		world.setBlock(x - 1, y, z + 2, brickStair, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, brickStair, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, brickStair, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, brickStair, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, brickStair, 3, 2);
+		this.setBlock(world, x, y, z - 2, brickStair, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, brickStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, brickStair, 1, 2);
-		world.setBlock(x + 1, y, z - 1, brick, 0, 2);
-		world.setBlock(x + 1, y, z, brick, 0, 2);
-		world.setBlock(x + 1, y, z + 1, brick, 0, 2);
-		world.setBlock(x + 1, y, z + 2, brickStair, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, brickStair, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, brickStair, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, brickStair, 2, 2);
-		world.setBlock(x + 2, y, z, brickStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, brickStair, 3, 2);
+		this.setBlock(world, x + 2, y, z - 1, brickStair, 2, 2);
+		this.setBlock(world, x + 2, y, z, brickStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, brickStair, 3, 2);
 
 		//Twenty-second layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z - 1, brickStair, 0, 2);
-		world.setBlock(x - 1, y, z, brick, 0, 2);
-		world.setBlock(x - 1, y, z + 1, brickStair, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, brickStair, 0, 2);
+		this.setBlock(world, x - 1, y, z, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, brickStair, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 1, brickStair, 2, 2);
-		world.setBlockToAir(x, y, z);
-		world.setBlock(x, y, z + 1, brickStair, 3, 2);
+		this.setBlock(world, x, y, z - 1, brickStair, 2, 2);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlock(world, x, y, z + 1, brickStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 1, brickStair, 1, 2);
-		world.setBlock(x + 1, y, z, brick, 0, 2);
-		world.setBlock(x + 1, y, z + 1, brickStair, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, brickStair, 1, 2);
+		this.setBlock(world, x + 1, y, z, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, brickStair, 1, 2);
 
 		//Twenty-third layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z, brick, 0, 2);
+		this.setBlock(world, x - 1, y, z, brick, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z);
+		this.setBlockToAir(world, x, y, z);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z, brick, 0, 2);
+		this.setBlock(world, x + 1, y, z, brick, 0, 2);
 
 		//Twenty-fourth layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z, brickStair, 0, 2);
+		this.setBlock(world, x - 1, y, z, brickStair, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
+		this.setBlock(world, x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z, brickStair, 1, 2);
+		this.setBlock(world, x + 1, y, z, brickStair, 1, 2);
 
 		//Twenty-fifth layer
 		y++;
 
 		//Fourth row
-		world.setBlock(x, y, z, slab, 5, 2);
+		this.setBlock(world, x, y, z, slab, 5, 2);
 	}
 
 	public void generateVariant3(World world, Random rand, int x, int y, int z) {
 		//First layer
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z); //Starting block of the whole schematic
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z); //Starting block of the whole schematic
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, netherBrick, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, netherBrick, 1, 2);
 
 		//Second layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, netherBrick, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, netherBrick, 1, 2);
 
 		//Third layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, netherBrick, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, netherBrick, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, netherBrick, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, netherBrick, 1, 2);
 
 		//Fourth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, netherBrick, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z, netherFence, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, netherFence, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherFence, 3, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, netherFence, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherFence, 3, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z, netherFence, 1, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z, netherFence, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, netherBrick, 1, 2);
 
 		//Fifth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, netherBrick, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z, netherFence, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, netherFence, 0, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherFence, 0, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, netherFence, 0, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherFence, 0, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z, netherFence, 0, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, netherBrick, 1, 2);
 
 		//Sixth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, netherBrick, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, netherBrick, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, netherBrick, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 2, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, netherBrick, 1, 2);
 
 		//Seventh layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, netherBrick, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z, netherFence, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 1, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, netherFence, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherFence, 3, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, netherFence, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherFence, 3, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z, netherFence, 1, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 1, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z, netherFence, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, netherBrick, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, netherBrick, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, netherBrick, 1, 2);
 
 		//Eighth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z, netherFence, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherFence, 0, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherFence, 0, 2);
+		this.setBlock(world, x, y, z - 2, netherFence, 0, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherFence, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z, netherFence, 0, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 1, 2);
 
 		//Ninth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlock(x, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x, y, z + 2, netherBrick, 2, 2);
+		this.setBlock(world, x, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x, y, z + 2, netherBrick, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 1, 2);
 
 		//Tenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z, netherFence, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherFence, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, netherFence, 0, 2);
+		this.setBlock(world, x, y, z - 2, netherFence, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, netherFence, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z, netherFence, 0, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 1, 2);
 
 		//Eleventh layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z, netherFence, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherFence, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, netherFence, 0, 2);
+		this.setBlock(world, x, y, z - 2, netherFence, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, netherFence, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z, netherFence, 0, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z, netherFence, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 1, 2);
 
 		//Twelfth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x - 1, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x - 1, y, z, netherBrick, 2, 2);
-		world.setBlock(x - 1, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, netherBrick, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, netherBrick, 2, 2);
+		this.setBlock(world, x, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, netherBrick, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x + 1, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x + 1, y, z, netherBrick, 2, 2);
-		world.setBlock(x + 1, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x + 1, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 1, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x + 1, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, netherBrick, 1, 2);
 
 		//Thirteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z, lava, 0, 2);
-		world.setBlock(x - 1, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z, lava, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherFence, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, nether, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, netherFence, 3, 2);
+		this.setBlock(world, x, y, z - 2, netherFence, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, nether, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, netherFence, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 1, y, z, lava, 0, 2);
-		world.setBlock(x + 1, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z, lava, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 1, 2);
 
 		//Fourteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z, lava, 0, 2);
-		world.setBlock(x - 1, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z, lava, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherFence, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, nether, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, netherFence, 0, 2);
+		this.setBlock(world, x, y, z - 2, netherFence, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, nether, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, netherFence, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 1, y, z, lava, 0, 2);
-		world.setBlock(x + 1, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z, lava, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 1, 2);
 
 		//Fifteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x - 1, y, z, lava, 0, 2);
-		world.setBlock(x - 1, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z, lava, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherBrick, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, nether, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, netherBrick, 2, 2);
+		this.setBlock(world, x, y, z - 2, netherBrick, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, nether, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, netherBrick, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z - 1, netherBrick, 2, 2);
-		world.setBlock(x + 1, y, z, lava, 0, 2);
-		world.setBlock(x + 1, y, z + 1, netherBrick, 2, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 1, y, z, lava, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, netherBrick, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 1, 2);
 
 		//Sixteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, nether, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, netherBrick, 0, 2);
+		this.setBlock(world, x, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, nether, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, netherBrick, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 1, 2);
 
 		//Seventeenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherBrick, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, nether, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, netherBrick, 0, 2);
+		this.setBlock(world, x, y, z - 2, netherBrick, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, nether, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, netherBrick, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z - 1, netherBrick, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, netherBrick, 0, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, netherBrick, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 1, 2);
 
 		//Eighteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, plateNether, 0, 2);
-		world.setBlock(x - 1, y, z, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z + 1, plateNether, 0, 2);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, plateNether, 0, 2);
+		this.setBlock(world, x - 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, plateNether, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherBrick, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, trapChest, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherBrick, 2, 2);
+		this.setBlock(world, x, y, z - 2, netherBrick, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherBrick, 2, 2);
 
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z - 1, plateNether, 0, 2);
-		world.setBlock(x + 1, y, z, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z + 1, plateNether, 0, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, plateNether, 0, 2);
+		this.setBlock(world, x + 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, plateNether, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 2, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 1, 2);
 
 		//Nineteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlock(x - 1, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlock(world, x - 1, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherFence, 0, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherFence, 0, 2);
+		this.setBlock(world, x, y, z - 2, netherFence, 0, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherFence, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlock(x + 1, y, z, netherBrick, 1, 2);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlock(world, x + 1, y, z, netherBrick, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 1, 2);
 
 		//Twentieth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherBrick, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z + 1, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z + 2, netherBrick, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherFence, 0, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherFence, 0, 2);
+		this.setBlock(world, x, y, z - 2, netherFence, 0, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherFence, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z + 1, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z + 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherBrick, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 2, y, z, netherBrick, 0, 2);
-		world.setBlock(x + 2, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 2, y, z, netherBrick, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherBrick, 1, 2);
 
 		//Twenty-first layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, netherStair, 2, 2);
-		world.setBlock(x - 2, y, z, netherStair, 0, 2);
-		world.setBlock(x - 2, y, z + 1, netherStair, 3, 2);
+		this.setBlock(world, x - 2, y, z - 1, netherStair, 2, 2);
+		this.setBlock(world, x - 2, y, z, netherStair, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, netherStair, 3, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, netherStair, 0, 2);
-		world.setBlock(x - 1, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z + 1, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z + 2, netherStair, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, netherStair, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z + 2, netherStair, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, netherStair, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, netherStair, 3, 2);
+		this.setBlock(world, x, y, z - 2, netherStair, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, netherStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, netherStair, 1, 2);
-		world.setBlock(x + 1, y, z - 1, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z + 1, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z + 2, netherStair, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, netherStair, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z + 2, netherStair, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, netherStair, 2, 2);
-		world.setBlock(x + 2, y, z, netherStair, 1, 2);
-		world.setBlock(x + 2, y, z + 1, netherStair, 3, 2);
+		this.setBlock(world, x + 2, y, z - 1, netherStair, 2, 2);
+		this.setBlock(world, x + 2, y, z, netherStair, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, netherStair, 3, 2);
 
 		//Twenty-second layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z - 1, netherStair, 0, 2);
-		world.setBlock(x - 1, y, z, netherBrick, 1, 2);
-		world.setBlock(x - 1, y, z + 1, netherStair, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, netherStair, 0, 2);
+		this.setBlock(world, x - 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, netherStair, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 1, netherStair, 2, 2);
-		world.setBlockToAir(x, y, z);
-		world.setBlock(x, y, z + 1, netherStair, 3, 2);
+		this.setBlock(world, x, y, z - 1, netherStair, 2, 2);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlock(world, x, y, z + 1, netherStair, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 1, netherStair, 1, 2);
-		world.setBlock(x + 1, y, z, netherBrick, 1, 2);
-		world.setBlock(x + 1, y, z + 1, netherStair, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, netherStair, 1, 2);
+		this.setBlock(world, x + 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, netherStair, 1, 2);
 
 		//Twenty-third layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x - 1, y, z, netherBrick, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z);
+		this.setBlockToAir(world, x, y, z);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z, netherBrick, 1, 2);
+		this.setBlock(world, x + 1, y, z, netherBrick, 1, 2);
 
 		//Twenty-fourth layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z, netherStair, 0, 2);
+		this.setBlock(world, x - 1, y, z, netherStair, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
+		this.setBlock(world, x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z, netherStair, 1, 2);
+		this.setBlock(world, x + 1, y, z, netherStair, 1, 2);
 
 		//Twenty-fifth layer
 		y++;
 
 		//Fourth row
-		world.setBlock(x, y, z, slab, 6, 2);
+		this.setBlock(world, x, y, z, slab, 6, 2);
 	}
 
 	public void generateVariant4(World world, Random rand, int x, int y, int z) {
@@ -3895,956 +3895,956 @@ public class SchematicDesertTower extends Schematic {
 		//First layer
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z); //Starting block of the whole schematic
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z); //Starting block of the whole schematic
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, ice, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, ice, 0, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, ice, 1, 2);
 
 		//Second layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, ice, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, ice, 0, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, ice, 1, 2);
 
 		//Third layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, ice, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, ice, 2, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 2, 2);
-		world.setBlock(x - 2, y, z, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, ice, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, ice, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, ice, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, ice, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, ice, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, ice, 2, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 2, 2);
-		world.setBlock(x + 2, y, z, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, ice, 1, 2);
 
 		//Fourth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, ice, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, ice, 0, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, ice, 1, 2);
 
 		//Fifth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, ice, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, ice, 0, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, ice, 1, 2);
 
 		//Sixth layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, ice, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, ice, 2, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 2, 2);
-		world.setBlock(x - 2, y, z, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, ice, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlock(x, y, z - 2, ice, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlock(world, x, y, z - 2, ice, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, ice, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, ice, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, ice, 2, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 2, 2);
-		world.setBlock(x + 2, y, z, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 2, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 2, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, ice, 1, 2);
 
 		//Seventh layer
 		y++;
 
 		//First row
-		world.setBlock(x - 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x - 3, y, z - 2);
-		world.setBlockToAir(x - 3, y, z - 1);
-		world.setBlockToAir(x - 3, y, z);
-		world.setBlockToAir(x - 3, y, z + 1);
-		world.setBlockToAir(x - 3, y, z + 2);
-		world.setBlock(x - 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x - 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x - 3, y, z - 2);
+		this.setBlockToAir(world, x - 3, y, z - 1);
+		this.setBlockToAir(world, x - 3, y, z);
+		this.setBlockToAir(world, x - 3, y, z + 1);
+		this.setBlockToAir(world, x - 3, y, z + 2);
+		this.setBlock(world, x - 3, y, z + 3, ice, 1, 2);
 
 		//Second row
-		world.setBlockToAir(x - 2, y, z - 3);
-		world.setBlock(x - 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 1, 2);
-		world.setBlockToAir(x - 2, y, z + 3);
+		this.setBlockToAir(world, x - 2, y, z - 3);
+		this.setBlock(world, x - 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 1, 2);
+		this.setBlockToAir(world, x - 2, y, z + 3);
 
 		//Third row
-		world.setBlockToAir(x - 1, y, z - 3);
-		world.setBlock(x - 1, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x - 1, y, z + 3);
+		this.setBlockToAir(world, x - 1, y, z - 3);
+		this.setBlock(world, x - 1, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z + 3);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 3);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 3);
+		this.setBlockToAir(world, x, y, z - 3);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 3);
 
 		//Fifth row
-		world.setBlockToAir(x + 1, y, z - 3);
-		world.setBlock(x + 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z + 3);
+		this.setBlockToAir(world, x + 1, y, z - 3);
+		this.setBlock(world, x + 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z + 3);
 
 		//Sixth row
-		world.setBlockToAir(x + 2, y, z - 3);
-		world.setBlock(x + 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 1, 2);
-		world.setBlockToAir(x + 2, y, z + 3);
+		this.setBlockToAir(world, x + 2, y, z - 3);
+		this.setBlock(world, x + 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 1, 2);
+		this.setBlockToAir(world, x + 2, y, z + 3);
 
 		//Seventh row
-		world.setBlock(x + 3, y, z - 3, ice, 1, 2);
-		world.setBlockToAir(x + 3, y, z - 2);
-		world.setBlockToAir(x + 3, y, z - 1);
-		world.setBlockToAir(x + 3, y, z);
-		world.setBlockToAir(x + 3, y, z + 1);
-		world.setBlockToAir(x + 3, y, z + 2);
-		world.setBlock(x + 3, y, z + 3, ice, 1, 2);
+		this.setBlock(world, x + 3, y, z - 3, ice, 1, 2);
+		this.setBlockToAir(world, x + 3, y, z - 2);
+		this.setBlockToAir(world, x + 3, y, z - 1);
+		this.setBlockToAir(world, x + 3, y, z);
+		this.setBlockToAir(world, x + 3, y, z + 1);
+		this.setBlockToAir(world, x + 3, y, z + 2);
+		this.setBlock(world, x + 3, y, z + 3, ice, 1, 2);
 
 		//Eighth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 0, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 1, 2);
 
 		//Ninth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 2, 2);
-		world.setBlock(x - 2, y, z, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ladder, 3, 2);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ladder, 3, 2);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, ice, 2, 2);
-		world.setBlock(x, y, z - 1, ice, 2, 2);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlock(x, y, z + 1, ice, 2, 2);
-		world.setBlock(x, y, z + 2, ice, 2, 2);
+		this.setBlock(world, x, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlock(world, x, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x, y, z + 2, ice, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 2, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlock(x + 1, y, z + 1, ladder, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 2, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlock(world, x + 1, y, z + 1, ladder, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 2, 2);
-		world.setBlock(x + 2, y, z, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 1, 2);
 
 		//Tenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 0, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, ice, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 1, 2);
 
 		//Eleventh layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x - 2, y, z);
-		world.setBlock(x - 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x - 2, y, z);
+		this.setBlock(world, x - 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlockToAir(x - 1, y, z);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlockToAir(world, x - 1, y, z);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 0, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 0, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlockToAir(x + 1, y, z);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 0, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlockToAir(world, x + 1, y, z);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, ice, 0, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 0, 2);
-		world.setBlockToAir(x + 2, y, z);
-		world.setBlock(x + 2, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 0, 2);
+		this.setBlockToAir(world, x + 2, y, z);
+		this.setBlock(world, x + 2, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 1, 2);
 
 		//Twelfth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 2, y, z - 1, ice, 2, 2);
-		world.setBlock(x - 2, y, z, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 2, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 2, 2);
-		world.setBlock(x - 1, y, z - 1, ice, 2, 2);
-		world.setBlock(x - 1, y, z, ice, 2, 2);
-		world.setBlock(x - 1, y, z + 1, ice, 2, 2);
-		world.setBlock(x - 1, y, z + 2, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z + 2, ice, 2, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, ice, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, ice, 1, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, ice, 2, 2);
+		this.setBlock(world, x, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, ice, 1, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, ice, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 2, 2);
-		world.setBlock(x + 1, y, z - 1, ice, 2, 2);
-		world.setBlock(x + 1, y, z, ice, 2, 2);
-		world.setBlock(x + 1, y, z + 1, ice, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 2, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x + 1, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x + 1, y, z, ice, 2, 2);
+		this.setBlock(world, x + 1, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 2, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 2, y, z - 1, ice, 2, 2);
-		world.setBlock(x + 2, y, z, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 2, ice, 1, 2);
 
 		//Thirteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 1, y, z - 1, ice, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, ice, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, snow, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, snow, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 1, y, z - 1, ice, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 1, 2);
 
 		//Fourteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 2, y, z, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 1, y, z - 1, ice, 0, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, ice, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, snow, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, snow, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 1, y, z - 1, ice, 0, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 2, y, z, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 1, 2);
 
 		//Fifteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 2, y, z, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 1, y, z - 1, ice, 2, 2);
-		world.setBlock(x - 1, y, z, tnt, 0, 2);
-		world.setBlock(x - 1, y, z + 1, ice, 2, 2);
-		world.setBlock(x - 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x - 1, y, z + 2, ice, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, ice, 2, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, snow, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, ice, 2, 2);
+		this.setBlock(world, x, y, z - 2, ice, 2, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, snow, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, ice, 2, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 1, y, z - 1, ice, 2, 2);
-		world.setBlock(x + 1, y, z, tnt, 0, 2);
-		world.setBlock(x + 1, y, z + 1, ice, 2, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, ice, 2, 2);
+		this.setBlock(world, x + 1, y, z, tnt, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, ice, 2, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 2, y, z, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 1, 2);
 
 		//Sixteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 2, y, z, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 1, y, z - 1, ice, 0, 2);
-		world.setBlock(x - 1, y, z, ice, 0, 2);
-		world.setBlock(x - 1, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, ice, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, ice, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, snow, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, ice, 0, 2);
+		this.setBlock(world, x, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, snow, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, ice, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 1, y, z - 1, ice, 0, 2);
-		world.setBlock(x + 1, y, z, ice, 0, 2);
-		world.setBlock(x + 1, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 2, y, z, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 1, 2);
 
 		//Seventeenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 2, y, z, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 1, y, z - 1, ice, 0, 2);
-		world.setBlock(x - 1, y, z, redstone, 0, 2);
-		world.setBlock(x - 1, y, z + 1, ice, 0, 2);
-		world.setBlock(x - 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z, redstone, 0, 2);
+		this.setBlock(world, x - 1, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, ice, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, ice, 0, 2);
-		world.setBlock(x, y, z - 1, ladder, 2, 2);
-		world.setBlock(x, y, z, snow, 0, 2);
-		world.setBlock(x, y, z + 1, ladder, 3, 2);
-		world.setBlock(x, y, z + 2, ice, 0, 2);
+		this.setBlock(world, x, y, z - 2, ice, 0, 2);
+		this.setBlock(world, x, y, z - 1, ladder, 2, 2);
+		this.setBlock(world, x, y, z, snow, 0, 2);
+		this.setBlock(world, x, y, z + 1, ladder, 3, 2);
+		this.setBlock(world, x, y, z + 2, ice, 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 1, y, z - 1, ice, 0, 2);
-		world.setBlock(x + 1, y, z, redstone, 0, 2);
-		world.setBlock(x + 1, y, z + 1, ice, 0, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z, redstone, 0, 2);
+		this.setBlock(world, x + 1, y, z + 1, ice, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 2, y, z, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 1, 2);
 
 		//Eighteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 2, y, z, ice, 2, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z, ice, 2, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 1, y, z - 1, plate, 0, 2);
-		world.setBlock(x - 1, y, z, ice, 1, 2);
-		world.setBlock(x - 1, y, z + 1, plate, 0, 2);
-		world.setBlock(x - 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, plate, 0, 2);
+		this.setBlock(world, x - 1, y, z, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, plate, 0, 2);
+		this.setBlock(world, x - 1, y, z + 2, ice, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z - 2, ice, 2, 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlock(x, y, z, trapChest, 0, 2);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlock(x, y, z + 2, ice, 2, 2);
+		this.setBlock(world, x, y, z - 2, ice, 2, 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlock(world, x, y, z + 2, ice, 2, 2);
 
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 1, y, z - 1, plate, 0, 2);
-		world.setBlock(x + 1, y, z, ice, 1, 2);
-		world.setBlock(x + 1, y, z + 1, plate, 0, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, plate, 0, 2);
+		this.setBlock(world, x + 1, y, z, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, plate, 0, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 2, y, z, ice, 2, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z, ice, 2, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 1, 2);
 
 		//Nineteenth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 2, y, z, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 1, 2);
-		world.setBlockToAir(x - 1, y, z - 1);
-		world.setBlock(x - 1, y, z, ice, 1, 2);
-		world.setBlockToAir(x - 1, y, z + 1);
-		world.setBlock(x - 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z - 1);
+		this.setBlock(world, x - 1, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x - 1, y, z + 1);
+		this.setBlock(world, x - 1, y, z + 2, ice, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 1, 2);
-		world.setBlockToAir(x + 1, y, z - 1);
-		world.setBlock(x + 1, y, z, ice, 1, 2);
-		world.setBlockToAir(x + 1, y, z + 1);
-		world.setBlock(x + 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z - 1);
+		this.setBlock(world, x + 1, y, z, ice, 1, 2);
+		this.setBlockToAir(world, x + 1, y, z + 1);
+		this.setBlock(world, x + 1, y, z + 2, ice, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 2, y, z, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 1, 2);
 
 		//Twentieth layer
 		y++;
 
 		//Second row
-		world.setBlock(x - 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 2, y, z, ice, 0, 2);
-		world.setBlock(x - 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 2, y, z, ice, 0, 2);
+		this.setBlock(world, x - 2, y, z + 1, ice, 1, 2);
 
 		//Third row
-		world.setBlock(x - 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x - 1, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 1, y, z, ice, 1, 2);
-		world.setBlock(x - 1, y, z + 1, ice, 1, 2);
-		world.setBlock(x - 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z + 2, ice, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 2);
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
-		world.setBlockToAir(x, y, z + 2);
+		this.setBlockToAir(world, x, y, z - 2);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
+		this.setBlockToAir(world, x, y, z + 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z - 2, ice, 1, 2);
-		world.setBlock(x + 1, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 1, y, z, ice, 1, 2);
-		world.setBlock(x + 1, y, z + 1, ice, 1, 2);
-		world.setBlock(x + 1, y, z + 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 2, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z + 2, ice, 1, 2);
 
 		//Sixth row
-		world.setBlock(x + 2, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 2, y, z, ice, 0, 2);
-		world.setBlock(x + 2, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 2, y, z, ice, 0, 2);
+		this.setBlock(world, x + 2, y, z + 1, ice, 1, 2);
 
 		//Twenty-first layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z - 1, ice, 1, 2);
-		world.setBlock(x - 1, y, z, ice, 1, 2);
-		world.setBlock(x - 1, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z + 1, ice, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z - 1);
-		world.setBlockToAir(x, y, z);
-		world.setBlockToAir(x, y, z + 1);
+		this.setBlockToAir(world, x, y, z - 1);
+		this.setBlockToAir(world, x, y, z);
+		this.setBlockToAir(world, x, y, z + 1);
 
-		world.setBlock(x + 1, y, z - 1, ice, 1, 2);
-		world.setBlock(x + 1, y, z, ice, 1, 2);
-		world.setBlock(x + 1, y, z + 1, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z - 1, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z + 1, ice, 1, 2);
 
 		//Twenty-second layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z, ice, 1, 2);
 
 		//Fourth row
-		world.setBlockToAir(x, y, z);
+		this.setBlockToAir(world, x, y, z);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z, ice, 1, 2);
 
 		//Twenty-third layer
 		y++;
 
 		//Third row
-		world.setBlock(x - 1, y, z, ice, 1, 2);
+		this.setBlock(world, x - 1, y, z, ice, 1, 2);
 
 		//Fourth row
-		world.setBlock(x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
+		this.setBlock(world, x, y, z, luxuryBlocks[rand.nextInt(luxuryBlocks.length)], 0, 2);
 
 		//Fifth row
-		world.setBlock(x + 1, y, z, ice, 1, 2);
+		this.setBlock(world, x + 1, y, z, ice, 1, 2);
 
 		//Twenty-fourth layer
 		y++;
 
 		//Fourth row
-		world.setBlock(x, y, z, ice, 0, 2);
+		this.setBlock(world, x, y, z, ice, 0, 2);
 
 		//Twenty-fifth layer
 		y++;

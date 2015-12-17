@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiome;
@@ -39,12 +40,12 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		this.enableRain = false;
 		this.temperature = 1.0F;
 		this.rainfall = 0.0F;
-		this.heightVariation = heights[variant][0];
-		this.rootHeight = heights[variant][1];
+		this.maxHeight = heights[variant][0];
+		this.minHeight = heights[variant][1];
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
-		this.fillerBlock = TragicBlocks.DarkCobblestone;
-		this.topBlock = TragicBlocks.DarkCobblestone;
+		this.fillerBlock = TragicBlocks.DarkCobblestone.getDefaultState();
+		this.topBlock = TragicBlocks.DarkCobblestone.getDefaultState();
 		if (TragicConfig.allowJarra) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJarra.class, TragicConfig.jarraSC, TragicConfig.jarraGS[0], TragicConfig.jarraGS[1]));
 		if (TragicConfig.allowTox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.toxSC, TragicConfig.toxGS[0], TragicConfig.toxGS[1]));
 		if (TragicConfig.allowFusea) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityFusea.class, TragicConfig.fuseaSC, TragicConfig.fuseaGS[0], TragicConfig.fuseaGS[1]));
@@ -57,9 +58,9 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 	}
 
 	@Override
-	public void decorate(World world, Random rand, int x, int z)
+	public void decorate(World world, Random rand, BlockPos pos)
 	{
-		super.decorate(world, rand, x, z);
+		super.decorate(world, rand, pos);
 
 		byte mew = (byte) (variant > 2 ? 4 : (variant == 2 ? 16 : 8));
 		int k;
@@ -67,13 +68,13 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 
 		for (byte a = 0; a < mew; ++a)
 		{
-			k = x + rand.nextInt(16) - 8;
-			l = z + rand.nextInt(16) - 8;
+			k = pos.getX() + rand.nextInt(16) - 8;
+			l = pos.getZ() + rand.nextInt(16) - 8;
 			this.vineGen.generate(world, rand, k, rand.nextInt(64) + 42, l);
 		}
 
-		int Xcoord = (x * 16) + rand.nextInt(16);
-		int Zcoord = (z * 16) + rand.nextInt(16);
+		int Xcoord = pos.getX() + rand.nextInt(16);
+		int Zcoord = pos.getZ() + rand.nextInt(16);
 		int Ycoord = rand.nextInt(236) + 10;
 		ArrayList<int[]> cands;
 		cands = WorldHelper.getBlocksInSphericalRange(world, 3.75, Xcoord, Ycoord, Zcoord);
@@ -82,7 +83,7 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 
 		for (int[] coords : cands)
 		{
-			block = world.getBlock(coords[0], coords[1], coords[2]);
+			block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
 			if (!block.isOpaqueCube() || block.getMaterial() == Material.air || block.getMaterial().isLiquid())
 			{
 				flag = false;
@@ -93,20 +94,20 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		if (flag)
 		{
 			cands = WorldHelper.getBlocksInSphericalRange(world, 2.75, Xcoord, Ycoord, Zcoord);
-			for (int[] coords : cands) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.ExplosiveGas, 0, 2);
+			for (int[] coords : cands) world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.ExplosiveGas.getDefaultState());
 		}
 
-		this.gasGen.generate(rand, x / 16, z / 16, world);
-		if (variant > 2) this.sludgeGen.generate(rand, x / 16, z / 16, world);
-		this.toxicCobbleGen.generate(rand, x / 16, z / 16, world);
+		this.gasGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (variant > 2) this.sludgeGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		this.toxicCobbleGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 
 		if (rand.nextInt(8) == 0)
 		{
 			boolean flag2 = rand.nextBoolean();
-			new PitWorldGen(flag2 ? TragicBlocks.Quicksand : TragicBlocks.RadiatedGas, (byte) (flag2 ? 3 : 0), (byte) 12, (byte) 6, 4.0D, 3.0D).generate(rand, x / 16, z / 16, world);
+			new PitWorldGen(flag2 ? TragicBlocks.Quicksand : TragicBlocks.RadiatedGas, (byte) (flag2 ? 3 : 0), (byte) 12, (byte) 6, 4.0D, 3.0D).generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 		}
-		if (TragicConfig.allowVoidPitGen && variant == 4 && rand.nextInt(200) >= 5) this.voidPitGen.generate(rand, x / 16, z / 16, world);
-		if (rand.nextInt(8) == 0) this.deathglowGen.generate(rand, x / 16, z / 16, world);
+		if (TragicConfig.allowVoidPitGen && variant == 4 && rand.nextInt(200) >= 5) this.voidPitGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (rand.nextInt(8) == 0) this.deathglowGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 	}
 
 }

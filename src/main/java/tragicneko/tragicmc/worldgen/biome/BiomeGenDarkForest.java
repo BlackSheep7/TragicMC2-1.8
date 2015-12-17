@@ -3,10 +3,10 @@ package tragicneko.tragicmc.worldgen.biome;
 import java.util.Random;
 
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
@@ -17,7 +17,6 @@ import tragicneko.tragicmc.entity.mob.EntityParasmite;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
 import tragicneko.tragicmc.worldgen.SurfaceWorldGen2;
-import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 import tragicneko.tragicmc.worldgen.WorldGenDarkForestTree;
 
 public class BiomeGenDarkForest extends TragicBiome {
@@ -35,8 +34,8 @@ public class BiomeGenDarkForest extends TragicBiome {
 		if (TragicConfig.allowParasmite) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityParasmite.class, TragicConfig.parasmiteSC, TragicConfig.parasmiteGS[0], TragicConfig.parasmiteGS[1]));
 		if (TragicConfig.allowEnyvil) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnyvil.class, TragicConfig.enyvilSC, 0, 0));
 		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnderman.class, 15, 2, 4));
-		this.fillerBlock = TragicBlocks.DeadDirt;
-		this.topBlock = TragicBlocks.DarkGrass;
+		this.fillerBlock = TragicBlocks.DeadDirt.getDefaultState();
+		this.topBlock = TragicBlocks.DarkGrass.getDefaultState();
 		this.temperature = 1.2F;
 		this.rainfall = 1.5F;
 		this.theBiomeDecorator.treesPerChunk = variant == 1 ? 8 : (variant == 2 ? 4 : 12);
@@ -55,22 +54,22 @@ public class BiomeGenDarkForest extends TragicBiome {
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)
 	{
-		return new WorldGenTallGrass(TragicBlocks.DarkTallGrass, 0);
+		return null; //new WorldGenTallGrass(TragicBlocks.DarkTallGrass.getDefaultState(), 0);
 	}
 
 	@Override
-	public WorldGenAbstractTree func_150567_a(Random rand)
+	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		return new WorldGenDarkForestTree();
 	}
 
 	@Override
-	public void decorate(World world, Random rand, int x, int z)
+	public void decorate(World world, Random rand, BlockPos pos)
 	{
-		super.decorate(world, rand, x, z);
+		super.decorate(world, rand, pos);
 
-		this.gasGen.generate(rand, x / 16, z / 16, world);
-		if (this.variant == 2) this.drudgeGen.generate(rand, x / 16, z / 16, world);
+		this.gasGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (this.variant == 2) this.drudgeGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 	}
 
 }

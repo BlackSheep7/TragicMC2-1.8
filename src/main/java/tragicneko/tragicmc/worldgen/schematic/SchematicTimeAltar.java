@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
@@ -30,7 +31,7 @@ public class SchematicTimeAltar extends Schematic {
 			{
 				for (int z1 = -7; z1 < 8; z1++)
 				{
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 				}
 			}
 		}
@@ -44,8 +45,8 @@ public class SchematicTimeAltar extends Schematic {
 		for (int i = 0; i < list.size(); i++) //creates a giant circle of quartz with star crystal inside of it sparingly
 		{
 			coords = list.get(i);
-			block = world.getBlock(coords[0], coords[1], coords[2]);
-			if (Structure.validBlocks.contains(block)) world.setBlock(coords[0], coords[1], coords[2], quartz, 0, 2);
+			block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+			if (Structure.validBlocks.contains(block)) this.setBlock(world, coords[0], coords[1], coords[2], quartz, 0, 2);
 		}
 
 		list = WorldHelper.getBlocksInCircularRange(world, 4.446D, x, y, z);
@@ -53,27 +54,27 @@ public class SchematicTimeAltar extends Schematic {
 		for (int i = 0; i < list.size(); i++) //creates a smaller hemisphere of star crystal to provide lighting
 		{
 			coords = list.get(i);
-			block = world.getBlock(coords[0], coords[1], coords[2]);
-			if (block == quartz) world.setBlock(coords[0], coords[1], coords[2], crystal, variant, 2);
+			block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+			if (block == quartz) this.setBlock(world, coords[0], coords[1], coords[2], crystal, variant, 2);
 		}
 
 		//Creates a structure in the middle that you can use to create another time controller, it comes with a summon block on top though
-		world.setBlock(x, y + 1, z, quartz);
-		world.setBlock(x, y + 2, z, quartz);
-		world.setBlock(x, y + 2, z + 1, quartz);
-		world.setBlock(x, y + 2, z - 1, quartz);
-		world.setBlock(x + 1, y + 2, z, quartz);
-		world.setBlock(x - 1, y + 2, z, quartz);
+		this.setBlock(world, x, y + 1, z, quartz);
+		this.setBlock(world, x, y + 2, z, quartz);
+		this.setBlock(world, x, y + 2, z + 1, quartz);
+		this.setBlock(world, x, y + 2, z - 1, quartz);
+		this.setBlock(world, x + 1, y + 2, z, quartz);
+		this.setBlock(world, x - 1, y + 2, z, quartz);
 
-		world.setBlock(x, y + 3, z, summon, 7, 2);
+		this.setBlock(world, x, y + 3, z, summon, 7, 2);
 
-		world.setBlock(x, y, z, chest, 0, 2);
+		this.setBlock(world, x, y, z, chest, 0, 2);
 		this.applyChestContents(world, rand, x, y, z, TragicItems.AwesomeChestHook);
 
-		world.setBlock(x + 1, y, z, quartz); //blocks to ensure the chest is concealed
-		world.setBlock(x - 1, y, z, quartz);
-		world.setBlock(x, y, z + 1, quartz);
-		world.setBlock(x, y, z - 1, quartz);
+		this.setBlock(world, x + 1, y, z, quartz); //blocks to ensure the chest is concealed
+		this.setBlock(world, x - 1, y, z, quartz);
+		this.setBlock(world, x, y, z + 1, quartz);
+		this.setBlock(world, x, y, z - 1, quartz);
 
 		return true;
 	}

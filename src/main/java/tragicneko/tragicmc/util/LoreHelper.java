@@ -89,12 +89,12 @@ public class LoreHelper {
 
 	public static int getRarityFromStack(ItemStack stack)
 	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getByte("tragicLoreRarity") : 0;
+		return stack.hasTagCompound() && stack.getTagCompound().hasKey("tragicLoreRarity") ? stack.getTagCompound().getByte("tragicLoreRarity") : 0;
 	}
 
 	public static String getDescFromStack(ItemStack stack)
 	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreDesc") ? stack.stackTagCompound.getString("tragicLoreDesc") : null;
+		return stack.hasTagCompound() && stack.getTagCompound().hasKey("tragicLoreDesc") ? stack.getTagCompound().getString("tragicLoreDesc") : null;
 	}
 
 	/**
@@ -675,7 +675,7 @@ public class LoreHelper {
 
 		public EnumRarity getRarityEnum()
 		{
-			return this.rarity == 0 ? EnumRarity.common : (this.rarity == 1 ? EnumRarity.uncommon : (this.rarity == 2 ? EnumRarity.rare : EnumRarity.epic));
+			return this.rarity == 0 ? EnumRarity.COMMON : (this.rarity == 1 ? EnumRarity.UNCOMMON : (this.rarity == 2 ? EnumRarity.RARE : EnumRarity.EPIC));
 		}
 
 		/**

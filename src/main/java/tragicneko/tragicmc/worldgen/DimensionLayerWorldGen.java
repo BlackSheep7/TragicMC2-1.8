@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicBlocks.DarkStone;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.dimension.TragicChunkProvider;
 
@@ -41,7 +42,7 @@ public class DimensionLayerWorldGen implements IWorldGen {
 				{
 					j = (byte) random.nextInt(16);
 					k = (byte) random.nextInt(16);
-					if (world.getBlock(x + j, y, z + k) == DarkStone) world.setBlockMetadataWithNotify(x + j, y, z + k, meta, 2);
+					if (world.getBlockState(new BlockPos(x + j, y, z + k)).getBlock() == DarkStone) world.setBlockState(new BlockPos(x + j, y, z + k), DarkStone.getStateFromMeta(meta), 2);
 				}
 			}
 		}

@@ -16,9 +16,9 @@ public class TileEntityAeris extends TileEntity {
 	private int corruptedTicks;
 
 	@Override
-	public void updateEntity()
+	public void updateContainingBlockInfo()
 	{
-		super.updateEntity();
+		super.updateContainingBlockInfo();
 		if (!this.worldObj.isRemote && this.yCoord <= 50 && !this.worldObj.canBlockSeeTheSky(this.xCoord, this.yCoord, this.zCoord) && this.blockMetadata < 2)
 		{
 			corruptedTicks++;
@@ -29,7 +29,7 @@ public class TileEntityAeris extends TileEntity {
 			{
 				player.addChatMessage(new ChatComponentText("Aeris is corrupting... (" + (this.corruptedTicks / 300)  + " /10)"));
 
-				if (this.blockMetadata == 1)
+				if (this.getBlockMetadata() == 1)
 				{
 					for (int i = 0; i < this.worldObj.rand.nextInt(3) + 1; i++)
 					{

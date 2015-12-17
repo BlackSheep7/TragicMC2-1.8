@@ -2,10 +2,9 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenSynapse;
 import tragicneko.tragicmc.worldgen.schematic.SchematicCubeMaze;
 
 public class StructureCubeMaze extends Structure {
@@ -21,10 +20,10 @@ public class StructureCubeMaze extends Structure {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		if (y >= 48 || world.getTopSolidOrLiquidBlock(x, z) - 22 < y) return false;
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
+		if (pos.getY() >= 48 || world.getTopSolidOrLiquidBlock(pos).down(22).getY() < pos.getY()) return false;
+		return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
 	}
 
 	@Override

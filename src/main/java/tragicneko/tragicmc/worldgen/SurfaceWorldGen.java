@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -41,7 +42,7 @@ public class SurfaceWorldGen implements IWorldGen {
 		
 		int x = (chunkX * 16) + random.nextInt(16);
 		int z = (chunkZ * 16) + random.nextInt(16);
-		int y = world.getTopSolidOrLiquidBlock(x, z);
+		int y = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
 		double radius = (this.variation * random.nextDouble()) + this.radius;
 		ArrayList<int[]> list;
 		int[] coords = new int[] {x, y, z};
@@ -60,23 +61,23 @@ public class SurfaceWorldGen implements IWorldGen {
 			for (int i = 0; i < list.size(); i++)
 			{
 				coords = list.get(i);
-				block = world.getBlock(coords[0], coords[1], coords[2]);
+				block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
 
-				if (this.doesAirCheck && world.getBlock(coords[0], coords[1] + 1, coords[2]).getMaterial() != Material.air) continue;
-				if (block == this.toReplace) world.setBlock(coords[0], coords[1], coords[2], this.block, meta, 2);
+				if (this.doesAirCheck && world.getBlockState(new BlockPos(coords[0], coords[1] + 1, coords[2])).getBlock().getMaterial() != Material.air) continue;
+				if (block == this.toReplace) world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), this.block.getStateFromMeta(meta), 2);
 			}
 		}
 
 		for (byte k = 0; k < this.iterations && this.usesAltGen; k++)
 		{
-			block = world.getBlock(coords[0], coords[1], coords[2]);
+			block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
 			list = WorldHelper.getBlocksAdjacent(coords);
 
 			for (int[] cand2 : list)
 			{
-				block = world.getBlock(cand2[0], cand2[1], cand2[2]);
-				if (this.doesAirCheck && world.getBlock(coords[0], coords[1] + 1, coords[2]).getMaterial() != Material.air) continue;
-				if (block == this.toReplace && random.nextBoolean()) world.setBlock(cand2[0], cand2[1], cand2[2], this.block, meta, 2);
+				block = world.getBlockState(new BlockPos(cand2[0], cand2[1], cand2[2])).getBlock();
+				if (this.doesAirCheck && world.getBlockState(new BlockPos(coords[0], coords[1] + 1, coords[2])).getBlock().getMaterial() != Material.air) continue;
+				if (block == this.toReplace && random.nextBoolean()) world.setBlockState(new BlockPos(cand2[0], cand2[1], cand2[2]), this.block.getStateFromMeta(meta), 2);
 			}
 
 			coords = list.get(random.nextInt(list.size()));

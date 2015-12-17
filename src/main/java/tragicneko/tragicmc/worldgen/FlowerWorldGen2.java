@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiome;
@@ -25,8 +26,8 @@ public class FlowerWorldGen2 implements IWorldGen {
 		if (!TragicConfig.allowFlowerGen) return;
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
-		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
+		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
+		BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(Xcoord, 0, Zcoord));
 		BlockTragicFlower flower = (BlockTragicFlower) TragicBlocks.TragicFlower2;
 		byte meta;
 		
@@ -52,9 +53,9 @@ public class FlowerWorldGen2 implements IWorldGen {
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord += random.nextInt(2) - random.nextInt(2);
 
-			if (world.isAirBlock(Xcoord, Ycoord, Zcoord) &&  Ycoord < 255 && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
+			if (world.isAirBlock(new BlockPos(Xcoord, Ycoord, Zcoord)) &&  Ycoord < 255 && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
 			{
-				world.setBlock(Xcoord, Ycoord, Zcoord, flower, meta, 2);
+				world.setBlockState(new BlockPos(Xcoord, Ycoord, Zcoord), flower.getStateFromMeta(meta), 2);
 			}
 		}
 	}

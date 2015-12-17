@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.SchematicSoulTomb;
@@ -25,10 +26,10 @@ public class StructureSoulTomb extends Structure {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		if (y >= 62 || rand.nextInt(8) != 0 || world.getTopSolidOrLiquidBlock(x, z) < y) return false;
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
+		if (pos.getY() >= 62 || rand.nextInt(8) != 0 || world.getTopSolidOrLiquidBlock(pos).getY() < pos.getY()) return false;
+		return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -47,7 +48,7 @@ public class CustomSpikesWorldGen implements IWorldGen {
 
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
+		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 
 		ArrayList<int[]> list;
 		double spikeSize;
@@ -61,9 +62,9 @@ public class CustomSpikesWorldGen implements IWorldGen {
 			spikeSize = (random.nextDouble() * sizeVariation) + size;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
-			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
+			Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 
-			if (Structure.validBlocks.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord)))
+			if (Structure.validBlocks.contains(world.getBlockState(new BlockPos(Xcoord, Ycoord - 1, Zcoord))))
 			{
 				spikeType = (byte) (this.usesSpikeTypes ? random.nextInt(6) : random.nextInt(2));
 				if (this.isStarCrystal) m = (byte) random.nextInt(16);
@@ -127,14 +128,14 @@ public class CustomSpikesWorldGen implements IWorldGen {
 
 					for (int[] coords : list)
 					{
-						Block ablock = world.getBlock(coords[0], coords[1], coords[2]);
+						Block ablock = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
 						if (Structure.validBlocks.contains(ablock) && ablock != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
 					}
 				}
 
 				for (int[] coords : cands)
 				{
-					world.setBlock(coords[0], coords[1], coords[2], block, m, 2);
+					world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), block.getStateFromMeta(m), 2);
 				}
 			}
 		}
@@ -166,14 +167,14 @@ public class CustomSpikesWorldGen implements IWorldGen {
 
 			for (int[] coords : list)
 			{
-				block = world.getBlock(coords[0], coords[1], coords[2]);
+				block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
 				if (Structure.validBlocks.contains(block) && !cands.contains(coords)) cands.add(coords);
 			}
 		}
 
 		for (int[] coords : cands)
 		{
-			world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
+			world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), spike.getStateFromMeta(meta), 2);
 		}
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -97,7 +98,7 @@ public class WorldHelper {
 	 */
 	public static EnumDifficulty getWorldDifficulty(World world)
 	{
-		return world.difficultySetting;
+		return world.getDifficulty();
 	}
 
 	/**
@@ -189,7 +190,7 @@ public class WorldHelper {
 		double d0 = ent.prevPosX + (ent.posX - ent.prevPosX) * f;
 		double d1 = ent.prevPosY + (ent.posY - ent.prevPosY) * f + (ent.getEyeHeight());
 		double d2 = ent.prevPosZ + (ent.posZ - ent.prevPosZ) * f;
-		Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+		Vec3 vec3 = new Vec3(d0, d1, d2);
 		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
 		float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
 		float f5 = -MathHelper.cos(-f1 * 0.017453292F);
@@ -204,7 +205,7 @@ public class WorldHelper {
 		}
 		Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
 
-		return ent.worldObj.func_147447_a(vec3, vec31, true, false, true);
+		return ent.worldObj.rayTraceBlocks(vec3, vec31, true, false, true);
 	}
 
 	/**
@@ -284,14 +285,15 @@ public class WorldHelper {
 
 	public static int getDistanceToGround(Entity entity)
 	{
-		return getDistanceToGround(entity.worldObj, MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.boundingBox.minY), MathHelper.floor_double(entity.posZ));
+		return getDistanceToGround(entity.worldObj, MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.getEntityBoundingBox().minY), MathHelper.floor_double(entity.posZ));
 	}
 	
 	public static int getDistanceToGround(World world, int x, int y, int z)
 	{
+		BlockPos pos = new BlockPos(x, y, z);
 		for (int i = 0; y - i > 0; ++i)
 		{
-			if (world.getBlock(x, y - i, z).getMaterial().blocksMovement()) return i;
+			if (world.getBlockState(pos.down(i)).getBlock().getMaterial().blocksMovement()) return i;
 		}
 
 		return y;

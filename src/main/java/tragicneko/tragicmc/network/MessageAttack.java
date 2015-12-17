@@ -2,7 +2,7 @@ package tragicneko.tragicmc.network;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class MessageAttack implements IMessage {
 

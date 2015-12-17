@@ -5,6 +5,7 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -100,29 +101,29 @@ public class Structure extends WorldGenerator {
 	 * @param rand
 	 * @return
 	 */
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		if (!validBlocks.contains(world.getBlock(x, y, z)) || y + this.height >= world.provider.getActualHeight()) return false;
+		if (!validBlocks.contains(world.getBlockState(pos).getBlock()) || pos.getY() + this.height >= world.provider.getActualHeight()) return false;
 
 		if (this.isSurfaceStructure())
 		{
-			if (y <= 50 || !World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) ||
-					!world.getBlock(x, y - 1, z).isOpaqueCube() || !world.canBlockSeeTheSky(x, y, z)) return false;
+			if (pos.getY() <= 50 || !World.doesBlockHaveSolidTopSurface(world, pos.down()) ||
+					!world.getBlockState(pos.down()).getBlock().isOpaqueCube() || !world.canBlockSeeSky(pos)) return false;
 
-			for (int y1 = 0; y1 < this.height; y1++)
+			for (int y1 = 1; y1 < this.height; y1++)
 			{
-				if (!validBlocks.contains(world.getBlock(x, y + y1 + 1, z))) return false;
+				if (!validBlocks.contains(world.getBlockState(pos.up(y1)).getBlock())) return false;
 			}
 		}
 		else
 		{
 			for (int y1 = 0; y1 < this.height; y1++)
 			{
-				if (!validBlocks.contains(world.getBlock(x, y - y1, z)) ||
-						!validBlocks.contains(world.getBlock(x - y1, y, z)) ||
-						!validBlocks.contains(world.getBlock(x + y1, y, z)) ||
-						!validBlocks.contains(world.getBlock(x, y, z + y1)) ||
-						!validBlocks.contains(world.getBlock(x, y , z - y1)))
+				if (!validBlocks.contains(world.getBlockState(pos.down(y1)).getBlock()) ||
+						!validBlocks.contains(world.getBlockState(pos.east(y1)).getBlock()) ||
+						!validBlocks.contains(world.getBlockState(pos.west(y1)).getBlock()) ||
+						!validBlocks.contains(world.getBlockState(pos.south(y1)).getBlock()) ||
+						!validBlocks.contains(world.getBlockState(pos.north(y1)).getBlock()))
 				{
 					return false;
 				}
@@ -159,9 +160,9 @@ public class Structure extends WorldGenerator {
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z)
+	public boolean generate(World world, Random rand, BlockPos pos)
 	{
-		return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, x, y, z);
+		return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	/**

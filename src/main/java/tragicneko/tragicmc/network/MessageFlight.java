@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.network;
 
 import io.netty.buffer.ByteBuf;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class MessageFlight implements IMessage {
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -19,7 +20,7 @@ public class IsleWorldGen implements IWorldGen {
 		
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
+		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 
 		ArrayList<int[]> list;
 		byte relays = (byte) (1 + random.nextInt(3));
@@ -55,7 +56,7 @@ public class IsleWorldGen implements IWorldGen {
 
 				for (int[] coords2 : list)
 				{
-					block = world.getBlock(coords2[0], coords2[1], coords2[2]);
+					block = world.getBlockState(new BlockPos(coords2[0], coords2[1], coords2[2])).getBlock();
 					if (Structure.validBlocks.contains(block) && !cands.contains(coords2)) cands.add(coords2);
 				}
 			}
@@ -64,14 +65,14 @@ public class IsleWorldGen implements IWorldGen {
 			{
 				if (coords2[1] >= yMax)
 				{
-					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.ErodedStone, 0, 2);
+					world.setBlockState(new BlockPos(coords2[0], coords2[1], coords2[2]), TragicBlocks.ErodedStone.getStateFromMeta(0), 2);
 				}
 				else
 				{
-					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DarkStone, 0, 2);
+					world.setBlockState(new BlockPos(coords2[0], coords2[1], coords2[2]), TragicBlocks.DarkStone.getStateFromMeta(0), 2);
 				}
 			}
-			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
+			Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 		}
 		//seed: -4219481829119480244 x: 4200 z: 4600
 	}

@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenDesert;
@@ -39,15 +40,15 @@ public class StructureTower extends Structure {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200) && rand.nextInt(4) == 0;
+		return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200) && rand.nextInt(4) == 0;
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z)
+	public boolean generate(World world, Random rand, BlockPos pos)
 	{
-		return generateStructureWithVariant(this.getVariantFromBiome(world.getBiomeGenForCoords(x, z)), world, rand, x, y, z);
+		return generateStructureWithVariant(this.getVariantFromBiome(world.getBiomeGenForCoords(pos)), world, rand, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override

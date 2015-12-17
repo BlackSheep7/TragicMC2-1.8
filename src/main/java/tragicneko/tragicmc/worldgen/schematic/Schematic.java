@@ -3,14 +3,16 @@ package tragicneko.tragicmc.worldgen.schematic;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.tileentity.TileEntitySign;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public abstract class Schematic {
 
@@ -134,7 +136,7 @@ public abstract class Schematic {
 	{
 		if (y <= 0 || y >= 256) return false;
 
-		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(x, y, z);
+		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(new BlockPos(x, y, z));
 		if (tileentity != null)
 		{
 			WeightedRandomChestContent.generateChestContents(rand, hook.getItems(rand), tileentity, hook.getCount(rand));
@@ -148,26 +150,41 @@ public abstract class Schematic {
 	}
 
 	public boolean addSignContents(World world, int x, int y, int z, int line, String text) {
-		TileEntitySign sign = (TileEntitySign) world.getTileEntity(x, y, z);
+		TileEntitySign sign = (TileEntitySign) world.getTileEntity(new BlockPos(x, y, z));
 		if (sign == null || line > 4)
 		{
 			TragicMC.logWarning("Sign text setup failed. The tile entity was null or an improper text line was chosen.");
 			return false;
 		}
-		sign.signText[line] = text;
+		sign.signText[line] = new ChatComponentText(text);
 		return true;
 	}
 
 	public boolean setSpawnerMob(World world, int x, int y, int z, String mobName)
 	{
-		TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(x, y, z);
+		TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(new BlockPos(x, y, z));
 		if (spawner == null || mobName == null)
 		{
 			TragicMC.logWarning("Spawner setup failed. The tile entity was null or mobName was null.");
 			return false;
 		}
-		spawner.func_145881_a().setEntityName(mobName);
+		spawner.getSpawnerBaseLogic().setEntityName(mobName);
 		return true;
+	}
+	
+	public void setBlockToAir(World world, int x, int y, int z)
+	{
+		this.setBlock(world, x, y, z, Blocks.air);
+	}
+	
+	public void setBlock(World world, int x, int y, int z, Block block)
+	{
+		this.setBlock(world, x, y, z, block, 0, 3);
+	}
+	
+	public void setBlock(World world, int x, int y, int z, Block block, int meta, int flag)
+	{
+		world.setBlockState(new BlockPos(x, y, z), block.getStateFromMeta(meta), flag);
 	}
 
 	/*

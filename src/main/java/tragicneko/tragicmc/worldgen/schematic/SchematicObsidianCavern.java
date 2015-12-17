@@ -7,6 +7,7 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
@@ -49,7 +50,7 @@ public class SchematicObsidianCavern extends Schematic {
 		{
 			for (int wuh = 0; wuh < 19; wuh++)
 			{
-				world.setBlock(x + wah - 9, y, z + wuh - 9, bedrock);
+				this.setBlock(world, x + wah - 9, y, z + wuh - 9, bedrock);
 			}
 		}
 
@@ -61,16 +62,16 @@ public class SchematicObsidianCavern extends Schematic {
 			{
 				for (int wuh = 0; wuh < 19; wuh++) //To make sure the cavern is completely empty before generation
 				{
-					world.setBlockToAir(x + wah - 9, y + who, z + wuh - 9);
+					this.setBlockToAir(world, x + wah - 9, y + who, z + wuh - 9);
 				}
 			}
 
 			for (int x1 = 0; x1 < 19; x1++) //To generate the bedrock walls around the cavern
 			{
-				world.setBlock(x + x1 - 9, y + who, z - 9, bedrock);
-				world.setBlock(x - 9, y + who, z + x1 - 9, bedrock);
-				world.setBlock(x + 18 - 9, y + who, z + x1 - 9, bedrock);
-				world.setBlock(x + x1 - 9, y + who, z + 18 - 9, bedrock);
+				this.setBlock(world, x + x1 - 9, y + who, z - 9, bedrock);
+				this.setBlock(world, x - 9, y + who, z + x1 - 9, bedrock);
+				this.setBlock(world, x + 18 - 9, y + who, z + x1 - 9, bedrock);
+				this.setBlock(world, x + x1 - 9, y + who, z + 18 - 9, bedrock);
 			}
 		}
 
@@ -82,32 +83,32 @@ public class SchematicObsidianCavern extends Schematic {
 			{
 				for (int wuh = 0; wuh < 11; wuh++) //To make sure the cavern is completely empty before generation
 				{
-					world.setBlockToAir(x + wah - 5, y + who, z + wuh - 5);
+					this.setBlockToAir(world, x + wah - 5, y + who, z + wuh - 5);
 				}
 			}
 
 			for (int x1 = 0; x1 < 13; x1++) //To generate the bedrock walls around the cavern
 			{
-				world.setBlock(x + x1 - 6, y + who, z - 6, bedrock);
-				world.setBlock(x - 6, y + who, z + x1 - 6, bedrock);
-				world.setBlock(x + 12 - 6, y + who, z + x1 - 6, bedrock);
-				world.setBlock(x + x1 - 6, y + who, z + 12 - 6, bedrock);
+				this.setBlock(world, x + x1 - 6, y + who, z - 6, bedrock);
+				this.setBlock(world, x - 6, y + who, z + x1 - 6, bedrock);
+				this.setBlock(world, x + 12 - 6, y + who, z + x1 - 6, bedrock);
+				this.setBlock(world, x + x1 - 6, y + who, z + 12 - 6, bedrock);
 			}
 
 			for (int x1 = 0; x1 < 15; x1++) //To generate the bedrock walls around the cavern, 2nd outer layer
 			{
-				world.setBlock(x + x1 - 7, y + who, z - 7, bedrock);
-				world.setBlock(x - 7, y + who, z + x1 - 7, bedrock);
-				world.setBlock(x + 14 - 7, y + who, z + x1 - 7, bedrock);
-				world.setBlock(x + x1 - 7, y + who, z + 14 - 7, bedrock);
+				this.setBlock(world, x + x1 - 7, y + who, z - 7, bedrock);
+				this.setBlock(world, x - 7, y + who, z + x1 - 7, bedrock);
+				this.setBlock(world, x + 14 - 7, y + who, z + x1 - 7, bedrock);
+				this.setBlock(world, x + x1 - 7, y + who, z + 14 - 7, bedrock);
 			}
 
 			for (int x1 = 0; x1 < 17; x1++) //To generate the bedrock walls around the cavern, 3rd outer layer
 			{
-				world.setBlock(x + x1 - 8, y + who, z - 8, bedrock);
-				world.setBlock(x - 8, y + who, z + x1 - 8, bedrock);
-				world.setBlock(x + 16 - 8, y + who, z + x1 - 8, bedrock);
-				world.setBlock(x + x1 - 8, y + who, z + 16 - 8, bedrock);
+				this.setBlock(world, x + x1 - 8, y + who, z - 8, bedrock);
+				this.setBlock(world, x - 8, y + who, z + x1 - 8, bedrock);
+				this.setBlock(world, x + 16 - 8, y + who, z + x1 - 8, bedrock);
+				this.setBlock(world, x + x1 - 8, y + who, z + 16 - 8, bedrock);
 			}
 		}
 
@@ -119,24 +120,24 @@ public class SchematicObsidianCavern extends Schematic {
 			{
 				for (int wuh = 0; wuh < 7; wuh++) //To make sure the cavern is completely empty before generation
 				{
-					world.setBlockToAir(x + wah - 3, y + who, z + wuh - 3);
+					this.setBlockToAir(world, x + wah - 3, y + who, z + wuh - 3);
 				}
 			}
 
 			for (int x1 = 0; x1 < 9; x1++) //To generate the bedrock walls around the cavern
 			{
-				world.setBlock(x + x1 - 4, y + who, z - 4, bedrock);
-				world.setBlock(x - 4, y + who, z + x1 - 4, bedrock);
-				world.setBlock(x + 8 - 4, y + who, z + x1 - 4, bedrock);
-				world.setBlock(x + x1 - 4, y + who, z + 8 - 4, bedrock);
+				this.setBlock(world, x + x1 - 4, y + who, z - 4, bedrock);
+				this.setBlock(world, x - 4, y + who, z + x1 - 4, bedrock);
+				this.setBlock(world, x + 8 - 4, y + who, z + x1 - 4, bedrock);
+				this.setBlock(world, x + x1 - 4, y + who, z + 8 - 4, bedrock);
 			}
 
 			for (int x1 = 0; x1 < 11; x1++) //To generate the bedrock walls around the cavern, outer layer
 			{
-				world.setBlock(x + x1 - 5, y + who, z - 5, bedrock);
-				world.setBlock(x - 5, y + who, z + x1 - 5, bedrock);
-				world.setBlock(x + 10 - 5, y + who, z + x1 - 5, bedrock);
-				world.setBlock(x + x1 - 5, y + who, z + 10 - 5, bedrock);
+				this.setBlock(world, x + x1 - 5, y + who, z - 5, bedrock);
+				this.setBlock(world, x - 5, y + who, z + x1 - 5, bedrock);
+				this.setBlock(world, x + 10 - 5, y + who, z + x1 - 5, bedrock);
+				this.setBlock(world, x + x1 - 5, y + who, z + 10 - 5, bedrock);
 			}
 		}
 
@@ -146,16 +147,16 @@ public class SchematicObsidianCavern extends Schematic {
 		{
 			for (int wuh = 0; wuh < 7; wuh++) //To make sure the cavern is completely empty before generation
 			{
-				world.setBlockToAir(x + wah - 2, y, z + wuh - 2);
+				this.setBlockToAir(world, x + wah - 2, y, z + wuh - 2);
 			}
 		}
 
 		for (int x1 = 0; x1 < 7; x1++) //To generate the bedrock walls around the cavern
 		{
-			world.setBlock(x + x1 - 3, y, z - 3, bedrock);
-			world.setBlock(x - 3, y, z + x1 - 3, bedrock);
-			world.setBlock(x + 6 - 3, y, z + x1 - 3, bedrock);
-			world.setBlock(x + x1 - 3, y, z + 6 - 3, bedrock);
+			this.setBlock(world, x + x1 - 3, y, z - 3, bedrock);
+			this.setBlock(world, x - 3, y, z + x1 - 3, bedrock);
+			this.setBlock(world, x + 6 - 3, y, z + x1 - 3, bedrock);
+			this.setBlock(world, x + x1 - 3, y, z + 6 - 3, bedrock);
 		}
 
 		y = 14;
@@ -166,16 +167,16 @@ public class SchematicObsidianCavern extends Schematic {
 			{
 				for (int wuh = 0; wuh < 3; wuh++) //To make sure the cavern is completely empty before generation
 				{
-					world.setBlockToAir(x + wah - 1, y + who, z + wuh - 1);
+					this.setBlockToAir(world, x + wah - 1, y + who, z + wuh - 1);
 				}
 			}
 
 			for (int x1 = 0; x1 < 5; x1++) //To generate the bedrock walls around the cavern
 			{
-				world.setBlock(x + x1 - 2, y + who, z - 2, bedrock);
-				world.setBlock(x - 2, y + who, z + x1 - 2, bedrock);
-				world.setBlock(x + 4 - 2, y + who, z + x1 - 2, bedrock);
-				world.setBlock(x + x1 - 2, y + who, z + 4 - 2, bedrock);
+				this.setBlock(world, x + x1 - 2, y + who, z - 2, bedrock);
+				this.setBlock(world, x - 2, y + who, z + x1 - 2, bedrock);
+				this.setBlock(world, x + 4 - 2, y + who, z + x1 - 2, bedrock);
+				this.setBlock(world, x + x1 - 2, y + who, z + 4 - 2, bedrock);
 			}
 		}
 
@@ -187,7 +188,7 @@ public class SchematicObsidianCavern extends Schematic {
 			{
 				for (int wuh = 0; wuh < 3; wuh++) //To make sure the tube is completely air before generating obsidian
 				{
-					world.setBlockToAir(x + wah - 1, y + who, z + wuh - 1);
+					this.setBlockToAir(world, x + wah - 1, y + who, z + wuh - 1);
 				}
 			}
 
@@ -195,36 +196,36 @@ public class SchematicObsidianCavern extends Schematic {
 			{
 				if ((y + who) % 12 == 0 && y + who != starty)
 				{
-					world.setBlock(x + x1 - 1, y + who, z - 1, glowstone);
-					world.setBlock(x - 1, y + who, z + x1 - 1, glowstone);
-					world.setBlock(x + 2 - 1, y + who, z + x1 - 1, glowstone);
-					world.setBlock(x + x1 - 1, y + who, z + 2 - 1, glowstone);
+					this.setBlock(world, x + x1 - 1, y + who, z - 1, glowstone);
+					this.setBlock(world, x - 1, y + who, z + x1 - 1, glowstone);
+					this.setBlock(world, x + 2 - 1, y + who, z + x1 - 1, glowstone);
+					this.setBlock(world, x + x1 - 1, y + who, z + 2 - 1, glowstone);
 				}
 				else
 				{
-					world.setBlock(x + x1 - 1, y + who, z - 1, obs);
-					world.setBlock(x - 1, y + who, z + x1 - 1, obs);
-					world.setBlock(x + 2 - 1, y + who, z + x1 - 1, obs);
-					world.setBlock(x + x1 - 1, y + who, z + 2 - 1, obs);
+					this.setBlock(world, x + x1 - 1, y + who, z - 1, obs);
+					this.setBlock(world, x - 1, y + who, z + x1 - 1, obs);
+					this.setBlock(world, x + 2 - 1, y + who, z + x1 - 1, obs);
+					this.setBlock(world, x + x1 - 1, y + who, z + 2 - 1, obs);
 				}
 			}
 		}
 
 		for (int i = 0; y + i <= starty; i++)
 		{
-			world.setBlock(x, y + i, z, ladder, 3, 2);
+			this.setBlock(world, x, y + i, z, ladder, 3, 2);
 		}
 
 		//Glowstone in the large caverns to allow some visibility if the player doesn't h4ck their g4mma or have night vision on
-		world.setBlock(x + 8, 6, z + 8, glowstone);
-		world.setBlock(x + 8, 6, z - 8, glowstone);
-		world.setBlock(x - 8, 6, z + 8, glowstone);
-		world.setBlock(x - 8, 6, z - 8, glowstone);
+		this.setBlock(world, x + 8, 6, z + 8, glowstone);
+		this.setBlock(world, x + 8, 6, z - 8, glowstone);
+		this.setBlock(world, x - 8, 6, z + 8, glowstone);
+		this.setBlock(world, x - 8, 6, z - 8, glowstone);
 
-		world.setBlock(x + 5, 11, z + 5, glowstone);
-		world.setBlock(x + 5, 11, z - 5, glowstone);
-		world.setBlock(x - 5, 11, z + 5, glowstone);
-		world.setBlock(x - 5, 11, z - 5, glowstone);
+		this.setBlock(world, x + 5, 11, z + 5, glowstone);
+		this.setBlock(world, x + 5, 11, z - 5, glowstone);
+		this.setBlock(world, x - 5, 11, z + 5, glowstone);
+		this.setBlock(world, x - 5, 11, z - 5, glowstone);
 	}
 
 	public void generateCaveOpening(int variant, World world, Random rand, int x, int y, int z) {
@@ -247,34 +248,34 @@ public class SchematicObsidianCavern extends Schematic {
 				{
 					for (int z1 = -1; z1 < 2; z1++)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, obs);
+						this.setBlock(world, x + x1, y + y1, z + z1, obs);
 					}
 				}
 			}
 
 			for (int y1 = 1; y1 < 3; y1++)
 			{
-				world.setBlockToAir(x + 1, y + y1, z);
-				world.setBlockToAir(x - 1, y + y1, z);
-				world.setBlockToAir(x, y + y1, z + 1);
-				world.setBlockToAir(x, y + y1, z - 1);
-				world.setBlockToAir(x, y + y1, z);
+				this.setBlockToAir(world, x + 1, y + y1, z);
+				this.setBlockToAir(world, x - 1, y + y1, z);
+				this.setBlockToAir(world, x, y + y1, z + 1);
+				this.setBlockToAir(world, x, y + y1, z - 1);
+				this.setBlockToAir(world, x, y + y1, z);
 			}
 
 			for (int x1 = -1; x1 < 2; x1++)
 			{
-				world.setBlock(x + x1, y + 4, z, obs);
-				world.setBlock(x, y + 4, z + x1, obs);
+				this.setBlock(world, x + x1, y + 4, z, obs);
+				this.setBlock(world, x, y + 4, z + x1, obs);
 
-				world.setBlock(x + 2, y, z + x1, obs);
-				world.setBlock(x - 2, y, z + x1, obs);
-				world.setBlock(x + x1, y, z - 2, obs);
-				world.setBlock(x + x1, y, z + 2, obs);
+				this.setBlock(world, x + 2, y, z + x1, obs);
+				this.setBlock(world, x - 2, y, z + x1, obs);
+				this.setBlock(world, x + x1, y, z - 2, obs);
+				this.setBlock(world, x + x1, y, z + 2, obs);
 			}
 
-			world.setBlock(x, y + 4, z, luxury, meta, 2);
-			world.setBlock(x, y + 5, z, obs);
-			world.setBlock(x, y + 6, z, obs);
+			this.setBlock(world, x, y + 4, z, luxury, meta, 2);
+			this.setBlock(world, x, y + 5, z, obs);
+			this.setBlock(world, x, y + 6, z, obs);
 			break;
 		case 1:
 			for (int y1 = 0; y1 < 8; y1++) //Creates first block of obsidian for the middle of the head
@@ -283,34 +284,34 @@ public class SchematicObsidianCavern extends Schematic {
 				{
 					for (int z1 = -1; z1 < 2; z1++)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, obs);
+						this.setBlock(world, x + x1, y + y1, z + z1, obs);
 					}
 				}
 			}
 
-			world.setBlockToAir(x, y + 4, z);
-			world.setBlockToAir(x, y + 5, z + 1);
-			world.setBlockToAir(x, y + 5, z - 1);
-			world.setBlock(x - 1, y + 5, z + 1, luxury, meta, 2);
-			world.setBlock(x - 1, y + 5, z - 1, luxury, meta, 2); //Creates the eye sockets and places the luxury blocks for the eyes
+			this.setBlockToAir(world, x, y + 4, z);
+			this.setBlockToAir(world, x, y + 5, z + 1);
+			this.setBlockToAir(world, x, y + 5, z - 1);
+			this.setBlock(world, x - 1, y + 5, z + 1, luxury, meta, 2);
+			this.setBlock(world, x - 1, y + 5, z - 1, luxury, meta, 2); //Creates the eye sockets and places the luxury blocks for the eyes
 
 			for (int x1 = -1; x1 < 2; x1++) //Creates the inner "teeth" next to the tube opening
 			{
-				world.setBlock(x + x1, y, z - 2, obs);
-				world.setBlock(x + x1, y, z + 2, obs);
+				this.setBlock(world, x + x1, y, z - 2, obs);
+				this.setBlock(world, x + x1, y, z + 2, obs);
 
 				if (x1 == 0)
 				{
-					world.setBlock(x + x1, y + 1, z - 2, obs);
-					world.setBlock(x + x1, y + 1, z + 2, obs);
+					this.setBlock(world, x + x1, y + 1, z - 2, obs);
+					this.setBlock(world, x + x1, y + 1, z + 2, obs);
 				}
 
 				if (x1 == -1)
 				{
-					world.setBlock(x + x1, y + 2, z - 2, obs);
-					world.setBlock(x + x1, y + 2, z + 2, obs);
-					world.setBlock(x + x1, y + 1, z - 2, obs);
-					world.setBlock(x + x1, y + 1, z + 2, obs);
+					this.setBlock(world, x + x1, y + 2, z - 2, obs);
+					this.setBlock(world, x + x1, y + 2, z + 2, obs);
+					this.setBlock(world, x + x1, y + 1, z - 2, obs);
+					this.setBlock(world, x + x1, y + 1, z + 2, obs);
 				}
 			}
 
@@ -318,32 +319,32 @@ public class SchematicObsidianCavern extends Schematic {
 			{
 				for (int x1 = -1; x1 < 1; x1++)
 				{
-					world.setBlock(x + x1, y + y1, z - 2, obs);
-					world.setBlock(x + x1, y + y1, z + 2, obs);
+					this.setBlock(world, x + x1, y + y1, z - 2, obs);
+					this.setBlock(world, x + x1, y + y1, z + 2, obs);
 				}
 			}
 
 			for (int y1 = 0; y1 < 8; y1++) //Creates the back layer of the head
 			{
-				world.setBlock(x - 2, y + y1, z + 1, obs);
-				world.setBlock(x - 2, y + y1, z, obs);
-				world.setBlock(x - 2, y + y1, z - 1, obs);
+				this.setBlock(world, x - 2, y + y1, z + 1, obs);
+				this.setBlock(world, x - 2, y + y1, z, obs);
+				this.setBlock(world, x - 2, y + y1, z - 1, obs);
 			}
 
-			world.setBlock(x - 2, y + 5, z - 2, obs); //sets extra blocks on the back of the head
-			world.setBlock(x - 2, y + 5, z + 2, obs);
-			world.setBlockToAir(x - 2, y + 7, z - 1);
-			world.setBlockToAir(x - 2, y + 7, z + 1);
-			world.setBlock(x - 2, y + 7, z, obs);
+			this.setBlock(world, x - 2, y + 5, z - 2, obs); //sets extra blocks on the back of the head
+			this.setBlock(world, x - 2, y + 5, z + 2, obs);
+			this.setBlockToAir(world, x - 2, y + 7, z - 1);
+			this.setBlockToAir(world, x - 2, y + 7, z + 1);
+			this.setBlock(world, x - 2, y + 7, z, obs);
 
-			world.setBlockToAir(x, y + 1, z); //Creates the open 2x3x2 space to enter the tube
-			world.setBlockToAir(x, y + 1, z - 1);
-			world.setBlockToAir(x, y + 1, z + 1);
-			world.setBlockToAir(x, y + 2, z);
-			world.setBlockToAir(x, y + 2, z - 1);
-			world.setBlockToAir(x, y + 2, z + 1);
-			world.setBlockToAir(x, y + 3, z + 2);
-			world.setBlockToAir(x, y + 3, z - 2);
+			this.setBlockToAir(world, x, y + 1, z); //Creates the open 2x3x2 space to enter the tube
+			this.setBlockToAir(world, x, y + 1, z - 1);
+			this.setBlockToAir(world, x, y + 1, z + 1);
+			this.setBlockToAir(world, x, y + 2, z);
+			this.setBlockToAir(world, x, y + 2, z - 1);
+			this.setBlockToAir(world, x, y + 2, z + 1);
+			this.setBlockToAir(world, x, y + 3, z + 2);
+			this.setBlockToAir(world, x, y + 3, z - 2);
 
 			for (int y1 = 0; y1 < 3; y1++) //Creates the outer "teeth"
 			{
@@ -353,12 +354,12 @@ public class SchematicObsidianCavern extends Schematic {
 					{
 						if (z1 != 0)
 						{
-							world.setBlock(x + 2, y + y1, z + z1, obs);
+							this.setBlock(world, x + 2, y + y1, z + z1, obs);
 						}
 					}
 					else
 					{
-						world.setBlock(x + 2, y + y1, z + z1, obs);
+						this.setBlock(world, x + 2, y + y1, z + z1, obs);
 					}
 				}
 			}
@@ -370,48 +371,48 @@ public class SchematicObsidianCavern extends Schematic {
 				{
 					for (int z1 = -1; z1 < 2; z1++)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, obs); //Generates the basic 2 x 3 x 5 slab to carve out of
+						this.setBlock(world, x + x1, y + y1, z + z1, obs); //Generates the basic 2 x 3 x 5 slab to carve out of
 					}
 				}
 			}
 
-			world.setBlockToAir(x, y + 1, z);
-			world.setBlockToAir(x, y + 2, z); //Clears out the space to enter the tube, sets the eye
-			world.setBlock(x, y + 4, z, luxury, meta, 2);
+			this.setBlockToAir(world, x, y + 1, z);
+			this.setBlockToAir(world, x, y + 2, z); //Clears out the space to enter the tube, sets the eye
+			this.setBlock(world, x, y + 4, z, luxury, meta, 2);
 
-			world.setBlock(x + 1, y + 3, z, obs); //sets the obsidian blocks that are in front of the eye (the "goggles")
-			world.setBlock(x + 1, y + 4, z - 1, obs);
-			world.setBlock(x + 1, y + 4, z + 1, obs);
-			world.setBlock(x + 1, y + 5, z, obs);
+			this.setBlock(world, x + 1, y + 3, z, obs); //sets the obsidian blocks that are in front of the eye (the "goggles")
+			this.setBlock(world, x + 1, y + 4, z - 1, obs);
+			this.setBlock(world, x + 1, y + 4, z + 1, obs);
+			this.setBlock(world, x + 1, y + 5, z, obs);
 
-			world.setBlock(x, y + 4, z - 2, obs); //sets the obsidian blocks on the side of the head that represent the goggles
-			world.setBlock(x, y + 4, z + 2, obs);
-			world.setBlock(x - 1, y + 4, z - 2, obs);
-			world.setBlock(x - 1, y + 4, z + 2, obs);
+			this.setBlock(world, x, y + 4, z - 2, obs); //sets the obsidian blocks on the side of the head that represent the goggles
+			this.setBlock(world, x, y + 4, z + 2, obs);
+			this.setBlock(world, x - 1, y + 4, z - 2, obs);
+			this.setBlock(world, x - 1, y + 4, z + 2, obs);
 
-			world.setBlock(x, y + 6, z, obs); //Sets the blocks on the top of the head that represent the goggles
-			world.setBlock(x - 1, y + 6, z, obs);
+			this.setBlock(world, x, y + 6, z, obs); //Sets the blocks on the top of the head that represent the goggles
+			this.setBlock(world, x - 1, y + 6, z, obs);
 
 			for (int y1 = 2; y1 < 6; y1++)
 			{
-				world.setBlock(x - 2, y + y1, z, obs); //sets the blocks on the back of the head for the goggles
+				this.setBlock(world, x - 2, y + y1, z, obs); //sets the blocks on the back of the head for the goggles
 			}
-			world.setBlock(x - 2, y + 4, z - 1, obs);
-			world.setBlock(x - 2, y + 4, z + 1, obs);
+			this.setBlock(world, x - 2, y + 4, z - 1, obs);
+			this.setBlock(world, x - 2, y + 4, z + 1, obs);
 
-			world.setBlock(x + 1, y + 1, z - 1, obs); //sets the two obsidian blocks near the tube opening (duh)
-			world.setBlock(x + 1, y + 1, z + 1, obs);
+			this.setBlock(world, x + 1, y + 1, z - 1, obs); //sets the two obsidian blocks near the tube opening (duh)
+			this.setBlock(world, x + 1, y + 1, z + 1, obs);
 			break;
 		case 3:
 			for (int z1 = -1; z1 < 2; z1++)
 			{
-				world.setBlock(x - 1, y, z + z1, obs); //Sets the blocks in front of and behind the starting block, the lower mouth
-				world.setBlock(x + 1, y, z + z1, obs);
-				world.setBlock(x + 2, y, z + z1, obs);
+				this.setBlock(world, x - 1, y, z + z1, obs); //Sets the blocks in front of and behind the starting block, the lower mouth
+				this.setBlock(world, x + 1, y, z + z1, obs);
+				this.setBlock(world, x + 2, y, z + z1, obs);
 
 				for (int x1 = -2; x1 < 5; x1++)
 				{
-					world.setBlock(x + x1, y + 3, z + z1, obs); //sets the main blocks that make up the upper part of the mouth and middle part of the head
+					this.setBlock(world, x + x1, y + 3, z + z1, obs); //sets the main blocks that make up the upper part of the mouth and middle part of the head
 				}
 			}
 
@@ -421,61 +422,61 @@ public class SchematicObsidianCavern extends Schematic {
 				{
 					if (y1 > 0 && z1 != 0)
 					{
-						world.setBlock(x, y + y1, z + z1, obs);
+						this.setBlock(world, x, y + y1, z + z1, obs);
 					}
 
-					world.setBlock(x - 1, y + y1, z + z1, obs);
+					this.setBlock(world, x - 1, y + y1, z + z1, obs);
 				}
 			}
 
-			world.setBlock(x + 2, y + 1, z + 1, obs); //Teeth
-			world.setBlock(x + 2, y + 1, z - 1, obs);
-			world.setBlock(x + 4, y + 2, z + 1, obs);
-			world.setBlock(x + 4, y + 2, z - 1, obs);
+			this.setBlock(world, x + 2, y + 1, z + 1, obs); //Teeth
+			this.setBlock(world, x + 2, y + 1, z - 1, obs);
+			this.setBlock(world, x + 4, y + 2, z + 1, obs);
+			this.setBlock(world, x + 4, y + 2, z - 1, obs);
 
 			for (int x1 = -3; x1 < 5; x1++) //Upper snout
 			{
-				world.setBlock(x + x1, y + 4, z, obs);
+				this.setBlock(world, x + x1, y + 4, z, obs);
 			}
 
-			world.setBlock(x - 3, y + 5, z, obs); //Tip of middle spike on back
-			world.setBlock(x, y + 6, z, obs); //Tip of top spike on head
+			this.setBlock(world, x - 3, y + 5, z, obs); //Tip of middle spike on back
+			this.setBlock(world, x, y + 6, z, obs); //Tip of top spike on head
 
-			world.setBlock(x + 4, y + 4, z + 1, obs); //tip of the nose
-			world.setBlock(x + 4, y + 4, z - 1, obs);
+			this.setBlock(world, x + 4, y + 4, z + 1, obs); //tip of the nose
+			this.setBlock(world, x + 4, y + 4, z - 1, obs);
 
-			world.setBlock(x + 1, y + 4, z + 1, luxury, meta, 2); //eyes
-			world.setBlock(x + 1, y + 4, z - 1, luxury, meta, 2);
+			this.setBlock(world, x + 1, y + 4, z + 1, luxury, meta, 2); //eyes
+			this.setBlock(world, x + 1, y + 4, z - 1, luxury, meta, 2);
 
-			world.setBlock(x + 1, y + 4, z - 2, obs); //blocks around the eyes
-			world.setBlock(x + 1, y + 4, z + 2, obs);
-			world.setBlock(x + 1, y + 5, z + 1, obs);
-			world.setBlock(x + 1, y + 5, z - 1, obs);
+			this.setBlock(world, x + 1, y + 4, z - 2, obs); //blocks around the eyes
+			this.setBlock(world, x + 1, y + 4, z + 2, obs);
+			this.setBlock(world, x + 1, y + 5, z + 1, obs);
+			this.setBlock(world, x + 1, y + 5, z - 1, obs);
 
 			for (int x1 = -1; x1 < 1; x1++) //Blocks behind the eyes
 			{
-				world.setBlock(x + x1, y + 4, z + 1, obs);
-				world.setBlock(x + x1, y + 4, z - 1, obs);
+				this.setBlock(world, x + x1, y + 4, z + 1, obs);
+				this.setBlock(world, x + x1, y + 4, z - 1, obs);
 			}
 
 			for (int x1 = -1; x1 < 3; x1++) //Middle spike on the top of the head
 			{
-				world.setBlock(x + x1, y + 5, z, obs);
+				this.setBlock(world, x + x1, y + 5, z, obs);
 
 				if (x1 < 2)
 				{
-					world.setBlock(x + x1, y + 3, z - 2, obs); //The sides of the mouth on the head
-					world.setBlock(x + x1, y + 3, z + 2, obs);
+					this.setBlock(world, x + x1, y + 3, z - 2, obs); //The sides of the mouth on the head
+					this.setBlock(world, x + x1, y + 3, z + 2, obs);
 				}
 			}
 
 			for (int x1 = -4; x1 < -1; x1++) //The lower spike on the back
 			{
-				world.setBlock(x + x1, y + 1, z, obs);
+				this.setBlock(world, x + x1, y + 1, z, obs);
 				if (x1 > -4)
 				{
-					world.setBlock(x + x1, y + 2, z, obs);
-					world.setBlock(x + x1, y , z, obs);
+					this.setBlock(world, x + x1, y + 2, z, obs);
+					this.setBlock(world, x + x1, y , z, obs);
 				}
 			}
 			break;
@@ -484,35 +485,35 @@ public class SchematicObsidianCavern extends Schematic {
 			{
 				for (int z1 = -1; z1 < 2; z1++)
 				{
-					world.setBlock(x - 1, y + y1, z + z1, obs); //central blocks in the head
+					this.setBlock(world, x - 1, y + y1, z + z1, obs); //central blocks in the head
 
 					if (z1 != 0)
 					{
 						if (y1 == 1 || y1 == 2)
 						{
-							world.setBlock(x + 1, y + y1, z + z1, obs);
+							this.setBlock(world, x + 1, y + y1, z + z1, obs);
 						}
 
 						if (y1 == 1)
 						{
-							world.setBlock(x + 2, y + y1, z + z1, obs);
+							this.setBlock(world, x + 2, y + y1, z + z1, obs);
 						}
 					}
 
 					if (y1 > 3)
 					{
-						world.setBlock(x, y + y1, z + z1, obs);
+						this.setBlock(world, x, y + y1, z + z1, obs);
 					}
 					else if (z1 != 0)
 					{
-						world.setBlock(x, y + y1, z + z1, obs);
+						this.setBlock(world, x, y + y1, z + z1, obs);
 					}
 
 					if (y1 == 3)
 					{
 						for (int x1 = 0; x1 < 4; x1++) //upper mouth or snout
 						{
-							world.setBlock(x + x1, y + y1, z + z1, obs);
+							this.setBlock(world, x + x1, y + y1, z + z1, obs);
 						}
 					}
 
@@ -520,57 +521,57 @@ public class SchematicObsidianCavern extends Schematic {
 					{
 						for (int x1 = 0; x1 < 3; x1++)
 						{
-							world.setBlock(x + x1, y + y1, z, obs); //top snout
+							this.setBlock(world, x + x1, y + y1, z, obs); //top snout
 						}
 					}
 				}
 			}
 
-			world.setBlock(x, y + 4, z -1, luxury, meta, 2); //The eyes
-			world.setBlock(x, y + 4, z + 1, luxury, meta, 2);
+			this.setBlock(world, x, y + 4, z -1, luxury, meta, 2); //The eyes
+			this.setBlock(world, x, y + 4, z + 1, luxury, meta, 2);
 
-			world.setBlock(x, y + 4, z - 2, obs); //blocks around the eyes and on the side of the head
-			world.setBlock(x, y + 4, z + 2, obs);
-			world.setBlock(x - 1, y + 4, z - 2, obs);
-			world.setBlock(x + 1, y + 4, z - 2, obs);
-			world.setBlock(x - 1, y + 4, z + 2, obs);
-			world.setBlock(x + 1, y + 4, z + 2, obs);
-			world.setBlock(x, y + 5, z - 2, obs);
-			world.setBlock(x, y + 5, z + 2, obs);
-			world.setBlock(x, y + 3, z - 2, obs);
-			world.setBlock(x, y + 3, z + 2, obs);
+			this.setBlock(world, x, y + 4, z - 2, obs); //blocks around the eyes and on the side of the head
+			this.setBlock(world, x, y + 4, z + 2, obs);
+			this.setBlock(world, x - 1, y + 4, z - 2, obs);
+			this.setBlock(world, x + 1, y + 4, z - 2, obs);
+			this.setBlock(world, x - 1, y + 4, z + 2, obs);
+			this.setBlock(world, x + 1, y + 4, z + 2, obs);
+			this.setBlock(world, x, y + 5, z - 2, obs);
+			this.setBlock(world, x, y + 5, z + 2, obs);
+			this.setBlock(world, x, y + 3, z - 2, obs);
+			this.setBlock(world, x, y + 3, z + 2, obs);
 
 			for (int z1 = -1; z1 < 2; z1++) //forehead and lower jaw
 			{
-				world.setBlock(x + 1, y + 5, z + z1, obs);
-				world.setBlock(x + 2, y, z + z1, obs);
+				this.setBlock(world, x + 1, y + 5, z + z1, obs);
+				this.setBlock(world, x + 2, y, z + z1, obs);
 			}
 
-			world.setBlockToAir(x - 1, y + 5, z);
+			this.setBlockToAir(world, x - 1, y + 5, z);
 
-			world.setBlock(x - 1, y + 5, z - 2, obs);
-			world.setBlock(x - 1, y + 5, z + 2, obs);
-			world.setBlock(x - 1, y + 6, z - 2, obs);
-			world.setBlock(x - 1, y + 6, z + 2, obs);
+			this.setBlock(world, x - 1, y + 5, z - 2, obs);
+			this.setBlock(world, x - 1, y + 5, z + 2, obs);
+			this.setBlock(world, x - 1, y + 6, z - 2, obs);
+			this.setBlock(world, x - 1, y + 6, z + 2, obs);
 
 			for (int y1 = 5; y1 < 8; y1++)
 			{
-				world.setBlock(x - 1, y + y1, z - 3, obs);
-				world.setBlock(x - 1, y + y1, z + 3, obs);
+				this.setBlock(world, x - 1, y + y1, z - 3, obs);
+				this.setBlock(world, x - 1, y + y1, z + 3, obs);
 			}
 
-			world.setBlock(x - 2, y + 6, z - 3, obs);
-			world.setBlock(x - 2, y + 6, z + 3, obs);
+			this.setBlock(world, x - 2, y + 6, z - 3, obs);
+			this.setBlock(world, x - 2, y + 6, z + 3, obs);
 
-			world.setBlock(x - 2, y + 7, z - 3, obs);
-			world.setBlock(x - 2, y + 7, z + 3, obs);
-			world.setBlock(x - 2, y + 7, z - 4, obs);
-			world.setBlock(x - 2, y + 7, z + 4, obs);
+			this.setBlock(world, x - 2, y + 7, z - 3, obs);
+			this.setBlock(world, x - 2, y + 7, z + 3, obs);
+			this.setBlock(world, x - 2, y + 7, z - 4, obs);
+			this.setBlock(world, x - 2, y + 7, z + 4, obs);
 
-			world.setBlock(x - 2, y + 8, z + 4, obs);
-			world.setBlock(x - 2, y + 8, z - 4, obs);
-			world.setBlock(x - 3, y + 8, z + 4, obs);
-			world.setBlock(x - 3, y + 8, z - 4, obs);
+			this.setBlock(world, x - 2, y + 8, z + 4, obs);
+			this.setBlock(world, x - 2, y + 8, z - 4, obs);
+			this.setBlock(world, x - 3, y + 8, z + 4, obs);
+			this.setBlock(world, x - 3, y + 8, z - 4, obs);
 			break;
 		default:
 			for (int y1 = 0; y1 < 3; y1++)
@@ -582,9 +583,9 @@ public class SchematicObsidianCavern extends Schematic {
 					{
 						for (int z1 = -3; z1 < 4; z1++)
 						{
-							if (set.contains(world.getBlock(x + x1, y + y1, z + z1)))
+							if (set.contains(world.getBlockState(new BlockPos(x + x1, y + y1, z + z1)).getBlock()))
 							{
-								world.setBlock(x + x1, y + y1, z + z1, obs);
+								this.setBlock(world, x + x1, y + y1, z + z1, obs);
 							}
 						}
 					}
@@ -594,9 +595,9 @@ public class SchematicObsidianCavern extends Schematic {
 					{
 						for (int z1 = -2; z1 < 3; z1++)
 						{
-							if (set.contains(world.getBlock(x + x1, y + y1, z + z1)))
+							if (set.contains(world.getBlockState(new BlockPos(x + x1, y + y1, z + z1)).getBlock()))
 							{
-								world.setBlock(x + x1, y + y1, z + z1, obs);
+								this.setBlock(world, x + x1, y + y1, z + z1, obs);
 							}
 						}
 					}
@@ -606,9 +607,9 @@ public class SchematicObsidianCavern extends Schematic {
 					{
 						for (int z1 = -1; z1 < 2; z1++)
 						{
-							if (set.contains(world.getBlock(x + x1, y + y1, z + z1)) && (x1 != 0 && z1 != 0))
+							if (set.contains(world.getBlockState(new BlockPos(x + x1, y + y1, z + z1)).getBlock()) && (x1 != 0 && z1 != 0))
 							{
-								world.setBlock(x + x1, y + y1, z + z1, obs);
+								this.setBlock(world, x + x1, y + y1, z + z1, obs);
 							}
 						}
 					}
@@ -618,16 +619,16 @@ public class SchematicObsidianCavern extends Schematic {
 
 			for (int y1 = 0; y1 < 3; y1++)
 			{
-				world.setBlock(x + 1, y + y1, z, obs);
-				world.setBlock(x - 1, y + y1, z, obs);
-				world.setBlock(x, y + y1, z + 1, obs);
-				world.setBlock(x, y + y1, z - 1, obs);
-				world.setBlock(x, y + y1, z, ladder, 3, 2);
+				this.setBlock(world, x + 1, y + y1, z, obs);
+				this.setBlock(world, x - 1, y + y1, z, obs);
+				this.setBlock(world, x, y + y1, z + 1, obs);
+				this.setBlock(world, x, y + y1, z - 1, obs);
+				this.setBlock(world, x, y + y1, z, ladder, 3, 2);
 			}
 			break;
 		}
 
-		if (world.getBlock(x, y, z) != Blocks.ladder && world.getBlock(x, y, z) != Blocks.air) world.setBlockToAir(x, y, z);
+		if (world.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.ladder && world.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.air) this.setBlockToAir(world, x, y, z);
 
 	}
 
@@ -640,25 +641,25 @@ public class SchematicObsidianCavern extends Schematic {
 			for (int i = 0; i < list.size(); i++)
 			{
 				coords = list.get(i);
-				world.setBlockToAir(coords[0], coords[1], coords[2]);
+				this.setBlockToAir(world, coords[0], coords[1], coords[2]);
 			}
-			world.setBlock(x, 0, z, bedrock);
-			world.setBlock(x, 1, z, chest);
+			this.setBlock(world, x, 0, z, bedrock);
+			this.setBlock(world, x, 1, z, chest);
 			this.generateChestGoodies(world, rand, x, 1, z, 1);
 			break;
 		case 1:
-			world.setBlock(x, 1, z, bedrock);
-			world.setBlock(x + 1, 1, z, chest);
-			world.setBlock(x - 1, 1, z, chest);
-			world.setBlock(x, 1, z + 1, chest);
-			world.setBlock(x, 1, z - 1, chest);
+			this.setBlock(world, x, 1, z, bedrock);
+			this.setBlock(world, x + 1, 1, z, chest);
+			this.setBlock(world, x - 1, 1, z, chest);
+			this.setBlock(world, x, 1, z + 1, chest);
+			this.setBlock(world, x, 1, z - 1, chest);
 			this.generateChestGoodies(world, rand, x + 1, 1, z, 0);
 			this.generateChestGoodies(world, rand, x - 1, 1, z, 0);
 			this.generateChestGoodies(world, rand, x, 1, z + 1, 0);
 			this.generateChestGoodies(world, rand, x, 1, z - 1, 0);
 			break;
 		case 2:
-			world.setBlock(x, 1, z, bedrock);
+			this.setBlock(world, x, 1, z, bedrock);
 
 			int wubwub = rand.nextInt(4) + 1;
 			int xerces = rand.nextInt(10);
@@ -673,8 +674,8 @@ public class SchematicObsidianCavern extends Schematic {
 				xerces = 6;
 			}
 
-			world.setBlock(x + 5, 1, z + 5, summon, xerces, 2);
-			world.setBlock(x + 1, 1, z, chest);
+			this.setBlock(world, x + 5, 1, z + 5, summon, xerces, 2);
+			this.setBlock(world, x + 1, 1, z, chest);
 			this.generateChestGoodies(world, rand, x + 1, 1, z, 2);
 
 			if (wubwub > 1)
@@ -691,8 +692,8 @@ public class SchematicObsidianCavern extends Schematic {
 					xerces = 6;
 				}
 
-				world.setBlock(x - 5, 1, z + 5, summon, xerces, 2);
-				world.setBlock(x - 1, 1, z, chest);
+				this.setBlock(world, x - 5, 1, z + 5, summon, xerces, 2);
+				this.setBlock(world, x - 1, 1, z, chest);
 				this.generateChestGoodies(world, rand, x - 1, 1, z, 2);
 
 				if (wubwub > 2)
@@ -709,8 +710,8 @@ public class SchematicObsidianCavern extends Schematic {
 						xerces = 6;
 					}
 
-					world.setBlock(x - 5, 1, z - 5, summon, xerces, 2);
-					world.setBlock(x, 1, z + 1, chest);
+					this.setBlock(world, x - 5, 1, z - 5, summon, xerces, 2);
+					this.setBlock(world, x, 1, z + 1, chest);
 					this.generateChestGoodies(world, rand, x, 1, z + 1, 2);
 
 					if (wubwub > 3)
@@ -727,8 +728,8 @@ public class SchematicObsidianCavern extends Schematic {
 							xerces = 6;
 						}
 
-						world.setBlock(x + 5, 1, z - 5, summon, xerces, 2);
-						world.setBlock(x, 1, z - 1, chest);
+						this.setBlock(world, x + 5, 1, z - 5, summon, xerces, 2);
+						this.setBlock(world, x, 1, z - 1, chest);
 						this.generateChestGoodies(world, rand, x, 1, z - 1, 2);
 					}
 				}
@@ -747,56 +748,56 @@ public class SchematicObsidianCavern extends Schematic {
 				mow = 6;
 			}
 
-			world.setBlock(x, 1, z, summon, mow, 2);
+			this.setBlock(world, x, 1, z, summon, mow, 2);
 			break;
 		case 4:
-			world.setBlock(x, 1, z, spawner, 0, 2);
+			this.setBlock(world, x, 1, z, spawner, 0, 2);
 			this.setSpawnerMob(world, x, 1, z, this.getRandomEntityNameForSpawner(rand.nextInt(10)));
 			break;
 		case 5:
-			world.setBlock(x, 1, z, bedrock);
+			this.setBlock(world, x, 1, z, bedrock);
 
 			int zera = rand.nextInt(4) + 1;
 			int oppa = rand.nextInt(10);
 
-			world.setBlock(x + 5, 1, z + 5, spawner, 0, 2);
+			this.setBlock(world, x + 5, 1, z + 5, spawner, 0, 2);
 			this.setSpawnerMob(world, x + 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
-			world.setBlock(x + 1, 1, z, chest);
+			this.setBlock(world, x + 1, 1, z, chest);
 			this.generateChestGoodies(world, rand, x + 1, 1, z, 0);
 			oppa = rand.nextInt(10);
 
 			if (zera > 1)
 			{
 
-				world.setBlock(x - 5, 1, z + 5, spawner, 0, 2);
+				this.setBlock(world, x - 5, 1, z + 5, spawner, 0, 2);
 				this.setSpawnerMob(world, x - 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
-				world.setBlock(x - 1, 1, z, chest);
+				this.setBlock(world, x - 1, 1, z, chest);
 				this.generateChestGoodies(world, rand, x - 1, 1, z, 0);
 				oppa = rand.nextInt(10);
 
 				if (zera > 2)
 				{
 
-					world.setBlock(x - 5, 1, z - 5, spawner, 0, 2);
+					this.setBlock(world, x - 5, 1, z - 5, spawner, 0, 2);
 					this.setSpawnerMob(world, x - 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
-					world.setBlock(x, 1, z + 1, chest);
+					this.setBlock(world, x, 1, z + 1, chest);
 					this.generateChestGoodies(world, rand, x, 1, z + 1, 0);
 					oppa = rand.nextInt(10);
 
 					if (zera > 3)
 					{
-						world.setBlock(x + 5, 1, z - 5, spawner, 0, 2);
+						this.setBlock(world, x + 5, 1, z - 5, spawner, 0, 2);
 						this.setSpawnerMob(world, x + 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
-						world.setBlock(x, 1, z - 1, chest);
+						this.setBlock(world, x, 1, z - 1, chest);
 						this.generateChestGoodies(world, rand, x, 1, z - 1, 0);
 					}
 				}
 			}
 			break;
 		case 6:
-			world.setBlock(x, 1, z, chest);
+			this.setBlock(world, x, 1, z, chest);
 			this.generateChestGoodies(world, rand, x, 1, z, 1);
-			world.setBlock(x, 2, z, spawner, 0, 2);
+			this.setBlock(world, x, 2, z, spawner, 0, 2);
 			this.setSpawnerMob(world, x, 2, z, this.getRandomEntityNameForSpawner(rand.nextInt(10)));
 			break;
 		case 7:
@@ -812,32 +813,32 @@ public class SchematicObsidianCavern extends Schematic {
 				mrow = 6;
 			}
 
-			world.setBlock(x, 1, z, chest, 0, 2);
+			this.setBlock(world, x, 1, z, chest, 0, 2);
 			this.generateChestGoodies(world, rand, x, 1, z, 0);
-			world.setBlock(x, 2, z, summon, mrow, 2);
+			this.setBlock(world, x, 2, z, summon, mrow, 2);
 
 			zera = rand.nextInt(4) + 1;
 			oppa = rand.nextInt(10);
 
-			world.setBlock(x + 5, 1, z + 5, spawner, 0, 2);
+			this.setBlock(world, x + 5, 1, z + 5, spawner, 0, 2);
 			this.setSpawnerMob(world, x + 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 			oppa = rand.nextInt(10);
 
 			if (zera > 1)
 			{
-				world.setBlock(x - 5, 1, z + 5, spawner, 0, 2);
+				this.setBlock(world, x - 5, 1, z + 5, spawner, 0, 2);
 				this.setSpawnerMob(world, x - 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 				oppa = rand.nextInt(10);
 
 				if (zera > 2)
 				{
-					world.setBlock(x - 5, 1, z - 5, spawner, 0, 2);
+					this.setBlock(world, x - 5, 1, z - 5, spawner, 0, 2);
 					this.setSpawnerMob(world, x - 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 					oppa = rand.nextInt(10);
 
 					if (zera > 3)
 					{
-						world.setBlock(x + 5, 1, z - 5, spawner, 0, 2);
+						this.setBlock(world, x + 5, 1, z - 5, spawner, 0, 2);
 						this.setSpawnerMob(world, x + 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 					}
 				}
@@ -856,7 +857,7 @@ public class SchematicObsidianCavern extends Schematic {
 				mrow = 6;
 			}
 
-			world.setBlock(x, 1, z, chest, 0, 2);
+			this.setBlock(world, x, 1, z, chest, 0, 2);
 			this.generateChestGoodies(world, rand, x, 1, z, 2);
 
 			Block luxury = SchematicDesertTower.luxuryBlocks[rand.nextInt(SchematicDesertTower.luxuryBlocks.length)];
@@ -867,39 +868,39 @@ public class SchematicObsidianCavern extends Schematic {
 				meta = rand.nextInt(5);
 			}
 
-			world.setBlock(x, 2, z, luxury, meta, 2);
-			world.setBlock(x, 3, z, summon, mrow, 2);
+			this.setBlock(world, x, 2, z, luxury, meta, 2);
+			this.setBlock(world, x, 3, z, summon, mrow, 2);
 
 			zera = rand.nextInt(4) + 1;
 			oppa = rand.nextInt(10);
 
-			world.setBlock(x + 5, 1, z + 5, spawner, 0, 2);
+			this.setBlock(world, x + 5, 1, z + 5, spawner, 0, 2);
 			this.setSpawnerMob(world, x + 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 			oppa = rand.nextInt(10);
 
 			if (zera > 1)
 			{
-				world.setBlock(x - 5, 1, z + 5, spawner, 0, 2);
+				this.setBlock(world, x - 5, 1, z + 5, spawner, 0, 2);
 				this.setSpawnerMob(world, x - 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 				oppa = rand.nextInt(10);
 
 				if (zera > 2)
 				{
 
-					world.setBlock(x - 5, 1, z - 5, spawner, 0, 2);
+					this.setBlock(world, x - 5, 1, z - 5, spawner, 0, 2);
 					this.setSpawnerMob(world, x - 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 					oppa = rand.nextInt(10);
 
 					if (zera > 3)
 					{
-						world.setBlock(x + 5, 1, z - 5, spawner, 0, 2);
+						this.setBlock(world, x + 5, 1, z - 5, spawner, 0, 2);
 						this.setSpawnerMob(world, x + 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 					}
 				}
 			}
 			break;
 		default:
-			world.setBlock(x, 1, z, chest);
+			this.setBlock(world, x, 1, z, chest);
 			this.generateChestGoodies(world, rand, x, 1, z, 1);
 			break;
 		}
@@ -917,7 +918,7 @@ public class SchematicObsidianCavern extends Schematic {
 	 */
 	public void generateChestGoodies(World world, Random rand, int x, int y, int z, int flag)
 	{
-		TileEntityChest chest = (TileEntityChest) world.getTileEntity(x, y, z);
+		TileEntityChest chest = (TileEntityChest) world.getTileEntity(new BlockPos(x, y, z));
 		ChestGenHooks hook = null;
 
 		if (chest == null)

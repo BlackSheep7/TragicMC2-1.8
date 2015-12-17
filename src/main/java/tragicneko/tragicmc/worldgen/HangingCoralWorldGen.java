@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
@@ -28,36 +29,36 @@ public class HangingCoralWorldGen extends WorldGenerator {
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z)
+	public boolean generate(World world, Random rand, BlockPos pos)
 	{
-		if (!world.isAirBlock(x, y, z))
+		if (!world.isAirBlock(pos))
 		{
 			return false;
 		}
-		else if (world.getBlock(x, y + 1, z) != TragicBlocks.CircuitBlock)
+		else if (world.getBlockState(pos.up(1)).getBlock() != TragicBlocks.CircuitBlock)
 		{
 			return false;
 		}
 		else
 		{
-			world.setBlock(x, y, z, block, meta, 2);
+			world.setBlockState(pos, block.getStateFromMeta(meta), 2);
 
 			for (int l = 0; l < this.iterations; ++l)
 			{
-				int i1 = x + rand.nextInt(width) - rand.nextInt(width); // 4
-				int j1 = y - rand.nextInt(height); //32
-				int k1 = z + rand.nextInt(width) - rand.nextInt(width);
+				int i1 = pos.getX() + rand.nextInt(width) - rand.nextInt(width); // 4
+				int j1 = pos.getY() - rand.nextInt(height); //32
+				int k1 = pos.getZ() + rand.nextInt(width) - rand.nextInt(width);
 
-				if (world.getBlock(i1, j1, k1).getMaterial() == Material.air)
+				if (world.getBlockState(new BlockPos(i1, j1, k1)).getBlock().getMaterial() == Material.air)
 				{
 					byte b = 0;
 					ArrayList<int[]> list = WorldHelper.getBlocksAdjacent(new int[] {i1, j1, k1});
 					for (int[] coords : list)
 					{
-						if (world.getBlock(coords[0], coords[1], coords[2]) == block) b++;
+						if (world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == block) b++;
 					}
 
-					if (b == 1) world.setBlock(i1, j1, k1, block, meta, 2);
+					if (b == 1) world.setBlockState(new BlockPos(i1, j1, k1), block.getStateFromMeta(meta), 2);
 				}
 			}
 

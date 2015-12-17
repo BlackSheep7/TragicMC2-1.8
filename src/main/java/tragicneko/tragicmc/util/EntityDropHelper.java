@@ -12,8 +12,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
+import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
@@ -445,7 +445,7 @@ public class EntityDropHelper {
 	{
 		try
 		{
-			return ((EntityDrop) WeightedRandom.getRandomItem(rand, luxuryDrops)).getStack().copy();
+			return ((EntityDrop) WeightedRandom.getRandomItem(rand, Arrays.asList(luxuryDrops))).getStack().copy();
 		}
 		catch (Exception e)
 		{
@@ -497,7 +497,7 @@ public class EntityDropHelper {
 		{
 			try
 			{
-				return ((EntityDrop) WeightedRandom.getRandomItem(rand, this.commonDrops)).getStack();
+				return ((EntityDrop) WeightedRandom.getRandomItem(rand, Arrays.asList(this.commonDrops))).getStack();
 			}
 			catch (Exception e)
 			{
@@ -510,7 +510,7 @@ public class EntityDropHelper {
 		{
 			try
 			{
-				return ((EntityDrop) WeightedRandom.getRandomItem(rand, this.rareDrops)).getStack();
+				return ((EntityDrop) WeightedRandom.getRandomItem(rand, Arrays.asList(this.rareDrops))).getStack();
 			}
 			catch (Exception e)
 			{
@@ -533,7 +533,7 @@ public class EntityDropHelper {
 		{
 			try
 			{
-				return ((EntityDrop) WeightedRandom.getRandomItem(rand, this.variantCommon)).getStack();
+				return ((EntityDrop) WeightedRandom.getRandomItem(rand, Arrays.asList(this.variantCommon))).getStack();
 			}
 			catch (Exception e)
 			{
@@ -546,7 +546,7 @@ public class EntityDropHelper {
 		{
 			try
 			{
-				return ((EntityDrop) WeightedRandom.getRandomItem(rand, this.variantRare)).getStack();
+				return ((EntityDrop) WeightedRandom.getRandomItem(rand, Arrays.asList(this.variantRare))).getStack();
 			}
 			catch (Exception e)
 			{

@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.biome;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiome;
@@ -32,10 +33,10 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 		this.temperature = 1.8F;
 		this.rainfall = 2.0F;
 		this.theBiomeDecorator.mushroomsPerChunk = variant == 1 ? 16 : 2;
-		this.heightVariation = heights[variant][0];
-		this.rootHeight = heights[variant][1];
-		this.fillerBlock = TragicBlocks.DarkStone;
-		this.topBlock = TragicBlocks.ErodedStone;
+		this.maxHeight = heights[variant][0];
+		this.minHeight = heights[variant][1];
+		this.fillerBlock = TragicBlocks.DarkStone.getDefaultState();
+		this.topBlock = TragicBlocks.ErodedStone.getDefaultState();
 		this.spikeWorldGen = new CustomSpikesWorldGen((byte) (variant == 0 ? 4 : 1), TragicBlocks.DarkStone, (byte) 14, 0.93477745D, 0.42943755D, 1.5D, 1.0D);
 		this.scarGen = new InvertedSpikeWorldGen((byte) 4, 1.5, 2.5, 0.91977745D, 0.48943755D);
 		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.ErodedStone, (byte) 2, TragicBlocks.ErodedStone, (byte) 3, 2.0D, 2.5D, true, (byte) 8);
@@ -43,15 +44,15 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 	}
 
 	@Override
-	public void decorate(World world, Random rand, int x, int z)
+	public void decorate(World world, Random rand, BlockPos pos)
 	{
-		super.decorate(world, rand, x, z);
-		if (this.variant == 4 && rand.nextInt(3) == 0) this.isleGen.generate(rand, x / 16, z / 16, world);
-		if (this.variant < 3 && rand.nextInt(100) >= 3 && rand.nextBoolean()) this.spikeWorldGen.generate(rand, x / 16, z / 16, world);
+		super.decorate(world, rand, pos);
+		if (this.variant == 4 && rand.nextInt(3) == 0) this.isleGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (this.variant < 3 && rand.nextInt(100) >= 3 && rand.nextBoolean()) this.spikeWorldGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 		if (this.variant == 3)
 		{
-			if (rand.nextInt(100) > 5 && rand.nextInt(3) != 0) this.scarGen.generate(rand, x / 16, z / 16, world);
-			this.ruggedGen.generate(rand, x / 16, z / 16, world);
+			if (rand.nextInt(100) > 5 && rand.nextInt(3) != 0) this.scarGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+			this.ruggedGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 		}
 	}
 }

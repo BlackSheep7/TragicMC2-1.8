@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicConfig;
@@ -21,13 +22,13 @@ public class StructureSpiderNest extends Structure {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		if (y > 62 || y > world.getTopSolidOrLiquidBlock(x, z)) return false;
-		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
+		if (pos.getY() > 62 || pos.getY() > world.getTopSolidOrLiquidBlock(pos).getY()) return false;
+		BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 		if (biome instanceof BiomeGenDarkForest)
 		{
-			return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
+			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
 		}
 
 		return false;

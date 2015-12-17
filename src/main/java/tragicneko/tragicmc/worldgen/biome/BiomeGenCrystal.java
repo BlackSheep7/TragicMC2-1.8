@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.biome;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiome;
@@ -25,19 +26,19 @@ public class BiomeGenCrystal extends TragicBiome {
 		this.enableSnow = false;
 		this.rainfall = 0F;
 		this.temperature = 1F;
-		this.heightVariation = 1.25F;
-		this.rootHeight = 1.04F;
+		this.maxHeight = 1.25F;
+		this.minHeight = 1.04F;
 		this.theBiomeDecorator.flowersPerChunk = 0;
 		this.theBiomeDecorator.treesPerChunk = 0;
-		this.fillerBlock = TragicBlocks.Crystal;
-		this.topBlock = TragicBlocks.Crystal;
+		this.fillerBlock = TragicBlocks.Crystal.getDefaultState();
+		this.topBlock = TragicBlocks.Crystal.getDefaultState();
 		this.crystalGen = new CustomSpikesWorldGen((byte) 8, TragicBlocks.Crystal, (byte) 0, 0.90477735D, 0.421114525D, 1.15D, 1.15D, false, false);
 	}
 
 	@Override
-	public void decorate(World world, Random rand, int x, int z)
+	public void decorate(World world, Random rand, BlockPos pos)
 	{
-		super.decorate(world, rand, x, z);
-		this.crystalGen.generate(rand, x / 16, z / 16, world);
+		super.decorate(world, rand, pos);
+		this.crystalGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 	}
 }

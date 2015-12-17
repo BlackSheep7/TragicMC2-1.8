@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import tragicneko.tragicmc.TragicBlocks;
@@ -29,11 +30,11 @@ public class SynapseVariantGen implements IWorldGen {
 					{
 						if (y1 % 8 > 3)
 						{
-							if (random.nextBoolean()) world.setBlock(x + x1, y1, z + z1, TragicBlocks.CircuitBlock, 4, 2);
+							if (random.nextBoolean()) world.setBlockState(new BlockPos(x + x1, y1, z + z1), TragicBlocks.CircuitBlock.getStateFromMeta(4), 2);
 						}
 						else
 						{
-							world.setBlockToAir(x + x1, y1, z + z1);
+							world.setBlockToAir(new BlockPos(x + x1, y1, z + z1));
 						}
 					}
 				}
@@ -47,8 +48,8 @@ public class SynapseVariantGen implements IWorldGen {
 				{
 					for (byte z1 = 0; z1 < 16; z1++)
 					{
-						if (chk.getBlock(x1, y1, z1) == Blocks.air && random.nextInt(8) == 0) world.setBlock(x + x1, y1, z + z1, TragicBlocks.DigitalSea);
-						else if (chk.getBlock(x1, y1, z1) == TragicBlocks.CircuitBlock && chk.getBlockMetadata(x1, y1, z1) == 0) chk.setBlockMetadata(x1, y1, z1, random.nextInt(4) + 1);
+						if (chk.getBlock(x1, y1, z1) == Blocks.air && random.nextInt(8) == 0) world.setBlockState(new BlockPos(x + x1, y1, z + z1), TragicBlocks.DigitalSea.getDefaultState());
+						else if (chk.getBlockState(new BlockPos(x1, y1, z1)) == TragicBlocks.CircuitBlock.getDefaultState()) chk.setBlockState(new BlockPos(x1, y1, z1), TragicBlocks.CircuitBlock.getStateFromMeta(random.nextInt(4) + 1));
 					}
 				}
 			}

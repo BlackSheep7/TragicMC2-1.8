@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.SchematicTimeAltar;
@@ -31,9 +32,9 @@ public class StructureTimeAltar extends StructureBoss {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
+		return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
 	}
 
 	@Override

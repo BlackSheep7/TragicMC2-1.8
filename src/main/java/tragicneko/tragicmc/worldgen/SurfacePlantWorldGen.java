@@ -3,6 +3,7 @@ package tragicneko.tragicmc.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.structure.Structure;
@@ -33,7 +34,7 @@ public class SurfacePlantWorldGen implements IWorldGen {
 		
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
+		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 
 		Block block;
 		for (byte i = 0; i < iterations; i++)
@@ -47,11 +48,11 @@ public class SurfacePlantWorldGen implements IWorldGen {
 			for (byte y1 = 0; y1 < pl; y1++)
 			{
 				if (Ycoord + y1 < 0 || Ycoord + y1 > world.getActualHeight()) break;
-				block = world.getBlock(Xcoord, Ycoord + y1, Zcoord);
+				block = world.getBlockState(new BlockPos(Xcoord, Ycoord + y1, Zcoord)).getBlock();
 
-				if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord + y1, Zcoord) || block.isAir(world, Xcoord, Ycoord + y1, Zcoord))
+				if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, new BlockPos(Xcoord, Ycoord + y1, Zcoord)) || block.isAir(world, new BlockPos(Xcoord, Ycoord + y1, Zcoord)))
 				{
-					if (this.block.canPlaceBlockAt(world, Xcoord, Ycoord + y1, Zcoord)) world.setBlock(Xcoord, Ycoord + y1, Zcoord, this.block, meta, 2);
+					if (this.block.canPlaceBlockAt(world, new BlockPos(Xcoord, Ycoord + y1, Zcoord))) world.setBlockState(new BlockPos(Xcoord, Ycoord + y1, Zcoord), this.block.getStateFromMeta(meta), 2);
 				}
 			}
 		}

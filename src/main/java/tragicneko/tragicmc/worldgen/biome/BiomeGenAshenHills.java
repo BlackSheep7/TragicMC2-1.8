@@ -3,6 +3,7 @@ package tragicneko.tragicmc.worldgen.biome;
 import java.util.Random;
 
 import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -38,10 +39,10 @@ public class BiomeGenAshenHills extends TragicBiome {
 		this.enableSnow = false;
 		this.temperature = 1.6F;
 		this.rainfall = 0F;
-		this.heightVariation = heights[variant][0];
-		this.rootHeight = heights[variant][1];
-		this.fillerBlock = TragicBlocks.DarkStone;
-		this.topBlock = TragicBlocks.AshenGrass;
+		this.maxHeight = heights[variant][0];
+		this.minHeight = heights[variant][1];
+		this.fillerBlock = TragicBlocks.DarkStone.getDefaultState();
+		this.topBlock = TragicBlocks.AshenGrass.getDefaultState();
 		this.theBiomeDecorator.treesPerChunk = variant == 2 ? 1 : (variant == 1 ? 2 : 4);
 		this.theBiomeDecorator.grassPerChunk = variant == 2 ? 3 : 1;
 		this.shieldGen = new SurfaceWorldGen(3.0D, 4.0D, false, (byte) 0, TragicBlocks.DeadDirt, (byte) 1, TragicBlocks.AshenGrass, true, false);
@@ -61,7 +62,7 @@ public class BiomeGenAshenHills extends TragicBiome {
 	}
 
 	@Override
-	public WorldGenAbstractTree func_150567_a(Random rand)
+	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		if (rand.nextInt(16) == 0)
 		{
@@ -73,17 +74,17 @@ public class BiomeGenAshenHills extends TragicBiome {
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand)
 	{
-		return new WorldGenTallGrass(rand.nextInt(16) == 0 ? TragicBlocks.DriedGrass : TragicBlocks.AshenTallGrass, 0);
+		return null; //new WorldGenTallGrass(rand.nextInt(16) == 0 ? TragicBlocks.DriedGrass : TragicBlocks.AshenTallGrass, 0);
 	}
 
 	@Override
-	public void decorate(World world, Random rand, int x, int z)
+	public void decorate(World world, Random rand, BlockPos pos)
 	{
-		super.decorate(world, rand, x, z);
+		super.decorate(world, rand, pos);
 		if (variant == 2)
 		{
-			this.shieldGen.generate(rand, x / 16, z / 16, world);
-			this.ruggedGen.generate(rand, x / 16, z / 16, world);
+			this.shieldGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+			this.ruggedGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 		}
 	}
 }

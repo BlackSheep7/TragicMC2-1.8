@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.biome;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -30,12 +31,12 @@ public class BiomeGenHallowedHills extends TragicBiome {
 		this.enableSnow = false;
 		this.temperature = 1.6F;
 		this.rainfall = 0.4F;
-		this.heightVariation = heights[variant][0];
-		this.rootHeight = heights[variant][1];
+		this.maxHeight = heights[variant][0];
+		this.minHeight = heights[variant][1];
 		this.theBiomeDecorator.treesPerChunk = variant == 0 ? 4 : (variant == 1 ? 12 : 2);
 		this.theBiomeDecorator.flowersPerChunk = variant == 0 || variant == 3 ? 1 : (variant == 2 ? 12 : 4);
-		this.fillerBlock = TragicBlocks.DeadDirt;
-		this.topBlock = TragicBlocks.HallowedGrass;
+		this.fillerBlock = TragicBlocks.DeadDirt.getDefaultState();
+		this.topBlock = TragicBlocks.HallowedGrass.getDefaultState();
 		if (TragicConfig.allowApis) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityApis.class, TragicConfig.apisSC, 0, 0));
 		if (TragicConfig.allowArchangel) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityArchangel.class, TragicConfig.archangelSC, TragicConfig.archangelGS[0], TragicConfig.archangelGS[1]));
 		if (TragicConfig.allowIre) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityIre.class, TragicConfig.ireSC, TragicConfig.ireGS[0], TragicConfig.ireGS[1]));
@@ -52,19 +53,19 @@ public class BiomeGenHallowedHills extends TragicBiome {
 	}
 
 	@Override
-	public WorldGenAbstractTree func_150567_a(Random rand)
+	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		return new WorldGenHallowedTree(false);
 	}
 
 	@Override
-	public void decorate(World world, Random rand, int x, int z)
+	public void decorate(World world, Random rand, BlockPos pos)
 	{
-		super.decorate(world, rand, x, z);
-		if (rand.nextBoolean()) this.stringGen.generate(rand, x / 16, z / 16, world);
-		if (rand.nextBoolean()) this.lightGen.generate(rand, x / 16, z / 16, world);
-		if (rand.nextInt(6) == 0) this.fragileGen.generate(rand, x / 16, z / 16, world);
-		if (rand.nextInt(8) == 0) this.honeydropGen.generate(rand, x / 16, z / 16, world);
+		super.decorate(world, rand, pos);
+		if (rand.nextBoolean()) this.stringGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (rand.nextBoolean()) this.lightGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (rand.nextInt(6) == 0) this.fragileGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (rand.nextInt(8) == 0) this.honeydropGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 	}
 
 }

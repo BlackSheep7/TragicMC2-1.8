@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
@@ -26,10 +27,10 @@ public class StructureEmpariahCave extends StructureBoss {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		if (!(world.getBiomeGenForCoords(x, z) instanceof BiomeGenFrozenTundra) || y < 36) return false;
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
+		if (!(world.getBiomeGenForCoords(pos) instanceof BiomeGenFrozenTundra) || pos.getY() < 36) return false;
+		return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
 	}
 
 	@Override

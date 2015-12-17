@@ -3,11 +3,15 @@ package tragicneko.tragicmc;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.ChunkPrimer;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.mob.EntityAvris;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
@@ -66,15 +70,15 @@ public class TragicBiome extends BiomeGenBase {
 		this.variant = par2;
 		this.spawnableCreatureList.clear();
 		this.spawnableMonsterList.clear();
-		this.fillerBlock = TragicBlocks.DarkStone;
-		this.topBlock = TragicBlocks.DeadDirt;
+		this.fillerBlock = TragicBlocks.DarkStone.getDefaultState();
+		this.topBlock = TragicBlocks.DeadDirt.getDefaultState();
 		this.theBiomeDecorator.flowersPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = -999;
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.bigMushroomsPerChunk = -999;
 		this.theBiomeDecorator.grassPerChunk = -999;
-		this.heightVariation = 0F;
-		this.rootHeight = 0F;
+		this.maxHeight = 0F;
+		this.minHeight = 0F;
 		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, TragicConfig.plagueGS[0], TragicConfig.plagueGS[1]));
 		if (TragicConfig.allowTragicNeko) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicConfig.tragicNekoSC, TragicConfig.tragicNekoGS[0], TragicConfig.tragicNekoGS[1]));
 		if (TragicConfig.allowTimeController) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicConfig.timeControllerSC, 0, 0));
@@ -109,84 +113,75 @@ public class TragicBiome extends BiomeGenBase {
 	}
 
 	@Override
-	public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
+	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chk, int x, int z, double d)
 	{
-		this.genTragicBiomeTerrain(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+		this.generateTragicBiomeTerrain(worldIn, rand, chk, x, z, d);
 	}
 
-	public final void genTragicBiomeTerrain(World world, Random rand, Block[] blockArray, byte[] byteArray, int x, int y, double z)
-	{
-		Block block = this.topBlock;
-		byte b0 = (byte)(this.field_150604_aj & 255);
-		Block block1 = this.fillerBlock;
-		int k = -1;
-		int l = (int)(z / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
-		int i1 = x & 15;
-		int j1 = y & 15;
-		int k1 = blockArray.length / 256;
+	public final void generateTragicBiomeTerrain(World worldIn, Random rand, ChunkPrimer chk, int x, int z, double d)
+    {
+		boolean flag = true;
+        IBlockState iblockstate = this.topBlock;
+        IBlockState iblockstate1 = this.fillerBlock;
+        int k = -1;
+        int l = (int)(d / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+        int i1 = x & 15;
+        int j1 = z & 15;
 
-		for (int l1 = 255; l1 >= 0; --l1)
-		{
-			int i2 = (j1 * 16 + i1) * k1 + l1;
+        for (int k1 = 255; k1 >= 0; --k1)
+        {
+            if (k1 <= rand.nextInt(5))
+            {
+                chk.setBlockState(j1, k1, i1, Blocks.air.getDefaultState());
+            }
+            else
+            {
+                IBlockState iblockstate2 = chk.getBlockState(j1, k1, i1);
 
-			if (l1 <= 0 + rand.nextInt(5))
-			{
-				blockArray[i2] = Blocks.air;
-			}
-			else
-			{
-				Block block2 = blockArray[i2];
+                if (iblockstate2.getBlock().getMaterial() == Material.air)
+                {
+                    k = -1;
+                }
+                else if (iblockstate2.getBlock() == TragicBlocks.DarkStone)
+                {
+                    if (k == -1)
+                    {
+                        if (l <= 0)
+                        {
+                            iblockstate = null;
+                            iblockstate1 = TragicBlocks.DarkStone.getDefaultState();
+                        }
+                        else if (k1 >= 59 && k1 <= 64)
+                        {
+                            iblockstate = this.topBlock;
+                            iblockstate1 = this.fillerBlock;
+                        }
 
-				if (block2 != null && block2.getMaterial() != Material.air)
-				{
-					if (block2 == TragicBlocks.DarkStone)
-					{
-						if (k == -1)
-						{
-							if (l <= 0)
-							{
-								block = null;
-								b0 = 0;
-								block1 = TragicBlocks.DarkStone;
-							}
-							else if (l1 >= 51 && l1 <= 64)
-							{
-								block = this.topBlock;
-								b0 = (byte)(this.field_150604_aj & 255);
-								block1 = this.fillerBlock;
-							}
+                        k = l;
 
-							k = l;
-
-							if (l1 >= 37)
-							{
-								blockArray[i2] = block;
-								byteArray[i2] = b0;
-							}
-							else if (l1 < 42 - l)
-							{
-								block = null;
-								block1 = TragicBlocks.DarkStone;
-								blockArray[i2] = TragicBlocks.DeadDirt;
-							}
-							else
-							{
-								blockArray[i2] = block1;
-							}
-						}
-						else if (k > 0)
-						{
-							--k;
-							blockArray[i2] = block1;
-						}
-					}
-				}
-				else
-				{
-					k = -1;
-				}
-			}
-		}
+                        if (k1 >= 62)
+                        {
+                            chk.setBlockState(j1, k1, i1, iblockstate);
+                        }
+                        else if (k1 < 56 - l)
+                        {
+                            iblockstate = null;
+                            iblockstate1 = TragicBlocks.DarkStone.getDefaultState();
+                            chk.setBlockState(j1, k1, i1, TragicBlocks.DarkStone.getDefaultState());
+                        }
+                        else
+                        {
+                            chk.setBlockState(j1, k1, i1, iblockstate1);
+                        }
+                    }
+                    else if (k > 0)
+                    {
+                        --k;
+                        chk.setBlockState(j1, k1, i1, iblockstate1);
+                    }
+                }
+            }
+        }
 	}
 
 	public static void load()

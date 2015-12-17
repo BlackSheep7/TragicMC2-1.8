@@ -25,12 +25,12 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		super(par1, par2);
 		if (TragicConfig.allowPox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.poxSC, TragicConfig.poxGS[0], TragicConfig.poxGS[1]));
 		if (TragicConfig.allowJanna) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.jannaSC, TragicConfig.jannaGS[0], TragicConfig.jannaGS[1]));
-		this.fillerBlock = TragicBlocks.DeadDirt;
-		this.topBlock = TragicBlocks.BrushedGrass;
+		this.fillerBlock = TragicBlocks.DeadDirt.getDefaultState();
+		this.topBlock = TragicBlocks.BrushedGrass.getDefaultState();
 		this.temperature = 1.2F;
 		this.rainfall = 1.5F;
-		this.heightVariation = heights[variant][0];
-		this.rootHeight = heights[variant][1];
+		this.maxHeight = heights[variant][0];
+		this.minHeight = heights[variant][1];
 		this.theBiomeDecorator.treesPerChunk = variant == 1 ? 2 : (variant == 3 ? -999 : 12);
 		this.theBiomeDecorator.mushroomsPerChunk = 4;
 		this.theBiomeDecorator.grassPerChunk = variant == 1 || variant == 3 ? 4 : 2;
@@ -45,11 +45,11 @@ public class BiomeGenPaintedForest extends TragicBiome {
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)
 	{
-		return new WorldGenTallGrass(TragicBlocks.PaintedTallGrass, 0);
+		return null; //new WorldGenTallGrass(TragicBlocks.PaintedTallGrass, 0);
 	}
 
 	@Override
-	public WorldGenAbstractTree func_150567_a(Random rand)
+	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		if (variant == 1 || variant == 3)
 		{

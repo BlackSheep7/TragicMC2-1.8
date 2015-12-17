@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
 
@@ -95,7 +96,7 @@ public class SchematicClaymationRuin extends Schematic {
 					}
 				}
 				if (map[i][j] == 4 && map2[i][j] != 1) map2[i][j] = 1; //ensure that the 2nd map has an empty room at the dropdown of the first
-				world.setBlock(x + j - 2, y + i, z, DarkSandstone, metas[map[i][j]], 2); //hide the tablet until after I get the generation for each room out of the way
+				this.setBlock(world, x + j - 2, y + i, z, DarkSandstone, metas[map[i][j]], 2); //hide the tablet until after I get the generation for each room out of the way
 			}
 		}
 
@@ -103,7 +104,7 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 			for (byte x1 = -2; x1 < 3; x1++)
 			{
-				if (world.getBlock(x + x1, y + y1, z).isAir(world, x + x1, y + y1, z)) world.setBlock(x + x1, y + y1, z, DarkSandstone, 0, 2);
+				if (world.getBlockState(new BlockPos(x + x1, y + y1, z)).getBlock().isAir(world, new BlockPos(x + x1, y + y1, z))) this.setBlock(world, x + x1, y + y1, z, DarkSandstone, 0, 2);
 			}
 		}
 
@@ -126,23 +127,23 @@ public class SchematicClaymationRuin extends Schematic {
 					if (z1 == -2 || z1 == 2 || x1 == - 2 || x1 == 2) m = 0;
 					if (y1 < 0)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, m, 2);
+						this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, m, 2);
 					}
 					else
 					{
-						world.setBlockToAir(x + x1, y + y1, z + z1);
+						this.setBlockToAir(world, x + x1, y + y1, z + z1);
 					}
 				}
 			}
 		}
 
-		world.setBlock(x + 2, y, z + 2, DarkSandstone, 0, 2);
-		world.setBlock(x - 2, y, z + 2, DarkSandstone, 0, 2);
-		world.setBlock(x + 2, y, z - 2, DarkSandstone, 0, 2);
-		world.setBlock(x - 2, y, z - 2, DarkSandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z + 2, DarkSandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z + 2, DarkSandstone, 0, 2);
+		this.setBlock(world, x + 2, y, z - 2, DarkSandstone, 0, 2);
+		this.setBlock(world, x - 2, y, z - 2, DarkSandstone, 0, 2);
 
-		world.setBlock(x + 2, y + 1, z - 2, Candle, 8, 2);
-		world.setBlock(x - 2, y + 1, z - 2, Candle, 8, 2);
+		this.setBlock(world, x + 2, y + 1, z - 2, Candle, 8, 2);
+		this.setBlock(world, x - 2, y + 1, z - 2, Candle, 8, 2);
 
 		byte y1, z1;
 
@@ -150,37 +151,37 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 			for (byte i = 0; i < 5; i++)
 			{
-				world.setBlockToAir(x - 2, y + y1 + i, z + z1);
-				world.setBlockToAir(x - 1, y + y1 + i, z + z1);
-				world.setBlockToAir(x, y + y1 + i, z + z1);
-				world.setBlockToAir(x + 1, y + y1 + i, z + z1);
-				world.setBlockToAir(x + 2, y + y1 + i, z + z1);
+				this.setBlockToAir(world, x - 2, y + y1 + i, z + z1);
+				this.setBlockToAir(world, x - 1, y + y1 + i, z + z1);
+				this.setBlockToAir(world, x, y + y1 + i, z + z1);
+				this.setBlockToAir(world, x + 1, y + y1 + i, z + z1);
+				this.setBlockToAir(world, x + 2, y + y1 + i, z + z1);
 			}
 
-			world.setBlock(x - 2, y + y1 + 1, z + z1, DarkSandstone, 0, 2);
-			world.setBlock(x - 1, y + y1, z + z1, DarkSandstone, 1, 2);
-			world.setBlock(x, y + y1, z + z1, DarkSandstone, 1, 2);
-			world.setBlock(x + 1, y + y1, z + z1, DarkSandstone, 1, 2);
-			world.setBlock(x + 2, y + y1 + 1, z + z1, DarkSandstone, 0, 2);
+			this.setBlock(world, x - 2, y + y1 + 1, z + z1, DarkSandstone, 0, 2);
+			this.setBlock(world, x - 1, y + y1, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x, y + y1, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x + 1, y + y1, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x + 2, y + y1 + 1, z + z1, DarkSandstone, 0, 2);
 
-			world.setBlock(x - 2, y + y1, z + z1, DarkSandstone, 0, 2);
-			world.setBlock(x + 2, y + y1, z + z1, DarkSandstone, 0, 2);
+			this.setBlock(world, x - 2, y + y1, z + z1, DarkSandstone, 0, 2);
+			this.setBlock(world, x + 2, y + y1, z + z1, DarkSandstone, 0, 2);
 
-			world.setBlock(x - 1, y + y1, z + z1 - 1, DarkSandstone, 1, 2);
-			world.setBlock(x, y + y1, z + z1 - 1, DarkSandstone, 1, 2);
-			world.setBlock(x + 1, y + y1, z + z1 - 1, DarkSandstone, 1, 2);
+			this.setBlock(world, x - 1, y + y1, z + z1 - 1, DarkSandstone, 1, 2);
+			this.setBlock(world, x, y + y1, z + z1 - 1, DarkSandstone, 1, 2);
+			this.setBlock(world, x + 1, y + y1, z + z1 - 1, DarkSandstone, 1, 2);
 
 			if ((y1 - 2) % 3 == 0)
 			{
-				world.setBlock(x + 2, y + y1 + 2, z + z1, Candle, 8, 2);
-				world.setBlock(x - 2, y + y1 + 2, z + z1, Candle, 8, 2);
+				this.setBlock(world, x + 2, y + y1 + 2, z + z1, Candle, 8, 2);
+				this.setBlock(world, x - 2, y + y1 + 2, z + z1, Candle, 8, 2);
 			}
 			else if ((y1 - 1) % 3 == 0)
 			{
 				for (byte i = 1; i < 5; i++)
 				{
-					world.setBlock(x + 2, y + y1 + i, z + z1, DarkSandstone, 2, 2);
-					world.setBlock(x - 2, y + y1 + i, z + z1, DarkSandstone, 2, 2);
+					this.setBlock(world, x + 2, y + y1 + i, z + z1, DarkSandstone, 2, 2);
+					this.setBlock(world, x - 2, y + y1 + i, z + z1, DarkSandstone, 2, 2);
 				}
 			}
 		}
@@ -190,21 +191,21 @@ public class SchematicClaymationRuin extends Schematic {
 			for (byte x1 = -2; x1 < 3; x1++)
 			{
 				for (byte k = 0; k < 4; k++)
-					world.setBlockToAir(x + x1, y + y1 + j, z + z1 + k);
+					this.setBlockToAir(world, x + x1, y + y1 + j, z + z1 + k);
 			}
 		}
 
 		for (byte j = 0; j < 2; j++)
 		{
-			world.setBlock(x + 2, y + y1, z + z1 + j, DarkSandstone, 0, 2);
-			world.setBlock(x + 1, y + y1, z + z1 + j, DarkSandstone, 1, 2);
-			world.setBlock(x, y + y1, z + z1 + j, DarkSandstone, 1, 2);
-			world.setBlock(x - 1, y + y1, z + z1 + j, DarkSandstone, 1, 2);
-			world.setBlock(x - 2, y + y1, z + z1 + j, DarkSandstone, 0, 2);
+			this.setBlock(world, x + 2, y + y1, z + z1 + j, DarkSandstone, 0, 2);
+			this.setBlock(world, x + 1, y + y1, z + z1 + j, DarkSandstone, 1, 2);
+			this.setBlock(world, x, y + y1, z + z1 + j, DarkSandstone, 1, 2);
+			this.setBlock(world, x - 1, y + y1, z + z1 + j, DarkSandstone, 1, 2);
+			this.setBlock(world, x - 2, y + y1, z + z1 + j, DarkSandstone, 0, 2);
 		}
 
-		world.setBlock(x + 2, y + y1 + 1, z + z1 + 1, Candle, 8, 2);
-		world.setBlock(x - 2, y + y1 + 1, z + z1 + 1, Candle, 8, 2);
+		this.setBlock(world, x + 2, y + y1 + 1, z + z1 + 1, Candle, 8, 2);
+		this.setBlock(world, x - 2, y + y1 + 1, z + z1 + 1, Candle, 8, 2);
 
 		ArrayList<byte[][]> list = this.generateTablet(world, rand, x, y + 1, z - 3);
 		this.generateFirstTunnel(world, rand, x, y + y1, z + z1 + 2);
@@ -284,7 +285,7 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte y1 = 0; y1 < 6; y1++)
 				{
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 				}
 			}
 
@@ -292,26 +293,26 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				byte m = 1;
 				if (x1 == - 2 || x1 == 2) m = 0;
-				world.setBlock(x + x1, y, z + z1, DarkSandstone, m, 2);
+				this.setBlock(world, x + x1, y, z + z1, DarkSandstone, m, 2);
 			}
 
 			if (z1 >= 2 && z1 <= 3 || z1 >= 6 && z1 <= 7)
 			{
-				world.setBlock(x + 3, y, z + z1, DarkSandstone, 0, 2);
-				world.setBlock(x - 3, y, z + z1, DarkSandstone, 0, 2);
+				this.setBlock(world, x + 3, y, z + z1, DarkSandstone, 0, 2);
+				this.setBlock(world, x - 3, y, z + z1, DarkSandstone, 0, 2);
 
 				for (byte y1 = 1; y1 < 6; y1++)
 				{
-					world.setBlock(x + 4, y + y1, z + z1, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z + z1, DarkSandstone, 4, 2);
 				}
 			}
 			else
 			{
 				for (byte y1 = 1; y1 < 6; y1++)
 				{
-					world.setBlock(x + 3, y + y1, z + z1, DarkSandstone, 2, 2);
-					world.setBlock(x - 3, y + y1, z + z1, DarkSandstone, 2, 2);
+					this.setBlock(world, x + 3, y + y1, z + z1, DarkSandstone, 2, 2);
+					this.setBlock(world, x - 3, y + y1, z + z1, DarkSandstone, 2, 2);
 				}
 			}
 
@@ -319,43 +320,43 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte y1 = 0; y1 < 5; y1++)
 				{
-					world.setBlock(x + 2, y + y1, z + z1, DarkSandstone, 4, 2);
-					world.setBlock(x - 2, y + y1, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 2, y + y1, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 2, y + y1, z + z1, DarkSandstone, 4, 2);
 				}
 
 				for (byte x1 = -2; x1 < 3; x1++)
 				{
 					int m = (x1 == -2 || x1 == 2) ? 3 : 4;
-					world.setBlock(x + x1, y + 5, z + z1, DarkSandstone, m, 2);
+					this.setBlock(world, x + x1, y + 5, z + z1, DarkSandstone, m, 2);
 				}
 			}
 			else if (z1 == 1)
 			{
-				world.setBlock(x + 2, y + 1, z + z1, Candle, 8, 2);
-				world.setBlock(x - 2, y + 1, z + z1, Candle, 8, 2);
+				this.setBlock(world, x + 2, y + 1, z + z1, Candle, 8, 2);
+				this.setBlock(world, x - 2, y + 1, z + z1, Candle, 8, 2);
 
 				for (byte x1 = -2; x1 < 3; x1++)
 				{
-					world.setBlock(x + x1, y + 6, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x + x1, y + 6, z + z1, DarkSandstone, 4, 2);
 				}
 			}
 			else
 			{
 				byte m = (byte) (z1 == 4 ? 3 : 2);
-				world.setBlock(x + 3, y + 5, z + z1, DarkSandstone, m, 2);
-				world.setBlock(x - 3, y + 5, z + z1, DarkSandstone, m, 2);
+				this.setBlock(world, x + 3, y + 5, z + z1, DarkSandstone, m, 2);
+				this.setBlock(world, x - 3, y + 5, z + z1, DarkSandstone, m, 2);
 
 				for (byte x1 = -2; x1 < 3; x1++)
 				{
-					world.setBlockToAir(x + x1, y + 6, z + z1);
+					this.setBlockToAir(world, x + x1, y + 6, z + z1);
 				}
 
-				world.setBlock(x + 2, y + 6, z + z1, DarkSandstone, 4, 2);
-				world.setBlock(x - 2, y + 6, z + z1, DarkSandstone, 4, 2);
+				this.setBlock(world, x + 2, y + 6, z + z1, DarkSandstone, 4, 2);
+				this.setBlock(world, x - 2, y + 6, z + z1, DarkSandstone, 4, 2);
 
 				for (byte x1 = -1; x1 < 2; x1++)
 				{
-					world.setBlock(x + x1, y + 7, z + z1, DarkSandstone, 3, 2);
+					this.setBlock(world, x + x1, y + 7, z + z1, DarkSandstone, 3, 2);
 				}
 			}
 		}
@@ -371,11 +372,11 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					if (y1 == 0 || y1 >= 6)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
 					}
 					else
 					{
-						world.setBlockToAir(x + x1, y + y1, z + z1);
+						this.setBlockToAir(world, x + x1, y + y1, z + z1);
 					}
 				}
 			}
@@ -385,20 +386,20 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 			for (byte z1 = -3; z1 < 4; z1++)
 			{
-				world.setBlock(x + x1, y, z + z1, DarkSandstone, 1, 2);
+				this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 1, 2);
 			}
 		}
 
 		for (byte x1 = -2; x1 < 3; x1++)
 		{
-			world.setBlock(x + x1, y, z - 4, DarkSandstone, 1, 2);
-			world.setBlock(x + x1, y, z + 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y, z - 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y, z + 4, DarkSandstone, 1, 2);
 		}
 
 		for (byte z1 = -2; z1 < 3; z1++)
 		{
-			world.setBlock(x + 4, y, z + z1, DarkSandstone, 1, 2);
-			world.setBlock(x - 4, y, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x + 4, y, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x - 4, y, z + z1, DarkSandstone, 1, 2);
 		}
 
 		for (byte y1 = 0; y1 < 8; y1++)
@@ -407,25 +408,25 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -1; z1 < 2; z1++)
 				{
-					world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
 
 					if (y1 == 0)
 					{
-						world.setBlock(x + 1, y + y1, z + 2, DarkSandstone, 0, 2);
-						world.setBlock(x - 1, y + y1, z + 2, DarkSandstone, 0, 2);
-						world.setBlock(x, y + y1, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 1, y + y1, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 1, y + y1, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x, y + y1, z + 2, DarkSandstone, 0, 2);
 
-						world.setBlock(x + 1, y + y1, z - 2, DarkSandstone, 0, 2);
-						world.setBlock(x - 1, y + y1, z - 2, DarkSandstone, 0, 2);
-						world.setBlock(x, y + y1, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 1, y + y1, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 1, y + y1, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x, y + y1, z - 2, DarkSandstone, 0, 2);
 
-						world.setBlock(x + 2, y + y1, z - 1, DarkSandstone, 0, 2);
-						world.setBlock(x + 2, y + y1, z, DarkSandstone, 0, 2);
-						world.setBlock(x + 2, y + y1, z + 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y + y1, z - 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y + y1, z, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y + y1, z + 1, DarkSandstone, 0, 2);
 
-						world.setBlock(x - 2, y + y1, z - 1, DarkSandstone, 0, 2);
-						world.setBlock(x - 2, y + y1, z, DarkSandstone, 0, 2);
-						world.setBlock(x - 2, y + y1, z + 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y + y1, z - 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y + y1, z, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y + y1, z + 1, DarkSandstone, 0, 2);
 					}
 				}
 			}
@@ -434,31 +435,31 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				if (y1 == 1 || y1 == 5)
 				{
-					world.setBlock(x + 4, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z - 4, DarkSandstone, 4, 2);
 				}
 				else
 				{
-					world.setBlock(x + 5, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 5, y + y1, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1, z - 4, DarkSandstone, 4, 2);
 
-					world.setBlock(x + 4, y + y1, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1, z - 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z - 5, DarkSandstone, 4, 2);
 				}
 			}
 		}
 
 		if (rand.nextInt(5) == 0)
 		{
-			world.setBlock(x, y + 1, z, Blocks.chest, 0, 2);
-			world.setBlockToAir(x, y + 2, z);
-			world.setBlockToAir(x, y + 3, z);
+			this.setBlock(world, x, y + 1, z, Blocks.chest, 0, 2);
+			this.setBlockToAir(world, x, y + 2, z);
+			this.setBlockToAir(world, x, y + 3, z);
 			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
 		}
 
@@ -475,11 +476,11 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					if (y1 == 0 || y1 >= 6)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
 					}
 					else
 					{
-						world.setBlockToAir(x + x1, y + y1, z + z1);
+						this.setBlockToAir(world, x + x1, y + y1, z + z1);
 					}
 				}
 			}
@@ -489,27 +490,27 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 			for (byte z1 = -3; z1 < 4; z1++)
 			{
-				world.setBlock(x + x1, y, z + z1, DarkSandstone, 1, 2);
+				this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 1, 2);
 			}
 		}
 
 		for (byte x1 = -2; x1 < 3; x1++)
 		{
-			world.setBlock(x + x1, y, z - 4, DarkSandstone, 1, 2);
-			world.setBlock(x + x1, y, z + 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y, z - 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y, z + 4, DarkSandstone, 1, 2);
 		}
 
 		for (byte z1 = -2; z1 < 3; z1++)
 		{
-			world.setBlock(x + 4, y, z + z1, DarkSandstone, 1, 2);
-			world.setBlock(x - 4, y, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x + 4, y, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x - 4, y, z + z1, DarkSandstone, 1, 2);
 		}
 
 		for (byte x1 = -1; x1 < 2; x1++)
 		{
 			for (byte z1 = -1; z1 < 2; z1++)
 			{
-				world.setBlock(x + x1, y, z + z1, DarkSandstone, 0, 2);
+				this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 0, 2);
 			}
 		}
 
@@ -521,21 +522,21 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					for (byte z1 = -1; z1 < 2; z1++)
 					{
-						world.setBlock(x + 1, y, z + 2, DarkSandstone, 0, 2);
-						world.setBlock(x - 1, y, z + 2, DarkSandstone, 0, 2);
-						world.setBlock(x, y, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 1, y, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 1, y, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x, y, z + 2, DarkSandstone, 0, 2);
 
-						world.setBlock(x + 1, y, z - 2, DarkSandstone, 0, 2);
-						world.setBlock(x - 1, y, z - 2, DarkSandstone, 0, 2);
-						world.setBlock(x, y, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 1, y, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 1, y, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x, y, z - 2, DarkSandstone, 0, 2);
 
-						world.setBlock(x + 2, y, z - 1, DarkSandstone, 0, 2);
-						world.setBlock(x + 2, y, z, DarkSandstone, 0, 2);
-						world.setBlock(x + 2, y, z + 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y, z - 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y, z, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y, z + 1, DarkSandstone, 0, 2);
 
-						world.setBlock(x - 2, y, z - 1, DarkSandstone, 0, 2);
-						world.setBlock(x - 2, y, z, DarkSandstone, 0, 2);
-						world.setBlock(x - 2, y, z + 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y, z - 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y, z, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y, z + 1, DarkSandstone, 0, 2);
 					}
 				}
 			}
@@ -544,29 +545,29 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				if (y1 == 1 || y1 == 5)
 				{
-					world.setBlock(x + 4, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z - 4, DarkSandstone, 4, 2);
 				}
 				else
 				{
-					world.setBlock(x + 5, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 5, y + y1, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1, z - 4, DarkSandstone, 4, 2);
 
-					world.setBlock(x + 4, y + y1, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1, z - 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z - 5, DarkSandstone, 4, 2);
 				}
 			}
 		}
 
 		if (rand.nextInt(20) == 0)
 		{
-			world.setBlock(x, y + 1, z, Blocks.trapped_chest, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
 			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.LameChestHook);
 		}
 
@@ -583,11 +584,11 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					if (y1 == 0 || y1 >= 6)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
 					}
 					else
 					{
-						world.setBlockToAir(x + x1, y + y1, z + z1);
+						this.setBlockToAir(world, x + x1, y + y1, z + z1);
 					}
 				}
 			}
@@ -597,20 +598,20 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 			for (byte z1 = -3; z1 < 4; z1++)
 			{
-				world.setBlock(x + x1, y, z + z1, DarkSandstone, 1, 2);
+				this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 1, 2);
 			}
 		}
 
 		for (byte x1 = -2; x1 < 3; x1++)
 		{
-			world.setBlock(x + x1, y, z - 4, DarkSandstone, 1, 2);
-			world.setBlock(x + x1, y, z + 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y, z - 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y, z + 4, DarkSandstone, 1, 2);
 		}
 
 		for (byte z1 = -2; z1 < 3; z1++)
 		{
-			world.setBlock(x + 4, y, z + z1, DarkSandstone, 1, 2);
-			world.setBlock(x - 4, y, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x + 4, y, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x - 4, y, z + z1, DarkSandstone, 1, 2);
 		}
 
 		for (byte y1 = -2; y1 < 0; y1++)
@@ -619,7 +620,7 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -2; z1 < 3; z1++)
 				{
-					world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
 				}
 			}
 		}
@@ -630,7 +631,7 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -1; z1 < 2; z1++)
 				{
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 				}
 			}
 		}
@@ -643,21 +644,21 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					for (byte z1 = -1; z1 < 2; z1++)
 					{
-						world.setBlock(x + 1, y, z + 2, DarkSandstone, 0, 2);
-						world.setBlock(x - 1, y, z + 2, DarkSandstone, 0, 2);
-						world.setBlock(x, y, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 1, y, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 1, y, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x, y, z + 2, DarkSandstone, 0, 2);
 
-						world.setBlock(x + 1, y, z - 2, DarkSandstone, 0, 2);
-						world.setBlock(x - 1, y, z - 2, DarkSandstone, 0, 2);
-						world.setBlock(x, y, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 1, y, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 1, y, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x, y, z - 2, DarkSandstone, 0, 2);
 
-						world.setBlock(x + 2, y, z - 1, DarkSandstone, 0, 2);
-						world.setBlock(x + 2, y, z, DarkSandstone, 0, 2);
-						world.setBlock(x + 2, y, z + 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y, z - 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y, z, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y, z + 1, DarkSandstone, 0, 2);
 
-						world.setBlock(x - 2, y, z - 1, DarkSandstone, 0, 2);
-						world.setBlock(x - 2, y, z, DarkSandstone, 0, 2);
-						world.setBlock(x - 2, y, z + 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y, z - 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y, z, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y, z + 1, DarkSandstone, 0, 2);
 					}
 				}
 			}
@@ -666,22 +667,22 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				if (y1 == 1 || y1 == 5)
 				{
-					world.setBlock(x + 4, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z - 4, DarkSandstone, 4, 2);
 				}
 				else
 				{
-					world.setBlock(x + 5, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 5, y + y1, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1, z - 4, DarkSandstone, 4, 2);
 
-					world.setBlock(x + 4, y + y1, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1, z - 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z - 5, DarkSandstone, 4, 2);
 				}
 			}
 		}
@@ -701,11 +702,11 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					if (y1 == 0 || y1 >= 6)
 					{
-						world.setBlock(x + x1, y + y1 - 16, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + x1, y + y1 - 16, z + z1, DarkSandstone, 0, 2);
 					}
 					else
 					{
-						world.setBlockToAir(x + x1, y + y1 - 16, z + z1);
+						this.setBlockToAir(world, x + x1, y + y1 - 16, z + z1);
 					}
 				}
 			}
@@ -715,27 +716,27 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 			for (byte z1 = -3; z1 < 4; z1++)
 			{
-				world.setBlock(x + x1, y - 16, z + z1, DarkSandstone, 1, 2);
+				this.setBlock(world, x + x1, y - 16, z + z1, DarkSandstone, 1, 2);
 			}
 		}
 
 		for (byte x1 = -2; x1 < 3; x1++)
 		{
-			world.setBlock(x + x1, y - 16, z - 4, DarkSandstone, 1, 2);
-			world.setBlock(x + x1, y - 16, z + 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y - 16, z - 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y - 16, z + 4, DarkSandstone, 1, 2);
 		}
 
 		for (byte z1 = -2; z1 < 3; z1++)
 		{
-			world.setBlock(x + 4, y - 16, z + z1, DarkSandstone, 1, 2);
-			world.setBlock(x - 4, y - 16, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x + 4, y - 16, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x - 4, y - 16, z + z1, DarkSandstone, 1, 2);
 		}
 
 		for (byte x1 = -1; x1 < 2; x1++)
 		{
 			for (byte z1 = -1; z1 < 2; z1++)
 			{
-				world.setBlock(x + x1, y - 16, z + z1, DarkSandstone, 0, 2);
+				this.setBlock(world, x + x1, y - 16, z + z1, DarkSandstone, 0, 2);
 			}
 		}
 
@@ -745,20 +746,20 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte x1 = -1; x1 < 2; x1++)
 				{
-					world.setBlock(x + x1, y - 16, z - 2, DarkSandstone, 0, 2);
-					world.setBlock(x + 2, y - 16, z + x1, DarkSandstone, 0, 2);
-					world.setBlock(x - 2, y - 16, z + x1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y - 16, z - 2, DarkSandstone, 0, 2);
+					this.setBlock(world, x + 2, y - 16, z + x1, DarkSandstone, 0, 2);
+					this.setBlock(world, x - 2, y - 16, z + x1, DarkSandstone, 0, 2);
 				}
 			}
 			else
 			{
 				for (byte x1 = -3; x1 < 4; x1++)
 				{
-					world.setBlock(x + x1, y + y1 - 16, z + 5, DarkSandstone, 3, 2);
-					world.setBlock(x + x1, y + y1 - 16, z - 5, DarkSandstone, 3, 2);
+					this.setBlock(world, x + x1, y + y1 - 16, z + 5, DarkSandstone, 3, 2);
+					this.setBlock(world, x + x1, y + y1 - 16, z - 5, DarkSandstone, 3, 2);
 
-					world.setBlock(x + 5, y + y1 - 16, z + x1, DarkSandstone, 3, 2);
-					world.setBlock(x - 5, y + y1 - 16, z + x1, DarkSandstone, 3, 2);
+					this.setBlock(world, x + 5, y + y1 - 16, z + x1, DarkSandstone, 3, 2);
+					this.setBlock(world, x - 5, y + y1 - 16, z + x1, DarkSandstone, 3, 2);
 				}
 			}
 
@@ -766,22 +767,22 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				if (y1 == 1 || y1 == 5)
 				{
-					world.setBlock(x + 4, y + y1 - 16, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1 - 16, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1 - 16, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1 - 16, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1 - 16, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1 - 16, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1 - 16, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1 - 16, z - 4, DarkSandstone, 4, 2);
 				}
 				else
 				{
-					world.setBlock(x + 5, y + y1 - 16, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1 - 16, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 5, y + y1 - 16, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1 - 16, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1 - 16, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1 - 16, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1 - 16, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1 - 16, z - 4, DarkSandstone, 4, 2);
 
-					world.setBlock(x + 4, y + y1 - 16, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1 - 16, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1 - 16, z - 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1 - 16, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1 - 16, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1 - 16, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1 - 16, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1 - 16, z - 5, DarkSandstone, 4, 2);
 				}
 			}
 		}
@@ -792,7 +793,7 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -2; z1 < 3; z1++)
 				{
-					world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
 				}
 			}
 
@@ -800,7 +801,7 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -1; z1 < 2; z1++)
 				{
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 				}
 			}
 		}
@@ -810,63 +811,63 @@ public class SchematicClaymationRuin extends Schematic {
 			for (byte z1 = 5; z1 < 13; z1++)
 			{
 				for (byte x1 = -3; x1 < 4; x1++)
-					world.setBlockToAir(x + x1, y + y1 - 16, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1 - 16, z + z1);
 
 				if (y1 == 0)
 				{
 					for (byte x1 = -1; x1 < 2; x1++)
-						world.setBlock(x + x1, y - 16, z + z1, DarkSandstone, 1, 2);
+						this.setBlock(world, x + x1, y - 16, z + z1, DarkSandstone, 1, 2);
 
-					world.setBlock(x - 2, y - 16, z + z1, DarkSandstone, 0, 2);
-					world.setBlock(x + 2, y - 16, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x - 2, y - 16, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + 2, y - 16, z + z1, DarkSandstone, 0, 2);
 
 					if (z1 == 6 || z1 == 7 || z1 == 10 || z1 == 11)
 					{
-						world.setBlock(x - 3, y - 16, z + z1, DarkSandstone, 0, 2);
-						world.setBlock(x + 3, y - 16, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 3, y - 16, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 3, y - 16, z + z1, DarkSandstone, 0, 2);
 					}
 				}
 				else if (y1 < 6)
 				{
 					if (z1 == 6 || z1 == 7 || z1 == 10 || z1 == 11)
 					{
-						world.setBlock(x + 4, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
-						world.setBlock(x - 4, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
+						this.setBlock(world, x + 4, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
+						this.setBlock(world, x - 4, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
 
 						if (y1 == 5)
 						{
-							world.setBlock(x + 3, y + y1 - 16, z + z1, DarkSandstone, 2, 2);
-							world.setBlock(x - 3, y + y1 - 16, z + z1, DarkSandstone, 2, 2);
+							this.setBlock(world, x + 3, y + y1 - 16, z + z1, DarkSandstone, 2, 2);
+							this.setBlock(world, x - 3, y + y1 - 16, z + z1, DarkSandstone, 2, 2);
 						}
 					}
 
 					if (z1 == 5 || z1 == 8 || z1 == 9 || z1 == 12)
 					{
 						byte m = (byte) (y1 == 5 ? 3 : 2);
-						world.setBlock(x + 3, y + y1 - 16, z + z1, DarkSandstone, m, 2);
-						world.setBlock(x - 3, y + y1 - 16, z + z1, DarkSandstone, m, 2);
+						this.setBlock(world, x + 3, y + y1 - 16, z + z1, DarkSandstone, m, 2);
+						this.setBlock(world, x - 3, y + y1 - 16, z + z1, DarkSandstone, m, 2);
 					}
 
 					if ((z1 == 5 || z1 == 11) && y1 == 1)
 					{
-						world.setBlock(x + 2, y + y1 - 16, z + z1, Candle, 8, 2);
-						world.setBlock(x - 2, y + y1 - 16, z + z1, Candle, 8, 2);
+						this.setBlock(world, x + 2, y + y1 - 16, z + z1, Candle, 8, 2);
+						this.setBlock(world, x - 2, y + y1 - 16, z + z1, Candle, 8, 2);
 					}
 				}
 				else
 				{
-					world.setBlock(x + 2, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
-					world.setBlock(x - 2, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 2, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 2, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
 
 					if (z1 == 5 || z1 == 12)
 					{
 						for (byte x1 = -1; x1 < 2; x1++)
-							world.setBlock(x + x1, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
+							this.setBlock(world, x + x1, y + y1 - 16, z + z1, DarkSandstone, 4, 2);
 					}
 					else
 					{
 						for (byte x1 = -1; x1 < 2; x1++)
-							world.setBlock(x + x1, y + y1 - 15, z + z1, DarkSandstone, 3, 2);
+							this.setBlock(world, x + x1, y + y1 - 15, z + z1, DarkSandstone, 3, 2);
 					}					
 				}
 			}
@@ -883,24 +884,24 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -11; z1 < 12; z1++)
 				{
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 				}
 			}
 
 			for (byte x1 = -11; x1 < 12; x1++)
 			{
-				world.setBlock(x + x1, y + y1, z - 12, DarkSandstone, 4, 2);
-				world.setBlock(x + x1, y + y1, z + 12, DarkSandstone, 4, 2);
+				this.setBlock(world, x + x1, y + y1, z - 12, DarkSandstone, 4, 2);
+				this.setBlock(world, x + x1, y + y1, z + 12, DarkSandstone, 4, 2);
 
-				world.setBlock(x + 11, y + y1, z + x1, DarkSandstone, 4, 2);
-				world.setBlock(x - 11, y + y1, z + x1, DarkSandstone, 4, 2);
+				this.setBlock(world, x + 11, y + y1, z + x1, DarkSandstone, 4, 2);
+				this.setBlock(world, x - 11, y + y1, z + x1, DarkSandstone, 4, 2);
 			}
 
 			for (byte x1 = -2; x1 < 3 && y1 > 0 && y1 < 7; x1++)
 			{
 				for (byte z1 = -12; z1 < -8; z1++)
 				{
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 				}
 			}
 
@@ -910,7 +911,7 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					for (byte z1 = -11; z1 < 12; z1++)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 1, 2);
+						this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 1, 2);
 					}
 				}
 
@@ -920,40 +921,40 @@ public class SchematicClaymationRuin extends Schematic {
 					{
 						for (byte x1 = -1; x1 < 2; x1++)
 						{
-							world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
+							this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
 						}
 
-						world.setBlock(x + 2, y + y1, z + z1, DarkSandstone, 0, 2);
-						world.setBlock(x - 2, y + y1, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y + y1, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y + y1, z + z1, DarkSandstone, 0, 2);
 					}
 				}
 			}	
 
 			for (byte z1 = -9; z1 < 6 && y1 > 0; z1 += 3)
 			{
-				world.setBlock(x + 2, y + y1, z + z1, DarkSandstone, 3, 2);
-				world.setBlock(x - 2, y + y1, z + z1, DarkSandstone, 3, 2);
+				this.setBlock(world, x + 2, y + y1, z + z1, DarkSandstone, 3, 2);
+				this.setBlock(world, x - 2, y + y1, z + z1, DarkSandstone, 3, 2);
 			}
 
 			for (byte z1 = -11; z1 < 12 && y1 > 0; z1 += 4)
 			{
-				world.setBlock(x + 10, y + y1, z + z1, DarkSandstone, 2, 2);
-				world.setBlock(x - 10, y + y1, z + z1, DarkSandstone, 2, 2);
+				this.setBlock(world, x + 10, y + y1, z + z1, DarkSandstone, 2, 2);
+				this.setBlock(world, x - 10, y + y1, z + z1, DarkSandstone, 2, 2);
 			}
 
 			if (y1 > 0)
 			{
-				world.setBlock(x + 6, y + y1, z - 11, DarkSandstone, 2, 2);
-				world.setBlock(x + 3, y + y1, z - 11, DarkSandstone, 2, 2);
-				world.setBlock(x - 3, y + y1, z - 11, DarkSandstone, 2, 2);
-				world.setBlock(x - 6, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x + 6, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x + 3, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x - 3, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x - 6, y + y1, z - 11, DarkSandstone, 2, 2);
 
 				if (y1 > 1)
 				{
-					world.setBlock(x + 6, y + y1, z + 11, DarkSandstone, 2, 2);
-					world.setBlock(x + 3, y + y1, z + 11, DarkSandstone, 2, 2);
-					world.setBlock(x - 3, y + y1, z + 11, DarkSandstone, 2, 2);
-					world.setBlock(x - 6, y + y1, z + 11, DarkSandstone, 2, 2);
+					this.setBlock(world, x + 6, y + y1, z + 11, DarkSandstone, 2, 2);
+					this.setBlock(world, x + 3, y + y1, z + 11, DarkSandstone, 2, 2);
+					this.setBlock(world, x - 3, y + y1, z + 11, DarkSandstone, 2, 2);
+					this.setBlock(world, x - 6, y + y1, z + 11, DarkSandstone, 2, 2);
 				}
 			}
 
@@ -963,56 +964,56 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					int xr = (x + ((rand.nextInt(9) + 3) * (rand.nextBoolean() ? -1 : 1)));
 					int zr = (z + rand.nextInt(24) - 12);
-					if (world.getBlock(xr, y + y1, zr).isAir(world, xr, y + y1, zr)) world.setBlock(xr, y + y1, zr, Candle, 8, 2);
+					if (world.getBlockState(new BlockPos(xr, y + y1, zr)).getBlock().isAir(world, new BlockPos(xr, y + y1, zr))) this.setBlock(world, xr, y + y1, zr, Candle, 8, 2);
 				}
 			}
 			else if (y1 == 7)
 			{
-				world.setBlock(x + 2, y + y1, z - 11, DarkSandstone, 2, 2);
-				world.setBlock(x - 2, y + y1, z - 11, DarkSandstone, 2, 2);
-				world.setBlock(x + 1, y + y1, z - 11, DarkSandstone, 2, 2);
-				world.setBlock(x - 1, y + y1, z - 11, DarkSandstone, 2, 2);
-				world.setBlock(x, y + y1, z - 11, DarkSandstone, 5, 2);
+				this.setBlock(world, x + 2, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x - 2, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x + 1, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x - 1, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x, y + y1, z - 11, DarkSandstone, 5, 2);
 			}
 			else if (y1 == 8)
 			{
-				world.setBlock(x + 2, y + y1, z - 11, Candle, 8, 2);
-				world.setBlock(x - 2, y + y1, z - 11, Candle, 8, 2);
-				world.setBlock(x + 1, y + y1, z - 11, DarkSandstone, 2, 2);
-				world.setBlock(x - 1, y + y1, z - 11, DarkSandstone, 2, 2);
-				world.setBlock(x, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x + 2, y + y1, z - 11, Candle, 8, 2);
+				this.setBlock(world, x - 2, y + y1, z - 11, Candle, 8, 2);
+				this.setBlock(world, x + 1, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x - 1, y + y1, z - 11, DarkSandstone, 2, 2);
+				this.setBlock(world, x, y + y1, z - 11, DarkSandstone, 2, 2);
 			}
 		}
 
 		for (byte z1 = 5; z1 < 12; z1++)
 		{
-			world.setBlock(x + 2, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
-			world.setBlock(x + 1, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
-			world.setBlock(x, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
-			world.setBlock(x - 1, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
-			world.setBlock(x - 2, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
+			this.setBlock(world, x + 2, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
+			this.setBlock(world, x + 1, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
+			this.setBlock(world, x, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
+			this.setBlock(world, x - 1, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
+			this.setBlock(world, x - 2, y + 1, z + z1, DarkSandstone, z1 > 5 ? 1 : 0, 2);
 
 			if (z1 > 5)
 			{
-				world.setBlock(x + 3, y + 1, z + z1, DarkSandstone, z1 > 6 ? 1 : 0, 2);
-				world.setBlock(x - 3, y + 1, z + z1, DarkSandstone, z1 > 6 ? 1 : 0, 2);
+				this.setBlock(world, x + 3, y + 1, z + z1, DarkSandstone, z1 > 6 ? 1 : 0, 2);
+				this.setBlock(world, x - 3, y + 1, z + z1, DarkSandstone, z1 > 6 ? 1 : 0, 2);
 
 				if (z1 > 6)
 				{
-					world.setBlock(x + 4, y + 1, z + z1, DarkSandstone, z1 > 7 ? 1 : 0, 2);
-					world.setBlock(x - 4, y + 1, z + z1, DarkSandstone, z1 > 7 ? 1 : 0, 2);
-					world.setBlock(x + 5, y + 1, z + z1, DarkSandstone, z1 > 7 ? 1 : 0, 2);
-					world.setBlock(x - 5, y + 1, z + z1, DarkSandstone, z1 > 7 ? 1 : 0, 2);
+					this.setBlock(world, x + 4, y + 1, z + z1, DarkSandstone, z1 > 7 ? 1 : 0, 2);
+					this.setBlock(world, x - 4, y + 1, z + z1, DarkSandstone, z1 > 7 ? 1 : 0, 2);
+					this.setBlock(world, x + 5, y + 1, z + z1, DarkSandstone, z1 > 7 ? 1 : 0, 2);
+					this.setBlock(world, x - 5, y + 1, z + z1, DarkSandstone, z1 > 7 ? 1 : 0, 2);
 
 					if (z1 > 7)
 					{
-						world.setBlock(x + 6, y + 1, z + z1, DarkSandstone, z1 > 8 ? 1 : 0, 2);
-						world.setBlock(x - 6, y + 1, z + z1, DarkSandstone, z1 > 8 ? 1 : 0, 2);
+						this.setBlock(world, x + 6, y + 1, z + z1, DarkSandstone, z1 > 8 ? 1 : 0, 2);
+						this.setBlock(world, x - 6, y + 1, z + z1, DarkSandstone, z1 > 8 ? 1 : 0, 2);
 
 						if (z1 > 8)
 						{
-							world.setBlock(x + 7, y + 1, z + z1, DarkSandstone, 0, 2);
-							world.setBlock(x - 7, y + 1, z + z1, DarkSandstone, 0, 2);
+							this.setBlock(world, x + 7, y + 1, z + z1, DarkSandstone, 0, 2);
+							this.setBlock(world, x - 7, y + 1, z + z1, DarkSandstone, 0, 2);
 						}
 					}
 				}
@@ -1020,32 +1021,32 @@ public class SchematicClaymationRuin extends Schematic {
 
 			if (z1 >= 10)
 			{
-				world.setBlock(x + 1, y + 2, z + z1, DarkSandstone, 3, 2);
-				world.setBlock(x, y + 2, z + z1, DarkSandstone, 3, 2);
-				world.setBlock(x - 1, y + 2, z + z1, DarkSandstone, 3, 2);
+				this.setBlock(world, x + 1, y + 2, z + z1, DarkSandstone, 3, 2);
+				this.setBlock(world, x, y + 2, z + z1, DarkSandstone, 3, 2);
+				this.setBlock(world, x - 1, y + 2, z + z1, DarkSandstone, 3, 2);
 
 				if (z1 == 11)
 				{
 					for (byte y1 = 3; y1 < 7; y1++)
 					{
-						world.setBlock(x + 1, y + y1, z + z1, DarkSandstone, 3, 2);
-						if (y1 < 6) world.setBlock(x, y + y1, z + z1, DarkSandstone, 3, 2);
-						world.setBlock(x - 1, y + y1, z + z1, DarkSandstone, 3, 2);
+						this.setBlock(world, x + 1, y + y1, z + z1, DarkSandstone, 3, 2);
+						if (y1 < 6) this.setBlock(world, x, y + y1, z + z1, DarkSandstone, 3, 2);
+						this.setBlock(world, x - 1, y + y1, z + z1, DarkSandstone, 3, 2);
 					}
 				}
 				else
 				{
-					world.setBlock(x + 1, y + 3, z + z1, Candle, 8, 2);
-					world.setBlock(x, y + 3, z + z1, SummonBlock, 9, 2);
-					world.setBlock(x -1, y + 3, z + z1, Candle, 8, 2);
+					this.setBlock(world, x + 1, y + 3, z + z1, Candle, 8, 2);
+					this.setBlock(world, x, y + 3, z + z1, SummonBlock, 9, 2);
+					this.setBlock(world, x -1, y + 3, z + z1, Candle, 8, 2);
 				}
 			}
 		}
 
-		world.setBlock(x + 2, y + 2, z + 6, Candle, 8, 2);
-		world.setBlock(x - 2, y + 2, z + 6, Candle, 8, 2);
-		world.setBlock(x + 5, y + 2, z + 10, Candle, 8, 2);
-		world.setBlock(x - 5, y + 2, z + 10, Candle, 8, 2);
+		this.setBlock(world, x + 2, y + 2, z + 6, Candle, 8, 2);
+		this.setBlock(world, x - 2, y + 2, z + 6, Candle, 8, 2);
+		this.setBlock(world, x + 5, y + 2, z + 10, Candle, 8, 2);
+		this.setBlock(world, x - 5, y + 2, z + 10, Candle, 8, 2);
 	}
 
 	public void generateTrapRoom(World world, Random rand, final int x, final int y, final int z) //generates a trap room, should be a few different varieties of this
@@ -1058,11 +1059,11 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					if (y1 == 0 || y1 >= 6)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 0, 2);
 					}
 					else
 					{
-						world.setBlockToAir(x + x1, y + y1, z + z1);
+						this.setBlockToAir(world, x + x1, y + y1, z + z1);
 					}
 				}
 			}
@@ -1072,27 +1073,27 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 			for (byte z1 = -3; z1 < 4; z1++)
 			{
-				world.setBlock(x + x1, y, z + z1, DarkSandstone, 1, 2);
+				this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 1, 2);
 			}
 		}
 
 		for (byte x1 = -2; x1 < 3; x1++)
 		{
-			world.setBlock(x + x1, y, z - 4, DarkSandstone, 1, 2);
-			world.setBlock(x + x1, y, z + 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y, z - 4, DarkSandstone, 1, 2);
+			this.setBlock(world, x + x1, y, z + 4, DarkSandstone, 1, 2);
 		}
 
 		for (byte z1 = -2; z1 < 3; z1++)
 		{
-			world.setBlock(x + 4, y, z + z1, DarkSandstone, 1, 2);
-			world.setBlock(x - 4, y, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x + 4, y, z + z1, DarkSandstone, 1, 2);
+			this.setBlock(world, x - 4, y, z + z1, DarkSandstone, 1, 2);
 		}
 
 		for (byte x1 = -1; x1 < 2; x1++)
 		{
 			for (byte z1 = -1; z1 < 2; z1++)
 			{
-				world.setBlock(x + x1, y, z + z1, DarkSandstone, 0, 2);
+				this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 0, 2);
 			}
 		}
 
@@ -1104,21 +1105,21 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					for (byte z1 = -1; z1 < 2; z1++)
 					{
-						world.setBlock(x + 1, y, z + 2, DarkSandstone, 0, 2);
-						world.setBlock(x - 1, y, z + 2, DarkSandstone, 0, 2);
-						world.setBlock(x, y, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 1, y, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 1, y, z + 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x, y, z + 2, DarkSandstone, 0, 2);
 
-						world.setBlock(x + 1, y, z - 2, DarkSandstone, 0, 2);
-						world.setBlock(x - 1, y, z - 2, DarkSandstone, 0, 2);
-						world.setBlock(x, y, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 1, y, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 1, y, z - 2, DarkSandstone, 0, 2);
+						this.setBlock(world, x, y, z - 2, DarkSandstone, 0, 2);
 
-						world.setBlock(x + 2, y, z - 1, DarkSandstone, 0, 2);
-						world.setBlock(x + 2, y, z, DarkSandstone, 0, 2);
-						world.setBlock(x + 2, y, z + 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y, z - 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y, z, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 2, y, z + 1, DarkSandstone, 0, 2);
 
-						world.setBlock(x - 2, y, z - 1, DarkSandstone, 0, 2);
-						world.setBlock(x - 2, y, z, DarkSandstone, 0, 2);
-						world.setBlock(x - 2, y, z + 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y, z - 1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y, z, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 2, y, z + 1, DarkSandstone, 0, 2);
 					}
 				}
 			}
@@ -1127,22 +1128,22 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				if (y1 == 1 || y1 == 5)
 				{
-					world.setBlock(x + 4, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z - 4, DarkSandstone, 4, 2);
 				}
 				else
 				{
-					world.setBlock(x + 5, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1, z + 4, DarkSandstone, 4, 2);
-					world.setBlock(x + 5, y + y1, z - 4, DarkSandstone, 4, 2);
-					world.setBlock(x - 5, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1, z + 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 5, y + y1, z - 4, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 5, y + y1, z - 4, DarkSandstone, 4, 2);
 
-					world.setBlock(x + 4, y + y1, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z + 5, DarkSandstone, 4, 2);
-					world.setBlock(x + 4, y + y1, z - 5, DarkSandstone, 4, 2);
-					world.setBlock(x - 4, y + y1, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z + 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 4, y + y1, z - 5, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 4, y + y1, z - 5, DarkSandstone, 4, 2);
 				}
 			}
 		}
@@ -1153,24 +1154,24 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 		default:
 		case 0:
-			world.setBlock(x, y + 1, z, Blocks.trapped_chest, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
 			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
 
-			world.setBlock(x, y + 2, z, Blocks.mob_spawner, 0, 2);
+			this.setBlock(world, x, y + 2, z, Blocks.mob_spawner, 0, 2);
 			this.setSpawnerMob(world, x, y + 2, z, "Blaze");
 			break;
 		case 1:
-			world.setBlock(x, y + 1, z, Blocks.trapped_chest, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
 			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
 
 			for (byte x1 = -3; x1 < 4; x1++)
 			{
 				for (byte z1 = -3; z1 < 4; z1++)
 				{
-					world.setBlock(x + x1, y + 6, z + z1, DarkSand, 0, 2);
-					world.setBlock(x + x1, y + 5, z + z1, DarkSand, 0, 2);
-					world.setBlock(x + x1, y + 4, z + z1, Blocks.red_flower, 0, 2);
-					world.scheduleBlockUpdate(x + x1, y + 4, z + z1, Blocks.red_flower, 2);
+					this.setBlock(world, x + x1, y + 6, z + z1, DarkSand, 0, 2);
+					this.setBlock(world, x + x1, y + 5, z + z1, DarkSand, 0, 2);
+					this.setBlock(world, x + x1, y + 4, z + z1, Blocks.red_flower, 0, 2);
+					world.scheduleUpdate(new BlockPos(x + x1, y + 4, z + z1), Blocks.red_flower, 2);
 				}
 			}
 
@@ -1178,27 +1179,27 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -2; z1 < 3; z1++)
 				{
-					world.setBlock(x + x1, y + 4, z + z1, DarkSand, 0, 2);
-					world.setBlock(x + x1, y + 3, z + z1, DarkSand, 0, 2);
-					world.setBlock(x + x1, y + 2, z + z1, Blocks.red_flower, 0, 2);
-					world.scheduleBlockUpdate(x + x1, y + 2, z + z1, Blocks.red_flower, 2);
+					this.setBlock(world, x + x1, y + 4, z + z1, DarkSand, 0, 2);
+					this.setBlock(world, x + x1, y + 3, z + z1, DarkSand, 0, 2);
+					this.setBlock(world, x + x1, y + 2, z + z1, Blocks.red_flower, 0, 2);
+					world.scheduleUpdate(new BlockPos(x + x1, y + 2, z + z1), Blocks.red_flower, 2);
 				}
 			}
 
-			world.setBlock(x, y + 2, z, DarkSand, 0, 2);
+			this.setBlock(world, x, y + 2, z, DarkSand, 0, 2);
 			break;
 		case 2:
-			world.setBlock(x, y + 1, z, Blocks.mob_spawner, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.mob_spawner, 0, 2);
 			this.setSpawnerMob(world, x, y + 1, z, "Blaze");
 
 			for (byte x1 = -3; x1 < 4; x1++)
 			{
 				for (byte z1 = -3; z1 < 4; z1++)
 				{
-					world.setBlock(x + x1, y + 6, z + z1, DarkSand, 0, 2);
-					world.setBlock(x + x1, y + 5, z + z1, DarkSand, 0, 2);
-					world.setBlock(x + x1, y + 4, z + z1, Blocks.red_flower, 0, 2);
-					world.scheduleBlockUpdate(x + x1, y + 4, z + z1, Blocks.red_flower, 2);
+					this.setBlock(world, x + x1, y + 6, z + z1, DarkSand, 0, 2);
+					this.setBlock(world, x + x1, y + 5, z + z1, DarkSand, 0, 2);
+					this.setBlock(world, x + x1, y + 4, z + z1, Blocks.red_flower, 0, 2);
+					world.scheduleUpdate(new BlockPos(x + x1, y + 4, z + z1), Blocks.red_flower, 2);
 				}
 			}
 
@@ -1206,28 +1207,28 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -2; z1 < 3; z1++)
 				{
-					world.setBlock(x + x1, y + 4, z + z1, DarkSand, 0, 2);
-					world.setBlock(x + x1, y + 3, z + z1, DarkSand, 0, 2);
-					world.setBlock(x + x1, y + 2, z + z1, Blocks.red_flower, 0, 2);
-					world.scheduleBlockUpdate(x + x1, y + 2, z + z1, Blocks.red_flower, 2);
+					this.setBlock(world, x + x1, y + 4, z + z1, DarkSand, 0, 2);
+					this.setBlock(world, x + x1, y + 3, z + z1, DarkSand, 0, 2);
+					this.setBlock(world, x + x1, y + 2, z + z1, Blocks.red_flower, 0, 2);
+					world.scheduleUpdate(new BlockPos(x + x1, y + 2, z + z1), Blocks.red_flower, 2);
 				}
 			}
 
-			world.setBlock(x, y + 2, z, DarkSand, 0, 2);
+			this.setBlock(world, x, y + 2, z, DarkSand, 0, 2);
 			break;
 		case 3:
-			world.setBlock(x, y + 1, z, Blocks.mob_spawner, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.mob_spawner, 0, 2);
 			this.setSpawnerMob(world, x, y + 1, z, "Blaze");
 
-			world.setBlock(x, y + 2, z, Blocks.trapped_chest, 0, 2);
+			this.setBlock(world, x, y + 2, z, Blocks.trapped_chest, 0, 2);
 			this.applyChestContents(world, rand, x, y + 2, z, TragicItems.NetherStructureHook);
 
 			for (byte x1 = -3; x1 < 4; x1++)
 			{
 				for (byte z1 = -3; z1 < 4; z1++)
 				{
-					world.setBlock(x + x1, y - 1, z + z1, DarkSandstone, 0, 2);
-					world.setBlock(x + x1, y, z + z1, Blocks.flowing_lava, 0, 2);
+					this.setBlock(world, x + x1, y - 1, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y, z + z1, Blocks.flowing_lava, 0, 2);
 				}
 			}
 
@@ -1235,11 +1236,11 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -2; z1 < 3; z1++)
 				{
-					world.setBlock(x + x1, y - 1, z + z1, DarkSandstone, 0, 2);
-					world.setBlock(x + x1, y, z + z1, Blocks.flowing_lava, 0, 2);
+					this.setBlock(world, x + x1, y - 1, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y, z + z1, Blocks.flowing_lava, 0, 2);
 
-					world.setBlock(x + z1, y - 1, z + x1, DarkSandstone, 0, 2);
-					world.setBlock(x + z1, y, z + x1, Blocks.flowing_lava, 0, 2);
+					this.setBlock(world, x + z1, y - 1, z + x1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + z1, y, z + x1, Blocks.flowing_lava, 0, 2);
 				}
 			}
 			break;
@@ -1248,12 +1249,12 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -1; z1 < 2; z1++)
 				{
-					world.setBlock(x + x1, y + 1, z + z1, Blocks.mob_spawner, 0, 2);
+					this.setBlock(world, x + x1, y + 1, z + z1, Blocks.mob_spawner, 0, 2);
 					this.setSpawnerMob(world, x + x1, y + 1, z + z1, "Blaze");
 				}
 			}
 
-			world.setBlock(x, y + 1, z, Blocks.trapped_chest, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
 			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
 			break;
 		case 5:
@@ -1261,15 +1262,15 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -1; z1 < 2; z1++)
 				{
-					world.setBlock(x + x1, y + 1, z + z1, Blocks.mob_spawner, 0, 2);
+					this.setBlock(world, x + x1, y + 1, z + z1, Blocks.mob_spawner, 0, 2);
 					this.setSpawnerMob(world, x + x1, y + 1, z + z1, "Blaze");
 				}
 			}
 
-			world.setBlock(x, y + 1, z, Blocks.trapped_chest, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
 			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
 
-			world.setBlock(x, y, z, Blocks.tnt, 0, 2);
+			this.setBlock(world, x, y, z, Blocks.tnt, 0, 2);
 			break;
 		}
 
@@ -1283,63 +1284,63 @@ public class SchematicClaymationRuin extends Schematic {
 			for (byte z1 = -5; z1 > -9; z1--)
 			{
 				for (byte x1 = -3; x1 < 4; x1++)
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 
 				if (y1 == 0)
 				{
 					for (byte x1 = -1; x1 < 2; x1++)
-						world.setBlock(x + x1, y, z + z1, DarkSandstone, 1, 2);
+						this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 1, 2);
 
-					world.setBlock(x - 2, y, z + z1, DarkSandstone, 0, 2);
-					world.setBlock(x + 2, y, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x - 2, y, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + 2, y, z + z1, DarkSandstone, 0, 2);
 
 					if (z1 == -6 || z1 == -7)
 					{
-						world.setBlock(x - 3, y, z + z1, DarkSandstone, 0, 2);
-						world.setBlock(x + 3, y, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 3, y, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 3, y, z + z1, DarkSandstone, 0, 2);
 					}
 				}
 				else if (y1 < 6)
 				{
 					if (z1 == -6 || z1 == -7)
 					{
-						world.setBlock(x + 4, y + y1, z + z1, DarkSandstone, 4, 2);
-						world.setBlock(x - 4, y + y1, z + z1, DarkSandstone, 4, 2);
+						this.setBlock(world, x + 4, y + y1, z + z1, DarkSandstone, 4, 2);
+						this.setBlock(world, x - 4, y + y1, z + z1, DarkSandstone, 4, 2);
 
 						if (y1 == 5)
 						{
-							world.setBlock(x + 3, y + y1, z + z1, DarkSandstone, 2, 2);
-							world.setBlock(x - 3, y + y1, z + z1, DarkSandstone, 2, 2);
+							this.setBlock(world, x + 3, y + y1, z + z1, DarkSandstone, 2, 2);
+							this.setBlock(world, x - 3, y + y1, z + z1, DarkSandstone, 2, 2);
 						}
 					}
 
 					if (z1 == -5 || z1 == -8)
 					{
 						byte m = (byte) (y1 == 5 ? 3 : 2);
-						world.setBlock(x + 3, y + y1, z + z1, DarkSandstone, m, 2);
-						world.setBlock(x - 3, y + y1, z + z1, DarkSandstone, m, 2);
+						this.setBlock(world, x + 3, y + y1, z + z1, DarkSandstone, m, 2);
+						this.setBlock(world, x - 3, y + y1, z + z1, DarkSandstone, m, 2);
 					}
 
 					if (z1 == -5 && y1 == 1)
 					{
-						world.setBlock(x + 2, y + y1, z + z1, Candle, 8, 2);
-						world.setBlock(x - 2, y + y1, z + z1, Candle, 8, 2);
+						this.setBlock(world, x + 2, y + y1, z + z1, Candle, 8, 2);
+						this.setBlock(world, x - 2, y + y1, z + z1, Candle, 8, 2);
 					}
 				}
 				else
 				{
-					world.setBlock(x + 2, y + y1, z + z1, DarkSandstone, 4, 2);
-					world.setBlock(x - 2, y + y1, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 2, y + y1, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 2, y + y1, z + z1, DarkSandstone, 4, 2);
 
 					if (z1 == -5)
 					{
 						for (byte x1 = -1; x1 < 2; x1++)
-							world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
+							this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
 					}
 					else
 					{
 						for (byte x1 = -1; x1 < 2; x1++)
-							world.setBlock(x + x1, y + y1 + 1, z + z1, DarkSandstone, 3, 2);
+							this.setBlock(world, x + x1, y + y1 + 1, z + z1, DarkSandstone, 3, 2);
 					}					
 				}
 			}
@@ -1347,63 +1348,63 @@ public class SchematicClaymationRuin extends Schematic {
 			for (byte z1 = 5; z1 < 9; z1++)
 			{
 				for (byte x1 = -3; x1 < 4; x1++)
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 
 				if (y1 == 0)
 				{
 					for (byte x1 = -1; x1 < 2; x1++)
-						world.setBlock(x + x1, y, z + z1, DarkSandstone, 1, 2);
+						this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 1, 2);
 
-					world.setBlock(x - 2, y, z + z1, DarkSandstone, 0, 2);
-					world.setBlock(x + 2, y, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x - 2, y, z + z1, DarkSandstone, 0, 2);
+					this.setBlock(world, x + 2, y, z + z1, DarkSandstone, 0, 2);
 
 					if (z1 == 6 || z1 == 7)
 					{
-						world.setBlock(x - 3, y, z + z1, DarkSandstone, 0, 2);
-						world.setBlock(x + 3, y, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x - 3, y, z + z1, DarkSandstone, 0, 2);
+						this.setBlock(world, x + 3, y, z + z1, DarkSandstone, 0, 2);
 					}
 				}
 				else if (y1 < 6)
 				{
 					if (z1 == 6 || z1 == 7)
 					{
-						world.setBlock(x + 4, y + y1, z + z1, DarkSandstone, 4, 2);
-						world.setBlock(x - 4, y + y1, z + z1, DarkSandstone, 4, 2);
+						this.setBlock(world, x + 4, y + y1, z + z1, DarkSandstone, 4, 2);
+						this.setBlock(world, x - 4, y + y1, z + z1, DarkSandstone, 4, 2);
 
 						if (y1 == 5)
 						{
-							world.setBlock(x + 3, y + y1, z + z1, DarkSandstone, 2, 2);
-							world.setBlock(x - 3, y + y1, z + z1, DarkSandstone, 2, 2);
+							this.setBlock(world, x + 3, y + y1, z + z1, DarkSandstone, 2, 2);
+							this.setBlock(world, x - 3, y + y1, z + z1, DarkSandstone, 2, 2);
 						}
 					}
 
 					if (z1 == 5 || z1 == 8)
 					{
 						int m = y1 == 5 ? 3 : 2;
-						world.setBlock(x + 3, y + y1, z + z1, DarkSandstone, m, 2);
-						world.setBlock(x - 3, y + y1, z + z1, DarkSandstone, m, 2);
+						this.setBlock(world, x + 3, y + y1, z + z1, DarkSandstone, m, 2);
+						this.setBlock(world, x - 3, y + y1, z + z1, DarkSandstone, m, 2);
 					}
 
 					if (z1 == 5 && y1 == 1)
 					{
-						world.setBlock(x + 2, y + y1, z + z1, Candle, 8, 2);
-						world.setBlock(x - 2, y + y1, z + z1, Candle, 8, 2);
+						this.setBlock(world, x + 2, y + y1, z + z1, Candle, 8, 2);
+						this.setBlock(world, x - 2, y + y1, z + z1, Candle, 8, 2);
 					}
 				}
 				else
 				{
-					world.setBlock(x + 2, y + y1, z + z1, DarkSandstone, 4, 2);
-					world.setBlock(x - 2, y + y1, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x + 2, y + y1, z + z1, DarkSandstone, 4, 2);
+					this.setBlock(world, x - 2, y + y1, z + z1, DarkSandstone, 4, 2);
 
 					if (z1 == 5)
 					{
 						for (byte x1 = -1; x1 < 2; x1++)
-							world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
+							this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
 					}
 					else
 					{
 						for (byte x1 = -1; x1 < 2; x1++)
-							world.setBlock(x + x1, y + y1 + 1, z + z1, DarkSandstone, 3, 2);
+							this.setBlock(world, x + x1, y + y1 + 1, z + z1, DarkSandstone, 3, 2);
 					}					
 				}
 			}
@@ -1411,63 +1412,63 @@ public class SchematicClaymationRuin extends Schematic {
 			for (byte x1 = -5; x1 > -9; x1--)
 			{
 				for (byte z1 = -3; z1 < 4; z1++)
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 
 				if (y1 == 0)
 				{
 					for (byte z1 = -1; z1 < 2; z1++)
-						world.setBlock(x + x1, y, z + z1, DarkSandstone, 1, 2);
+						this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 1, 2);
 
-					world.setBlock(x + x1, y, z + 2, DarkSandstone, 0, 2);
-					world.setBlock(x + x1, y, z - 2, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y, z + 2, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y, z - 2, DarkSandstone, 0, 2);
 
 					if (x1 == -6 || x1 == -7)
 					{
-						world.setBlock(x + x1, y, z - 3, DarkSandstone, 0, 2);
-						world.setBlock(x + x1, y, z + 3, DarkSandstone, 0, 2);
+						this.setBlock(world, x + x1, y, z - 3, DarkSandstone, 0, 2);
+						this.setBlock(world, x + x1, y, z + 3, DarkSandstone, 0, 2);
 					}
 				}
 				else if (y1 < 6)
 				{
 					if (x1 == -6 || x1 == -7)
 					{
-						world.setBlock(x + x1, y + y1, z + 4, DarkSandstone, 4, 2);
-						world.setBlock(x + x1, y + y1, z - 4, DarkSandstone, 4, 2);
+						this.setBlock(world, x + x1, y + y1, z + 4, DarkSandstone, 4, 2);
+						this.setBlock(world, x + x1, y + y1, z - 4, DarkSandstone, 4, 2);
 
 						if (y1 == 5)
 						{
-							world.setBlock(x + x1, y + y1, z + 3, DarkSandstone, 2, 2);
-							world.setBlock(x + x1, y + y1, z - 3, DarkSandstone, 2, 2);
+							this.setBlock(world, x + x1, y + y1, z + 3, DarkSandstone, 2, 2);
+							this.setBlock(world, x + x1, y + y1, z - 3, DarkSandstone, 2, 2);
 						}
 					}
 
 					if (x1 == -5 || x1 == -8)
 					{
 						int m = y1 == 5 ? 3 : 2;
-						world.setBlock(x + x1, y + y1, z + 3, DarkSandstone, m, 2);
-						world.setBlock(x + x1, y + y1, z - 3, DarkSandstone, m, 2);
+						this.setBlock(world, x + x1, y + y1, z + 3, DarkSandstone, m, 2);
+						this.setBlock(world, x + x1, y + y1, z - 3, DarkSandstone, m, 2);
 					}
 
 					if (x1 == -5 && y1 == 1)
 					{
-						world.setBlock(x + x1, y + y1, z + 2, Candle, 8, 2);
-						world.setBlock(x + x1, y + y1, z - 2, Candle, 8, 2);
+						this.setBlock(world, x + x1, y + y1, z + 2, Candle, 8, 2);
+						this.setBlock(world, x + x1, y + y1, z - 2, Candle, 8, 2);
 					}
 				}
 				else
 				{
-					world.setBlock(x + x1, y + y1, z + 2, DarkSandstone, 4, 2);
-					world.setBlock(x + x1, y + y1, z - 2, DarkSandstone, 4, 2);
+					this.setBlock(world, x + x1, y + y1, z + 2, DarkSandstone, 4, 2);
+					this.setBlock(world, x + x1, y + y1, z - 2, DarkSandstone, 4, 2);
 
 					if (x1 == -5)
 					{
 						for (byte z1 = -1; z1 < 2; z1++)
-							world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
+							this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
 					}
 					else
 					{
 						for (byte z1 = -1; z1 < 2; z1++)
-							world.setBlock(x + x1, y + y1 + 1, z + z1, DarkSandstone, 3, 2);
+							this.setBlock(world, x + x1, y + y1 + 1, z + z1, DarkSandstone, 3, 2);
 					}					
 				}
 			}
@@ -1475,63 +1476,63 @@ public class SchematicClaymationRuin extends Schematic {
 			for (byte x1 = 5; x1 < 9; x1++)
 			{
 				for (byte z1 = -3; z1 < 4; z1++)
-					world.setBlockToAir(x + x1, y + y1, z + z1);
+					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 
 				if (y1 == 0)
 				{
 					for (byte z1 = -1; z1 < 2; z1++)
-						world.setBlock(x + x1, y, z + z1, DarkSandstone, 1, 2);
+						this.setBlock(world, x + x1, y, z + z1, DarkSandstone, 1, 2);
 
-					world.setBlock(x + x1, y, z + 2, DarkSandstone, 0, 2);
-					world.setBlock(x + x1, y, z - 2, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y, z + 2, DarkSandstone, 0, 2);
+					this.setBlock(world, x + x1, y, z - 2, DarkSandstone, 0, 2);
 
 					if (x1 == 6 || x1 == 7)
 					{
-						world.setBlock(x + x1, y, z - 3, DarkSandstone, 0, 2);
-						world.setBlock(x + x1, y, z + 3, DarkSandstone, 0, 2);
+						this.setBlock(world, x + x1, y, z - 3, DarkSandstone, 0, 2);
+						this.setBlock(world, x + x1, y, z + 3, DarkSandstone, 0, 2);
 					}
 				}
 				else if (y1 < 6)
 				{
 					if (x1 == 6 || x1 == 7)
 					{
-						world.setBlock(x + x1, y + y1, z + 4, DarkSandstone, 4, 2);
-						world.setBlock(x + x1, y + y1, z - 4, DarkSandstone, 4, 2);
+						this.setBlock(world, x + x1, y + y1, z + 4, DarkSandstone, 4, 2);
+						this.setBlock(world, x + x1, y + y1, z - 4, DarkSandstone, 4, 2);
 
 						if (y1 == 5)
 						{
-							world.setBlock(x + x1, y + y1, z + 3, DarkSandstone, 2, 2);
-							world.setBlock(x + x1, y + y1, z - 3, DarkSandstone, 2, 2);
+							this.setBlock(world, x + x1, y + y1, z + 3, DarkSandstone, 2, 2);
+							this.setBlock(world, x + x1, y + y1, z - 3, DarkSandstone, 2, 2);
 						}
 					}
 
 					if (x1 == 5 || x1 == 8)
 					{
 						byte m = (byte) (y1 == 5 ? 3 : 2);
-						world.setBlock(x + x1, y + y1, z + 3, DarkSandstone, m, 2);
-						world.setBlock(x + x1, y + y1, z - 3, DarkSandstone, m, 2);
+						this.setBlock(world, x + x1, y + y1, z + 3, DarkSandstone, m, 2);
+						this.setBlock(world, x + x1, y + y1, z - 3, DarkSandstone, m, 2);
 					}
 
 					if (x1 == 5 && y1 == 1)
 					{
-						world.setBlock(x + x1, y + y1, z + 2, Candle, 8, 2);
-						world.setBlock(x + x1, y + y1, z - 2, Candle, 8, 2);
+						this.setBlock(world, x + x1, y + y1, z + 2, Candle, 8, 2);
+						this.setBlock(world, x + x1, y + y1, z - 2, Candle, 8, 2);
 					}
 				}
 				else
 				{
-					world.setBlock(x + x1, y + y1, z + 2, DarkSandstone, 4, 2);
-					world.setBlock(x + x1, y + y1, z - 2, DarkSandstone, 4, 2);
+					this.setBlock(world, x + x1, y + y1, z + 2, DarkSandstone, 4, 2);
+					this.setBlock(world, x + x1, y + y1, z - 2, DarkSandstone, 4, 2);
 
 					if (x1 == 5)
 					{
 						for (byte z1 = -1; z1 < 2; z1++)
-							world.setBlock(x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
+							this.setBlock(world, x + x1, y + y1, z + z1, DarkSandstone, 4, 2);
 					}
 					else
 					{
 						for (byte z1 = -1; z1 < 2; z1++)
-							world.setBlock(x + x1, y + y1 + 1, z + z1, DarkSandstone, 3, 2);
+							this.setBlock(world, x + x1, y + y1 + 1, z + z1, DarkSandstone, 3, 2);
 					}					
 				}
 			}

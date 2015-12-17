@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -34,7 +35,7 @@ public class PitWorldGen implements IWorldGen {
 		
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - random.nextInt(10);
+		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).down(random.nextInt(10)).getY();
 		int depth = Ycoord - this.depth - random.nextInt(this.depthVar + 1);
 
 		double size;
@@ -74,8 +75,8 @@ public class PitWorldGen implements IWorldGen {
 
 		for (int[] coords2 : cands)
 		{
-			if (coords2[1] > depth + 1) world.setBlockToAir(coords2[0], coords2[1], coords2[2]);
-			else world.setBlock(coords2[0], coords2[1], coords2[2], this.block, meta, 2);
+			if (coords2[1] > depth + 1) world.setBlockToAir(new BlockPos(coords2[0], coords2[1], coords2[2]));
+			else world.setBlockState(new BlockPos(coords2[0], coords2[1], coords2[2]), this.block.getStateFromMeta(meta), 2);
 		}
 	}
 }

@@ -3,6 +3,7 @@ package tragicneko.tragicmc.worldgen;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -64,7 +65,7 @@ public class VoidPitWorldGen implements IWorldGen {
 
 		for (int[] coords2 : cands)
 		{
-			world.setBlockToAir(coords2[0], coords2[1], coords2[2]);
+			world.setBlockToAir(new BlockPos(coords2[0], coords2[1], coords2[2]));
 		}
 	}
 

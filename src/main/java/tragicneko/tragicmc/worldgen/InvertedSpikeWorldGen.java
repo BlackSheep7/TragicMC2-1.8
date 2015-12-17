@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -32,7 +33,7 @@ public class InvertedSpikeWorldGen implements IWorldGen {
 		
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
+		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 
 		ArrayList<int[]> list;
 		Material material;
@@ -45,7 +46,7 @@ public class InvertedSpikeWorldGen implements IWorldGen {
 			size = random.nextDouble() * variation + radius;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
-			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + 1;
+			Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).up(1).getY();
 
 			spikeType = (byte) random.nextInt(6);
 
@@ -105,12 +106,12 @@ public class InvertedSpikeWorldGen implements IWorldGen {
 
 				for (int[] coords : list)
 				{
-					material = world.getBlock(coords[0], coords[1], coords[2]).getMaterial();
+					material = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock().getMaterial();
 					if (!material.isLiquid() && material != Material.air && !cands.contains(coords)) cands.add(coords);
 				}
 			}
 
-			for (int[] coords : cands) world.setBlockToAir(coords[0], coords[1], coords[2]);
+			for (int[] coords : cands) world.setBlockToAir(new BlockPos(coords[0], coords[1], coords[2]));
 		}
 
 	}
@@ -140,11 +141,11 @@ public class InvertedSpikeWorldGen implements IWorldGen {
 
 			for (int[] coords : list)
 			{
-				material = world.getBlock(coords[0], coords[1], coords[2]).getMaterial();
+				material = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock().getMaterial();
 				if (!material.isLiquid() && material != Material.air && !cands.contains(coords)) cands.add(coords);
 			}
 		}
 
-		for (int[] coords : cands) world.setBlockToAir(coords[0], coords[1], coords[2]);
+		for (int[] coords : cands) world.setBlockToAir(new BlockPos(coords[0], coords[1], coords[2]));
 	}
 }

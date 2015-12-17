@@ -3,6 +3,7 @@ package tragicneko.tragicmc.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.structure.Structure;
@@ -31,7 +32,7 @@ public class SurfaceWorldGen2 implements IWorldGen {
 		
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
+		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 
 		Block block;
 		for (byte i = 0; i < iterations; i++)
@@ -41,11 +42,11 @@ public class SurfaceWorldGen2 implements IWorldGen {
 			Ycoord += random.nextInt(height) - random.nextInt(height);
 
 			if (Ycoord < 0 || Ycoord > 256) break;
-			block = world.getBlock(Xcoord, Ycoord, Zcoord);
+			block = world.getBlockState(new BlockPos(Xcoord, Ycoord, Zcoord)).getBlock();
 
-			if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord))
+			if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, new BlockPos(Xcoord, Ycoord, Zcoord)) || block.isAir(world, new BlockPos(Xcoord, Ycoord, Zcoord)))
 			{
-				if (World.doesBlockHaveSolidTopSurface(world, Xcoord, Ycoord - 1, Zcoord) && !block.getMaterial().isLiquid()) world.setBlock(Xcoord, Ycoord, Zcoord, this.block, meta, 2);
+				if (World.doesBlockHaveSolidTopSurface(world, new BlockPos(Xcoord, Ycoord - 1, Zcoord)) && !block.getMaterial().isLiquid()) world.setBlockState(new BlockPos(Xcoord, Ycoord, Zcoord), this.block.getStateFromMeta(meta), 2);
 			}
 		}
 	}

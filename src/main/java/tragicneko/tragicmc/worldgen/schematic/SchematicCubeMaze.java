@@ -30,31 +30,31 @@ public class SchematicCubeMaze extends Schematic {
 				{
 					if (y1 % 6 == 0)
 					{
-						world.setBlock(x + x1, y + y1, z + z1, Blocks.obsidian);
+						this.setBlock(world, x + x1, y + y1, z + z1, Blocks.obsidian);
 					}
 					else
 					{
-						world.setBlockToAir(x + x1, y + y1, z + z1);
+						this.setBlockToAir(world, x + x1, y + y1, z + z1);
 					}
 				}
 			}
 
 			for (byte x1 = -13; x1 < 13; x1++)
 			{
-				world.setBlock(x + x1, y + y1, z + 12, Blocks.obsidian);
-				world.setBlock(x + x1, y + y1, z - 13, Blocks.obsidian);
-				world.setBlock(x - 13, y + y1, z + x1, Blocks.obsidian);
-				world.setBlock(x + 12, y + y1, z + x1, Blocks.obsidian);
+				this.setBlock(world, x + x1, y + y1, z + 12, Blocks.obsidian);
+				this.setBlock(world, x + x1, y + y1, z - 13, Blocks.obsidian);
+				this.setBlock(world, x - 13, y + y1, z + x1, Blocks.obsidian);
+				this.setBlock(world, x + 12, y + y1, z + x1, Blocks.obsidian);
 
-				world.setBlock(x + x1, y + y1, z + 6, Blocks.obsidian);
-				world.setBlock(x + x1, y + y1, z - 7, Blocks.obsidian);
-				world.setBlock(x - 7, y + y1, z + x1, Blocks.obsidian);
-				world.setBlock(x + 6, y + y1, z + x1, Blocks.obsidian);
+				this.setBlock(world, x + x1, y + y1, z + 6, Blocks.obsidian);
+				this.setBlock(world, x + x1, y + y1, z - 7, Blocks.obsidian);
+				this.setBlock(world, x - 7, y + y1, z + x1, Blocks.obsidian);
+				this.setBlock(world, x + 6, y + y1, z + x1, Blocks.obsidian);
 
-				world.setBlock(x + x1, y + y1, z, Blocks.obsidian);
-				world.setBlock(x + x1, y + y1, z - 1, Blocks.obsidian);
-				world.setBlock(x - 1, y + y1, z + x1, Blocks.obsidian);
-				world.setBlock(x, y + y1, z + x1, Blocks.obsidian);
+				this.setBlock(world, x + x1, y + y1, z, Blocks.obsidian);
+				this.setBlock(world, x + x1, y + y1, z - 1, Blocks.obsidian);
+				this.setBlock(world, x - 1, y + y1, z + x1, Blocks.obsidian);
+				this.setBlock(world, x, y + y1, z + x1, Blocks.obsidian);
 			} 
 		}
 		
@@ -140,7 +140,7 @@ public class SchematicCubeMaze extends Schematic {
 
 				this.generateOpenings(world, rand, x + x0, y + y1, z + z0, roomType, y1, invFlag);
 				boolean treasure = roomType == 0 && rand.nextInt(8) == 0 && t == 0 && y1 > 5 && y1 < 28;
-				world.setBlock(x + x0, y + y1 + 3, z + z0, treasure ? Blocks.chest : (rand.nextInt(16) == 0 ? Blocks.air : Blocks.glowstone), 0, 2);
+				this.setBlock(world, x + x0, y + y1 + 3, z + z0, treasure ? Blocks.chest : (rand.nextInt(16) == 0 ? Blocks.air : Blocks.glowstone), 0, 2);
 				if (treasure)
 				{
 					this.applyChestContents(world, rand, x + x0, y + y1 + 3, z + z0, TragicItems.NetherStructureHook);
@@ -150,11 +150,11 @@ public class SchematicCubeMaze extends Schematic {
 				{
 					if (rand.nextBoolean())
 					{
-						world.setBlock(x + x0, y + y1 + 4, z + z0, Blocks.tnt, 1, 2);
+						this.setBlock(world, x + x0, y + y1 + 4, z + z0, Blocks.tnt, 1, 2);
 					}
 					else
 					{
-						world.setBlock(x + x0, y + y1 + 4, z + z0, Blocks.mob_spawner, 0, 2);
+						this.setBlock(world, x + x0, y + y1 + 4, z + z0, Blocks.mob_spawner, 0, 2);
 						this.setSpawnerMob(world, x + x0, y + y1 + 4, z + z0, TragicConfig.allowInkling ? "TragicMC.Inkling" : "Enderman");
 					}
 					trap++;
@@ -225,56 +225,56 @@ public class SchematicCubeMaze extends Schematic {
 				{
 					for (int x1 = 2; x1 < 5; x1++) //positive z exclude
 					{
-						world.setBlockToAir(x, y + 1, z + x1);
-						world.setBlockToAir(x, y + 2, z + x1);
+						this.setBlockToAir(world, x, y + 1, z + x1);
+						this.setBlockToAir(world, x, y + 2, z + x1);
 					}
 				}
 				else if (j == 1)
 				{
 					for (int x1 = -2; x1 > -5; x1--) //negative z exclude
 					{
-						world.setBlockToAir(x, y + 1, z + x1);
-						world.setBlockToAir(x, y + 2, z + x1);
+						this.setBlockToAir(world, x, y + 1, z + x1);
+						this.setBlockToAir(world, x, y + 2, z + x1);
 					}
 				}
 				else if (j == 2)
 				{
 					for (int x1 = 2; x1 < 5; x1++) //positive x exclude
 					{
-						world.setBlockToAir(x + x1, y + 1, z);
-						world.setBlockToAir(x + x1, y + 2, z);
+						this.setBlockToAir(world, x + x1, y + 1, z);
+						this.setBlockToAir(world, x + x1, y + 2, z);
 					}
 				}
 				else if (j == 3)
 				{
 					for (int x1 = -2; x1 > -5; x1--) //negative x exclude
 					{
-						world.setBlockToAir(x + x1, y + 1, z);
-						world.setBlockToAir(x + x1, y + 2, z);
+						this.setBlockToAir(world, x + x1, y + 1, z);
+						this.setBlockToAir(world, x + x1, y + 2, z);
 					}
 				}
 				else if (j == 4)
 				{
 					for (int x1 = 1; x1 > -1; x1--) //exclude bottom row
 					{
-						world.setBlockToAir(x, y + x1, z);
-						world.setBlockToAir(x, y + x1, z);
-						world.setBlockToAir(x + 1, y + x1, z);
-						world.setBlockToAir(x - 1, y + x1, z);
-						world.setBlockToAir(x, y + x1, z + 1);
-						world.setBlockToAir(x, y + x1, z - 1);
+						this.setBlockToAir(world, x, y + x1, z);
+						this.setBlockToAir(world, x, y + x1, z);
+						this.setBlockToAir(world, x + 1, y + x1, z);
+						this.setBlockToAir(world, x - 1, y + x1, z);
+						this.setBlockToAir(world, x, y + x1, z + 1);
+						this.setBlockToAir(world, x, y + x1, z - 1);
 					}
 				}
 				else if (j == 5) //exclude top row
 				{
 					for (int x1 = 5; x1 < 7; x1++)
 					{
-						world.setBlockToAir(x, y + x1, z);
-						world.setBlockToAir(x, y + x1, z);
-						world.setBlockToAir(x + 1, y + x1, z);
-						world.setBlockToAir(x - 1, y + x1, z);
-						world.setBlockToAir(x, y + x1, z + 1);
-						world.setBlockToAir(x, y + x1, z - 1);
+						this.setBlockToAir(world, x, y + x1, z);
+						this.setBlockToAir(world, x, y + x1, z);
+						this.setBlockToAir(world, x + 1, y + x1, z);
+						this.setBlockToAir(world, x - 1, y + x1, z);
+						this.setBlockToAir(world, x, y + x1, z + 1);
+						this.setBlockToAir(world, x, y + x1, z - 1);
 					}
 				}
 			}
