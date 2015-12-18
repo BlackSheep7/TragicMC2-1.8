@@ -171,7 +171,7 @@ public class EntityPet extends EntityCreature {
 			}
 			else if (this.foods.contains(stack.getItem()))
 			{
-				this.heal(((ItemFood) stack.getItem()).func_150905_g(stack));
+				this.heal(((ItemFood) stack.getItem()).getHealAmount(stack));
 			}
 		}
 		else if (this.hasOwner() && !this.isOwner(player))

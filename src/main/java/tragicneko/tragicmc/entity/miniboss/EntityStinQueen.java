@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -104,7 +105,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 				for (int i = 0 ; i < list.size(); i++)
 				{
 					coords = list.get(i);
-					if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web);
+					if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.air) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), Blocks.web.getDefaultState());
 				}
 			}
 		}
@@ -131,7 +132,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 	private void doMortorFire() {
 		if (!TragicConfig.stinQueenWebBombs) return;
 		double d0 = this.getAttackTarget().posX - this.posX + rand.nextInt(5) - rand.nextInt(5);
-		double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+		double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 		double d2 = this.getAttackTarget().posZ - this.posZ + rand.nextInt(5) - rand.nextInt(5);
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.975F;
 
@@ -160,16 +161,16 @@ public class EntityStinQueen extends EntityGreaterStin {
 			{
 				for (int x1 = -2; x1 < 3; x1++)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1) && rand.nextBoolean())
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1)) && rand.nextBoolean())
 					{
 						baby.setPosition(x + x1, y + y1, z + z1);
 
-						if (this.worldObj.checkNoEntityCollision(baby.boundingBox) &&
-								this.worldObj.getCollidingBoundingBoxes(baby, baby.boundingBox).isEmpty() &&
-								!this.worldObj.isAnyLiquid(baby.boundingBox))
+						if (this.worldObj.checkNoEntityCollision(baby.getEntityBoundingBox()) &&
+								this.worldObj.getCollidingBoundingBoxes(baby, baby.getEntityBoundingBox()).isEmpty() &&
+								!this.worldObj.isAnyLiquid(baby.getEntityBoundingBox()))
 						{
 							this.worldObj.spawnEntityInWorld(baby);
-							baby.onSpawnWithEgg(null);
+							baby.func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos((int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1)), null);
 							if (this.getAttackTarget() != null) baby.setAttackTarget(this.getAttackTarget());
 							return;
 						}
@@ -192,7 +193,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 		for (int i = 0 ; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web);
+			if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.air) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), Blocks.web.getDefaultState());
 		}
 
 		return flag;

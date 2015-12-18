@@ -28,7 +28,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
@@ -56,7 +58,7 @@ public class EntityApis extends TragicBoss {
 		this.tasks.addTask(8, new EntityAIWatchTarget(this, 48.0F));
 		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 48.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, null));
 		this.isImmuneToFire = true;
 	}
 
@@ -218,7 +220,7 @@ public class EntityApis extends TragicBoss {
 			{
 				for (int i = 0; i < 2; i++)
 				{
-					this.worldObj.spawnParticle("flame",
+					this.worldObj.spawnParticle(EnumParticleTypes.FLAME,
 							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 							this.posY + (rand.nextDouble() * 0.15D),
 							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
@@ -229,7 +231,7 @@ public class EntityApis extends TragicBoss {
 				{
 					for (int i = 0; i < 36; i++)
 					{
-						this.worldObj.spawnParticle("flame",
+						this.worldObj.spawnParticle(EnumParticleTypes.FLAME,
 								this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 								this.posY + (rand.nextDouble() * 0.15D),
 								this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
@@ -239,7 +241,7 @@ public class EntityApis extends TragicBoss {
 			}
 			else if (this.isCharging())
 			{
-				this.worldObj.spawnParticle("crit",
+				this.worldObj.spawnParticle(EnumParticleTypes.CRIT,
 						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 						this.posY + (rand.nextDouble() * 0.75D) + 0.45D,
 						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
@@ -271,9 +273,9 @@ public class EntityApis extends TragicBoss {
 					for (int i = 0; i < list.size(); i++)
 					{
 						coords = list.get(i);
-						block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
+						block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
 
-						if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2])) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.fire);
+						if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos(coords[0], coords[1] - 1, coords[2]))) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), Blocks.fire.getDefaultState());
 					}
 				}
 			}
@@ -346,7 +348,7 @@ public class EntityApis extends TragicBoss {
 
 			if (this.getStompTicks() == 1)
 			{
-				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(6.0D, 6.0D, 6.0D));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(6.0D, 6.0D, 6.0D));
 				Entity entity;
 
 				for (int i = 0; i < list.size(); i++)
@@ -361,7 +363,7 @@ public class EntityApis extends TragicBoss {
 			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 10.0F && rand.nextInt(8) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.apisSolarBombs)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
-				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+				double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 				double d2 = this.getAttackTarget().posZ - this.posZ;
 
 				float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
@@ -489,7 +491,7 @@ public class EntityApis extends TragicBoss {
 	}
 
 	@Override
-	protected void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {

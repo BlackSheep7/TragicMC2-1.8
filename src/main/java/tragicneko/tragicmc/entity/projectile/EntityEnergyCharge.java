@@ -61,7 +61,7 @@ public class EntityEnergyCharge extends EntityProjectile {
 
 		if (this.target == null && this.ticksInAir > 2 && this.isHoming)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(8.0, 8.0, 8.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(8.0, 8.0, 8.0));
 
 			for (int i = 0; i < list.size(); i++)
 			{

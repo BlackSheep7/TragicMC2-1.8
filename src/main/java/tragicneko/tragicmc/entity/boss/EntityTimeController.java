@@ -27,22 +27,22 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicAchievements;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
-import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.util.DamageHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTimeController extends TragicBoss {
 
@@ -64,7 +64,7 @@ public class EntityTimeController extends TragicBoss {
 		this.tasks.addTask(8, new EntityAIWatchTarget(this, 16.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, null));
 		this.isImmuneToFire = true;
 		this.tracker = new HashMap<Integer, double[]>();
 		this.storedDamage = 0.0F;
@@ -256,7 +256,7 @@ public class EntityTimeController extends TragicBoss {
 
 		if (!this.onGround && this.motionY < 0.0D) this.motionY *= 0.68D;
 
-		if (this.getLeapTicks() == 140) this.addEntitiesToTracker(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D)));
+		if (this.getLeapTicks() == 140) this.addEntitiesToTracker(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D)));
 		if (this.getLeapTicks() == 1) this.doQuantumLeap();
 
 		if (this.worldObj.isRemote)
@@ -280,14 +280,14 @@ public class EntityTimeController extends TragicBoss {
 					double d5 = d1 / f2 * d3 * 0.100000011920929D + d8 * 0.10000000298023224D;
 					double d6 = d2 / f2 * d3 * 0.100000011920929D + d9 * 0.10000000298023224D;
 
-					this.worldObj.spawnParticle("portal", d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
+					this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
 				}
 
 				if (rand.nextInt(64) == 0)
 				{
 					for (int l = 0; l < 6; ++l)
 					{
-						this.worldObj.spawnParticle("instantSpell", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + 0.115D + rand.nextDouble(),
+						this.worldObj.spawnParticle(EnumParticleTypes.SPELL_INSTANT, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + 0.115D + rand.nextDouble(),
 								this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), 0.155F * this.rand.nextFloat(), 0.155F * this.rand.nextFloat(), 0.155F * this.rand.nextFloat());
 					}
 				}
@@ -297,7 +297,7 @@ public class EntityTimeController extends TragicBoss {
 			{
 				for (int i = 0; i < 32; i++)
 				{
-					this.worldObj.spawnParticle("portal", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 2.255D), this.posY + this.height / 2.0D + rand.nextDouble(),
+					this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 2.255D), this.posY + this.height / 2.0D + rand.nextDouble(),
 							this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 2.255D), rand.nextFloat(), 0.155F * this.rand.nextFloat(), rand.nextFloat());
 				}
 			}
@@ -306,14 +306,14 @@ public class EntityTimeController extends TragicBoss {
 			{
 				for (int i = 0; i < 4; i++)
 				{
-					this.worldObj.spawnParticle("portal", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 2.255D), this.posY + this.height / 2.0D + rand.nextDouble(),
+					this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 2.255D), this.posY + this.height / 2.0D + rand.nextDouble(),
 							this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 2.255D), rand.nextFloat(), 0.155F * this.rand.nextFloat(), rand.nextFloat());
 				}
 			}
 
 			if (rand.nextInt(4) == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0)
 			{
-				this.worldObj.spawnParticle("happyVillager", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 2.255D), this.posY + this.height / 2.0D + rand.nextDouble(),
+				this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 2.255D), this.posY + this.height / 2.0D + rand.nextDouble(),
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 2.255D), rand.nextFloat(), 0.155F * this.rand.nextFloat(), rand.nextFloat());
 			}
 			return;
@@ -376,19 +376,11 @@ public class EntityTimeController extends TragicBoss {
 		}
 
 		if (this.getSpazTicks() > 0 && this.ticksExisted % 5 == 0 && TragicConfig.timeControllerSpaz) this.spazOut();
-
-		if (TragicConfig.timeControllerLuminescence)
-		{
-			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
-			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
-		}
 	}
 
 	private void weighDownEntities() {
 		double d0 = 16.0D;
-		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d0, d0, d0));
+		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(d0, d0, d0));
 		Iterator iterator = list.iterator();
 
 		while (iterator.hasNext())
@@ -419,9 +411,9 @@ public class EntityTimeController extends TragicBoss {
 			bomb.motionX = bomb.motionZ = 0.0D;
 			bomb.motionY = -0.1D;
 
-			if (this.worldObj.checkNoEntityCollision(bomb.boundingBox) &&
-					this.worldObj.getCollidingBoundingBoxes(bomb, bomb.boundingBox).isEmpty() &&
-					!this.worldObj.isAnyLiquid(bomb.boundingBox))
+			if (this.worldObj.checkNoEntityCollision(bomb.getEntityBoundingBox()) &&
+					this.worldObj.getCollidingBoundingBoxes(bomb, bomb.getEntityBoundingBox()).isEmpty() &&
+					!this.worldObj.isAnyLiquid(bomb.getEntityBoundingBox()))
 			{
 				this.worldObj.spawnEntityInWorld(bomb);
 			}
@@ -432,7 +424,7 @@ public class EntityTimeController extends TragicBoss {
 	private void spazOut() {
 		if (!TragicConfig.timeControllerSpaz) return;
 		double d0 = 16.0D;
-		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d0, d0, d0));
+		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(d0, d0, d0));
 		Iterator iterator = list.iterator();
 
 		while (iterator.hasNext())
@@ -452,7 +444,7 @@ public class EntityTimeController extends TragicBoss {
 	private void damageNearbyEntities() {
 		boolean flag2 = this.getPurgeTicks() > 0;
 		double d0 = flag2 ? 4.0D : 16.0D;
-		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d0, d0, d0));
+		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(d0, d0, d0));
 		Iterator iterator = list.iterator();
 
 		while (iterator.hasNext())
@@ -483,7 +475,7 @@ public class EntityTimeController extends TragicBoss {
 	public void pullEntities()
 	{
 		double d0 = 16.0D;
-		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d0, d0, d0));
+		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(d0, d0, d0));
 		Iterator iterator = list.iterator();
 
 		while (iterator.hasNext())
@@ -587,7 +579,7 @@ public class EntityTimeController extends TragicBoss {
 
 	protected boolean teleportToEntity(Entity par1Entity)
 	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		Vec3 vec3 = new Vec3(this.posX - par1Entity.posX, this.getEntityBoundingBox().minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
 		vec3 = vec3.normalize();
 		double d0 = 16.0D;
 		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
@@ -609,13 +601,13 @@ public class EntityTimeController extends TragicBoss {
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
 
-		if (this.worldObj.blockExists(i, j, k))
+		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4))
 		{
 			boolean flag1 = false;
 
 			while (!flag1 && j > 0)
 			{
-				Block block = this.worldObj.getBlock(i, j - 1, k);
+				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
 
 				if (block.getMaterial().blocksMovement())
 				{
@@ -632,7 +624,7 @@ public class EntityTimeController extends TragicBoss {
 			{
 				this.setPosition(this.posX, this.posY, this.posZ);
 
-				if (this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox))
+				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
 				{
 					flag = true;
 				}
@@ -657,7 +649,7 @@ public class EntityTimeController extends TragicBoss {
 				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
 				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle("happyVillager", d7, d8, d9, f, f1, f2);
+				this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, d7, d8, d9, f, f1, f2);
 			}
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
 			this.playSound("mob.endermen.portal", 1.0F, 1.0F);
@@ -677,7 +669,7 @@ public class EntityTimeController extends TragicBoss {
 			{
 				for (int x1 = -6; x1 < 7; x1++)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1) && rand.nextBoolean())
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1)) && rand.nextBoolean())
 					{
 						if (entity instanceof EntityPlayerMP)
 						{
@@ -685,10 +677,10 @@ public class EntityTimeController extends TragicBoss {
 
 							if (mp.capabilities.isCreativeMode) return flag;
 
-							if (mp.playerNetServerHandler.func_147362_b().isChannelOpen() && this.worldObj == mp.worldObj)
+							if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && this.worldObj == mp.worldObj)
 							{
 								if (mp.isRiding()) mp.mountEntity(null);
-								AxisAlignedBB bb = mp.boundingBox.copy();
+								AxisAlignedBB bb = mp.getEntityBoundingBox();
 								bb.offset(x + x1, y + y1, z + z1);
 
 								if (this.worldObj.checkNoEntityCollision(bb) && this.worldObj.getCollidingBoundingBoxes(mp, bb).isEmpty() &&
@@ -706,7 +698,7 @@ public class EntityTimeController extends TragicBoss {
 										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
 										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-										this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
+										this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
 									}
 									mp.fallDistance = 0.0F;
 									this.worldObj.playSoundAtEntity(mp, "mob.endermen.portal", 0.4F, 0.4F);
@@ -718,9 +710,9 @@ public class EntityTimeController extends TragicBoss {
 						{
 							entity.setPosition(x + x1, y + y1, z + z1);
 
-							if (this.worldObj.checkNoEntityCollision(entity.boundingBox) &&
-									this.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() &&
-									!this.worldObj.isAnyLiquid(entity.boundingBox))
+							if (this.worldObj.checkNoEntityCollision(entity.getEntityBoundingBox()) &&
+									this.worldObj.getCollidingBoundingBoxes(entity, entity.getEntityBoundingBox()).isEmpty() &&
+									!this.worldObj.isAnyLiquid(entity.getEntityBoundingBox()))
 							{
 								short short1 = 128;
 
@@ -733,7 +725,7 @@ public class EntityTimeController extends TragicBoss {
 									double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 									double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
 									double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-									this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
+									this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
 								}
 
 								this.worldObj.playSoundAtEntity(entity, "mob.endermen.portal", 0.4F, 0.4F);
@@ -753,7 +745,7 @@ public class EntityTimeController extends TragicBoss {
 	}
 
 	@Override
-	protected void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
 	public void addPotionEffect(PotionEffect effect) {}

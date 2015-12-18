@@ -13,13 +13,15 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
@@ -43,7 +45,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 		this.stepHeight = 2.0F;
 		this.experienceValue = 50;
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.selec));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.nonSynapseTarget));
 		this.isImmuneToFire = true;
 	}
 
@@ -60,7 +62,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 	}
 
 	@Override
-	public void fall(float f) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -73,7 +75,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 	{
 		super.onDeath(par1DamageSource);
 		if (par1DamageSource.getEntity() instanceof EntityPlayerMP) ((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.overlord2);
-		List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.boundingBox.expand(24.0, 24.0, 24.0));
+		List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(24.0, 24.0, 24.0));
 		if (!list.isEmpty())
 		{
 			for (EntityPlayerMP mp : list)
@@ -134,7 +136,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 			if (seek.isDead || seek.getHealth() <= 0 || this.getDistanceToEntity(seek) >= 32.0) this.seekers.remove(seek);
 		}
 
-		List<EntitySeeker> lst = this.worldObj.getEntitiesWithinAABB(EntitySeeker.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+		List<EntitySeeker> lst = this.worldObj.getEntitiesWithinAABB(EntitySeeker.class, this.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 
 		for (EntitySeeker sk : lst)
 		{
@@ -158,9 +160,9 @@ public class EntityOverlordCocoon extends TragicBoss {
 			List<int[]> lst2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX + rand.nextInt(4) - rand.nextInt(4), this.posY, this.posZ + rand.nextInt(4) - rand.nextInt(4));
 			for (int[] coords : lst2)
 			{
-				if (World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2]) && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])))
+				if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos(coords[0], coords[1] - 1, coords[2])) && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock()))
 				{
-					this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.CorruptedGas);
+					this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.CorruptedGas.getDefaultState());
 				}
 			}
 
@@ -199,7 +201,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 				if (TragicConfig.allowDivinity)
 				{
-					List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
+					List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0));
 					for (Entity e : list)
 					{
 						if (e instanceof EntityLivingBase && ((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).removePotionEffect(TragicPotion.Divinity.id);
@@ -212,7 +214,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 				{
 					if (TragicConfig.allowDivinity)
 					{
-						List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
+						List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0));
 						for (Entity e : list)
 						{
 							if (e instanceof EntityLivingBase && !((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Divinity.id, 200));
@@ -252,7 +254,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 					if (TragicConfig.allowDivinity)
 					{
-						List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
+						List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0));
 						for (Entity e : list)
 						{
 							if (e instanceof EntityLivingBase && ((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).removePotionEffect(TragicPotion.Divinity.id);
@@ -363,7 +365,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 					}
 				}
 
-				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16 && this.getCurrentPhase() > 1)
+				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 16 && this.getCurrentPhase() > 1)
 				{
 					EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
 					swarm.setPosition(this.posX + rand.nextInt(6) - rand.nextInt(6), this.posY, this.posZ + rand.nextInt(6) - rand.nextInt(6));
@@ -386,7 +388,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
@@ -394,18 +396,18 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			for (int[] coord: lst)
 			{
-				if (this.posY >= coord[1]) this.worldObj.setBlockToAir(coord[0], coord[1], coord[2]);
+				if (this.posY >= coord[1]) this.worldObj.setBlockToAir(new BlockPos(coord[0], coord[1], coord[2]));
 			}
 
 			lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);
 
 			for (int[] coords : lst)
 			{
-				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2]))) this.worldObj.setBlock(coords[0], coords[1], coords[2], !TragicConfig.allowNonMobBlocks ? Blocks.obsidian : TragicBlocks.CelledBlock);
+				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock())) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), !TragicConfig.allowNonMobBlocks ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState());
 			}
 
 			this.spawnSeekers();
-			List<EntitySeeker> list = this.worldObj.getEntitiesWithinAABB(EntitySeeker.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+			List<EntitySeeker> list = this.worldObj.getEntitiesWithinAABB(EntitySeeker.class, this.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 
 			for (EntitySeeker sk : list)
 			{
@@ -420,7 +422,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 				}
 			}
 		}
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -490,7 +492,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			for (int ji = 0; ji < 20; ++ji)
 			{
-				this.worldObj.spawnParticle("hugeexplosion", this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.1, 0.1, 0.1);
+				this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.1, 0.1, 0.1);
 			}
 
 			if (!this.worldObj.isRemote)
@@ -500,7 +502,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 				combat.setTransforming();
 				this.worldObj.spawnEntityInWorld(combat);
 				
-				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 				for (Entity e : list)
 				{
 					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && e != combat)
@@ -515,12 +517,12 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 		for (int j = 0; j < 40; ++j)
 		{
-			this.worldObj.spawnParticle("reddust", this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0, 0, 0);
+			this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0, 0, 0);
 		}
 
 		for (int ji = 0; ji < 40; ++ji)
 		{
-			this.worldObj.spawnParticle("reddust", this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0.1, 0.1, 0.1);
+			this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0.1, 0.1, 0.1);
 		}
 	}
 	

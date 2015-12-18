@@ -25,14 +25,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
@@ -56,8 +57,8 @@ public class EntityYeti extends TragicBoss {
 		this.tasks.addTask(8, new EntityAIWatchTarget(this, 32.0F));
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, null));
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true, false, null));
 	}
 
 	@Override
@@ -248,7 +249,7 @@ public class EntityYeti extends TragicBoss {
 			{
 				for (int i = 0; i < 2; i++)
 				{
-					this.worldObj.spawnParticle("snowshovel",
+					this.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL,
 							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 							this.posY + (rand.nextDouble() * 0.15D),
 							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
@@ -259,7 +260,7 @@ public class EntityYeti extends TragicBoss {
 				{
 					for (int i = 0; i < 36; i++)
 					{
-						this.worldObj.spawnParticle("snowshovel",
+						this.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL,
 								this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 								this.posY + (rand.nextDouble() * 0.15D),
 								this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
@@ -269,7 +270,7 @@ public class EntityYeti extends TragicBoss {
 			}
 			else if (this.isCharging())
 			{
-				this.worldObj.spawnParticle("crit",
+				this.worldObj.spawnParticle(EnumParticleTypes.CRIT,
 						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 						this.posY + (rand.nextDouble() * 0.75D) + 0.45D,
 						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
@@ -330,7 +331,7 @@ public class EntityYeti extends TragicBoss {
 				if (this.getFrostTicks() > 5 && !this.isCharging())
 				{
 					d0 = this.getAttackTarget().posX - this.posX;
-					d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+					d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.265F;
 
@@ -360,7 +361,7 @@ public class EntityYeti extends TragicBoss {
 				if (this.getThrowing() && this.ticksExisted % 60 == 0)
 				{
 					d0 = this.getAttackTarget().posX - this.posX;
-					d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+					d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.625F;
 
@@ -389,7 +390,7 @@ public class EntityYeti extends TragicBoss {
 			if (this.getRoarTicks() == 18 && TragicConfig.empariahRoar)
 			{
 				if (TragicConfig.allowAbomination && TragicConfig.empariahSummonAbomination) this.attemptToSummonHelp();
-				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0D, 12.0D, 12.0D));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(12.0D, 12.0D, 12.0D));
 				EntityLivingBase entity;
 				for (int i = 0; i < list.size(); i++)
 				{
@@ -420,7 +421,7 @@ public class EntityYeti extends TragicBoss {
 
 				if (TragicConfig.empariahCallHelp && TragicConfig.allowAbomination)
 				{
-					list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+					list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 					EntityAbomination mob;
 
 					for (int i = 0; i < list.size(); i++)
@@ -431,8 +432,8 @@ public class EntityYeti extends TragicBoss {
 
 							if (mob instanceof EntityAbomination)
 							{
-								mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, this.getAttackTarget().getClass(), 0, true));
-								mob.setTarget(this.getAttackTarget());
+								mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, this.getAttackTarget().getClass(), 0, true, false, null));
+								mob.setAttackTarget(this.getAttackTarget());
 							}
 						}
 					}
@@ -444,7 +445,7 @@ public class EntityYeti extends TragicBoss {
 	private void attemptToSummonHelp()
 	{
 		if (!TragicConfig.empariahSummonAbomination) return;
-		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, boundingBox.expand(32.0, 32.0, 32.0));
+		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 
 		if (list.size() >= 4 || this.getAttackTarget() == null)
 		{
@@ -462,17 +463,17 @@ public class EntityYeti extends TragicBoss {
 			{
 				for (int x1 = -3; x1 < 4; x1++)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int) this.posX + x1, (int) this.posY + y1 - 1, (int) this.posZ + z1) && rand.nextBoolean())
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int) this.posX + x1, (int) this.posY + y1 - 1, (int) this.posZ + z1)) && rand.nextBoolean())
 					{
 						clone.setPosition(this.posX + x1, this.posY + y1, this.posZ + z1);
 
-						if (this.worldObj.checkNoEntityCollision(clone.boundingBox) &&
-								this.worldObj.getCollidingBoundingBoxes(clone, clone.boundingBox).isEmpty() &&
-								!this.worldObj.isAnyLiquid(clone.boundingBox))
+						if (this.worldObj.checkNoEntityCollision(clone.getEntityBoundingBox()) &&
+								this.worldObj.getCollidingBoundingBoxes(clone, clone.getEntityBoundingBox()).isEmpty() &&
+								!this.worldObj.isAnyLiquid(clone.getEntityBoundingBox()))
 						{
 							this.worldObj.spawnEntityInWorld(clone);
-							clone.onSpawnWithEgg(null);
-							if (entitylivingbase != null) clone.setTarget(entitylivingbase);
+							clone.func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos(this.posX + x1, this.posY + y1, this.posZ + z1)), null);
+							if (entitylivingbase != null) clone.setAttackTarget(entitylivingbase);
 							return;
 						}
 					}
@@ -504,7 +505,7 @@ public class EntityYeti extends TragicBoss {
 
 			if (this.getAttackTarget() != null && TragicConfig.empariahCallHelp)
 			{
-				List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 				EntityAbomination mob;
 
 				for (int i = 0; i < list.size(); i++)
@@ -515,8 +516,8 @@ public class EntityYeti extends TragicBoss {
 
 						if (mob instanceof EntityAbomination)
 						{
-							mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, this.getAttackTarget().getClass(), 0, true));
-							mob.setTarget(this.getAttackTarget());
+							mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, this.getAttackTarget().getClass(), 0, true, false, null));
+							mob.setAttackTarget(this.getAttackTarget());
 						}
 					}
 				}
@@ -556,7 +557,7 @@ public class EntityYeti extends TragicBoss {
 	}
 
 	@Override
-	public void fall(float par1){}
+	public void fall(float dist, float multi){}
 
 	private void trackHitType(String damageType)
 	{

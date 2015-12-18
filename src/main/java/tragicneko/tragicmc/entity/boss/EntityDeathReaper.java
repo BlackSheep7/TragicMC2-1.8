@@ -27,8 +27,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
@@ -55,8 +58,8 @@ public class EntityDeathReaper extends TragicBoss {
 		this.tasks.addTask(8, new EntityAIWatchTarget(this, 32.0F));
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, null));
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true, false, null));
 		this.isImmuneToFire = true;
 		this.isBomb = false;
 	}
@@ -196,7 +199,7 @@ public class EntityDeathReaper extends TragicBoss {
 		
 		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.skultar);
 		
-		List<EntityDeathReaper> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+		List<EntityDeathReaper> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, this.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 		for (EntityDeathReaper reaper : list)
 		{
 			if (reaper.getReaperType() == 1) reaper.setDead();
@@ -223,7 +226,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 		if (this.worldObj.isRemote)
 		{
-			String s = this.isBeingAggressive() ? "reddust" : "mobSpellAmbient";
+			EnumParticleTypes s = this.isBeingAggressive() ? EnumParticleTypes.REDSTONE : EnumParticleTypes.SPELL_MOB_AMBIENT;
 			int pow = this.isBeingAggressive() ? 4 : 8;
 
 			for (int i = 0; i < pow; i++)
@@ -239,7 +242,7 @@ public class EntityDeathReaper extends TragicBoss {
 			{
 				for (int i = 0; i < 14; i++)
 				{
-					this.worldObj.spawnParticle("smoke",
+					this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE,
 							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
 							this.posY + (rand.nextDouble() * 0.115D) + 0.375D,
 							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
@@ -359,7 +362,7 @@ public class EntityDeathReaper extends TragicBoss {
 				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getAttackTime() == 0 && TragicConfig.skultarProjectiles)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
-					double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+					double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 
 					if (this.isBeingAggressive())
@@ -385,8 +388,8 @@ public class EntityDeathReaper extends TragicBoss {
 					List<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX, this.posY, this.posZ);
 					for (int[] coords : list)
 					{
-						Block block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
-						if ((block == Blocks.air || block == TragicBlocks.WitheringGas) && World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2])) this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.WitheringGas);
+						Block block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+						if ((block == Blocks.air || block == TragicBlocks.WitheringGas) && World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos(coords[0], coords[1] - 1, coords[2]))) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.WitheringGas.getDefaultState());
 					}
 
 				}
@@ -427,7 +430,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 	private boolean attemptToSummonClones()
 	{
-		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, boundingBox.expand(32.0, 32.0, 32.0));
+		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 
 		if (list.size() >= 4 || this.getAttackTarget() == null || this.getCloneTime() <= 100) return false;
 
@@ -442,17 +445,17 @@ public class EntityDeathReaper extends TragicBoss {
 			{
 				for (int x1 = -3; x1 < 4; x1++)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int) this.posX + x1, (int) this.posY + y1 - 1, (int) this.posZ + z1) && rand.nextBoolean())
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int) this.posX + x1, (int) this.posY + y1 - 1, (int) this.posZ + z1)) && rand.nextBoolean())
 					{
 						clone.setPosition(this.posX + x1, this.posY + y1, this.posZ + z1);
 
-						if (this.worldObj.checkNoEntityCollision(clone.boundingBox) &&
-								this.worldObj.getCollidingBoundingBoxes(clone, clone.boundingBox).isEmpty() &&
-								!this.worldObj.isAnyLiquid(clone.boundingBox))
+						if (this.worldObj.checkNoEntityCollision(clone.getEntityBoundingBox()) &&
+								this.worldObj.getCollidingBoundingBoxes(clone, clone.getEntityBoundingBox()).isEmpty() &&
+								!this.worldObj.isAnyLiquid(clone.getEntityBoundingBox()))
 						{
 							this.worldObj.spawnEntityInWorld(clone);
-							clone.onSpawnWithEgg(null);
-							if (entitylivingbase != null) clone.setTarget(entitylivingbase);
+							clone.func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos(this.posX + x1, this.posY + y1, this.posZ + z1)), null);
+							if (entitylivingbase != null) clone.setAttackTarget(entitylivingbase);
 							return true;
 						}
 					}
@@ -519,7 +522,7 @@ public class EntityDeathReaper extends TragicBoss {
 	}
 
 	@Override
-	public void fall(float par1){}
+	public void fall(float dist, float multi){}
 
 	private void trackHitType(String damageType)
 	{
@@ -571,10 +574,10 @@ public class EntityDeathReaper extends TragicBoss {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote) this.isBomb = rand.nextBoolean();
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -619,7 +622,7 @@ public class EntityDeathReaper extends TragicBoss {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 	}
 

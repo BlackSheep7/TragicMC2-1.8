@@ -6,6 +6,7 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -37,11 +38,11 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 		if (this.worldObj.isRemote)
 		{
 			for (int l = 0; l < 6; ++l) {
-				worldObj.spawnParticle("flame", posX, posY, posZ, (rand.nextGaussian() - 0.4D) * 0.2D, (rand.nextGaussian() - 0.4D) * 0.2D,
+				worldObj.spawnParticle(EnumParticleTypes.FLAME, posX, posY, posZ, (rand.nextGaussian() - 0.4D) * 0.2D, (rand.nextGaussian() - 0.4D) * 0.2D,
 						(rand.nextGaussian() - 0.4D) * 0.2D);
 			}
 
-			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+			this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
 		}
 		else
 		{
@@ -80,7 +81,7 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 		if (this.isInWater())
 		{
 			for (int l = 0; l < 5; ++l) {
-				worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+				worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 			}
 			this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
 			this.setDead();
@@ -91,18 +92,18 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 			this.airTicks++;
 
 			for (int l = 0; l < 4; ++l) {
-				worldObj.spawnParticle("flame", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+				worldObj.spawnParticle(EnumParticleTypes.FLAME, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 			}
 
 			for (int l = 0; l < 5; ++l) {
-				worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+				worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 			}
 		}
 
 		if (this.airTicks >= 60)
 		{
 			int random = rand.nextInt(8) + 4;
-			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
 			this.worldObj.playSoundAtEntity(this, "mob.blaze.breathe", 0.4F, 0.4F);
 
 			for (int l = 0; l < random; l++)

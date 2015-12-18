@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -40,13 +41,13 @@ public class EntityWebBomb extends EntityProjectile {
 			{
 				for (int i = 0; i < 12; i++)
 				{
-					this.worldObj.spawnParticle("crit", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.755D), this.posY + 0.115D + rand.nextDouble(),
+					this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.755D), this.posY + 0.115D + rand.nextDouble(),
 							this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.755D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
 				}
 			}
 			else
 			{
-				List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(2.0D, 2.0D, 2.0D));
+				List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(2.0D, 2.0D, 2.0D));
 				EntityLivingBase target;
 				for (int i = 0; i < list.size(); i++)
 				{

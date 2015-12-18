@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -35,13 +36,13 @@ public class EntityPumpkinbomb extends EntityThrowable {
 		if (this.worldObj.isRemote)
 		{
 			for (int l = 0; l < 6; ++l) {
-				worldObj.spawnParticle("flame", posX, posY, posZ, (rand.nextGaussian() - 0.4D) * 0.05D, (rand.nextGaussian() - 0.4D) * 0.05D,
+				worldObj.spawnParticle(EnumParticleTypes.FLAME, posX, posY, posZ, (rand.nextGaussian() - 0.4D) * 0.05D, (rand.nextGaussian() - 0.4D) * 0.05D,
 						(rand.nextGaussian() - 0.4D) * 0.05D);
 			}
 
 			if (this.inGround)
 			{
-				this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+				this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
 			}
 		}
 		else
@@ -112,7 +113,7 @@ public class EntityPumpkinbomb extends EntityThrowable {
 
 		if (this.worldObj.isRemote && !this.isInWater())
 		{
-			worldObj.spawnParticle("flame", posX, posY, posZ, (rand.nextGaussian() - 0.4D) * 0.05D, (rand.nextGaussian() - 0.4D) * 0.05D, (rand.nextGaussian() - 0.4D) * 0.05D);
+			worldObj.spawnParticle(EnumParticleTypes.FLAME, posX, posY, posZ, (rand.nextGaussian() - 0.4D) * 0.05D, (rand.nextGaussian() - 0.4D) * 0.05D, (rand.nextGaussian() - 0.4D) * 0.05D);
 		}
 
 		this.motionY *= 0.98D;

@@ -10,6 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
@@ -41,7 +42,7 @@ public class EntityNuke extends Entity {
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float par2)
 	{
-		if (this.worldObj.isRemote || this.isEntityInvulnerable() || source.isExplosion() || this.nukeStage > 0) return false;
+		if (this.worldObj.isRemote || this.isEntityInvulnerable(source) || source.isExplosion() || this.nukeStage > 0) return false;
 
 		this.setDead();
 		this.setBeenAttacked();
@@ -89,13 +90,13 @@ public class EntityNuke extends Entity {
 
 		if (this.nukeStage > 0)
 		{
-			this.worldObj.spawnParticle("cloud", this.posX + rand.nextDouble() - rand.nextDouble(), this.posY, this.posZ + rand.nextDouble() - rand.nextDouble(), 0, 0, 0);
+			this.worldObj.spawnParticle(EnumParticleTypes.CLOUD, this.posX + rand.nextDouble() - rand.nextDouble(), this.posY, this.posZ + rand.nextDouble() - rand.nextDouble(), 0, 0, 0);
 
 			if (this.nukeStage > 1)
 			{
 				this.setInvisible(true);
 				for (int i = 0; i < 12; i++)
-					this.worldObj.spawnParticle("hugeexplosion", this.posX + rand.nextInt(18) - rand.nextInt(18), this.posY + (this.stageTime % 50), this.posZ + rand.nextInt(18) - rand.nextInt(18), 0, rand.nextDouble() * 0.5D, 0);
+					this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + rand.nextInt(18) - rand.nextInt(18), this.posY + (this.stageTime % 50), this.posZ + rand.nextInt(18) - rand.nextInt(18), 0, rand.nextDouble() * 0.5D, 0);
 			}
 		}
 
@@ -116,7 +117,7 @@ public class EntityNuke extends Entity {
 			if (this.worldObj.isRemote)
 			{
 				for (int i = 0; i < 8; i++)
-					this.worldObj.spawnParticle("cloud", this.posX + rand.nextInt(12) - rand.nextInt(12), this.posY + rand.nextInt(4), this.posZ + rand.nextInt(12) - rand.nextInt(12), 0, 0, 0);
+					this.worldObj.spawnParticle(EnumParticleTypes.CLOUD, this.posX + rand.nextInt(12) - rand.nextInt(12), this.posY + rand.nextInt(4), this.posZ + rand.nextInt(12) - rand.nextInt(12), 0, 0, 0);
 			}
 			else
 			{

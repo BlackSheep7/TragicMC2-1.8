@@ -24,18 +24,21 @@ import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityJabba extends TragicMob {
 
@@ -45,15 +48,13 @@ public class EntityJabba extends TragicMob {
 		super(par1World);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
-		this.getNavigator().setAvoidsWater(true);
-		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.65D));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}
 
 	@Override
@@ -179,12 +180,6 @@ public class EntityJabba extends TragicMob {
 	}
 
 	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -257,12 +252,12 @@ public class EntityJabba extends TragicMob {
 
 			if (this.ticksExisted % 20 == 0 && this.rand.nextInt(3) == 0)
 			{
-				EntityPlayer player = this.worldObj.getClosestVulnerablePlayerToEntity(this, 10.0);
+				EntityPlayer player = this.worldObj.getClosestPlayerToEntity(this, 10.0);
 
 				if (player != null && TragicConfig.allowDoom && this.canEntityBeSeen(player))
 				{
 					PropertyDoom doom = PropertyDoom.get(player);
-					int i = this.worldObj.difficultySetting.getDifficultyId();
+					int i = this.worldObj.getDifficulty().getDifficultyId();
 
 					if (doom != null) doom.increaseDoom(-((this.rand.nextInt(3) + 1) * i));
 				}
@@ -285,7 +280,7 @@ public class EntityJabba extends TragicMob {
 
 	protected void doParticleEffects() {
 
-		String s1 = this.getJabbaType() == 0 ? "dripLava" : "slime";
+		EnumParticleTypes s1 = this.getJabbaType() == 0 ? EnumParticleTypes.DRIP_LAVA : EnumParticleTypes.SLIME;
 
 		for (int k = 0; k < 3; ++k)
 		{
@@ -299,7 +294,7 @@ public class EntityJabba extends TragicMob {
 
 		if (this.getHealth() > this.getMaxHealth() / 2) return;
 
-		String s = this.getJabbaType() == 0 ? "flame" : "slime";
+		EnumParticleTypes s = this.getJabbaType() == 0 ? EnumParticleTypes.FLAME : EnumParticleTypes.SLIME;
 
 		for (int l = 0; l < 3; ++l)
 		{
@@ -318,7 +313,7 @@ public class EntityJabba extends TragicMob {
 		if (!TragicConfig.jabbaProjectiles) return;
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
-		double d1 = entity.boundingBox.minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
+		double d1 = entity.getEntityBoundingBox().minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
 		double d2 = entity.posZ - this.posZ;
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(entity)) * 0.5F;
@@ -343,7 +338,7 @@ public class EntityJabba extends TragicMob {
 
 		if (result && this.getWormTicks() > 0) this.setWormTicks(0);
 
-		if (this.rand.nextInt(8) == 0 && this.worldObj.difficultySetting == EnumDifficulty.HARD && result)
+		if (this.rand.nextInt(8) == 0 && this.worldObj.getDifficulty() == EnumDifficulty.HARD && result)
 		{
 			if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer && !par1DamageSource.isProjectile() && !par1DamageSource.isMagicDamage() && !par1DamageSource.isFireDamage())
 			{
@@ -376,7 +371,7 @@ public class EntityJabba extends TragicMob {
 	{
 		boolean result = super.attackEntityAsMob(par1Entity);
 
-		int i = MathHelper.clamp_int(this.worldObj.difficultySetting.getDifficultyId(), 1, 3);
+		int i = MathHelper.clamp_int(this.worldObj.getDifficulty().getDifficultyId(), 1, 3);
 
 		if (this.rand.nextInt(MathHelper.ceiling_double_int(9 / i)) == 0 && result)
 		{
@@ -432,11 +427,11 @@ public class EntityJabba extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
-		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos((int) this.posX, 0, (int) this.posZ));
 		this.setJabbaType(biome instanceof BiomeGenPaintedForest ? (byte) 1 : 0);
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -463,7 +458,7 @@ public class EntityJabba extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
 	}

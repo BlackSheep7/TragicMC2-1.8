@@ -1,10 +1,13 @@
 package tragicneko.tragicmc.entity.projectile;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -60,11 +63,6 @@ public class EntityGuardianShield extends EntityProjectile {
 
 	}
 
-	@Override
-	public ItemStack[] getLastActiveItems() {
-		return new ItemStack[] {};
-	}
-
 	public EntityGuardianShield setShieldMaxHealth(float f)
 	{
 		this.maxHealth = f;
@@ -93,10 +91,10 @@ public class EntityGuardianShield extends EntityProjectile {
 	public void setAir(int i) {}
 
 	@Override
-	public void fall(float f) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double d0, boolean flag) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
@@ -161,7 +159,7 @@ public class EntityGuardianShield extends EntityProjectile {
 		{
 			for (int l = 0; l < 6; ++l)
 			{
-				this.worldObj.spawnParticle("crit", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.855D), this.posY + rand.nextDouble() - rand.nextDouble() + 0.235D,
+				this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.855D), this.posY + rand.nextDouble() - rand.nextDouble() + 0.235D,
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.855D), 0.155F * (this.rand.nextFloat() - this.rand.nextFloat()),
 						0.155F * (this.rand.nextFloat() - this.rand.nextFloat()), 0.155F * (this.rand.nextFloat() - this.rand.nextFloat()));
 			}

@@ -11,17 +11,19 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityArchangel extends TragicMob {
 
@@ -39,13 +41,7 @@ public class EntityArchangel extends TragicMob {
 		this.experienceValue = 10;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityIre.selec));
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityIre.nonLightEntityTarget));
 	}
 
 	@Override
@@ -170,15 +166,15 @@ public class EntityArchangel extends TragicMob {
 				for (int l = 0; l < 4; l++)
 				{
 					double d3 = 0.23D * l + (rand.nextDouble() * 0.25D);
-					this.worldObj.spawnParticle("crit", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
-					if (this.getHoverTicks() <= 120) this.worldObj.spawnParticle("flame", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					if (this.getHoverTicks() <= 120) this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 				}
 
 				if (this.getHoverTicks() <= 120)
 				{
 					for (int i = 0; i < 4; i++)
 					{
-						this.worldObj.spawnParticle("flame", this.posX + rand.nextDouble() - rand.nextDouble(),
+						this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + rand.nextDouble() - rand.nextDouble(),
 								this.posY + 0.75 + rand.nextDouble() * 0.5, this.posZ + rand.nextDouble() - rand.nextDouble(), 0.0, 0.0, 0.0);
 					}
 				}
@@ -188,7 +184,7 @@ public class EntityArchangel extends TragicMob {
 			{
 				for (int l = 0; l < 2; ++l)
 				{
-					this.worldObj.spawnParticle("crit",
+					this.worldObj.spawnParticle(EnumParticleTypes.CRIT,
 							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 							this.posY + this.rand.nextDouble() * this.height,
 							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
@@ -294,11 +290,6 @@ public class EntityArchangel extends TragicMob {
 		{
 			this.setTargetId(0);
 		}
-
-		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
-		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 	}
 
 	private boolean isCourseTraversable(double p_70790_1_, double p_70790_3_, double p_70790_5_, double p_70790_7_)
@@ -306,7 +297,7 @@ public class EntityArchangel extends TragicMob {
 		double d4 = (this.waypointX - this.posX) / p_70790_7_;
 		double d5 = (this.waypointY - this.posY) / p_70790_7_;
 		double d6 = (this.waypointZ - this.posZ) / p_70790_7_;
-		AxisAlignedBB axisalignedbb = this.boundingBox.copy();
+		AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();
 
 		for (int i = 1; i < p_70790_7_; ++i)
 		{
@@ -333,10 +324,10 @@ public class EntityArchangel extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public void moveEntityWithHeading(float strafe, float forward)
@@ -363,7 +354,7 @@ public class EntityArchangel extends TragicMob {
 
 			if (this.onGround)
 			{
-				f2 = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ)).slipperiness * 0.91F;
+				f2 = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1, MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
 			}
 
 			float f3 = 0.16277136F / (f2 * f2 * f2);
@@ -372,7 +363,7 @@ public class EntityArchangel extends TragicMob {
 
 			if (this.onGround)
 			{
-				f2 = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ)).slipperiness * 0.91F;
+				f2 = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.getEntityBoundingBox().minY) - 1, MathHelper.floor_double(this.posZ))).getBlock().slipperiness * 0.91F;
 			}
 
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);
@@ -455,7 +446,7 @@ public class EntityArchangel extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		
 	}

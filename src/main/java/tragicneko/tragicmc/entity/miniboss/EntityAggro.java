@@ -117,7 +117,7 @@ public class EntityAggro extends EntityRagr implements TragicMiniBoss {
 			
 			EntityLivingBase entity = this.getAttackTarget();
 			double d0 = entity.posX - this.posX;
-			double d1 = entity.boundingBox.minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
+			double d1 = entity.getEntityBoundingBox().minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
 			double d2 = entity.posZ - this.posZ;
 
 			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(entity)) * 0.5F;

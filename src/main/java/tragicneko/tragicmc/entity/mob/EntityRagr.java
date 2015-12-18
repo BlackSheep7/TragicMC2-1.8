@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.ragrStats;
 import static tragicneko.tragicmc.TragicConfig.pyragrStats;
+import static tragicneko.tragicmc.TragicConfig.ragrStats;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -27,8 +27,10 @@ import net.minecraft.item.ItemBow;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicAchievements;
@@ -42,8 +44,8 @@ import tragicneko.tragicmc.blocks.BlockPermafrost;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.util.WorldHelper;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 
+import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 
 public class EntityRagr extends TragicMob {
@@ -52,6 +54,17 @@ public class EntityRagr extends TragicMob {
 			Blocks.leaves, Blocks.leaves2, TragicBlocks.HallowedLeaves, TragicBlocks.AshenLeaves, TragicBlocks.DarkLeaves, TragicBlocks.PaintedLeaves,
 			TragicBlocks.BleachedLeaves, TragicBlocks.AshenTallGrass, TragicBlocks.AshenBush, Blocks.deadbush, TragicBlocks.TragicFlower, TragicBlocks.StarlitTallGrass,
 			TragicBlocks.DarkTallGrass, Blocks.snow_layer});
+	
+	public static final Predicate nonSpeciesTarget = new Predicate() {
+		@Override
+		public boolean apply(Object input) {
+			return canApply((Entity) input);
+		}
+		
+		public boolean canApply(Entity entity) {
+			return !(entity instanceof EntityRagr);
+		}
+	};
 
 	public EntityRagr(World par1World) {
 		super(par1World);
@@ -62,9 +75,9 @@ public class EntityRagr extends TragicMob {
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true));
-		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true));
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true, false, null));
+		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true, false, nonSpeciesTarget));
 	}
 	
 	@Override
@@ -126,12 +139,6 @@ public class EntityRagr extends TragicMob {
 	}
 
 	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -150,7 +157,7 @@ public class EntityRagr extends TragicMob {
 		if (this.worldObj.isRemote) return;
 		
 		if (this.superiorForm == null && this.getRagrType() == 1) this.superiorForm = new EntityJarra(this.worldObj);
-		if (this.getRagrType() == 1 && this.ticksExisted % 5 == 0 && this.worldObj.isRaining() && this.worldObj.canBlockSeeTheSky((int) this.posX, (int) this.posY, (int) this.posZ)) this.attackEntityFrom(DamageSource.drown, 1.0F);
+		if (this.getRagrType() == 1 && this.ticksExisted % 5 == 0 && this.worldObj.isRaining() && this.worldObj.canBlockSeeSky(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ))) this.attackEntityFrom(DamageSource.drown, 1.0F);
 		if (this.getRagrType() == 1 && this.isInsideOfMaterial(Material.water)) this.attackEntityFrom(DamageSource.drown, 1.0F);
 
 		if (this.getAttackTarget() != null)
@@ -211,21 +218,21 @@ public class EntityRagr extends TragicMob {
 	}
 
 	@Override
-	protected void fall(float par1)
+	public void fall(float dist, float multi)
 	{
 		if (this.worldObj.isRemote) return;
 
 		boolean flag = this.getMobGriefing() && TragicConfig.ragrExplosions;
 
-		if (par1 >= 8.0F)
+		if (dist >= 8.0F)
 		{
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 3.0F + 2.0F, flag);
 		}
-		else if (par1 >= 4.0F)
+		else if (dist >= 4.0F)
 		{
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.0F, flag);
 		}
-		else if (par1 >= 2.0F)
+		else if (dist >= 2.0F)
 		{
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F, flag);
 		}
@@ -235,56 +242,54 @@ public class EntityRagr extends TragicMob {
 		int x = (int) this.posX;
 		int y = (int) this.posY;
 		int z = (int) this.posZ;
-		par1 = MathHelper.clamp_float(par1 / 2.0F, 1.0F, 4.0F);
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, par1, x, y, z);
+		dist = MathHelper.clamp_float(dist / 2.0F, 1.0F, 4.0F);
+		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, dist, x, y, z);
 		int[] coords;
 		Block block;
 
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			x = coords[0];
-			y = coords[1];
-			z = coords[2];
-			block = this.worldObj.getBlock(x, y, z);
+			BlockPos pos = new BlockPos(coords[0], coords[1], coords[2]);
+			block = this.worldObj.getBlockState(pos).getBlock();
 
 			if (EntityRagr.crushableBlocks.contains(block))
 			{
-				this.worldObj.setBlockToAir(x, y, z);
+				this.worldObj.setBlockToAir(pos);
 			}
 			else if (block == Blocks.grass)
 			{
-				this.worldObj.setBlock(x, y, z, Blocks.dirt);
+				this.worldObj.setBlockState(pos, Blocks.dirt.getDefaultState());
 			}
 			else if (block == Blocks.stone)
 			{
-				this.worldObj.setBlock(x, y, z, Blocks.cobblestone);
+				this.worldObj.setBlockState(pos, Blocks.cobblestone.getDefaultState());
 			}
 			else if (block == Blocks.stonebrick)
 			{
-				this.worldObj.setBlock(x, y, z, Blocks.stonebrick, 2, 2);
+				this.worldObj.setBlockState(pos, Blocks.stonebrick.getStateFromMeta(2), 2);
 			}
 			else if (block == Blocks.cobblestone)
 			{
-				this.worldObj.setBlock(x, y, z, Blocks.gravel);
+				this.worldObj.setBlockState(pos, Blocks.gravel.getDefaultState());
 			}
 			else if (TragicConfig.allowNonMobBlocks) //if mobsOnly mode is enabled all of these blocks will be null
 			{
 				if (block instanceof BlockGenericGrass)
 				{
-					this.worldObj.setBlock(x, y, z, TragicBlocks.DeadDirt);
+					this.worldObj.setBlockState(pos, TragicBlocks.DeadDirt.getDefaultState());
 				}
 				else if (block instanceof BlockPermafrost)
 				{
-					this.worldObj.setBlock(x, y, z, TragicBlocks.Permafrost, 1, 2);
+					this.worldObj.setBlockState(pos, TragicBlocks.Permafrost.getStateFromMeta(1), 2);
 				}
 				else if (block == TragicBlocks.DarkStone)
 				{
-					this.worldObj.setBlock(x, y, z, TragicBlocks.DarkCobblestone);
+					this.worldObj.setBlockState(pos, TragicBlocks.DarkCobblestone.getDefaultState());
 				}
 				else if (block instanceof BlockDarkCobble)
 				{
-					this.worldObj.setBlock(x, y, z, TragicBlocks.DeadDirt);
+					this.worldObj.setBlockState(pos, TragicBlocks.DeadDirt.getDefaultState());
 				}
 			}
 		}
@@ -309,7 +314,7 @@ public class EntityRagr extends TragicMob {
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		if (MathHelper.floor_double(this.boundingBox.minY) <= this.worldObj.provider.getAverageGroundLevel() && !(this.worldObj.provider instanceof TragicWorldProvider)) return false;
+		if (MathHelper.floor_double(this.getEntityBoundingBox().minY) <= this.worldObj.provider.getAverageGroundLevel() && !(this.worldObj.provider instanceof TragicWorldProvider)) return false;
 		return super.getCanSpawnHere();
 	}
 
@@ -460,10 +465,10 @@ public class EntityRagr extends TragicMob {
     }
 	
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
-		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos((int) this.posX, 0, (int) this.posZ));
 		//this.setRagrType(biome.temperature > 0.5F ? (byte) 1 : 0);
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 }

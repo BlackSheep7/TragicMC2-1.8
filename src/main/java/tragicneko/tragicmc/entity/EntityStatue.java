@@ -11,7 +11,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -33,7 +33,6 @@ import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
-import tragicneko.tragicmc.items.ItemStatue;
 
 public class EntityStatue extends Entity {
 
@@ -59,7 +58,7 @@ public class EntityStatue extends Entity {
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float par2)
 	{
-		if (this.worldObj.isRemote || this.isEntityInvulnerable() || source.isExplosion()) return false;
+		if (this.worldObj.isRemote || this.isEntityInvulnerable(source) || source.isExplosion()) return false;
 
 		this.setDead();
 		this.setBeenAttacked();
@@ -67,9 +66,9 @@ public class EntityStatue extends Entity {
 		if (!this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return true;
 
 		ItemStack stack = new ItemStack(TragicItems.MobStatue, 1, this.getMobID());
-		stack.stackTagCompound = new NBTTagCompound();
-		stack.stackTagCompound.setInteger("textureID", this.getTextureID());
-		if (this.getAnimated()) stack.stackTagCompound.setInteger("isAnimated", this.getAnimated() ? 1 : 0);
+		stack.setTagCompound(new NBTTagCompound());
+		stack.getTagCompound().setInteger("textureID", this.getTextureID());
+		if (this.getAnimated()) stack.getTagCompound().setInteger("isAnimated", this.getAnimated() ? 1 : 0);
 
 		this.entityDropItem(stack, 0.4F);
 		return true;
@@ -132,19 +131,13 @@ public class EntityStatue extends Entity {
 
 		if (!this.worldObj.isRemote && this.getRotation() > 360.0F) this.setRotation(this.getRotation() - 360.0F);
 
-		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.0, 0.8, 0.0));
+		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.0, 0.8, 0.0));
 		for (Entity e : list)
 		{
 			this.applyEntityCollision(e);
 			e.velocityChanged = true;
 		}
 
-	}
-
-	@Override
-	public AxisAlignedBB getBoundingBox()
-	{
-		return this.boundingBox;
 	}
 
 	@Override
@@ -248,7 +241,7 @@ public class EntityStatue extends Entity {
 				if (entity != null)
 				{
 					entity.copyLocationAndAnglesFrom(this);
-					((EntityLiving) entity).onSpawnWithEgg(null);
+					((EntityLiving) entity).func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)), null);
 					this.worldObj.removeEntity(this);
 					this.worldObj.spawnEntityInWorld(entity);
 					if (!player.capabilities.isCreativeMode) item.stackSize--;

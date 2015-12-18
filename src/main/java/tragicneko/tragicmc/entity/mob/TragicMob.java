@@ -22,14 +22,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
@@ -44,9 +48,22 @@ import tragicneko.tragicmc.entity.projectile.EntityProjectile;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.util.EntityDropHelper;
 
+import com.google.common.base.Predicate;
+
 public abstract class TragicMob extends EntityMob
 {
 	protected TragicMiniBoss superiorForm;
+	
+	public static final Predicate playerTarget = new Predicate() {
+		@Override
+		public boolean apply(Object input) {
+			return canApply((Entity) input);
+		}
+		
+		public boolean canApply(Entity entity) {
+			return entity instanceof EntityPlayer;
+		}
+	};
 
 	public TragicMob(World par1World) {
 		super(par1World);
@@ -115,7 +132,7 @@ public abstract class TragicMob extends EntityMob
 
 		if (this.getAttackTarget() == null && this.canCorrupt() && TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption.id))
 		{
-			EntityPlayer entityplayer = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
+			EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity(this, 16.0D);
 
 			Entity result = null;
 
@@ -125,7 +142,7 @@ public abstract class TragicMob extends EntityMob
 			}
 			else
 			{
-				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
 				for (int i = 0; i < list.size(); i++)
 				{
@@ -181,6 +198,14 @@ public abstract class TragicMob extends EntityMob
 		{
 			this.dataWatcher.updateObject(14, (byte) 1);
 		}
+
+		if (this.getIllumination())
+		{
+			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
+			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlockState(new BlockPos(x, y, z)).getBlock())) this.worldObj.setBlockState(new BlockPos(x, y, z), TragicBlocks.Luminescence.getDefaultState());
+		}
 	}
 
 	protected void change()
@@ -188,7 +213,7 @@ public abstract class TragicMob extends EntityMob
 		if (this.isChangeAllowed())
 		{
 			TragicMob boss = (TragicMob) this.getSuperiorForm();
-			boss.copyDataFrom(this, true);
+			boss.copyDataFromOld(this);
 			boss.copyLocationAndAnglesFrom(this);
 			this.worldObj.removeEntity(this);
 			this.worldObj.spawnEntityInWorld(boss);
@@ -414,9 +439,9 @@ public abstract class TragicMob extends EntityMob
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
-		if (!TragicConfig.allowGroupBuffs) return super.onSpawnWithEgg(data);
+		if (!TragicConfig.allowGroupBuffs) return super.func_180482_a(ins, data);
 		if (data == null)
 		{
 			if (rand.nextInt(200) <= TragicConfig.groupBuffChance)
@@ -467,9 +492,9 @@ public abstract class TragicMob extends EntityMob
 		else if (data instanceof GroupBuff)
 		{
 			this.addPotionEffect(((GroupBuff) data).getReducedEffect());
-			return super.onSpawnWithEgg(data);
+			return super.func_180482_a(ins, data);
 		}
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	/**
@@ -505,7 +530,7 @@ public abstract class TragicMob extends EntityMob
 				&& ((EntityWitherSkull) entity).isInvulnerable() ? 0.73F : 0.95F;
 		float dist = this.getDistanceToEntity(this.getAttackTarget());
 
-		if (this.worldObj.difficultySetting.getDifficultyId() > 2)
+		if (this.worldObj.getDifficulty().getDifficultyId() > 2)
 		{
 			d0 += target.motionX * dist / mf;
 			d1 += (target.motionY + 0.09) * dist / mf; //with a small adjustment for a player on the ground, which has a motion value of about -0.1
@@ -567,10 +592,10 @@ public abstract class TragicMob extends EntityMob
 	}
 
 	@Override
-	public String getCommandSenderName()
+	public String getName()
 	{
 		String s = this.isMobVariant() ? this.getVariantName() : null;
-		if (s == null) return super.getCommandSenderName();
+		if (s == null) return super.getName();
 		return StatCollector.translateToLocal("entity." + s + ".name");
 	}
 
@@ -578,7 +603,7 @@ public abstract class TragicMob extends EntityMob
 	{
 		return EntityList.getEntityString(this);
 	}
-	
+
 	public boolean isHalloween()
 	{
 		Calendar calendar = this.worldObj.getCurrentDate();
@@ -588,6 +613,11 @@ public abstract class TragicMob extends EntityMob
 			return true;
 		}
 
+		return false;
+	}
+
+	public boolean getIllumination()
+	{
 		return false;
 	}
 }

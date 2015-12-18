@@ -14,7 +14,9 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
@@ -25,10 +27,23 @@ import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.util.WorldHelper;
 
+import com.google.common.base.Predicate;
+
 public class EntityFusea extends TragicMob {
 
 	private int explosionBuffer;
 	private boolean hasDamagedEntity = false;
+	
+	private static final Predicate nonSpeciesTarget = new Predicate() {
+		@Override
+		public boolean apply(Object o) {
+			return canApply((Entity) o);
+		}
+		
+		public boolean canApply(Entity entity) {
+			return !(entity instanceof EntityFusea);
+		}
+	};
 
 	public EntityFusea(World par1World) {
 		super(par1World);
@@ -36,15 +51,9 @@ public class EntityFusea extends TragicMob {
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, nonSpeciesTarget));
 		this.explosionBuffer = 20;
 		this.experienceValue = 5;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -84,7 +93,7 @@ public class EntityFusea extends TragicMob {
 		{
 			for (int l = 0; l < 2; ++l)
 			{
-				this.worldObj.spawnParticle("townaura",
+				this.worldObj.spawnParticle(EnumParticleTypes.TOWN_AURA,
 						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 						this.posY + this.rand.nextDouble() * this.height + 0.15D,
 						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
@@ -134,10 +143,10 @@ public class EntityFusea extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
@@ -238,7 +247,7 @@ public class EntityFusea extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		
 	}

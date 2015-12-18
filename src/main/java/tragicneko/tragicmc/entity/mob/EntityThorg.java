@@ -16,6 +16,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -32,7 +33,6 @@ public class EntityThorg extends TragicMob {
 		this.setSize(1.175F, 2.15F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
@@ -40,18 +40,12 @@ public class EntityThorg extends TragicMob {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}
 
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
-	}
-	
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -94,7 +88,7 @@ public class EntityThorg extends TragicMob {
 		if (this.worldObj.isRemote) return;
 		
 		if (this.isInsideOfMaterial(Material.water) && this.ticksExisted % 20 == 0) this.heal(1.0F);
-		if (this.worldObj.isRaining() && this.worldObj.canBlockSeeTheSky((int) this.posX, (int) this.posY, (int) this.posZ) && this.ticksExisted % 20 == 0) this.heal(1.0F);
+		if (this.worldObj.isRaining() && this.worldObj.canBlockSeeSky(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)) && this.ticksExisted % 20 == 0) this.heal(1.0F);
 
 		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 6.0 && this.onGround && this.ticksExisted % 5 == 0)
 		{
@@ -105,7 +99,7 @@ public class EntityThorg extends TragicMob {
 		if (this.getAttackTarget() != null && this.hasJumped && this.ticksExisted % 3 == 0)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 2.0F - (this.posY + this.height / 2.0F);
+			double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 2.0F - (this.posY + this.height / 2.0F);
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 			
 			EntityPoisonBarb barb = new EntityPoisonBarb(this.worldObj, this, d0, d1, d2);
@@ -115,8 +109,8 @@ public class EntityThorg extends TragicMob {
 	}
 	
 	@Override
-	public void fall(float par1) {
-		super.fall(par1);
+	public void fall(float dist, float multi) {
+		super.fall(dist, multi);
 		this.hasJumped = false;
 	}
 

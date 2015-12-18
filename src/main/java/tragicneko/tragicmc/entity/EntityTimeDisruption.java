@@ -7,11 +7,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTimeDisruption extends Entity {
 
@@ -82,12 +83,12 @@ public class EntityTimeDisruption extends Entity {
 				double d5 = d1 / f2 * d3 * 0.200000011920929D + d8 * 0.20000000298023224D;
 				double d6 = d2 / f2 * d3 * 0.200000011920929D + d9 * 0.20000000298023224D;
 
-				this.worldObj.spawnParticle("portal", d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
+				this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
 			}
 
 			if (rand.nextBoolean())
 			{
-				this.worldObj.spawnParticle("witchMagic", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.255D), this.posY + 0.0625D + rand.nextDouble() * 0.275D,
+				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_WITCH, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.255D), this.posY + 0.0625D + rand.nextDouble() * 0.275D,
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.255D), rand.nextFloat() - rand.nextFloat(), 0.0, rand.nextFloat() - rand.nextFloat());
 			}
 
@@ -95,7 +96,7 @@ public class EntityTimeDisruption extends Entity {
 			{
 				for (int l = 0; l < 6; ++l)
 				{
-					this.worldObj.spawnParticle("instantSpell", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + rand.nextDouble(),
+					this.worldObj.spawnParticle(EnumParticleTypes.SPELL_INSTANT, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + rand.nextDouble(),
 							this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), 0.155F * this.rand.nextFloat(), 0.155F * this.rand.nextFloat(), 0.155F * this.rand.nextFloat());
 				}
 			}
@@ -105,7 +106,7 @@ public class EntityTimeDisruption extends Entity {
 		if (this.ticksExisted % 10 == 0)
 		{
 			double d0 = 3.0D;
-			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d0, d0, d0));
+			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(d0, d0, d0));
 			Iterator iterator = list.iterator();
 
 			while (iterator.hasNext())
@@ -131,7 +132,7 @@ public class EntityTimeDisruption extends Entity {
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float par2)
 	{
-		if (this.worldObj.isRemote || this.isEntityInvulnerable()) return false;
+		if (this.worldObj.isRemote || this.isEntityInvulnerable(source)) return false;
 
 		if (source.getEntity() != null)
 		{

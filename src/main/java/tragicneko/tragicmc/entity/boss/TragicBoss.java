@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;
@@ -15,15 +13,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -34,12 +35,6 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	public TragicBoss(World par1World) {
 		super(par1World);
 		this.experienceValue = 100;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 	
 	@Override
@@ -114,7 +109,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords= list.get(i);
-			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]).getMaterial() == Material.fire) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+			if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock().getMaterial() == Material.fire) this.worldObj.setBlockToAir(new BlockPos(coords[0], coords[1], coords[2]));
 		}
 
 		if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)
@@ -149,7 +144,15 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		if (TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption)) this.removePotionEffect(TragicPotion.Corruption.id);
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
-		if (this.worldObj.difficultySetting == EnumDifficulty.EASY && !TragicConfig.allowEasyBosses || this.posY <= -30 || this.posY > 280) this.setDead();
+		if (this.worldObj.getDifficulty() == EnumDifficulty.EASY && !TragicConfig.allowEasyBosses || this.posY <= -30 || this.posY > 280) this.setDead();
+		
+		if (!this.worldObj.isRemote && this.getIllumination())
+		{
+			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
+			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlockState(new BlockPos(x, y, z)).getBlock())) this.worldObj.setBlockState(new BlockPos(x, y, z), TragicBlocks.Luminescence.getDefaultState());
+		}
 	}
 
 	@Override
@@ -159,7 +162,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (this.posY <= 63)
 		{
-			switch (this.worldObj.provider.dimensionId)
+			switch (this.worldObj.provider.getDimensionId())
 			{
 			case 0:
 				return false;
@@ -242,7 +245,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	}
 
 	public int getPlayersNearby() {
-		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(64.0, 64.0, 64.0)).size();
+		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0)).size();
 	}
 
 	public int getPlayersNearby(int min, int max)
@@ -252,7 +255,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 	public int getPlayersNearby(double range)
 	{
-		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(range, range, range)).size();
+		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.getEntityBoundingBox().expand(range, range, range)).size();
 	}
 
 	public int getPlayersNearby(double range, int min, int max)
@@ -274,7 +277,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	}
 
 	public int getHighestSolidBlock(int posX, int posY, int posZ) {
-		while(this.worldObj.getBlock(posX, posY, posZ).getMaterial() == Material.air && posY > 0)
+		while(this.worldObj.getBlockState(new BlockPos(posX, posY, posZ)).getBlock().getMaterial() == Material.air && posY > 0)
 		{
 			--posY;
 		}
@@ -290,6 +293,11 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 			return true;
 		}
 
+		return false;
+	}
+	
+	public boolean getIllumination()
+	{
 		return false;
 	}
 }

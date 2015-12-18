@@ -30,7 +30,6 @@ public class EntityAbomination extends TragicMob {
 		this.setSize(0.775F, 2.05F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
@@ -54,7 +53,7 @@ public class EntityAbomination extends TragicMob {
 		int ticks = (int) entity.getMaxHealth();
 		this.setCelebrationTicks(ticks + rand.nextInt(10));
 
-		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
+		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(12.0, 12.0, 12.0));
 		EntityAbomination mob;
 
 		for (int i = 0; i < list.size(); i++)
@@ -80,12 +79,6 @@ public class EntityAbomination extends TragicMob {
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -188,7 +181,7 @@ public class EntityAbomination extends TragicMob {
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean() && TragicConfig.abominationHelpCall)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(12.0, 12.0, 12.0));
 			EntityAbomination mob;
 
 			for (int i = 0; i < list.size(); i++)
@@ -196,7 +189,7 @@ public class EntityAbomination extends TragicMob {
 				if (list.get(i) instanceof EntityAbomination)
 				{
 					mob = (EntityAbomination) list.get(i);
-					if (mob.getAttackTarget() == null) mob.setTarget(this.getAttackTarget());
+					if (mob.getAttackTarget() == null) mob.setAttackTarget(this.getAttackTarget());
 				}
 			}
 		}

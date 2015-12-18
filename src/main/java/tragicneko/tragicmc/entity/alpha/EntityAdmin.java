@@ -93,7 +93,7 @@ public class EntityAdmin extends TragicBoss {
 	}
 
 	@Override
-	public void fall(float f) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {

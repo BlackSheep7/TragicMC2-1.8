@@ -24,9 +24,12 @@ import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
@@ -44,22 +47,15 @@ public class EntityKurayami extends EntityGolem {
 		super(world);
 		this.setSize(0.745F * 0.825F, 1.745F * 0.825F);
 		this.experienceValue = 0;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(8, new EntityAIWatchTarget(this, 32.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, IMob.class, 0, true));
+		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, IMob.class, 0, true, false, null));
 		this.isImmuneToFire = true;
 		this.timeToLive = 1800;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	public void setOwner(EntityPlayer player)
@@ -205,7 +201,7 @@ public class EntityKurayami extends EntityGolem {
 				if (this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F) && this.canEntityBeSeen(this.getAttackTarget()) && this.getFiringTicks() > 0 && this.getFiringTicks() % 25 == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
-					double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 2.0F - (this.posY + this.height / 2.0F);
+					double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 2.0F - (this.posY + this.height / 2.0F);
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 
 					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0, d1, d2);
@@ -293,7 +289,7 @@ public class EntityKurayami extends EntityGolem {
 
 	protected boolean teleportToEntity(Entity par1Entity)
 	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		Vec3 vec3 = new Vec3(this.posX - par1Entity.posX, this.getEntityBoundingBox().minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
 		vec3 = vec3.normalize();
 		double d0 = 16.0D;
 		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
@@ -315,13 +311,13 @@ public class EntityKurayami extends EntityGolem {
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
 
-		if (this.worldObj.blockExists(i, j, k))
+		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4))
 		{
 			boolean flag1 = false;
 
 			while (!flag1 && j > 0)
 			{
-				Block block = this.worldObj.getBlock(i, j - 1, k);
+				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
 
 				if (block.getMaterial().blocksMovement())
 				{
@@ -338,7 +334,7 @@ public class EntityKurayami extends EntityGolem {
 			{
 				this.setPosition(this.posX, this.posY, this.posZ);
 
-				if (this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox))
+				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
 				{
 					flag = true;
 				}
@@ -363,7 +359,7 @@ public class EntityKurayami extends EntityGolem {
 				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
 				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle("flame", d7, d8, d9, f, f1, f2);
+				this.worldObj.spawnParticle(EnumParticleTypes.FLAME, d7, d8, d9, f, f1, f2);
 			}
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
 			this.playSound(this.getLivingSound() == null ? "mob.endermen.portal" : this.getLivingSound(), 1.0F, 1.0F);
@@ -391,11 +387,11 @@ public class EntityKurayami extends EntityGolem {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (this.owner == null) this.setOwner(this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 16.0));
 		this.setKurayamiLevel(1.0);
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override

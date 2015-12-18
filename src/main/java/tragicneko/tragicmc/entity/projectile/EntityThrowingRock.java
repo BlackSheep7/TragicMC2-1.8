@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
@@ -46,7 +47,7 @@ public class EntityThrowingRock extends EntityThrowable {
 		if (this.worldObj.isRemote)
 		{
 			for (int l = 0; l < 4; ++l) {
-				worldObj.spawnParticle("crit", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+				worldObj.spawnParticle(EnumParticleTypes.CRIT, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 			}
 		}
 		else

@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -69,7 +70,7 @@ public class EntityNekoClusterBomb extends EntityThrowable {
 			if (this.worldObj.isRemote)
 			{
 				for (int l = 0; l < 5; ++l) {
-					worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+					worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 				}
 				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
 			}
@@ -83,7 +84,7 @@ public class EntityNekoClusterBomb extends EntityThrowable {
 		{
 			if (this.worldObj.isRemote)
 			{
-				this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+				this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
 			}
 			else
 			{

@@ -73,7 +73,7 @@ public class EntitySlangLeader extends EntitySlang implements TragicMiniBoss {
 
 		if (this.stolenItem != null && rand.nextInt(4) == 0 && this.ticksExisted % 35 == 0)
 		{
-			List<EntityPlayer> list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(12.0, 12.0, 12.0));
+			List<EntityPlayer> list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.getEntityBoundingBox().expand(12.0, 12.0, 12.0));
 
 			if (!list.isEmpty())
 			{

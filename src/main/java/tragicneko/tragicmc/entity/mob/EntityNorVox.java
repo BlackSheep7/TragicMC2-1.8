@@ -24,18 +24,20 @@ import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityNorVox extends TragicMob {
 
@@ -50,7 +52,7 @@ public class EntityNorVox extends TragicMob {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}
 
 	@Override
@@ -93,12 +95,6 @@ public class EntityNorVox extends TragicMob {
 	public boolean handleWaterMovement()
 	{
 		return false;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	public int getFiringTicks()
@@ -326,25 +322,26 @@ public class EntityNorVox extends TragicMob {
 	}
 
 	@Override
-	protected void fall(float par1) {}
+	public void fall(float dist, float multi) {}
+	
 	@Override
 	public void setInWeb() {}
 
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		int i = MathHelper.floor_double(this.boundingBox.minY);
+		int i = MathHelper.floor_double(this.getEntityBoundingBox().minY);
 
 		if (i >= 63)
 		{
 			int x = MathHelper.floor_double(this.posX);
 			int z = MathHelper.floor_double(this.posZ);
 
-			BiomeGenBase spawnBiome = this.worldObj.getBiomeGenForCoords(x, z);
+			BiomeGenBase spawnBiome = this.worldObj.getBiomeGenForCoords(new BlockPos(x, 0, z));
 
 			if (spawnBiome == BiomeGenBase.jungle || spawnBiome == BiomeGenBase.jungleHills)
 			{
-				return this.worldObj.getBlockLightValue(x, i, z) > this.rand.nextInt(7) ? false : super.getCanSpawnHere();
+				return this.worldObj.getLight(new BlockPos(x, i, z)) > this.rand.nextInt(7) ? false : super.getCanSpawnHere();
 			}
 			return false;
 		}
@@ -352,7 +349,7 @@ public class EntityNorVox extends TragicMob {
 		{
 			int j = MathHelper.floor_double(this.posX);
 			int k = MathHelper.floor_double(this.posZ);
-			int l = this.worldObj.getBlockLightValue(j, i, k);
+			int l = this.worldObj.getLight(new BlockPos(j, i, k));
 			byte b0 = 4;
 			Calendar calendar = this.worldObj.getCurrentDate();
 
@@ -394,15 +391,15 @@ public class EntityNorVox extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
-			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos((int) this.posX, 0, (int) this.posZ));
 			this.setNorVoxType(biome instanceof BiomeGenStarlitPrarie ? (byte) 1 : 0);
 			this.setTextureID((byte) rand.nextInt(8));
 		}
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -447,7 +444,7 @@ public class EntityNorVox extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		if (this.getNorVoxType() == 0 && TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
 	}

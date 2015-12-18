@@ -2,20 +2,19 @@ package tragicneko.tragicmc.entity.miniboss;
 
 import static tragicneko.tragicmc.TragicConfig.magmoxStats;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.mob.EntityTox;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 
@@ -73,7 +72,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 
 			if (this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0)
 			{
-				this.worldObj.spawnParticle("flame",
+				this.worldObj.spawnParticle(EnumParticleTypes.FLAME,
 						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 						this.posY + this.rand.nextDouble() * this.height,
 						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
@@ -88,7 +87,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 					this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F && TragicConfig.magmoxLargeFireballs)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
-				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+				double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 				double d2 = this.getAttackTarget().posZ - this.posZ;
 
 				float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
@@ -104,7 +103,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	protected void shootProjectiles()
 	{
 		double d0 = this.getAttackTarget().posX - this.posX;
-		double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+		double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 		double d2 = this.getAttackTarget().posZ - this.posZ;
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.75F;

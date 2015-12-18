@@ -23,8 +23,11 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
@@ -37,7 +40,6 @@ public class EntityPumpkinhead extends TragicMob {
 		super(par1World);
 		this.setSize(0.675F, 2.215F);
 		this.experienceValue = 5;
-		this.getNavigator().setAvoidSun(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIFleeSun(this, 1.2D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
@@ -90,13 +92,13 @@ public class EntityPumpkinhead extends TragicMob {
 		this.dataWatcher.updateObject(17, coords[0]);
 		this.dataWatcher.updateObject(18, coords[1]);
 		this.dataWatcher.updateObject(19, coords[2]);
-		this.setHomeArea(coords[0], coords[1], coords[2], 12);
+		//this.setHomeArea(coords[0], coords[1], coords[2], 12);
 	}
 
 	public boolean hasHomePumpkin()
 	{
 		int[] coords = this.getHomeCoordinates();
-		return this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.pumpkin || this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.lit_pumpkin;
+		return this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.pumpkin || this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.lit_pumpkin;
 	}
 
 	public int getAngerTicks()
@@ -127,12 +129,6 @@ public class EntityPumpkinhead extends TragicMob {
 	}
 
 	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -160,13 +156,13 @@ public class EntityPumpkinhead extends TragicMob {
 					for (int i = 0; i < 4; i++)
 					{
 						double d3 = 0.23D * i + (rand.nextDouble() * 0.25D);
-						this.worldObj.spawnParticle("flame", this.posX + d0 * d3, this.posY + d1 * d3 + 1.45D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+						this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + d0 * d3, this.posY + d1 * d3 + 1.45D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 					}
 				}
 
 				for (int i = 0; i < 2; i++)
 				{
-					this.worldObj.spawnParticle("flame", this.posX + rand.nextDouble() - rand.nextDouble(), this.posY, this.posZ + rand.nextDouble() - rand.nextDouble(),
+					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + rand.nextDouble() - rand.nextDouble(), this.posY, this.posZ + rand.nextDouble() - rand.nextDouble(),
 							0.0, rand.nextDouble() * 0.175D, 0.0);
 				}
 			}
@@ -243,7 +239,7 @@ public class EntityPumpkinhead extends TragicMob {
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.pumpkin || this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.lit_pumpkin) return true;
+			if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.pumpkin || this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.lit_pumpkin) return true;
 		}
 		return false;
 	}
@@ -256,7 +252,7 @@ public class EntityPumpkinhead extends TragicMob {
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.pumpkin || this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.lit_pumpkin) return coords;
+			if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.pumpkin || this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.lit_pumpkin) return coords;
 		}
 
 		return null;
@@ -272,10 +268,10 @@ public class EntityPumpkinhead extends TragicMob {
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
-			if (block.canBeReplacedByLeaves(worldObj, coords[0], coords[1], coords[2]) && World.doesBlockHaveSolidTopSurface(worldObj, coords[0], coords[1] - 1, coords[2]))
+			block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+			if (block.canBeReplacedByLeaves(worldObj, new BlockPos(coords[0], coords[1], coords[2])) && World.doesBlockHaveSolidTopSurface(worldObj, new BlockPos(coords[0], coords[1] - 1, coords[2])))
 			{
-				this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.lit_pumpkin);
+				this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), Blocks.lit_pumpkin.getDefaultState());
 				this.setHomeCoordinates(coords);
 				break;
 			}
@@ -291,7 +287,7 @@ public class EntityPumpkinhead extends TragicMob {
 
 		if (result && par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean() && !par1DamageSource.isMagicDamage())
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(12.0, 12.0, 12.0));
 			EntityPumpkinhead mob;
 
 			for (int i = 0; i < list.size(); i++)
@@ -299,7 +295,7 @@ public class EntityPumpkinhead extends TragicMob {
 				if (list.get(i) instanceof EntityPumpkinhead)
 				{
 					mob = (EntityPumpkinhead) list.get(i);
-					if (mob.getAttackTarget() == null && this.getAttackTarget() != null) mob.setTarget(this.getAttackTarget());
+					if (mob.getAttackTarget() == null && this.getAttackTarget() != null) mob.setAttackTarget(this.getAttackTarget());
 					if (mob.getHomeCoordinates() == this.getHomeCoordinates() && mob.hasHomePumpkin() && this.hasHomePumpkin()) mob.attackEntityFrom(DamageSource.magic, 1.0F);
 				}
 			}
@@ -309,7 +305,7 @@ public class EntityPumpkinhead extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.isPumpkinNearby())
 		{
@@ -320,7 +316,7 @@ public class EntityPumpkinhead extends TragicMob {
 			this.setHomeCoordinates(getNearbyPumpkin());
 		}
 
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override

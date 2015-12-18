@@ -10,6 +10,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.projectile.EntitySmallFireball;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
@@ -67,14 +69,14 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 
 				for (int[] coords : list)
 				{
-					block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
+					block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
 
 					if (block.getMaterial() == Material.water || block instanceof BlockIce)
 					{
 						this.volatype = 2;
 						break;
 					}
-					else if (block.isProvidingWeakPower(this.worldObj, coords[0], coords[1], coords[2], 0) > 0 || block.isProvidingStrongPower(this.worldObj, coords[0], coords[1], coords[2], 0) > 0)
+					else if (block.isProvidingWeakPower(this.worldObj, new BlockPos(coords[0], coords[1], coords[2]), this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])), EnumFacing.UP) > 0 || block.isProvidingStrongPower(this.worldObj, new BlockPos(coords[0], coords[1], coords[2]), this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])), EnumFacing.UP) > 0)
 					{
 						this.volatype = 3;
 						break;
@@ -99,7 +101,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 			if (entity != null)
 			{
 				d0 = entity.posX - this.posX;
-				d1 = entity.boundingBox.minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
+				d1 = entity.getEntityBoundingBox().minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
 				d2 = entity.posZ - this.posZ;
 			}
 			else

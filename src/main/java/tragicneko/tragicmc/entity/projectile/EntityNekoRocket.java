@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -67,7 +68,7 @@ public class EntityNekoRocket extends EntityProjectile {
 
 		if (this.target == null && this.ticksInAir > 2)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(8.0, 8.0, 8.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(8.0, 8.0, 8.0));
 
 			for (int i = 0; i < list.size(); i++)
 			{
@@ -95,7 +96,7 @@ public class EntityNekoRocket extends EntityProjectile {
 			if (this.worldObj.isRemote)
 			{
 				for (int l = 0; l < 5; ++l) {
-					worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+					worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 				}
 				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
 			}

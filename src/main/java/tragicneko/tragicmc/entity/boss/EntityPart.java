@@ -40,7 +40,7 @@ public class EntityPart extends Entity {
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
-		return this.isEntityInvulnerable() ? false : this.main.attackEntityFromPart(this, source, damage);
+		return this.isEntityInvulnerable(source) ? false : this.main.attackEntityFromPart(this, source, damage);
 	}
 
 	/**

@@ -14,7 +14,9 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
@@ -40,13 +42,7 @@ public class EntitySeeker extends TragicMob {
 		this.experienceValue = 10;
 		this.tasks.addTask(4, new EntityAIWatchTarget(this, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.selec));
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.nonSynapseTarget));
 	}
 
 	@Override
@@ -123,15 +119,15 @@ public class EntitySeeker extends TragicMob {
 				for (int l = 0; l < 4; l++)
 				{
 					double d3 = 0.23D * l + (rand.nextDouble() * 0.25D);
-					this.worldObj.spawnParticle("reddust", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
-					if (this.getKillTicks() >= 300) this.worldObj.spawnParticle("flame", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					if (this.getKillTicks() >= 300) this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 				}
 
 				if (this.getKillTicks() >= 300)
 				{
 					for (int i = 0; i < 4; i++)
 					{
-						this.worldObj.spawnParticle("flame", this.posX + rand.nextDouble() - rand.nextDouble(),
+						this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + rand.nextDouble() - rand.nextDouble(),
 								this.posY + 0.25 + rand.nextDouble() * 0.5, this.posZ + rand.nextDouble() - rand.nextDouble(), 0.0, 0.0, 0.0);
 					}
 				}
@@ -156,7 +152,7 @@ public class EntitySeeker extends TragicMob {
 					
 				}
 
-				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0));
 				for (Entity e : list)
 				{
 					if (this.getAttackTarget() == null) break;
@@ -231,10 +227,10 @@ public class EntitySeeker extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	protected boolean teleportRandomly()
 	{
@@ -257,13 +253,13 @@ public class EntitySeeker extends TragicMob {
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
 
-		if (this.worldObj.blockExists(i, j, k))
+		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4))
 		{
 			boolean flag1 = false;
 
 			while (!flag1 && j > 0)
 			{
-				Block block = this.worldObj.getBlock(i, j - 1, k);
+				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
 
 				if (block.getMaterial().blocksMovement())
 				{
@@ -280,7 +276,7 @@ public class EntitySeeker extends TragicMob {
 			{
 				this.setPosition(this.posX, this.posY, this.posZ);
 
-				if (this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox))
+				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
 				{
 					flag = true;
 				}
@@ -331,7 +327,7 @@ public class EntitySeeker extends TragicMob {
 	}
 	
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		
 	}

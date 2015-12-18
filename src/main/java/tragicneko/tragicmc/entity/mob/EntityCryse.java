@@ -21,17 +21,19 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityCryse extends TragicMob {
 
@@ -39,7 +41,6 @@ public class EntityCryse extends TragicMob {
 		super(par1World);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
@@ -47,7 +48,7 @@ public class EntityCryse extends TragicMob {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 48.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 48.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}
 
 	@Override
@@ -73,12 +74,6 @@ public class EntityCryse extends TragicMob {
 	public float getBrightness(float par1)
 	{
 		return 1.0F;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -272,7 +267,7 @@ public class EntityCryse extends TragicMob {
 
 		boolean result = super.attackEntityAsMob(par1Entity);
 
-		EnumDifficulty dif = this.worldObj.difficultySetting;
+		EnumDifficulty dif = this.worldObj.getDifficulty();
 		int x = 2;
 
 		if (dif == EnumDifficulty.NORMAL)
@@ -327,15 +322,15 @@ public class EntityCryse extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
-			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos((int) this.posX, 0, (int) this.posZ));
 			this.setCryseType(biome instanceof BiomeGenStarlitPrarie ? (byte) 1 : 0);
 			this.setTextureID((byte) rand.nextInt(8));
 		}
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -380,7 +375,7 @@ public class EntityCryse extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		
 	}

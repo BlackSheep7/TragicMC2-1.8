@@ -27,28 +27,42 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import com.google.common.base.Predicate;
 
 public class EntityPolaris extends TragicBoss {
 
-	private EntityAIBase fearGolems = new EntityAIAvoidEntity(this, EntityGolem.class, 6.0F, 1.0D, 1.2D);
+	public static final Predicate golemTarget = new Predicate() {
+		@Override
+		public boolean apply(Object input) {
+			return canApply((Entity) input);
+		}
+		
+		public boolean canApply(Entity entity) {
+			return entity instanceof EntityGolem;
+		}
+	};
+	private EntityAIBase fearGolems = new EntityAIAvoidEntity(this, golemTarget, 6.0F, 1.0D, 1.2D);
 
 	public EntityPolaris(World par1World) {
 		super(par1World);
 		this.setSize(0.5F, 2.075F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 50;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -57,7 +71,7 @@ public class EntityPolaris extends TragicBoss {
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.75D, 32.0F));
 		if (TragicConfig.polarisFearGolems) this.tasks.addTask(1, fearGolems);
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, null));
 	}
 
 	@Override
@@ -257,7 +271,7 @@ public class EntityPolaris extends TragicBoss {
 			if (rand.nextBoolean() && par1Entity instanceof EntityLivingBase) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 30));
 			if (TragicConfig.polarisTeleport) this.teleportRandomly();
 
-			ArrayList<EntityPolaris> list = (ArrayList<EntityPolaris>) this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+			ArrayList<EntityPolaris> list = (ArrayList<EntityPolaris>) this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
 			for (int i = 0; i < list.size(); i++)
 			{
 				if (list.get(i) != this && !this.isClone() && list.get(i).isClone())
@@ -279,7 +293,7 @@ public class EntityPolaris extends TragicBoss {
 	}
 
 	@Override
-	public void fall(float par1){}
+	public void fall(float dist, float multi){}
 
 	protected boolean teleportRandomly()
 	{
@@ -291,7 +305,7 @@ public class EntityPolaris extends TragicBoss {
 
 	protected boolean teleportToEntity(Entity par1Entity)
 	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		Vec3 vec3 = new Vec3(this.posX - par1Entity.posX, this.getEntityBoundingBox().minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
 		vec3 = vec3.normalize();
 		double d0 = 16.0D;
 		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
@@ -315,13 +329,13 @@ public class EntityPolaris extends TragicBoss {
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
 
-		if (this.worldObj.blockExists(i, j, k))
+		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4))
 		{
 			boolean flag1 = false;
 
 			while (!flag1 && j > 0)
 			{
-				Block block = this.worldObj.getBlock(i, j - 1, k);
+				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
 
 				if (block.getMaterial().blocksMovement())
 				{
@@ -338,7 +352,7 @@ public class EntityPolaris extends TragicBoss {
 			{
 				this.setPosition(this.posX, this.posY, this.posZ);
 
-				if (this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox))
+				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
 				{
 					flag = true;
 				}
@@ -364,14 +378,14 @@ public class EntityPolaris extends TragicBoss {
 				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
 				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
+				this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
 			}
 			this.worldObj.playSoundEffect(d3, d4, d5, TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.clone" : "mob.endermen.portal", 0.4F, 1.0F);
 			this.playSound(TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.clone" : "mob.endermen.portal", 0.4F, 1.0F);
 
 			if (rand.nextBoolean() && this.getHealth() <= this.getMaxHealth() / 2 && TragicConfig.polarisAfterImage)
 			{
-				ArrayList<Entity> list = (ArrayList<Entity>) this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+				ArrayList<Entity> list = (ArrayList<Entity>) this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
 				for (int mow = 0; mow < list.size(); mow++)
 				{
 					if (list.get(mow) == this) list.remove(mow);
@@ -385,7 +399,7 @@ public class EntityPolaris extends TragicBoss {
 					polar.setClone();
 					this.worldObj.spawnEntityInWorld(polar);
 					if (this.getAttackTarget() != null) polar.setAttackTarget(this.getAttackTarget());
-					polar.onSpawnWithEgg(null);
+					polar.func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos(d3, d4, d5)), null);
 				}
 			}
 			return true;
@@ -396,10 +410,10 @@ public class EntityPolaris extends TragicBoss {
 	public void setInWeb() {}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote && !this.worldObj.isDaytime() && this.getDaytime()) this.setDaytime(false);
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override

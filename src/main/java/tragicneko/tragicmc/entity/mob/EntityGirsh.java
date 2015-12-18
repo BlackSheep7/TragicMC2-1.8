@@ -9,12 +9,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.projectile.EntityEnergyCharge;
 
 public class EntityGirsh extends TragicMob {
@@ -28,12 +27,6 @@ public class EntityGirsh extends TragicMob {
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
-	}
-
-	@Override
-	protected boolean isAIEnabled() 
-	{
-		return true;
 	}
 
 	@Override
@@ -75,11 +68,6 @@ public class EntityGirsh extends TragicMob {
 		if (this.worldObj.isRemote) return;
 
 		if (this.ticksExisted % 15 == 0 && rand.nextInt(4) == 0) this.fireEnergyCharges();
-		
-		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
-		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 	}
 
 	@Override
@@ -96,7 +84,7 @@ public class EntityGirsh extends TragicMob {
 	public void pullEntities()
 	{
 		double d0 = 16.0D;
-		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d0, d0, d0));
+		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(d0, d0, d0));
 		Iterator iterator = list.iterator();
 
 		while (iterator.hasNext())
@@ -174,10 +162,10 @@ public class EntityGirsh extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public String getLivingSound()
@@ -210,7 +198,7 @@ public class EntityGirsh extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 
 	}

@@ -19,6 +19,7 @@ import net.minecraft.item.ItemBow;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -40,7 +41,7 @@ public class EntityMinotaur extends TragicMob {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.65D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}
 
 	@Override
@@ -81,12 +82,6 @@ public class EntityMinotaur extends TragicMob {
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -250,7 +245,7 @@ public class EntityMinotaur extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.minotaur.hoof", 0.1F + rand.nextFloat() * 0.05F, 0.4F);
 	}

@@ -15,6 +15,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
@@ -33,15 +34,13 @@ public class EntityGragul extends TragicMob {
 		this.setSize(0.225F, 0.495F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 10;
-		this.getNavigator().setAvoidsWater(true);
-		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 		this.isImmuneToFire = true;
 	}
 
@@ -55,12 +54,6 @@ public class EntityGragul extends TragicMob {
 	public boolean canRenderOnFire()
 	{
 		return false;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -116,7 +109,7 @@ public class EntityGragul extends TragicMob {
 
 		if (TragicConfig.gragulDamageReduction)
 		{
-			int dif = this.worldObj.difficultySetting.getDifficultyId();
+			int dif = this.worldObj.getDifficulty().getDifficultyId();
 
 			if (dif == 3)
 			{
@@ -158,7 +151,7 @@ public class EntityGragul extends TragicMob {
 
 			if (result)
 			{
-				if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
+				if (this.worldObj.getDifficulty() == EnumDifficulty.HARD)
 				{
 					if (rand.nextInt(4) == 0 && TragicConfig.allowLeadFoot) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
 
@@ -182,7 +175,7 @@ public class EntityGragul extends TragicMob {
 	public void heal(float f) {}
 
 	@Override
-	public void fall(float f) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
 	public String getLivingSound()
@@ -215,7 +208,7 @@ public class EntityGragul extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 
 	}

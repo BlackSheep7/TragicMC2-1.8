@@ -9,12 +9,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class EntityProjectile extends Entity
 {
@@ -50,7 +51,7 @@ public abstract class EntityProjectile extends Entity
 	@SideOnly(Side.CLIENT)
 	public boolean isInRangeToRenderDist(double par1)
 	{
-		double d1 = this.boundingBox.getAverageEdgeLength() * 4.0D;
+		double d1 = this.getEntityBoundingBox().getAverageEdgeLength() * 4.0D;
 		d1 *= 64.0D;
 		return par1 < d1 * d1;
 	}
@@ -74,7 +75,7 @@ public abstract class EntityProjectile extends Entity
 		this.setSize(1.0F, 1.0F);
 		this.setLocationAndAngles(par2EntityLivingBase.posX, par2EntityLivingBase.posY, par2EntityLivingBase.posZ, par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
 		this.setPosition(this.posX, this.posY, this.posZ);
-		this.yOffset = 0.0F;
+		//this.yOffset = 0.0F;
 		this.motionX = this.motionY = this.motionZ = 0.0D;
 		par3 += this.rand.nextGaussian() * 0.4D;
 		par5 += this.rand.nextGaussian() * 0.4D;
@@ -125,19 +126,19 @@ public abstract class EntityProjectile extends Entity
 				++this.ticksInAir;
 			}
 
-			Vec3 vec3 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-			Vec3 vec31 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+			Vec3 vec3 = new Vec3(this.posX, this.posY, this.posZ);
+			Vec3 vec31 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 			MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks(vec3, vec31);
-			vec3 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-			vec31 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+			vec3 = new Vec3(this.posX, this.posY, this.posZ);
+			vec31 = new Vec3(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
 			if (movingobjectposition != null)
 			{
-				vec31 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+				vec31 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
 			}
 
 			Entity entity = null;
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 			double d0 = 0.0D;
 
 			for (int i = 0; i < list.size(); ++i)
@@ -147,7 +148,7 @@ public abstract class EntityProjectile extends Entity
 				if (entity1.canBeCollidedWith() && (!entity1.isEntityEqual(this.shootingEntity) || this.ticksInAir >= 25))
 				{
 					float f = 0.3F;
-					AxisAlignedBB axisalignedbb = entity1.boundingBox.expand(f, f, f);
+					AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f, f, f);
 					MovingObjectPosition movingobjectposition1 = axisalignedbb.calculateIntercept(vec3, vec31);
 
 					if (movingobjectposition1 != null)
@@ -208,7 +209,7 @@ public abstract class EntityProjectile extends Entity
 				for (int j = 0; j < 4; ++j)
 				{
 					float f3 = 0.25F;
-					this.worldObj.spawnParticle("bubble", this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
+					this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
 				}
 
 				f2 = 0.8F;
@@ -227,8 +228,8 @@ public abstract class EntityProjectile extends Entity
 		}
 	}
 
-	protected String getParticleString() {
-		return "smoke";
+	protected EnumParticleTypes getParticleString() {
+		return EnumParticleTypes.SMOKE_NORMAL;
 	}
 
 	/**
@@ -273,9 +274,9 @@ public abstract class EntityProjectile extends Entity
 		if (par1NBTTagCompound.hasKey("direction", 9))
 		{
 			NBTTagList nbttaglist = par1NBTTagCompound.getTagList("direction", 6);
-			this.motionX = nbttaglist.func_150309_d(0);
-			this.motionY = nbttaglist.func_150309_d(1);
-			this.motionZ = nbttaglist.func_150309_d(2);
+			this.motionX = nbttaglist.getDouble(0);
+			this.motionY = nbttaglist.getDouble(1);
+			this.motionZ = nbttaglist.getDouble(2);
 		}
 		else
 		{
@@ -304,7 +305,7 @@ public abstract class EntityProjectile extends Entity
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		if (this.isEntityInvulnerable() || this.worldObj.isRemote)
+		if (this.isEntityInvulnerable(par1DamageSource) || this.worldObj.isRemote)
 		{
 			return false;
 		}
@@ -347,13 +348,6 @@ public abstract class EntityProjectile extends Entity
 
 	public boolean canBeDeflected() {
 		return false;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public float getShadowSize()
-	{
-		return 0.0F;
 	}
 
 	/**

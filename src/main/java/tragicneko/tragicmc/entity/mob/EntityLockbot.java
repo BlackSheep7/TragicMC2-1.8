@@ -8,6 +8,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
@@ -25,16 +26,9 @@ public class EntityLockbot extends TragicMob {
 		this.setSize(0.625F, 0.725F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.selec));
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.nonSynapseTarget));
 	}
 
 	@Override
@@ -98,10 +92,10 @@ public class EntityLockbot extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public String getLivingSound()
@@ -134,7 +128,7 @@ public class EntityLockbot extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 
 	}

@@ -25,7 +25,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
@@ -60,8 +62,8 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, null));
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true, false, null));
 		this.isImmuneToFire = true;
 		this.experienceValue = 36;
 	}
@@ -276,7 +278,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 		if (this.worldObj.isRemote)
 		{
-			String s = this.getHypermode() ? "reddust" : "happyVillager";
+			EnumParticleTypes s = this.getHypermode() ? EnumParticleTypes.REDSTONE : EnumParticleTypes.VILLAGER_HAPPY;
 
 			this.aegarCrystal.worldObj.spawnParticle(s, this.aegarCrystal.posX + rand.nextDouble() - rand.nextDouble(), this.aegarCrystal.posY  + rand.nextDouble() * this.aegarCrystal.height,
 					this.aegarCrystal.posZ + rand.nextDouble() - rand.nextDouble(),
@@ -288,7 +290,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 			for (int i = 0; i < 4; i++)
 			{
-				this.worldObj.spawnParticle("mobSpellAmbient", this.posX + (rand.nextDouble() - rand.nextDouble()) * 0.55, this.posY + 0.25 + rand.nextDouble(), this.posZ + (rand.nextDouble() - rand.nextDouble()) * 0.55,
+				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB_AMBIENT, this.posX + (rand.nextDouble() - rand.nextDouble()) * 0.55, this.posY + 0.25 + rand.nextDouble(), this.posZ + (rand.nextDouble() - rand.nextDouble()) * 0.55,
 						0.0, 0.0, 0.0);
 			}
 
@@ -318,7 +320,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 					double d5 = d1 / f4 * d3 * 0.100000011920929D + d8 * 0.10000000298023224D;
 					double d6 = d2 / f4 * d3 * 0.100000011920929D + d9 * 0.10000000298023224D;
 
-					this.worldObj.spawnParticle("reddust", d0, d1, d2, d4 * 2.5D, d5 * 2.5D, d6 * 2.5D);
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, d0, d1, d2, d4 * 2.5D, d5 * 2.5D, d6 * 2.5D);
 				}
 			}
 
@@ -326,7 +328,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 			{
 				for (int i = 0; i < 3; i++)
 				{
-					this.worldObj.spawnParticle("flame", this.posX + (rand.nextDouble() - rand.nextDouble()) * 0.55, this.posY + 2.25 + rand.nextDouble(), this.posZ + (rand.nextDouble() - rand.nextDouble()) * 0.55,
+					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + (rand.nextDouble() - rand.nextDouble()) * 0.55, this.posY + 2.25 + rand.nextDouble(), this.posZ + (rand.nextDouble() - rand.nextDouble()) * 0.55,
 							0.0, 0.0, 0.0);
 				}
 			}
@@ -343,7 +345,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 					for (int l = 0; l < 4; l++)
 					{
 						double d3 = 0.23D * l + (rand.nextDouble() * 0.25D);
-						this.worldObj.spawnParticle("flame", this.aegarCannon.posX + d0 * d3, this.aegarCannon.posY + d1 * d3 + 1.25D, this.aegarCannon.posZ + d2 * d3, 0.0, 0.0, 0.0);
+						this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.aegarCannon.posX + d0 * d3, this.aegarCannon.posY + d1 * d3 + 1.25D, this.aegarCannon.posZ + d2 * d3, 0.0, 0.0, 0.0);
 					}
 				}
 			}
@@ -352,7 +354,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 			{
 				for (int i = 0; i < 12; i++)
 				{
-					this.worldObj.spawnParticle("smoke", this.posX + (rand.nextDouble() - rand.nextDouble()) * 1.25, this.posY + rand.nextDouble() * this.height, this.posZ + (rand.nextDouble() - rand.nextDouble()) * 1.25,
+					this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX + (rand.nextDouble() - rand.nextDouble()) * 1.25, this.posY + rand.nextDouble() * this.height, this.posZ + (rand.nextDouble() - rand.nextDouble()) * 1.25,
 							0.0, rand.nextDouble() * 2.0 + 1.0, 0.0);
 				}
 			}
@@ -398,7 +400,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 			if (this.getShockwaveTicks() == 5)
 			{
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3.0F + 2.0F * rand.nextFloat(), this.getMobGriefing());
-				this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(6.0D, 6.0D , 6.0D)));
+				this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(6.0D, 6.0D , 6.0D)));
 			}
 
 			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) > 12.0F && this.getHypermode() && rand.nextInt(128) == 0 && TragicConfig.aegarMortors) this.setMortorTicks(100);
@@ -453,7 +455,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 	}
 
 	@Override
-	protected void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
 	public void addPotionEffect(PotionEffect effect) {}
@@ -631,7 +633,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 
 	}

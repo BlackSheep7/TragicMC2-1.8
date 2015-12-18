@@ -41,12 +41,6 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 	}
 
 	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -76,7 +70,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 				&& this.canEntityBeSeen(this.getAttackTarget()) && this.timeSinceFiring >= 60 && TragicConfig.kragulSpiritCasts)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+			double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 
 			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.75F;
@@ -104,7 +98,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 
 		if (result)
 		{
-			if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
+			if (this.worldObj.getDifficulty() == EnumDifficulty.HARD)
 			{
 				if (rand.nextInt(4) == 0)
 				{

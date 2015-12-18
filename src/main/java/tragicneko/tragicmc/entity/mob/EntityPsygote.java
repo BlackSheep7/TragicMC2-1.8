@@ -21,7 +21,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
@@ -39,21 +41,14 @@ public class EntityPsygote extends TragicMob {
 		this.setSize(0.52F, 1.45F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 10;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
-		this.tasks.addTask(0, new EntityAIAvoidEntity(this, EntityPlayer.class, 8.0F, 1.6D, 2.2D));
+		this.tasks.addTask(0, new EntityAIAvoidEntity(this, playerTarget, 8.0F, 1.6D, 2.2D));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}
 
 	@Override
@@ -135,7 +130,7 @@ public class EntityPsygote extends TragicMob {
 		{
 			for (int l = 0; l < 2; ++l)
 			{
-				this.worldObj.spawnParticle("smoke",
+				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
 						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 						this.posY + this.rand.nextDouble() * this.height,
 						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
@@ -145,7 +140,7 @@ public class EntityPsygote extends TragicMob {
 
 				if (this.getSwitchTicks() > 0)
 				{
-					this.worldObj.spawnParticle("portal",
+					this.worldObj.spawnParticle(EnumParticleTypes.PORTAL,
 							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 							this.posY + this.rand.nextDouble() + this.height,
 							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
@@ -213,7 +208,7 @@ public class EntityPsygote extends TragicMob {
 
 			if (mp.capabilities.isCreativeMode) return;
 
-			if (mp.playerNetServerHandler.func_147362_b().isChannelOpen() && this.worldObj == mp.worldObj)
+			if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && this.worldObj == mp.worldObj)
 			{
 				if (mp.isRiding()) mp.mountEntity(null);
 
@@ -229,7 +224,7 @@ public class EntityPsygote extends TragicMob {
 					double d7 = x + ((x2) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 					double d8 = y + ((y2) - y) * d6 + this.rand.nextDouble() * this.height;
 					double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-					this.worldObj.spawnParticle("smoke", d7, d8, d9, f, f1, f2);
+					this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d7, d8, d9, f, f1, f2);
 				}
 				mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 				mp.fallDistance = 0.0F;
@@ -252,7 +247,7 @@ public class EntityPsygote extends TragicMob {
 				double d7 = x + ((x2) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				double d8 = y + ((y2) - y) * d6 + this.rand.nextDouble() * this.height;
 				double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
+				this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
 			}
 
 			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "mob.endermen.portal", 0.4F, 0.4F);
@@ -292,7 +287,7 @@ public class EntityPsygote extends TragicMob {
 	}
 
 	@Override
-	protected void fall(float f) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
@@ -363,7 +358,7 @@ public class EntityPsygote extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		
 	}

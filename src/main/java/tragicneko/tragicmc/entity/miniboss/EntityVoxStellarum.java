@@ -13,15 +13,18 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 
@@ -140,7 +143,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 
 			if (this.isSpinning())
 			{
-				this.worldObj.spawnParticle("crit",
+				this.worldObj.spawnParticle(EnumParticleTypes.CRIT,
 						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 						this.posY + this.rand.nextDouble() * this.height,
 						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
@@ -301,10 +304,10 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote) this.setTextureID((byte) rand.nextInt(8));
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -369,9 +372,9 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
-		//this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
+		
 	}
 	
 	@Override

@@ -5,7 +5,6 @@ import static tragicneko.tragicmc.TragicConfig.ireStats;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -13,28 +12,33 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicAchievements;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
-import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.projectile.EntityIreEnergy;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import com.google.common.base.Predicate;
 
 public class EntityIre extends TragicMob {
 
 	public static byte ireTick; //ticks per world tick, each Ire will either heal or attack at this time and take that opportunity to update their target
 	public static short ireNetSize; //updated by each Ire currently being updated in the world, whatever Ire has the most Ire near them will be the value set per Ire tick
 
-	public static final IEntitySelector selec = new IEntitySelector() {
+	public static final Predicate nonLightEntityTarget = new Predicate() {
 		@Override
-		public boolean isEntityApplicable(Entity entity) {
+		public boolean apply(Object o) {
+			return canApply((Entity) o);
+		}
+		public boolean canApply(Entity entity) {
 			return !(entity instanceof EntityIre) && !(entity instanceof EntityArchangel) && !(entity instanceof EntityApis);
 		}
 	};
@@ -46,15 +50,9 @@ public class EntityIre extends TragicMob {
 		this.experienceValue = 5;
 		this.tasks.addTask(4, new EntityAIWatchTarget(this, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, selec));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, nonLightEntityTarget));
 	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
+	
 	@Override
 	protected void applyEntityAttributes()
 	{
@@ -145,11 +143,11 @@ public class EntityIre extends TragicMob {
 				for (int l = 0; l < 4; l++)
 				{
 					double d3 = 0.23D * l + (rand.nextDouble() * 0.25D);
-					this.worldObj.spawnParticle("crit", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 				}
 			}
 
-			List<EntityIre> list = this.worldObj.getEntitiesWithinAABB(EntityIre.class, this.boundingBox.expand(16.0, 16.0, 16.0));
+			List<EntityIre> list = this.worldObj.getEntitiesWithinAABB(EntityIre.class, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 			for (EntityIre ire : list)
 			{
 				if (ire != this && ire.canEntityBeSeen(this))
@@ -161,7 +159,7 @@ public class EntityIre extends TragicMob {
 					for (int l = 0; l < 4; l++)
 					{
 						double d3 = 0.23D * l + (rand.nextDouble() * 0.25D);
-						this.worldObj.spawnParticle("crit", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+						this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 					}
 				}
 			}
@@ -179,7 +177,7 @@ public class EntityIre extends TragicMob {
 					if (TragicConfig.ireEnergyBurst)
 					{
 						double d0 = this.getAttackTarget().posX - this.posX;
-						double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+						double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 						double d2 = this.getAttackTarget().posZ - this.posZ;
 
 						EntityIreEnergy energy = new EntityIreEnergy(this.worldObj, this, d0, d1, d2);
@@ -207,7 +205,7 @@ public class EntityIre extends TragicMob {
 			this.setTargetId(0);
 		}
 
-		List<EntityIre> list = this.worldObj.getEntitiesWithinAABB(EntityIre.class, this.boundingBox.expand(16.0, 16.0, 16.0));
+		List<EntityIre> list = this.worldObj.getEntitiesWithinAABB(EntityIre.class, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 		short count = 0;
 		for (EntityIre ire : list)
 		{
@@ -215,18 +213,13 @@ public class EntityIre extends TragicMob {
 		}
 
 		if (count > ireNetSize) ireNetSize = count;
-
-		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
-		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 	}
 
 	@Override
-	public void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public boolean canAttackClass(Class oclass)
@@ -265,7 +258,7 @@ public class EntityIre extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 
 	}

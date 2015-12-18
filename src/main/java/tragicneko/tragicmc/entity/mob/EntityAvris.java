@@ -1,9 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.avrisStats;
-import static tragicneko.tragicmc.TragicMC.rand;
 
-import java.util.Collection;
 import java.util.List;
 
 import net.minecraft.enchantment.Enchantment;
@@ -22,39 +20,45 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.items.ItemChallenge;
-import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
+
+import com.google.common.base.Predicate;
 
 public class EntityAvris extends TragicMob {
 
 	public int rarity = 1;
 	private int timeAlive = 0;
+	
+	public static final Predicate golemTarget = new Predicate() {
+		@Override
+		public boolean apply(Object input) {
+			return canApply((Entity) input);
+		}
+		
+		public boolean canApply(Entity entity) {
+			return entity instanceof EntityGolem;
+		}
+	};
 
 	public EntityAvris(World par1World) {
 		super(par1World);
 		this.setSize(1.26F, 2.76F);
 		this.experienceValue = 3;
-		this.getNavigator().setAvoidsWater(true);
-		this.getNavigator().setCanSwim(true);
 		this.tasks.addTask(0, new EntityAIPanic(this, 1.2D));
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityPlayer.class, 12.0F, 0.6D, 1.2D));
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityGolem.class, 12.0F, 0.8D, 1.4D));
+		this.tasks.addTask(1, new EntityAIAvoidEntity(this, playerTarget, 12.0F, 0.6D, 1.2D));
+		this.tasks.addTask(1, new EntityAIAvoidEntity(this, golemTarget, 12.0F, 0.8D, 1.4D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.85D));
 		this.stepHeight = 1.0F;
 		this.isImmuneToFire = true;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -73,14 +77,14 @@ public class EntityAvris extends TragicMob {
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				this.worldObj.spawnParticle("flame", this.posX + ((rand.nextDouble() - rand.nextDouble()) * this.width), this.posY + rand.nextDouble() * this.height,
+				this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + ((rand.nextDouble() - rand.nextDouble()) * this.width), this.posY + rand.nextDouble() * this.height,
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * this.width), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
 			}
 		}
 
 		if (!this.worldObj.isRemote && this.ticksExisted % 4 == 0 && this.timeAlive >= 2400 - this.rarity * 400 && this.getHealth() > 0F)
 		{
-			List<Entity> entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(64.0, 64.0, 64.0));
+			List<Entity> entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0));
 			boolean flag = true;
 			for (Entity e : entities)
 			{
@@ -95,7 +99,7 @@ public class EntityAvris extends TragicMob {
 
 				if (TragicConfig.avrisAnnouncements)
 				{
-					List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox.expand(48.0, 48.0, 48.0));
+					List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(48.0, 48.0, 48.0));
 
 					for (EntityPlayerMP mp : list)
 						mp.addChatMessage(new ChatComponentText("The Avris has eluded pursuers!"));
@@ -112,7 +116,7 @@ public class EntityAvris extends TragicMob {
 		{
 			if (TragicConfig.avrisAnnouncements)
 			{
-				List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox.expand(48.0, 48.0, 48.0));
+				List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(48.0, 48.0, 48.0));
 
 				for (EntityPlayerMP mp : list)
 					mp.addChatMessage(new ChatComponentText("The Avris has been slain!"));
@@ -139,14 +143,14 @@ public class EntityAvris extends TragicMob {
 			{
 				if (rand.nextInt(100) <= TragicConfig.commonDropRate + (x * 4))
 				{
-					ItemStack drop = ((EntityDrop) WeightedRandom.getRandomItem(rand, this.getDropsFromRarity())).getStack();
+					ItemStack drop = ((EntityDrop) WeightedRandom.getRandomItem(rand, Arrays.asList(this.getDropsFromRarity()))).getStack();
 					if (drop != null) this.entityDropItem(drop.copy(), 0.4F);
 					drops++;
 				}
 
 				if (this.recentlyHit > 0 && rand.nextInt(100) <= TragicConfig.rareDropRate + x)
 				{
-					ItemStack drop = ((EntityDrop) WeightedRandom.getRandomItem(rand, this.getDropsFromRarity())).getStack();
+					ItemStack drop = ((EntityDrop) WeightedRandom.getRandomItem(rand, Arrays.asList(this.getDropsFromRarity()))).getStack();
 					if (drop != null) this.entityDropItem(drop.copy(), 0.4F);
 					drops++;
 				}
@@ -178,7 +182,7 @@ public class EntityAvris extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
@@ -186,13 +190,13 @@ public class EntityAvris extends TragicMob {
 
 			if (TragicConfig.avrisAnnouncements)
 			{
-				List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox.expand(48.0, 48.0, 48.0));
+				List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(48.0, 48.0, 48.0));
 
 				for (EntityPlayerMP mp : list)
 					mp.addChatMessage(new ChatComponentText("An Avris has appeared nearby!"));
 			}
 		}
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
@@ -51,11 +51,11 @@ public class EntityDimensionalAnomaly extends Entity {
 		{
 			for (int i = 0; i < 8; i++)
 			{
-				this.worldObj.spawnParticle("reddust", this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble() * this.height,
+				this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble() * this.height,
 						this.posZ + rand.nextDouble() - rand.nextDouble(), rand.nextFloat() * 2.25F, rand.nextFloat() * 2.25F, rand.nextFloat() * 2.25F);
 			}
 
-			if (this.ticksExisted >= this.getTimeToLive()) for (byte b = 0; b < 32; b++) this.worldObj.spawnParticle("smoke", this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble() * this.height,
+			if (this.ticksExisted >= this.getTimeToLive()) for (byte b = 0; b < 32; b++) this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble() * this.height,
 					this.posZ + rand.nextDouble() - rand.nextDouble(), rand.nextDouble() - rand.nextDouble(), rand.nextDouble() - rand.nextDouble(), rand.nextDouble() - rand.nextDouble());
 			return;
 		}
@@ -76,7 +76,7 @@ public class EntityDimensionalAnomaly extends Entity {
 
 		if (TragicConfig.allowDivinity && this.ticksExisted % 5 == 0)
 		{
-			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(1.0, 1.0, 1.0));
+			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0, 1.0, 1.0));
 			for (EntityLivingBase e : list)
 			{
 				if (e.getCreatureAttribute() != TragicEntities.Synapse || e instanceof EntityPlayer)

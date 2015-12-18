@@ -5,14 +5,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 
@@ -100,7 +101,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 
 		for (int l = 0; l < 3; ++l)
 		{
-			this.worldObj.spawnParticle("witchMagic",
+			this.worldObj.spawnParticle(EnumParticleTypes.SPELL_WITCH,
 					this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 					this.posY + this.rand.nextDouble() * this.height,
 					this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
@@ -116,7 +117,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		if (!TragicConfig.jabbaProjectiles) return;
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
-		double d1 = entity.boundingBox.minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
+		double d1 = entity.getEntityBoundingBox().minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
 		double d2 = entity.posZ - this.posZ;
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(entity)) * 0.5F;

@@ -3,7 +3,6 @@ package tragicneko.tragicmc.entity.mob;
 import static tragicneko.tragicmc.TragicConfig.goldenPirahStats;
 import static tragicneko.tragicmc.TragicConfig.pirahStats;
 import net.minecraft.block.material.Material;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -17,13 +16,28 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 
+import com.google.common.base.Predicate;
+
 public class EntityPirah extends TragicMob {
+	
+	public static final Predicate nonSpeciesTarget = new Predicate() {
+		@Override
+		public boolean apply(Object input) {
+			return canApply((Entity) input);
+		}
+		
+		public boolean canApply(Entity entity) {
+			return !(entity instanceof EntityPirah);
+		}
+	};
 
 	public EntityPirah(World par1World) {
 		super(par1World);
@@ -34,13 +48,7 @@ public class EntityPirah extends TragicMob {
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, false, new IEntitySelector() {
-			@Override
-			public boolean isEntityApplicable(Entity par1Entity)
-			{
-				return par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityPirah);
-			}
-		}));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, false, nonSpeciesTarget));
 	}
 
 	@Override
@@ -65,12 +73,6 @@ public class EntityPirah extends TragicMob {
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -256,7 +258,7 @@ public class EntityPirah extends TragicMob {
 
 				if (this.ticksExisted % 20 == 0 && this.getAirTicks() == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
 				if (this.ticksExisted % 4 == 0 && this.motionY <= 0.0D &&
-						World.doesBlockHaveSolidTopSurface(this.worldObj, (int) this.posX, MathHelper.ceiling_double_int(this.posY) - 1, (int) this.posZ)) this.motionY = 0.35D + rand.nextDouble() * 0.25D;
+						World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int) this.posX, MathHelper.ceiling_double_int(this.posY) - 1, (int) this.posZ))) this.motionY = 0.35D + rand.nextDouble() * 0.25D;
 				this.motionX = (rand.nextDouble() - rand.nextDouble());
 				this.motionZ = (rand.nextDouble() - rand.nextDouble());
 
@@ -291,11 +293,11 @@ public class EntityPirah extends TragicMob {
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		return this.posY > 35.0D && this.posY < 65.0D && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && this.isInsideOfMaterial(this.getMaterial());
+		return this.posY > 35.0D && this.posY < 65.0D && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && this.isInsideOfMaterial(this.getMaterial());
 	}
 
 	@Override
-	protected void fall(float f) {
+	public void fall(float dist, float multi) {
 		if (this.worldObj.isRemote) return;
 		if (!this.isInsideOfMaterial(getMaterial()))
 		{
@@ -323,7 +325,7 @@ public class EntityPirah extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
@@ -334,7 +336,7 @@ public class EntityPirah extends TragicMob {
 			if (i == 7) i = (byte) rand.nextInt(8); //make the 7 id less common
 			this.setTextureID(i);
 		}
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override

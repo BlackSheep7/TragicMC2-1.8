@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -30,18 +31,12 @@ public class EntityParasmite extends TragicMob {
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, null));
 	}
 
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -83,7 +78,7 @@ public class EntityParasmite extends TragicMob {
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
-
+		/*
 		if (this.ridingEntity != null)
 		{
 			this.yOffset = -0.2F;
@@ -91,7 +86,7 @@ public class EntityParasmite extends TragicMob {
 		else
 		{
 			this.yOffset = 0F;
-		}
+		} */
 
 		if (this.worldObj.isRemote) return;
 
@@ -145,7 +140,7 @@ public class EntityParasmite extends TragicMob {
 
 			if (TragicConfig.parasmiteLeech)
 			{
-				EntityParasmite smite = (EntityParasmite) this.worldObj.findNearestEntityWithinAABB(EntityParasmite.class, this.boundingBox.expand(2.0, 2.0, 2.0), this);
+				EntityParasmite smite = (EntityParasmite) this.worldObj.findNearestEntityWithinAABB(EntityParasmite.class, this.getEntityBoundingBox().expand(2.0, 2.0, 2.0), this);
 				if (smite != null && smite.riddenByEntity == null && this.ridingEntity == null) this.mountEntity(smite);
 			}
 		}
@@ -154,10 +149,10 @@ public class EntityParasmite extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
@@ -209,9 +204,9 @@ public class EntityParasmite extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
-		//this.playSound("tragicmc:mob.sirv.snap", 0.45F, 1.0F);
+		
 	}
 
 	@Override

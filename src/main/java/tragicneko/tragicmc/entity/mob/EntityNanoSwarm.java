@@ -13,7 +13,9 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.item.ItemBow;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
@@ -33,7 +35,7 @@ public class EntityNanoSwarm extends TragicMob {
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.selec));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.nonSynapseTarget));
 	}
 
 	@Override
@@ -60,12 +62,6 @@ public class EntityNanoSwarm extends TragicMob {
 	}
 
 	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
 	protected boolean isChangeAllowed() {
 		return false;
 	}
@@ -79,7 +75,7 @@ public class EntityNanoSwarm extends TragicMob {
 		{
 			for (int l = 0; l < 2; ++l)
 			{
-				this.worldObj.spawnParticle("enchantmenttable",
+				this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE,
 						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 						this.posY + this.rand.nextDouble() * this.height + 0.15D,
 						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
@@ -140,10 +136,10 @@ public class EntityNanoSwarm extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public boolean canAttackClass(Class oclass)
@@ -182,7 +178,7 @@ public class EntityNanoSwarm extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		
 	}

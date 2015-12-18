@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -20,8 +19,11 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
@@ -36,6 +38,8 @@ import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
+import com.google.common.base.Predicate;
+
 public class EntityOverlordCombat extends TragicBoss {
 
 	private boolean hasLeaped;
@@ -43,9 +47,13 @@ public class EntityOverlordCombat extends TragicBoss {
 	private int unstableBuffer;
 	private int reflectionBuffer;
 
-	public static final IEntitySelector selec = new IEntitySelector() {
+	public static final Predicate nonSynapseTarget = new Predicate() {
 		@Override
-		public boolean isEntityApplicable(Entity entity) {
+		public boolean apply(Object o) {
+			return canApply((Entity) o);
+		}
+		
+		public boolean canApply(Entity entity) {
 			return entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse;
 		}
 	};
@@ -55,13 +63,12 @@ public class EntityOverlordCombat extends TragicBoss {
 		this.setSize(4.385F, 5.325F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 75;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(8, new EntityAIWatchTarget(this, 64.0F));
 		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 48.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, selec));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, nonSynapseTarget));
 		this.isImmuneToFire = true;
 	}
 
@@ -78,11 +85,11 @@ public class EntityOverlordCombat extends TragicBoss {
 	}
 
 	@Override
-	public void fall(float f) {
+	public void fall(float dist, float multi) {
 		if (!this.worldObj.isRemote && this.hasLeaped)
 		{
 			this.hasLeaped = false;
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(8.0, 8.0, 8.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(8.0, 8.0, 8.0));
 			for (Entity e : list)
 			{
 				if (e instanceof EntityLivingBase)
@@ -104,7 +111,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wam", 1.8F, 1.0F);
 		}
 
-		if (this.worldObj.isRemote && f > 16.0F)
+		if (this.worldObj.isRemote && dist > 16.0F)
 		{
 			double dr, dr2, dr3, x, y, z;
 			float f0 = 0, f1 = 0, f2 = 0;
@@ -117,7 +124,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				x = dr * 3.25 + this.posX;
 				y = dr2 * 1.25 + this.posY + this.height / 2.0D;
 				z = dr3 * 3.25 + this.posZ;
-				this.worldObj.spawnParticle("cloud", x, y, z, f0, f1, f2);
+				this.worldObj.spawnParticle(EnumParticleTypes.CLOUD, x, y, z, f0, f1, f2);
 			}
 		}
 	}
@@ -139,7 +146,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			core.setStartTransform();
 			this.worldObj.spawnEntityInWorld(core);
 
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 			for (Entity e : list)
 			{
 				if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && e != core)
@@ -149,7 +156,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 
 			if (par1DamageSource.getEntity() instanceof EntityPlayerMP) ((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.overlord3);
-			List<EntityPlayerMP> list2 = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.boundingBox.expand(24.0, 24.0, 24.0));
+			List<EntityPlayerMP> list2 = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(24.0, 24.0, 24.0));
 			if (!list2.isEmpty())
 			{
 				for (EntityPlayerMP mp : list2)
@@ -332,7 +339,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					x = dr * 2.25 + this.posX;
 					y = dr2 * 2.25 + this.posY + this.height / 2.0D;
 					z = dr3 * 2.25 + this.posZ;
-					this.worldObj.spawnParticle("reddust", x, y, z, f, f1, f2);
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, y, z, f, f1, f2);
 				}
 			}
 
@@ -346,7 +353,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					x = dr * 2.25 + this.posX;
 					y = dr2 * 2.25 + this.posY + this.height / 2.0D;
 					z = dr3 * 2.25 + this.posZ;
-					this.worldObj.spawnParticle("cloud", x, y, z, f, f1, f2);
+					this.worldObj.spawnParticle(EnumParticleTypes.CLOUD, x, y, z, f, f1, f2);
 				}
 			}
 
@@ -360,7 +367,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					x = dr * 3.25 + this.posX;
 					y = dr2 * 1.25 + this.posY + this.height / 2.0D;
 					z = dr3 * 3.25 + this.posZ;
-					this.worldObj.spawnParticle("crit", x, y, z, f, f1, f2);
+					this.worldObj.spawnParticle(EnumParticleTypes.CRIT, x, y, z, f, f1, f2);
 				}
 			}
 
@@ -374,7 +381,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					x = dr * 3.25 + this.posX;
 					y = dr2 * 3.25 + this.posY + this.height / 2.0D;
 					z = dr3 * 3.25 + this.posZ;
-					this.worldObj.spawnParticle("reddust", x, y, z, f, f1, f2);
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, y, z, f, f1, f2);
 				}
 			}
 
@@ -388,7 +395,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					x = dr * 3.25 + this.posX;
 					y = dr2 * 3.25 + this.posY + this.height / 2.0D;
 					z = dr3 * 3.25 + this.posZ;
-					this.worldObj.spawnParticle("enchantmenttable", x, y, z, f, f1, f2);
+					this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, y, z, f, f1, f2);
 				}
 
 				f = 0.33F;
@@ -403,7 +410,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					x = dr * 3.25 + this.posX;
 					y = dr2 * 3.25 + this.posY + this.height / 2.0D;
 					z = dr3 * 3.25 + this.posZ;
-					this.worldObj.spawnParticle("reddust", x, y, z, f, f1, f2);
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, y, z, f, f1, f2);
 				}
 			}
 
@@ -465,7 +472,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 			if (rand.nextBoolean() && this.ticksExisted % 10 == 0)
 			{
-				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(8.0, 8.0, 8.0));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(8.0, 8.0, 8.0));
 				for (Entity e : list)
 				{
 					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse)
@@ -494,7 +501,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			this.setUnstableTicks(200 + rand.nextInt(100));
 			this.aggregate = 1;
 
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(8.0, 8.0, 8.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(8.0, 8.0, 8.0));
 			for (Entity e : list)
 			{
 				if (e instanceof EntityLivingBase && TragicConfig.allowHacked && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(20), 0));
@@ -583,9 +590,9 @@ public class EntityOverlordCombat extends TragicBoss {
 				ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
 				for (int[] coords : list)
 				{
-					if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])))
+					if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock()))
 					{
-						this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.OverlordBarrier, 0, 2);
+						this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.OverlordBarrier.getDefaultState(), 2);
 					}
 				}
 			}
@@ -607,17 +614,12 @@ public class EntityOverlordCombat extends TragicBoss {
 			ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
 			for (int[] coords : list)
 			{
-				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])))
+				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock()))
 				{
-					this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.OverlordBarrier, 0, 2);
+					this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.OverlordBarrier.getDefaultState(), 2);
 				}
 			}
 		}
-
-		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
-		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 	}
 
 	@Override
@@ -638,7 +640,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse)// || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
 			{
-				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
+				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 16)
 				{
 					EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
 					swarm.setPosition(this.posX, this.posY, this.posZ);
@@ -674,7 +676,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				entity.motionZ *= 2.24D;
 				entity.motionY += 0.4D;
 
-				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(4.0, 4.0, 4.0));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(4.0, 4.0, 4.0));
 				for (Entity e : list)
 				{
 					if (e instanceof EntityLivingBase && e != entity) e.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
@@ -726,11 +728,11 @@ public class EntityOverlordCombat extends TragicBoss {
 	public void addPotionEffect(PotionEffect pe) {}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		this.setTransforming();
 		this.playLivingSound();
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -764,7 +766,7 @@ public class EntityOverlordCombat extends TragicBoss {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		this.playSound("mob.irongolem.walk", 1.2F, 1.8F);
 	}

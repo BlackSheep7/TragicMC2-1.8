@@ -21,14 +21,16 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.util.WorldHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityPlague extends TragicMob {
 
@@ -37,15 +39,14 @@ public class EntityPlague extends TragicMob {
 		this.setSize(0.625F, 0.725F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 3;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.8D));
 		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.yOffset = 0.425F;
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
+		//this.yOffset = 0.425F;
 	}
 
 	@Override
@@ -63,12 +64,6 @@ public class EntityPlague extends TragicMob {
 	public int getTotalArmorValue()
 	{
 		return (int) plagueStats[5];
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -99,7 +94,7 @@ public class EntityPlague extends TragicMob {
 		{
 			for (int l = 0; l < 2; ++l)
 			{
-				this.worldObj.spawnParticle("witchMagic",
+				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_WITCH,
 						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 						this.posY + this.rand.nextDouble() * this.height,
 						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
@@ -126,9 +121,9 @@ public class EntityPlague extends TragicMob {
 
 			if (TragicConfig.allowCorruption && this.ticksExisted % 60 == 0 && TragicConfig.plagueCorruption)
 			{
-				int dif = this.worldObj.difficultySetting.getDifficultyId();
+				int dif = this.worldObj.getDifficulty().getDifficultyId();
 				double d0 = dif == 2 ? 6.0 : (dif == 3 ? 16.0 : 10.0);
-				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(d0, d0, d0));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(d0, d0, d0));
 
 				for (int i = 0; i < list.size(); i++)
 				{
@@ -171,7 +166,7 @@ public class EntityPlague extends TragicMob {
 				}
 			}
 
-			if (this.ticksExisted >= 600 && !this.hasCustomNameTag())
+			if (this.ticksExisted >= 600 && !this.hasCustomName())
 			{
 				this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
 			}
@@ -184,10 +179,10 @@ public class EntityPlague extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1){}
+	public void fall(float dist, float multi){}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	protected boolean isChangeAllowed() {
@@ -225,7 +220,7 @@ public class EntityPlague extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		
 	}

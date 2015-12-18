@@ -28,6 +28,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
@@ -52,7 +53,7 @@ public class EntityTragicNeko extends TragicMob {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		if (!this.isProperDate()) this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.85D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		if (!this.isProperDate()) this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		if (!this.isProperDate()) this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}
 
 	@Override
@@ -148,12 +149,6 @@ public class EntityTragicNeko extends TragicMob {
 	{
 		int pow = this.getFlickTime();
 		this.setFlickTime(--pow);
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -265,7 +260,7 @@ public class EntityTragicNeko extends TragicMob {
 	{
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
-		double d1 = entity.boundingBox.minY + entity.height / 2.0 - this.posY - 0.65;
+		double d1 = entity.getEntityBoundingBox().minY + entity.height / 2.0 - this.posY - 0.65;
 		double d2 = entity.posZ - this.posZ;
 		EntityNekoRocket rocket = new EntityNekoRocket(this.worldObj, this, d0, d1, d2);
 		rocket.shootingEntity = this;
@@ -305,7 +300,7 @@ public class EntityTragicNeko extends TragicMob {
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		if (MathHelper.floor_double(this.boundingBox.minY) <= 63)
+		if (MathHelper.floor_double(this.getEntityBoundingBox().minY) <= 63)
 		{
 			return false;
 		}
@@ -426,7 +421,7 @@ public class EntityTragicNeko extends TragicMob {
 			{
 				if (this.worldObj.isRemote)
 				{
-					for (byte i = 0; i < 16; i++) this.worldObj.spawnParticle("heart", this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble() * this.height,
+					for (byte i = 0; i < 16; i++) this.worldObj.spawnParticle(EnumParticleTypes.HEART, this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble() * this.height,
 							this.posZ + rand.nextDouble() - rand.nextDouble(), 1.0, 1.0, 1.0);
 				}
 				else

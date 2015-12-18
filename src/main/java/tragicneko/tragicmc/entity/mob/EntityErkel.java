@@ -1,8 +1,8 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.erkelStats;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
@@ -15,7 +15,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicConfig;
@@ -29,16 +32,27 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenTaintedSpikes;
 
+import com.google.common.base.Predicate;
+
 public class EntityErkel extends TragicMob {
+	
+	public static final Predicate bossTarget = new Predicate() {
+		@Override
+		public boolean apply(Object o) {
+			return canApply((Entity) o);
+		}
+		
+		public boolean canApply(Entity entity) {
+			return entity instanceof TragicBoss;
+		}
+	};
 
 	public EntityErkel(World par1World) {
 		super(par1World);
 		this.setSize(0.56F, 1.06F);
 		this.experienceValue = 2;
-		this.getNavigator().setAvoidsWater(true);
-		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(0, new EntityAIPanic(this, 0.65D));
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, TragicBoss.class, 12.0F, 0.4D, 0.6D));
+		this.tasks.addTask(1, new EntityAIAvoidEntity(this, bossTarget, 12.0F, 0.4D, 0.6D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.45D));
 	}
@@ -79,7 +93,7 @@ public class EntityErkel extends TragicMob {
 		{
 			for (int i = 0; i < 2; i++)
 			{
-				this.worldObj.spawnParticle("witchMagic", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
+				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_WITCH, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
 			}
 		}
@@ -93,23 +107,15 @@ public class EntityErkel extends TragicMob {
 	}
 
 	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
 		{
-			String s = "mobSpellAmbient";
-
 			for (int i = 0; i < 2; i++)
 			{
-				this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
+				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB_AMBIENT, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
 			}
 		}
@@ -121,9 +127,9 @@ public class EntityErkel extends TragicMob {
 				int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
 				int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 
-				if (this.worldObj.isAirBlock(x, y, z) || this.worldObj.getBlock(x, y, z) instanceof BlockTallGrass)
+				if (this.worldObj.isAirBlock(new BlockPos(x, y, z)) || this.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockTallGrass)
 				{
-					if (Blocks.brown_mushroom.canBlockStay(this.worldObj, x, y, z)) this.worldObj.setBlock(x, y, z, rand.nextBoolean() ? Blocks.brown_mushroom : Blocks.red_mushroom);
+					if (Blocks.brown_mushroom.canBlockStay(this.worldObj, new BlockPos(x, y, z), Blocks.brown_mushroom.getDefaultState())) this.worldObj.setBlockState(new BlockPos(x, y, z), rand.nextBoolean() ? Blocks.brown_mushroom.getDefaultState() : Blocks.red_mushroom.getDefaultState());
 				}
 			}
 		}
@@ -136,9 +142,9 @@ public class EntityErkel extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
-		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos((int) this.posX, 0, (int) this.posZ));
 		byte b = 0;
 		if (biome instanceof BiomeGenAshenHills || biome instanceof BiomeGenTaintedSpikes)
 		{
@@ -166,7 +172,7 @@ public class EntityErkel extends TragicMob {
 		}
 
 		this.setTextureId(b);
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	private void setTextureId(byte b)
@@ -225,12 +231,6 @@ public class EntityErkel extends TragicMob {
 	public float getSoundVolume()
 	{
 		return 0.2F + rand.nextFloat() * 0.1F;
-	}
-
-	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
-	{
-		super.func_145780_a(x, y, z, block);
 	}
 
 	@Override

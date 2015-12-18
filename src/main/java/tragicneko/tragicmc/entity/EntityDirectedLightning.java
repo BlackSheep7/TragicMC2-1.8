@@ -8,6 +8,7 @@ import net.minecraft.entity.effect.EntityWeatherEffect;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -35,15 +36,15 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 		this.user = user;
 		if (!world.isRemote) this.setUserID(user);
 
-		if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doFireTick") && world.difficultySetting.getDifficultyId() >= 2 && world.doChunksNearChunkExist(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z), 10))
+		if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doFireTick") && world.getDifficulty().getDifficultyId() >= 2 && world.isAreaLoaded(new BlockPos(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z)), 10))
 		{
 			int i = MathHelper.floor_double(x);
 			int j = MathHelper.floor_double(y);
 			int k = MathHelper.floor_double(z);
 
-			if (world.getBlock(i, j, k).getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(world, i, j, k))
+			if (world.getBlockState(new BlockPos(i, j, k)).getBlock().getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(world, new BlockPos(i, j, k)))
 			{
-				world.setBlock(i, j, k, Blocks.fire);
+				world.setBlockState(new BlockPos(i, j, k), Blocks.fire.getDefaultState());
 			}
 
 			for (i = 0; i < 4; ++i)
@@ -52,9 +53,9 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 				k = MathHelper.floor_double(y) + this.rand.nextInt(3) - 1;
 				int l = MathHelper.floor_double(z) + this.rand.nextInt(3) - 1;
 
-				if (world.getBlock(j, k, l).getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(world, j, k, l))
+				if (world.getBlockState(new BlockPos(j, k, l)).getBlock().getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(world, new BlockPos(j, k, l)))
 				{
-					world.setBlock(j, k, l, Blocks.fire);
+					world.setBlockState(new BlockPos(j, k, l), Blocks.fire.getDefaultState());
 				}
 			}
 		}
@@ -86,15 +87,15 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 				this.lightningState = 1;
 				this.boltVertex = this.rand.nextLong();
 
-				if (!this.worldObj.isRemote && this.worldObj.getGameRules().getGameRuleBooleanValue("doFireTick") && this.worldObj.doChunksNearChunkExist(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ), 10))
+				if (!this.worldObj.isRemote && this.worldObj.getGameRules().getGameRuleBooleanValue("doFireTick") && this.worldObj.isAreaLoaded(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)), 10))
 				{
 					int i = MathHelper.floor_double(this.posX);
 					int j = MathHelper.floor_double(this.posY);
 					int k = MathHelper.floor_double(this.posZ);
 
-					if (this.worldObj.getBlock(i, j, k).getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(this.worldObj, i, j, k))
+					if (this.worldObj.getBlockState(new BlockPos(i, j, k)).getBlock().getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(this.worldObj, new BlockPos(i, j, k)))
 					{
-						this.worldObj.setBlock(i, j, k, Blocks.fire);
+						this.worldObj.setBlockState(new BlockPos(i, j, k), Blocks.fire.getDefaultState());
 					}
 				}
 			}
@@ -105,7 +106,7 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 			if (!this.worldObj.isRemote)
 			{
 				double d0 = 3.0D;
-				List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, AxisAlignedBB.getBoundingBox(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
+				List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(d0, d0, d0));
 
 				for (int l = 0; l < list.size(); ++l)
 				{

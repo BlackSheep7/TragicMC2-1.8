@@ -2,8 +2,8 @@ package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.poxStats;
 import static tragicneko.tragicmc.TragicConfig.toxStats;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
@@ -19,33 +19,32 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTox extends TragicMob {
 
 	public EntityTox(World par1World) {
 		super(par1World);
 		this.experienceValue = 5;
-		this.getNavigator().setAvoidsWater(true);
-		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 0.05D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}
 
 	@Override
@@ -157,12 +156,6 @@ public class EntityTox extends TragicMob {
 	}
 
 	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -195,7 +188,7 @@ public class EntityTox extends TragicMob {
 
 				if ((this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0) && !this.isImmuneToFire())
 				{
-					this.worldObj.spawnParticle("mobSpellAmbient",
+					this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB_AMBIENT,
 							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 							this.posY + this.rand.nextDouble() * this.height,
 							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
@@ -210,7 +203,7 @@ public class EntityTox extends TragicMob {
 
 				if (this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0)
 				{
-					this.worldObj.spawnParticle("slime",
+					this.worldObj.spawnParticle(EnumParticleTypes.SLIME,
 							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 							this.posY + this.rand.nextDouble() * this.height,
 							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
@@ -323,11 +316,11 @@ public class EntityTox extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
-		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos((int) this.posX, 0, (int) this.posZ));
 		this.setToxType(biome instanceof BiomeGenPaintedForest ? (byte) 1 : (byte) 0);
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -369,6 +362,12 @@ public class EntityTox extends TragicMob {
 	public int getTalkInterval()
 	{
 		return super.getTalkInterval();
+	}
+	
+	@Override
+	protected void playStepSound(BlockPos pos, Block block)
+	{
+		
 	}
 	
 	@Override

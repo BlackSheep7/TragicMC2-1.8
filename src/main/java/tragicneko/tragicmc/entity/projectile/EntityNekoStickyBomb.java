@@ -6,7 +6,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -75,7 +77,7 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 			if (this.worldObj.isRemote)
 			{
 				for (int l = 0; l < 5; ++l) {
-					worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+					worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 				}
 				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
 			}
@@ -89,7 +91,7 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 		{
 			if (this.worldObj.isRemote)
 			{
-				this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+				this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
 			}
 			else
 			{
@@ -99,10 +101,10 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 					double d1 = rand.nextInt(3) + this.posY - 1;
 					double d2 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posZ;
 
-					if (this.worldObj.isAirBlock((int)d0, (int)d1, (int)d2) && rand.nextInt(3) == 0)
+					if (this.worldObj.isAirBlock(new BlockPos((int)d0, (int)d1, (int)d2)) && rand.nextInt(3) == 0)
 					{
 						Block block = Blocks.web;
-						this.worldObj.setBlock((int)d0, (int)d1, (int)d2, block);
+						this.worldObj.setBlockState(new BlockPos((int)d0, (int)d1, (int)d2), block.getDefaultState());
 					}
 				}
 

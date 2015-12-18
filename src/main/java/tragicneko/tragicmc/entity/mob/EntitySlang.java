@@ -19,16 +19,18 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntitySlangLeader;
 
 public class EntitySlang extends TragicMob {
 
-	protected final EntityAIBase runawayAI = new EntityAIAvoidEntity(this, EntityPlayer.class, 10.0F, 0.8D, 1.1D);
-	protected final EntityAIBase targetAI = new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true);
+	protected final EntityAIBase runawayAI = new EntityAIAvoidEntity(this, playerTarget, 10.0F, 0.8D, 1.1D);
+	protected final EntityAIBase targetAI = new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget);
 	protected final EntityAIBase moveAI = new EntityAIMoveTowardsTarget(this, 1.0D, 16.0F);
 	protected ItemStack stolenItem = null;
 	
@@ -39,7 +41,6 @@ public class EntitySlang extends TragicMob {
 		this.setSize(0.775F, 2.05F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 3;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
@@ -49,11 +50,6 @@ public class EntitySlang extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return true;
-	}
-
-	@Override
-	protected boolean isAIEnabled() {
 		return true;
 	}
 
@@ -181,12 +177,12 @@ public class EntitySlang extends TragicMob {
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		if (MathHelper.floor_double(this.boundingBox.minY) >= this.worldObj.provider.getAverageGroundLevel()) return false;
+		if (MathHelper.floor_double(this.getEntityBoundingBox().minY) >= this.worldObj.provider.getAverageGroundLevel()) return false;
 		return super.getCanSpawnHere();
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
@@ -203,7 +199,7 @@ public class EntitySlang extends TragicMob {
 				this.tasks.removeTask(runawayAI);
 			}
 		}
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -237,7 +233,7 @@ public class EntitySlang extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 
 	}

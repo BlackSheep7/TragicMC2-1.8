@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
@@ -57,21 +57,21 @@ public class EntityWarden extends EntityLockbot implements TragicMiniBoss {
 			double d1 = this.getAttackTarget().posY - this.posY;
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 			
-			Vec3 vec31 = Vec3.createVectorHelper(this.posX, this.posY + this.getEyeHeight(), this.posZ);
-			Vec3 vec32 = Vec3.createVectorHelper(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ);
+			Vec3 vec31 = new Vec3(this.posX, this.posY + this.getEyeHeight(), this.posZ);
+			Vec3 vec32 = new Vec3(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ);
 			MovingObjectPosition mop = this.worldObj.rayTraceBlocks(vec31, vec32);
 
 			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
 			{
 				EntityWither wither = new EntityWither(this.worldObj);
-				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 1.0, mop.blockX, mop.blockY + this.getEyeHeight(), mop.blockZ);
+				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 1.0, mop.getBlockPos().getX(), mop.getBlockPos().getY() + this.getEyeHeight(), mop.getBlockPos().getZ());
 				
 				for (int[] coords : list)
 				{
-					Block block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
-					if (!block.isAir(this.worldObj, coords[0], coords[1], coords[2]) && block.canEntityDestroy(this.worldObj, coords[0], coords[1], coords[2], wither))
+					Block block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+					if (!block.isAir(this.worldObj, new BlockPos(coords[0], coords[1], coords[2])) && block.canEntityDestroy(this.worldObj, new BlockPos(coords[0], coords[1], coords[2]), wither))
 					{
-						this.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
+						this.worldObj.destroyBlock(new BlockPos(coords[0], coords[1], coords[2]), true);
 					}
 				}				
 			}

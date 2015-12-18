@@ -75,7 +75,7 @@ public class EntityCrystalMortor extends EntityProjectile {
 
 		if (this.target == null && this.ticksInAir > 5)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(16.0, 16.0, 16.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
 			for (int i = 0; i < list.size(); i++)
 			{

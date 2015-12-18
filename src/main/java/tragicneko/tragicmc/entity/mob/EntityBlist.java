@@ -5,7 +5,6 @@ import static tragicneko.tragicmc.TragicConfig.blistStats;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -15,12 +14,15 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.util.WorldHelper;
+
+import com.google.common.base.Predicate;
 
 public class EntityBlist extends TragicMob {
 
@@ -30,10 +32,25 @@ public class EntityBlist extends TragicMob {
 	private int[] gridCoords;
 	private boolean isAttached = false;
 	
-	private static final IEntitySelector selec = new IEntitySelector() {
+	public static final Predicate nonSpeciesTarget = new Predicate() {
 		@Override
-		public boolean isEntityApplicable(Entity entity) {
+		public boolean apply(Object o) {
+			return canApply((Entity) o);
+		}
+		
+		public boolean canApply(Entity entity) {
 			return !(entity instanceof EntityBlist);
+		}
+	};
+	
+	public static final Predicate animalTarget = new Predicate() {
+		@Override
+		public boolean apply(Object o) {
+			return canApply((Entity) o);
+		}
+		
+		public boolean canApply(Entity entity) {
+			return entity instanceof EntityAnimal;
 		}
 	};
 
@@ -44,19 +61,13 @@ public class EntityBlist extends TragicMob {
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(4, new EntityAIWatchTarget(this, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityAnimal.class, 0, true, false));
-		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, selec)); //TODO change to not target other Blist
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityAnimal.class, 0, true, false, animalTarget));
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, nonSpeciesTarget));
 	}
 
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -162,7 +173,7 @@ public class EntityBlist extends TragicMob {
 			
 			for (int[] coord : adj)
 			{
-				Block block = this.worldObj.getBlock(coord[0], coord[1], coord[2]);
+				Block block = this.worldObj.getBlockState(new BlockPos(coord[0], coord[1], coord[2])).getBlock();
 				if (block.getMaterial().blocksMovement() && block.isOpaqueCube())
 				{
 					this.attachedBlock = coord;
@@ -205,13 +216,13 @@ public class EntityBlist extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1) {
-		if (this.getChargeTicks() <= 0) super.fall(par1);
+	public void fall(float dist, float multi) {
+		if (this.getChargeTicks() <= 0) super.fall(dist, multi);
 	}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {
-		super.updateFallState(par1, par2);
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {
+		super.func_180433_a(par1, par2, block, pos);
 	}
 	
 	@Override
@@ -264,7 +275,7 @@ public class EntityBlist extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		
 	}

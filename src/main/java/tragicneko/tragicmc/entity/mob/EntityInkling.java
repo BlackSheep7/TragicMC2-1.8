@@ -19,7 +19,9 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -33,8 +35,6 @@ public class EntityInkling extends TragicMob {
 		super(par1World);
 		this.setSize(0.3F, 1.4F);
 		this.experienceValue = this.getEntityId() % 7 == 0 || this.getEntityId() % 3 == 0 ? 6 : 5;
-		this.getNavigator().setBreakDoors(true);
-		this.getNavigator().setAvoidSun(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIFleeSun(this, 1.2D));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
@@ -44,7 +44,7 @@ public class EntityInkling extends TragicMob {
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(8, new EntityAIBurn(this, true));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}
 
 	@Override
@@ -77,12 +77,6 @@ public class EntityInkling extends TragicMob {
 	}
 
 	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -100,7 +94,7 @@ public class EntityInkling extends TragicMob {
 
 		if (this.worldObj.isRemote && this.getVisibleTicks() == 0 && rand.nextBoolean())
 		{
-			this.worldObj.spawnParticle("smoke",
+			this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
 					this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 					this.posY + this.rand.nextDouble() * this.height - 0.5D,
 					this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
@@ -123,12 +117,12 @@ public class EntityInkling extends TragicMob {
 			this.setInvisible(true);
 		}
 
-		if (this.isBurning() && rand.nextInt(8) == 0 || this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) >= 8)
+		if (this.isBurning() && rand.nextInt(8) == 0 || this.worldObj.getLight(new BlockPos((int)this.posX, (int)this.posY + 1, (int)this.posZ)) >= 8)
 		{
 			this.teleportRandomly();
 		}
 
-		if (this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) >= 8)
+		if (this.worldObj.getLight(new BlockPos((int)this.posX, (int)this.posY + 1, (int)this.posZ)) >= 8)
 		{
 			this.setVisibleTicks(20);
 
@@ -146,7 +140,7 @@ public class EntityInkling extends TragicMob {
 					{
 						for (int x1 = -3; x1 < 4; x1++)
 						{
-							if (this.worldObj.getBlockLightValue(x + x1, y + y1, z + z1) <= 6)
+							if (this.worldObj.getLight(new BlockPos(x + x1, y + y1, z + z1)) <= 6)
 							{
 								path = this.getNavigator().getPathToXYZ(x + x1, y + y1, z + z1);
 								break;
@@ -164,7 +158,7 @@ public class EntityInkling extends TragicMob {
 		}
 
 		if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() != null
-				&& this.worldObj.getBlockLightValue((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY + 1, (int)this.getAttackTarget().posZ) <= 8 &&
+				&& this.worldObj.getLight(new BlockPos((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY + 1, (int)this.getAttackTarget().posZ)) <= 8 &&
 				this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.inklingTeleport)
 		{
 			this.teleportToEntity(this.getAttackTarget());
@@ -182,10 +176,10 @@ public class EntityInkling extends TragicMob {
 				{
 					for (int x1 = -4; x1 < 5; x1++)
 					{
-						Block block = worldObj.getBlock(x + x1, y + y1, z + z1);
+						Block block = worldObj.getBlockState(new BlockPos(x + x1, y + y1, z + z1)).getBlock();
 						if (block instanceof BlockTorch)
 						{
-							this.worldObj.func_147480_a(x + x1, y + y1, z + z1, true);
+							this.worldObj.destroyBlock(new BlockPos(x + x1, y + y1, z + z1), true);
 							return;
 						}
 					}
@@ -240,7 +234,7 @@ public class EntityInkling extends TragicMob {
 
 	protected boolean teleportToEntity(Entity par1Entity)
 	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		Vec3 vec3 = new Vec3(this.posX - par1Entity.posX, this.getEntityBoundingBox().minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
 		vec3 = vec3.normalize();
 		double d0 = 16.0D;
 		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
@@ -264,18 +258,18 @@ public class EntityInkling extends TragicMob {
 
 		boolean flag2 = false;
 
-		if (this.worldObj.getBlockLightValue(i, j, k) <= 8)
+		if (this.worldObj.getLight(new BlockPos(i, j, k)) <= 8)
 		{
 			flag2 = true;
 		}
 
-		if (this.worldObj.blockExists(i, j, k) && flag2)
+		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4) && flag2)
 		{
 			boolean flag1 = false;
 
 			while (!flag1 && j > 0)
 			{
-				Block block = this.worldObj.getBlock(i, j - 1, k);
+				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
 
 				if (block.getMaterial().blocksMovement())
 				{
@@ -292,7 +286,7 @@ public class EntityInkling extends TragicMob {
 			{
 				this.setPosition(this.posX, this.posY, this.posZ);
 
-				if (this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox))
+				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
 				{
 					flag = true;
 				}
@@ -317,7 +311,7 @@ public class EntityInkling extends TragicMob {
 				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
 				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle("smoke", d7, d8, d9, f, f1, f2);
+				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d7, d8, d9, f, f1, f2);
 			}
 
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 0.2F, 1.0F);

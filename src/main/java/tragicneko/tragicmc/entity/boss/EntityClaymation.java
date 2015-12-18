@@ -2,12 +2,12 @@ package tragicneko.tragicmc.entity.boss;
 
 import static tragicneko.tragicmc.TragicConfig.apisStats;
 import static tragicneko.tragicmc.TragicConfig.claymationStats;
-import static tragicneko.tragicmc.TragicConfig.skultarStats;
 import static tragicneko.tragicmc.TragicConfig.jabbaStats;
 import static tragicneko.tragicmc.TragicConfig.kitsunakumaStats;
 import static tragicneko.tragicmc.TragicConfig.minotaurStats;
 import static tragicneko.tragicmc.TragicConfig.norVoxStats;
 import static tragicneko.tragicmc.TragicConfig.ragrStats;
+import static tragicneko.tragicmc.TragicConfig.skultarStats;
 import static tragicneko.tragicmc.TragicConfig.stinKingStats;
 import static tragicneko.tragicmc.entity.mob.EntityRagr.crushableBlocks;
 import static tragicneko.tragicmc.events.AmuletEvents.badPotions;
@@ -41,7 +41,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
@@ -114,7 +116,7 @@ public class EntityClaymation extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		float f = this.worldObj.difficultySetting == EnumDifficulty.HARD ? 200.0F : 150.0F;
+		float f = (float) claymationStats[0];
 		this.dataWatcher.addObject(16, Float.valueOf(f)); //Claymation's actual health
 		this.dataWatcher.addObject(17, Integer.valueOf(0)); //current form
 		this.dataWatcher.addObject(18, Integer.valueOf(0)); //utility form integer
@@ -205,7 +207,7 @@ public class EntityClaymation extends TragicBoss {
 			{
 				for (int i = 0; i < 2; i++)
 				{
-					this.worldObj.spawnParticle("dripLava",
+					this.worldObj.spawnParticle(EnumParticleTypes.DRIP_LAVA,
 							this.posX + (rand.nextDouble() - rand.nextDouble()) * 0.556,
 							this.posY + rand.nextDouble() * this.height - 0.1D,
 							this.posZ + (rand.nextDouble() - rand.nextDouble()) * 0.556,
@@ -454,7 +456,7 @@ public class EntityClaymation extends TragicBoss {
 
 		if (this.getUtilityInt2() == 1)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(6.0D, 6.0D, 6.0D));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(6.0D, 6.0D, 6.0D));
 			Entity entity;
 
 			for (int i = 0; i < list.size(); i++)
@@ -469,7 +471,7 @@ public class EntityClaymation extends TragicBoss {
 		if (this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && rand.nextInt(8) == 0 && this.getUtilityInt() == 0)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+			double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 
 			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
@@ -575,7 +577,7 @@ public class EntityClaymation extends TragicBoss {
 	private void doMortorFire() {
 
 		double d0 = this.getAttackTarget().posX - this.posX + rand.nextInt(5) - rand.nextInt(5);
-		double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+		double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 		double d2 = this.getAttackTarget().posZ - this.posZ + rand.nextInt(5) - rand.nextInt(5);
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.875F;
 
@@ -634,12 +636,12 @@ public class EntityClaymation extends TragicBoss {
 
 		if (this.ticksExisted % 20 == 0 && this.rand.nextInt(3) == 0)
 		{
-			EntityPlayer player = this.worldObj.getClosestVulnerablePlayerToEntity(this, 10.0);
+			EntityPlayer player = this.worldObj.getClosestPlayerToEntity(this, 10.0);
 
 			if (player != null && TragicConfig.allowDoom && this.canEntityBeSeen(player))
 			{
 				PropertyDoom doom = PropertyDoom.get(player);
-				int i = this.worldObj.difficultySetting.getDifficultyId();
+				int i = this.worldObj.getDifficulty().getDifficultyId();
 
 				if (doom != null) doom.increaseDoom(-((this.rand.nextInt(3) + 1) * i));
 			}
@@ -650,7 +652,7 @@ public class EntityClaymation extends TragicBoss {
 	{
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
-		double d1 = entity.boundingBox.minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
+		double d1 = entity.getEntityBoundingBox().minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
 		double d2 = entity.posZ - this.posZ;
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(entity)) * 0.5F;
@@ -732,30 +734,28 @@ public class EntityClaymation extends TragicBoss {
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			x = coords[0];
-			y = coords[1];
-			z = coords[2];
-			block = this.worldObj.getBlock(x, y, z);
+			BlockPos pos = new BlockPos(coords[0], coords[1], coords[2]);
+			block = this.worldObj.getBlockState(pos).getBlock();
 
 			if (crushableBlocks.contains(block))
 			{
-				this.worldObj.setBlockToAir(x, y, z);
+				this.worldObj.setBlockToAir(pos);
 			}
 			else if (block == Blocks.grass)
 			{
-				this.worldObj.setBlock(x, y, z, Blocks.dirt);
+				this.worldObj.setBlockState(pos, Blocks.dirt.getDefaultState());
 			}
 			else if (block == Blocks.stone)
 			{
-				this.worldObj.setBlock(x, y, z, Blocks.cobblestone);
+				this.worldObj.setBlockState(pos, Blocks.cobblestone.getDefaultState());
 			}
 			else if (block == Blocks.stonebrick)
 			{
-				this.worldObj.setBlock(x, y, z, Blocks.stonebrick, 2, 2);
+				this.worldObj.setBlockState(pos, Blocks.stonebrick.getStateFromMeta(2), 2);
 			}
 			else if (block == Blocks.cobblestone)
 			{
-				this.worldObj.setBlock(x, y, z, Blocks.gravel);
+				this.worldObj.setBlockState(pos, Blocks.gravel.getDefaultState());
 			}
 		}
 	}
@@ -846,7 +846,7 @@ public class EntityClaymation extends TragicBoss {
 		if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getUtilityInt2() == 0)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+			double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 
 			if (this.getUtilityInt() > 0)
@@ -869,7 +869,7 @@ public class EntityClaymation extends TragicBoss {
 
 		if (this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F && this.getHealth() <= this.getMaxHealth() / 2 && this.getUtilityInt2() == 1)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(4.0D, 4.0D, 4.0D));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(4.0D, 4.0D, 4.0D));
 			EntityLivingBase target;
 
 			for (int i = 0; i < list.size(); i++)
@@ -952,7 +952,7 @@ public class EntityClaymation extends TragicBoss {
 			if (this.getUtilityInt3() % 20 == 0 && this.getUtilityInt3() > 0 && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
-				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+				double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 				double d2 = this.getAttackTarget().posZ - this.posZ;
 
 				float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.175F;
@@ -981,7 +981,7 @@ public class EntityClaymation extends TragicBoss {
 		if (this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F) && this.canEntityBeSeen(this.getAttackTarget()) && this.getUtilityInt() > 0 && this.getUtilityInt() % 25 == 0)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+			double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 
 			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.375F;
@@ -1008,7 +1008,7 @@ public class EntityClaymation extends TragicBoss {
 
 	protected boolean teleportToEntity(Entity par1Entity)
 	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		Vec3 vec3 = new Vec3(this.posX - par1Entity.posX, this.getEntityBoundingBox().minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
 		vec3 = vec3.normalize();
 		double d0 = 16.0D;
 		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
@@ -1030,13 +1030,13 @@ public class EntityClaymation extends TragicBoss {
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
 
-		if (this.worldObj.blockExists(i, j, k))
+		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4))
 		{
 			boolean flag1 = false;
 
 			while (!flag1 && j > 0)
 			{
-				Block block = this.worldObj.getBlock(i, j - 1, k);
+				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
 
 				if (block.getMaterial().blocksMovement())
 				{
@@ -1053,7 +1053,7 @@ public class EntityClaymation extends TragicBoss {
 			{
 				this.setPosition(this.posX, this.posY, this.posZ);
 
-				if (this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox))
+				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
 				{
 					flag = true;
 				}
@@ -1078,7 +1078,7 @@ public class EntityClaymation extends TragicBoss {
 				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
 				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle("flame", d7, d8, d9, f, f1, f2);
+				this.worldObj.spawnParticle(EnumParticleTypes.FLAME, d7, d8, d9, f, f1, f2);
 			}
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
 			this.playSound(this.getLivingSound() == null ? "mob.endermen.portal" : this.getLivingSound(), 1.0F, 1.0F);
@@ -1304,7 +1304,7 @@ public class EntityClaymation extends TragicBoss {
 			{
 				for (int x1 = -8; x1 < 9; x1++)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1) && rand.nextBoolean())
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1)) && rand.nextBoolean())
 					{
 						if (entity instanceof EntityPlayerMP)
 						{
@@ -1312,10 +1312,10 @@ public class EntityClaymation extends TragicBoss {
 
 							if (mp.capabilities.isCreativeMode) return flag;
 
-							if (mp.playerNetServerHandler.func_147362_b().isChannelOpen() && this.worldObj == mp.worldObj)
+							if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && this.worldObj == mp.worldObj)
 							{
 								if (mp.isRiding()) mp.mountEntity(null);
-								AxisAlignedBB bb = mp.boundingBox.copy();
+								AxisAlignedBB bb = mp.getEntityBoundingBox();
 								bb.offset(x + x1, y + y1, z + z1);
 
 								if (this.worldObj.checkNoEntityCollision(bb) && this.worldObj.getCollidingBoundingBoxes(mp, bb).isEmpty() &&
@@ -1333,7 +1333,7 @@ public class EntityClaymation extends TragicBoss {
 										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
 										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-										this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
+										this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
 									}
 									mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 									mp.fallDistance = 0.0F;
@@ -1346,9 +1346,9 @@ public class EntityClaymation extends TragicBoss {
 						{
 							entity.setPosition(x + x1, y + y1, z + z1);
 
-							if (this.worldObj.checkNoEntityCollision(entity.boundingBox) &&
-									this.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() &&
-									!this.worldObj.isAnyLiquid(entity.boundingBox))
+							if (this.worldObj.checkNoEntityCollision(entity.getEntityBoundingBox()) &&
+									this.worldObj.getCollidingBoundingBoxes(entity, entity.getEntityBoundingBox()).isEmpty() &&
+									!this.worldObj.isAnyLiquid(entity.getEntityBoundingBox()))
 							{
 								short short1 = 128;
 
@@ -1361,7 +1361,7 @@ public class EntityClaymation extends TragicBoss {
 									double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 									double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
 									double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-									this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
+									this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
 								}
 
 								this.worldObj.playSoundAtEntity(entity, "mob.endermen.portal", 0.4F, 0.4F);
@@ -1400,7 +1400,7 @@ public class EntityClaymation extends TragicBoss {
 	{
 		if (this.getHealth() <= this.getMaxHealth() / 2) damage /= 2;
 
-		if (this.rand.nextInt(8) == 0 && this.worldObj.difficultySetting == EnumDifficulty.HARD)
+		if (this.rand.nextInt(8) == 0 && this.worldObj.getDifficulty() == EnumDifficulty.HARD)
 		{
 			if (source.getEntity() != null && source.getEntity() instanceof EntityPlayer && !source.isProjectile() && !source.isMagicDamage() && !source.isFireDamage())
 			{
@@ -1659,7 +1659,7 @@ public class EntityClaymation extends TragicBoss {
 
 	private void attackEntityAsJabba(Entity par1Entity)
 	{
-		int i = MathHelper.clamp_int(this.worldObj.difficultySetting.getDifficultyId(), 1, 3);
+		int i = MathHelper.clamp_int(this.worldObj.getDifficulty().getDifficultyId(), 1, 3);
 
 		if (this.rand.nextInt(MathHelper.ceiling_double_int(9 / i)) == 0)
 		{
@@ -1780,9 +1780,10 @@ public class EntityClaymation extends TragicBoss {
 	}
 
 	@Override
-	protected void fall(float par1)
+	public void fall(float dist, float multi)
 	{
-		if (this.getEntityForm() == 6) this.fallAsRagr(par1);
+		if (this.getEntityForm() == 6) this.fallAsRagr(dist);
+		else super.fall(dist, multi);
 	}
 
 	@Override

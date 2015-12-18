@@ -14,7 +14,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
@@ -29,13 +31,6 @@ public class EntityHarvester extends TragicMob {
 		this.setSize(0.925F, 1.525F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
-		this.getNavigator().setAvoidsWater(true);
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -105,7 +100,7 @@ public class EntityHarvester extends TragicMob {
 		{
 			for (int i = 0; i < 6; i++)
 			{
-				this.worldObj.spawnParticle("mobSpellAmbient",
+				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB_AMBIENT,
 						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
 						this.posY + (rand.nextDouble() * 0.115D) + 0.545D,
 						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
@@ -116,7 +111,7 @@ public class EntityHarvester extends TragicMob {
 			{
 				for (int i = 0; i < 24; i++)
 				{
-					this.worldObj.spawnParticle("smoke",
+					this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
 							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
 							this.posY + (rand.nextDouble() * 0.115D) + 0.545D,
 							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
@@ -161,7 +156,7 @@ public class EntityHarvester extends TragicMob {
 		if (this.ticksExisted % 20 == 0 && TragicConfig.harvesterBuffDebuffEntities)
 		{
 			double d0 = this.getEntityAttribute(SharedMonsterAttributes.followRange).getAttributeValue();
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(d0, d0, d0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(d0, d0, d0));
 			boolean flag = false;
 
 			for (Entity e : list)
@@ -204,10 +199,10 @@ public class EntityHarvester extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
-	public void updateFallState(double par1, boolean par2) {}
+	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
@@ -253,7 +248,7 @@ public class EntityHarvester extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
 		
 	}

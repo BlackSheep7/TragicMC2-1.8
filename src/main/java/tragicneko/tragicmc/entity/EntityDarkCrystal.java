@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
@@ -22,7 +23,7 @@ public class EntityDarkCrystal extends Entity {
 		if (owner != null) this.setOwnerID(owner.getEntityId());
 		this.setSize(0.445F, 0.665F);
 		this.preventEntitySpawning = true;
-		this.yOffset = this.height / 2.0F;
+		//this.yOffset = this.height / 2.0F;
 		this.isImmuneToFire = true;
 	}
 
@@ -94,7 +95,7 @@ public class EntityDarkCrystal extends Entity {
 		{
 			for (int i = 0; i < 2; i++)
 			{
-				this.worldObj.spawnParticle("witchMagic", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
+				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_WITCH, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
 			}
 
@@ -107,7 +108,7 @@ public class EntityDarkCrystal extends Entity {
 				for (int i = 0; i < 4; i++)
 				{
 					double d3 = 0.23D * i + (rand.nextDouble() * 0.25D);
-					this.worldObj.spawnParticle("witchMagic", this.posX + d0 * d3, this.posY + d1 * d3 + 0.45D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					this.worldObj.spawnParticle(EnumParticleTypes.SPELL_WITCH, this.posX + d0 * d3, this.posY + d1 * d3 + 0.45D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 				}
 			}
 		}
@@ -127,7 +128,7 @@ public class EntityDarkCrystal extends Entity {
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float par2)
 	{
-		if (this.worldObj.isRemote || this.isEntityInvulnerable() || source.isExplosion()) return false;
+		if (this.worldObj.isRemote || this.isEntityInvulnerable(source) || source.isExplosion()) return false;
 
 		if (source.getEntity() != null)
 		{
@@ -139,7 +140,7 @@ public class EntityDarkCrystal extends Entity {
 				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 				this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 4.0F, flag);
 
-				float f = this.worldObj.difficultySetting.getDifficultyId() == 2 ? 50.0F : 25.0F;
+				float f = this.worldObj.getDifficulty().getDifficultyId() == 2 ? 50.0F : 25.0F;
 				if (this.owner != null)
 				{
 					this.owner.enyvilEye.attackEntityFrom(DamageSource.magic, f);
@@ -169,7 +170,7 @@ public class EntityDarkCrystal extends Entity {
 	public void setFire(int i) {}
 
 	@Override
-	public void fall(float f) {}
+	public void fall(float dist, float multi) {}
 
 	@Override
 	public void onStruckByLightning(EntityLightningBolt bolt) {}

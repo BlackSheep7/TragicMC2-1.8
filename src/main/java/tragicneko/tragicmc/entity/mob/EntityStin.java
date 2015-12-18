@@ -27,8 +27,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
@@ -36,22 +39,20 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityStin extends TragicMob {
 
-	protected EntityAIBase targetPlayer = new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true);
+	protected EntityAIBase targetPlayer = new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget);
 
 	public EntityStin(World par1World) {
 		super(par1World);
 		this.setSize(0.65F, 0.65F);
 		this.stepHeight = 0.5F;
 		this.experienceValue = 5;
-		this.getNavigator().setAvoidSun(true);
-		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.85D));
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 16.0F));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true, false, null));
 		this.targetTasks.addTask(3, targetPlayer);
 	}
 
@@ -65,12 +66,6 @@ public class EntityStin extends TragicMob {
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.ARTHROPOD;
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	@Override
@@ -234,7 +229,7 @@ public class EntityStin extends TragicMob {
 				for (int i = 0; i < list.size(); i++)
 				{
 					coords = list.get(i);
-					block = worldObj.getBlock(coords[0], coords[1], coords[2]);
+					block = worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
 					if (block.isOpaqueCube())
 					{
 						double d0 = Math.abs(this.posX) - Math.abs(coords[0]);
@@ -303,7 +298,7 @@ public class EntityStin extends TragicMob {
 		if (flag && TragicConfig.stinTeleport)
 		{
 			if (this.getGallopTicks() == 0) this.setGallopTicks(15);
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(8.0, 8.0, 8.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(8.0, 8.0, 8.0));
 			TragicMob mob;
 
 			for (int i = 0; i < list.size(); i++)
@@ -314,7 +309,7 @@ public class EntityStin extends TragicMob {
 
 					if (mob instanceof EntityStin)
 					{
-						if (mob.getAttackTarget() == null) mob.setTarget(this.getAttackTarget());
+						if (mob.getAttackTarget() == null) mob.setAttackTarget(this.getAttackTarget());
 					}
 				}
 			}
@@ -341,7 +336,7 @@ public class EntityStin extends TragicMob {
 			{
 				for (int x1 = -8; x1 < 9; x1++)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1) && rand.nextBoolean())
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1)) && rand.nextBoolean())
 					{
 						if (entity instanceof EntityPlayerMP)
 						{
@@ -349,10 +344,10 @@ public class EntityStin extends TragicMob {
 
 							if (mp.capabilities.isCreativeMode) return flag;
 
-							if (mp.playerNetServerHandler.func_147362_b().isChannelOpen() && this.worldObj == mp.worldObj)
+							if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && this.worldObj == mp.worldObj)
 							{
 								if (mp.isRiding()) mp.mountEntity(null);
-								AxisAlignedBB bb = mp.boundingBox.copy();
+								AxisAlignedBB bb = mp.getEntityBoundingBox();
 								bb.offset(x + x1, y + y1, z + z1);
 
 								if (this.worldObj.checkNoEntityCollision(bb) && this.worldObj.getCollidingBoundingBoxes(mp, bb).isEmpty() &&
@@ -370,7 +365,7 @@ public class EntityStin extends TragicMob {
 										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
 										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-										this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
+										this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
 									}
 									mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 									mp.fallDistance = 0.0F;
@@ -383,9 +378,9 @@ public class EntityStin extends TragicMob {
 						{
 							entity.setPosition(x + x1, y + y1, z + z1);
 
-							if (this.worldObj.checkNoEntityCollision(entity.boundingBox) &&
-									this.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() &&
-									!this.worldObj.isAnyLiquid(entity.boundingBox))
+							if (this.worldObj.checkNoEntityCollision(entity.getEntityBoundingBox()) &&
+									this.worldObj.getCollidingBoundingBoxes(entity, entity.getEntityBoundingBox()).isEmpty() &&
+									!this.worldObj.isAnyLiquid(entity.getEntityBoundingBox()))
 							{
 								short short1 = 128;
 
@@ -398,7 +393,7 @@ public class EntityStin extends TragicMob {
 									double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 									double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
 									double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-									this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
+									this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
 								}
 
 								this.worldObj.playSoundAtEntity(entity, TragicConfig.allowMobSounds ? "tragicmc:mob.stin.teleport" : "mob.endermen.portal", 0.4F, 0.4F);
@@ -419,9 +414,9 @@ public class EntityStin extends TragicMob {
 	}
 
 	@Override
-	protected void fall(float f)
+	public void fall(float dist, float multi)
 	{
-		super.fall(f);
+		super.fall(dist, multi);
 		if (!this.isGalloping()) this.setGallopTicks(15);
 	}
 
@@ -448,13 +443,13 @@ public class EntityStin extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
 			if (TragicConfig.allowStinBaby && rand.nextInt(6) == 0) this.setChild();
 		}
-		return super.onSpawnWithEgg(data);
+		return super.func_180482_a(ins, data);
 	}
 
 	@Override
@@ -493,9 +488,9 @@ public class EntityStin extends TragicMob {
 	}
 
 	@Override
-	protected void func_145780_a(int x, int y, int z, Block block)
+	protected void playStepSound(BlockPos pos, Block block)
 	{
-		this.playSound(this.isAdult() || !TragicConfig.allowMobSounds ? "tragicmc:mob.stin.step" : "mob.spider.step", 0.45F, this.isAdult() ? 1.9F : 0.2F);
+		this.playSound(this.isAdult() && TragicConfig.allowMobSounds ? "tragicmc:mob.stin.step" : "mob.spider.step", 0.45F, this.isAdult() ? 1.9F : 0.2F);
 	}
 
 	@Override
