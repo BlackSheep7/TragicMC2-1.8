@@ -4434,7 +4434,17 @@ point the 1.7.10 version will have support dropped in favor of this one
 
 3.46.2858 <212> (December 14, 2015) [Initial port to 1.8, just trying to get it to load in 1.8]
 Initial updates for import references (mostly with FML being moved into Forge)
+More error fixing and upating done, mostly on entities and worldgen features, down to 7k errors now
 
+TODO: Change WorldHelper methods to return BlockPos instead of int[]
+TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
+
+//Changed common entity functions
+func_145780_a(int x, int y, int z, Block block) ---> playStepSound(BlockPos pos, Block block)
+onSpawnWithEgg(IEntityLivingData data) ---> func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+fall(float par1) ---> fall(float dist, float multi)
+updateFallState(double par1, boolean par2) ---> func_180433_a(double par1, boolean par2, Block block, BlockPos pos)
+func_147480_a(int x, int y, int z, boolean flag) ---> destroyBlock(BlockPos pos, boolean dropItem)
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
