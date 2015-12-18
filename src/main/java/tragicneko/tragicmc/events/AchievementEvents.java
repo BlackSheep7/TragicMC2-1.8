@@ -7,11 +7,13 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -34,7 +36,6 @@ import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.LoreHelper;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class AchievementEvents {
 	
@@ -183,8 +184,8 @@ public class AchievementEvents {
 
 			if (mp.worldObj != null)
 			{
-				if (mp.worldObj.provider.dimensionId == TragicConfig.collisionID) mp.triggerAchievement(TragicAchievements.collision);
-				if (mp.worldObj.provider.dimensionId == TragicConfig.synapseID) mp.triggerAchievement(TragicAchievements.synapse);
+				if (mp.worldObj.provider.getDimensionId() == TragicConfig.collisionID) mp.triggerAchievement(TragicAchievements.collision);
+				if (mp.worldObj.provider.getDimensionId() == TragicConfig.synapseID) mp.triggerAchievement(TragicAchievements.synapse);
 			}
 
 			if (TragicConfig.allowFlight && mp.isPotionActive(TragicPotion.Flight)) mp.triggerAchievement(TragicAchievements.flight);
@@ -199,22 +200,22 @@ public class AchievementEvents {
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.getPlayer();
 
-			if (event.block == TragicBlocks.MercuryOre)
+			if (event.state.getBlock() == TragicBlocks.MercuryOre)
 			{
 				mp.triggerAchievement(TragicAchievements.mercury);
 			}
 
-			if (event.block == TragicBlocks.Aeris && event.blockMetadata >= 2)
+			if (event.state == TragicBlocks.Aeris.getStateFromMeta(2))
 			{
 				mp.triggerAchievement(TragicAchievements.aeris);
 			}
 
-			if (event.block == TragicBlocks.TungstenOre)
+			if (event.state.getBlock() == TragicBlocks.TungstenOre)
 			{
 				mp.triggerAchievement(TragicAchievements.tungsten);
 			}
 
-			if (event.block == TragicBlocks.TragicOres && event.blockMetadata == 10)
+			if (event.state == TragicBlocks.TragicOres.getStateFromMeta(10))
 			{
 				mp.triggerAchievement(TragicAchievements.mineXP);
 			}
@@ -222,7 +223,7 @@ public class AchievementEvents {
 			if (mp.getCurrentEquippedItem() != null)
 			{
 				ItemStack stack = mp.getCurrentEquippedItem();
-				if (TragicConfig.allowLuminescence && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Luminescence.effectId, stack) > 0 && !mp.worldObj.canBlockSeeTheSky((int) mp.posX, (int) mp.posY, (int) mp.posZ))
+				if (TragicConfig.allowLuminescence && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Luminescence.effectId, stack) > 0 && !mp.worldObj.canBlockSeeSky(new BlockPos((int) mp.posX, (int) mp.posY, (int) mp.posZ)))
 				{
 					mp.triggerAchievement(TragicAchievements.luminescence);
 				}
@@ -289,9 +290,9 @@ public class AchievementEvents {
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.player;
 
-			if (TragicConfig.allowPumpkinhead && (event.block == Blocks.pumpkin || event.block == Blocks.lit_pumpkin))
+			if (TragicConfig.allowPumpkinhead && (event.state.getBlock() == Blocks.pumpkin || event.state.getBlock() == Blocks.lit_pumpkin))
 			{
-				List<EntityPumpkinhead> list = mp.worldObj.getEntitiesWithinAABB(EntityPumpkinhead.class, mp.boundingBox.expand(16.0, 16.0, 16.0));
+				List<EntityPumpkinhead> list = mp.worldObj.getEntitiesWithinAABB(EntityPumpkinhead.class, mp.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 				
 				if (!list.isEmpty())
 				{

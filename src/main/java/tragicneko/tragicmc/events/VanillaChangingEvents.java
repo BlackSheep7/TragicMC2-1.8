@@ -38,6 +38,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -46,16 +47,15 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.properties.PropertyMisc;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class VanillaChangingEvents {
 
@@ -88,21 +88,13 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event)
 	{
-		if (event.entityLiving instanceof EntityGhast && !event.entityLiving.worldObj.isRemote)
-		{
-			if (event.source.damageType == "fireball" && event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer)
-			{
-				event.entityLiving.entityDropItem(new ItemStack(Items.ghast_tear, 1 + rand.nextInt(2)), rand.nextFloat());
-			}
-		}
-
-		if (event.entityLiving.worldObj.difficultySetting == EnumDifficulty.HARD && TragicConfig.allowAnimalRetribution && rand.nextInt(16) == 0)
+		if (event.entityLiving.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.allowAnimalRetribution && rand.nextInt(16) == 0)
 		{
 			if (event.entityLiving instanceof EntityPig && !event.entityLiving.worldObj.isRemote)
 			{
-				if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && event.entityLiving.worldObj.difficultySetting == EnumDifficulty.HARD)
+				if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && event.entityLiving.worldObj.getDifficulty() == EnumDifficulty.HARD)
 				{
-					List<Entity> list = event.entityLiving.worldObj.getEntitiesWithinAABBExcludingEntity(event.entityLiving, event.entityLiving.boundingBox.expand(16.0, 16.0, 16.0));
+					List<Entity> list = event.entityLiving.worldObj.getEntitiesWithinAABBExcludingEntity(event.entityLiving, event.entityLiving.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 					if (list.size() > 0 && list.size() <= 4 && rand.nextInt(100) == 0)
 					{
 						for (int i = 0; i < list.size(); i++)
@@ -124,9 +116,9 @@ public class VanillaChangingEvents {
 
 			if (event.entityLiving instanceof EntityChicken && !event.entityLiving.worldObj.isRemote)
 			{
-				if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && event.entityLiving.worldObj.difficultySetting == EnumDifficulty.HARD)
+				if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && event.entityLiving.worldObj.getDifficulty() == EnumDifficulty.HARD)
 				{
-					List<Entity> list = event.entityLiving.worldObj.getEntitiesWithinAABBExcludingEntity(event.entityLiving, event.entityLiving.boundingBox.expand(16.0, 16.0, 16.0));
+					List<Entity> list = event.entityLiving.worldObj.getEntitiesWithinAABBExcludingEntity(event.entityLiving, event.entityLiving.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 					if (list.size() > 0 && list.size() <= 5 && rand.nextInt(100) == 0)
 					{
 						for (int i = 0; i < list.size(); i++)
@@ -148,9 +140,9 @@ public class VanillaChangingEvents {
 
 			if (event.entityLiving instanceof EntityCow && !event.entityLiving.worldObj.isRemote)
 			{
-				if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && event.entityLiving.worldObj.difficultySetting == EnumDifficulty.HARD)
+				if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && event.entityLiving.worldObj.getDifficulty() == EnumDifficulty.HARD)
 				{
-					List<Entity> list = event.entityLiving.worldObj.getEntitiesWithinAABBExcludingEntity(event.entityLiving, event.entityLiving.boundingBox.expand(16.0, 16.0, 16.0));
+					List<Entity> list = event.entityLiving.worldObj.getEntitiesWithinAABBExcludingEntity(event.entityLiving, event.entityLiving.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 					if (list.size() > 0 && list.size() <= 5 && rand.nextInt(100) == 0)
 					{
 						for (int i = 0; i < list.size(); i++)
@@ -175,7 +167,7 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent event)
 	{
-		if (event.entity.worldObj.difficultySetting == EnumDifficulty.HARD && !event.entity.worldObj.isRemote && event.entity instanceof EntityLivingBase)
+		if (event.entity.worldObj.getDifficulty() == EnumDifficulty.HARD && !event.entity.worldObj.isRemote && event.entity instanceof EntityLivingBase)
 		{
 			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
 			if (misc == null) return;
@@ -392,7 +384,7 @@ public class VanillaChangingEvents {
 
 						if (stack != null && !stack.isItemEnchanted())
 						{
-							float f = event.entity.worldObj.func_147462_b(event.entity.posX, event.entity.posY, event.entity.posZ);
+							float f = 1; //event.entity.worldObj.getLight(event.entity.posX, event.entity.posY, event.entity.posZ);
 							EnchantmentHelper.addRandomEnchantment(rand, stack, (int)(5.0F + f * rand.nextInt(18)));
 						}
 					}
@@ -440,7 +432,7 @@ public class VanillaChangingEvents {
 			}
 		}
 
-		if (event.entityLiving.worldObj.difficultySetting == EnumDifficulty.HARD && event.source.getEntity() != null && TragicConfig.allowExtraMobEffects)
+		if (event.entityLiving.worldObj.getDifficulty() == EnumDifficulty.HARD && event.source.getEntity() != null && TragicConfig.allowExtraMobEffects)
 		{
 			if (event.source.getEntity() instanceof EntityLivingBase && event.source.getEntity().isBurning() && !event.source.isMagicDamage()
 					&& !event.source.isExplosion() && !event.source.isProjectile() && rand.nextInt(4) == 0)
@@ -610,12 +602,12 @@ public class VanillaChangingEvents {
 			TragicMob mob = new EntityMinotaur(event.entity.worldObj);
 
 			mob.copyLocationAndAnglesFrom(event.entity);
-			mob.onSpawnWithEgg((IEntityLivingData)null);
+			mob.func_180482_a(event.entity.worldObj.getDifficultyForLocation(new BlockPos(event.entity.posX, event.entity.posY, event.entity.posZ)), (IEntityLivingData)null);
 			event.entity.worldObj.removeEntity(event.entity);
 			event.entity.worldObj.spawnEntityInWorld(mob);
 			if (TragicConfig.allowInvulnerability) mob.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 80));
 
-			List<EntityPlayerMP> list = mob.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, mob.boundingBox.expand(16.0, 16.0, 16.0));
+			List<EntityPlayerMP> list = mob.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, mob.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
 			if (!list.isEmpty() && TragicConfig.allowAchievements)
 			{

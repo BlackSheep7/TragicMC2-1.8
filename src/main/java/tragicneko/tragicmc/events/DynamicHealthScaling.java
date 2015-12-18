@@ -11,13 +11,13 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingPackSizeEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.properties.PropertyMisc;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class DynamicHealthScaling {
 
@@ -35,7 +35,7 @@ public class DynamicHealthScaling {
 		
 		misc.setBuffed(); //to prevent them from being rebuffed and regenerating health
 
-		if (event.entity.worldObj.difficultySetting == EnumDifficulty.EASY)
+		if (event.entity.worldObj.getDifficulty() == EnumDifficulty.EASY)
 		{
 			if (event.entity instanceof TragicMob)
 			{
@@ -53,7 +53,7 @@ public class DynamicHealthScaling {
 			}
 		}
 
-		if (event.entity.worldObj.difficultySetting == EnumDifficulty.HARD)
+		if (event.entity.worldObj.getDifficulty() == EnumDifficulty.HARD)
 		{
 			if (event.entity instanceof TragicMob)
 			{

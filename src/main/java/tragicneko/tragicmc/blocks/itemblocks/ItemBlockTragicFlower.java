@@ -1,8 +1,6 @@
 package tragicneko.tragicmc.blocks.itemblocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlockWithMetadata;
-import net.minecraft.item.ItemStack;
 
 public class ItemBlockTragicFlower extends TragicItemBlock {
 

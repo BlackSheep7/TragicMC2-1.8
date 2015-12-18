@@ -2,7 +2,7 @@ package tragicneko.tragicmc.events;
 
 import static tragicneko.tragicmc.TragicMC.rand;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -13,6 +13,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -24,15 +27,10 @@ import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.items.amulet.ItemAmulet;
-import tragicneko.tragicmc.network.MessageFrozenInput;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
 import tragicneko.tragicmc.properties.PropertyAmulets;
-import tragicneko.tragicmc.properties.PropertyMisc;
 import tragicneko.tragicmc.util.AmuletHelper;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 
 public class ClientEvents extends Gui {
 
@@ -55,16 +53,16 @@ public class ClientEvents extends Gui {
 	{
 		if (Minecraft.getMinecraft().inGameHasFocus)
 		{
-			EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+			EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 
 			if (player == null) return;
 
-			if (ClientProxy.openAmuletGui.getIsKeyPressed() && TragicConfig.allowAmulets)
+			if (ClientProxy.openAmuletGui.isPressed() && TragicConfig.allowAmulets)
 			{
 				TragicMC.net.sendToServer(new MessageGui(ClientProxy.AMULET_GUI_ID));
 			}
 
-			if (ClientProxy.useSpecial.getIsKeyPressed() && TragicConfig.allowDoomsdays)
+			if (ClientProxy.useSpecial.isPressed() && TragicConfig.allowDoomsdays)
 			{
 				TragicMC.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
 			}
@@ -74,7 +72,7 @@ public class ClientEvents extends Gui {
 	@SubscribeEvent(priority=EventPriority.HIGHEST)
 	public void onFrozenInput(KeyInputEvent event)
 	{
-		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 		if (player == null) return;
 		/*
 		if (player.isPotionActive(TragicPotion.Frozen))
@@ -108,7 +106,7 @@ public class ClientEvents extends Gui {
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 		BlockGenericLeaves.fancyGraphics = Minecraft.isFancyGraphicsEnabled();
-		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 
 		if (player != null && TragicConfig.allowFlight && player.isPotionActive(TragicPotion.Flight.id) && mc.inGameHasFocus)
 		{

@@ -2,9 +2,9 @@ package tragicneko.tragicmc.blocks.itemblocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.worldgen.structure.Structure;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlockStructureSeeds extends TragicItemBlock {
 

@@ -4,13 +4,13 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.EnumDifficulty;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.properties.PropertyDoom;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 
 public class RespawnDoomEvents {
 
@@ -24,7 +24,7 @@ public class RespawnDoomEvents {
 
 		if (TragicConfig.allowRespawnPunishment && !event.player.capabilities.isCreativeMode)
 		{
-			if (event.player.worldObj.difficultySetting == EnumDifficulty.HARD)
+			if (event.player.worldObj.getDifficulty() == EnumDifficulty.HARD)
 			{
 				property.emptyDoom();
 				event.player.addPotionEffect(new PotionEffect(Potion.weakness.id, 1800, 1));
@@ -36,7 +36,7 @@ public class RespawnDoomEvents {
 				}
 			}
 
-			if (event.player.worldObj.difficultySetting == EnumDifficulty.NORMAL)
+			if (event.player.worldObj.getDifficulty() == EnumDifficulty.NORMAL)
 			{
 				property.increaseDoom(-(property.getCurrentDoom() / 2));
 				event.player.addPotionEffect(new PotionEffect(Potion.weakness.id, 1200));
@@ -48,7 +48,7 @@ public class RespawnDoomEvents {
 				}
 			}
 
-			if (event.player.worldObj.difficultySetting == EnumDifficulty.EASY)
+			if (event.player.worldObj.getDifficulty() == EnumDifficulty.EASY)
 			{
 				property.increaseDoom(-(property.getCurrentDoom() / 4));
 

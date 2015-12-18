@@ -42,6 +42,10 @@ import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent.Start;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent.Tick;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicItems;
@@ -52,10 +56,6 @@ import tragicneko.tragicmc.items.amulet.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageFlight;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.properties.PropertyMisc;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class PotionEvents {
 
@@ -152,18 +152,18 @@ public class PotionEvents {
 
 		if (TragicConfig.allowMalnourish && event.entityLiving.isPotionActive(TragicPotion.Malnourish))
 		{
-			if (event.entityLiving.isPotionActive(Potion.field_76443_y)) event.entityLiving.removePotionEffect(TragicPotion.Malnourish.id);
+			if (event.entityLiving.isPotionActive(Potion.saturation.id)) event.entityLiving.removePotionEffect(TragicPotion.Malnourish.id);
 			if (event.entityLiving.isPotionActive(Potion.hunger.id)) event.entityLiving.removePotionEffect(Potion.hunger.id);
 		}
 
 		if (TragicConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotion.Cripple))
 		{
-			if (event.entityLiving.isPotionActive(Potion.field_76434_w)) event.entityLiving.removePotionEffect(TragicPotion.Cripple.id);
+			if (event.entityLiving.isPotionActive(Potion.healthBoost.id)) event.entityLiving.removePotionEffect(TragicPotion.Cripple.id);
 		}
 
 		if (TragicConfig.allowSubmission && event.entityLiving.isPotionActive(TragicPotion.Submission))
 		{
-			if (event.entityLiving.isPotionActive(Potion.field_76434_w)) event.entityLiving.removePotionEffect(TragicPotion.Submission.id);
+			if (event.entityLiving.isPotionActive(Potion.resistance.id)) event.entityLiving.removePotionEffect(TragicPotion.Submission.id);
 		}
 
 		if (TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity))
@@ -253,7 +253,7 @@ public class PotionEvents {
 
 			if (entity.ticksExisted % 5 == 0)
 			{
-				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(4.0D, 4.0D, 4.0D));
+				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.getEntityBoundingBox().expand(4.0D, 4.0D, 4.0D));
 				boolean flag = !list.isEmpty();
 				PotionEffect temp = entity.getActivePotionEffect(TragicPotion.Corruption);
 
@@ -275,7 +275,7 @@ public class PotionEvents {
 
 				if (!flag)
 				{
-					list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(12.0D, 12.0D, 12.0D));
+					list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.getEntityBoundingBox().expand(12.0D, 12.0D, 12.0D));
 
 					for (Entity e : list)
 					{
@@ -311,7 +311,6 @@ public class PotionEvents {
 		{
 			if (entity instanceof EntityCreature)
 			{
-				((EntityCreature) entity).setTarget(null);
 				((EntityCreature) entity).setAttackTarget(null);
 
 				if (!((EntityCreature) entity).getNavigator().noPath())
@@ -321,7 +320,7 @@ public class PotionEvents {
 					int y = path.getFinalPathPoint().yCoord;
 					int z = path.getFinalPathPoint().zCoord;
 
-					if (!entity.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, entity.boundingBox.copy().offset(x, y, z)).isEmpty())
+					if (!entity.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, entity.getEntityBoundingBox().offset(x, y, z)).isEmpty())
 					{
 						((EntityCreature) entity).getNavigator().clearPathEntity();
 					}
@@ -353,7 +352,7 @@ public class PotionEvents {
 		{
 			if (entity instanceof EntityCreature)
 			{
-				((EntityCreature) entity).setPathToEntity(null);
+				((EntityCreature) entity).getNavigator().clearPathEntity();
 				((EntityCreature) entity).setAttackTarget(null);
 			}
 
@@ -446,7 +445,7 @@ public class PotionEvents {
 		{
 			double d0 = 16.0D + (8.0D * entity.getActivePotionEffect(TragicPotion.Clarity).getAmplifier());
 
-			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(d0, d0, d0));
+			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.getEntityBoundingBox().expand(d0, d0, d0));
 			EntityLivingBase target;
 
 			for (int i = 0; i < list.size(); i++)
@@ -461,7 +460,9 @@ public class PotionEvents {
 							double d1 = target.width * (rand.nextDouble() - rand.nextDouble());
 							double d2 = target.height * rand.nextDouble();
 							double d3 = target.width * (rand.nextDouble() - rand.nextDouble());
-							EntityPortalFX fx = new EntityPortalFX(target.worldObj, target.posX + d1, target.posY + d2, target.posZ + d3, 0.0, 0.0, 0.0);
+							EntityPortalFX fx = new EntityPortalFX(target.worldObj, target.posX + d1, target.posY + d2, target.posZ + d3, 0.0, 0.0, 0.0) {
+								
+							};
 							fx.setRBGColorF(1.0F, 1.0F, 1.0F);
 							Minecraft.getMinecraft().effectRenderer.addEffect(fx);
 						}
@@ -713,7 +714,6 @@ public class PotionEvents {
 			if (event.entityLiving instanceof EntityCreature && !(event.entityLiving instanceof EntityWither) && !(event.entityLiving instanceof EntityDragon)
 					&& !(event.entityLiving instanceof TragicBoss))
 			{
-				((EntityCreature) event.entityLiving).setTarget(null);
 				((EntityLiving) event.entityLiving).setAttackTarget(null);
 			}
 		}
@@ -758,9 +758,9 @@ public class PotionEvents {
 			{
 				target.removePotionEffect(TragicPotion.Corruption.id);
 				if (TragicConfig.allowImmunity) target.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 6000));
-				target.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 2400, 4));
+				target.addPotionEffect(new PotionEffect(Potion.healthBoost.id, 2400, 4));
 				target.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 1200, 1));
-				target.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2400, 1));
+				target.addPotionEffect(new PotionEffect(Potion.resistance.id, 2400, 1));
 				target.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2400, 1));
 				if (TragicConfig.allowClarity) target.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 2400, 1));
 				--stack.stackSize;

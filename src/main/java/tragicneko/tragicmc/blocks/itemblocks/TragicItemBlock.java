@@ -1,11 +1,10 @@
 package tragicneko.tragicmc.blocks.itemblocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TragicItemBlock extends ItemBlock {
 
@@ -39,10 +38,10 @@ public class TragicItemBlock extends ItemBlock {
 	public int getMetadata(int damageValue) {
 		return damageValue;
 	}
-	
+	/*
 	@SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int meta)
     {
 		return this.field_150939_a.getIcon(0, meta);
-    }
+    } */
 }
