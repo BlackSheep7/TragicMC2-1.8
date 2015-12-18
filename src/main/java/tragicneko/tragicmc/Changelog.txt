@@ -4435,9 +4435,14 @@ point the 1.7.10 version will have support dropped in favor of this one
 3.46.2858 <212> (December 14, 2015) [Initial port to 1.8, just trying to get it to load in 1.8]
 Initial updates for import references (mostly with FML being moved into Forge)
 More error fixing and upating done, mostly on entities and worldgen features, down to 7k errors now
+More error fixing, focusing on main item and block classes as well as on the events classes, down to 6k errors now
 
+TODO: Remember to override illumination method for my mobs so that the ones that need to have it do it
 TODO: Change WorldHelper methods to return BlockPos instead of int[]
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
+TODO: Move teleporting into the super classes for Entities, with some hooks to change particles and do something when a teleport is successful
+TODO: Add a utility method for teleporting the player somewhere (so I don't have to copy-paste a block of code just for this)
+TODO: Add a utility method for getting an entity's BlockPos quickly
 
 //Changed common entity functions
 func_145780_a(int x, int y, int z, Block block) ---> playStepSound(BlockPos pos, Block block)
