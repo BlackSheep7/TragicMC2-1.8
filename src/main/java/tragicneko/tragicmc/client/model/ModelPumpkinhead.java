@@ -21,10 +21,10 @@ public class ModelPumpkinhead extends ModelBiped
 		bipedBody = new ModelRenderer(this, 18, 22);
 		bipedBody.addBox(-3F, 0F, -2F, 6, 12, 4);
 		bipedBody.setRotationPoint(0F, 0F, 0F);
-		bipedCloak = new ModelRenderer(this, 44, 0);
-		bipedCloak.addBox(-4F, 0F, 3F, 8, 14, 0);
-		bipedCloak.rotateAngleX = 0.185931F;
-		bipedBody.addChild(bipedCloak);
+		//bipedCloak = new ModelRenderer(this, 44, 0);
+		//bipedCloak.addBox(-4F, 0F, 3F, 8, 14, 0);
+		//bipedCloak.rotateAngleX = 0.185931F;
+		//bipedBody.addChild(bipedCloak);
 
 		bipedRightArm = new ModelRenderer(this, 40, 16);
 		bipedRightArm.addBox(-3F, -2F, -1F, 2, 8, 2);
@@ -51,7 +51,7 @@ public class ModelPumpkinhead extends ModelBiped
 	{
 		this.isRiding = entity.isRiding();
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		this.renderCloak(f5);
+		//this.renderCloak(f5);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class ModelPumpkinhead extends ModelBiped
 			this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
 			this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
 		}
-
+		/*
 		if (Math.abs(entity.motionX) > 0.05 || Math.abs(entity.motionZ) > 0.05 || Math.abs(entity.motionY) > 0.01)
 		{
 			this.bipedCloak.rotateAngleX = 0.185931F + 0.8F * this.simplifyAngle(entity.ticksExisted, 10.0F) * f1;
@@ -92,7 +92,7 @@ public class ModelPumpkinhead extends ModelBiped
 		else
 		{
 			this.bipedCloak.rotateAngleX = 0.185931F;
-		}
+		} */
 	}
 
 	private float simplifyAngle(float par1, float par2)

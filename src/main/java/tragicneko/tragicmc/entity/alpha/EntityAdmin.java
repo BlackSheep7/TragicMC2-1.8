@@ -45,6 +45,12 @@ public class EntityAdmin extends TragicBoss {
 	//also at certain phases it'll create a singularity which will alter your active effects and change your current health and hunger amounts, in other words,
 	//it'll basically hack your stats (won't affect inventory and current equipped items but the effects will actually occur
 	
+	//It'll then begin regenerating towers, if these towers are allowed to completely regenerate then it'll go back into it's first phase with fully powered
+	//towers, you must destroy the towers before they regenerate long enough for it to be cut off from their power, then it'll have to factory reset it's systems
+	//in order to continue living, which will clear it of all corruption
+	//While it's regenerating towers, it'll also fire slow moving homing projectiles which can be used to assist you in destroying the towers if used
+	//cleverly enough, these will go through walls though so you'll take damage if you use them to destroy the towers
+	
 	//New block, it'll have three states, one active and one inactive similarly to how I originally wanted to do the Digital Sea and one "broken"
 	//The broken block state will signify that part of the tower has been destroyed, there will also be core states
 	//core states will be in the middle of the tower, if an active block is not touching a core block it'll become inactive
