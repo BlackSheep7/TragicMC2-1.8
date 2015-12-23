@@ -4,23 +4,21 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockStarCrystal extends Block {
-
-	private String[] subNames = new String[] {"Black", "Red", "Green", "Brown", "Blue", "Purple", "Cyan", "LightGray", "DarkGray", "Pink", "LimeGreen", "Yellow", "LightBlue",
-			"Magenta", "Orange", "White"};
-	private IIcon[] iconArray = new IIcon[subNames.length];
+public class BlockStarCrystal extends BlockColored {
 
 	public BlockStarCrystal() {
 		super(Material.glass);
@@ -28,16 +26,16 @@ public class BlockStarCrystal extends Block {
 		this.setResistance(10.0F);
 		this.setHardness(2.0F);
 		this.setStepSound(soundTypeGlass);
-		this.setBlockName("tragicmc.starCrystal");
+		this.setUnlocalizedName("tragicmc.starCrystal");
 		this.lightValue = 15;
 		this.lightOpacity = 2;
 		this.setHarvestLevel("pickaxe", 0);
 	}
 
 	@Override
-	public int quantityDroppedWithBonus(int fortune, Random rand)
+	public int quantityDropped(IBlockState state, int fortune, Random rand)
 	{
-		if (fortune > 0 && this.getItemDropped(0, rand, fortune) == Items.dye)
+		if (fortune > 0 && this.getItemDropped(state, rand, fortune) == Items.dye)
 		{
 			int j = rand.nextInt(fortune + 2) - 1;
 			if (j < 0) j = 0;
@@ -57,52 +55,22 @@ public class BlockStarCrystal extends Block {
 	}
 
 	@Override
-	public Item getItemDropped(int meta, Random rand, int level)
+	public Item getItemDropped(IBlockState state, Random rand, int level)
 	{
 		return Items.dye;
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta)
+	public int damageDropped(IBlockState state)
 	{
-		if (meta >= this.iconArray.length)
-		{
-			meta = this.iconArray.length - 1;
-		}
-		return this.iconArray[meta];
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		for (int i = 0; i < subNames.length; i++)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + subNames[i] + "StarCrystal");
-		}
-	}
-
-	@Override
-	public int damageDropped(int par1)
-	{
-		return par1;
+		return this.getMetaFromState(state);
 	}
 
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < this.subNames.length; i++)
-		{
+		for (byte i = 0; i < 16; i++)
 			par3.add(new ItemStack(par1, 1, i));
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass()
-	{
-		return 1;
 	}
 
 	@Override
@@ -113,10 +81,10 @@ public class BlockStarCrystal extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)
+	public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing facing)
 	{
-		Block block = world.getBlock(x, y, z);
-		return block == this ? false : super.shouldSideBeRendered(world, x, y, z, side);
+		Block block = world.getBlockState(pos).getBlock();
+		return block == this ? false : super.shouldSideBeRendered(world, pos, facing);
 	}
 
 }

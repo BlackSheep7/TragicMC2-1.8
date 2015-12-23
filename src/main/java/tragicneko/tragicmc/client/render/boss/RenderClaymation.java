@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.boss;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
@@ -28,8 +29,8 @@ public class RenderClaymation extends RenderBoss {
 	private static final ModelBase[] models = new ModelBase[] {new ModelClaymation(), new ModelMinotaur(), new ModelApis(), new ModelStinKing(), new ModelNorVox(), new ModelJabba(),
 		new ModelRagr(), new ModelDeathReaper(), new ModelKitsune2(), new ModelCustomGolem()};
 
-	public RenderClaymation() {
-		super(models[0], 0.556F);
+	public RenderClaymation(RenderManager rm) {
+		super(rm, models[0], 0.556F);
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class RenderClaymation extends RenderBoss {
 		if (this.scale != this.getScaleFromClaymationForm((EntityClaymation) entity)) this.scale = this.getScaleFromClaymationForm((EntityClaymation) entity);
 		GL11.glScalef(scale, scale, scale);
 	}
-
+/*//TODO change method call
 	protected int shouldRenderPass(TragicBoss boss, int par2, float par3)
 	{
 		if (boss.isInvisible())
@@ -78,7 +79,7 @@ public class RenderClaymation extends RenderBoss {
 		GL11.glDisable(GL11.GL_BLEND);
 
 		return -1;
-	}
+	} 
 
 	@Override
 	protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
@@ -90,7 +91,7 @@ public class RenderClaymation extends RenderBoss {
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;
-	}
+	} */
 
 	private float getScaleFromClaymationForm(EntityClaymation clay) {
 		switch(clay.getEntityForm())

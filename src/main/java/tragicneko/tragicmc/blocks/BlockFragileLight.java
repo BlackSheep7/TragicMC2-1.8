@@ -4,75 +4,61 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBlocks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFragileLight extends Block {
 
-	private final boolean isVisible;
+	public static final PropertyBool VISIBLE = PropertyBool.create("visible");
 
 	public BlockFragileLight(boolean flag) {
 		super(Material.glass);
 		this.setHarvestLevel("pickaxe", 0);
-		this.setBlockTextureName("tragicmc:FragileLight");
-		this.setBlockName("tragicmc.fragileLight");
+		this.setUnlocalizedName("tragicmc.fragileLight");
 		this.setHardness(0.5F);
 		this.setResistance(0.5F);
 		this.setStepSound(Block.soundTypeGlass);
 		this.setLightOpacity(0);
 		this.setLightLevel(!flag ? 0.2F : 0.6F);
-		this.isVisible = flag;
 		this.setTickRandomly(true);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		super.registerBlockIcons(par1IconRegister);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int par1, int par2)
-	{
-		return super.getIcon(par1, par2);
-	}
-
-	@Override
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Item.getItemFromBlock(TragicBlocks.FragileLight);
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+	public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
 	{
 		return null;
 	}
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand)
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
-		if (!isVisible) world.setBlock(x, y, z, isVisible ? TragicBlocks.FragileLightInvis : TragicBlocks.FragileLight);
+		if (!((Boolean) state.getValue(VISIBLE))) world.setBlockState(pos, state.withProperty(VISIBLE, true));
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
-		if (!world.isRemote && entity instanceof EntityLivingBase && isVisible)
+		if (!world.isRemote && entity instanceof EntityLivingBase && ((Boolean) state.getValue(VISIBLE)))
 		{
-			world.setBlock(x, y, z, TragicBlocks.FragileLightInvis);
-			world.scheduleBlockUpdate(x, y, z, TragicBlocks.FragileLightInvis, 10);
+			world.setBlockState(pos, this.getDefaultState().withProperty(VISIBLE, true));
+			world.scheduleUpdate(pos, this, 10);
 		}
 	}
 
@@ -84,10 +70,10 @@ public class BlockFragileLight extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)
+	public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing facing)
 	{
-		Block block = world.getBlock(x, y, z);
-		return block == this ? false : super.shouldSideBeRendered(world, x, y, z, side);
+		Block block = world.getBlockState(pos).getBlock();
+		return block == this ? false : super.shouldSideBeRendered(world, pos, facing);
 	}
 
 	@Override
@@ -95,18 +81,5 @@ public class BlockFragileLight extends Block {
 	public int getRenderType()
 	{
 		return 1;
-	}
-
-	@Override
-	public boolean renderAsNormalBlock()
-	{
-		return false;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass()
-	{
-		return isVisible ? 0 : 1;
 	}
 }

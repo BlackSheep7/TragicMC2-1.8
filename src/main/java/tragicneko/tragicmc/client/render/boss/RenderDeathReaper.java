@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.client.render.boss;
 
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelDeathReaper;
@@ -10,8 +11,8 @@ public class RenderDeathReaper extends RenderBoss {
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/DeathReaper.png");
 	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/DeathReaper2.png");
 
-	public RenderDeathReaper() {
-		super(new ModelDeathReaper(), 0.475F);
+	public RenderDeathReaper(RenderManager rm) {
+		super(rm, new ModelDeathReaper(), 0.475F);
 	}
 
 	@Override

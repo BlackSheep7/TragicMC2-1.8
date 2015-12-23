@@ -2,15 +2,15 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
-import tragicneko.tragicmc.TragicAchievements;
-import tragicneko.tragicmc.TragicConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
+import tragicneko.tragicmc.TragicConfig;
 
 public class ItemCryingObsidianOrb extends Item {
 
@@ -27,17 +27,17 @@ public class ItemCryingObsidianOrb extends Item {
 	{
 		if (!par2World.isRemote)
 		{
-			par2World.getSpawnPoint();
+			BlockPos pos = par2World.getSpawnPoint();
 			int x = (int) par3EntityPlayer.posX;
 			int z = (int) par3EntityPlayer.posZ;
 			int y = (int) par3EntityPlayer.posY;
 
-			ChunkCoordinates newCC = new ChunkCoordinates(x, y, z);
+			BlockPos newCC = new BlockPos(x, y, z);
 
-			int dim = par2World.provider.dimensionId;
+			int dim = par2World.provider.getDimensionId();
 
 			par3EntityPlayer.setSpawnChunk(newCC, true, dim);
-			par3EntityPlayer.addChatMessage(new ChatComponentText("Spawn set to " + x + ", " + y + ", " + z + " for dimension with id of " + par2World.provider.dimensionId));
+			par3EntityPlayer.addChatMessage(new ChatComponentText("Spawn set to " + x + ", " + y + ", " + z + " for dimension with id of " + par2World.provider.getDimensionId()));
 			
 			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
 			par1ItemStack.stackSize--;

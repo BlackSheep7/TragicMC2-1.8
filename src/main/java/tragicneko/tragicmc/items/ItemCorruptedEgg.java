@@ -28,7 +28,6 @@ public class ItemCorruptedEgg extends Item {
 		super();
 		this.setCreativeTab(TragicMC.Survival);
 		this.setUnlocalizedName("tragicmc.corruptedEgg");
-		this.setTextureName("tragicmc:CorruptedEgg");
 	}
 
 	@Override

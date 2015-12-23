@@ -4,56 +4,42 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import tragicneko.tragicmc.TragicBlocks;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockIceSpike extends Block {
 
-	private final boolean onGround;
+	public static final PropertyBool FLIP = PropertyBool.create("flip");
 
 	public BlockIceSpike(boolean flag) {
 		super(Material.coral);
-		this.onGround = flag;
 		this.setCreativeTab(TragicMC.Survival);
-		this.setBlockName("tragicmc.iceSpike");
+		this.setUnlocalizedName("tragicmc.iceSpike");
 		this.setHardness(25.0F);
 		this.setResistance(10.0F);
 		this.setHarvestLevel("pickaxe", 1);
 		this.setStepSound(soundTypeStone);
 		this.setLightOpacity(0);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FLIP, false));
 	}
 
 	@Override
-	public boolean canBlockStay(World world, int x, int y, int z)
+	public void onFallenUpon(World world, BlockPos pos, Entity entity, float distance)
 	{
-		if (!this.onGround && world.getBlock(x, y + 1, z).isSideSolid(world, x, y + 1, z, ForgeDirection.SOUTH)) return true;
-		return this.onGround && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z);
-	}
-
-	@Override
-	public void onBlockAdded(World world, int x, int y, int z)
-	{
-		super.onBlockAdded(world, x, y, z);
-		if (!this.canBlockStay(world, x, y, z) && onGround && TragicBlocks.IceSpikeHanging.canBlockStay(world, x, y, z))
-		{
-			world.setBlock(x, y, z, TragicBlocks.IceSpikeHanging, 0, 4);
-		}
-	}
-
-	@Override
-	public void onFallenUpon(World world, int x, int y, int z, Entity entity, float distance)
-	{
-		if (this.onGround) entity.attackEntityFrom(DamageSource.cactus, distance * 1.5F);
+		IBlockState state = world.getBlockState(pos);
+		if (!((Boolean) state.getValue(FLIP))) entity.attackEntityFrom(DamageSource.cactus, distance * 1.5F);
 	}
 
 	@Override
@@ -63,18 +49,13 @@ public class BlockIceSpike extends Block {
 	}
 
 	@Override
-	public boolean canHarvestBlock(EntityPlayer player, int meta)
-	{
-		return super.canHarvestBlock(player, meta);
-	}
-	@Override
 	protected boolean canSilkHarvest()
 	{
 		return true;
 	}
 
 	@Override
-	public Item getItemDropped(int meta, Random rand, int level)
+	public Item getItemDropped(IBlockState state, Random rand, int level)
 	{
 		return null;
 	}
@@ -87,16 +68,35 @@ public class BlockIceSpike extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)
+	public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing facing)
 	{
-		Block block = world.getBlock(x, y, z);
-		return block == this ? false : super.shouldSideBeRendered(world, x, y, z, side);
+		Block block = world.getBlockState(pos).getBlock();
+		return block == this ? false : super.shouldSideBeRendered(world, pos, facing);
+	}
+	/*
+	@Override //TODO change method call
+	public void onEntityWalking(World world, BlockPos pos, IBlockState state, Entity entity)
+	{
+		super.onEntityWalking(world, pos, entity);
+		if (world.rand.nextInt(4) == 0 && entity instanceof EntityLivingBase) entity.attackEntityFrom(new DamageSource("iceSpike").setDamageBypassesArmor(), 1F);
+	} */
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, FLIP);
 	}
 	
 	@Override
-	public void onEntityWalking(World world, int x, int y, int z, Entity entity)
-	{
-		super.onEntityWalking(world, x, y, z, entity);
-		if (world.rand.nextInt(4) == 0 && entity instanceof EntityLivingBase) entity.attackEntityFrom(new DamageSource("iceSpike").setDamageBypassesArmor(), 1F);
-	}
+	public IBlockState getStateFromMeta(int meta)
+    {
+		return this.getDefaultState().withProperty(FLIP, meta == 1);
+    }
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+    {
+		boolean comp = ((Boolean) state.getValue(FLIP)).booleanValue();
+		return comp ? 1 : 0;
+    }
 }

@@ -2,15 +2,15 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
-import tragicneko.tragicmc.TragicAchievements;
-import tragicneko.tragicmc.TragicConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
+import tragicneko.tragicmc.TragicConfig;
 
 public class ItemBleedingObsidianOrb extends Item {
 
@@ -27,13 +27,13 @@ public class ItemBleedingObsidianOrb extends Item {
 	{
 		if (!par2World.isRemote)
 		{
-			int dim = par2World.provider.dimensionId;
-			ChunkCoordinates cc = par3EntityPlayer.getBedLocation(dim);
+			int dim = par2World.provider.getDimensionId();
+			BlockPos cc = par3EntityPlayer.getBedLocation(dim);
 
 			if (cc != null)
 			{
-				par3EntityPlayer.setPositionAndUpdate(cc.posX, cc.posY, cc.posZ);
-				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc.posX + ", " + cc.posY + ", " + cc.posZ + " for dimension with id of " + dim));
+				par3EntityPlayer.setPositionAndUpdate(cc.getX(), cc.getY(), cc.getZ());
+				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc.getX() + ", " + cc.getY() + ", " + cc.getZ() + " for dimension with id of " + dim));
 			}
 			else
 			{
@@ -42,18 +42,18 @@ public class ItemBleedingObsidianOrb extends Item {
 					par3EntityPlayer.travelToDimension(0);
 				}
 
-				ChunkCoordinates cc2 = par3EntityPlayer.getBedLocation(0);
+				BlockPos cc2 = par3EntityPlayer.getBedLocation(0);
 
 				if (cc2 != null)
 				{
-					par3EntityPlayer.setPositionAndUpdate(cc2.posX, cc2.posY, cc2.posZ);
-					par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc2.posX + ", " + cc2.posY + ", " + cc2.posZ + " for dimension with id of 0"));
+					par3EntityPlayer.setPositionAndUpdate(cc2.getX(), cc2.getY(), cc2.getZ());
+					par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc2.getX() + ", " + cc2.getY() + ", " + cc2.getZ() + " for dimension with id of 0"));
 				}
 				else
 				{
-					ChunkCoordinates cc3 = par2World.getSpawnPoint();
-					par3EntityPlayer.setPositionAndUpdate(cc3.posX, par2World.getTopSolidOrLiquidBlock(cc3.posX, cc3.posZ), cc3.posZ);
-					par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc3.posX + ", " + cc3.posY + ", " + cc3.posZ + " for dimension with id of 0"));
+					BlockPos cc3 = par2World.getSpawnPoint();
+					par3EntityPlayer.setPositionAndUpdate(cc3.getX(), par2World.getTopSolidOrLiquidBlock(cc3).getY(), cc3.getZ());
+					par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc3.getX() + ", " + cc3.getY() + ", " + cc3.getZ() + " for dimension with id of 0"));
 				}
 			}
 

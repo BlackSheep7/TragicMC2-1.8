@@ -13,6 +13,8 @@ public class CommonProxy implements IGuiHandler {
 	public static final int AMULET_GUI_ID = 0;
 
 	public void registerRenders(){}
+	
+	public void preInitRenders() {}
 
 	@Override
 	public Object getServerGuiElement(int guiId, EntityPlayer player, World world, int x, int y, int z)

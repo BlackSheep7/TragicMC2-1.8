@@ -4,40 +4,35 @@ import java.util.List;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStructureSeeds;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import tragicneko.tragicmc.worldgen.structure.Structure;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockStructureSeed extends BlockContainer {
+	
+	public static final PropertyInteger STRUCTURE = PropertyInteger.create("structure_id", 0, Structure.structureList.length);
 
 	public BlockStructureSeed() {
 		super(Material.gourd);
 		this.setResistance(100.0F);
 		this.setHardness(10.0F);
 		this.setCreativeTab(TragicMC.Creative);
-		this.setBlockName("tragicmc.structureSeed");
+		this.setUnlocalizedName("tragicmc.structureSeed");
+		this.setDefaultState(this.blockState.getBaseState().withProperty(STRUCTURE, 0));
 	}
 
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		this.blockIcon = par1IconRegister.registerIcon("tragicmc:StructureSeed");
 	}
 
 	@Override
@@ -52,17 +47,33 @@ public class BlockStructureSeed extends BlockContainer {
 	}
 
 	@Override
-	public int damageDropped(int par1)
+	public int damageDropped(IBlockState state)
 	{
-		return par1;
+		return this.getMetaFromState(state);
 	}
 
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < Structure.structureList.length && Structure.structureList[i] != null; i++)
-		{
 			par3.add(new ItemStack(par1, 1, i));
-		}
 	}
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, STRUCTURE);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+    {
+		return this.getDefaultState().withProperty(STRUCTURE, meta);
+    }
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+    {
+		return ((Integer) state.getValue(STRUCTURE)).intValue();
+    }
 }

@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -15,8 +16,8 @@ public class RenderTox extends RenderLiving {
 	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Tox.png");
 	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Pox.png");
 
-	public RenderTox() {
-		super(new ModelTox(), 0.855F);
+	public RenderTox(RenderManager rm) {
+		super(rm, new ModelTox(), 0.855F);
 	}
 
 	@Override

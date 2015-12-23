@@ -4,20 +4,17 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.IStringSerializable;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockLightCobble extends Block {
 
-	private String[] oreNames = new String[]{"Normal", "Frozen", "Glowing"};
-
-	private IIcon[] iconArray = new IIcon[oreNames.length];
+	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockLightCobble.EnumVariant.class);
 
 	public BlockLightCobble() {
 		super(Material.rock);
@@ -25,44 +22,44 @@ public class BlockLightCobble extends Block {
 		this.setCreativeTab(TragicMC.Survival);
 		this.setResistance(1.0F);
 		this.setHardness(1.0F);
-		this.setBlockName("tragicmc.lightCobblestone");
+		this.setUnlocalizedName("tragicmc.lightCobblestone");
 		this.lightValue = 5;
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumVariant.NORMAL));
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta)
+	public int damageDropped(IBlockState state)
 	{
-		if (meta >= this.iconArray.length)
-		{
-			meta = this.iconArray.length - 1;
-		}
-		return this.iconArray[meta];
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		for (int i = 0; i < this.oreNames.length; i++)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "BrightCobble");
-		}
-	}
-
-	@Override
-	public int damageDropped(int par1)
-	{
-		return par1;
+		return this.getMetaFromState(state);
 	}
 
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < this.oreNames.length; i++)
-		{
+		for (byte i = 0; i < 3; i++)
 			par3.add(new ItemStack(par1, 1, i));
-		}
 	}
 
+	public enum EnumVariant implements IStringSerializable {
+		NORMAL("normal"),
+		FROZEN("frozen"),
+		GLOWING("glowing");
+		
+		private final String name;
+		
+		private EnumVariant(String name)
+		{
+			this.name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return this.name;
+		}
+
+		@Override
+		public String getName() {
+			return this.name;
+		}
+	}
 }

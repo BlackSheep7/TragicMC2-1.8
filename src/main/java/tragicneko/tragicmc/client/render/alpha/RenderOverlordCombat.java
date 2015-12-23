@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.client.render.alpha;
 
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
@@ -16,8 +17,8 @@ public class RenderOverlordCombat extends RenderBoss {
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/OverlordCombat.png");
 	private static final ResourceLocation noiseTexture = new ResourceLocation("tragicmc:textures/mobs/OverlordCombatNoise.png");
 
-	public RenderOverlordCombat() {
-		super(new ModelOverlordCombat(), 0.756F, 2.25F);
+	public RenderOverlordCombat(RenderManager rm) {
+		super(rm, new ModelOverlordCombat(), 0.756F, 2.25F);
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class RenderOverlordCombat extends RenderBoss {
 	{
 		super.renderModel(entity, par2, par3, par4, par5, par6, par7);
 	}
-
+/*//TODO change method call
 	@Override
 	protected int shouldRenderPass(EntityLivingBase boss, int par2, float par3)
 	{
@@ -98,7 +99,7 @@ public class RenderOverlordCombat extends RenderBoss {
 		}
 
 		return -1;
-	}
+	} */
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {

@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.client.render.boss;
 
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
@@ -16,10 +17,10 @@ public class RenderApis extends RenderBoss
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/ApisCombat2.png");
 	private static final ResourceLocation combatTexture = new ResourceLocation("tragicmc:textures/mobs/ApisCombat3.png");
 
-	public RenderApis() {
-		super(new ModelApis(), 0.556F);
+	public RenderApis(RenderManager rm) {
+		super(rm, new ModelApis(), 0.556F);
 	}
-
+/*//TODO change method call
 	protected int shouldRenderPass(TragicBoss boss, int par2, float par3)
 	{
 		EntityApis apis = (EntityApis) boss;
@@ -78,7 +79,7 @@ public class RenderApis extends RenderBoss
 		}
 
 		return -1;
-	}
+	} */
 
 	@Override
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
@@ -90,7 +91,7 @@ public class RenderApis extends RenderBoss
 			GL11.glTranslatef(0.0F, -0.001F, 0.0F);
 		}
 	}
-
+/*
 	@Override
 	protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
@@ -101,7 +102,7 @@ public class RenderApis extends RenderBoss
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;
-	}
+	} */
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)

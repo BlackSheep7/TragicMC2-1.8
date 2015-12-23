@@ -2,6 +2,7 @@ package tragicneko.tragicmc.client.render.boss;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
@@ -17,8 +18,8 @@ public class RenderVoxStellarum extends RenderLiving {
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/VoxStellarum.png");
 	private static final float scale = 2.25F;
 
-	public RenderVoxStellarum() {
-		super(new ModelVoxStellarum(), 0.75F * scale);
+	public RenderVoxStellarum(RenderManager rm) {
+		super(rm, new ModelVoxStellarum(), 0.75F * scale);
 	}
 
 	@Override
@@ -89,7 +90,7 @@ public class RenderVoxStellarum extends RenderLiving {
 	protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
 		return texture;
 	}
-
+/*//TODO change method call
 	protected int shouldRenderPass(EntityVoxStellarum boss, int par2, float par3)
 	{
 		if (boss.isInvisible())
@@ -157,6 +158,6 @@ public class RenderVoxStellarum extends RenderLiving {
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;
-	}
+	} */
 
 }

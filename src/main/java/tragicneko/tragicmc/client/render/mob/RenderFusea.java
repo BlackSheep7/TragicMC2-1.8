@@ -2,6 +2,7 @@ package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -17,8 +18,8 @@ public class RenderFusea extends RenderLiving {
 	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/VolatileFusea.png");
 	private final int fuseaType;
 
-	public RenderFusea(int i) {
-		super(new ModelFusea(), 0.335F);
+	public RenderFusea(RenderManager rm, int i) {
+		super(rm, new ModelFusea(), 0.335F);
 		this.fuseaType = i;
 	}
 
@@ -57,7 +58,7 @@ public class RenderFusea extends RenderLiving {
 			this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, par1EntityLivingBase);
 		}
 	}
-
+/*//TODO change method call
 	@Override
 	protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
 	{
@@ -83,7 +84,7 @@ public class RenderFusea extends RenderLiving {
 
 			return -1;
 		}
-	}
+	} */
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {

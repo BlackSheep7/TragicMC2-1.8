@@ -3,6 +3,7 @@ package tragicneko.tragicmc.client.render;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
@@ -17,9 +18,9 @@ public class RenderGuardianShield extends Render {
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/GuardianShield.png");
 	public ModelBase model;
 
-	public RenderGuardianShield()
+	public RenderGuardianShield(RenderManager rm)
 	{
-		super();
+		super(rm);
 		this.model = new ModelGuardianShield();
 	}
 

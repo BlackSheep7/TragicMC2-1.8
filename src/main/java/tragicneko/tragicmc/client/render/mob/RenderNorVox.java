@@ -2,6 +2,7 @@ package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -16,8 +17,8 @@ public class RenderNorVox extends RenderLiving {
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/NorVox.png");
 	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/StarVox.png");
 
-	public RenderNorVox() {
-		super(new ModelNorVox(), 0.835F);
+	public RenderNorVox(RenderManager rm) {
+		super(rm, new ModelNorVox(), 0.835F);
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class RenderNorVox extends RenderLiving {
 			this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, par1EntityLivingBase);
 		}
 	}
-
+/*//TODO change method call
 	@Override
 	protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
 	{
@@ -82,7 +83,7 @@ public class RenderNorVox extends RenderLiving {
 
 			return -1;
 		}
-	}
+	} */
 
 	private float[] getRGBThroughTextureID(int textureID) {
 		switch(textureID)

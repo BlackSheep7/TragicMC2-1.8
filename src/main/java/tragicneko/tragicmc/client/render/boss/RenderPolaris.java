@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.client.render.boss;
 
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
@@ -15,10 +16,10 @@ public class RenderPolaris extends RenderBoss {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Polaris2.png");
 
-	public RenderPolaris() {
-		super(new ModelPolaris(), 0.335F);
+	public RenderPolaris(RenderManager rm) {
+		super(rm, new ModelPolaris(), 0.335F);
 	}
-
+/*//TODO change method call
 	protected int shouldRenderPass(TragicBoss boss, int par2, float par3)
 	{
 		if (boss.isInvisible())
@@ -71,7 +72,7 @@ public class RenderPolaris extends RenderBoss {
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;
-	}
+	} */
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)

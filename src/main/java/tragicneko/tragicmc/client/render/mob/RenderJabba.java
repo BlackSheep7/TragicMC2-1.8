@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -10,13 +11,13 @@ import org.lwjgl.opengl.GL11;
 import tragicneko.tragicmc.client.model.ModelJabba;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 
-public class RenderJabba extends RenderLiving{
+public class RenderJabba extends RenderLiving {
 
 	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Jabba.png");
 	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Janna.png");
 
-	public RenderJabba() {
-		super(new ModelJabba(), 0.655F);
+	public RenderJabba(RenderManager rm) {
+		super(rm, new ModelJabba(), 0.655F);
 	}
 
 	@Override

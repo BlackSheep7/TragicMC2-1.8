@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.alpha;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -17,8 +18,8 @@ public class RenderOverlordCore extends RenderBoss {
 	private static final ResourceLocation damagedTexture = new ResourceLocation("tragicmc:textures/mobs/OverlordCoreDamaged.png");
 	private static final ResourceLocation enderDragonExplodingTextures = new ResourceLocation("textures/entity/enderdragon/dragon_exploding.png");
 
-	public RenderOverlordCore() {
-		super(new ModelOverlordCore(), 0.756F, 2.25F);
+	public RenderOverlordCore(RenderManager rm) {
+		super(rm, new ModelOverlordCore(), 0.756F, 2.25F);
 	}
 
 	@Override
@@ -81,7 +82,7 @@ public class RenderOverlordCore extends RenderBoss {
 			this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, core);
 		}
 	}
-
+/*
 	@Override
 	protected int shouldRenderPass(EntityLivingBase entity, int pass, float partialTick)
 	{
@@ -105,7 +106,7 @@ public class RenderOverlordCore extends RenderBoss {
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			return 1;
 		}
-		/*
+		//This was commented from here
 		if (core.deathTime > 0)
 		{
 			Random rand = core.getRNG();
@@ -139,7 +140,7 @@ public class RenderOverlordCore extends RenderBoss {
 				GL11.glDisable(GL11.GL_BLEND);
 				return -1;
 			}
-		}	*/
+		}	//Up to here
 
 		if (pass == 1)
 		{
@@ -150,7 +151,7 @@ public class RenderOverlordCore extends RenderBoss {
 
 		return -1;
 
-	}
+	} */
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {

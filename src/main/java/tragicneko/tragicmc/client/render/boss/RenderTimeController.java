@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.boss;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
@@ -10,14 +11,13 @@ import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.client.model.ModelTimeController;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
-import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderTimeController extends RenderBoss {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/TimeController.png");
 
-	public RenderTimeController() {
-		super(new ModelTimeController(), 0.415F);
+	public RenderTimeController(RenderManager rm) {
+		super(rm, new ModelTimeController(), 0.415F);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class RenderTimeController extends RenderBoss {
 			this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, par1EntityLivingBase);
 		}
 	}
-
+/*//TODO change method call
 	@Override
 	protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
@@ -137,7 +137,7 @@ public class RenderTimeController extends RenderBoss {
 		GL11.glDisable(GL11.GL_BLEND);
 
 		return -1;
-	}
+	} */
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {

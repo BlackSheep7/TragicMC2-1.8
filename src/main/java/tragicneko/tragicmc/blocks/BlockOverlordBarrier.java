@@ -4,70 +4,65 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockOverlordBarrier extends Block {
 
 	public BlockOverlordBarrier() {
 		super(Material.iron);
-		this.setBlockName("tragicmc.overlordBarrier");
+		this.setUnlocalizedName("tragicmc.overlordBarrier");
 		this.setBlockUnbreakable();
 		this.setResistance(6000000.0F);
 		this.setCreativeTab(TragicMC.Creative);
 		this.setStepSound(soundTypeStone);
-		this.setBlockTextureName("tragicmc:OverlordBarrier");
 		this.setLightLevel(10.0F);
 		this.setLightOpacity(0);
 	}
 
 	@Override
-	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z)
+	public boolean canCreatureSpawn(IBlockAccess world, BlockPos pos, SpawnPlacementType type)
 	{
 		return false;
 	}
 
 	@Override
-	public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z)
+	public boolean canBeReplacedByLeaves(IBlockAccess world, BlockPos pos)
 	{
 		return false;
 	}
 
 	@Override
-	public boolean canReplace(World world, int x, int y, int z, int meta, ItemStack stack)
+	public boolean canReplace(World world, BlockPos pos, EnumFacing facing, ItemStack stack)
 	{
 		return true;
 	}
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand)
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
-		world.setBlockToAir(x, y, z);
+		world.setBlockToAir(pos);
 	}
 
 	@Override
-	public void onBlockAdded(World world, int x, int y, int z)
+	public void onBlockAdded(World world, BlockPos pos, IBlockState state)
 	{
-		if (!world.isRemote) world.scheduleBlockUpdate(x, y, z, this, 45 + world.rand.nextInt(16));
+		if (!world.isRemote) world.scheduleUpdate(pos, this, 45 + world.rand.nextInt(16));
 	}
 
 	@Override
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return null;
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public int getRenderBlockPass()
-	{
-		return 1;
 	}
 
 	@Override
@@ -77,5 +72,5 @@ public class BlockOverlordBarrier extends Block {
 	}
 
 	@Override
-	public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_) {}
+	public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune) {}
 }

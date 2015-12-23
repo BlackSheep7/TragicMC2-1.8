@@ -5,23 +5,22 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.IStringSerializable;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import tragicneko.tragicmc.blocks.BlockDarkSandstone.EnumVariant;
 
 public class BlockDarkStone extends Block {
 
-	private String[] oreNames = new String[]{"Smooth", "Red", "Green", "Teal", "Brown", "Violet", "Navy", "Beveled", "BeveledRed", "BeveledGreen", "BeveledTeal", "BeveledYellow",
-			"BeveledPurple", "BeveledNavy", "Spike"};
-
-	private IIcon[] iconArray = new IIcon[oreNames.length];
-	private IIcon[] spikeTexture = new IIcon[2];
+	public static final PropertyEnum TYPE = PropertyEnum.create("type", BlockDarkStone.EnumType.class);
+	public static final PropertyBool BEVELED = PropertyBool.create("beveled");
 
 	public BlockDarkStone() {
 		super(Material.rock);
@@ -29,57 +28,88 @@ public class BlockDarkStone extends Block {
 		this.setCreativeTab(TragicMC.Survival);
 		this.setResistance(3.0F);
 		this.setHardness(1.5F);
-		this.setBlockName("tragicmc.darkStone");
+		this.setUnlocalizedName("tragicmc.darkStone");
+		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.BLACK).withProperty(BEVELED, false));
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta)
+	public int damageDropped(IBlockState state)
 	{
-		if (meta == 14)
-		{
-			if (side == 0 || side == 1) return spikeTexture[0];
-			return this.spikeTexture[1];
-		}
-
-		if (meta >= this.iconArray.length)
-		{
-			meta = this.iconArray.length - 1;
-		}
-
-		return this.iconArray[meta];
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		for (int i = 0; i < this.oreNames.length - 1; i++)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "DarkStone");
-		}
-		this.spikeTexture[0] = par1IconRegister.registerIcon("tragicmc:SpikeTopDarkStone");
-		this.spikeTexture[1] = par1IconRegister.registerIcon("tragicmc:SpikeSideDarkStone");
-	}
-
-	@Override
-	public int damageDropped(int par1)
-	{
-		return par1;
+		return this.getMetaFromState(state);
 	}
 
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < this.oreNames.length; i++)
-		{
+		for (byte i = 0; i < 15; i++)
 			par3.add(new ItemStack(par1, 1, i));
-		}
 	}
 
 	@Override
-	public Item getItemDropped(int meta, Random rand, int looting)
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return meta == 0 ? TragicBlocks.DarkCobblestone.getItemDropped(0, rand, looting) : super.getItemDropped(meta, rand, looting);
+		return this.getMetaFromState(state) == 0 ? TragicBlocks.DarkCobblestone.getItemDropped(TragicBlocks.DarkCobblestone.getDefaultState(), rand, fortune) : super.getItemDropped(state, rand, fortune);
+	}
+
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, TYPE, BEVELED);
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		if (meta >= EnumType.values().length)
+		{
+			boolean flag = meta >= EnumType.values().length * 2;
+			if (!flag)
+			{
+				return this.getDefaultState().withProperty(TYPE, EnumType.values()[meta / 2]).withProperty(BEVELED, true);
+			}
+		}
+		return meta == 0 || meta >= EnumVariant.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(TYPE, EnumType.values()[meta]).withProperty(BEVELED, false);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		Comparable comp = state.getValue(TYPE);
+
+		for (byte m = 0; m < 16; m++)
+		{
+			boolean flag = m >= EnumType.values().length;
+			if (EnumType.values()[m] == comp) return m;
+			if (flag && EnumType.values()[m / 2] == comp) return m;
+		}
+
+		return 0;
+	}
+
+	public enum EnumType implements IStringSerializable {
+		BLACK("black"),
+		RED("red"),
+		GREEN("green"),
+		TEAL("teal"),
+		BROWN("brown"),
+		VIOLET("violet"),
+		NAVY("navy");
+
+		private final String name;
+
+		private EnumType(String name)
+		{
+			this.name = name;
+		}
+
+		@Override
+		public String toString() {
+			return this.name;
+		}
+
+		@Override
+		public String getName() {
+			return this.name;
+		}
 	}
 }

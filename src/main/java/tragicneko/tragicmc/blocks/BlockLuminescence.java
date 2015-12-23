@@ -4,16 +4,16 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockLuminescence extends Block {
 
@@ -24,96 +24,69 @@ public class BlockLuminescence extends Block {
 		this.setLightOpacity(0);
 		this.setResistance(0.0F);
 		this.setHardness(0.0F);
-		this.canBlockGrass = false;
-		this.opaque = false;
 		this.setTickRandomly(true);
 	}
 
 	@Override
-	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z)
+	public boolean canCreatureSpawn(IBlockAccess world, BlockPos pos, SpawnPlacementType type)
 	{
 		return false;
 	}
 
 	@Override
-	public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z)
+	public boolean canBeReplacedByLeaves(IBlockAccess world, BlockPos pos)
 	{
 		return true;
 	}
 
 	@Override
-	public boolean canReplace(World world, int x, int y, int z, int meta, ItemStack stack)
+	public boolean canReplace(World world, BlockPos pos, EnumFacing facing, ItemStack stack)
 	{
 		return true;
 	}
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand)
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
-		if (!world.isRemote) world.setBlockToAir(x, y, z);
+		if (!world.isRemote) world.setBlockToAir(pos);
 	}
 
 	@Override
-	public void onBlockAdded(World world, int x, int y, int z)
+	public void onBlockAdded(World world, BlockPos pos, IBlockState state)
 	{
-		if (!world.isRemote) world.scheduleBlockUpdate(x, y, z, this, 5);
+		if (!world.isRemote) world.scheduleUpdate(pos, this, 5);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		this.blockIcon = par1IconRegister.registerIcon("tragicmc:Transparency");
-	}
-
-	@Override
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return null;
 	}
 
-	/**
-	 * The type of render function that is called for this block
-	 */
 	@Override
 	public int getRenderType()
 	{
 		return -1;
 	}
 
-	/**
-	 * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
-	 * cleared to be reused)
-	 */
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+	public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
 	{
 		return null;
 	}
 
-	/**
-	 * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
-	 * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
-	 */
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
 
-	/**
-	 * Returns whether this block is collideable based on the arguments passed in n@param par1 block metaData n@param
-	 * par2 whether the player right-clicked while holding a boat
-	 */
 	@Override
-	public boolean canCollideCheck(int p_149678_1_, boolean p_149678_2_)
+	public boolean canCollideCheck(IBlockState state, boolean hitLiquid)
 	{
 		return false;
 	}
-
-	/**
-	 * Drops the block items with a specified chance of dropping the specified items
-	 */
+	
 	@Override
-	public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_) {}
+	public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune) {}
 }

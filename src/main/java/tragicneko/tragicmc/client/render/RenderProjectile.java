@@ -1,28 +1,21 @@
 package tragicneko.tragicmc.client.render;
 
-import static tragicneko.tragicmc.TragicItems.Projectile;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 public class RenderProjectile extends Render
 {
 	private int damage = 0;
+	//TODO fix renderprojectile class
+	public RenderProjectile(RenderManager rm) {
+		super(rm);
+	}
 
-	public RenderProjectile() {}
-
-	public RenderProjectile(int damage) {
+	public RenderProjectile(RenderManager rm, int damage) {
+		super(rm);
 		this.damage = damage;
 	}
 
@@ -30,7 +23,7 @@ public class RenderProjectile extends Render
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
 	{
 		float scale = 0.5F;
-		if (par1Entity instanceof EntityThrowingRock && ((EntityThrowingRock)par1Entity).isLavaRock()) this.damage = 1;
+		if (par1Entity instanceof EntityThrowingRock && ((EntityThrowingRock)par1Entity).isLavaRock()) this.damage = 1; /*
 		IIcon icon = Projectile.getIconFromDamage(this.damage);
 
 		if (icon != null)
@@ -44,15 +37,15 @@ public class RenderProjectile extends Render
 			this.renderIcon(tessellator, icon);
 			GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 			GL11.glPopMatrix();
-		}
+		} */
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity par1Entity)
 	{
-		return TextureMap.locationItemsTexture;
+		return null; // TextureMap.;
 	}
-
+/*
 	private void renderIcon(Tessellator par1Tessellator, IIcon par2Icon)
 	{
 		float f = par2Icon.getMinU();
@@ -71,5 +64,5 @@ public class RenderProjectile extends Render
 		par1Tessellator.addVertexWithUV(f4 - f5, f4 - f6, 0.0D, f1, f2);
 		par1Tessellator.addVertexWithUV(0.0F - f5, f4 - f6, 0.0D, f, f2);
 		par1Tessellator.draw();
-	}
+	} */
 }

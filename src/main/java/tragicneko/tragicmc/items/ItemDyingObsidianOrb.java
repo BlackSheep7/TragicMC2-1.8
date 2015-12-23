@@ -27,7 +27,7 @@ public class ItemDyingObsidianOrb extends Item {
 	{
 		if (!par2World.isRemote)
 		{
-			int dim = par2World.provider.dimensionId;
+			int dim = par2World.provider.getDimensionId();
 
 			if (dim != 0)
 			{

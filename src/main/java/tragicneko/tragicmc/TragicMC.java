@@ -265,6 +265,7 @@ public class TragicMC
 		{
 			logWarning("Achievements are enabled in config but are disabled due to certain blocks and items being disabled. This is to prevent game crashes from ocurring.");
 		}
+		proxy.preInitRenders(); //added for 1.8's tedious block/item rendering process
 	}
 
 	@EventHandler
@@ -436,6 +437,28 @@ public class TragicMC
 				else
 				{
 					mm.remap(Item.getItemFromBlock(TragicBlocks.LightCobblestone));
+				}
+			}
+			else if (mm.name.equals("TragicMC:fragileLightInvis"))
+			{
+				if (mm.type == Type.BLOCK)
+				{
+					mm.remap(TragicBlocks.FragileLight);
+				}
+				else
+				{
+					mm.remap(Item.getItemFromBlock(TragicBlocks.FragileLight));
+				}
+			}
+			else if (mm.name.equals("TragicMC:geyserSteaming"))
+			{
+				if (mm.type == Type.BLOCK)
+				{
+					mm.remap(TragicBlocks.Geyser);
+				}
+				else
+				{
+					mm.remap(Item.getItemFromBlock(TragicBlocks.Geyser));
 				}
 			}
 			else if (mm.name.contains("TragicMC:"))

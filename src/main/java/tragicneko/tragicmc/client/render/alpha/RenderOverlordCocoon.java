@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.client.render.alpha;
 
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -14,8 +15,8 @@ public class RenderOverlordCocoon extends RenderBoss {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/OverlordCocoon.png");
 
-	public RenderOverlordCocoon() {
-		super(new ModelOverlordCocoon(), 0.756F, 3.25F);
+	public RenderOverlordCocoon(RenderManager rm) {
+		super(rm, new ModelOverlordCocoon(), 0.756F, 3.25F);
 	}
 
 	@Override

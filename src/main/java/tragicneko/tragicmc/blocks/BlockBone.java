@@ -5,20 +5,18 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBone extends Block {
 
-	private String[] oreNames = new String[] {"Normal", "Rotten"};
-	private IIcon[] iconArray = new IIcon[oreNames.length];
+	public static final PropertyBool VARIANT = PropertyBool.create("rotten");
 
 	public BlockBone() {
 		super(Material.gourd);
@@ -26,76 +24,60 @@ public class BlockBone extends Block {
 		this.setHardness(0.5F);
 		this.setResistance(1.0F);
 		this.setStepSound(soundTypeStone);
-		this.setBlockName("tragicmc.boneBlock");
+		this.setUnlocalizedName("tragicmc.boneBlock");
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, false));
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < this.oreNames.length; i++)
-		{
+		for (byte i = 0; i < 2; i++)
 			par3.add(new ItemStack(par1, 1, i));
-		}
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta)
-	{
-		if (meta >= this.iconArray.length)
-		{
-			meta = this.iconArray.length - 1;
-		}
-		return this.iconArray[meta];
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		for (int i = 0; i < 2; i++)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + oreNames[i] + "BoneBlock");
-		}
-	}
-
-	@Override
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.dye;
 	}
 
 	@Override
-	public int damageDropped(int par1)
+	public int damageDropped(IBlockState state)
 	{
 		return 15;
 	}
 
 	@Override
-	public int quantityDropped(Random rand)
+	public int quantityDropped(IBlockState state, int fortune, Random rand)
 	{
-		return 2 + rand.nextInt(3);
-	}
-
-	@Override
-	public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
-	{
-		if (p_149679_1_ > 0 && Item.getItemFromBlock(this) != this.getItemDropped(0, p_149679_2_, p_149679_1_))
+		if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(state, rand, fortune))
 		{
-			int j = p_149679_2_.nextInt(p_149679_1_ + 2) - 1;
+			int j = rand.nextInt(fortune + 2) - 1;
+			if (j < 1) j = 1;
 
-			if (j < 1)
-			{
-				j = 1;
-			}
-
-			return this.quantityDropped(p_149679_2_) * (j);
+			return (2 + rand.nextInt(3)) * j;
 		}
 		else
 		{
-			return this.quantityDropped(p_149679_2_);
+			return super.quantityDropped(state, fortune, rand);
 		}
 	}
-
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, VARIANT);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+    {
+		return meta == 0 ? this.getDefaultState() : this.getDefaultState().withProperty(VARIANT, true);
+    }
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+    {
+		return (Boolean) state.getValue(VARIANT) ? 1 : 0;
+    }
 }

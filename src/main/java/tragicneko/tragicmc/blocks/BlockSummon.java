@@ -5,25 +5,23 @@ import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockSummon extends BlockContainer {
 
-	private String[] bossNames = new String[]{"Wither", "EnderDragon", "Apis", "DeathReaper", "Kitsune", "Polaris", "Yeti", "TimeController",
-			"Enyvil", "Claymation", "Aegar"};
-
-	private IIcon[] iconArray = new IIcon[bossNames.length];
+	public static final PropertyEnum BOSS = PropertyEnum.create("boss", BlockSummon.EnumBoss.class);
 
 	public BlockSummon() {
 		super(Material.iron);
@@ -31,7 +29,7 @@ public class BlockSummon extends BlockContainer {
 		this.setResistance(100.0F);
 		this.setHardness(150.0F);
 		this.setStepSound(soundTypeStone);
-		this.setBlockName("tragicmc.summonBlock");
+		this.setUnlocalizedName("tragicmc.summonBlock");
 	}
 
 	@Override
@@ -41,55 +39,91 @@ public class BlockSummon extends BlockContainer {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta)
-	{
-		if (meta >= this.iconArray.length)
-		{
-			meta = this.iconArray.length - 1;
-		}
-		return this.iconArray[meta];
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		for (int i = 0; i < bossNames.length; i++)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:SummonBlock" + bossNames[i]);
-		}
-	}
-
-	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new TileEntitySummonBlock();
 	}
 
 	@Override
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return null;
 	}
 
 	@Override
-	public int damageDropped(int par1)
+	public int damageDropped(IBlockState state)
 	{
-		return par1;
+		return this.getMetaFromState(state);
 	}
 
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < this.bossNames.length; i++)
-		{
+		int j = EnumBoss.values().length;
+		for (int i = 0; i < j; i++)
 			par3.add(new ItemStack(par1, 1, i));
-		}
 	}
 
 	@Override
-	public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_)
+	public int getExpDrop(IBlockAccess world, BlockPos pos, int fortune)
 	{
 		return 48 + TragicMC.rand.nextInt(48);
+	}
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, BOSS);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+    {
+		return meta == 0 || meta >= EnumBoss.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(BOSS, EnumBoss.values()[meta]);
+    }
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+    {
+		Comparable comp = state.getValue(BOSS);
+		EnumBoss en;
+		
+		for (byte m = 0; m < 16; m++)
+		{
+			if (m >= EnumBoss.values().length) return 0;
+			if (EnumBoss.values()[m] == comp) return m;
+		}
+		
+		return 0;
+    }
+	
+	public enum EnumBoss implements IStringSerializable {
+		WITHER("wither"),
+		ENDER_DRAGON("ender_dragon"),
+		APIS("apis"),
+		SKULTAR("skultar"),
+		KITSUNAKUMA("kitsunakuma"),
+		POLARIS("polaris"),
+		EMPARIAH("empariah"),
+		TIME_CONTROLLER("time_controller"),
+		ENYVIL("enyvil"),
+		CLAYMATION("claymation"),
+		AEGAR("aegar");
+		
+		private final String name;
+		
+		private EnumBoss(String name)
+		{
+			this.name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return this.name;
+		}
+
+		@Override
+		public String getName() {
+			return this.name;
+		}
 	}
 }

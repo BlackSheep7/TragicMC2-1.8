@@ -2,6 +2,7 @@ package tragicneko.tragicmc.client.render.boss;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.BossStatus;
@@ -14,13 +15,13 @@ public abstract class RenderBoss extends RenderLiving {
 
 	protected float scale;
 
-	public RenderBoss(ModelBase model, float shadowSize, float scale) {
-		super(model, shadowSize);
+	public RenderBoss(RenderManager rm, ModelBase model, float shadowSize, float scale) {
+		super(rm, model, shadowSize);
 		this.scale = scale;
 	}
 
-	public RenderBoss(ModelBase model, float shadowSize) {
-		this(model, shadowSize, 1.0F);
+	public RenderBoss(RenderManager rm, ModelBase model, float shadowSize) {
+		this(rm, model, shadowSize, 1.0F);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
@@ -13,9 +14,13 @@ import tragicneko.tragicmc.entity.EntityDirectedLightning;
 
 public class RenderDirectedLightning extends Render {
 
+	public RenderDirectedLightning(RenderManager rm) {
+		super(rm);
+	}
+
 	public void doRender(EntityDirectedLightning bolt, double par1, double par2, double par3, float par4, float par5)
 	{
-		Tessellator tessellator = Tessellator.instance;
+		Tessellator tessellator = Tessellator.getInstance();
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_BLEND);

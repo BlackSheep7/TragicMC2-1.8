@@ -4,8 +4,10 @@ import java.util.List;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
@@ -21,7 +23,7 @@ public class DoomsdayComand extends CommandBase {
 	}
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "doomsday";
 	}
 
@@ -31,14 +33,20 @@ public class DoomsdayComand extends CommandBase {
 	}
 
 	@Override
-	public void processCommand(ICommandSender var1, String[] var2) {
+	public void execute(ICommandSender var1, String[] var2) {
 		if (var2.length != 2)
 		{
 			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + this.getCommandUsage(var1)));
 			return;
 		}
 
-		EntityPlayerMP mp = getPlayer(var1, var2[0]);
+		EntityPlayerMP mp;
+		try {
+			mp = this.getCommandSenderAsPlayer(var1);
+		} catch (PlayerNotFoundException e1) {
+			e1.printStackTrace();
+			return;
+		}
 
 		PropertyDoom doom = PropertyDoom.get(mp);
 
@@ -116,7 +124,7 @@ public class DoomsdayComand extends CommandBase {
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+	public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr, BlockPos pos)
 	{
 		return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getAllUsernames()) : (par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, Doomsday.doomsdayNames) :null);
 	}

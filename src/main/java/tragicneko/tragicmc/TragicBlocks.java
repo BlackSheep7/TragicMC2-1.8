@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
@@ -129,6 +130,8 @@ public class TragicBlocks {
 	public static Block DarkCobblestone;
 	public static Block LightCobblestone;
 	public static Block LightStone;
+	
+	public static Block Spike;
 
 	public static Block FrozenNetherrack;
 
@@ -204,7 +207,6 @@ public class TragicBlocks {
 	public static Block HallowedGrass;
 	public static Block StringLight;
 	public static Block FragileLight;
-	public static Block FragileLightInvis;
 	public static Block HallowedLeaves;
 	public static Block HallowedLeafTrim;
 	public static Block HallowedWood;
@@ -265,7 +267,7 @@ public class TragicBlocks {
 		CompactOre = (new BlockStorage());
 		GameRegistry.registerBlock(CompactOre, TragicItemBlock.class, "compactOre", new Object[] {new String[] {"ruby", "sapphire", "tungsten", "mercury", "quicksilver"}, "compactOre"});
 
-		Wax = (((BlockGeneric) (new BlockGeneric(Material.clay, "spade", 0).setUnlocalizedName("tragicmc.wax").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone).setLightOpacity(5))).setRenderPass(1));
+		Wax = (new BlockGeneric(Material.clay, "spade", 0).setUnlocalizedName("tragicmc.wax").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone).setLightOpacity(5));
 		GameRegistry.registerBlock(Wax, ItemBlock.class, "wax");
 
 		Light = (new BlockLight().setUnlocalizedName("tragicmc.light").setStepSound(Block.soundTypeGlass));
@@ -312,6 +314,9 @@ public class TragicBlocks {
 
 		LightStone = (new BlockGeneric(Material.rock, "pickaxe", 0).setUnlocalizedName("tragicmc.lightStone").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
 		GameRegistry.registerBlock(LightStone, ItemBlock.class, "lightStone");
+		
+		Spike = (new BlockGeneric(Material.rock, "pickaxe", 0).setUnlocalizedName("tragicmc.spike").setHardness(1.5F).setResistance(3.0F));
+		GameRegistry.registerBlock(Spike, ItemBlock.class, "spike");
 
 		TragicObsidian = (new BlockObsidianVariant());
 		GameRegistry.registerBlock(TragicObsidian, TragicItemBlock.class, "obsidian", new Object[] {new String[] {"crying", "bleeding", "dying"}, "obsidian"});
@@ -342,7 +347,7 @@ public class TragicBlocks {
 		BrushedGrass = (new BlockGenericGrass("Brushed").setUnlocalizedName("tragicmc.brushedGrass"));
 		GameRegistry.registerBlock(BrushedGrass, ItemBlock.class, "brushedGrass");
 
-		PaintedWood = (new BlockGenericLog("Painted").setUnlocalizedName("tragicmc.paintedWood"));
+		PaintedWood = (new BlockGenericLog(2).setUnlocalizedName("tragicmc.paintedWood"));
 		GameRegistry.registerBlock(PaintedWood, ItemBlock.class, "paintedWood");
 
 		PaintedLeaves = (new BlockGenericLeaves().setUnlocalizedName("tragicmc.paintedLeaves"));
@@ -360,7 +365,7 @@ public class TragicBlocks {
 		AshenGrass = (new BlockGenericGrass("Ashen").setUnlocalizedName("tragicmc.ashenGrass"));
 		GameRegistry.registerBlock(AshenGrass, ItemBlock.class, "ashenGrass");
 
-		AshenWood = (new BlockGenericLog("Ashen").setUnlocalizedName("tragicmc.ashenWood"));
+		AshenWood = (new BlockGenericLog(1).setUnlocalizedName("tragicmc.ashenWood"));
 		GameRegistry.registerBlock(AshenWood, ItemBlock.class, "ashenWood");
 
 		AshenLeaves = (new BlockGenericLeaves().setUnlocalizedName("tragicmc.ashenLeaves"));
@@ -369,7 +374,7 @@ public class TragicBlocks {
 		AshenPlanks = (new BlockGenericPlanks().setUnlocalizedName("tragicmc.ashenPlanks"));
 		GameRegistry.registerBlock(AshenPlanks, ItemBlock.class, "ashenPlanks");
 
-		BleachedWood = (new BlockGenericLog("Bleached").setUnlocalizedName("tragicmc.bleachedWood"));
+		BleachedWood = (new BlockGenericLog(2).setUnlocalizedName("tragicmc.bleachedWood"));
 		GameRegistry.registerBlock(BleachedWood, ItemBlock.class, "bleachedWood");
 
 		BleachedLeaves = (new BlockGenericLeaves().setUnlocalizedName("tragicmc.bleachedLeaves"));
@@ -437,7 +442,7 @@ public class TragicBlocks {
 
 		CorruptedGas = (new BlockGas() {
 			@Override
-			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+			public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
 			{
 				if (!world.isRemote && entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse)
 				{
@@ -448,15 +453,15 @@ public class TragicBlocks {
 
 			@Override
 			@SideOnly(Side.CLIENT)
-			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+			public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 			{
-				for (int i = 0; i < 10; i++)
+				for (byte i = 0; i < 10; i++)
 				{
-					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.0F, 0.0F, 0.0F);
-					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.0F, 0.0F, 0.0F);
-					world.spawnParticle(EnumParticleTypes.SPELL_WITCH, x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+					world.spawnParticle(EnumParticleTypes.SPELL_WITCH, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.0F, 0.0F, 0.0F);
 				}
 			}
@@ -499,16 +504,13 @@ public class TragicBlocks {
 			@Override
 			public boolean isFireSource(World world, BlockPos pos, EnumFacing facing)
 			{
-				return facing == EnumFacing.UP;
+				return true;
 			}
 		}.setUnlocalizedName("tragicmc.scorchedRock").setHardness(1.6F).setResistance(10.0F));
 		GameRegistry.registerBlock(ScorchedRock, ItemBlock.class, "scorchedRock");
 
-		Geyser = (new BlockGeyser(false));
+		Geyser = (new BlockGeyser());
 		GameRegistry.registerBlock(Geyser, ItemBlock.class, "geyser");
-
-		GeyserSteaming = (new BlockGeyser(true));
-		GameRegistry.registerBlock(GeyserSteaming, null, "geyserSteaming");
 
 		SteamVent = (new BlockSteamVent());
 		GameRegistry.registerBlock(SteamVent, ItemBlock.class, "steamVent");
@@ -522,9 +524,6 @@ public class TragicBlocks {
 		FragileLight = (new BlockFragileLight(true));
 		GameRegistry.registerBlock(FragileLight, ItemBlock.class, "fragileLight");
 
-		FragileLightInvis = (new BlockFragileLight(false));
-		GameRegistry.registerBlock(FragileLightInvis, null, "fragileLightInvis");
-
 		HallowedLeaves = (new BlockGenericLeaves().setUnlocalizedName("tragicmc.hallowedLeaves"));
 		GameRegistry.registerBlock(HallowedLeaves, ItemBlock.class, "hallowedLeaves");
 
@@ -534,7 +533,7 @@ public class TragicBlocks {
 		HallowedPlanks = (new BlockGenericPlanks().setUnlocalizedName("tragicmc.hallowedPlanks"));
 		GameRegistry.registerBlock(HallowedPlanks, ItemBlock.class, "hallowedPlanks");
 
-		HallowedWood = (new BlockGenericLog("Hallowed").setUnlocalizedName("tragicmc.hallowedWood"));
+		HallowedWood = (new BlockGenericLog(2).setUnlocalizedName("tragicmc.hallowedWood"));
 		GameRegistry.registerBlock(HallowedWood, ItemBlock.class, "hallowedWood");
 
 		WickedVine = (new BlockWickedVine().setUnlocalizedName("tragicmc.wickedVine"));
@@ -583,7 +582,7 @@ public class TragicBlocks {
 		}.setUnlocalizedName("tragicmc.darkLeaves");
 		GameRegistry.registerBlock(DarkLeaves, ItemBlock.class, "darkLeaves");
 
-		Darkwood = new BlockGenericLog("Darkwood").setUnlocalizedName("tragicmc.darkwood");
+		Darkwood = new BlockGenericLog(2).setUnlocalizedName("tragicmc.darkwood");
 		GameRegistry.registerBlock(Darkwood, ItemBlock.class, "darkwood");
 
 		DarkwoodPlanks = new BlockGenericPlanks().setUnlocalizedName("tragicmc.darkwoodPlanks");
@@ -594,26 +593,26 @@ public class TragicBlocks {
 
 		DarkGas = new BlockGas() {
 			@Override
-			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+			public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
 			{
 				if (!world.isRemote && entity instanceof EntityLivingBase) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 			}
 
 			@Override
 			@SideOnly(Side.CLIENT)
-			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+			public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 			{
 				for (int i = 0; i < 10; i++)
 				{
-					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.0F, 0.0F, 0.0F);
-					world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+					world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.0F, 0.0F, 0.0F);
 				}
 			}
 
 			@Override
-			public void updateTick(World world, int x, int y, int z, Random rand) {}
+			public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {}
 		}.setUnlocalizedName("tragicmc.darkGas");
 		GameRegistry.registerBlock(DarkGas, ItemBlock.class, "darkGas");
 
@@ -622,7 +621,7 @@ public class TragicBlocks {
 
 		SepticGas = new BlockGas() {
 			@Override
-			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+			public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
 			{
 				if (!world.isRemote && entity instanceof EntityLivingBase)
 				{
@@ -638,13 +637,13 @@ public class TragicBlocks {
 
 			@Override
 			@SideOnly(Side.CLIENT)
-			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+			public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 			{
 				for (int i = 0; i < 10; i++)
 				{
-					world.spawnParticle(EnumParticleTypes.REDSTONE, x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+					world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.4F, 1.0F, 0.4F);
-					world.spawnParticle(EnumParticleTypes.REDSTONE, x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+					world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.1F, 1.0F, 0.1F);
 				}
 			}

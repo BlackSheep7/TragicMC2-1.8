@@ -8,15 +8,11 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.FMLLog;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-@SideOnly(Side.CLIENT)
 public class RenderSoulChest extends TileEntitySpecialRenderer
 {
 	private static final ResourceLocation doubleTexture = new ResourceLocation("tragicmc:textures/entities/SoulChestDouble.png");
@@ -24,7 +20,7 @@ public class RenderSoulChest extends TileEntitySpecialRenderer
 	private ModelChest singleModel = new ModelChest();
 	private ModelChest doubleModel = new ModelLargeChest();
 
-	public void renderTileEntityAt(TileEntityChest te, double x, double y, double z, float partialTick)
+	public void renderTileEntityAt(TileEntityChest te, double x, double y, double z, float partialTick, int renderPass)
 	{
 		int i;
 
@@ -38,15 +34,15 @@ public class RenderSoulChest extends TileEntitySpecialRenderer
 			i = te.getBlockMetadata();
 
 			if (block instanceof BlockChest && i == 0)
-			{
+			{	/*//TODO fix chest render
 				try
 				{
-					((BlockChest)block).func_149954_e(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord);
+					((BlockChest)block).func_149954_e(te.getWorld(), te.getPos().getX(), te.getPos().getY(), te.getPos().getZ());
 				}
 				catch (ClassCastException e)
 				{
 					FMLLog.severe("Attempted to render a chest at %d,  %d, %d that was not a chest", te.xCoord, te.yCoord, te.zCoord);
-				}
+				} */
 				i = te.getBlockMetadata();
 			}
 
@@ -142,8 +138,8 @@ public class RenderSoulChest extends TileEntitySpecialRenderer
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTick)
+	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTick, int renderPass)
 	{
-		this.renderTileEntityAt((TileEntityChest)te, x, y, z, partialTick);
+		this.renderTileEntityAt((TileEntityChest)te, x, y, z, partialTick, renderPass);
 	}
 }

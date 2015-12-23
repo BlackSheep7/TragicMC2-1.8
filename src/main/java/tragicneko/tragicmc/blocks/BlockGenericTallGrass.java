@@ -4,17 +4,17 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockGenericTallGrass extends BlockTallGrass {
 
@@ -30,28 +30,16 @@ public class BlockGenericTallGrass extends BlockTallGrass {
 	}
 
 	@Override
-	protected boolean canPlaceBlockOn(Block p_149854_1_)
+	protected boolean canPlaceBlockOn(Block block)
 	{
-		return p_149854_1_ == Blocks.grass || p_149854_1_ == Blocks.dirt || p_149854_1_ == Blocks.farmland || p_149854_1_ == TragicBlocks.BrushedGrass || p_149854_1_ == TragicBlocks.DeadDirt || p_149854_1_ == TragicBlocks.AshenGrass || p_149854_1_ == TragicBlocks.StarlitGrass;
+		return block == Blocks.grass || block == Blocks.dirt || block == Blocks.farmland || block == TragicBlocks.BrushedGrass || block == TragicBlocks.DeadDirt || block == TragicBlocks.AshenGrass || block == TragicBlocks.StarlitGrass;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
+	public void getSubBlocks(Item item, CreativeTabs tab, List list)
 	{
-		p_149666_3_.add(new ItemStack(p_149666_1_, 1, 1));
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		this.blockIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "TallGrass");
-	}
-
-	@Override
-	public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
-		return this.blockIcon;
+		list.add(new ItemStack(item, 1, 1));
 	}
 
 	@Override
@@ -63,20 +51,20 @@ public class BlockGenericTallGrass extends BlockTallGrass {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getRenderColor(int p_149741_1_)
+	public int getRenderColor(IBlockState state)
 	{
 		return -1;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
+	public int colorMultiplier(IBlockAccess world, BlockPos pos, int renderPass)
 	{
 		return -1;
 	}
 	
 	@Override
-	public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z)
+	public boolean canBeReplacedByLeaves(IBlockAccess world, BlockPos pos)
 	{
 		return true;
 	}

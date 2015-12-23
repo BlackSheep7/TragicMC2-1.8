@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -21,8 +22,8 @@ public class RenderPirah extends RenderLiving {
 			new ResourceLocation("tragicmc:textures/mobs/LavaPirah5.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah6.png"),
 			new ResourceLocation("tragicmc:textures/mobs/LavaPirah7.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah8.png")};
 
-	public RenderPirah() {
-		super(new ModelPirah(), 0.255F);
+	public RenderPirah(RenderManager rm) {
+		super(rm, new ModelPirah(), 0.255F);
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package tragicneko.tragicmc.client.render;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -18,9 +19,9 @@ public class RenderTimeDisruption extends Render {
 	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/TimeBomb.png");
 	public ModelBase model;
 
-	public RenderTimeDisruption()
+	public RenderTimeDisruption(RenderManager rm)
 	{
-		super();
+		super(rm);
 		this.model = new ModelGuardianShield();
 	}
 

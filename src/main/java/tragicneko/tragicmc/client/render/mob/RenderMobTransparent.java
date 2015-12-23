@@ -2,6 +2,7 @@ package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
 
 import org.lwjgl.opengl.GL11;
@@ -10,8 +11,8 @@ public class RenderMobTransparent extends RenderMob {
 
 	private final float maxTransparency;
 
-	public RenderMobTransparent(ModelBase model, float shadowSize, String path, float scale, float trans) {
-		super(model, shadowSize, path, scale);
+	public RenderMobTransparent(RenderManager rm, ModelBase model, float shadowSize, String path, float scale, float trans) {
+		super(rm, model, shadowSize, path, scale);
 		this.maxTransparency = trans;
 	}
 
@@ -41,7 +42,7 @@ public class RenderMobTransparent extends RenderMob {
 			this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, par1EntityLivingBase);
 		}
 	}
-
+/*//TODO change method call
 	@Override
 	protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
 	{
@@ -67,5 +68,5 @@ public class RenderMobTransparent extends RenderMob {
 
 			return -1;
 		}
-	}
+	} */
 }

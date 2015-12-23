@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelRagr;
@@ -11,8 +12,8 @@ public class RenderRagr extends RenderLiving {
 	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Ragr.png");
 	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Ragr.png"); //TODO rename to Pyragr
 
-	public RenderRagr() {
-		super(new ModelRagr(), 0.435F);
+	public RenderRagr(RenderManager rm) {
+		super(rm, new ModelRagr(), 0.435F);
 	}
 
 	@Override

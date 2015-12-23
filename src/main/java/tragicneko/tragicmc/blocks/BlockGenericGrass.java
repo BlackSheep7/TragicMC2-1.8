@@ -10,23 +10,20 @@ import net.minecraft.block.BlockMushroom;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockGenericGrass extends BlockGrass {
-
-	@SideOnly(Side.CLIENT)
-	private IIcon topIcon, sideIcon;
 
 	private String texturePrefix;
 
@@ -40,71 +37,37 @@ public class BlockGenericGrass extends BlockGrass {
 	}
 
 	@Override
-	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection dir, IPlantable plant)
+	public boolean canSustainPlant(IBlockAccess world, BlockPos pos, EnumFacing facing, IPlantable plant)
 	{
-		if ((plant instanceof BlockDeadBush || plant instanceof BlockSapling || plant instanceof BlockMushroom || plant instanceof BlockLog || plant instanceof BlockTallGrass || plant instanceof BlockTragicSapling) && dir == ForgeDirection.UP) return true;
-		return false;
+		return (plant instanceof BlockDeadBush || plant instanceof BlockSapling || plant instanceof BlockMushroom || plant instanceof BlockLog || plant instanceof BlockTallGrass || plant instanceof BlockTragicSapling) && facing == EnumFacing.UP;
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(IBlockAccess p_149673_1_, int p_149673_2_, int p_149673_3_, int p_149673_4_, int p_149673_5_)
-	{
-		return this.getIcon(p_149673_5_, p_149673_1_.getBlockMetadata(p_149673_2_, p_149673_3_, p_149673_4_));
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int par1, int par2)
-	{
-		if (par1 == 0)
-		{
-			return TragicBlocks.DeadDirt.getIcon(par1, par2);
-		}
-
-		if (par1 == 1)
-		{
-			return this.topIcon;
-		}
-
-		return this.sideIcon;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		this.topIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "GrassTop");
-		this.sideIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "GrassSide");
-	}
-
-	@Override
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Item.getItemFromBlock(TragicBlocks.DeadDirt);
 	}
 
 	@Override
-	public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
-		if (!p_149674_1_.isRemote && this != TragicBlocks.AshenGrass)
+		if (!world.isRemote && this != TragicBlocks.AshenGrass)
 		{
-			if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1, p_149674_4_) < 4 && p_149674_1_.getBlockLightOpacity(p_149674_2_, p_149674_3_ + 1, p_149674_4_) > 2)
+			if (world.getLight(pos.up()) < 4 && world.getBlockLightOpacity(pos.up()) > 2)
 			{
-				p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_, TragicBlocks.DeadDirt);
+				world.setBlockState(pos, TragicBlocks.DeadDirt.getDefaultState());
 			}
-			else if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1, p_149674_4_) >= 6)
+			else if (world.getLight(pos.up()) >= 6)
 			{
-				for (int l = 0; l < 4; ++l)
+				BlockPos pos2;
+				for (byte l = 0; l < 4; ++l)
 				{
-					int i1 = p_149674_2_ + p_149674_5_.nextInt(3) - 1;
-					int j1 = p_149674_3_ + p_149674_5_.nextInt(5) - 3;
-					int k1 = p_149674_4_ + p_149674_5_.nextInt(3) - 1;
-					p_149674_1_.getBlock(i1, j1 + 1, k1);
+					pos2 = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+					Block block = world.getBlockState(pos2).getBlock();
 
-					if (p_149674_1_.getBlock(i1, j1, k1) == TragicBlocks.DeadDirt  && p_149674_1_.getBlockLightValue(i1, j1 + 1, k1) >= 4 && p_149674_1_.getBlockLightOpacity(i1, j1 + 1, k1) <= 2)
+					if (block == TragicBlocks.DeadDirt  && world.getLight(pos2.up()) >= 4 && world.getBlockLightOpacity(pos.up()) <= 2)
 					{
-						p_149674_1_.setBlock(i1, j1, k1, this);
+						world.setBlockState(pos2, this.getDefaultState(), 4);
 					}
 				}
 			}
@@ -112,50 +75,49 @@ public class BlockGenericGrass extends BlockGrass {
 	}
 
 	@Override
-	public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
+	public void grow(World world, Random rand, BlockPos pos, IBlockState state)
 	{
-		int l = 0;
+		BlockPos blockpos1 = pos.up();
+        int i = 0;
 
-		while (l < 128)
-		{
-			int i1 = p_149853_3_;
-			int j1 = p_149853_4_ + 1;
-			int k1 = p_149853_5_;
-			int l1 = 0;
+        while (i < 128)
+        {
+            BlockPos blockpos2 = blockpos1;
+            int j = 0;
 
-			while (true)
-			{
-				if (l1 < l / 16)
-				{
-					i1 += p_149853_2_.nextInt(3) - 1;
-					j1 += (p_149853_2_.nextInt(3) - 1) * p_149853_2_.nextInt(3) / 2;
-					k1 += p_149853_2_.nextInt(3) - 1;
+            while (true)
+            {
+                if (j < i / 16)
+                {
+                    blockpos2 = blockpos2.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-					if (p_149853_1_.getBlock(i1, j1 - 1, k1) != TragicBlocks.AshenGrass && !p_149853_1_.getBlock(i1, j1, k1).isNormalCube())
-					{
-						++l1;
-						continue;
-					}
-				}
-				else if (p_149853_1_.getBlock(i1, j1, k1).getMaterial() == Material.air)
-				{
-					if (p_149853_2_.nextInt(8) != 0)
-					{
-						if (Blocks.tallgrass.canBlockStay(p_149853_1_, i1, j1, k1))
-						{
-							p_149853_1_.setBlock(i1, j1, k1, this.getTallGrass(), 0, 3);
-						}
-					}
-					else
-					{
-						p_149853_1_.getBiomeGenForCoords(i1, k1).plantFlower(p_149853_1_, p_149853_2_, i1, j1, k1);
-					}
-				}
+                    if (world.getBlockState(blockpos2.down()).getBlock().getMaterial() == Material.grass && !world.getBlockState(blockpos2).getBlock().isNormalCube())
+                    {
+                        ++j;
+                        continue;
+                    }
+                }
+                else if (world.isAirBlock(blockpos2))
+                {
+                    if (rand.nextInt(8) == 0)
+                    {
+                        world.getBiomeGenForCoords(blockpos2).plantFlower(world, rand, blockpos2);
+                    }
+                    else
+                    {
+                        IBlockState iblockstate2 = Blocks.tallgrass.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.GRASS);
 
-				++l;
-				break;
-			}
-		}
+                        if (Blocks.tallgrass.canBlockStay(world, blockpos2, iblockstate2))
+                        {
+                            world.setBlockState(blockpos2, iblockstate2, 3);
+                        }
+                    }
+                }
+
+                ++i;
+                break;
+            }
+        }
 	}
 
 	private Block getTallGrass() {
@@ -174,14 +136,14 @@ public class BlockGenericGrass extends BlockGrass {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getRenderColor(int p_149741_1_)
+	public int getRenderColor(IBlockState state)
 	{
 		return -1;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
+	public int colorMultiplier(IBlockAccess world, BlockPos pos, int renderPass)
 	{
 		return -1;
 	}

@@ -2,6 +2,7 @@ package tragicneko.tragicmc.client.render.boss;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -15,8 +16,8 @@ public class RenderMegaCryse extends RenderLiving {
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Cryse.png");
 	private static final float scale = 1.5F;
 
-	public RenderMegaCryse() {
-		super(new ModelMegaCryse(), 0.375F * scale);
+	public RenderMegaCryse(RenderManager rm) {
+		super(rm, new ModelMegaCryse(), 0.375F * scale);
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class RenderMegaCryse extends RenderLiving {
 			this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, par1EntityLivingBase);
 		}
 	}
-
+/*//TODO change method call
 	@Override
 	protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
 	{
@@ -76,7 +77,7 @@ public class RenderMegaCryse extends RenderLiving {
 
 			return -1;
 		}
-	}
+	} */
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {

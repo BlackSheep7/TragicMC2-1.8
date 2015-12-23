@@ -4,20 +4,21 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCircuit extends Block {
 
-	private String[] variantNames = new String[]{"Live", "Damaged", "VeryDamaged", "Dead", "Aged"};
-	private IIcon[] iconArray = new IIcon[variantNames.length];
+	public static final PropertyEnum STATE = PropertyEnum.create("state", BlockCircuit.EnumState.class);
 
 	public BlockCircuit() {
 		super(Material.rock);
@@ -25,12 +26,13 @@ public class BlockCircuit extends Block {
 		this.setHarvestLevel("pickaxe", 1);
 		this.setResistance(27.0F);
 		this.setHardness(3.6F);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(STATE, EnumState.LIVE));
 	}
 
 	@Override
-	public int getLightValue(IBlockAccess access, int x, int y, int z)
+	public int getLightValue(IBlockAccess access, BlockPos pos)
 	{
-		int meta = access.getBlockMetadata(x, y, z);
+		int meta = this.getMetaFromState(access.getBlockState(pos));
 		switch(meta)
 		{
 		default:
@@ -45,45 +47,67 @@ public class BlockCircuit extends Block {
 	}
 
 	@Override
-	public int isProvidingWeakPower(IBlockAccess access, int x, int y, int z, int direction)
+	public int isProvidingWeakPower(IBlockAccess access, BlockPos pos, IBlockState state, EnumFacing facing)
 	{
-		int meta = access.getBlockMetadata(x, y, z);
+		int meta = this.getMetaFromState(state);
 		return meta == 0 ? 12 : (meta == 1 ? 8 : (meta == 2 ? 4 : 0));
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta)
-	{
-		if (meta >= this.iconArray.length)
-		{
-			meta = this.iconArray.length - 1;
-		}
-		return this.iconArray[meta];
-	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
+	public int damageDropped(IBlockState state)
 	{
-		for (int i = 0; i < this.variantNames.length; i++)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "Circuit");
-		}
-	}
-
-	@Override
-	public int damageDropped(int par1)
-	{
-		return par1;
+		return this.getMetaFromState(state);
 	}
 
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < this.variantNames.length; i++)
-		{
+		for (int i = 0; i < 5; i++) 
 			par3.add(new ItemStack(par1, 1, i));
+	}
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, STATE);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+    {
+		return meta == 0 || meta >= EnumState.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(STATE, EnumState.values()[meta]);
+    }
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+    {
+		Comparable comp = state.getValue(STATE);
+		return comp == EnumState.DAMAGED ? 1 : (comp == EnumState.VERY_DAMAGED ? 2 : (comp == EnumState.AGED ? 3 : (comp == EnumState.DEAD ? 4 : 0)));
+    }
+	
+	public enum EnumState implements IStringSerializable {
+		LIVE("live"),
+		DAMAGED("damaged"),
+		VERY_DAMAGED("very_damaged"),
+		AGED("aged"),
+		DEAD("dead");
+		
+		private final String name;
+		
+		private EnumState(String name)
+		{
+			this.name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return this.name;
+		}
+
+		@Override
+		public String getName() {
+			return this.name;
 		}
 	}
 }

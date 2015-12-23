@@ -12,13 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDoomsdayScroll extends Item {
 
@@ -35,7 +35,7 @@ public class ItemDoomsdayScroll extends Item {
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
-		return EnumRarity.epic;
+		return EnumRarity.EPIC;
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ItemDoomsdayScroll extends Item {
 			EnumChatFormatting format = dday.getDoomsdayType().getFormat();
 			par2List.add(format + dday.getLocalizedType() + ": " + dday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + dday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + dday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
+			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + dday.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
 		}
 	}
 

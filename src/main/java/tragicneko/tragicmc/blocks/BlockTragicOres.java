@@ -5,24 +5,21 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTragicOres extends Block {
 
-	private String[] oreNames = new String[]{"Mercury", "Tungsten", "Ruby", "Sapphire", "Lapis", "Diamond", "Emerald", "Gold", "Iron", "Coal", "XP"};
 	private int[] digLevels = new int[] {1, 2, 3, 3, 1, 2, 2, 2, 1, 0, 3};
-	private IIcon[] iconArray = new IIcon[oreNames.length];
 
 	public BlockTragicOres() {
 		super(Material.rock);
@@ -30,32 +27,19 @@ public class BlockTragicOres extends Block {
 		this.setResistance(10.0F);
 		this.setHardness(6.0F);
 		this.setStepSound(soundTypeStone);
-		this.setBlockName("tragicmc.tragicOres");
+		this.setUnlocalizedName("tragicmc.tragicOres");
 		this.setHarvestLevels();
 	}
 
 	private void setHarvestLevels() {
-		for (int i = 0; i < this.oreNames.length; i++)
-		{
-			this.setHarvestLevel("pickaxe", digLevels[i], i);
-		}
+		for (byte i = 0; i < 11; i++)
+			this.setHarvestLevel("pickaxe", digLevels[i], this.getStateFromMeta(i));
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta)
+	public Item getItemDropped(IBlockState state, Random rand, int fortuneLevel)
 	{
-		if (meta >= this.iconArray.length)
-		{
-			meta = this.iconArray.length - 1;
-		}
-		return this.iconArray[meta];
-	}
-
-	@Override
-	public Item getItemDropped(int meta, Random rand, int fortuneLevel)
-	{
-		switch(meta)
+		switch(this.getMetaFromState(state))
 		{
 		case 2:
 			return TragicItems.Ruby;
@@ -72,57 +56,47 @@ public class BlockTragicOres extends Block {
 		case 10:
 			return null;
 		default:
-			return super.getItemDropped(meta, rand, fortuneLevel);
+			return super.getItemDropped(state, rand, fortuneLevel);
 		}
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
+	public int damageDropped(IBlockState state)
 	{
-		for (int i = 0; i < oreNames.length; i++)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:Ore" + oreNames[i]);
-		}
-	}
-
-	@Override
-	public int damageDropped(int par1)
-	{
-		return par1;
+		return this.getMetaFromState(state);
 	}
 
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < this.oreNames.length; i++)
-		{
+		for (byte i = 0; i < 11; i++)
 			par3.add(new ItemStack(par1, 1, i));
-		}
 	}
 
 	@Override
-	public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_)
+	public int getExpDrop(IBlockAccess world, BlockPos pos, int fortune)
 	{
 		Random rand = TragicMC.rand;
-		if (this.getItemDropped(p_149690_5_, rand, p_149690_7_) == null)
+		IBlockState state = world.getBlockState(pos);
+		
+		if (this.getItemDropped(state, rand, fortune) == null)
 		{
 			return 48 + rand.nextInt(48);
 		}
-		else if (this.getItemDropped(p_149690_5_, rand, p_149690_7_) == Item.getItemFromBlock(this))
+		else if (this.getItemDropped(state, rand, fortune) == Item.getItemFromBlock(this))
 		{
 			return 0;
 		}
-		else if (this.getItemDropped(p_149690_5_, rand, p_149690_7_) == Items.diamond || this.getItemDropped(p_149690_5_, rand, p_149690_7_) == Items.emerald ||
-				this.getItemDropped(p_149690_5_, rand, p_149690_7_) == TragicItems.Ruby || this.getItemDropped(p_149690_5_, rand, p_149690_7_) == TragicItems.Sapphire)
+		else if (this.getItemDropped(state, rand, fortune) == Items.diamond || this.getItemDropped(state, rand, fortune) == Items.emerald ||
+				this.getItemDropped(state, rand, fortune) == TragicItems.Ruby || this.getItemDropped(state, rand, fortune) == TragicItems.Sapphire)
 		{
 			return MathHelper.getRandomIntegerInRange(rand, 3, 7);
 		}
-		else if (this.getItemDropped(p_149690_5_, rand, p_149690_7_) == Items.dye)
+		else if (this.getItemDropped(state, rand, fortune) == Items.dye)
 		{
 			return MathHelper.getRandomIntegerInRange(rand, 4, 8);
 		}
-		else if (this.getItemDropped(p_149690_5_, rand, p_149690_7_) == Items.coal)
+		else if (this.getItemDropped(state, rand, fortune) == Items.coal)
 		{
 			return MathHelper.getRandomIntegerInRange(rand, 0, 3);
 		}
@@ -130,4 +104,34 @@ public class BlockTragicOres extends Block {
 		return MathHelper.getRandomIntegerInRange(rand, 0, 3);
 	}
 
+	public enum EnumVariant implements IStringSerializable {
+		MERCURY("mercury"),
+		TUNGSTEN("tungsten"),
+		RUBY("ruby"),
+		SAPPHIRE("sapphire"),
+		LAPIS("lapis"),
+		DIAMOND("diamond"),
+		EMERALD("emerald"),
+		GOLD("gold"),
+		IRON("iron"),
+		COAL("coal"),
+		XP("xp");
+		
+		private final String name;
+		
+		private EnumVariant(String name)
+		{
+			this.name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return this.name;
+		}
+
+		@Override
+		public String getName() {
+			return this.name;
+		}
+	}
 }
