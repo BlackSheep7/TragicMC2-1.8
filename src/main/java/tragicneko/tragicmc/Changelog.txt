@@ -4436,6 +4436,13 @@ point the 1.7.10 version will have support dropped in favor of this one
 Initial updates for import references (mostly with FML being moved into Forge)
 More error fixing and upating done, mostly on entities and worldgen features, down to 7k errors now
 More error fixing, focusing on main item and block classes as well as on the events classes, down to 6k errors now
+Doing block states for all of my blocks now
+Removed Spike as a meta variant of the Dark Stone blocks, it is now it's own block, this was done to not only simplify the
+blockstate-meta conversion for it but also simplify it's blockstates, the issue now is that any worlds that had them previously
+will have the wrong block for any spikes that may have generated naturally, other than that, I can now create spike variants so
+that's a reasonable trade-off
+Removed some technical blocks (steaming geyser, invisible fragile light, etc.), these will be remapped if necessary
+Working on doing the actual block/item renders, down to 3k errors now
 
 TODO: Remember to override illumination method for my mobs so that the ones that need to have it do it
 TODO: Change WorldHelper methods to return BlockPos instead of int[]
@@ -4443,6 +4450,9 @@ TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
 TODO: Move teleporting into the super classes for Entities, with some hooks to change particles and do something when a teleport is successful
 TODO: Add a utility method for teleporting the player somewhere (so I don't have to copy-paste a block of code just for this)
 TODO: Add a utility method for getting an entity's BlockPos quickly
+TODO: Cleanup variable names in overridden methods, they make the code difficult to read for others and make it more complicated
+to update code in situations such as this port
+TODO: Add a utility method for getting a Block from a pos instead of a blockstate, some methods only require the block so this would be faster
 
 //Changed common entity functions
 func_145780_a(int x, int y, int z, Block block) ---> playStepSound(BlockPos pos, Block block)
@@ -4450,6 +4460,9 @@ onSpawnWithEgg(IEntityLivingData data) ---> func_180482_a(DifficultyInstance ins
 fall(float par1) ---> fall(float dist, float multi)
 updateFallState(double par1, boolean par2) ---> func_180433_a(double par1, boolean par2, Block block, BlockPos pos)
 func_147480_a(int x, int y, int z, boolean flag) ---> destroyBlock(BlockPos pos, boolean dropItem)
+
+//Block function change
+Instead of quantiyDroppedWithBonus(...) use quantityDropped(IBlockState state, int fortune, Random rand) instead
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
