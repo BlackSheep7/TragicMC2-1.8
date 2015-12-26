@@ -75,12 +75,6 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 	}
 
 	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();

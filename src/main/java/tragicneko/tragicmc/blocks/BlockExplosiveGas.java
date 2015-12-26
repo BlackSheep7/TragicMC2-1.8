@@ -18,7 +18,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 public class BlockExplosiveGas extends BlockGas {
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {}
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity) {}
 
 	@Override
 	@SideOnly(Side.CLIENT)

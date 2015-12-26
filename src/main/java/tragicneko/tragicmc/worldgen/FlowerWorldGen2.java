@@ -53,7 +53,7 @@ public class FlowerWorldGen2 implements IWorldGen {
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord += random.nextInt(2) - random.nextInt(2);
 
-			if (world.isAirBlock(new BlockPos(Xcoord, Ycoord, Zcoord)) &&  Ycoord < 255 && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
+			if (world.isAirBlock(new BlockPos(Xcoord, Ycoord, Zcoord)) &&  Ycoord < 255 && flower.canBlockStay(world, new BlockPos(Xcoord, Ycoord, Zcoord), flower.getStateFromMeta(meta)))
 			{
 				world.setBlockState(new BlockPos(Xcoord, Ycoord, Zcoord), flower.getStateFromMeta(meta), 2);
 			}

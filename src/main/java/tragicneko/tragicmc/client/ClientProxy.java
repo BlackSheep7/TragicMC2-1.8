@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 import org.lwjgl.input.Keyboard;
 
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
@@ -205,7 +206,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders()
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		this.initRenders();
+		this.initRenders(); //1.8 block and item renders
 
 		//Render Manager
 		RenderManager rm = mc.getRenderManager();
@@ -311,7 +312,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntitySirv.class, new RenderMob(rm, new ModelSirv(), 0.245F, "Sirv"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityPsygote.class, new RenderMob(rm, new ModelPsygote(), 0.565F, "Psygote"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityNanoSwarm.class, new RenderMob(rm, new ModelNanoSwarm(), 0.215F, "NanoSwarm", 1.545F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityAegar.class, new RenderAegar());
+		RenderingRegistry.registerEntityRenderingHandler(EntityAegar.class, new RenderAegar(rm));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHunter.class, new RenderMob(rm, new ModelHunter(), 0.565F, "Hunter"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHarvester.class, new RenderMob(rm, new ModelHarvester(), 0.785F, "Harvester", 1.555F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLockbot.class, new RenderMob(rm, new ModelLockbot(), 0.335F, "Lockbot"));
@@ -341,26 +342,71 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore(rm));
 	}
 	
+	private static final String[] projectileItems = new String[] {"rock", "lava_rock", "pumpkinbomb", "large_pumpkinbomb",
+			"poison_barb", "neko_rocket", "neko_sticky_bomb", "neko_cluster_bomb", "neko_mini_bomb", "solar_bomb",
+			"spirit_cast", "spore", "banana", "large_rock", "icicle", "time_bomb", "star_shard", "dark_lightning",
+			"pitch_black", "dark_energy", "dark_mortor", "web_bomb", "crystal_mortor", "overlord_mortor", "ire_energy"};
+	
+	private static final String[] compactOreItems = new String[] {"ruby", "sapphire", "tungsten", "mercury", "quicksilver"};
+	
 	@Override
 	public void preInitRenders() {
+		if (!TragicConfig.allowNonMobBlocks)
+		{
+			
+		}
+		else
+		{
+			registerBlockToBakery(TragicBlocks.CompactOre, compactOreItems);
+		}
+		
 		if (!TragicConfig.allowNonMobItems)
 		{
-			registerItemToBakery(TragicItems.SpawnEgg, "something", "somethingelse", "somethingmore");
-			registerItemToBakery(TragicItems.Projectile, "something", "somethingelse", "somethingmore");
+			registerItemToBakery(TragicItems.Projectile, projectileItems);
 		}
+		else
+		{
+			
+		}
+		
 	}
 
 	public void initRenders() {
 		//Mesher for new block/item registrations in 1.8
 		Item ib; //Itemblock for block registrations
+		int i; //for loops
+		
+		if (!TragicConfig.allowNonMobBlocks)
+		{
+			registerBlockToMesherIgnoreMeta(TragicBlocks.SummonBlock);
+			registerBlockToMesher(TragicBlocks.Luminescence, ZERO, "luminescence");
+			registerBlockToMesher(TragicBlocks.OverlordBarrier, ZERO, "overlord_barrier");
+		}
+		else
+		{
+			registerBlockToMesher(TragicBlocks.MercuryOre, ZERO, "red_mercury_ore");
+			registerBlockToMesher(TragicBlocks.TungstenOre, ZERO, "tungsten_ore");
+			registerBlockToMesher(TragicBlocks.RubyOre, ZERO, "ruby_ore");
+			registerBlockToMesher(TragicBlocks.SapphireOre, ZERO, "sapphire_ore");
+			for (i = 0; i < compactOreItems.length; i++) registerBlockToMesher(TragicBlocks.CompactOre, i, compactOreItems[i]);
+		}
 		
 		if (!TragicConfig.allowNonMobItems)
 		{
-			registerItemToMesher(TragicItems.SpawnEgg, ZERO, "spawn_egg");
-			registerItemToMesher(TragicItems.BowOfJustice, ZERO, "bow");
-			registerItemToMesher(TragicItems.SwordOfJustice, ZERO, "golden_sword");
+			registerItemToMesherIgnoreMeta(TragicItems.SpawnEgg);
+			registerItemToMesher(TragicItems.BowOfJustice, ZERO, "bow_of_justice");
+			registerItemToMesher(TragicItems.SwordOfJustice, ZERO, "sword_of_justice");
 			registerItemToMesher(TragicItems.NekoNekoWand, ZERO, "neko_neko_wand");
-			registerItemToMesher(TragicItems.Projectile, ZERO, "projectile");
+			for (i = 0; i < projectileItems.length; i++) registerItemToMesher(TragicItems.Projectile, i, projectileItems[i]);
+		}
+		else
+		{
+			registerItemToMesher(TragicItems.RedMercury, ZERO, "red_mercury");
+			registerItemToMesher(TragicItems.Quicksilver, ZERO, "quicksilver");
+			registerItemToMesher(TragicItems.QuicksilverIngot, ZERO, "quicksilver_ingot");
+			registerItemToMesher(TragicItems.Tungsten, ZERO, "tungsten");
+			registerItemToMesher(TragicItems.Ruby, ZERO, "ruby");
+			registerItemToMesher(TragicItems.Sapphire, ZERO, "sapphire");
 		}
 	}
 
@@ -374,10 +420,20 @@ public class ClientProxy extends CommonProxy {
 	{
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(moddir + location, "inventory"));
 	}
+	
+	public static void registerItemToMesherIgnoreMeta(Item item)
+	{
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, ZERO, new ModelResourceLocation("spawn_egg", "inventory"));
+	}
 
 	public static void registerBlockToMesher(Block block, int meta, String location)
 	{
 		registerItemToMesher(Item.getItemFromBlock(block), meta, location);
+	}
+	
+	public static void registerBlockToMesherIgnoreMeta(Block block)
+	{
+		registerItemToMesherIgnoreMeta(Item.getItemFromBlock(block));
 	}
 
 	public static void registerBlockToBakery(Block block, String... names)

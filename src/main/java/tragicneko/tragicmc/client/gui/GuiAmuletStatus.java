@@ -9,21 +9,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyAmulets;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiAmuletStatus extends Gui
 {
 	private final Minecraft mc;
-	private static final RenderItem itemRender = new RenderItem();
+	private final RenderItem itemRender;
 
 	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/amulet_status_minimal.png");
 	private static final ResourceLocation texturepath2 = new ResourceLocation("tragicmc:textures/gui/amulet_status_pink.png");
@@ -33,6 +33,7 @@ public class GuiAmuletStatus extends Gui
 	public GuiAmuletStatus(Minecraft mc) {
 		super();
 		this.mc = mc;
+		this.itemRender = mc.getRenderItem();
 	}
 
 	@SubscribeEvent(priority=EventPriority.NORMAL)
@@ -63,21 +64,21 @@ public class GuiAmuletStatus extends Gui
 
 		ItemStack stack;
 
-		for (int i = 0; i < 3; i++)
+		for (byte i = 0; i < 3; i++)
 		{
 			if (amu.inventory.getStackInSlot(i) != null)
 			{
 				stack = amu.inventory.getStackInSlot(i);
 
-				itemRender.renderItemAndEffectIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, xPos + 3 + (20 * i), yPos + 2);
-				itemRender.renderItemOverlayIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, xPos + 2 + (20 * i), yPos + 4);
+				itemRender.renderItemAndEffectIntoGUI(stack, xPos + 3 + (20 * i), yPos + 2);
+				itemRender.renderItemOverlayIntoGUI(mc.fontRendererObj, stack, xPos + 2 + (20 * i), yPos + 4, stack.getDisplayName());
 				GL11.glDisable(GL11.GL_LIGHTING);
 			}
 			else if (amu.getSlotsOpen() < i + 1 && TragicConfig.amuletMaxSlots >= i + 1)
 			{
 				String s = "X";
 				Color color = new Color(0x23, 0x23, 0x23);
-				this.mc.fontRenderer.drawString(s.trim(), xPos + 8 + (20 * i), yPos + 6, color.getRGB());
+				this.mc.fontRendererObj.drawString(s.trim(), xPos + 8 + (20 * i), yPos + 6, color.getRGB());
 			}
 		}
 

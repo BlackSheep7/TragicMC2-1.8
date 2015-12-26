@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.client.gui;
 
+import java.io.IOException;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
@@ -13,7 +15,7 @@ public class GuiPetStatus extends GuiContainer {
 	}
 
 	@Override
-	protected void keyTyped(char c, int keyCode) {
+	protected void keyTyped(char c, int keyCode) throws IOException {
 		super.keyTyped(c, keyCode);
 	}
 	

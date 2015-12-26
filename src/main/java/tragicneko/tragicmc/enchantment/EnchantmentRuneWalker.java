@@ -5,12 +5,12 @@ import net.minecraft.enchantment.EnchantmentProtection;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentRuneWalker extends Enchantment {
 
-	public EnchantmentRuneWalker(int par1, int par2,
-			EnumEnchantmentType par3EnumEnchantmentType) {
-		super(par1, par2, par3EnumEnchantmentType);
+	public EnchantmentRuneWalker(int par1, ResourceLocation loc, int par2, EnumEnchantmentType par3EnumEnchantmentType) {
+		super(par1, loc, par2, par3EnumEnchantmentType);
 		this.setName("runeWalker");
 	}
 

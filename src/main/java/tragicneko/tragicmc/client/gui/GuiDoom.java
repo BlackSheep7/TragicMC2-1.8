@@ -9,21 +9,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.armor.TragicArmor;
 import tragicneko.tragicmc.items.weapons.TragicBow;
 import tragicneko.tragicmc.items.weapons.TragicTool;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiDoom extends Gui
@@ -87,11 +86,11 @@ public class GuiDoom extends Gui
 			yPos += 6;
 			Color color = new Color(0x27, 0xb8, 0xdc);
 
-			this.mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
-			this.mc.fontRenderer.drawString(s, xPos - 1, yPos, 0);
-			this.mc.fontRenderer.drawString(s, xPos, yPos + 1, 0);
-			this.mc.fontRenderer.drawString(s, xPos, yPos - 1, 0);
-			this.mc.fontRenderer.drawString(s, xPos, yPos, color.getRGB());
+			this.mc.fontRendererObj.drawString(s, xPos + 1, yPos, 0);
+			this.mc.fontRendererObj.drawString(s, xPos - 1, yPos, 0);
+			this.mc.fontRendererObj.drawString(s, xPos, yPos + 1, 0);
+			this.mc.fontRendererObj.drawString(s, xPos, yPos - 1, 0);
+			this.mc.fontRendererObj.drawString(s, xPos, yPos, color.getRGB());
 		}
 		else
 		{
@@ -227,18 +226,18 @@ public class GuiDoom extends Gui
 				buffer = 0;
 			}
 
-			this.mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
-			this.mc.fontRenderer.drawString(s, xPos - 1, yPos, 0);
-			this.mc.fontRenderer.drawString(s, xPos, yPos + 1, 0);
-			this.mc.fontRenderer.drawString(s, xPos, yPos - 1, 0);
-			this.mc.fontRenderer.drawString(s, xPos, yPos, color.getRGB());
+			this.mc.fontRendererObj.drawString(s, xPos + 1, yPos, 0);
+			this.mc.fontRendererObj.drawString(s, xPos - 1, yPos, 0);
+			this.mc.fontRendererObj.drawString(s, xPos, yPos + 1, 0);
+			this.mc.fontRendererObj.drawString(s, xPos, yPos - 1, 0);
+			this.mc.fontRendererObj.drawString(s, xPos, yPos, color.getRGB());
 
 			if (difference != 0 && difTick > 0)
 			{
 				boolean flg = difference > 0;
 				String s2 = (flg ? "+" : "") + difference;
 				int y = yPos - 2 + (TragicConfig.allowAnimatedGui ? (difTick / 2) : 0);
-				this.mc.fontRenderer.drawString(s2, xPos + 64, y, flg ? 0x00FF00 : 0xFF0000);
+				this.mc.fontRendererObj.drawString(s2, xPos + 64, y, flg ? 0x00FF00 : 0xFF0000);
 			}
 		}
 

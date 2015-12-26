@@ -28,7 +28,7 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double d0 = 12.0D;
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0, d0));
 		float f = crucMoment ? 2.5F : 1.5F;
 		int meow = crucMoment ? 12 : 4;
 

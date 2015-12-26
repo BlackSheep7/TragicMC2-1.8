@@ -7,12 +7,12 @@ import net.minecraft.enchantment.EnchantmentDurability;
 import net.minecraft.enchantment.EnchantmentUntouching;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentUnbreakable extends Enchantment {
 
-	public EnchantmentUnbreakable(int par1, int par2,
-			EnumEnchantmentType par3EnumEnchantmentType) {
-		super(par1, par2, par3EnumEnchantmentType);
+	public EnchantmentUnbreakable(int par1, ResourceLocation loc, int par2, EnumEnchantmentType par3EnumEnchantmentType) {
+		super(par1, loc, par2, par3EnumEnchantmentType);
 		this.setName("unbreakable");
 	}
 

@@ -35,12 +35,12 @@ public class TileEntitySummonBlock extends TileEntity {
 		"Knock knock", "Did you see how he turned the Summon Block?", "I'm distracting you!", "I am Groot", "We are Groot"};
 
 	@Override
-	public void updateEntity()
+	public void updateContainingBlockInfo()
 	{
 		if (this.worldObj.isRemote) return;
 
 		if (this.worldObj.getTotalWorldTime() % 20L == 0L) this.updateState();
-		if (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord) && !this.worldObj.isRemote)
+		if (this.worldObj.isBlockIndirectlyGettingPowered(this.getPos()) > 0 && !this.worldObj.isRemote)
 		{
 			this.spawnBoss(null);
 		}
@@ -53,7 +53,7 @@ public class TileEntitySummonBlock extends TileEntity {
 	{
 		double d0 = 12.0;
 
-		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(this.xCoord, this.yCoord, this.zCoord, this.xCoord + 1, this.yCoord + 1, this.zCoord + 1).expand(d0, d0, d0);
+		AxisAlignedBB axisalignedbb = this.blockType.getCollisionBoundingBox(this.worldObj, this.getPos(), this.worldObj.getBlockState(this.getPos())).expand(d0, d0, d0);
 		List<EntityPlayer> list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
 		if (!list.isEmpty())
@@ -121,7 +121,7 @@ public class TileEntitySummonBlock extends TileEntity {
 			boss = new EntityAegar(this.worldObj);
 		}
 
-		if (boss instanceof TragicBoss && this.worldObj.difficultySetting.getDifficultyId() < 2 && player != null)
+		if (boss instanceof TragicBoss && this.worldObj.getDifficulty().getDifficultyId() < 2 && player != null)
 		{
 			player.addChatMessage(new ChatComponentText("Difficulty needs to be raised to spawn this boss."));
 			return;
@@ -129,10 +129,10 @@ public class TileEntitySummonBlock extends TileEntity {
 
 		if (boss == null) return;
 
-		boss.setLocationAndAngles(this.xCoord, this.yCoord, this.zCoord, this.worldObj.rand.nextFloat(), this.worldObj.rand.nextFloat());
-		if (boss instanceof EntityLiving) ((EntityLiving) boss).onSpawnWithEgg((IEntityLivingData)null);
-		this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
-		this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
+		boss.setLocationAndAngles(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), this.worldObj.rand.nextFloat(), this.worldObj.rand.nextFloat());
+		if (boss instanceof EntityLiving) ((EntityLiving) boss).func_180482_a(this.worldObj.getDifficultyForLocation(this.getPos()), null);
+		this.worldObj.setBlockToAir(this.getPos());
+		this.worldObj.removeTileEntity(this.getPos());
 		this.worldObj.spawnEntityInWorld(boss);
 
 		if (player != null)

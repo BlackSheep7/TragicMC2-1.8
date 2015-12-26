@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
@@ -22,8 +23,8 @@ public class EnchantmentArmorExtra extends Enchantment {
 	private int damageType;
 	private final Random rand = TragicMC.rand;
 
-	public EnchantmentArmorExtra(int par1, int par2, int par3) {
-		super(par1, par2, EnumEnchantmentType.armor);
+	public EnchantmentArmorExtra(int par1, ResourceLocation loc, int par2, int par3) {
+		super(par1, loc, par2, EnumEnchantmentType.ARMOR);
 		this.setName("armorExtra." + enchantNames[par3]);
 		this.damageType = par3;
 	}

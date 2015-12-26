@@ -161,7 +161,7 @@ public abstract class Doomsday {
 
 	public int getScaledDoomRequirement(World world)
 	{
-		return getScaledDoomRequirement(world.difficultySetting);
+		return getScaledDoomRequirement(world.getDifficulty());
 	}
 
 	public int getScaledDoomRequirement(PropertyDoom doom)
@@ -234,7 +234,7 @@ public abstract class Doomsday {
 
 			if (!player.capabilities.isCreativeMode)
 			{
-				doom.increaseCooldown(this.getScaledCooldown(player.worldObj.difficultySetting) / 3);
+				doom.increaseCooldown(this.getScaledCooldown(player.worldObj.getDifficulty()) / 3);
 				int cost = this.getScaledDoomRequirement(doom) / 3;
 
 				if (TragicConfig.amuConsumption)
@@ -297,7 +297,7 @@ public abstract class Doomsday {
 	 */
 	public void applyDoomAndCooldown(PropertyDoom doom)
 	{
-		doom.decreaseDoomAmountAndApplyCooldown(this.getScaledDoomRequirement(doom), this.getScaledCooldown(doom.getPlayer().worldObj.difficultySetting));
+		doom.decreaseDoomAmountAndApplyCooldown(this.getScaledDoomRequirement(doom), this.getScaledCooldown(doom.getPlayer().worldObj.getDifficulty()));
 	}
 
 	public void applyDoomCost(PropertyDoom doom)
@@ -325,7 +325,7 @@ public abstract class Doomsday {
 
 	public void applyCooldown(PropertyDoom doom, int iterations)
 	{
-		doom.increaseCooldown(this.getScaledCooldown(doom.getPlayer().worldObj.difficultySetting) * iterations);
+		doom.increaseCooldown(this.getScaledCooldown(doom.getPlayer().worldObj.getDifficulty()) * iterations);
 	}
 
 	public void applyCooldown(PropertyDoom doom, int iterations, int inheritence)
@@ -342,7 +342,7 @@ public abstract class Doomsday {
 	 * @return
 	 */
 	protected int getScaledBacklash(int backlashChance, EntityPlayer player, EnumDoomType doomType) {
-		EnumDifficulty dif = player.worldObj.difficultySetting;
+		EnumDifficulty dif = player.worldObj.getDifficulty();
 		int x = 1;
 
 		switch(doomType)

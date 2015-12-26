@@ -12,6 +12,7 @@ import org.lwjgl.opengl.GL11;
  */
 public class ModelLightArmor extends ModelBiped {
 
+	public ModelRenderer bipedEars;
 	public ModelRenderer shape57;
 	public ModelRenderer shape58;
 	public ModelRenderer shape59;

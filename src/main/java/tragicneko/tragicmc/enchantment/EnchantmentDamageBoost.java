@@ -6,6 +6,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicPotion;
@@ -15,8 +16,8 @@ public class EnchantmentDamageBoost extends Enchantment {
 	private String[] enchantNames = {"decay", "absolve", "slay", "runeBreak"};
 	private int damageType;
 
-	public EnchantmentDamageBoost(int par1, int par2, int par3) {
-		super(par1, par2, EnumEnchantmentType.weapon);
+	public EnchantmentDamageBoost(int par1, ResourceLocation loc, int par2, int par3) {
+		super(par1, loc, par2, EnumEnchantmentType.WEAPON);
 		this.setName("damageBoost." + enchantNames[par3]);
 		this.damageType = par3;
 	}

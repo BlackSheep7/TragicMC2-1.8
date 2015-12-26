@@ -2,12 +2,12 @@ package tragicneko.tragicmc.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentLightweight extends Enchantment {
 
-	protected EnchantmentLightweight(int par1, int par2,
-			EnumEnchantmentType par3EnumEnchantmentType) {
-		super(par1, par2, par3EnumEnchantmentType);
+	protected EnchantmentLightweight(int par1, ResourceLocation loc, int par2, EnumEnchantmentType par3EnumEnchantmentType) {
+		super(par1, loc, par2, par3EnumEnchantmentType);
 		this.setName("lightweight");
 	}
 

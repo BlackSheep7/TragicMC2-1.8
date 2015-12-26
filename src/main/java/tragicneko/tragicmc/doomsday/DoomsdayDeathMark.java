@@ -26,7 +26,7 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 		super.doInitialEffects(effect, doom, player, crucMoment);
 
 		double radius = crucMoment ? 12.0D : 6.0D;
-		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(radius, radius, radius));
 
 		Collections.shuffle(list);
 
@@ -49,7 +49,7 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 		{
 			effect.utilityEntity = null;
 			double radius = crucMoment ? 12.0D : 6.0D;
-			List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+			List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(radius, radius, radius));
 
 			Collections.shuffle(list);
 

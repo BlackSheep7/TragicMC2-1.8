@@ -1,18 +1,21 @@
 package tragicneko.tragicmc.client.gui;
 
-import org.lwjgl.input.Keyboard;
+import java.io.IOException;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.lwjgl.input.Keyboard;
+
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiAmuletInventory extends GuiContainer
@@ -33,7 +36,7 @@ public class GuiAmuletInventory extends GuiContainer
 	}
 
 	@Override
-	protected void keyTyped(char c, int keyCode) {
+	protected void keyTyped(char c, int keyCode) throws IOException {
 		super.keyTyped(c, keyCode);
 		if (keyCode == Keyboard.KEY_ESCAPE || keyCode == Keyboard.KEY_E || keyCode == ClientProxy.openAmuletGui.getKeyCode()) {
 			mc.thePlayer.closeScreen();

@@ -9,9 +9,9 @@ import tragicneko.tragicmc.TragicConfig;
 public class TileEntityTimeDisruptor extends TileEntity {
 
 	@Override
-	public void updateEntity()
+	public void updateContainingBlockInfo()
 	{
-		if (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord) && TragicConfig.allowItemTimeAltering)
+		if (this.worldObj.isBlockIndirectlyGettingPowered(this.getPos()) > 0 && TragicConfig.allowItemTimeAltering)
 		{
 			WorldInfo info = this.worldObj.getWorldInfo();
 			Random rand = this.worldObj.rand;

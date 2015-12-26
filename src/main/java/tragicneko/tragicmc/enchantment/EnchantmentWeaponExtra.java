@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
@@ -22,8 +23,8 @@ public class EnchantmentWeaponExtra extends Enchantment {
 
 	private final Random rand = TragicMC.rand;
 
-	public EnchantmentWeaponExtra(int par1, int par2, int par3) {
-		super(par1, par2, EnumEnchantmentType.weapon);
+	public EnchantmentWeaponExtra(int par1, ResourceLocation loc, int par2, int par3) {
+		super(par1, loc, par2, EnumEnchantmentType.WEAPON);
 		this.setName("weaponExtra." + enchantNames[par3]);
 		this.damageType = par3;
 	}
