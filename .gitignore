@@ -55,3 +55,4 @@ build/*
 *.launch
 .project
 run/*
+/bin
