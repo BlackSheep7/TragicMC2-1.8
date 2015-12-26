@@ -4443,6 +4443,7 @@ will have the wrong block for any spikes that may have generated naturally, othe
 that's a reasonable trade-off
 Removed some technical blocks (steaming geyser, invisible fragile light, etc.), these will be remapped if necessary
 Working on doing the actual block/item renders, down to 3k errors now
+Did some more random error fixing, below 3k errors
 
 TODO: Remember to override illumination method for my mobs so that the ones that need to have it do it
 TODO: Change WorldHelper methods to return BlockPos instead of int[]
