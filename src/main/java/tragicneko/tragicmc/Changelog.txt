@@ -4444,6 +4444,8 @@ that's a reasonable trade-off
 Removed some technical blocks (steaming geyser, invisible fragile light, etc.), these will be remapped if necessary
 Working on doing the actual block/item renders, down to 3k errors now
 Did some more random error fixing, below 3k errors
+Carry over changes/fixes from 1.7.10: fix Toxic Amalgation recipe, fix Enyvil not using it's attack attribute value,
+update sounds, remove unused sounds
 
 TODO: Remember to override illumination method for my mobs so that the ones that need to have it do it
 TODO: Change WorldHelper methods to return BlockPos instead of int[]
@@ -4454,6 +4456,7 @@ TODO: Add a utility method for getting an entity's BlockPos quickly
 TODO: Cleanup variable names in overridden methods, they make the code difficult to read for others and make it more complicated
 to update code in situations such as this port
 TODO: Add a utility method for getting a Block from a pos instead of a blockstate, some methods only require the block so this would be faster
+TODO: Add configurability of enchantment weights
 
 //Changed common entity functions
 func_145780_a(int x, int y, int z, Block block) ---> playStepSound(BlockPos pos, Block block)
