@@ -819,7 +819,8 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 			if (entity instanceof EntityLivingBase)
 			{
-				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 12.0F);
+				float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+				entity.attackEntityFrom(DamageSource.causeMobDamage(this), f / 2.0F);
 				if (TragicConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), 1));
 
 				entity.motionX *= 3.225D;
