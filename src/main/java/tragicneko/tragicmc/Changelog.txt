@@ -4446,13 +4446,13 @@ Working on doing the actual block/item renders, down to 3k errors now
 Did some more random error fixing, below 3k errors
 Carry over changes/fixes from 1.7.10: fix Toxic Amalgation recipe, fix Enyvil not using it's attack attribute value,
 update sounds, remove unused sounds
+Lots more error fixing done, near 1k now
+Improved NekoNekoWand to use nbt tags for it's cooldown instead of a static variable
 
 TODO: Remember to override illumination method for my mobs so that the ones that need to have it do it
-TODO: Change WorldHelper methods to return BlockPos instead of int[]
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
 TODO: Move teleporting into the super classes for Entities, with some hooks to change particles and do something when a teleport is successful
 TODO: Add a utility method for teleporting the player somewhere (so I don't have to copy-paste a block of code just for this)
-TODO: Add a utility method for getting an entity's BlockPos quickly
 TODO: Cleanup variable names in overridden methods, they make the code difficult to read for others and make it more complicated
 to update code in situations such as this port
 TODO: Add a utility method for getting a Block from a pos instead of a blockstate, some methods only require the block so this would be faster
