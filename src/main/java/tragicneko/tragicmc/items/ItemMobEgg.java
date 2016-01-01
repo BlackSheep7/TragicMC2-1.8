@@ -32,27 +32,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMobEgg extends Item
 {
-	@SideOnly(Side.CLIENT)
-	private IIcon theIcon;
-
-	private IIcon normalMobIcon;
-	private IIcon normalMobIconOverlay;
-
-	private IIcon petMobIcon;
-	private IIcon petMobIconOverlay;
-
-	private IIcon miniBossIcon;
-	private IIcon miniBossIconOverlay;
-
-	private IIcon bigBossIcon;
-	private IIcon bigBossIconOverlay;
 
 	public ItemMobEgg()
 	{
 		this.setHasSubtypes(true);
 		this.setCreativeTab(TragicMC.Creative);
 		this.setUnlocalizedName("tragicmc.mobEgg");
-		this.setTextureName("tragicmc:SpawnEgg");
 	}
 
 	@Override

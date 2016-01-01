@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
@@ -37,7 +38,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 
 		if (crucMoment)
 		{
-			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(12.0D, 12.0D, 12.0D));
+			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(12.0D, 12.0D, 12.0D));
 			EntityLivingBase entity;
 
 			for (int i = 0; i < list.size(); i++)
@@ -81,7 +82,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		{
 			double d4 = d1 + rand.nextInt(32) - rand.nextInt(32);
 			double d5 = d3 + rand.nextInt(32) - rand.nextInt(32);
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, d4, player.worldObj.getTopSolidOrLiquidBlock((int) d4, (int) d5), d5));
+			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, d4, player.worldObj.getTopSolidOrLiquidBlock(new BlockPos((int) d4, 0, (int) d5)).getY(), d5));
 		}
 	}
 
@@ -114,7 +115,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		{
 			double d4 = d1 + rand.nextInt(32) - rand.nextInt(32);
 			double d5 = d3 + rand.nextInt(32) - rand.nextInt(32);
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, d4, player.worldObj.getTopSolidOrLiquidBlock((int) d4, (int) d5), d5));
+			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, d4, player.worldObj.getTopSolidOrLiquidBlock(new BlockPos((int) d4, 0, (int) d5)).getY(), d5));
 		}
 	}
 

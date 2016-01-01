@@ -15,7 +15,7 @@ public class DoomsdayMedic extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0, 32.0, 32.0));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 
 		for (Entity e : list)
 		{

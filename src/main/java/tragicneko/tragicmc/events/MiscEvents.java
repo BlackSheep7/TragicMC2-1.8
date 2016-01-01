@@ -3,6 +3,8 @@ package tragicneko.tragicmc.events;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
+import net.minecraft.block.BlockCarrot;
+import net.minecraft.block.BlockPotato;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -41,6 +43,7 @@ import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.properties.PropertyMisc;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class MiscEvents {
 
@@ -53,7 +56,7 @@ public class MiscEvents {
 	public void quicksandJumping(LivingJumpEvent event)
 	{
 		if (!TragicConfig.allowNonMobBlocks) return;
-		if (event.entityLiving instanceof EntityPlayer && event.entityLiving.worldObj.getBlock((int) event.entityLiving.posX, (int) event.entityLiving.posY, (int) event.entityLiving.posZ) instanceof BlockQuicksand) event.entityLiving.motionY *= 0.625D;
+		if (event.entityLiving instanceof EntityPlayer && event.entityLiving.worldObj.getBlockState(WorldHelper.getBlockPos(event.entityLiving)).getBlock() instanceof BlockQuicksand) event.entityLiving.motionY *= 0.625D;
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -182,13 +185,13 @@ public class MiscEvents {
 		if (!TragicConfig.allowNonMobBlocks) return;
 		if (event.block == Blocks.carrots)
 		{
-			int meta = event.world.getBlockMetadata(event.x, event.y, event.z);
+			int meta = ((Integer) event.world.getBlockState(event.pos).getValue(BlockCarrot.AGE)).intValue();
 
 			if (meta >= 7)
 			{
 				if (event.world.rand.nextInt(4) == 0)
 				{
-					event.world.setBlock(event.x, event.y, event.z, TragicBlocks.CarrotBlock);
+					event.world.setBlockState(event.pos, TragicBlocks.CarrotBlock.getDefaultState());
 					event.world.playSoundAtEntity(event.entityPlayer, "random.pop", 0.8F, 1.0F);
 				}
 				event.setResult(Result.ALLOW);
@@ -197,13 +200,13 @@ public class MiscEvents {
 
 		if (event.block == Blocks.potatoes)
 		{
-			int meta = event.world.getBlockMetadata(event.x, event.y, event.z);
+			int meta = ((Integer) event.world.getBlockState(event.pos).getValue(BlockPotato.AGE)).intValue();
 
 			if (meta >= 7)
 			{
 				if (event.world.rand.nextInt(4) == 0)
 				{
-					event.world.setBlock(event.x, event.y, event.z, TragicBlocks.PotatoBlock);
+					event.world.setBlockState(event.pos, TragicBlocks.PotatoBlock.getDefaultState());
 					event.world.playSoundAtEntity(event.entityPlayer, "random.pop", 0.8F, 1.0F);
 				}
 				event.setResult(Result.ALLOW);

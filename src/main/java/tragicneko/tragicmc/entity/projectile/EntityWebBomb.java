@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
@@ -58,13 +59,13 @@ public class EntityWebBomb extends EntityProjectile {
 					}
 				}
 
-				ArrayList<int[]> list2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.75D, this.posX, this.posY, this.posZ);
-				int[] coords;
+				ArrayList<BlockPos> list2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.75D, this.posX, this.posY, this.posZ);
+				BlockPos coords;
 
 				for (int i = 0 ; i < list2.size(); i++)
 				{
 					coords = list2.get(i);
-					if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web);
+					if (this.worldObj.getBlockState(coords).getBlock() == Blocks.air) this.worldObj.setBlockState(coords, Blocks.web.getDefaultState());
 				}
 
 				this.setDead();
@@ -73,9 +74,9 @@ public class EntityWebBomb extends EntityProjectile {
 	}
 
 	@Override
-	protected String getParticleString()
+	protected EnumParticleTypes getParticleString()
 	{
-		return "crit";
+		return EnumParticleTypes.CRIT;
 	}
 
 	@Override

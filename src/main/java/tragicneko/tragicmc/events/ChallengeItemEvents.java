@@ -8,7 +8,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -127,7 +129,8 @@ public class ChallengeItemEvents {
 							list.get(j).setAttackTarget(player);
 						}
 
-						player.worldObj.getChunkFromBlockCoords((int) player.posX, (int) player.posZ).inhabitedTime += 10000L;
+						Chunk chk = player.worldObj.getChunkFromBlockCoords(WorldHelper.getBlockPos(player));
+						chk.setInhabitedTime(chk.getInhabitedTime() + 10000L);
 					}
 					else if (challenge.isTargetChallenge && challenge.challengeClass != null)
 					{
@@ -169,11 +172,11 @@ public class ChallengeItemEvents {
 					}
 					else if (challenge.isBlockChallenge)
 					{
-						ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(player.worldObj, 1.5, player.posX, player.boundingBox.minY - 1.5, player.posZ);
+						ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(player.worldObj, 1.5, player.posX, player.getEntityBoundingBox().minY - 1.5, player.posZ);
 						Block block;
-						for (int[] coords : list)
+						for (BlockPos coords : list)
 						{
-							block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+							block = player.worldObj.getBlockState(coords).getBlock();
 							if (block == challenge.challengeBlock)
 							{
 								stack.getTagCompound().setInteger("challengeProgress", 1);
@@ -217,7 +220,7 @@ public class ChallengeItemEvents {
 						boolean flag = false;
 						if (challenge.challengeBiome != null)
 						{
-							flag = player.worldObj.getBiomeGenForCoords((int) player.posX, (int) player.posZ) == challenge.challengeBiome;
+							flag = player.worldObj.getBiomeGenForCoords(WorldHelper.getBlockPos(player)) == challenge.challengeBiome;
 						}
 						else
 						{

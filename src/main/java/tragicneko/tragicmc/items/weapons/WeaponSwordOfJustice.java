@@ -12,11 +12,11 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class WeaponSwordOfJustice extends ItemSword {
 
@@ -39,12 +39,12 @@ public class WeaponSwordOfJustice extends ItemSword {
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
-		return EnumRarity.epic;
+		return EnumRarity.EPIC;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack par1ItemStack, int passes)
+	public boolean hasEffect(ItemStack par1ItemStack)
 	{
 		return true;
 	}
@@ -66,9 +66,9 @@ public class WeaponSwordOfJustice extends ItemSword {
 	{
 		if (par2World.isRemote) return par1ItemStack;
 
-		if (par3EntityPlayer.capabilities.isCreativeMode && par3EntityPlayer.canCommandSenderUseCommand(2, ""))
+		if (par3EntityPlayer.capabilities.isCreativeMode && par3EntityPlayer.canUseCommand(2, ""))
 		{
-			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.expand(128.0, 128.0, 128.0));
+			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.getEntityBoundingBox().expand(128.0, 128.0, 128.0));
 			int count = 0;
 			for (Entity e : list)
 			{
@@ -79,7 +79,7 @@ public class WeaponSwordOfJustice extends ItemSword {
 					count++;
 				}
 			}
-			if (count > 0) par3EntityPlayer.addChatMessage(new ChatComponentText(par3EntityPlayer.getCommandSenderName() + " killed all nearby entities (" + count + " entities)!"));
+			if (count > 0) par3EntityPlayer.addChatMessage(new ChatComponentText(par3EntityPlayer.getName() + " killed all nearby entities (" + count + " entities)!"));
 		}
 
 		return par1ItemStack;

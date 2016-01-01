@@ -26,7 +26,7 @@ public class DoomsdaySkullCrusher extends Doomsday {
 		if (crisis <= 0.25F) d0 = 6.0;
 		if (crucMoment) d0 *= 2;
 
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0, d0));
 
 		for (int x = 0; x < list.size(); x++)
 		{

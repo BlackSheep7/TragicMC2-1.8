@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -43,9 +44,9 @@ public class EntityIreEnergy extends EntityProjectile {
 	}
 
 	@Override
-	protected String getParticleString()
+	protected EnumParticleTypes getParticleString()
 	{
-		return "crit";
+		return EnumParticleTypes.CRIT;
 	}
 
 	@Override

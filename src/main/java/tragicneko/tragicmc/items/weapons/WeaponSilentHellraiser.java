@@ -4,9 +4,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class WeaponSilentHellraiser extends TragicWeapon {
 
@@ -16,7 +16,7 @@ public class WeaponSilentHellraiser extends TragicWeapon {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public boolean hasEffect(ItemStack stack, int pass)
+	public boolean hasEffect(ItemStack stack)
 	{
 		return false;
 	}
@@ -31,6 +31,6 @@ public class WeaponSilentHellraiser extends TragicWeapon {
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
 	{
 		super.onUpdate(stack, world, entity, par, flag);
-		if (stack.stackTagCompound != null) stack.stackTagCompound.setTag("ench", new NBTTagList());
+		if (stack.hasTagCompound()) stack.getTagCompound().setTag("ench", new NBTTagList());
 	}
 }

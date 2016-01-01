@@ -12,6 +12,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayPiercingLight extends Doomsday {
 
@@ -22,14 +23,10 @@ public class DoomsdayPiercingLight extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		int posX = (int) player.posX;
-		int posY = (int) player.posY;
-		int posZ = (int) player.posZ;
-
 		float crisis = this.getCrisis(player);
 		List<Entity> list = new ArrayList();
 
-		if (player.worldObj.getLightBrightness(posX, posY, posZ) <= 0.75F)
+		if (player.worldObj.getLight(WorldHelper.getBlockPos(player)) <= 0.75F)
 		{
 			double d0 = 16.0;
 
@@ -48,7 +45,7 @@ public class DoomsdayPiercingLight extends Doomsday {
 				d0 = 4.0;
 			}
 
-			list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+			list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0, d0));
 
 			if (effect.utilityList.size() == 0) addNoEntityMessage(player);
 		}
@@ -65,7 +62,7 @@ public class DoomsdayPiercingLight extends Doomsday {
 				EntityLivingBase entity = (EntityLivingBase) list.get(x);
 				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 
-				float f = entity.worldObj.getLightBrightness((int)entity.posX, (int)entity.posY, (int)entity.posZ);
+				float f = entity.worldObj.getLight(WorldHelper.getBlockPos(entity));
 
 				if (f <= 0.75F)
 				{

@@ -4,14 +4,11 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicPotion;
 
 public class EntityEnergyCharge extends EntityProjectile {
 
@@ -47,9 +44,9 @@ public class EntityEnergyCharge extends EntityProjectile {
 	}
 
 	@Override
-	protected String getParticleString()
+	protected EnumParticleTypes getParticleString()
 	{
-		return "crit";
+		return EnumParticleTypes.CRIT;
 	}
 
 	@Override

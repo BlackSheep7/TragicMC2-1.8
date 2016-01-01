@@ -5,6 +5,7 @@ import static tragicneko.tragicmc.TragicMC.rand;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -58,9 +61,9 @@ public class EnchantmentEvents {
 			int x = (int) (event.entityLiving.posX + rand.nextInt(2) - rand.nextInt(2));
 			int y = (int) (event.entityLiving.posY + rand.nextInt(2) - rand.nextInt(2));
 			int z = (int) (event.entityLiving.posZ + rand.nextInt(2) - rand.nextInt(2));
-			if (EntityOverlordCore.replaceableBlocks.contains(event.entityLiving.worldObj.getBlock(x, y, z)))
+			if (EntityOverlordCore.replaceableBlocks.contains(event.entityLiving.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock()))
 			{
-				event.entityLiving.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+				event.entityLiving.worldObj.setBlockState(new BlockPos(x, y, z), TragicBlocks.Luminescence.getDefaultState());
 			}
 		}
 	}
@@ -76,10 +79,10 @@ public class EnchantmentEvents {
 
 				if (tool.getItem() instanceof ItemTool && TragicConfig.allowCombustion && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Combustion.effectId, tool) > 0)
 				{
-					if (tool.getItem().func_150893_a(tool, event.block) > 1.0F)
+					if (tool.getItem().getDigSpeed(tool, event.state) > 1.0F)
 					{
 						int z = EnchantmentHelper.getFortuneModifier(event.harvester);
-						ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(event.block, 1, event.blockMetadata));
+						ItemStack result = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(event.state.getBlock(), 1, event.state.getBlock().getMetaFromState(event.state)));
 
 						if (result != null)
 						{
@@ -111,83 +114,84 @@ public class EnchantmentEvents {
 					return;
 				}
 
-				if (tool.getItem() instanceof ItemTool && canMineWithTool(event.world, tool, event.x, event.y, event.z) && TragicConfig.allowVeteran && !event.world.isRemote)
+				if (tool.getItem() instanceof ItemTool && canMineWithTool(event.world, tool, event.pos) && TragicConfig.allowVeteran && !event.world.isRemote)
 				{
 					int e = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool);
 					if (e < 1) return;
 					MovingObjectPosition mop = WorldHelper.getMOPFromEntity(event.getPlayer(), event.getPlayer().capabilities.isCreativeMode ? 4.5 : 3.5);
 
-					if (mop != null)
+					if (mop != null) //TODO ensure veteran mines the correct blocks
 					{
-						if (mop.sideHit == 0 || mop.sideHit == 1)
+						if (mop.sideHit == EnumFacing.DOWN || mop.sideHit == EnumFacing.UP)
 						{
-							if (canMineWithTool(event.world, tool, event.x + 1, event.y, event.z)) event.world.func_147480_a(event.x + 1, event.y, event.z, true);
-							if (canMineWithTool(event.world, tool, event.x - 1, event.y, event.z)) event.world.func_147480_a(event.x - 1, event.y, event.z, true);
-							if (canMineWithTool(event.world, tool, event.x, event.y, event.z - 1)) event.world.func_147480_a(event.x, event.y, event.z - 1, true);
-							if (canMineWithTool(event.world, tool, event.x, event.y, event.z + 1)) event.world.func_147480_a(event.x, event.y, event.z + 1, true);
+							event.pos.east(1);
+							if (canMineWithTool(event.world, tool, event.pos.north())) event.world.destroyBlock(event.pos.north(), true);
+							if (canMineWithTool(event.world, tool, event.pos.south())) event.world.destroyBlock(event.pos.south(), true);
+							if (canMineWithTool(event.world, tool, event.pos.east())) event.world.destroyBlock(event.pos.east(), true);
+							if (canMineWithTool(event.world, tool, event.pos.west())) event.world.destroyBlock(event.pos.west(), true);
 
 							if (e >= 2)
 							{
-								if (canMineWithTool(event.world, tool, event.x - 1, event.y, event.z - 1)) event.world.func_147480_a(event.x - 1, event.y, event.z - 1, true);
-								if (canMineWithTool(event.world, tool, event.x + 1, event.y, event.z + 1)) event.world.func_147480_a(event.x + 1, event.y, event.z + 1, true);
-								if (canMineWithTool(event.world, tool, event.x + 1, event.y, event.z - 1)) event.world.func_147480_a(event.x + 1, event.y, event.z - 1, true);
-								if (canMineWithTool(event.world, tool, event.x - 1, event.y, event.z + 1)) event.world.func_147480_a(event.x - 1, event.y, event.z + 1, true);
+								if (canMineWithTool(event.world, tool, event.pos.north().east())) event.world.destroyBlock(event.pos.north().east(), true);
+								if (canMineWithTool(event.world, tool, event.pos.north().west())) event.world.destroyBlock(event.pos.north().west(), true);
+								if (canMineWithTool(event.world, tool, event.pos.south().east())) event.world.destroyBlock(event.pos.south().east(), true);
+								if (canMineWithTool(event.world, tool, event.pos.south().west())) event.world.destroyBlock(event.pos.south().west(), true);
 
 								if (e >= 3)
 								{
-									if (canMineWithTool(event.world, tool, event.x + 2, event.y, event.z)) event.world.func_147480_a(event.x + 2, event.y, event.z, true);
-									if (canMineWithTool(event.world, tool, event.x - 2, event.y, event.z)) event.world.func_147480_a(event.x - 2, event.y, event.z, true);
-									if (canMineWithTool(event.world, tool, event.x, event.y, event.z - 2)) event.world.func_147480_a(event.x, event.y, event.z - 2, true);
-									if (canMineWithTool(event.world, tool, event.x, event.y, event.z + 2)) event.world.func_147480_a(event.x, event.y, event.z + 2, true);
+									if (canMineWithTool(event.world, tool, event.pos.north(2))) event.world.destroyBlock(event.pos.north(2), true);
+									if (canMineWithTool(event.world, tool, event.pos.south(2))) event.world.destroyBlock(event.pos.south(2), true);
+									if (canMineWithTool(event.world, tool, event.pos.east(2))) event.world.destroyBlock(event.pos.east(2), true);
+									if (canMineWithTool(event.world, tool, event.pos.west(2))) event.world.destroyBlock(event.pos.west(2), true);
 								}
 							}
 						}
 						else
 						{
-							if (canMineWithTool(event.world, tool, event.x, event.y + 1, event.z)) event.world.func_147480_a(event.x, event.y + 1, event.z, true);
-							if (canMineWithTool(event.world, tool, event.x, event.y - 1, event.z)) event.world.func_147480_a(event.x, event.y - 1, event.z, true);
+							if (canMineWithTool(event.world, tool, event.pos.up())) event.world.destroyBlock(event.pos.up(), true);
+							if (canMineWithTool(event.world, tool, event.pos.down())) event.world.destroyBlock(event.pos.down(), true);
 
 							if (e >= 3)
 							{
-								if (canMineWithTool(event.world, tool, event.x, event.y + 2, event.z)) event.world.func_147480_a(event.x, event.y + 2, event.z, true);
-								if (canMineWithTool(event.world, tool, event.x, event.y - 2, event.z)) event.world.func_147480_a(event.x, event.y - 2, event.z, true);
+								if (canMineWithTool(event.world, tool, event.pos.up(2))) event.world.destroyBlock(event.pos.up(2), true);
+								if (canMineWithTool(event.world, tool, event.pos.down(2))) event.world.destroyBlock(event.pos.down(2), true);
 							}
 
-							if (mop.sideHit == 2 || mop.sideHit == 3)
+							if (mop.sideHit == EnumFacing.SOUTH || mop.sideHit == EnumFacing.NORTH)
 							{
-								if (canMineWithTool(event.world, tool, event.x + 1, event.y, event.z)) event.world.func_147480_a(event.x + 1, event.y, event.z, true);
-								if (canMineWithTool(event.world, tool, event.x - 1, event.y, event.z)) event.world.func_147480_a(event.x - 1, event.y, event.z, true);
+								if (canMineWithTool(event.world, tool, event.pos.east())) event.world.destroyBlock(event.pos.east(), true);
+								if (canMineWithTool(event.world, tool, event.pos.west())) event.world.destroyBlock(event.pos.west(), true);
 
 								if (e >= 2)
 								{
-									if (canMineWithTool(event.world, tool, event.x + 1, event.y + 1, event.z)) event.world.func_147480_a(event.x + 1, event.y + 1, event.z, true);
-									if (canMineWithTool(event.world, tool, event.x - 1, event.y + 1, event.z)) event.world.func_147480_a(event.x - 1, event.y + 1, event.z, true);
-									if (canMineWithTool(event.world, tool, event.x + 1, event.y - 1, event.z)) event.world.func_147480_a(event.x + 1, event.y - 1, event.z, true);
-									if (canMineWithTool(event.world, tool, event.x - 1, event.y - 1, event.z)) event.world.func_147480_a(event.x - 1, event.y - 1, event.z, true);
+									if (canMineWithTool(event.world, tool, event.pos.east().up())) event.world.destroyBlock(event.pos.east().up(), true);
+									if (canMineWithTool(event.world, tool, event.pos.west().up())) event.world.destroyBlock(event.pos.west().up(), true);
+									if (canMineWithTool(event.world, tool, event.pos.east().down())) event.world.destroyBlock(event.pos.east().down(), true);
+									if (canMineWithTool(event.world, tool, event.pos.west().down())) event.world.destroyBlock(event.pos.west().down(), true);
 
 									if (e >= 3)
 									{
-										if (canMineWithTool(event.world, tool, event.x + 2, event.y, event.z)) event.world.func_147480_a(event.x + 2, event.y, event.z, true);
-										if (canMineWithTool(event.world, tool, event.x - 2, event.y, event.z)) event.world.func_147480_a(event.x - 2, event.y, event.z, true);
+										if (canMineWithTool(event.world, tool, event.pos.east(2))) event.world.destroyBlock(event.pos.east(2), true);
+										if (canMineWithTool(event.world, tool, event.pos.west(2))) event.world.destroyBlock(event.pos.west(2), true);
 									}
 								}
 							}
 							else
 							{
-								if (canMineWithTool(event.world, tool, event.x, event.y, event.z - 1)) event.world.func_147480_a(event.x, event.y, event.z - 1, true);
-								if (canMineWithTool(event.world, tool, event.x, event.y, event.z + 1)) event.world.func_147480_a(event.x, event.y, event.z + 1, true);
+								if (canMineWithTool(event.world, tool, event.pos.north())) event.world.destroyBlock(event.pos.north(), true);
+								if (canMineWithTool(event.world, tool, event.pos.south())) event.world.destroyBlock(event.pos.south(), true);
 
 								if (e >= 2)
 								{
-									if (canMineWithTool(event.world, tool, event.x, event.y + 1, event.z - 1)) event.world.func_147480_a(event.x, event.y + 1, event.z - 1, true);
-									if (canMineWithTool(event.world, tool, event.x, event.y + 1, event.z + 1)) event.world.func_147480_a(event.x, event.y + 1, event.z + 1, true);
-									if (canMineWithTool(event.world, tool, event.x, event.y - 1, event.z - 1)) event.world.func_147480_a(event.x, event.y - 1, event.z - 1, true);
-									if (canMineWithTool(event.world, tool, event.x, event.y - 1, event.z + 1)) event.world.func_147480_a(event.x, event.y - 1, event.z + 1, true);
+									if (canMineWithTool(event.world, tool, event.pos.south().down())) event.world.destroyBlock(event.pos.south().down(), true);
+									if (canMineWithTool(event.world, tool, event.pos.north().down())) event.world.destroyBlock(event.pos.north().down(), true);
+									if (canMineWithTool(event.world, tool, event.pos.south().up())) event.world.destroyBlock(event.pos.south().up(), true);
+									if (canMineWithTool(event.world, tool, event.pos.north().up())) event.world.destroyBlock(event.pos.north().up(), true);
 
 									if (e >= 3)
 									{
-										if (canMineWithTool(event.world, tool, event.x, event.y, event.z - 2)) event.world.func_147480_a(event.x, event.y, event.z - 2, true);
-										if (canMineWithTool(event.world, tool, event.x, event.y, event.z + 2)) event.world.func_147480_a(event.x, event.y, event.z + 2, true);
+										if (canMineWithTool(event.world, tool, event.pos.north(2))) event.world.destroyBlock(event.pos.north(2), true);
+										if (canMineWithTool(event.world, tool, event.pos.south(2))) event.world.destroyBlock(event.pos.south(2), true);
 									}
 								}
 							}
@@ -200,11 +204,11 @@ public class EnchantmentEvents {
 		}
 	}
 
-	public static boolean canMineWithTool(World world, ItemStack stack, int x, int y, int z)
+	public static boolean canMineWithTool(World world, ItemStack stack, BlockPos pos)
 	{
 		ItemTool tool = (ItemTool) stack.getItem();
-		Block block = world.getBlock(x, y, z);
-		if (tool.func_150893_a(stack, block) > 1.0F && block.getBlockHardness(world, x, y, z) > 0) return true;
+		IBlockState block = world.getBlockState(pos);
+		if (tool.getDigSpeed(stack, block) > 1.0F && block.getBlock().getBlockHardness(world, pos) > 0) return true;
 		return false;
 	}
 

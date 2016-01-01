@@ -74,9 +74,9 @@ public class EntityDarkMortor extends EntityProjectile {
 	}
 
 	@Override
-	protected String getParticleString()
+	protected EnumParticleTypes getParticleString()
 	{
-		return "smoke";
+		return EnumParticleTypes.SMOKE_NORMAL;
 	}
 
 	@Override

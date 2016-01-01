@@ -17,7 +17,7 @@ public class ItemBoneMarrow extends ItemFood {
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
-		return EnumAction.drink;
+		return EnumAction.DRINK;
 	}
 
 }

@@ -18,7 +18,7 @@ public class DoomsdayRavage extends Doomsday {
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		double d0 = crucMoment ? 24.0D : 12.0D;
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0, d0));
 		float f = crucMoment ? 5.0F : 2.5F;
 		int meow = crucMoment ? 4 : 0;
 

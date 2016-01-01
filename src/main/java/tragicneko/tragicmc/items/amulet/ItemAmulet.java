@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -17,22 +16,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.util.AmuletHelper;
 
-import com.google.common.collect.Sets;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class ItemAmulet extends Item {
-
-	private IIcon[][] iconArray = new IIcon[4][2];
 
 	public static final int COLOR_WHITE = 0xFFFFFF;
 	public static final int COLOR_BLACK = 0x000000;
@@ -67,7 +60,7 @@ public class ItemAmulet extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack stack, int pass)
+	public boolean hasEffect(ItemStack stack)
 	{
 		if (this.amuletType == EnumAmuletType.CURSED || this.amuletType == EnumAmuletType.EPIC) return true;
 		return stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") && stack.getTagCompound().getByte("amuletLevel") >= 3;
@@ -75,36 +68,21 @@ public class ItemAmulet extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean requiresMultipleRenderPasses() {
-		return true;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(ItemStack stack, int pass)
-	{
-		byte i = stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getByte("amuletLevel") : getDefaultLevels(this.amuletType);
-		if (this.amuletType != EnumAmuletType.NORMAL) i = 4;
-		return this.iconArray[net.minecraft.util.MathHelper.clamp_int(i, 1, 4) - 1][pass > 0 ? 1 : 0];
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		if (this.amuletType == EnumAmuletType.CURSED || this.amuletType == EnumAmuletType.EPIC) return EnumRarity.epic;
+		if (this.amuletType == EnumAmuletType.CURSED || this.amuletType == EnumAmuletType.EPIC) return EnumRarity.EPIC;
 		byte i = stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getByte("amuletLevel") : getDefaultLevels(this.amuletType);
 
 		switch (i)
 		{
 		case 1:
-			return EnumRarity.common;
+			return EnumRarity.COMMON;
 		case 2:
-			return EnumRarity.uncommon;
+			return EnumRarity.UNCOMMON;
 		case 3:
-			return EnumRarity.rare;
+			return EnumRarity.RARE;
 		}
-		return EnumRarity.common;
+		return EnumRarity.COMMON;
 	}
 
 	@Override
@@ -146,17 +124,6 @@ public class ItemAmulet extends Item {
 		}
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister regi)
-	{
-		for (byte i = 0; i < 4; i++)
-		{
-			this.iconArray[i][0] = regi.registerIcon("tragicmc:Amulet" + (i + 1));
-			this.iconArray[i][1] = regi.registerIcon("tragicmc:Amulet" + (i + 1) + "_overlay");
-		}
-	}
-
 	public byte getAmuletLevel(ItemStack stack)
 	{
 		return stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getByte("amuletLevel") : 0;
@@ -177,9 +144,9 @@ public class ItemAmulet extends Item {
 	{
 		if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
+		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
 		if (!stack.getTagCompound().hasKey("amuletLevel")) stack.getTagCompound().setByte("amuletLevel", getDefaultLevels(this.amuletType));
-		if (TragicConfig.allowAmuletModifiers && !stack.stackTagCompound.hasKey("AttributeModifiers", 9)) applyModifiersToItemStack(stack);
+		if (TragicConfig.allowAmuletModifiers && !stack.getTagCompound().hasKey("AttributeModifiers", 9)) applyModifiersToItemStack(stack);
 	}
 
 	@Override
@@ -278,10 +245,10 @@ public class ItemAmulet extends Item {
 	}
 
 	public static class AmuletModifier extends SharedMonsterAttributes {
-		public static final IAttribute reach = (new RangedAttribute("tragicmc.reach", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Reach").setShouldWatch(true);
-		public static final IAttribute jumpHeight = (new RangedAttribute("tragicmc.jumpHeight", 1.4, 0.0, Double.MAX_VALUE)).setDescription("Jump Height").setShouldWatch(true);
-		public static final IAttribute resistance = (new RangedAttribute("tragicmc.resistance", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Resistance").setShouldWatch(true);
-		public static final IAttribute luck = (new RangedAttribute("tragicmc.luck", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Luck").setShouldWatch(true);
+		public static final IAttribute reach = (new RangedAttribute(null, "tragicmc.reach", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Reach").setShouldWatch(true);
+		public static final IAttribute jumpHeight = (new RangedAttribute(null, "tragicmc.jumpHeight", 1.4, 0.0, Double.MAX_VALUE)).setDescription("Jump Height").setShouldWatch(true);
+		public static final IAttribute resistance = (new RangedAttribute(null, "tragicmc.resistance", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Resistance").setShouldWatch(true);
+		public static final IAttribute luck = (new RangedAttribute(null, "tragicmc.luck", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Luck").setShouldWatch(true);
 	}
 	
 	public static enum EnumAmuletType {

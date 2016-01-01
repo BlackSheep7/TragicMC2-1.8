@@ -8,6 +8,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -32,14 +33,14 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
 		double radius = crucMoment ? 6.0D : 4.0D;
-		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		List<BlockPos> list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 
 		Block block;
-		int[] coords;
+		BlockPos coords;
 
 		if (crucMoment)
 		{
-			List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+			List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(radius, radius, radius));
 			for (int i = 0; i < list2.size(); i++)
 			{
 				if (list2.get(i) instanceof EntityMob) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(Potion.poison.id, 120, 2));
@@ -48,12 +49,12 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 
 		for (int i = 0; i < list.size(); i++)
 		{
-			coords = (int[]) list.get(i);
-			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+			coords = (BlockPos) list.get(i);
+			block = player.worldObj.getBlockState(coords).getBlock();
 
-			if (block.isAir(player.worldObj, coords[0], coords[1], coords[2]) && World.doesBlockHaveSolidTopSurface(player.worldObj, coords[0], coords[1] - 1, coords[2]))
+			if (block.isAir(player.worldObj, coords) && World.doesBlockHaveSolidTopSurface(player.worldObj, coords.down()))
 			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.SepticGas);
+				player.worldObj.setBlockState(coords, TragicBlocks.SepticGas.getDefaultState());
 			}
 		}
 

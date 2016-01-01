@@ -12,6 +12,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent.ServerDisconnectionFromClientEvent;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,10 +26,6 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
-import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
-import cpw.mods.fml.common.network.FMLNetworkEvent.ServerDisconnectionFromClientEvent;
 
 public class DoomsdayManager {
 
@@ -116,7 +116,7 @@ public class DoomsdayManager {
 			for (int i = 0; i < MinecraftServer.getServer().getConfigurationManager().playerEntityList.size(); i++)
 			{
 				EntityPlayer player = (EntityPlayer) MinecraftServer.getServer().getConfigurationManager().playerEntityList.get(i);
-				if (player.getUniqueID() == uuid) return player.getCommandSenderName();
+				if (player.getUniqueID() == uuid) return player.getName();
 			}
 		}
 		catch (Exception e)

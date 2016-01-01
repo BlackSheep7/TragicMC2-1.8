@@ -27,7 +27,7 @@ public class TragicTool extends ItemTool {
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		int rarity = stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getInteger("tragicLoreRarity") : 0;
+		int rarity = stack.hasTagCompound() && stack.getTagCompound().hasKey("tragicLoreRarity") ? stack.getTagCompound().getInteger("tragicLoreRarity") : 0;
 		return EnumRarity.values()[rarity];
 	}
 
@@ -60,7 +60,7 @@ public class TragicTool extends ItemTool {
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
+			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
 			par2List.add(""); //extra space
 		}
 	}

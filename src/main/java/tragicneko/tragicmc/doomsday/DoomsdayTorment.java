@@ -21,7 +21,7 @@ public class DoomsdayTorment extends Doomsday {
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		double d0 = crucMoment ? 12.0D : 6.0D;
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0, d0));
 
 		for (int i = 0; i < list.size(); i ++)
 		{

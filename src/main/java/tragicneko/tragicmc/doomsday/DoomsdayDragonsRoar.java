@@ -30,7 +30,7 @@ public class DoomsdayDragonsRoar extends Doomsday {
 
 		if (crucMoment)
 		{
-			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(8.0D, 8.0D, 8.0D));
+			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(8.0D, 8.0D, 8.0D));
 			EntityLivingBase entity;
 
 			for (int i = 0; i < list.size(); i++)

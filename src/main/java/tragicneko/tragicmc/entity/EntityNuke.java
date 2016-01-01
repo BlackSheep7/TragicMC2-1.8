@@ -9,14 +9,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.util.WorldHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityNuke extends Entity {
 
@@ -136,23 +134,23 @@ public class EntityNuke extends Entity {
 		if (this.nukeStage > 3){
 			this.setDead();
 			
-			for (int i = 0; i < 14; i++)
+			for (byte i = 0; i < 14; i++)
 			{
-				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 6.0F, this.posX + rand.nextInt(32) - rand.nextInt(32), this.posY + rand.nextInt(8) - rand.nextInt(16), this.posZ + rand.nextInt(32) - rand.nextInt(32));
+				ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 6.0F, this.posX + rand.nextInt(32) - rand.nextInt(32), this.posY + rand.nextInt(8) - rand.nextInt(16), this.posZ + rand.nextInt(32) - rand.nextInt(32));
 
-				for (int[] coords : list)
-					if (rand.nextInt(8) == 0 && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])) && World.doesBlockHaveSolidTopSurface(worldObj, coords[0], coords[1] - 1, coords[2])) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.fire);
-					else if (this.worldObj.getBlock(coords[0], coords[1], coords[2]).getMaterial() == Material.water) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]); 
+				for (BlockPos coords : list)
+					if (rand.nextInt(8) == 0 && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock()) && World.doesBlockHaveSolidTopSurface(worldObj, coords.down())) this.worldObj.setBlockState(coords, Blocks.fire.getDefaultState());
+					else if (this.worldObj.getBlockState(coords).getBlock().getMaterial() == Material.water) this.worldObj.setBlockToAir(coords); 
 			}
 		}
 
 		if (!this.worldObj.isRemote && rand.nextInt(8) == 0 && this.nukeStage >= 2)
 		{
-			ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 6.0F, this.posX + rand.nextInt(32) - rand.nextInt(32), this.posY + rand.nextInt(8), this.posZ + rand.nextInt(32) - rand.nextInt(32));
+			ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 6.0F, this.posX + rand.nextInt(32) - rand.nextInt(32), this.posY + rand.nextInt(8), this.posZ + rand.nextInt(32) - rand.nextInt(32));
 
-			for (int[] coords : list)
-				if (rand.nextInt(8) == 0 && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])) && World.doesBlockHaveSolidTopSurface(worldObj, coords[0], coords[1] - 1, coords[2])) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.fire);
-				else if (this.worldObj.getBlock(coords[0], coords[1], coords[2]).getMaterial() == Material.water) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]); 
+			for (BlockPos coords : list)
+				if (rand.nextInt(8) == 0 && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock()) && World.doesBlockHaveSolidTopSurface(worldObj, coords.down())) this.worldObj.setBlockState(coords, Blocks.fire.getDefaultState());
+				else if (this.worldObj.getBlockState(coords).getBlock().getMaterial() == Material.water) this.worldObj.setBlockToAir(coords); 
 		}
 	}
 

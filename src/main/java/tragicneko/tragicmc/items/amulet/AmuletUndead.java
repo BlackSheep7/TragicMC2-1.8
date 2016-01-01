@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyAmulets;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class AmuletUndead extends ItemAmulet {
 
@@ -22,7 +23,7 @@ public class AmuletUndead extends ItemAmulet {
 		{
 			boolean flag = false;
 			
-			if (world.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ) && world.isDaytime() && player.ticksExisted % 10 == 0)
+			if (world.canBlockSeeSky(WorldHelper.getBlockPos(player)) && world.isDaytime() && player.ticksExisted % 10 == 0)
 			{
 				player.setFire(8 + rand.nextInt(4));
 				flag = true;
@@ -48,7 +49,7 @@ public class AmuletUndead extends ItemAmulet {
 			{
 				PotionEffect effect = player.getActivePotionEffect(TragicPotion.Cripple);
 				player.removePotionEffect(TragicPotion.Cripple.id);
-				player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, effect.getDuration(), effect.getAmplifier()));
+				player.addPotionEffect(new PotionEffect(Potion.healthBoost.id, effect.getDuration(), effect.getAmplifier()));
 				flag = true;
 			}
 			

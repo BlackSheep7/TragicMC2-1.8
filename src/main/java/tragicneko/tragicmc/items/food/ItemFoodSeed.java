@@ -6,8 +6,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.blocks.BlockFruit;
 
 public class ItemFoodSeed extends Item {
 	
@@ -19,11 +20,11 @@ public class ItemFoodSeed extends Item {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if (world.isRemote) return true;
 		
-		Block block = world.getBlock(x, y, z);
+		Block block = world.getBlockState(pos).getBlock();
 
         if (block == Blocks.snow_layer && (world.getBlockMetadata(x, y, z) & 7) < 1)
         {

@@ -1,21 +1,17 @@
 package tragicneko.tragicmc.items.weapons;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class WeaponHuntersBow extends TragicBow {
 
@@ -26,53 +22,7 @@ public class WeaponHuntersBow extends TragicBow {
 		super(674, Doomsday.RapidFire);
 		this.setCreativeTab(TragicMC.Survival);
 	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
-	{
-		if (usingItem == null) return itemIcon;
-
-		int ticksInUse = stack.getMaxItemUseDuration() - useRemaining;
-
-		if (ticksInUse > 14)
-		{
-			return iconArray[2];
-		}
-		else if (ticksInUse > 8)
-		{
-			return iconArray[1];
-		}
-		else if (ticksInUse > 2)
-		{
-			return iconArray[0];
-		}
-		else
-		{
-			return itemIcon;
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		this.itemIcon = par1IconRegister.registerIcon(this.getIconString() + "_standby");
-		this.iconArray = new IIcon[bowPullIconName.length];
-
-		for (int i = 0; i < this.iconArray.length; ++i)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon(this.getIconString() + "_" + bowPullIconName[i]);
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getItemIconForUseDuration(int par1)
-	{
-		return this.iconArray[par1];
-	}
-
+	
 	@Override
 	public int getItemEnchantability()
 	{

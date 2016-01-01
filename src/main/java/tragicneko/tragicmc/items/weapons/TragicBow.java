@@ -8,19 +8,14 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.util.LoreHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TragicBow extends ItemBow {
 
 	public final Doomsday doomsday;
-	@SideOnly(Side.CLIENT)
-	protected IIcon[] iconArray;
 
 	public TragicBow(int dmg, Doomsday dday)
 	{
@@ -32,7 +27,7 @@ public class TragicBow extends ItemBow {
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		int rarity = stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getInteger("tragicLoreRarity") : 0;
+		int rarity = stack.hasTagCompound() && stack.getTagCompound().hasKey("tragicLoreRarity") ? stack.getTagCompound().getInteger("tragicLoreRarity") : 0;
 		return EnumRarity.values()[rarity];
 	}
 
@@ -55,7 +50,7 @@ public class TragicBow extends ItemBow {
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
+			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
 			par2List.add(""); //extra space
 		}
 	}

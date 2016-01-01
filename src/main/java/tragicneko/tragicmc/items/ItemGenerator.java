@@ -1,50 +1,13 @@
 package tragicneko.tragicmc.items;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
-import java.util.Set;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBreakable;
-import net.minecraft.block.BlockFalling;
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
-import net.minecraft.world.gen.feature.WorldGenCanopyTree;
-import net.minecraft.world.gen.feature.WorldGenForest;
-import net.minecraft.world.gen.feature.WorldGenMegaJungle;
-import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
-import net.minecraft.world.gen.feature.WorldGenSavannaTree;
-import net.minecraft.world.gen.feature.WorldGenTaiga2;
-import net.minecraft.world.gen.feature.WorldGenTrees;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.entity.EntityDirectedLightning;
-import tragicneko.tragicmc.util.WorldHelper;
-import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
-import tragicneko.tragicmc.worldgen.WorldGenBleachedTree;
-import tragicneko.tragicmc.worldgen.WorldGenLargePaintedTree;
-import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
-import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class ItemGenerator extends Item {
 
@@ -53,8 +16,6 @@ public class ItemGenerator extends Item {
 
 	private String[] textureNames = new String[] {"voidPitGenerator", "spikeGenerator", "starCrystalGenerator", "sphereGenerator", "sphereEraser", "liquidRemover", "treeGenerator",
 			"lightningSummoner", "explosionGenerator", "isleGenerator", "directedLightningSummoner", "pitGenerator"};
-
-	private IIcon[] iconArray = new IIcon[subNames.length];
 
 	public ItemGenerator()
 	{
@@ -75,6 +36,7 @@ public class ItemGenerator extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
+		return super.onItemRightClick(stack, world, player); /*//TODO fix generator item
 		if (world.isRemote) return stack;
 		Random random = world.rand;
 
@@ -476,7 +438,7 @@ public class ItemGenerator extends Item {
 			break;
 		}
 
-		return stack;
+		return stack; */
 	}
 
 	@Override
@@ -485,22 +447,6 @@ public class ItemGenerator extends Item {
 		for (int i = 0; i < subNames.length; i++)
 		{
 			list.add(new ItemStack(item, 1, i));
-		}
-	}
-
-	@Override
-	public IIcon getIconFromDamage(int damage)
-	{
-		if (damage >= this.iconArray.length) damage = this.iconArray.length - 1;
-		return this.iconArray[damage];
-	}
-
-	@Override
-	public void registerIcons(IIconRegister register)
-	{
-		for (int i = 0; i < subNames.length; i++)
-		{
-			this.iconArray[i] = register.registerIcon("tragicmc:" + subNames[i]);
 		}
 	}
 

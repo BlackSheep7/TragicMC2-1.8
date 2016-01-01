@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
@@ -44,9 +45,9 @@ public class EntitySpiritCast extends EntityProjectile {
 	}
 
 	@Override
-	protected String getParticleString()
+	protected EnumParticleTypes getParticleString()
 	{
-		return "crit";
+		return EnumParticleTypes.CRIT_MAGIC;
 	}
 
 }

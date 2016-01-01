@@ -20,7 +20,7 @@ public class DoomsdaySupport extends Doomsday {
 		int amt = this.getScaledDoomRequirement(doom);
 		if (crucMoment) amt *= 1.5;
 
-		List<EntityPlayer> list = player.worldObj.getEntitiesWithinAABB(EntityPlayer.class, player.boundingBox.expand(d0, d0, d0));
+		List<EntityPlayer> list = player.worldObj.getEntitiesWithinAABB(EntityPlayer.class, player.getEntityBoundingBox().expand(d0, d0, d0));
 
 		if (list.size() > 1)
 		{

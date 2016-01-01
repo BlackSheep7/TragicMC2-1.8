@@ -30,7 +30,7 @@ public class DoomsdayKurayami extends Doomsday {
 
 		if (TragicConfig.allowAchievements && TragicConfig.allowKitsunakuma)
 		{
-			List<EntityKitsune> list = player.worldObj.getEntitiesWithinAABB(EntityKitsune.class, player.boundingBox.expand(32.0, 32.0, 32.0));
+			List<EntityKitsune> list = player.worldObj.getEntitiesWithinAABB(EntityKitsune.class, player.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 			if (!list.isEmpty())
 			{
 				if (player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.kurayami);

@@ -31,7 +31,7 @@ public class WeaponSplinter extends EpicWeapon {
 
 		if (canUseAbility(doom, TragicConfig.doomAbilityCost[28]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.doomAbility[28])
 		{
-			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.expand(12.0D, 12.0D, 12.0D).offset(vec.xCoord, vec.yCoord, vec.zCoord));
+			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.getEntityBoundingBox().expand(12.0D, 12.0D, 12.0D).offset(vec.xCoord, vec.yCoord, vec.zCoord));
 			EntityLivingBase entity;
 
 			if (list.isEmpty()) return par1ItemStack;

@@ -25,15 +25,15 @@ public class RecipeWeapons extends ShapelessOreRecipe {
 
 			if (stack2 != null && stack2.hasTagCompound())
 			{
-				if (stack2.stackTagCompound.hasKey("tragicLoreRarity"))
+				if (stack2.getTagCompound().hasKey("tragicLoreRarity"))
 				{
-					int rarity = stack2.stackTagCompound.getInteger("tragicLoreRarity");
+					int rarity = stack2.getTagCompound().getInteger("tragicLoreRarity");
 					if (rarity < 1) rarity = 1;
 
 					if (!flag)
 					{
 						loreRarity = rarity;
-						if (stack2.stackTagCompound.hasKey("tragicLoreDesc")) lore = stack2.stackTagCompound.getString("tragicLoreDesc");
+						if (stack2.getTagCompound().hasKey("tragicLoreDesc")) lore = stack2.getTagCompound().getString("tragicLoreDesc");
 						flag = true;
 					}
 					else
@@ -46,9 +46,9 @@ public class RecipeWeapons extends ShapelessOreRecipe {
 		}
 
 		if (loreRarity > 3) loreRarity = 3;
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		stack.stackTagCompound.setInteger("tragicLoreRarity", loreRarity);
-		if (lore != null) stack.stackTagCompound.setString("tragicLoreDesc", lore);
+		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+		stack.getTagCompound().setInteger("tragicLoreRarity", loreRarity);
+		if (lore != null) stack.getTagCompound().setString("tragicLoreDesc", lore);
 
 		return stack;
 	}

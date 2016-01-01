@@ -24,7 +24,7 @@ public class AmuletSnowGolem extends ItemAmulet {
 		if (TragicConfig.amuSnowGolem)
 		{
 			double d = level * 16.0D + 16.0D;
-			List<EntityItem> list = world.getEntitiesWithinAABB(EntityMob.class, player.boundingBox.expand(d, d, d));
+			List<EntityItem> list = world.getEntitiesWithinAABB(EntityMob.class, player.getEntityBoundingBox().expand(d, d, d));
 			if (list.size() > 0 && player.ticksExisted % 10 == 0 && !world.isRemote) this.damageAmulet(amu, slot, level);
 			Iterator ite = list.iterator();
 			EntityMob mob;
@@ -32,7 +32,7 @@ public class AmuletSnowGolem extends ItemAmulet {
 			while (ite.hasNext())
 			{
 				mob = (EntityMob) ite.next();
-				mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, EntityPlayer.class, 0, true));
+				mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, EntityPlayer.class, 0, true, false, null));
 				mob.setAttackTarget(player);
 				mob.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(d + 32.0D);
 			}

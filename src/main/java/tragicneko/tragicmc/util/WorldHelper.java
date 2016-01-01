@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -110,30 +111,30 @@ public class WorldHelper {
 	 * @param z
 	 * @return
 	 */
-	public static ArrayList<int[]> getBlocksInCircularRange(World world, double radius, double x, double y, double z)
+	public static ArrayList<BlockPos> getBlocksInCircularRange(World world, double radius, double x, double y, double z)
 	{
-		ArrayList<int[]> list = new ArrayList();
+		ArrayList<BlockPos> list = new ArrayList();
 		if (radius <= 0) throw new IllegalArgumentException("Radius cannot be negative!");
 
-		int[] coords;
+		BlockPos coords;
 
 		for (double x2 = -radius - 0.55D; x2 < radius + 0.55D; x2 += 0.5D)
 		{
 			for (double z2 = -radius - 0.55D; z2 < radius + 0.55D; z2 += 0.5D)
 			{
-				coords = new int[] {(int) ((int) x + x2), (int) y, (int) ((int) z + z2)};
-
 				if (MathHelper.sqrt_double(x2 * x2 + z2 * z2) <= radius)
 				{
-					if (!list.contains(coords))
-					{
-						list.add(coords);
-					}
+					coords = new BlockPos(x + x2, y, z + z2);
+					if (!list.contains(coords)) list.add(coords);
 				}
 			}
 		}
 
 		return list;
+	}
+	
+	public static ArrayList<BlockPos> getBlocksInCircularRange(World world, double radius, BlockPos center) {
+		return getBlocksInCircularRange(world, radius, center.getX(), center.getY(), center.getZ());
 	}
 
 	/**
@@ -145,14 +146,14 @@ public class WorldHelper {
 	 * @param z
 	 * @return
 	 */
-	public static ArrayList<int[]> getBlocksInSphericalRange(World world, double radius, double x, double y, double z)
+	public static ArrayList<BlockPos> getBlocksInSphericalRange(World world, double radius, double x, double y, double z)
 	{
-		ArrayList<int[]> list = new ArrayList();
+		ArrayList<BlockPos> list = new ArrayList();
 		if (radius <= 0) throw new IllegalArgumentException("Radius cannot be negative!");
 
 		double distance = radius + 1.5D;
 
-		int[] coords;
+		BlockPos coords;
 
 		for (double y1 = -distance; y1 < distance; y1 += 0.5D)
 		{
@@ -162,18 +163,18 @@ public class WorldHelper {
 				{
 					if (MathHelper.sqrt_double(x1 * x1 + z1 * z1 + y1 * y1) < radius)
 					{
-						coords = new int[] {(int) ((int) x + x1), (int) ((int) y + y1), (int) ((int) z + z1)};
-
-						if (!list.contains(coords))
-						{
-							list.add(coords);
-						}
+						coords = new BlockPos(x + x1, y + y1, z + z1);
+						if (!list.contains(coords)) list.add(coords);
 					}
 				}
 			}
 		}
 
 		return list;
+	}
+	
+	public static ArrayList<BlockPos> getBlocksInSphericalRange(World world, double radius, BlockPos center) {
+		return getBlocksInSphericalRange(world, radius, center.getX(), center.getY(), center.getZ());
 	}
 
 	/**
@@ -230,26 +231,25 @@ public class WorldHelper {
 		return getMOPFromEntity(ent, 6.0D).hitVec;
 	}
 
-	public static double[] getTransportPositionFromSide(int sideHit, double x, double y, double z)
+	public static double[] getTransportPositionFromSide(EnumFacing facing, double x, double y, double z)
 	{
-		switch(sideHit)
+		switch(facing)
 		{
-		case 0:
+		case DOWN:
 			y -= 2.2D;
 			break;
-		default:
-		case 1:
+		case UP:
 			break;
-		case 2:
+		case SOUTH:
 			z -= 1.0D;
 			break;
-		case 3:
+		case NORTH:
 			z += 1.0D;
 			break;
-		case 4:
+		case WEST:
 			x -= 1.0D;
 			break;
-		case 5:
+		case EAST:
 			x += 1.0D;
 			break;
 		}
@@ -257,45 +257,50 @@ public class WorldHelper {
 		return new double[] {x, y, z};
 	}
 
-	public static double getXPositionFromSide(int sideHit, double x)
+	public static double getXPositionFromSide(EnumFacing facing, double x)
 	{
-		return getTransportPositionFromSide(sideHit, x, 0.0, 0.0)[0];
+		return getTransportPositionFromSide(facing, x, 0.0, 0.0)[0];
 	}
 
-	public static double getYPositionFromSide(int sideHit, double y)
+	public static double getYPositionFromSide(EnumFacing facing, double y)
 	{
-		return getTransportPositionFromSide(sideHit, 0.0, y, 0.0)[1];
+		return getTransportPositionFromSide(facing, 0.0, y, 0.0)[1];
 	}
 
-	public static double getZPositionFromSide(int sideHit, double z)
+	public static double getZPositionFromSide(EnumFacing facing, double z)
 	{
-		return getTransportPositionFromSide(sideHit, 0.0, 0.0, z)[2];
+		return getTransportPositionFromSide(facing, 0.0, 0.0, z)[2];
 	}
 
-	public static ArrayList<int[]> getBlocksAdjacent(int[] start) {
-		ArrayList<int[]> list = new ArrayList();
-		list.add(new int[] {start[0] + 1, start[1], start[2]});
-		list.add(new int[] {start[0] - 1, start[1], start[2]});
-		list.add(new int[] {start[0], start[1] + 1, start[2]});
-		list.add(new int[] {start[0], start[1] - 1, start[2]});
-		list.add(new int[] {start[0], start[1], start[2] + 1});
-		list.add(new int[] {start[0], start[1], start[2] - 1});
+	public static ArrayList<BlockPos> getBlocksAdjacent(BlockPos start) {
+		ArrayList<BlockPos> list = new ArrayList();
+		list.add(start.up());
+		list.add(start.east());
+		list.add(start.west());
+		list.add(start.south());
+		list.add(start.north());
+		list.add(start.down());
 		return list;
 	}
 
 	public static int getDistanceToGround(Entity entity)
 	{
-		return getDistanceToGround(entity.worldObj, MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.getEntityBoundingBox().minY), MathHelper.floor_double(entity.posZ));
+		return getDistanceToGround(entity.worldObj, getBlockPos(entity));
 	}
 	
-	public static int getDistanceToGround(World world, int x, int y, int z)
+	public static int getDistanceToGround(World world, BlockPos pos)
 	{
-		BlockPos pos = new BlockPos(x, y, z);
+		final int y = pos.getY();
 		for (int i = 0; y - i > 0; ++i)
 		{
 			if (world.getBlockState(pos.down(i)).getBlock().getMaterial().blocksMovement()) return i;
 		}
 
 		return y;
+	}
+	
+	public static BlockPos getBlockPos(Entity entity)
+	{
+		return new BlockPos(entity.posX, entity.posY, entity.posZ);
 	}
 }

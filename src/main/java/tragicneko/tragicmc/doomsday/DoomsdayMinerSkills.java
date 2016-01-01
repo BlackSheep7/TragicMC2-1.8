@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -27,14 +28,14 @@ public class DoomsdayMinerSkills extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom,	EntityPlayer player, boolean crucMoment) {
 
-		List<int[]> list = WorldHelper.getBlocksInSphericalRange(player.worldObj, 6.0D, player.posX, player.posY, player.posZ);
+		List<BlockPos> list = WorldHelper.getBlocksInSphericalRange(player.worldObj, 6.0D, player.posX, player.posY, player.posZ);
 
 		double d0 = crucMoment ? 1.5D : 1.0D;
 		player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, (int) (600 * d0), 3));
 		if (crucMoment) player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, (int) (400 * d0), 1));
 
 		Block block;
-		int[] coords;
+		BlockPos coords;
 		double range = crucMoment ? 6.0D : 4.0D;
 
 		List list2 = new ArrayList();
@@ -45,20 +46,20 @@ public class DoomsdayMinerSkills extends Doomsday {
 		{
 			if (rand.nextInt(48) != 0) continue;
 
-			coords = (int[]) effect.utilityList.get(i);
-			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+			coords = (BlockPos) list.get(i);
+			block = player.worldObj.getBlockState(coords).getBlock();
 
 			if (list2.isEmpty() && minableBlocks.contains(block))
 			{
-				list2 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords[0], coords[1], coords[2]);
+				list2 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords);
 			}
 			else if (list3.isEmpty() && minableBlocks.contains(block))
 			{
-				list3 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords[0], coords[1], coords[2]);
+				list3 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords);
 			}
 			else if (list4.isEmpty() && minableBlocks.contains(block))
 			{
-				list4 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords[0], coords[1], coords[2]);
+				list4 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords);
 			}
 			else if (!list2.isEmpty() && !list3.isEmpty() && !list4.isEmpty()) break;
 		}
@@ -66,36 +67,36 @@ public class DoomsdayMinerSkills extends Doomsday {
 		for (int i = 0; i < list2.size(); i++)
 		{
 			if (rand.nextInt(8) != 0) continue;
-			coords = (int[]) list2.get(i);
-			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+			coords = (BlockPos) list2.get(i);
+			block = player.worldObj.getBlockState(coords).getBlock();
 
 			if (minableBlocks.contains(block))
 			{
-				player.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
+				player.worldObj.destroyBlock(coords, true);
 			}
 		}
 
 		for (int i = 0; i < list3.size(); i++)
 		{
 			if (rand.nextInt(8) != 0) continue;
-			coords = (int[]) list3.get(i);
-			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+			coords = (BlockPos) list3.get(i);
+			block = player.worldObj.getBlockState(coords).getBlock();
 
 			if (minableBlocks.contains(block))
 			{
-				player.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
+				player.worldObj.destroyBlock(coords, true);
 			}
 		}
 
 		for (int i = 0; i < list4.size(); i++)
 		{
 			if (rand.nextInt(8) != 0) continue;
-			coords = (int[]) list4.get(i);
-			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+			coords = (BlockPos) list4.get(i);
+			block = player.worldObj.getBlockState(coords).getBlock();
 
 			if (minableBlocks.contains(block))
 			{
-				player.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
+				player.worldObj.destroyBlock(coords, true);
 			}
 		}
 	}

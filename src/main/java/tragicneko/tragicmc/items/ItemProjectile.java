@@ -2,13 +2,11 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -50,8 +48,6 @@ public class ItemProjectile extends Item {
 		"NekoMiniBomb", "SolarBomb", "SpiritCast", "Spore", "Banana", "LargeRock", "Icicle", "TimeBomb", "StarShard", "DarkLightning", "PitchBlack", "DarkEnergy",
 		"DarkMortor", "WebBomb", "CrystalMortor", "OverlordMortor", "IreEnergy"};
 
-	private static IIcon[] iconArray = new IIcon[subNames.length];
-
 	public ItemProjectile()
 	{
 		super();
@@ -74,7 +70,7 @@ public class ItemProjectile extends Item {
 		double d0 = player.prevPosX + (player.posX - player.prevPosX) * f;
 		double d1 = player.prevPosY + (player.posY - player.prevPosY) * f + (player.worldObj.isRemote ? player.getEyeHeight() - player.getDefaultEyeHeight() : player.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
 		double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * f;
-		Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+		Vec3 vec3 = new Vec3(d0, d1, d2);
 		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
 		float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
 		float f5 = -MathHelper.cos(-f1 * 0.017453292F);
@@ -84,7 +80,7 @@ public class ItemProjectile extends Item {
 		double d3 = 6.0D;
 
 		Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
-		MovingObjectPosition mop = world.func_147447_a(vec3, vec31, true, false, true);
+		MovingObjectPosition mop = world.rayTraceBlocks(vec3, vec31, true, false, true);
 
 
 		double x = mop.hitVec.xCoord - player.posX;
@@ -195,22 +191,6 @@ public class ItemProjectile extends Item {
 		for (int i = 0; i < subNames.length; i++)
 		{
 			list.add(new ItemStack(item, 1, i));
-		}
-	}
-
-	@Override
-	public IIcon getIconFromDamage(int damage)
-	{
-		if (damage >= ItemProjectile.iconArray.length) damage = ItemProjectile.iconArray.length - 1;
-		return ItemProjectile.iconArray[damage];
-	}
-
-	@Override
-	public void registerIcons(IIconRegister register)
-	{
-		for (int i = 0; i < subNames.length; i++)
-		{
-			ItemProjectile.iconArray[i] = register.registerIcon("tragicmc:Projectile" + textureNames[i]);
 		}
 	}
 

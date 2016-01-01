@@ -33,7 +33,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 		float damage = crucMoment ? 8.0F : 4.0F;
 		float amt = crucMoment ? 1.5F : 0.5F;
 
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0D, 32.0D, 32.0D));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
 
 		if (list.size() > 0)
 		{

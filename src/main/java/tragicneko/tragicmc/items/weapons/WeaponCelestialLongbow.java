@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.items.weapons;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -10,7 +9,6 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
@@ -24,8 +22,6 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class WeaponCelestialLongbow extends TragicBow {
 
@@ -35,52 +31,6 @@ public class WeaponCelestialLongbow extends TragicBow {
 	{
 		super(1348, Doomsday.Snipe);
 		this.setCreativeTab(TragicMC.Survival);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
-	{
-		if (usingItem == null) return itemIcon;
-
-		int ticksInUse = stack.getMaxItemUseDuration() - useRemaining;
-
-		if (ticksInUse > 48)
-		{
-			return iconArray[2];
-		}
-		else if (ticksInUse > 24)
-		{
-			return iconArray[1];
-		}
-		else if (ticksInUse > 6)
-		{
-			return iconArray[0];
-		}
-		else
-		{
-			return itemIcon;
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		this.itemIcon = par1IconRegister.registerIcon(this.getIconString() + "_standby");
-		this.iconArray = new IIcon[bowPullIconName.length];
-
-		for (int i = 0; i < this.iconArray.length; ++i)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon(this.getIconString() + "_" + bowPullIconName[i]);
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getItemIconForUseDuration(int par1)
-	{
-		return this.iconArray[par1];
 	}
 
 	@Override
@@ -115,7 +65,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 				double d0 = par3EntityPlayer.prevPosX + (par3EntityPlayer.posX - par3EntityPlayer.prevPosX) * f;
 				double d1 = par3EntityPlayer.prevPosY + (par3EntityPlayer.posY - par3EntityPlayer.prevPosY) * f + (par3EntityPlayer.worldObj.isRemote ? par3EntityPlayer.getEyeHeight() - par3EntityPlayer.getDefaultEyeHeight() : par3EntityPlayer.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
 				double d2 = par3EntityPlayer.prevPosZ + (par3EntityPlayer.posZ - par3EntityPlayer.prevPosZ) * f;
-				Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+				Vec3 vec3 = new Vec3(d0, d1, d2);
 				float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
 				float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
 				float f5 = -MathHelper.cos(-f1 * 0.017453292F);
@@ -130,7 +80,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 				}
 
 				Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
-				MovingObjectPosition mop = par3EntityPlayer.worldObj.func_147447_a(vec3, vec31, true, false, true);
+				MovingObjectPosition mop = par3EntityPlayer.worldObj.rayTraceBlocks(vec3, vec31, true, false, true);
 
 				if (mop == null)
 				{
@@ -138,7 +88,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 					return par1ItemStack;
 				}
 
-				if (mop.typeOfHit == MovingObjectType.BLOCK && par3EntityPlayer instanceof EntityPlayerMP && ((EntityPlayerMP) par3EntityPlayer).playerNetServerHandler.func_147362_b().isChannelOpen())
+				if (mop.typeOfHit == MovingObjectType.BLOCK && par3EntityPlayer instanceof EntityPlayerMP && ((EntityPlayerMP) par3EntityPlayer).playerNetServerHandler.getNetworkManager().isChannelOpen())
 				{
 					if (par3EntityPlayer.isRiding()) par3EntityPlayer.mountEntity((Entity)null);
 

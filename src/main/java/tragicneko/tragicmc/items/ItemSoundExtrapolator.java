@@ -36,7 +36,7 @@ public class ItemSoundExtrapolator extends Item {
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
+		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
 		if (entity != null && entity instanceof EntityPart)
 		{
 			entity = (Entity) ((EntityPart)entity).main;
@@ -44,8 +44,8 @@ public class ItemSoundExtrapolator extends Item {
 		
 		if (entity != null && entity instanceof EntityLiving && !entity.worldObj.isRemote)
 		{
-			stack.stackTagCompound.setString("extrapolatedEntity", entity.getClass().getCanonicalName());
-			player.addChatMessage(new ChatComponentText("Sound extrapolated from " + entity.getCommandSenderName()));
+			stack.getTagCompound().setString("extrapolatedEntity", entity.getClass().getCanonicalName());
+			player.addChatMessage(new ChatComponentText("Sound extrapolated from " + entity.getName()));
 		}
 		return super.onLeftClickEntity(stack, player, entity);
 	}
@@ -53,7 +53,7 @@ public class ItemSoundExtrapolator extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (par1ItemStack.hasTagCompound() && par1ItemStack.stackTagCompound.hasKey("extrapolatedEntity"))
+		if (par1ItemStack.hasTagCompound() && par1ItemStack.getTagCompound().hasKey("extrapolatedEntity"))
 		{
 			Class oclass;
 			String sound = null;
@@ -61,7 +61,7 @@ public class ItemSoundExtrapolator extends Item {
 			float volume = 1F;
 			try
 			{
-				oclass = Class.forName(par1ItemStack.stackTagCompound.getString("extrapolatedEntity"));
+				oclass = Class.forName(par1ItemStack.getTagCompound().getString("extrapolatedEntity"));
 				EntityLiving entity = (EntityLiving) oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {par2World});
 
 				Method m = EntityLiving.class.getDeclaredMethod("getLivingSound", (Class<?>[]) null);

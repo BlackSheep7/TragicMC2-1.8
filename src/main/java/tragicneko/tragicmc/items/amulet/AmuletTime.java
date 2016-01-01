@@ -23,7 +23,7 @@ public class AmuletTime extends ItemAmulet {
 	{
 		if (TragicConfig.amuTime)
 		{
-			List<EntityItem> list = world.getEntitiesWithinAABB(EntityItem.class, player.boundingBox.expand(8.0, 8.0, 8.0));
+			List<EntityItem> list = world.getEntitiesWithinAABB(EntityItem.class, player.getEntityBoundingBox().expand(8.0, 8.0, 8.0));
 			Iterator ite = list.iterator();
 			EntityItem item;
 

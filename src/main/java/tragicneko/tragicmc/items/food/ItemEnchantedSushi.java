@@ -8,11 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemEnchantedSushi extends ItemFood {
 
@@ -26,7 +26,7 @@ public class ItemEnchantedSushi extends ItemFood {
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		return EnumRarity.epic;
+		return EnumRarity.EPIC;
 	}
 
 	@Override
@@ -37,23 +37,23 @@ public class ItemEnchantedSushi extends ItemFood {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack stack, int pass)
+	public boolean hasEffect(ItemStack stack)
 	{
-		return pass == 0;
+		return true;
 	}
 
 	@Override
-	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
+	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player)
 	{
-		player.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 2400, 4));
-		player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2400, 1));
+		player.addPotionEffect(new PotionEffect(Potion.healthBoost.id, 2400, 4));
+		player.addPotionEffect(new PotionEffect(Potion.saturation.id, 2400, 1));
 		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2400, 2));
 		player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 2400, 0));
 		if (TragicConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 2400, 1));
 		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 60));
 		if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.goldenSushi);
 
-		return super.onEaten(stack, world, player);
+		return super.onItemUseFinish(stack, world, player);
 	}
 
 }

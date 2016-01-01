@@ -6,8 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
@@ -34,18 +34,18 @@ public class ItemDyingObsidianOrb extends Item {
 				par3EntityPlayer.travelToDimension(0);
 			}
 
-			ChunkCoordinates cc = par3EntityPlayer.getBedLocation(0);
+			BlockPos cc = par3EntityPlayer.getBedLocation(0);
 
 			if (cc != null)
 			{
-				par3EntityPlayer.setPositionAndUpdate(cc.posX, cc.posY, cc.posZ);
-				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc.posX + ", " + cc.posY + ", " + cc.posZ));
+				par3EntityPlayer.setPositionAndUpdate(cc.getX(), cc.getY(), cc.getZ());
+				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc.getX() + ", " + cc.getY() + ", " + cc.getZ()));
 			}
 			else
 			{
-				ChunkCoordinates cc2 = par2World.getSpawnPoint();
-				par3EntityPlayer.setPositionAndUpdate(cc2.posX, par2World.getTopSolidOrLiquidBlock(cc2.posX, cc2.posZ), cc2.posZ);
-				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc2.posX + ", " + cc2.posY + ", " + cc2.posZ));
+				BlockPos cc2 = par2World.getSpawnPoint();
+				par3EntityPlayer.setPositionAndUpdate(cc2.getX(), par2World.getTopSolidOrLiquidBlock(cc2).getY(), cc2.getZ());
+				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc2.getX() + ", " + par2World.getTopSolidOrLiquidBlock(cc2).getY() + ", " + cc2.getZ()));
 			}
 
 			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);

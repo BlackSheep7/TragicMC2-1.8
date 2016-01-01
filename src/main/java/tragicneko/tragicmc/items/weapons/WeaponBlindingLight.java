@@ -33,7 +33,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 			{
 				int x = itemRand.nextInt(6) + 10;
 
-				if (entity.worldObj.getBlockLightValue(MathHelper.ceiling_double_int(entity.posX), MathHelper.ceiling_double_int(entity.posY), MathHelper.ceiling_double_int(entity.posZ)) <= 6)
+				if (entity.worldObj.getLight(WorldHelper.getBlockPos(entity)) <= 6)
 				{
 					entity.setFire(x);
 					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[2]);

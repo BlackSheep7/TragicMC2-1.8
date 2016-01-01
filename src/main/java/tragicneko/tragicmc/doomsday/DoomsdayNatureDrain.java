@@ -16,11 +16,11 @@ import net.minecraft.block.BlockStem;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -36,16 +36,16 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		super.doInitialEffects(effect, doom, player, crucMoment);
 
 		double radius = crucMoment ? 10.0D : 5.0D;
-		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		List<BlockPos> list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 
 		boolean griefCheck = TragicConfig.griefConfig[0];
 		float plantCount = 0.0F;
-		int[] coords;
+		BlockPos coords;
 
 		for (int i = 0; i < list.size(); i++)
 		{
-			coords = (int[]) list.get(i);
-			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+			coords = (BlockPos) list.get(i);
+			Block block = player.worldObj.getBlockState(coords).getBlock();
 
 			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower
 					|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
@@ -55,11 +55,11 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 				{
 					if (block instanceof BlockLeaves)
 					{
-						player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.gravel);
+						player.worldObj.setBlockState(coords, Blocks.gravel.getDefaultState());
 					}
 					else
 					{
-						player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+						player.worldObj.setBlockToAir(coords);
 					}
 				}
 				plantCount += 0.2;
@@ -68,7 +68,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 			{
 				if (griefCheck)
 				{
-					player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+					player.worldObj.setBlockState(coords, Blocks.dirt.getDefaultState());
 				}
 				plantCount += 0.1;
 			}
@@ -77,7 +77,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 			{
 				if (griefCheck)
 				{
-					player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+					player.worldObj.setBlockState(coords, Blocks.dirt.getDefaultState());
 				}
 				plantCount += 0.15;
 			}
@@ -109,16 +109,16 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		else
 		{
 			double radius = crucMoment ? 10.0D : 5.0D;
-			List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+			List<BlockPos> list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 
 			boolean griefCheck = TragicConfig.griefConfig[0];
 			float plantCount = 0.0F;
-			int[] coords;
+			BlockPos coords;
 
 			for (int i = 0; i < list.size(); i++)
 			{
-				coords = (int[]) list.get(i);
-				Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+				coords = (BlockPos) list.get(i);
+				Block block = player.worldObj.getBlockState(coords).getBlock();
 
 				if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower
 						|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
@@ -128,11 +128,11 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 					{
 						if (block instanceof BlockLeaves)
 						{
-							player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.gravel);
+							player.worldObj.setBlockState(coords, Blocks.gravel.getDefaultState());
 						}
 						else
 						{
-							player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+							player.worldObj.setBlockToAir(coords);
 						}
 					}
 					plantCount += 0.2;
@@ -141,7 +141,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 				{
 					if (griefCheck)
 					{
-						player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+						player.worldObj.setBlockState(coords, Blocks.dirt.getDefaultState());
 					}
 					plantCount += 0.1;
 				}
@@ -150,7 +150,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 				{
 					if (griefCheck)
 					{
-						player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+						player.worldObj.setBlockState(coords, Blocks.dirt.getDefaultState());
 					}
 					plantCount += 0.15;
 				}

@@ -26,7 +26,7 @@ public class DoomsdaySoulstealer extends Doomsday implements IExtendedDoomsday {
 		}
 		else
 		{
-			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(6.0D, 6.0D, 6.0D));
+			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(6.0D, 6.0D, 6.0D));
 			EntityLivingBase entity = null;
 
 			for (int i = 0; i < list.size(); i++)

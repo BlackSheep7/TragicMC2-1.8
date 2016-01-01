@@ -105,7 +105,7 @@ public class ClientEvents extends Gui {
 	public void onClientUpdate(LivingUpdateEvent event)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		BlockGenericLeaves.fancyGraphics = Minecraft.isFancyGraphicsEnabled();
+		//BlockGenericLeaves.fancyGraphics = Minecraft.isFancyGraphicsEnabled();
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 
 		if (player != null && TragicConfig.allowFlight && player.isPotionActive(TragicPotion.Flight.id) && mc.inGameHasFocus)

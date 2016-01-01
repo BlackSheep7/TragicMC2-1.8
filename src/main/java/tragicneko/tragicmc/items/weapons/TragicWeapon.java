@@ -45,7 +45,7 @@ public class TragicWeapon extends ItemSword {
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		int rarity = stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getInteger("tragicLoreRarity") : 0;
+		int rarity = stack.hasTagCompound() && stack.getTagCompound().hasKey("tragicLoreRarity") ? stack.getTagCompound().getInteger("tragicLoreRarity") : 0;
 		return EnumRarity.values()[rarity];
 	}
 
@@ -88,14 +88,14 @@ public class TragicWeapon extends ItemSword {
 				format = doomsday2.getDoomsdayType().getFormat();
 				par2List.add(format + doomsday2.getLocalizedType() + ": " + doomsday2.getLocalizedName());
 				par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday2.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-				par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday2.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
+				par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday2.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
 				par2List.add(""); //extra space in between
 			}
 
 			format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
+			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
 			par2List.add(""); //extra space
 		}
 		
@@ -123,9 +123,9 @@ public class TragicWeapon extends ItemSword {
 	public static void updateAsWeapon(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
 		if (world.isRemote) return;
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
+		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
 
-		if (!stack.stackTagCompound.hasKey("cooldown")) stack.stackTagCompound.setInteger("cooldown", 0);
+		if (!stack.getTagCompound().hasKey("cooldown")) stack.getTagCompound().setInteger("cooldown", 0);
 		if (getStackCooldown(stack) > 0) setStackCooldown(stack, getStackCooldown(stack) - 1);
 
 		if (!TragicConfig.allowRandomWeaponLore || stack.getItem() == null) return;
@@ -135,10 +135,10 @@ public class TragicWeapon extends ItemSword {
 		Lore lore = entry.getRandomLore();
 		if (lore == null) return;
 
-		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte) lore.getRarity()));
-		if (!stack.stackTagCompound.hasKey("tragicLoreDesc")) stack.stackTagCompound.setString("tragicLoreDesc", lore.getDesc());
+		if (!stack.getTagCompound().hasKey("tragicLoreRarity")) stack.getTagCompound().setByte("tragicLoreRarity", Byte.valueOf((byte) lore.getRarity()));
+		if (!stack.getTagCompound().hasKey("tragicLoreDesc")) stack.getTagCompound().setString("tragicLoreDesc", lore.getDesc());
 
-		int rarity = stack.stackTagCompound.getByte("tragicLoreRarity");
+		int rarity = stack.getTagCompound().getByte("tragicLoreRarity");
 		lore = entry.getLoreOfRarity(rarity);
 
 		if (!stack.isItemEnchanted() && lore != null)
@@ -161,12 +161,12 @@ public class TragicWeapon extends ItemSword {
 	public static void setStackCooldown(ItemStack stack, int i)
 	{
 		if (!stack.hasTagCompound()) return;
-		stack.stackTagCompound.setInteger("cooldown", i);
+		stack.getTagCompound().setInteger("cooldown", i);
 	}
 
 	public static int getStackCooldown(ItemStack stack)
 	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("cooldown") ? stack.stackTagCompound.getInteger("cooldown") : 0;
+		return stack.hasTagCompound() && stack.getTagCompound().hasKey("cooldown") ? stack.getTagCompound().getInteger("cooldown") : 0;
 	}
 
 	public Doomsday getSecondaryDoomsday()

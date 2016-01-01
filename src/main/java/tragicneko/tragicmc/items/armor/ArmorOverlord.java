@@ -8,12 +8,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorOverlord extends TragicArmor {
 
@@ -26,8 +26,8 @@ public class ArmorOverlord extends TragicArmor {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
 	{
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setInteger("tragicLoreRarity", 3);
+		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+		if (!stack.getTagCompound().hasKey("tragicLoreRarity")) stack.getTagCompound().setInteger("tragicLoreRarity", 3);
 		super.onUpdate(stack, world, entity, par, flag);
 	}
 

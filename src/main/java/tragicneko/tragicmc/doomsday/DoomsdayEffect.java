@@ -62,7 +62,7 @@ public class DoomsdayEffect {
 
 	public DoomsdayEffect inheritCooldown(DoomsdayEffect ext, DoomsdayEffect ins)
 	{
-		this.inheritedCooldown = (ext.iterations * ext.dday.getScaledCooldown(player.worldObj.difficultySetting)) + ins.dday.cooldown;
+		this.inheritedCooldown = (ext.iterations * ext.dday.getScaledCooldown(player.worldObj.getDifficulty())) + ins.dday.cooldown;
 		return this;
 	}
 

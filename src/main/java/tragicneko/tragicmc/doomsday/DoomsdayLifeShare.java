@@ -15,7 +15,7 @@ public class DoomsdayLifeShare extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
-		List<EntityLivingBase> list = player.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, player.boundingBox.expand(16.0, 16.0, 16.0));
+		List<EntityLivingBase> list = player.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, player.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 		EntityLivingBase e;
 		float total = 0F;
 

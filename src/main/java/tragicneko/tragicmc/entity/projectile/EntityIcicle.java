@@ -5,6 +5,7 @@ import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
@@ -51,9 +52,9 @@ public class EntityIcicle extends EntityProjectile {
 	}
 
 	@Override
-	protected String getParticleString()
+	protected EnumParticleTypes getParticleString()
 	{
-		return "snowshovel";
+		return EnumParticleTypes.SNOW_SHOVEL;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -35,13 +36,13 @@ public class AmuletSpider extends ItemAmulet {
 
 			if (!world.isRemote)
 			{
-				List<int[]> list = WorldHelper.getBlocksInSphericalRange(world, 1.0, (int) player.posX, (int) player.posY, (int) player.posZ);
+				List<BlockPos> list = WorldHelper.getBlocksInSphericalRange(world, 1.0, (int) player.posX, (int) player.posY, (int) player.posZ);
 				boolean flag = false;
 				for (int i = 0; i < list.size() && !flag; i++)
 				{
-					int[] coords = list.get(i);
-					Block block = world.getBlock(coords[0], coords[1], coords[2]);
-					if (block.isOpaqueCube() && coords[1] >= player.posY) flag = true;
+					BlockPos coords = list.get(i);
+					Block block = world.getBlockState(coords).getBlock();
+					if (block.isOpaqueCube() && coords.getY() >= player.posY) flag = true;
 				}
 
 				if (player.motionY > 0 && (player.motionX <= d0 && player.motionX >= -d0 || player.motionZ <= d0 && player.motionZ >= -d0) && flag)

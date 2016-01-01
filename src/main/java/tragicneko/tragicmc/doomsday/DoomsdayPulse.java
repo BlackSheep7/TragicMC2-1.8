@@ -22,7 +22,7 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 		super.doInitialEffects(effect, doom, player, crucMoment);
 
 		double d0 = crucMoment ? 16.0 : 8.0; //Do effect on initial so that there isn't an awkward pause at the start since it has such a long wait time
-		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0 / 2, d0));
+		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0 / 2, d0));
 
 		for (int j = 0; j < list.size(); j++)
 		{
@@ -48,7 +48,7 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		double d0 = crucMoment ? 16.0 : 8.0;
-		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0 / 2, d0));
+		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0 / 2, d0));
 
 		for (int j = 0; j < list.size(); j++)
 		{

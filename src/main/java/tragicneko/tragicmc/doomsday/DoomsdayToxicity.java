@@ -21,7 +21,7 @@ public class DoomsdayToxicity extends Doomsday {
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		double d = crucMoment ? 16.0 : 12.0;
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d, d, d));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d, d, d));
 
 		if (list.size() > 0)
 		{

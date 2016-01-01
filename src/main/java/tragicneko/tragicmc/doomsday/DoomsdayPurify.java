@@ -16,7 +16,7 @@ public class DoomsdayPurify extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double d0 = crucMoment ? 48.0 : 24.0;
-		List<EntityLivingBase> list = player.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, player.boundingBox.expand(d0, d0, d0));
+		List<EntityLivingBase> list = player.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, player.getEntityBoundingBox().expand(d0, d0, d0));
 
 		for (EntityLivingBase e : list)
 		{

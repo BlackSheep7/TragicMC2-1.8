@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
@@ -16,6 +17,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public abstract class EntityProjectile extends Entity
 {
@@ -92,7 +94,7 @@ public abstract class EntityProjectile extends Entity
 	@Override
 	public void onUpdate()
 	{
-		if (!this.worldObj.isRemote && (this.shootingEntity != null && this.shootingEntity.isDead || !this.worldObj.blockExists((int)this.posX, (int)this.posY, (int)this.posZ) || !this.worldObj.getChunkProvider().chunkExists((int) this.posX / 16, (int) this.posZ / 16)))
+		if (!this.worldObj.isRemote && (this.shootingEntity != null && this.shootingEntity.isDead || !this.worldObj.isAreaLoaded(WorldHelper.getBlockPos(this), 4) || !this.worldObj.getChunkProvider().chunkExists((int) this.posX / 16, (int) this.posZ / 16)))
 		{
 			this.setDead();
 		}
@@ -102,7 +104,7 @@ public abstract class EntityProjectile extends Entity
 
 			if (this.inGround)
 			{
-				if (this.worldObj.getBlock(this.xTile, this.yTile, this.zTile) == this.inTile)
+				if (this.worldObj.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock() == this.inTile)
 				{
 					++this.ticksAlive;
 

@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class WeaponBowOfJustice extends ItemBow {
 
@@ -29,12 +29,12 @@ public class WeaponBowOfJustice extends ItemBow {
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
-		return EnumRarity.epic;
+		return EnumRarity.EPIC;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack par1ItemStack, int passes)
+	public boolean hasEffect(ItemStack par1ItemStack)
 	{
 		return true;
 	}

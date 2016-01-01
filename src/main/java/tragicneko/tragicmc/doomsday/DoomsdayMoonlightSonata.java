@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayMoonlightSonata extends Doomsday {
 
@@ -14,7 +15,7 @@ public class DoomsdayMoonlightSonata extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
-		if (!player.worldObj.isDaytime() && player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ))
+		if (!player.worldObj.isDaytime() && player.worldObj.canBlockSeeSky(WorldHelper.getBlockPos(player)))
 		{
 			doom.fillDoom();
 		}

@@ -30,7 +30,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(2.0D, 2.0D, 2.0D));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(2.0D, 2.0D, 2.0D));
 		EntityLivingBase entity;
 
 		if (list.size() > 0)

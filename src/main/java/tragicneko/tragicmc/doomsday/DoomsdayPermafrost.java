@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -26,11 +27,11 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
 		double radius = crucMoment ? 8.0D : 4.0D;
-		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+		List<BlockPos> list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(radius, radius, radius));
 
 		Block block;
-		int[] coords;
+		BlockPos coords;
 
 		for (int i = 0; i < list2.size(); i++)
 		{
@@ -39,28 +40,28 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 
 		for (int i = 0; i < list.size(); i++)
 		{
-			coords = (int[]) list.get(i);
-			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+			coords = (BlockPos) list.get(i);
+			block = player.worldObj.getBlockState(coords).getBlock();
 
 			if (block == Blocks.lava)
 			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.obsidian);
+				player.worldObj.setBlockState(coords, Blocks.obsidian.getDefaultState());
 			}
 			else if (block == Blocks.water)
 			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.ice);
+				player.worldObj.setBlockState(coords, Blocks.ice.getDefaultState());
 			}
 			else if (block == Blocks.ice)
 			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.packed_ice);
+				player.worldObj.setBlockState(coords, Blocks.packed_ice.getDefaultState());
 			}
 			else if (block instanceof BlockBush || block instanceof BlockLeaves)
 			{
-				player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+				player.worldObj.setBlockToAir(coords);
 			}
-			else if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(player.worldObj, coords[0], coords[1] - 1, coords[2]) && rand.nextBoolean())
+			else if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(player.worldObj, coords.down()) && rand.nextBoolean())
 			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.snow_layer, rand.nextInt(8), 2);
+				player.worldObj.setBlockState(coords, Blocks.snow_layer.getStateFromMeta(rand.nextInt(8)), 2);
 			}
 		}
 

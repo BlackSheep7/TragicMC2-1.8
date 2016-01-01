@@ -1,7 +1,9 @@
 package tragicneko.tragicmc.events;
 
 import static tragicneko.tragicmc.TragicMC.rand;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockCactus;
+import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.BlockLeaves;
@@ -39,17 +41,19 @@ public class DropEvents {
 	public void onBlockBreak(HarvestDropsEvent event)
 	{
 		if (event.harvester == null || event.isSilkTouching || rand.nextBoolean()) return;
+		
+		Block block = event.state.getBlock();
 
-		if (event.block instanceof BlockGrass && rand.nextInt(64) == 0)
+		if (block instanceof BlockGrass && rand.nextInt(64) == 0)
 		{
 			event.drops.add(new ItemStack(TragicItems.Projectile, 1, 11));
 		}
-		else if (event.block == Blocks.dirt && event.y <= 32 && rand.nextInt(8) == 0)
+		else if (block == Blocks.dirt && event.pos.getY() <= 32 && rand.nextInt(8) == 0)
 		{
 			event.drops.clear();
 			event.drops.add(new ItemStack(Items.glowstone_dust));
 		}
-		else if (event.block == Blocks.sand && rand.nextInt(128) == 0)
+		else if (block == Blocks.sand && rand.nextInt(128) == 0)
 		{
 			if (rand.nextInt(32) == 0)
 			{
@@ -60,53 +64,31 @@ public class DropEvents {
 				event.drops.add(new ItemStack(Items.glowstone_dust));
 			}
 		}
-		else if (event.block == Blocks.cobblestone && rand.nextInt(32) == 0)
+		else if (block == Blocks.cobblestone && rand.nextInt(32) == 0)
 		{
 			event.drops.clear();
 			event.drops.add(new ItemStack(TragicItems.Projectile));
 		}
-		else if (event.block == Blocks.netherrack && rand.nextInt(48) == 0)
+		else if (block == Blocks.netherrack && rand.nextInt(48) == 0)
 		{
 			event.drops.clear();
 			event.drops.add(new ItemStack(TragicItems.Projectile, 1, 1));
 		}
-		else if (event.block instanceof BlockLeaves && rand.nextInt(32) == 0)
+		else if (block instanceof BlockLeaves && rand.nextInt(32) == 0)
 		{
-			event.drops.clear();
-
 			if (rand.nextInt(16) != 0)
 			{
+				event.drops.clear();
 				event.drops.add(new ItemStack(Items.stick));
-			}
-			else
-			{
-				switch(event.blockMetadata)
-				{
-				case 0: //Oak
-					event.drops.add(new ItemStack(TragicItems.Honeydrop));
-					break;
-				case 1: //Spruce
-					break;
-				case 2: //Birch
-					break;
-				case 3: //Jungle
-					if (event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.jungle || event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.jungleHills)
-					{
-						event.drops.add(new ItemStack(TragicItems.Honeydrop));
-					}
-					break;
-				default:
-					break;
-				}
 			}
 
 		}
-		else if (event.block instanceof BlockCactus && rand.nextInt(16) == 0)
+		else if (block instanceof BlockCactus && rand.nextInt(16) == 0)
 		{
 			event.drops.clear();
 			event.drops.add(new ItemStack(TragicItems.Thorns, 1, rand.nextInt(2) + 1));
 		}
-		else if (event.block instanceof BlockFlower || event.block instanceof BlockMushroom || event.block instanceof BlockTallGrass)
+		else if (block instanceof BlockFlower || block instanceof BlockMushroom || block instanceof BlockTallGrass)
 		{
 			if (rand.nextInt(16) == 0)
 			{
@@ -114,10 +96,10 @@ public class DropEvents {
 				event.drops.add(new ItemStack(TragicItems.Projectile, 1, 11));
 			}
 		}
-		else if (event.block == Blocks.double_plant && rand.nextInt(4) == 0)
+		else if (block == Blocks.double_plant && rand.nextInt(4) == 0)
 		{
 			event.drops.clear();
-			if (event.blockMetadata != 4)
+			if (event.state.getValue(BlockDoublePlant.VARIANT) != BlockDoublePlant.EnumPlantType.ROSE)
 			{
 				event.drops.add(new ItemStack(TragicItems.Projectile, 1, 11));
 			}
@@ -126,12 +108,12 @@ public class DropEvents {
 				event.drops.add(new ItemStack(TragicItems.Thorns));
 			}
 		}
-		else if (event.block instanceof BlockWeb && rand.nextInt(16) == 0)
+		else if (block instanceof BlockWeb && rand.nextInt(16) == 0)
 		{
 			event.drops.clear();
 			event.drops.add(new ItemStack(TragicItems.WovenSilk));
 		}
-		else if (event.block instanceof BlockGenericLeaves && rand.nextInt(16) == 0)
+		else if (block instanceof BlockGenericLeaves && rand.nextInt(16) == 0)
 		{
 			event.drops.clear();
 			event.drops.add(new ItemStack(TragicItems.Honeydrop));

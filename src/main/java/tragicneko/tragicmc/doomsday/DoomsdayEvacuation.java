@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -22,7 +23,7 @@ public class DoomsdayEvacuation extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double d = crucMoment ? 32.0 : 16.0;
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d, d, d));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d, d, d));
 
 		for (Entity entity : list)
 		{
@@ -38,7 +39,7 @@ public class DoomsdayEvacuation extends Doomsday {
 				{
 					for (int x1 = -8; x1 < 9; x1++)
 					{
-						if (World.doesBlockHaveSolidTopSurface(player.worldObj, (int)player.posX + x1, (int)player.posY + y1 - 1, (int)player.posZ + z1) && rand.nextBoolean())
+						if (World.doesBlockHaveSolidTopSurface(player.worldObj, new BlockPos((int)player.posX + x1, (int)player.posY + y1 - 1, (int)player.posZ + z1)) && rand.nextBoolean())
 						{
 							if (entity instanceof EntityPlayerMP)
 							{
@@ -46,10 +47,10 @@ public class DoomsdayEvacuation extends Doomsday {
 
 								if (mp.capabilities.isCreativeMode || !TragicConfig.allowPvP) break label0;
 
-								if (mp.playerNetServerHandler.func_147362_b().isChannelOpen() && player.worldObj == mp.worldObj)
+								if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && player.worldObj == mp.worldObj)
 								{
 									if (mp.isRiding()) mp.mountEntity(null);
-									AxisAlignedBB bb = mp.boundingBox.copy();
+									AxisAlignedBB bb = mp.getEntityBoundingBox();
 									bb.offset(x + x1, y + y1, z + z1);
 
 									if (player.worldObj.checkNoEntityCollision(bb) && player.worldObj.getCollidingBoundingBoxes(mp, bb).isEmpty() &&
@@ -68,9 +69,9 @@ public class DoomsdayEvacuation extends Doomsday {
 							{
 								entity.setPosition(x + x1, y + y1, z + z1);
 
-								if (player.worldObj.checkNoEntityCollision(entity.boundingBox) &&
-										player.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() &&
-										!player.worldObj.isAnyLiquid(entity.boundingBox))
+								if (player.worldObj.checkNoEntityCollision(entity.getEntityBoundingBox()) &&
+										player.worldObj.getCollidingBoundingBoxes(entity, entity.getEntityBoundingBox()).isEmpty() &&
+										!player.worldObj.isAnyLiquid(entity.getEntityBoundingBox()))
 								{
 
 									player.worldObj.playSoundAtEntity(entity, "tragicmc:mob.stin.teleport", 0.4F, 0.4F);

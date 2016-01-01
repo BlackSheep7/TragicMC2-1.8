@@ -1,124 +1,47 @@
 package tragicneko.tragicmc.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import tragicneko.tragicmc.items.amulet.ItemAmulet;
 
-public class InventoryAmulet implements IInventory {
+public class InventoryAmulet extends InventoryBasic {
 
-	private final String invName = "Amulet Inventory";
-	private final String tagName = "InvAmulet";
+	private static final String invName = "Amulet Inventory";
+	private static final String tagName = "InvAmulet";
 
 	public static final int invSize = 28;
-	public ItemStack[] inventory = new ItemStack[invSize];
 	public final EntityPlayer player;
 
 	public InventoryAmulet(EntityPlayer player)
 	{
+		super(invName, false, invSize);
 		this.player = player;
 	}
 
 	@Override
-	public int getSizeInventory()
-	{
-		return inventory.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int var1) {
-		return inventory[var1];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int amount)
-	{
-		ItemStack stack = getStackInSlot(slot);
-
-		if (stack != null)
-		{
-			if (stack.stackSize > amount)
-			{
-				stack = stack.splitStack(amount);
-				markDirty();
-			}
-			else
-			{
-				setInventorySlotContents(slot, null);
-			}
-		}
-
-		return stack;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot)
-	{
-		ItemStack stack = getStackInSlot(slot);
-		return stack;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack)
-	{
-		if (slot > this.getSizeInventory()) return;
-
-		inventory[slot] = stack;
-		if (stack != null && stack.stackSize > getInventoryStackLimit())
-			stack.stackSize = getInventoryStackLimit();
-
-		markDirty();
-
-	}
-
-	@Override
-	public String getInventoryName() {
-		return invName;
-	}
-
-	@Override
-	public boolean hasCustomInventoryName() {
-		return invName.length() > 0;
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 1;
-	}
-
-	@Override
-	public void markDirty() {
-		for (int i = 0; i < getSizeInventory(); ++i)
-		{
-			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
-			{
-				inventory[i] = null;
-			}
-		}
-
-	}
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer var1) {
+	public boolean isUseableByPlayer(EntityPlayer player) {
 		return true;
 	}
 
 	@Override
-	public void openInventory() {
+	public void openInventory(EntityPlayer player) {
 		NBTTagCompound tag = new NBTTagCompound();
 		readFromNBT(tag);
 	}
 
 	@Override
-	public void closeInventory() {
+	public void closeInventory(EntityPlayer player) {
 		NBTTagCompound tag = new NBTTagCompound();
 		writeToNBT(tag);
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int var1, ItemStack stack)
+	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
 		return stack != null && stack.getItem() instanceof ItemAmulet;
 	}
@@ -162,14 +85,13 @@ public class InventoryAmulet implements IInventory {
 	public void dropAllAmulets() {
 		int i;
 
-		for (i = 0; i < this.inventory.length; ++i)
+		for (i = 0; i < this.getSizeInventory(); ++i)
 		{
-			if (this.inventory[i] != null)
+			if (this.getStackInSlot(i) != null)
 			{
-				this.player.func_146097_a(this.inventory[i], true, false);
-				this.inventory[i] = null;
+				this.player.dropItem(this.getStackInSlot(i), true, false);
+				this.setInventorySlotContents(i, null);;
 			}
 		}
 	}
-
 }

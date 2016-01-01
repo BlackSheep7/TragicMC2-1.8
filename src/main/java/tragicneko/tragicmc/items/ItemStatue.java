@@ -22,7 +22,6 @@ public class ItemStatue extends Item {
 		"stinQueen", "greaterStin", "voxStellarum", "enyvil", "claymation", "aegar", "overlord", "overlordCombat", "overlordCocoon"};
 	private static String[] textureNames = new String[] {"Apis", "Kitsune", "DeathReaper", "TimeController", "Yeti", "Polaris", "Jarra", "Kragul", "Magmox", "MegaCryse", "StinKing",
 		"StinQueen", "GreaterStin", "VoxStellarum", "Enyvil", "Claymation", "Aegar", "Overlord", "OverlordCombat", "OverlordCocoon"};
-	private IIcon[] iconArray = new IIcon[subNames.length];
 
 	public ItemStatue()
 	{
@@ -39,21 +38,6 @@ public class ItemStatue extends Item {
 		for (int i = 0; i < subNames.length; i++)
 		{
 			list.add(new ItemStack(item, 1, i));
-		}
-	}
-
-	@Override
-	public IIcon getIconFromDamage(int damage)
-	{
-		return damage < this.iconArray.length ? this.iconArray[damage] : this.iconArray[this.iconArray.length - 1];
-	}
-
-	@Override
-	public void registerIcons(IIconRegister register)
-	{
-		for (int i = 0; i < subNames.length; i++)
-		{
-			this.iconArray[i] = register.registerIcon("tragicmc:Statue" + textureNames[i]);
 		}
 	}
 

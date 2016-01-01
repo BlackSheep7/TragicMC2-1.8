@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -54,7 +56,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 		}
 		else
 		{
-			if (this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 8 && rand.nextBoolean() && this.spawnsAnomalies)
+			if (this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 8 && rand.nextBoolean() && this.spawnsAnomalies)
 			{
 				EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
 				anomoly.setPosition(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
@@ -62,12 +64,12 @@ public class EntityOverlordMortor extends EntityProjectile {
 			}
 			else
 			{
-				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 2.5, this.posX, this.posY, this.posZ);
-				for (int[] coords : list)
+				ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 2.5, this.posX, this.posY, this.posZ);
+				for (BlockPos coords : list)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2]) && this.worldObj.getBlock(coords[0], coords[1],coords[2]).isAir(this.worldObj, coords[0], coords[1], coords[2]))
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, coords.down()) && this.worldObj.getBlockState(coords).getBlock().isAir(this.worldObj, coords))
 					{
-						this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.CorruptedGas);
+						this.worldObj.setBlockState(coords, TragicBlocks.CorruptedGas.getDefaultState());
 					}
 				}
 			}
@@ -91,7 +93,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 
 		if (this.ticksWithTarget > 60 && !this.worldObj.isRemote)
 		{
-			if (rand.nextInt(4) == 0 && this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 8)
+			if (rand.nextInt(4) == 0 && this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 8)
 			{
 				EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
 				anomoly.setPosition(this.posX, this.posY, this.posZ);
@@ -105,7 +107,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 
 		if (this.target == null && this.ticksInAir > 5)
 		{
-			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(16.0, 16.0, 16.0));
+			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
 			for (EntityLivingBase e : list)
 			{
@@ -133,8 +135,8 @@ public class EntityOverlordMortor extends EntityProjectile {
 	}
 
 	@Override
-	protected String getParticleString()
+	protected EnumParticleTypes getParticleString()
 	{
-		return "crit";
+		return EnumParticleTypes.CRIT;
 	}
 }

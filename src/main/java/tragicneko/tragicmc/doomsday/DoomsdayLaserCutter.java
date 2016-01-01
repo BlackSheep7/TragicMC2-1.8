@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.Vec3;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -23,14 +24,14 @@ public class DoomsdayLaserCutter extends Doomsday implements IExtendedDoomsday {
 		for (double d0 = 1.5; d0 < d && !flag; d0 += 0.25D)
 		{
 			Vec3 vec = WorldHelper.getVecFromEntity(player, d0);
-			List<int[]> list = WorldHelper.getBlocksInSphericalRange(player.worldObj, crucMoment ? 1.25: 0.85, vec.xCoord, vec.yCoord, vec.zCoord);
+			List<BlockPos> list = WorldHelper.getBlocksInSphericalRange(player.worldObj, crucMoment ? 1.25: 0.85, vec.xCoord, vec.yCoord, vec.zCoord);
 
-			for (int[] coords : list)
+			for (BlockPos coords : list)
 			{
-				float f = player.worldObj.getBlock(coords[0], coords[1], coords[2]).getBlockHardness(player.worldObj, coords[0], coords[1], coords[2]);
-				if (f > 0F && f < 16F && player.worldObj.canMineBlock(player, coords[0], coords[1], coords[2]))
+				float f = player.worldObj.getBlockState(coords).getBlock().getBlockHardness(player.worldObj, coords);
+				if (f > 0F && f < 16F && player.worldObj.canMineBlockBody(player, coords))
 				{
-					player.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
+					player.worldObj.destroyBlock(coords, true);
 					flag = true;
 				}
 			}

@@ -38,29 +38,29 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 		{
 			if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && stack.hasTagCompound())
 			{
-				if (!stack.stackTagCompound.hasKey("comboCooldown")) stack.stackTagCompound.setInteger("comboCooldown", 0);
-				if (!stack.stackTagCompound.hasKey("comboCount")) stack.stackTagCompound.setInteger("comboCount", 0);
+				if (!stack.getTagCompound().hasKey("comboCooldown")) stack.getTagCompound().setInteger("comboCooldown", 0);
+				if (!stack.getTagCompound().hasKey("comboCount")) stack.getTagCompound().setInteger("comboCount", 0);
 
-				int cooldown = stack.stackTagCompound.getInteger("comboCooldown");
-				int combo = stack.stackTagCompound.getInteger("comboCount");
+				int cooldown = stack.getTagCompound().getInteger("comboCooldown");
+				int combo = stack.getTagCompound().getInteger("comboCount");
 				double damage = combo * 2.0;
 
 				if (cooldown > 0)
 				{
 					if (combo < 5)
 					{
-						stack.stackTagCompound.setInteger("comboCount", combo + 1);
-						stack.stackTagCompound.setDouble("comboDamage", damage + 2.0);
+						stack.getTagCompound().setInteger("comboCount", combo + 1);
+						stack.getTagCompound().setDouble("comboDamage", damage + 2.0);
 					}
 
-					if (cooldown > 5 && cooldown < 20) stack.stackTagCompound.setInteger("comboCooldown", cooldown + 5);
+					if (cooldown > 5 && cooldown < 20) stack.getTagCompound().setInteger("comboCooldown", cooldown + 5);
 					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[0]);
 
 				}
 				else
 				{
-					stack.stackTagCompound.setInteger("comboCount", 0);
-					stack.stackTagCompound.setInteger("comboCooldown", 20);
+					stack.getTagCompound().setInteger("comboCount", 0);
+					stack.getTagCompound().setInteger("comboCooldown", 20);
 				}
 			}
 		}
@@ -74,15 +74,15 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 
 		if (world.isRemote) return;
 
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		if (!stack.stackTagCompound.hasKey("comboCooldown")) stack.stackTagCompound.setInteger("comboCooldown", 0);
-		if (!stack.stackTagCompound.hasKey("comboCount")) stack.stackTagCompound.setInteger("comboCount", 0);
+		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+		if (!stack.getTagCompound().hasKey("comboCooldown")) stack.getTagCompound().setInteger("comboCooldown", 0);
+		if (!stack.getTagCompound().hasKey("comboCount")) stack.getTagCompound().setInteger("comboCount", 0);
 
-		int cooldown = stack.stackTagCompound.getInteger("comboCooldown");
-		int combo = stack.stackTagCompound.getInteger("comboCount");
+		int cooldown = stack.getTagCompound().getInteger("comboCooldown");
+		int combo = stack.getTagCompound().getInteger("comboCount");
 
-		if (cooldown > 0) stack.stackTagCompound.setInteger("comboCooldown", cooldown - 1);
-		if (cooldown == 0) stack.stackTagCompound.setInteger("comboCount", 0);
+		if (cooldown > 0) stack.getTagCompound().setInteger("comboCooldown", cooldown - 1);
+		if (cooldown == 0) stack.getTagCompound().setInteger("comboCount", 0);
 		double damage = combo * 2.0D;
 
 		AttributeModifier mod2 = new AttributeModifier(mod.getID(), "beastlyClawsComboModifier", damage, 0);

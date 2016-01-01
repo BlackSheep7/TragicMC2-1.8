@@ -67,9 +67,9 @@ public class RecipeAmulets extends ShapelessOreRecipe {
 		}
 
 		if (level > 3) level = 3;
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
+		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
 		applyModifiersToItemStack(stack, tuples);
-		stack.stackTagCompound.setInteger("amuletLevel", level);
+		stack.getTagCompound().setInteger("amuletLevel", level);
 
 		return stack;
 	}

@@ -15,10 +15,10 @@ public class ItemBananaSplit extends ItemFood {
 	}
 
 	@Override
-	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
+	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player)
 	{
 		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 600, 0));
-		return super.onEaten(stack, world, player);
+		return super.onItemUseFinish(stack, world, player);
 	}
 
 }

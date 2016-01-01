@@ -2,28 +2,22 @@ package tragicneko.tragicmc.items.weapons;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class ItemEverlastingLight extends Item {
 
 	public static final String[] iconNames = new String[] {"3Quarter", "Half", "1Quarter"};
-
-	@SideOnly(Side.CLIENT)
-	private IIcon[] iconArray;
 
 	public ItemEverlastingLight()
 	{
@@ -41,74 +35,10 @@ public class ItemEverlastingLight extends Item {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
-	{
-		if (stack.getItemDamage() <= 125)
-		{
-			return itemIcon;
-		}
-		else if (stack.getItemDamage() <= 186)
-		{
-			return iconArray[0];
-		}
-		else if (stack.getItemDamage() <= 249)
-		{
-			return iconArray[1];
-		}
-		else
-		{
-			return iconArray[2];
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean requiresMultipleRenderPasses()
-	{
-		return true;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamageForRenderPass(int par1, int par2)
-	{
-		if (par1 <= 125)
-		{
-			return itemIcon;
-		}
-		else if (par1 <= 186)
-		{
-			return iconArray[0];
-		}
-		else if (par1 <= 249)
-		{
-			return iconArray[1];
-		}
-		else
-		{
-			return iconArray[2];
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
-		this.iconArray = new IIcon[iconNames.length];
-
-		for (int i = 0; i < this.iconArray.length; ++i)
-		{
-			this.iconArray[i] = par1IconRegister.registerIcon(this.getIconString() + "_" + iconNames[i]);
-		}
-	}
-
-	@Override
 	public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5)
 	{
 		if (!world.isRemote && world.getWorldTime() % 60L == 0 && world.isDaytime()
-				&& world.getLightBrightness((int)entity.posX, (int)entity.posY, (int)entity.posZ) > 0.6F)
+				&& world.getLight(WorldHelper.getBlockPos(entity)) > 0.6F)
 		{
 			if (itemstack.getItemDamage() <= 249)
 			{
@@ -141,7 +71,7 @@ public class ItemEverlastingLight extends Item {
 				double d0 = par3EntityPlayer.prevPosX + (par3EntityPlayer.posX - par3EntityPlayer.prevPosX) * f;
 				double d1 = par3EntityPlayer.prevPosY + (par3EntityPlayer.posY - par3EntityPlayer.prevPosY) * f + (par2World.isRemote ? par3EntityPlayer.getEyeHeight() - par3EntityPlayer.getDefaultEyeHeight() : par3EntityPlayer.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
 				double d2 = par3EntityPlayer.prevPosZ + (par3EntityPlayer.posZ - par3EntityPlayer.prevPosZ) * f;
-				Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+				Vec3 vec3 = new Vec3(d0, d1, d2);
 				float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
 				float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
 				float f5 = -MathHelper.cos(-f1 * 0.017453292F);
@@ -156,7 +86,7 @@ public class ItemEverlastingLight extends Item {
 				}
 				Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
 
-				MovingObjectPosition movingobjectposition = par2World.func_147447_a(vec3, vec31, true, false, false);
+				MovingObjectPosition movingobjectposition = par2World.rayTraceBlocks(vec3, vec31, true, false, false);
 
 				if (movingobjectposition == null)
 				{
@@ -165,7 +95,7 @@ public class ItemEverlastingLight extends Item {
 				else
 				{
 					if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-					{
+					{/*//TODO fix everlasting light
 						int i = movingobjectposition.blockX;
 						int j = movingobjectposition.blockY;
 						int k = movingobjectposition.blockZ;
@@ -200,7 +130,7 @@ public class ItemEverlastingLight extends Item {
 						case 5:
 							par2World.setBlock(i + 1, j, k, TragicBlocks.Light);
 							break;
-						}
+						} */
 						par1ItemStack.damageItem(1, par3EntityPlayer);
 						return par1ItemStack;
 					}

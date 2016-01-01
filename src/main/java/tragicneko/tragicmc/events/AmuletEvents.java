@@ -23,6 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
@@ -50,6 +51,7 @@ import tragicneko.tragicmc.network.MessageAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.util.AmuletHelper;
 import tragicneko.tragicmc.util.DamageHelper;
+import tragicneko.tragicmc.util.WorldHelper;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
@@ -308,7 +310,7 @@ public class AmuletEvents {
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.TimeAmulet)
 				{
-					if (mp.worldObj.getBiomeGenForCoords((int) mp.posX, (int) mp.posZ).getTempCategory() == TempCategory.COLD)
+					if (mp.worldObj.getBiomeGenForCoords(WorldHelper.getBlockPos(mp)).getTempCategory() == TempCategory.COLD)
 					{
 						if (levels[i] >= 2 && event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase)
 						{
@@ -350,7 +352,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuOverlord && !event.source.isDamageAbsolute() && event.entityLiving.worldObj.provider.dimensionId == TragicConfig.synapseID; i++)
+			for (i = 0; i < 3 && TragicConfig.amuOverlord && !event.source.isDamageAbsolute() && event.entityLiving.worldObj.provider.getDimensionId() == TragicConfig.synapseID; i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.OverlordAmulet)
 				{
@@ -363,14 +365,12 @@ public class AmuletEvents {
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.EnderDragonAmulet)
 				{
-					int x = MathHelper.floor_double(mp.posX);
-					int y = MathHelper.floor_double(mp.posY);
-					int z = MathHelper.floor_double(mp.posZ);
+					BlockPos pos = WorldHelper.getBlockPos(mp);
 					
-					Block block = mp.worldObj.getBlock(x, y, z);
-					if (block.isOpaqueCube() && block.getBlockHardness(mp.worldObj, x, y, z) > 0F) mp.worldObj.setBlockToAir(x, y, z);
-					block = mp.worldObj.getBlock(x, y + 1, z);
-					if (block.isOpaqueCube()  && block.getBlockHardness(mp.worldObj, x, y + 1, z) > 0F) mp.worldObj.setBlockToAir(x, y + 1, z);
+					Block block = mp.worldObj.getBlockState(pos).getBlock();
+					if (block.isOpaqueCube() && block.getBlockHardness(mp.worldObj, pos) > 0F) mp.worldObj.setBlockToAir(pos);
+					block = mp.worldObj.getBlockState(pos.up()).getBlock();
+					if (block.isOpaqueCube()  && block.getBlockHardness(mp.worldObj, pos.up()) > 0F) mp.worldObj.setBlockToAir(pos.up());
 					break;
 				}
 			}
@@ -478,7 +478,7 @@ public class AmuletEvents {
 
 					if (levels[i] == 3)
 					{
-						List<Entity> list = event.entityLiving.worldObj.getEntitiesWithinAABBExcludingEntity(mp, mp.boundingBox.expand(6.0D, 6.0D, 6.0D));
+						List<Entity> list = event.entityLiving.worldObj.getEntitiesWithinAABBExcludingEntity(mp, mp.getEntityBoundingBox().expand(6.0D, 6.0D, 6.0D));
 						for (i = 0; i < list.size(); i++)
 						{
 							if (list.get(i) instanceof EntityLivingBase)
@@ -559,8 +559,8 @@ public class AmuletEvents {
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.EndermanAmulet)
 				{
-					mp.worldObj.setBlockToAir(event.x, event.y, event.z);
-					EntityItem item = new EntityItem(mp.worldObj, event.x, event.y, event.z, new ItemStack(event.block, 1, event.blockMetadata));
+					mp.worldObj.setBlockToAir(event.pos);
+					EntityItem item = new EntityItem(mp.worldObj, event.pos.getX(), event.pos.getY(), event.pos.getZ(), new ItemStack(event.state.getBlock(), 1, event.state.getBlock().getMetaFromState(event.state)));
 					mp.worldObj.spawnEntityInWorld(item);
 					if (event.isCancelable()) event.setCanceled(true);
 					break;

@@ -14,6 +14,7 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -80,15 +81,15 @@ public class MouseEvents {
 
 				if (list.size() > 0 && d <= limit) break;
 
-				List<int[]> list2 = WorldHelper.getBlocksInSphericalRange(world, 1.00, vec31.xCoord, vec31.yCoord, vec31.zCoord);
+				List<BlockPos> list2 = WorldHelper.getBlocksInSphericalRange(world, 1.00, vec31.xCoord, vec31.yCoord, vec31.zCoord);
 				Block block;
 				AxisAlignedBB bb2;
 
-				for (int[] coords : list2)
+				for (BlockPos coords : list2)
 				{
-					block = world.getBlock(coords[0], coords[1], coords[2]);
+					block = world.getBlockState(coords).getBlock();
 
-					bb2 = block.getCollisionBoundingBoxFromPool(world, coords[0], coords[1], coords[2]);
+					bb2 = block.getCollisionBoundingBox(world, coords, world.getBlockState(coords));
 					if (bb2 != null && bb.intersectsWith(bb2)) break meow;
 				}
 
@@ -114,7 +115,7 @@ public class MouseEvents {
 	@SubscribeEvent(priority=EventPriority.HIGHEST)
 	public void onFrozenInput(MouseEvent event)
 	{
-		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 		if (player == null) return;
 		/*
 		if (player.isPotionActive(TragicPotion.Frozen) && event.buttonstate)

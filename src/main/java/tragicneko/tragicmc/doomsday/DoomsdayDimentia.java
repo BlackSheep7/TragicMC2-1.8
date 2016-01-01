@@ -18,7 +18,7 @@ public class DoomsdayDimentia extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double d0 = crucMoment ? 48.0 : 24.0;
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0, d0));
 		Entity prevEnt = null;
 
 		if (list.size() > 0)
@@ -33,12 +33,12 @@ public class DoomsdayDimentia extends Doomsday {
 
 					if (rand.nextBoolean() && prevEnt instanceof EntityLivingBase)
 					{
-						ent.targetTasks.addTask(3, new EntityAINearestAttackableTarget(ent, prevEnt.getClass(), 0, true));
+						ent.targetTasks.addTask(3, new EntityAINearestAttackableTarget(ent, prevEnt.getClass(), 0, true, false, null));
 						ent.setAttackTarget((EntityLivingBase) prevEnt);
 					}
 					else
 					{
-						ent.targetTasks.addTask(3, new EntityAINearestAttackableTarget(ent, EntityCreature.class, 0, true));
+						ent.targetTasks.addTask(3, new EntityAINearestAttackableTarget(ent, EntityCreature.class, 0, true, false, null));
 					}
 				}
 

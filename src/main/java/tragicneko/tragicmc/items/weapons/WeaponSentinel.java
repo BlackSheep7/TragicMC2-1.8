@@ -16,8 +16,8 @@ public class WeaponSentinel extends TragicWeapon {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
 	{
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setInteger("tragicLoreRarity", 3);
+		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+		if (!stack.getTagCompound().hasKey("tragicLoreRarity")) stack.getTagCompound().setInteger("tragicLoreRarity", 3);
 		super.onUpdate(stack, world, entity, par, flag);
 	}
 }

@@ -41,7 +41,7 @@ public class AmuletPeace extends ItemAmulet {
 				chance = 10;
 			}
 
-			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0, d0));
 
 			for (int i = 0; i < list.size(); i++)
 			{

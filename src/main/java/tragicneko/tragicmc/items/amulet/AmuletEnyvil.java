@@ -23,7 +23,7 @@ public class AmuletEnyvil extends ItemAmulet {
 	{
 		if (TragicConfig.amuEnyvil)
 		{
-			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(16.0, 16.0, 16.0));
+			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
 			for (Entity e : list)
 			{

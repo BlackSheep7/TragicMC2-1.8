@@ -3,19 +3,21 @@ package tragicneko.tragicmc.items.weapons;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 
 import com.google.common.collect.Sets;
-
-import cpw.mods.fml.common.eventhandler.Event.Result;
 
 public class ItemJack extends TragicTool {
 
@@ -33,7 +35,7 @@ public class ItemJack extends TragicTool {
 			TragicBlocks.TragicObsidian, TragicBlocks.AshenGrass, TragicBlocks.AshenLeaves, TragicBlocks.AshenPlanks, TragicBlocks.AshenWood, TragicBlocks.BleachedLeaves,
 			TragicBlocks.BleachedPlanks, TragicBlocks.BleachedWood, TragicBlocks.BrushedGrass, TragicBlocks.PaintedLeaves, TragicBlocks.PaintedPlanks, TragicBlocks.PaintedWood,
 			TragicBlocks.DarkenedQuartz, TragicBlocks.BoneBlock, TragicBlocks.ErodedStone, TragicBlocks.SandstonePressurePlate, TragicBlocks.NetherBrickPressurePlate,
-			Blocks.wooden_button, Blocks.stone_button, Blocks.wooden_door, Blocks.wooden_slab, TragicBlocks.SummonBlock});
+			Blocks.wooden_button, Blocks.stone_button, Blocks.oak_door, Blocks.acacia_door, Blocks.wooden_slab, TragicBlocks.SummonBlock});
 
 	public ItemJack(ToolMaterial material, Doomsday dday) {
 		super(1.0F, material, blocksEffectiveAgainst, dday);
@@ -42,21 +44,21 @@ public class ItemJack extends TragicTool {
 	}
 
 	@Override
-	public float func_150893_a(ItemStack stack, Block block)
+	public float getDigSpeed(ItemStack stack, IBlockState state)
 	{
 		return this.toolMaterial.getEfficiencyOnProperMaterial();
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int meta, float f1, float f2, float f3)
+	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float f, float f1, float f2)
 	{
-		if (!player.canPlayerEdit(x, y, z, meta, stack))
+		if (!player.canPlayerEdit(pos, facing, stack))
 		{
 			return false;
 		}
 		else
 		{
-			UseHoeEvent event = new UseHoeEvent(player, stack, world, x, y, z);
+			UseHoeEvent event = new UseHoeEvent(player, stack, world, pos);
 			if (MinecraftForge.EVENT_BUS.post(event))
 			{
 				return false;
@@ -68,12 +70,12 @@ public class ItemJack extends TragicTool {
 				return true;
 			}
 
-			Block block = world.getBlock(x, y, z);
+			Block block = world.getBlockState(pos).getBlock();
 
-			if (meta != 0 && world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (block == Blocks.grass || block == Blocks.dirt))
+			if (facing != EnumFacing.DOWN && world.getBlockState(pos.up()).getBlock().isAir(world, pos.up()) && (block == Blocks.grass || block == Blocks.dirt))
 			{
 				Block block1 = Blocks.farmland;
-				world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
+				world.playSoundEffect(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, block1.stepSound.getStepSound(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getFrequency() * 0.8F);
 
 				if (world.isRemote)
 				{
@@ -81,7 +83,7 @@ public class ItemJack extends TragicTool {
 				}
 				else
 				{
-					world.setBlock(x, y, z, block1);
+					world.setBlockState(pos, block1.getDefaultState());
 					stack.damageItem(1, player);
 					return true;
 				}

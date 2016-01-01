@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.items.weapons;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -84,9 +84,9 @@ public class WeaponWitheringAxe extends TragicWeapon {
 	}
 
 	@Override
-	public float func_150893_a(ItemStack stack, Block block)
+	public float getDigSpeed(ItemStack stack, IBlockState state)
 	{
-		Material material = block.getMaterial();
-		return material == Material.wood || material == Material.gourd ? this.material.getEfficiencyOnProperMaterial() : super.func_150893_a(stack, block);
+		Material material = state.getBlock().getMaterial();
+		return material == Material.wood || material == Material.gourd ? this.material.getEfficiencyOnProperMaterial() : super.getDigSpeed(stack, state);
 	}
 }

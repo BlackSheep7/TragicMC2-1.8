@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -31,13 +32,10 @@ public class WeaponTitan extends EpicWeapon {
 
 		if (canUseAbility(doom, TragicConfig.doomAbilityCost[31]) && getStackCooldown(stack) == 0 && TragicConfig.doomAbility[31])
 		{
-			for (int i = 0; i < 3; i++)
-			{
-				player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX + itemRand.nextDouble() - itemRand.nextDouble(), entity.posY,
-						entity.posZ + itemRand.nextDouble() - itemRand.nextDouble(), player));
-			}
+			player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX + itemRand.nextDouble() - itemRand.nextDouble(), entity.posY,
+					entity.posZ + itemRand.nextDouble() - itemRand.nextDouble(), player));
 
-			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, TragicConfig.griefConfig[4]);
+			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 0.6F + 0.4F, TragicConfig.griefConfig[4]);
 
 			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[31]);
 			setStackCooldown(stack, 5);
@@ -74,7 +72,7 @@ public class WeaponTitan extends EpicWeapon {
 				x = (par3EntityPlayer.posX) + (perc * d4);
 				y = par3EntityPlayer.posY;
 				z = par3EntityPlayer.posZ + (perc * d6);
-				y1 = WorldHelper.getDistanceToGround(par2World, (int) x, (int) par3EntityPlayer.posY, (int) z);
+				y1 = WorldHelper.getDistanceToGround(par2World, new BlockPos(x, par3EntityPlayer.posY, z));
 				par2World.addWeatherEffect(new EntityLightningBolt(par2World, x, y, z));
 			}
 			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[32]);

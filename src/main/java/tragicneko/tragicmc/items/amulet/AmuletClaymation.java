@@ -45,7 +45,7 @@ public class AmuletClaymation extends ItemAmulet {
 				goodChance = -1;
 			}
 
-			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(d0, d0, d0));
 
 			if (rand.nextInt(100) <= chance && list.size() > 0)
 			{
@@ -103,7 +103,7 @@ public class AmuletClaymation extends ItemAmulet {
 						player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 0 + rand.nextInt(3)));
 						break;
 					case 4:
-						player.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 200, 0 + rand.nextInt(3)));
+						player.addPotionEffect(new PotionEffect(Potion.saturation.id, 200, 0 + rand.nextInt(3)));
 						break;
 					}
 				}
