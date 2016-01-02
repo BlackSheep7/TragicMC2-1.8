@@ -4448,6 +4448,11 @@ Carry over changes/fixes from 1.7.10: fix Toxic Amalgation recipe, fix Enyvil no
 update sounds, remove unused sounds
 Lots more error fixing done, near 1k now
 Improved NekoNekoWand to use nbt tags for it's cooldown instead of a static variable
+More error fixing done, a few more and I can start up the mod (with some things disabled) and see how stable it is
+Fixed Enchantment list return for automatic config id setting
+Fixed derps with blockstate setup
+Fixed error with my custom entity list
+There's an error with datawatchers for mobs (forgot about that), and with the Challenge scrolls
 
 TODO: Remember to override illumination method for my mobs so that the ones that need to have it do it
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
