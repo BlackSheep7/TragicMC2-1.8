@@ -87,7 +87,7 @@ public class BlockTragicFlower extends BlockBush implements IGrowable {
 	@Override
 	protected BlockState createBlockState()
 	{
-		return new BlockState(this, this.properties[this.flowerSet]);
+		return new BlockState(this, VARIANT, VARIANT2);
 	}
 
 	@Override

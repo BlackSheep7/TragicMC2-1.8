@@ -92,5 +92,4 @@ public class EnchantmentDamageBoost extends Enchantment {
 		}
 		return 0F;
 	}
-
 }

@@ -15,7 +15,7 @@ import tragicneko.tragicmc.TragicMC;
 
 public class BlockPermafrost extends Block {
 
-	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", null);
+	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockPermafrost.EnumVariant.class);
 
 	public BlockPermafrost() {
 		super(Material.ground);

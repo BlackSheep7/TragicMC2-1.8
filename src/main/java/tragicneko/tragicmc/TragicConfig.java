@@ -1,11 +1,15 @@
 package tragicneko.tragicmc;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class TragicConfig {
 
@@ -4053,6 +4057,10 @@ public class TragicConfig {
 		prop.comment = "The Health buff you gain from wearing any of the Overlord Armor set.";
 		modifier[++m] = prop.getDouble(5.0);
 
+		allowWorldGen = false;
+		allowDimension = false;
+		allowChallengeScrolls = false;
+		//TODO remove these
 		initializeMasterConfigs();
 		postProcessConfigs();
 		initializeRemainingVariables();
@@ -4637,8 +4645,20 @@ public class TragicConfig {
 	}
 
 	public static int findEnchantID(int start) {
-		return findOpenID(Enchantment.enchantmentsBookList, start, true);
-		//return findOpenID(Enchantment.enchantmentsList, start, true); //TODO change to the actual enchantment list
+		Enchantment[] list = null;
+		
+		try
+		{
+			Field f = ReflectionHelper.findField(Enchantment.class, "enchantmentsList");
+			Field modfield = Field.class.getDeclaredField("modifiers");
+			modfield.setAccessible(true);
+			modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
+			list = (Enchantment[]) f.get(null);
+		}
+		catch (Exception e) {
+			TragicMC.logError("Error while reflecting the Enchantment list array");
+		}
+		return findOpenID(list, start, true);
 	}
 
 	public static int findPotionID(int start) {

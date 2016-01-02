@@ -2,17 +2,25 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Facing;
+import net.minecraft.stats.StatList;
+import net.minecraft.tileentity.MobSpawnerBaseLogic;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.WeightedRandom;
@@ -31,37 +39,40 @@ public class ItemCorruptedEgg extends Item {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (par3World.isRemote)
+		if (worldIn.isRemote)
 		{
 			return true;
 		}
+		else if (!playerIn.canPlayerEdit(pos.offset(side), side, stack))
+		{
+			return false;
+		}
 		else
 		{
-			Block block = par3World.getBlock(par4, par5, par6);
-			par4 += Facing.offsetsXForSide[par7];
-			par5 += Facing.offsetsYForSide[par7];
-			par6 += Facing.offsetsZForSide[par7];
+			IBlockState iblockstate = worldIn.getBlockState(pos);
+
+			pos = pos.offset(side);
 			double d0 = 0.0D;
 
-			if (par7 == 1 && block.getRenderType() == 11)
+			if (side == EnumFacing.UP && iblockstate instanceof BlockFence)
 			{
 				d0 = 0.5D;
 			}
 
-			Entity entity = spawnCreature(par3World, par4 + 0.5D, par5 + d0, par6 + 0.5D);
+			Entity entity = spawnCreature(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + d0, (double)pos.getZ() + 0.5D);
 
 			if (entity != null)
 			{
-				if (entity instanceof EntityLivingBase && par1ItemStack.hasDisplayName())
+				if (entity instanceof EntityLivingBase && stack.hasDisplayName())
 				{
-					((EntityLiving)entity).setCustomNameTag(par1ItemStack.getDisplayName());
+					entity.setCustomNameTag(stack.getDisplayName());
 				}
 
-				if (!par2EntityPlayer.capabilities.isCreativeMode)
+				if (!playerIn.capabilities.isCreativeMode)
 				{
-					--par1ItemStack.stackSize;
+					--stack.stackSize;
 				}
 			}
 
@@ -69,66 +80,66 @@ public class ItemCorruptedEgg extends Item {
 		}
 	}
 
-	@Override
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
 	{
-		if (par2World.isRemote)
+		if (worldIn.isRemote)
 		{
-			return par1ItemStack;
+			return itemStackIn;
 		}
 		else
 		{
-			MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
+			MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(worldIn, playerIn, true);
 
 			if (movingobjectposition == null)
 			{
-				return par1ItemStack;
+				return itemStackIn;
 			}
 			else
 			{
 				if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
 				{
-					int i = movingobjectposition.blockX;
-					int j = movingobjectposition.blockY;
-					int k = movingobjectposition.blockZ;
+					BlockPos blockpos = movingobjectposition.getBlockPos();
 
-					if (!par2World.canMineBlock(par3EntityPlayer, i, j, k))
+					if (!worldIn.isBlockModifiable(playerIn, blockpos))
 					{
-						return par1ItemStack;
+						return itemStackIn;
 					}
 
-					if (!par3EntityPlayer.canPlayerEdit(i, j, k, movingobjectposition.sideHit, par1ItemStack))
+					if (!playerIn.canPlayerEdit(blockpos, movingobjectposition.sideHit, itemStackIn))
 					{
-						return par1ItemStack;
+						return itemStackIn;
 					}
 
-					if (par2World.getBlock(i, j, k) instanceof BlockLiquid)
+					if (worldIn.getBlockState(blockpos).getBlock() instanceof BlockLiquid)
 					{
-						Entity entity = spawnCreature(par2World, i, j, k);
+						Entity entity = spawnCreature(worldIn, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.5D, (double)blockpos.getZ() + 0.5D);
 
 						if (entity != null)
 						{
-							if (entity instanceof EntityLivingBase && par1ItemStack.hasDisplayName())
+							if (entity instanceof EntityLivingBase && itemStackIn.hasDisplayName())
 							{
-								((EntityLiving)entity).setCustomNameTag(par1ItemStack.getDisplayName());
+								((EntityLiving)entity).setCustomNameTag(itemStackIn.getDisplayName());
 							}
 
-							if (!par3EntityPlayer.capabilities.isCreativeMode)
+							if (!playerIn.capabilities.isCreativeMode)
 							{
-								--par1ItemStack.stackSize;
+								--itemStackIn.stackSize;
 							}
+
+							playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);
 						}
 					}
 				}
 
-				return par1ItemStack;
+				return itemStackIn;
 			}
 		}
 	}
 
-	public static Entity spawnCreature(World par0World, double par2, double par4, double par6)
+	public static Entity spawnCreature(World worldIn, double x, double y, double z)
 	{
-		List list = par0World.getBiomeGenForCoords((int) par2, (int) par6).getSpawnableList(EnumCreatureType.monster);
+		List list = worldIn.getBiomeGenForCoords(new BlockPos(x, y, z)).getSpawnableList(EnumCreatureType.MONSTER);
+
 		if (list.isEmpty())
 		{
 			return null;
@@ -143,7 +154,7 @@ public class ItemCorruptedEgg extends Item {
 
 				if (oclass != null)
 				{
-					entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {par0World});
+					entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
 				}
 			}
 			catch (Exception exception)
@@ -151,17 +162,16 @@ public class ItemCorruptedEgg extends Item {
 				exception.printStackTrace();
 			}
 
-			if (entity != null)
+			if (entity instanceof EntityLivingBase)
 			{
 				EntityLiving entityliving = (EntityLiving)entity;
-				entity.setLocationAndAngles(par2, par4, par6, MathHelper.wrapAngleTo180_float(par0World.rand.nextFloat() * 360.0F), 0.0F);
+				entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(worldIn.rand.nextFloat() * 360.0F), 0.0F);
 				entityliving.rotationYawHead = entityliving.rotationYaw;
 				entityliving.renderYawOffset = entityliving.rotationYaw;
-				entityliving.onSpawnWithEgg((IEntityLivingData)null);
-				par0World.spawnEntityInWorld(entity);
+				entityliving.func_180482_a(worldIn.getDifficultyForLocation(new BlockPos(entityliving)), (IEntityLivingData)null);
+				worldIn.spawnEntityInWorld(entity);
 				entityliving.playLivingSound();
 			}
-
 
 			return entity;
 		}

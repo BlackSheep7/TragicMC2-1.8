@@ -2,13 +2,12 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
@@ -117,46 +116,18 @@ public class ItemStatue extends Item {
 
 		if (mop == null) return stack;
 
-		int x = mop.blockX;
-		int y = mop.blockY;
-		int z = mop.blockZ;
+		BlockPos pos = mop.getBlockPos().offset(mop.sideHit);
 
 		EntityStatue statue;
 
-		if (World.doesBlockHaveSolidTopSurface(world, x, y, z) && !world.isRemote)
+		if (World.doesBlockHaveSolidTopSurface(world, mop.getBlockPos()) && !world.isRemote)
 		{
 			statue = new EntityStatue(world);
-
-			double x2 = x + 0.5D;
-			double y2 = y;
-			double z2 = z + 0.5D;
 			float rotation = ((MathHelper.floor_float((player.rotationYaw * 8.0F / 360.0F) + 0.5F)) * 45.0F) + 180F;
 
-			switch (mop.sideHit)
-			{
-			case 0: //bottom
-				y2 -= 1.0D;
-				break;
-			case 1: //top
-				y2 += 1.0D;
-				break;
-			case 2: //east
-				z2 -= 1.0D;
-				break;
-			case 3: //west
-				z2 += 1.0D;
-				break;
-			case 4: //north
-				x2 -= 1.0D;
-				break;
-			case 5: //south
-				x2 += 1.0D;
-				break;
-			}
-
-			statue.setPosition(x2, y2, z2);
+			statue.setPosition(pos.getX(), pos.getY(), pos.getZ());
 			statue.setRotation(rotation);
-			if (!world.getCollidingBoundingBoxes(statue, statue.boundingBox).isEmpty() || world.isAnyLiquid(statue.boundingBox)) return stack;
+			if (!world.getCollidingBoundingBoxes(statue, statue.getEntityBoundingBox()).isEmpty() || world.isAnyLiquid(statue.getEntityBoundingBox())) return stack;
 			statue.setMobID(stack.getItemDamage() % subNames.length);
 			statue.setTextureID(this.getTextureIDFromStack(stack));
 			statue.setAnimated(this.getAnimated(stack));

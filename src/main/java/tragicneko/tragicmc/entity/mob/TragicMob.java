@@ -82,7 +82,7 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	protected void entityInit()
 	{
-		super.entityInit();
+		super.entityInit(); //TODO fix datawatcher values, 15 is apparently used by vanilla
 		this.dataWatcher.addObject(14, Byte.valueOf((byte) 0));
 		this.dataWatcher.addObject(15, Integer.valueOf(0));
 	}

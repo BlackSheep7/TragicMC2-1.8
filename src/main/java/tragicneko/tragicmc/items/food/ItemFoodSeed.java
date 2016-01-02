@@ -1,14 +1,19 @@
 package tragicneko.tragicmc.items.food;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSnow;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemFoodSeed extends Item {
 	
@@ -20,83 +25,78 @@ public class ItemFoodSeed extends Item {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		if (world.isRemote) return true;
-		
-		Block block = world.getBlockState(pos).getBlock();
+	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        IBlockState iblockstate = worldIn.getBlockState(pos);
+        Block block = iblockstate.getBlock();
 
-        if (block == Blocks.snow_layer && (world.getBlockMetadata(x, y, z) & 7) < 1)
+        if (block == Blocks.snow_layer && ((Integer)iblockstate.getValue(BlockSnow.LAYERS)).intValue() < 1)
         {
-            side = 1;
+            side = EnumFacing.UP;
         }
-        else if (block != Blocks.vine && block != Blocks.tallgrass && block != Blocks.deadbush)
+        else if (!block.isReplaceable(worldIn, pos))
         {
-            if (side == 0)
-            {
-                --y;
-            }
-
-            if (side == 1)
-            {
-                ++y;
-            }
-
-            if (side == 2)
-            {
-                --z;
-            }
-
-            if (side == 3)
-            {
-                ++z;
-            }
-
-            if (side == 4)
-            {
-                --x;
-            }
-
-            if (side == 5)
-            {
-                ++x;
-            }
+            pos = pos.offset(side);
         }
 
-        if (!player.canPlayerEdit(x, y, z, side, stack))
+        if (stack.stackSize == 0)
         {
             return false;
         }
-        else if (stack.stackSize == 0)
+        else if (!playerIn.canPlayerEdit(pos, side, stack))
         {
             return false;
         }
-        else if (!(this.block.canPlaceBlockAt(world, x, y, z)))
+        else if (pos.getY() == 255 && this.block.getMaterial().isSolid())
         {
-        	return false;
+            return false;
+        }
+        else if (worldIn.canBlockBePlaced(this.block, pos, false, side, (Entity)null, stack))
+        {
+            int i = this.getMetadata(stack.getMetadata());
+            IBlockState iblockstate1 = this.block.onBlockPlaced(worldIn, pos, side, hitX, hitY, hitZ, i, playerIn);
+
+            if (placeBlockAt(stack, playerIn, worldIn, pos, side, hitX, hitY, hitZ, iblockstate1))
+            {
+                worldIn.playSoundEffect((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), this.block.stepSound.getPlaceSound(), (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getFrequency() * 0.8F);
+                --stack.stackSize;
+            }
+
+            return true;
         }
         else
         {
-            if (world.canPlaceEntityOnSide(this.block, x, y, z, false, side, (Entity)null, stack))
-            {
-                int i1 = this.block.onBlockPlaced(world, x, y, z, side, hitX, hitY, hitZ, 0);
-
-                if (world.setBlock(x, y, z, this.block, i1, 3))
-                {
-                    if (world.getBlock(x, y, z) == this.block)
-                    {
-                        this.block.onBlockPlacedBy(world, x, y, z, player, stack);
-                        this.block.onPostBlockPlaced(world, x, y, z, i1);
-                    }
-
-                    world.playSoundEffect((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), this.block.stepSound.func_150496_b(), (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getPitch() * 0.8F);
-                    --stack.stackSize;
-                    
-                    if (!this.block.canBlockStay(world, x, y, z)) this.block.updateTick(world, x, y, z, world.rand);
-                }
-            }
+            return false;
         }
-        
+    }
+	
+	@SideOnly(Side.CLIENT)
+    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack)
+    {
+        Block block = worldIn.getBlockState(pos).getBlock();
+
+        if (block == Blocks.snow_layer)
+        {
+            side = EnumFacing.UP;
+        }
+        else if (!block.isReplaceable(worldIn, pos))
+        {
+            pos = pos.offset(side);
+        }
+
+        return worldIn.canBlockBePlaced(this.block, pos, false, side, (Entity)null, stack);
+    }
+	
+	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState)
+    {
+        if (!world.setBlockState(pos, newState, 3)) return false;
+
+        IBlockState state = world.getBlockState(pos);
+        if (state.getBlock() == this.block)
+        {
+            this.block.onBlockPlacedBy(world, pos, state, player, stack);
+        }
+
         return true;
-	}
+    }
 }

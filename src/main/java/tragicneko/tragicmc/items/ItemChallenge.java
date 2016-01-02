@@ -262,8 +262,8 @@ public class ItemChallenge extends Item {
 	public static ItemStack[] getSpawnEggsMiniBoss()
 	{
 		ItemStack[] stacks = new ItemStack[] {
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Jarra") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Jarra")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Magmox") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Magmox")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Jarra") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Jarra")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Magmox") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Magmox")),
 				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Kragul") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kragul")),
 				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse")),
 				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinKing") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinKing")),

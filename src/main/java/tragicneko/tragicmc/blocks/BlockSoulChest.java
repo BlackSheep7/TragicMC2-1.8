@@ -25,6 +25,4 @@ public class BlockSoulChest extends BlockChest {
 		TileEntitySoulChest tileentitychest = new TileEntitySoulChest(30);
 		return tileentitychest;
 	}
-
-
 }
