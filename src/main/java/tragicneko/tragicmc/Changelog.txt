@@ -4453,6 +4453,8 @@ Fixed Enchantment list return for automatic config id setting
 Fixed derps with blockstate setup
 Fixed error with my custom entity list
 There's an error with datawatchers for mobs (forgot about that), and with the Challenge scrolls
+Fixed lots of errors with Dimensions, going to need to do a huge update to the generation/chunk manager code for both
+dimensions and for the other worldgen I have that uses vanilla code
 
 TODO: Remember to override illumination method for my mobs so that the ones that need to have it do it
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
