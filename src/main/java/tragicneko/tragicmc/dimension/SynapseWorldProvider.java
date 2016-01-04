@@ -1,17 +1,18 @@
 package tragicneko.tragicmc.dimension;
 
-import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.block.Block;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.ClientProxy;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class SynapseWorldProvider extends WorldProvider
 {
@@ -82,7 +83,7 @@ public class SynapseWorldProvider extends WorldProvider
 		f3 *= f2 * 0.0F + 0.15F;
 		f4 *= f2 * 0.0F + 0.15F;
 		f5 *= f2 * 0.0F + 0.15F;
-		return Vec3.createVectorHelper(f3, f4, f5);
+		return new Vec3(f3, f4, f5);
 	}
 
 	@Override
@@ -112,9 +113,10 @@ public class SynapseWorldProvider extends WorldProvider
 	}
 
 	@Override
-	public boolean canCoordinateBeSpawn(int p_76566_1_, int p_76566_2_)
+	public boolean canCoordinateBeSpawn(int x, int z)
 	{
-		return this.worldObj.getTopBlock(p_76566_1_, p_76566_2_).getMaterial().blocksMovement();
+		Block block = this.worldObj.getBlockState(this.worldObj.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z))).getBlock();
+		return block.getMaterial().blocksMovement();
 	}
 
 	@Override
@@ -136,8 +138,13 @@ public class SynapseWorldProvider extends WorldProvider
 	}
 
 	@Override
-	public ChunkCoordinates getEntrancePortalLocation()
+	public BlockPos getSpawnCoordinate()
 	{
-		return new ChunkCoordinates(50, 50, 50);
+		return new BlockPos(50, 50, 50);
+	}
+
+	@Override
+	public String getInternalNameSuffix() {
+		return "Synapse";
 	}
 }

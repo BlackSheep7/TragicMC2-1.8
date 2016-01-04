@@ -5,6 +5,7 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IRenderHandler;
 
@@ -24,7 +25,7 @@ public class SynapseSkyRenderer extends IRenderHandler {
 		RenderHelper.disableStandardItemLighting();
 		GL11.glDepthMask(false);
 		mc.renderEngine.bindTexture(circuitTexture);
-		Tessellator tessellator = Tessellator.instance;
+		WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
 
 		for (int i = 0; i < 6; ++i)
 		{
@@ -55,13 +56,13 @@ public class SynapseSkyRenderer extends IRenderHandler {
 				GL11.glRotatef(-90.0F, 0.0F, 0.0F, 1.0F);
 			}
 
-			tessellator.startDrawingQuads();
-			tessellator.setColorOpaque_I(0x444444);
-			tessellator.addVertexWithUV(-64.0D, -64.0D, -64.0D, 0.0D, 0.0D);
-			tessellator.addVertexWithUV(-64.0D, -64.0D, 64.0D, 0.0D, 16.0D);
-			tessellator.addVertexWithUV(64.0D, -64.0D, 64.0D, 16.0D, 16.0D);
-			tessellator.addVertexWithUV(64.0D, -64.0D, -64.0D, 16.0D, 0.0D);
-			tessellator.draw();
+			renderer.startDrawingQuads();
+			renderer.setColorOpaque_I(0x444444);
+			renderer.addVertexWithUV(-64.0D, -64.0D, -64.0D, 0.0D, 0.0D);
+			renderer.addVertexWithUV(-64.0D, -64.0D, 64.0D, 0.0D, 16.0D);
+			renderer.addVertexWithUV(64.0D, -64.0D, 64.0D, 16.0D, 16.0D);
+			renderer.addVertexWithUV(64.0D, -64.0D, -64.0D, 16.0D, 0.0D);
+			Tessellator.getInstance().draw();
 			GL11.glPopMatrix();
 		}
 

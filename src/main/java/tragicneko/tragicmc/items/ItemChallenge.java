@@ -264,27 +264,27 @@ public class ItemChallenge extends Item {
 		ItemStack[] stacks = new ItemStack[] {
 				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Jarra") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Jarra")),
 				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Magmox") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Magmox")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Kragul") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kragul")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinKing") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinKing")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.VolatileFusea") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.VolatileFusea"))};
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Kragul") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Kragul")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.MegaCryse") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.MegaCryse")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.StinKing") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.StinKing")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.GreaterStin") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.GreaterStin")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.StinQueen") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.StinQueen")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.VoxStellarum") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.VoxStellarum")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.VolatileFusea") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.VolatileFusea"))};
 		return stacks;
 	}
 
 	public static ItemStack[] getSpawnEggsBoss()
 	{
 		ItemStack[] stacks = new ItemStack[] {
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Apis") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Apis")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Polaris") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Polaris")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Yeti") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Yeti")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.TimeController") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.TimeController")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.DeathReaper") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Enyvil")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Enyvil") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Claymation") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Claymation"))};
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Apis") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Apis")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Polaris") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Polaris")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Yeti") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Yeti")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.TimeController") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.TimeController")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Kitsune") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Kitsune")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.DeathReaper") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Enyvil")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Enyvil") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Kitsune")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.getIDFromString("TragicMC.Claymation") == -1 ? 0 : TragicEntityList.getIDFromString("TragicMC.Claymation"))};
 		return stacks;
 	}
 

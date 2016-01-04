@@ -4059,7 +4059,6 @@ public class TragicConfig {
 
 		allowWorldGen = false;
 		allowDimension = false;
-		allowChallengeScrolls = false;
 		//TODO remove these
 		initializeMasterConfigs();
 		postProcessConfigs();

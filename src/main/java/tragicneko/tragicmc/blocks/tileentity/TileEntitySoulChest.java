@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumParticleTypes;
 
 public class TileEntitySoulChest extends TileEntityChest {
 
@@ -34,31 +35,31 @@ public class TileEntitySoulChest extends TileEntityChest {
 			if (!this.worldObj.isRemote) player.addChatMessage(new ChatComponentText("Mob kills are required to open this chest! Souls required: " + (this.requiredSouls - this.souls)));
 			return false;
 		}
-		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
+		return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
 	}
 
 	@Override
-	public void updateEntity()
+	public void updateContainingBlockInfo()
 	{
-		super.updateEntity();
+		super.updateContainingBlockInfo();
 
 		if (this.souls >= this.requiredSouls) return;
 
-		List<EntityMob> list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 1, 1).offset(this.xCoord, this.yCoord, this.zCoord).expand(6.0, 6.0, 6.0));
+		List<EntityMob> list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.pos.getX(), this.pos.getY(), this.pos.getZ()).expand(6.0, 6.0, 6.0));
 
 		for (EntityMob mob : list)
 		{
 			if (mob.deathTime > 0 || mob.getHealth() <= 0F || mob.isDead)
 			{
-				double d0 = mob.posX - this.xCoord;
-				double d1 = mob.posY - this.yCoord;
-				double d2 = mob.posZ - this.zCoord;
+				double d0 = mob.posX - this.pos.getX();
+				double d1 = mob.posY - this.pos.getY();
+				double d2 = mob.posZ - this.pos.getZ();
 
-				for (int l = 0; l < 4; l++)
+				for (byte l = 0; l < 4; l++)
 				{
 					double d3 = 0.23D * l + (this.worldObj.rand.nextDouble() * 0.25D);
-					this.worldObj.spawnParticle("flame", this.xCoord + 0.5 + d0 * d3, this.yCoord + 0.5 + d1 * d3, this.zCoord + 0.5 + d2 * d3, 0, 0, 0);
-					this.worldObj.spawnParticle("flame", this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125, this.worldObj.rand.nextDouble() * 0.15, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125);
+					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.pos.getX() + 0.5 + d0 * d3, this.pos.getY() + 0.5 + d1 * d3, this.pos.getZ() + 0.5 + d2 * d3, 0, 0, 0);
+					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125, this.worldObj.rand.nextDouble() * 0.15, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125);
 				}
 
 
@@ -72,9 +73,9 @@ public class TileEntitySoulChest extends TileEntityChest {
 
 		if (this.worldObj.rand.nextInt(32) == 0)
 		{
-			for (int l = 0; l < 3; l++)
+			for (byte l = 0; l < 3; l++)
 			{
-				this.worldObj.spawnParticle("flame", this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125, this.worldObj.rand.nextDouble() * 0.15, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125);
+				this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125, this.worldObj.rand.nextDouble() * 0.15, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125);
 			}
 		}
 	}

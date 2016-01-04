@@ -7,12 +7,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class TragicTeleporter extends Teleporter {
 
@@ -27,41 +26,41 @@ public class TragicTeleporter extends Teleporter {
 	}
 
 	@Override
-	public void placeInPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
+	public void placeInPortal(Entity par1Entity, float rotationYaw)
 	{
-		if (this.worldServerInstance.provider.dimensionId != 0)
+		if (this.worldServerInstance.provider.getDimensionId() != 0)
 		{
-			int i = this.worldServerInstance.getSpawnPoint().posX;
-			int k = this.worldServerInstance.getSpawnPoint().posZ;
-			int j = this.worldServerInstance.provider instanceof TragicWorldProvider ? this.worldServerInstance.getTopSolidOrLiquidBlock(i, k) : this.worldServerInstance.getSpawnPoint().posY;
+			int i = this.worldServerInstance.getSpawnPoint().getX();
+			int k = this.worldServerInstance.getSpawnPoint().getZ();
+			int j = this.worldServerInstance.provider instanceof TragicWorldProvider ? this.worldServerInstance.getTopSolidOrLiquidBlock(new BlockPos(i, 0, k)).getY() : this.worldServerInstance.getSpawnPoint().getY();
 			byte b0 = 1;
 			byte b1 = 0;
 
-			boolean endFlag = this.worldServerInstance.provider.dimensionId == 1 || this.worldServerInstance.provider.dimensionId == TragicConfig.synapseID;
+			boolean endFlag = this.worldServerInstance.provider.getDimensionId() == 1 || this.worldServerInstance.provider.getDimensionId() == TragicConfig.synapseID;
 
 			if (endFlag)
 			{
-				i = this.worldServerInstance.provider.getEntrancePortalLocation().posX;
-				j = this.worldServerInstance.provider.getEntrancePortalLocation().posY;
-				k = this.worldServerInstance.provider.getEntrancePortalLocation().posZ;
+				i = this.worldServerInstance.provider.getSpawnCoordinate().getX();
+				j = this.worldServerInstance.provider.getSpawnCoordinate().getY();
+				k = this.worldServerInstance.provider.getSpawnCoordinate().getZ();
 			}
 			else if (par1Entity instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) par1Entity;
-				ChunkCoordinates cc = player.getBedLocation(this.worldServerInstance.provider.dimensionId);
+				BlockPos cc = player.getBedLocation(this.worldServerInstance.provider.getDimensionId());
 
 				if (cc != null)
 				{
-					i = cc.posX;
-					j = cc.posY;
-					k = cc.posZ;
+					i = cc.getX();
+					j = cc.getY();
+					k = cc.getZ();
 				}
 			}
 
-			Block spawnBlock = this.worldServerInstance.getBlock(i, j - 1, k);
+			Block spawnBlock = this.worldServerInstance.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
 			boolean lavaFlag = spawnBlock.getMaterial() == Material.lava || spawnBlock.getMaterial() == Material.lava;
 
-			if (worldServerInstance.provider.dimensionId == TragicConfig.collisionID || lavaFlag || worldServerInstance.provider.dimensionId == TragicConfig.synapseID)
+			if (worldServerInstance.provider.getDimensionId() == TragicConfig.collisionID || lavaFlag || worldServerInstance.provider.getDimensionId() == TragicConfig.synapseID)
 			{
 				for (int l = -2; l <= 2; ++l)
 				{
@@ -73,7 +72,7 @@ public class TragicTeleporter extends Teleporter {
 							int l1 = j + j1;
 							int i2 = k + i1 * b1 - l * b0;
 							boolean flag = j1 < 0;
-							this.worldServerInstance.setBlock(k1, l1, i2, flag ? (endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt) : Blocks.air);
+							this.worldServerInstance.setBlockState(new BlockPos(k1, l1, i2), flag ? (endFlag ? Blocks.obsidian.getDefaultState() : TragicBlocks.DeadDirt.getDefaultState()) : Blocks.air.getDefaultState());
 						}
 					}
 				}
@@ -82,10 +81,10 @@ public class TragicTeleporter extends Teleporter {
 				{
 					for (int x = -1; x < 2; x++)
 					{
-						this.worldServerInstance.setBlock(i + x, j, k - 3, endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt);
-						this.worldServerInstance.setBlock(i + x, j, k + 3, endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt);
-						this.worldServerInstance.setBlock(i + 3, j, k + x, endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt);
-						this.worldServerInstance.setBlock(i - 3, j, k + x, endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt);
+						this.worldServerInstance.setBlockState(new BlockPos(i + x, j, k - 3), endFlag ? Blocks.obsidian.getDefaultState() : TragicBlocks.DeadDirt.getDefaultState());
+						this.worldServerInstance.setBlockState(new BlockPos(i + x, j, k + 3), endFlag ? Blocks.obsidian.getDefaultState() : TragicBlocks.DeadDirt.getDefaultState());
+						this.worldServerInstance.setBlockState(new BlockPos(i + 3, j, k + x), endFlag ? Blocks.obsidian.getDefaultState() : TragicBlocks.DeadDirt.getDefaultState());
+						this.worldServerInstance.setBlockState(new BlockPos(i - 3, j, k + x), endFlag ? Blocks.obsidian.getDefaultState() : TragicBlocks.DeadDirt.getDefaultState());
 					}
 				}
 			}
@@ -96,18 +95,18 @@ public class TragicTeleporter extends Teleporter {
 		}
 		else
 		{
-			int i = worldServerInstance.getSpawnPoint().posX;
-			int k = worldServerInstance.getSpawnPoint().posZ;
-			int j = worldServerInstance.getTopSolidOrLiquidBlock(i, k);
+			int i = worldServerInstance.getSpawnPoint().getX();
+			int k = worldServerInstance.getSpawnPoint().getZ();
+			int j = worldServerInstance.getTopSolidOrLiquidBlock(new BlockPos(i, 0, k)).getY();
 
 			if (par1Entity instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) par1Entity;
-				ChunkCoordinates cc = player.getBedLocation(0);
+				BlockPos cc = player.getBedLocation(0);
 
 				if (cc != null)
 				{
-					player.setLocationAndAngles(cc.posX, cc.posY + 1.5D, cc.posZ, player.rotationYaw, player.rotationPitch);
+					player.setLocationAndAngles(cc.getX(), cc.getY() + 1.5D, cc.getZ(), player.rotationYaw, player.rotationPitch);
 				}
 				else
 				{

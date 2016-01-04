@@ -1,15 +1,16 @@
 package tragicneko.tragicmc.dimension;
 
-import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.block.Block;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.ClientProxy;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TragicWorldProvider extends WorldProvider
 {
@@ -79,23 +80,24 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public boolean canCoordinateBeSpawn(int par1, int par2)
 	{
-		return this.worldObj.getTopBlock(par1, par2).isOpaqueCube();
+		Block block = this.worldObj.getBlockState(this.worldObj.getTopSolidOrLiquidBlock(new BlockPos(par1, 0, par2))).getBlock();
+		return block.isOpaqueCube();
 	}
 
 	@Override
-	public ChunkCoordinates getRandomizedSpawnPoint()
+	public BlockPos getRandomizedSpawnPoint()
 	{
-		ChunkCoordinates chunkcoordinates = new ChunkCoordinates(this.worldObj.getSpawnPoint());
+		BlockPos chunkcoordinates = this.worldObj.getSpawnPoint();
 
 		boolean isAdventure = worldObj.getWorldInfo().getGameType() == GameType.ADVENTURE;
-		int spawnFuzz = terrainType.getSpawnFuzz();
+		int spawnFuzz = this.worldObj.getWorldInfo().getTerrainType().getSpawnFuzz();
 		int spawnFuzzHalf = spawnFuzz / 2;
 
 		if (!hasNoSky && !isAdventure)
 		{
-			chunkcoordinates.posX += this.worldObj.rand.nextInt(spawnFuzz) - spawnFuzzHalf;
-			chunkcoordinates.posZ += this.worldObj.rand.nextInt(spawnFuzz) - spawnFuzzHalf;
-			chunkcoordinates.posY = this.worldObj.getTopSolidOrLiquidBlock(chunkcoordinates.posX, chunkcoordinates.posZ);
+			chunkcoordinates.add(this.worldObj.rand.nextInt(spawnFuzz) - spawnFuzzHalf, 0,
+				this.worldObj.rand.nextInt(spawnFuzz) - spawnFuzzHalf);
+			chunkcoordinates = this.worldObj.getTopSolidOrLiquidBlock(chunkcoordinates);
 		}
 
 		return chunkcoordinates;
@@ -171,5 +173,10 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public String getDimensionName() {
 		return "The Collision";
+	}
+
+	@Override
+	public String getInternalNameSuffix() {
+		return "Collision";
 	}
 }
