@@ -4457,6 +4457,10 @@ dimensions and for the other worldgen I have that uses vanilla code
 Updated generation/chunk manager code for both dimensions, working on updating the last of the feature worldgen code
 This includes changing some to work as more general code
 Finished resolving all of the errors, now I'm going to fix stuff that isn't explicitly erroring like the datawatchers
+Updated entities to have static integer values for their datawatchers, this is to simplify changes like this in the future
+as well as reduce the chance for human error when dealing with them later
+
+//need to also update the overlord's datawatchers as well
 
 TODO: Remember to override illumination method for my mobs so that the ones that need to have it do it
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
