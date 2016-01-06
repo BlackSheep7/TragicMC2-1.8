@@ -35,6 +35,12 @@ import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityPumpkinhead extends TragicMob {
+	
+	public static final int DW_MOD_VALUE = 20;
+	public static final int DW_HOME_COORD_X = 21;
+	public static final int DW_HOME_COORD_Y = 22;
+	public static final int DW_HOME_COORD_Z = 23;
+	public static final int DW_ANGER_TICKS = 24;
 
 	public EntityPumpkinhead(World par1World) {
 		super(par1World);
@@ -60,38 +66,38 @@ public class EntityPumpkinhead extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Float.valueOf(2.0F));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
-		this.dataWatcher.addObject(20, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_MOD_VALUE, Float.valueOf(2.0F));
+		this.dataWatcher.addObject(DW_HOME_COORD_X, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HOME_COORD_Y, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HOME_COORD_Z, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ANGER_TICKS, Integer.valueOf(0));
 	}
 
 	public float getModValue()
 	{
-		return this.dataWatcher.getWatchableObjectFloat(16);
+		return this.dataWatcher.getWatchableObjectFloat(DW_MOD_VALUE);
 	}
 
 	private void setModValue(float f)
 	{
-		this.dataWatcher.updateObject(16, f);
+		this.dataWatcher.updateObject(DW_MOD_VALUE, f);
 	}
 
 	private void resetModValue()
 	{
-		this.dataWatcher.updateObject(16, 2.0F);
+		this.dataWatcher.updateObject(DW_MOD_VALUE, 2.0F);
 	}
 
 	public BlockPos getHomeCoordinates()
 	{
-		return new BlockPos(this.dataWatcher.getWatchableObjectInt(17), this.dataWatcher.getWatchableObjectInt(18), this.dataWatcher.getWatchableObjectInt(19));
+		return new BlockPos(this.dataWatcher.getWatchableObjectInt(DW_HOME_COORD_X), this.dataWatcher.getWatchableObjectInt(DW_HOME_COORD_Y), this.dataWatcher.getWatchableObjectInt(DW_HOME_COORD_Z));
 	}
 
 	private void setHomeCoordinates(BlockPos pos)
 	{
-		this.dataWatcher.updateObject(17, pos.getX());
-		this.dataWatcher.updateObject(18, pos.getY());
-		this.dataWatcher.updateObject(19, pos.getZ());
+		this.dataWatcher.updateObject(DW_HOME_COORD_X, pos.getX());
+		this.dataWatcher.updateObject(DW_HOME_COORD_Y, pos.getY());
+		this.dataWatcher.updateObject(DW_HOME_COORD_Z, pos.getZ());
 		this.func_175449_a(pos, 12);
 	}
 
@@ -103,12 +109,12 @@ public class EntityPumpkinhead extends TragicMob {
 
 	public int getAngerTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_ANGER_TICKS);
 	}
 
 	private void setAngerTicks(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_ANGER_TICKS, i);
 	}
 
 	private void incrementAngerTicks()

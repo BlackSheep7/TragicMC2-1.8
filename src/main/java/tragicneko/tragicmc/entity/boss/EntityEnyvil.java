@@ -49,6 +49,17 @@ import tragicneko.tragicmc.util.WorldHelper;
 import com.google.common.base.Predicate;
 
 public class EntityEnyvil extends TragicBoss implements IMultiPart {
+	
+	public static final int DW_ATTACK_TIME = 20;
+	public static final int DW_HURT_TIME = 21;
+	public static final int DW_LIGHTNING_TICKS = 22;
+	public static final int DW_DARK_ENERGY_TICKS = 23;
+	public static final int DW_TRACTOR_BEAM_TICKS = 24;
+	public static final int DW_LASER_TICKS = 25;
+	public static final int DW_THUNDERSTORM_TICKS = 26;
+	public static final int DW_CRYSTAL_ID = 27;
+	public static final int DW_SLAM_TICKS = 28;
+	public static final int DW_TARGET_ID = 29;
 
 	public EntityPart[] enyvilParts;
 
@@ -112,26 +123,26 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //attack time
-		this.dataWatcher.addObject(17, Integer.valueOf(0)); //hurt time
-		this.dataWatcher.addObject(18, Integer.valueOf(0)); //dark lightning ticks
-		this.dataWatcher.addObject(19, Integer.valueOf(0)); //dark energy spray
-		this.dataWatcher.addObject(20, Integer.valueOf(0)); //tractor beam
-		this.dataWatcher.addObject(21, Integer.valueOf(0)); //laser shots
-		this.dataWatcher.addObject(22, Integer.valueOf(0)); //thunderstorm
-		this.dataWatcher.addObject(23, Integer.valueOf(0)); //current crystal id
-		this.dataWatcher.addObject(24, Integer.valueOf(0)); //slam
-		this.dataWatcher.addObject(25, Integer.valueOf(0)); //client-side sync for current target
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0)); //attack time
+		this.dataWatcher.addObject(DW_HURT_TIME, Integer.valueOf(0)); //hurt time
+		this.dataWatcher.addObject(DW_LIGHTNING_TICKS, Integer.valueOf(0)); //dark lightning ticks
+		this.dataWatcher.addObject(DW_DARK_ENERGY_TICKS, Integer.valueOf(0)); //dark energy spray
+		this.dataWatcher.addObject(DW_TRACTOR_BEAM_TICKS, Integer.valueOf(0)); //tractor beam
+		this.dataWatcher.addObject(DW_LASER_TICKS, Integer.valueOf(0)); //laser shots
+		this.dataWatcher.addObject(DW_THUNDERSTORM_TICKS, Integer.valueOf(0)); //thunderstorm
+		this.dataWatcher.addObject(DW_CRYSTAL_ID, Integer.valueOf(0)); //current crystal id
+		this.dataWatcher.addObject(DW_SLAM_TICKS, Integer.valueOf(0)); //slam
+		this.dataWatcher.addObject(DW_TARGET_ID, Integer.valueOf(0)); //client-side sync for current target
 	}
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	private void decrementAttackTime()
@@ -142,12 +153,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public int getHurtTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_HURT_TIME);
 	}
 
 	private void setHurtTime(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_HURT_TIME, i);
 	}
 
 	private void decrementHurtTime()
@@ -158,12 +169,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public int getLightningTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_LIGHTNING_TICKS);
 	}
 
 	private void setLightningTicks(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_LIGHTNING_TICKS, i);
 	}
 
 	private void decrementLightningTicks()
@@ -174,12 +185,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public int getDarkEnergyTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_DARK_ENERGY_TICKS);
 	}
 
 	private void setDarkEnergyTicks(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_DARK_ENERGY_TICKS, i);
 	}
 
 	private void decrementDarkEnergyTicks()
@@ -190,12 +201,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public int getTractorBeamTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_TRACTOR_BEAM_TICKS);
 	}
 
 	private void setTractorBeamTicks(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_TRACTOR_BEAM_TICKS, i);
 	}
 
 	private void decrementTractorBeamTicks()
@@ -206,12 +217,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public int getLaserTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(21);
+		return this.dataWatcher.getWatchableObjectInt(DW_LASER_TICKS);
 	}
 
 	private void setLaserTicks(int i)
 	{
-		this.dataWatcher.updateObject(21, i);
+		this.dataWatcher.updateObject(DW_LASER_TICKS, i);
 	}
 
 	private void decrementLaserTicks()
@@ -222,12 +233,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public int getThunderstormTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(22);
+		return this.dataWatcher.getWatchableObjectInt(DW_THUNDERSTORM_TICKS);
 	}
 
 	private void setThunderstormTicks(int i)
 	{
-		this.dataWatcher.updateObject(22, i);
+		this.dataWatcher.updateObject(DW_THUNDERSTORM_TICKS, i);
 	}
 
 	private void decrementThunderstormTicks()
@@ -238,12 +249,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public int getCrystalID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(23);
+		return this.dataWatcher.getWatchableObjectInt(DW_CRYSTAL_ID);
 	}
 
 	private void setCrystalID(int i)
 	{
-		this.dataWatcher.updateObject(23, i);
+		this.dataWatcher.updateObject(DW_CRYSTAL_ID, i);
 	}
 
 	private boolean hasCrystal()
@@ -253,12 +264,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public int getSlamTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(24);
+		return this.dataWatcher.getWatchableObjectInt(DW_SLAM_TICKS);
 	}
 
 	private void setSlamTicks(int i)
 	{
-		this.dataWatcher.updateObject(24, i);
+		this.dataWatcher.updateObject(DW_SLAM_TICKS, i);
 	}
 
 	private void decrementSlamTicks()
@@ -269,12 +280,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public int getAttackTargetID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(25);
+		return this.dataWatcher.getWatchableObjectInt(DW_TARGET_ID);
 	}
 
 	private void setAttackTargetID(int i)
 	{
-		this.dataWatcher.updateObject(25, i);
+		this.dataWatcher.updateObject(DW_TARGET_ID, i);
 	}
 
 	public EntityLivingBase getClientSideTarget()

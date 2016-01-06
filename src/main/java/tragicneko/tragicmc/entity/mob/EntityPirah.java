@@ -28,6 +28,9 @@ import com.google.common.base.Predicate;
 
 public class EntityPirah extends TragicMob {
 	
+	public static final int DW_AIR_TICKS = 20;
+	public static final int DW_TEXTURE_ID = 21;
+	
 	public static final Predicate nonSpeciesTarget = new Predicate() {
 		@Override
 		public boolean apply(Object input) {
@@ -54,19 +57,13 @@ public class EntityPirah extends TragicMob {
 	@Override
 	public boolean isMobVariant()
 	{
-		return this.getPirahType() == 1 || this.getTextureID() == 7;
+		return this.getTextureID() == 7;
 	}
 
 	@Override
 	public boolean canCorrupt()
 	{
 		return false;
-	}
-
-	@Override
-	public boolean canRenderOnFire()
-	{
-		return this.getPirahType() == 1 ? false : super.canRenderOnFire();
 	}
 
 	@Override
@@ -101,19 +98,18 @@ public class EntityPirah extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, (byte) 0);
-		this.dataWatcher.addObject(18, (byte) 0);
+		this.dataWatcher.addObject(DW_AIR_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_TEXTURE_ID, (byte) 0);
 	}
 
 	protected void setAirTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_AIR_TICKS, i);
 	}
 
 	public int getAirTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_AIR_TICKS);
 	}
 
 	protected void incrementAirTicks()
@@ -128,19 +124,14 @@ public class EntityPirah extends TragicMob {
 		this.setAirTicks(--pow);
 	}
 
-	protected void setPirahType(byte b)
+	protected void setTextureID(byte b)
 	{
-		if (b == 1)
-		{
-			this.isImmuneToFire = true;
-			this.experienceValue = 6;
-		}
-		this.dataWatcher.updateObject(17, b);
-
+		this.dataWatcher.updateObject(DW_TEXTURE_ID, b);
+		
 		float height = 0.515F;
 		float width = 0.325F;
 
-		if (this.getTextureID() == 7 && TragicConfig.pirahGolden)
+		if (b == 7 && TragicConfig.pirahGolden)
 		{
 			height *= 1.5F;
 			width *= 1.5F;
@@ -157,19 +148,9 @@ public class EntityPirah extends TragicMob {
 		}
 	}
 
-	public byte getPirahType()
-	{
-		return this.dataWatcher.getWatchableObjectByte(17);
-	}
-
-	protected void setTextureID(byte b)
-	{
-		this.dataWatcher.updateObject(18, b);
-	}
-
 	public byte getTextureID()
 	{
-		return this.dataWatcher.getWatchableObjectByte(18);
+		return this.dataWatcher.getWatchableObjectByte(DW_TEXTURE_ID);
 	}
 
 	@Override
@@ -196,22 +177,15 @@ public class EntityPirah extends TragicMob {
 			float w = 0.325F;
 			float h = 0.515F;
 
-			if (this.getTextureID() == 7)
+			if (this.getTextureID() == 7 && TragicConfig.pirahGolden)
 			{
 				w *= 1.5F;
 				h *= 1.5F;
-
 				//spawn special particles
 			}
-
-			if (this.getPirahType() == 0)
-			{
-				this.setSize(w, h);
-			}
-			else
-			{
-				this.setSize(w * 1.225F, h * 1.225F);
-			}
+			
+			this.setSize(w, h);
+			
 		}
 		else
 		{
@@ -261,8 +235,6 @@ public class EntityPirah extends TragicMob {
 						World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int) this.posX, MathHelper.ceiling_double_int(this.posY) - 1, (int) this.posZ))) this.motionY = 0.35D + rand.nextDouble() * 0.25D;
 				this.motionX = (rand.nextDouble() - rand.nextDouble());
 				this.motionZ = (rand.nextDouble() - rand.nextDouble());
-
-				if (this.getPirahType() == 1 && this.isInsideOfMaterial(Material.water) && this.ticksExisted % 5 == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
 			}
 		}
 	}
@@ -287,7 +259,7 @@ public class EntityPirah extends TragicMob {
 	}
 
 	protected Material getMaterial() {
-		return this.getPirahType() == 0 ? Material.water : Material.lava;
+		return Material.water;
 	}
 
 	@Override
@@ -310,7 +282,6 @@ public class EntityPirah extends TragicMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("pirahType")) this.setPirahType(tag.getByte("pirahType"));
 		if (tag.hasKey("airTicks")) this.setAirTicks(tag.getInteger("airTicks"));
 		if (tag.hasKey("textureID")) this.setTextureID(tag.getByte("textureID"));
 	}
@@ -319,7 +290,6 @@ public class EntityPirah extends TragicMob {
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setByte("pirahType", this.getPirahType());
 		tag.setInteger("airTicks", this.getAirTicks());
 		tag.setByte("textureID", this.getTextureID());
 	}
@@ -329,9 +299,6 @@ public class EntityPirah extends TragicMob {
 	{
 		if (!this.worldObj.isRemote)
 		{
-			boolean flag = this.isInsideOfMaterial(Material.water);
-			boolean flag2 = this.isInsideOfMaterial(Material.lava);
-			this.setPirahType(flag ? 0 : (flag2 ? (byte) 1 : 0));
 			byte i = (byte) rand.nextInt(8);
 			if (i == 7) i = (byte) rand.nextInt(8); //make the 7 id less common
 			this.setTextureID(i);

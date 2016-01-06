@@ -185,6 +185,8 @@ public class TragicConfig {
 	{
 		Configuration config = TragicMC.getConfig();
 		config.load();
+		
+		reflectEnchantmentList();
 
 		ConfigCategory cat; //The category currently being loaded from the config
 		Property prop; //The value currently being parsed
@@ -4651,7 +4653,7 @@ public class TragicConfig {
 		return findOpenID(Potion.potionTypes, start, false);
 	}
 	
-	private void reflectEnchantmentList() {
+	private static void reflectEnchantmentList() {
 		enchantList = null;
 		try
 		{

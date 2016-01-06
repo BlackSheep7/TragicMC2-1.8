@@ -24,6 +24,9 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 
 public class EntityAbomination extends TragicMob {
+	
+	public static final int DW_ATTACK_TIME = 20;
+	public static final int DW_CELEBRATION_TICKS = 21;
 
 	public EntityAbomination(World par1World) {
 		super(par1World);
@@ -71,8 +74,8 @@ public class EntityAbomination extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_CELEBRATION_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
 	}
 
 	@Override
@@ -122,39 +125,39 @@ public class EntityAbomination extends TragicMob {
 
 	public boolean isCelebrating()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17) > 0;
+		return this.dataWatcher.getWatchableObjectInt(DW_CELEBRATION_TICKS) > 0;
 	}
 
 	public int getCelebrationTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_CELEBRATION_TICKS);
 	}
 
 	private void setCelebrationTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_CELEBRATION_TICKS, i);
 	}
 
 	private void decrementCelebrationTicks()
 	{
-		int pow = this.dataWatcher.getWatchableObjectInt(17);
-		this.dataWatcher.updateObject(17, --pow);
+		int pow = this.dataWatcher.getWatchableObjectInt(DW_CELEBRATION_TICKS);
+		this.dataWatcher.updateObject(DW_CELEBRATION_TICKS, --pow);
 	}
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void decrementAttackTime()
 	{
-		int pow = this.dataWatcher.getWatchableObjectInt(16);
-		this.dataWatcher.updateObject(16, --pow);
+		int pow = this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, --pow);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	@Override

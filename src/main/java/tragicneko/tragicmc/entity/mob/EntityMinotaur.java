@@ -28,6 +28,8 @@ import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EntityMinotaur extends TragicMob {
+	
+	public static final int DW_CHARGE_TICKS = 20;
 
 	public EntityMinotaur(World par1World) {
 		super(par1World);
@@ -48,17 +50,17 @@ public class EntityMinotaur extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_CHARGE_TICKS, Integer.valueOf(0));
 	}
 
 	public int getChargeTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_CHARGE_TICKS);
 	}
 
 	private void setChargeTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_CHARGE_TICKS, i);
 	}
 
 	private void decrementChargeTicks()

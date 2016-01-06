@@ -12,6 +12,8 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 
 public class EntityAggro extends EntityRagr implements TragicMiniBoss {
+	
+	public static final int DW_TANTRUM_TICKS = 22;
 
 	public EntityAggro(World par1World) {
 		super(par1World);
@@ -26,17 +28,17 @@ public class EntityAggro extends EntityRagr implements TragicMiniBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_TANTRUM_TICKS, Integer.valueOf(0));
 	}
 
 	public int getTantrumTicks() 
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_TANTRUM_TICKS);
 	}
 
 	private void setTantrumTicks(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_TANTRUM_TICKS, i);
 	}
 
 	@Override
@@ -59,7 +61,7 @@ public class EntityAggro extends EntityRagr implements TragicMiniBoss {
 
 	@Override
 	protected void setRagrType(byte b) {
-		this.dataWatcher.updateObject(17, (byte) 1);
+		this.dataWatcher.updateObject(DW_RAGR_TYPE, (byte) 1);
 		this.setSize(1.335F * 1.585F, 2.675F * 1.585F);
 	}
 

@@ -33,6 +33,10 @@ import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 
 public class EntityPsygote extends TragicMob {
 
+	public static final int DW_FIRING_TICKS = 20;
+	public static final int DW_SWITCH_TICKS = 21;
+	public static final int DW_HURT_TIME = 22;
+	
 	private AttributeModifier mod = new AttributeModifier(UUID.fromString("1e8bc939-443c-46b6-8158-0d53513a47e6"), "psygoteSpeedDebuff", TragicConfig.modifier[8], 0);
 	private boolean hasTeleported = false; //keep track for achievement
 
@@ -55,19 +59,19 @@ public class EntityPsygote extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FIRING_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_SWITCH_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HURT_TIME, Integer.valueOf(0));
 	}
 
 	public int getFiringTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_FIRING_TICKS);
 	}
 
 	private void setFiringTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_FIRING_TICKS, i);
 	}
 
 	private void decrementFiringTicks()
@@ -77,12 +81,12 @@ public class EntityPsygote extends TragicMob {
 
 	public int getSwitchTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_SWITCH_TICKS);
 	}
 
 	private void setSwitchTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_SWITCH_TICKS, i);
 	}
 
 	private void decrementSwitchTicks()
@@ -92,12 +96,12 @@ public class EntityPsygote extends TragicMob {
 
 	public int getHurtTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_HURT_TIME);
 	}
 
 	private void setHurtTime(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_HURT_TIME, i);
 	}
 
 	private void decrementHurtTime()

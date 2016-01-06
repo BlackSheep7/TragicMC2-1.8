@@ -20,6 +20,10 @@ import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
+	
+	public static final int DW_SHIELDS = 25;
+	public static final int DW_SPIN_TICKS_2 = 26;
+	public static final int DW_SPIN_TICKS_3 = 27;
 
 	private AttributeModifier mod = new AttributeModifier(UUID.fromString("3466b84d-0df6-4d6c-93cf-0fd4bedc77e9"), "megaCryseNoShieldAttackBuff", TragicConfig.modifier[5], 0);
 	private int timeSinceFirstBreak;
@@ -39,53 +43,53 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(21, Integer.valueOf(0));
-		this.dataWatcher.addObject(22, Integer.valueOf(0));
-		this.dataWatcher.addObject(23, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_SHIELDS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_SPIN_TICKS_2, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_SPIN_TICKS_3, Integer.valueOf(0));
 	}
 
 	@Override
 	protected void setCryseType(byte b)
 	{
-		this.dataWatcher.updateObject(17, (byte) 1);
+		this.dataWatcher.updateObject(DW_CRYSE_TYPE, (byte) 1);
 		this.setSize(1.435F, 3.075F);
 	}
 
 	public int getShields()
 	{
-		return this.dataWatcher.getWatchableObjectInt(21);
+		return this.dataWatcher.getWatchableObjectInt(DW_SHIELDS);
 	}
 
 	public void setShields(int i)
 	{
-		this.dataWatcher.updateObject(21, i);
+		this.dataWatcher.updateObject(DW_SHIELDS, i);
 	}
 
 	public int getSpinTicks2()
 	{
-		return this.dataWatcher.getWatchableObjectInt(22);
+		return this.dataWatcher.getWatchableObjectInt(DW_SPIN_TICKS_2);
 	}
 
 	public void setSpinTicks2(int i)
 	{
-		this.dataWatcher.updateObject(22, i);
+		this.dataWatcher.updateObject(DW_SPIN_TICKS_2, i);
 	}
 
 	public int getSpinTicks3()
 	{
-		return this.dataWatcher.getWatchableObjectInt(23);
+		return this.dataWatcher.getWatchableObjectInt(DW_SPIN_TICKS_3);
 	}
 
 	public void setSpinTicks3(int i)
 	{
-		this.dataWatcher.updateObject(23, i);
+		this.dataWatcher.updateObject(DW_SPIN_TICKS_3, i);
 	}
 
 	@Override
 	protected void decrementSpinTicks()
 	{
 		int pow = this.getSpinTicks();
-		if (pow > 0) this.dataWatcher.updateObject(16, --pow);
+		if (pow > 0) this.dataWatcher.updateObject(DW_SPIN_TICKS, --pow);
 		pow = this.getSpinTicks2();
 		if (pow > 0) this.setSpinTicks2(--pow);
 		pow = this.getSpinTicks3();
@@ -103,7 +107,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	{
 		if (rand.nextBoolean())
 		{
-			this.dataWatcher.updateObject(16, i);
+			this.dataWatcher.updateObject(DW_SPIN_TICKS, i);
 		}
 		else
 		{
@@ -177,7 +181,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 
 		if (result)
 		{
-			this.dataWatcher.updateObject(16, 0);
+			this.dataWatcher.updateObject(DW_SPIN_TICKS, 0);
 			this.setSpinTicks2(0);
 			this.setSpinTicks3(0);
 		}
@@ -202,7 +206,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("spinTicks")) this.dataWatcher.updateObject(16, tag.getInteger("spinTicks"));
+		if (tag.hasKey("spinTicks")) this.dataWatcher.updateObject(DW_SPIN_TICKS, tag.getInteger("spinTicks"));
 		if (tag.hasKey("spinTicks2")) this.setSpinTicks2(tag.getInteger("spinTicks2"));
 		if (tag.hasKey("spinTicks3")) this.setSpinTicks3(tag.getInteger("spinTicks3"));
 	}

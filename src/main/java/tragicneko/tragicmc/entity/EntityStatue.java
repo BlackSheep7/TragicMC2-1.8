@@ -35,6 +35,11 @@ import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 
 public class EntityStatue extends Entity {
+	
+	public static final int DW_MOB_ID = 5;
+	public static final int DW_TEXTURE_ID = 6;
+	public static final int DW_ROTATION = 7;
+	public static final int DW_ANIMATED = 8;
 
 	public EntityStatue(World world) {
 		super(world);
@@ -76,48 +81,48 @@ public class EntityStatue extends Entity {
 
 	public int getMobID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(2);
+		return this.dataWatcher.getWatchableObjectInt(DW_MOB_ID);
 	}
 
 	public void setMobID(int i)
 	{
-		this.dataWatcher.updateObject(2, i);
+		this.dataWatcher.updateObject(DW_MOB_ID, i);
 	}
 
 	public int getTextureID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(3);
+		return this.dataWatcher.getWatchableObjectInt(DW_TEXTURE_ID);
 	}
 
 	public void setTextureID(int i)
 	{
-		this.dataWatcher.updateObject(3, i);
+		this.dataWatcher.updateObject(DW_TEXTURE_ID, i);
 	}
 
 	public void incrementRotationAngle()
 	{
-		float pow = this.dataWatcher.getWatchableObjectFloat(4) + 45.0F;
+		float pow = this.dataWatcher.getWatchableObjectFloat(DW_ROTATION) + 45.0F;
 		this.setRotation(pow);
 	}
 
 	public void setRotation(float f)
 	{
-		this.dataWatcher.updateObject(4, Math.abs(f) % 360.0F);
+		this.dataWatcher.updateObject(DW_ROTATION, Math.abs(f) % 360.0F);
 	}
 
 	public float getRotation()
 	{
-		return this.dataWatcher.getWatchableObjectFloat(4);
+		return this.dataWatcher.getWatchableObjectFloat(DW_ROTATION);
 	}
 
 	public void setAnimated(boolean flag)
 	{
-		this.dataWatcher.updateObject(5, flag ? 1 : 0);
+		this.dataWatcher.updateObject(DW_ANIMATED, flag ? (byte) 1 : (byte) 0);
 	}
 
 	public boolean getAnimated()
 	{
-		return this.dataWatcher.getWatchableObjectInt(5) == 1;
+		return this.dataWatcher.getWatchableObjectInt(DW_ANIMATED) == 1;
 	}
 
 	@Override
@@ -142,10 +147,10 @@ public class EntityStatue extends Entity {
 
 	@Override
 	protected void entityInit() {
-		this.dataWatcher.addObject(2, Integer.valueOf(0));
-		this.dataWatcher.addObject(3, Integer.valueOf(0));
-		this.dataWatcher.addObject(4, Float.valueOf(0));
-		this.dataWatcher.addObject(5, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_MOB_ID, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_TEXTURE_ID, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ROTATION, Float.valueOf(0));
+		this.dataWatcher.addObject(DW_ANIMATED, (byte) 0);
 	}
 
 	@Override
@@ -153,7 +158,7 @@ public class EntityStatue extends Entity {
 		if (tag.hasKey("mobID")) this.setMobID(tag.getInteger("mobID"));
 		if (tag.hasKey("rotation")) this.setRotation(tag.getFloat("rotation"));
 		if (tag.hasKey("textureID")) this.setTextureID(tag.getInteger("textureID"));
-		if (tag.hasKey("animated")) this.setAnimated(tag.getInteger("animated") == 1);
+		if (tag.hasKey("animated")) this.setAnimated(tag.getByte("animated") == 1);
 	}
 
 	@Override

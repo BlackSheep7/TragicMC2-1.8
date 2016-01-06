@@ -26,6 +26,9 @@ import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityArchangel extends TragicMob {
+	
+	public static final int DW_HOVER_TICKS = 20;
+	public static final int DW_TARGET_ID = 21;
 
 	public int courseChangeCooldown;
 	public double waypointX;
@@ -96,28 +99,28 @@ public class EntityArchangel extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //hover/laser ticks
-		this.dataWatcher.addObject(17, Integer.valueOf(0)); //target id
+		this.dataWatcher.addObject(DW_HOVER_TICKS, Integer.valueOf(0)); //hover/laser ticks
+		this.dataWatcher.addObject(DW_TARGET_ID, Integer.valueOf(0)); //target id
 	}
 
 	private void setHoverTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_HOVER_TICKS, i);
 	}
 
 	public int getHoverTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_HOVER_TICKS);
 	}
 
 	private void setTargetId(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_TARGET_ID, i);
 	}
 
 	public int getTargetId()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_TARGET_ID);
 	}
 
 	@Override

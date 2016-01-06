@@ -40,6 +40,11 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 
 public class EntityTragicNeko extends TragicMob {
 
+	public static final int DW_FIRING_TICKS = 20;
+	public static final int DW_THROWING_TICKS = 21;
+	public static final int DW_ATTACK_TIME = 22;
+	public static final int DW_FLICK_TIME = 23;
+	
 	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", TragicConfig.modifier[9], 0);
 
 	public EntityTragicNeko(World par1World) {
@@ -66,20 +71,20 @@ public class EntityTragicNeko extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FIRING_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_THROWING_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FLICK_TIME, Integer.valueOf(0));
 	}
 
 	public int getFiringTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_FIRING_TICKS);
 	}
 
 	private void setFiringTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_FIRING_TICKS, i);
 	}
 
 	private void incrementFiringTicks()
@@ -105,12 +110,12 @@ public class EntityTragicNeko extends TragicMob {
 
 	public int getThrowingTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_THROWING_TICKS);
 	}
 
 	private void setThrowingTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_THROWING_TICKS, i);
 	}
 
 	private void decrementThrowingTicks()
@@ -121,12 +126,12 @@ public class EntityTragicNeko extends TragicMob {
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	private void decrementAttackTime()
@@ -137,12 +142,12 @@ public class EntityTragicNeko extends TragicMob {
 
 	public int getFlickTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_FLICK_TIME);
 	}
 
 	private void setFlickTime(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_FLICK_TIME, i);
 	}
 
 	private void decrementFlickTime()

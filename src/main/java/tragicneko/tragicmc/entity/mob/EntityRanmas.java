@@ -22,6 +22,8 @@ import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 
 public class EntityRanmas extends TragicMob {
 
+	public static final int DW_CHARGE_TICKS = 20;
+	
 	private double[] motions = new double[] {0, 0, 0};
 	private int chargeBuffer = 120;
 
@@ -80,17 +82,17 @@ public class EntityRanmas extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //charge ticks
+		this.dataWatcher.addObject(DW_CHARGE_TICKS, Integer.valueOf(0)); //charge ticks
 	}
 
 	private void setChargeTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_CHARGE_TICKS, i);
 	}
 
 	public int getChargeTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_CHARGE_TICKS);
 	}
 
 	@Override

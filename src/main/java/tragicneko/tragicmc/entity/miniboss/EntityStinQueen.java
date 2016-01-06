@@ -21,6 +21,8 @@ import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityStinQueen extends EntityGreaterStin {
+	
+	public static final int DW_FIRING_TICKS = 25;
 
 	public EntityStinQueen(World par1World) {
 		super(par1World);
@@ -56,17 +58,17 @@ public class EntityStinQueen extends EntityGreaterStin {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(21, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FIRING_TICKS, Integer.valueOf(0));
 	}
 
 	public int getFiringTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(21);
+		return this.dataWatcher.getWatchableObjectInt(DW_FIRING_TICKS);
 	}
 
 	protected void setFiringTicks(int i)
 	{
-		this.dataWatcher.updateObject(21, i);
+		this.dataWatcher.updateObject(DW_FIRING_TICKS, i);
 	}
 
 	protected void decrementFiringTicks()

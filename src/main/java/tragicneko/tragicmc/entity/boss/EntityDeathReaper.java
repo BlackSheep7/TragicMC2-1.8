@@ -44,6 +44,12 @@ import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityDeathReaper extends TragicBoss {
+	
+	public static final int DW_DEMEANOR = 20;
+	public static final int DW_ATTACK_TIME = 21;
+	public static final int DW_HIT_TIME = 22;
+	public static final int DW_CLONE_TIME = 23;
+	public static final int DW_REAPER_TYPE = 24;
 
 	private boolean isBomb;
 
@@ -69,21 +75,21 @@ public class EntityDeathReaper extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
-		this.dataWatcher.addObject(20, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_DEMEANOR, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HIT_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_CLONE_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_REAPER_TYPE, Integer.valueOf(0));
 	}
 
 	public int getDemeanor()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_DEMEANOR);
 	}
 
 	private void setDemeanor(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_DEMEANOR, i);
 	}
 
 	private void decrementDemeanor()
@@ -105,12 +111,12 @@ public class EntityDeathReaper extends TragicBoss {
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	private void decrementAttackTime()
@@ -121,12 +127,12 @@ public class EntityDeathReaper extends TragicBoss {
 
 	public int getHitTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_HIT_TIME);
 	}
 
 	private void setHitTime(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_HIT_TIME, i);
 	}
 
 	private void incrementHitTime()
@@ -137,12 +143,12 @@ public class EntityDeathReaper extends TragicBoss {
 
 	private int getCloneTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_CLONE_TIME);
 	}
 
 	private void setCloneTime(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_CLONE_TIME, i);
 	}
 
 	private void incrementCloneTime()
@@ -153,12 +159,12 @@ public class EntityDeathReaper extends TragicBoss {
 
 	public int getReaperType()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_REAPER_TYPE);
 	}
 
 	private void setReaperType(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_REAPER_TYPE, i);
 		if (i == 0) this.isBomb = false;
 	}
 

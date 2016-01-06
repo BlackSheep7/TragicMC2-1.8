@@ -12,6 +12,8 @@ import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 
 public class EntityStinKing extends EntityGreaterStin {
+	
+	public static final int DW_FIRING_TICKS = 25;
 
 	public EntityStinKing(World par1World) {
 		super(par1World);
@@ -36,17 +38,17 @@ public class EntityStinKing extends EntityGreaterStin {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(21, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FIRING_TICKS, Integer.valueOf(0));
 	}
 
 	public int getFiringTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(21);
+		return this.dataWatcher.getWatchableObjectInt(DW_FIRING_TICKS);
 	}
 
 	protected void setFiringTicks(int i)
 	{
-		this.dataWatcher.updateObject(21, i);
+		this.dataWatcher.updateObject(DW_FIRING_TICKS, i);
 	}
 
 	protected void decrementFiringTicks()

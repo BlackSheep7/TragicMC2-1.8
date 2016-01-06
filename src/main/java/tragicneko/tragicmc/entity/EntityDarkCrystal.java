@@ -11,6 +11,9 @@ import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 
 public class EntityDarkCrystal extends Entity {
 
+	public static final int DW_ROTATION = 5;
+	public static final int DW_OWNER_ID = 6;
+	
 	public EntityEnyvil owner;
 
 	public EntityDarkCrystal(World world)
@@ -47,19 +50,19 @@ public class EntityDarkCrystal extends Entity {
 
 	@Override
 	protected void entityInit() {
-		this.dataWatcher.addObject(4, Integer.valueOf(rand.nextInt(10000)));
-		this.dataWatcher.addObject(5, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ROTATION, Integer.valueOf(rand.nextInt(10000)));
+		this.dataWatcher.addObject(DW_OWNER_ID, Integer.valueOf(0));
 	}
 
 	private void incrementRotation()
 	{
-		int pow = this.dataWatcher.getWatchableObjectInt(4);
-		this.dataWatcher.updateObject(4, ++pow);
+		int pow = this.dataWatcher.getWatchableObjectInt(DW_ROTATION);
+		this.dataWatcher.updateObject(DW_ROTATION, ++pow);
 	}
 
 	public int getRotationTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(4);
+		return this.dataWatcher.getWatchableObjectInt(DW_ROTATION);
 	}
 
 	private void updateOwner() {
@@ -76,12 +79,12 @@ public class EntityDarkCrystal extends Entity {
 
 	public int getOwnerID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(5);
+		return this.dataWatcher.getWatchableObjectInt(DW_OWNER_ID);
 	}
 
 	private void setOwnerID(int id)
 	{
-		this.dataWatcher.updateObject(5, id);
+		this.dataWatcher.updateObject(DW_OWNER_ID, id);
 		this.updateOwner();
 	}
 
@@ -93,7 +96,7 @@ public class EntityDarkCrystal extends Entity {
 
 		if (this.worldObj.isRemote)
 		{
-			for (int i = 0; i < 2; i++)
+			for (byte i = 0; i < 2; i++)
 			{
 				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_WITCH, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);

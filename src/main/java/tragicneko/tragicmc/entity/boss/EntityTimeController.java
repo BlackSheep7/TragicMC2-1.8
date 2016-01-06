@@ -45,6 +45,11 @@ import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityTimeController extends TragicBoss {
+	
+	public static final int DW_LEAP_TICKS = 20;
+	public static final int DW_FLUX_TICKS = 21;
+	public static final int DW_PURGE_TICKS = 22;
+	public static final int DW_SPAZ_TICKS = 23;
 
 	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "timeControllerSpeedBuff", TragicConfig.modifier[2], 0);
 
@@ -127,20 +132,20 @@ public class EntityTimeController extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //leap ticks
-		this.dataWatcher.addObject(17, Integer.valueOf(0)); //flux ticks
-		this.dataWatcher.addObject(18, Integer.valueOf(0)); //purge ticks
-		this.dataWatcher.addObject(19, Integer.valueOf(0)); //spaz ticks
+		this.dataWatcher.addObject(DW_LEAP_TICKS, Integer.valueOf(0)); //leap ticks
+		this.dataWatcher.addObject(DW_FLUX_TICKS, Integer.valueOf(0)); //flux ticks
+		this.dataWatcher.addObject(DW_PURGE_TICKS, Integer.valueOf(0)); //purge ticks
+		this.dataWatcher.addObject(DW_SPAZ_TICKS, Integer.valueOf(0)); //spaz ticks
 	}
 
 	public int getLeapTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_LEAP_TICKS);
 	}
 
 	private void setLeapTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_LEAP_TICKS, i);
 	}
 
 	private void decrementLeapTicks()
@@ -151,12 +156,12 @@ public class EntityTimeController extends TragicBoss {
 
 	public int getFluxTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_FLUX_TICKS);
 	}
 
 	private void setFluxTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_FLUX_TICKS, i);
 	}
 
 	private void decrementFluxTicks()
@@ -167,12 +172,12 @@ public class EntityTimeController extends TragicBoss {
 
 	public int getPurgeTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_PURGE_TICKS);
 	}
 
 	private void setPurgeTicks(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_PURGE_TICKS, i);
 	}
 
 	private void decrementPurgeTicks()
@@ -183,12 +188,12 @@ public class EntityTimeController extends TragicBoss {
 
 	public int getSpazTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_SPAZ_TICKS);
 	}
 
 	private void setSpazTicks(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_SPAZ_TICKS, i);
 	}
 
 	private void decrementSpazTicks()

@@ -31,6 +31,9 @@ import com.google.common.base.Predicate;
 
 public class EntityWisp extends TragicMob {
 	
+	public static final int DW_IDLE_STATE = 20;
+	public static final int DW_IDLE_TICKS = 21;
+	
 	public static final Predicate golemTarget = new Predicate() {
 		@Override
 		public boolean apply(Object input) {
@@ -59,28 +62,28 @@ public class EntityWisp extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //modifier
-		this.dataWatcher.addObject(17, Integer.valueOf(0)); //ticks
+		this.dataWatcher.addObject(DW_IDLE_STATE, Integer.valueOf(0)); //modifier
+		this.dataWatcher.addObject(DW_IDLE_TICKS, Integer.valueOf(0)); //ticks
 	}
 
 	public int getIdleTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_IDLE_TICKS);
 	}
 
 	public int getIdleState()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_IDLE_STATE);
 	}
 
 	private void setIdleTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_IDLE_TICKS, i);
 	}
 
 	private void setIdleState(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_IDLE_STATE, i);
 	}
 
 	private void decrementIdleTicks()

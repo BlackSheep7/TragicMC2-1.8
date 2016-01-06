@@ -40,6 +40,11 @@ import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.EntityKurayami;
 
 public class EntityKitsune extends TragicBoss {
+	
+	public static final int DW_FIRING_TICKS = 20;
+	public static final int DW_TAUNT_TICKS = 21;
+	public static final int DW_HURT_TIME = 22;
+	public static final int DW_ATTACK_TIME = 23;
 
 	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", TragicConfig.modifier[1], 0);
 
@@ -104,20 +109,20 @@ public class EntityKitsune extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FIRING_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_TAUNT_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HURT_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
 	}
 
 	public int getFiringTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_FIRING_TICKS);
 	}
 
 	private void setFiringTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_FIRING_TICKS, i);
 	}
 
 	private void decrementFiringTicks()
@@ -133,12 +138,12 @@ public class EntityKitsune extends TragicBoss {
 
 	public int getTauntTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_TAUNT_TICKS);
 	}
 
 	private void setTauntTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_TAUNT_TICKS, i);
 	}
 
 	private void decrementTauntTicks()
@@ -149,12 +154,12 @@ public class EntityKitsune extends TragicBoss {
 
 	public int getHurtTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_HURT_TIME);
 	}
 
 	private void setHurtTime(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_HURT_TIME, i);
 	}
 
 	private void decrementHurtTime()
@@ -165,12 +170,12 @@ public class EntityKitsune extends TragicBoss {
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	private void decrementAttackTime()

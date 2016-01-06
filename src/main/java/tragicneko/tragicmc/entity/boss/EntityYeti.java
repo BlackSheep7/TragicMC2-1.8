@@ -41,6 +41,14 @@ import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 
 public class EntityYeti extends TragicBoss {
+	
+	public static final int DW_DEMEANOR = 20;
+	public static final int DW_FROST_TICKS = 21;
+	public static final int DW_ROAR_TICKS = 22;
+	public static final int DW_HURT_TIME = 23;
+	public static final int DW_ATTACK_TIME = 24;
+	public static final int DW_CHARGE_TICKS = 25;
+	public static final int DW_THROWING_TICKS = 26;
 
 	private AttributeModifier mod = new AttributeModifier(UUID.fromString("b23cd5f8-df05-4c8d-91f4-b09f33b15049"), "yetiSpeedDebuff", TragicConfig.modifier[3], 0);
 	private int hitTime = 0;
@@ -96,23 +104,23 @@ public class EntityYeti extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
-		this.dataWatcher.addObject(20, Integer.valueOf(0));
-		this.dataWatcher.addObject(21, Integer.valueOf(0));
-		this.dataWatcher.addObject(22, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_DEMEANOR, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FROST_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ROAR_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HURT_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_CHARGE_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_THROWING_TICKS, Integer.valueOf(0));
 	}
 
 	public int getDemeanor()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_DEMEANOR);
 	}
 
 	private void setDemeanor(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_DEMEANOR, i);
 	}
 
 	private void incrementDemeanor()
@@ -134,12 +142,12 @@ public class EntityYeti extends TragicBoss {
 
 	public int getFrostTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_FROST_TICKS);
 	}
 
 	private void setFrostTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_FROST_TICKS, i);
 	}
 
 	private void decrementFrostTicks()
@@ -150,12 +158,12 @@ public class EntityYeti extends TragicBoss {
 
 	public int getRoarTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_ROAR_TICKS);
 	}
 
 	private void setRoarTicks(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_ROAR_TICKS, i);
 	}
 
 	private void decrementRoarTicks()
@@ -171,12 +179,12 @@ public class EntityYeti extends TragicBoss {
 
 	public int getHurtTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_HURT_TIME);
 	}
 
 	private void setHurtTime(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_HURT_TIME, i);
 	}
 
 	private void decrementHurtTime()
@@ -187,12 +195,12 @@ public class EntityYeti extends TragicBoss {
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	private void decrementAttackTime()
@@ -203,12 +211,12 @@ public class EntityYeti extends TragicBoss {
 
 	public int getChargeTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(21);
+		return this.dataWatcher.getWatchableObjectInt(DW_CHARGE_TICKS);
 	}
 
 	private void setChargeTicks(int i)
 	{
-		this.dataWatcher.updateObject(21, i);
+		this.dataWatcher.updateObject(DW_CHARGE_TICKS, i);
 	}
 
 	private void decrementChargeTicks()
@@ -224,12 +232,12 @@ public class EntityYeti extends TragicBoss {
 
 	public boolean getThrowing()
 	{
-		return this.dataWatcher.getWatchableObjectInt(22) == 1;
+		return this.dataWatcher.getWatchableObjectInt(DW_THROWING_TICKS) == 1;
 	}
 
 	private void setThrowing(boolean flag)
 	{
-		this.dataWatcher.updateObject(22, flag ? 1 : 0);
+		this.dataWatcher.updateObject(DW_THROWING_TICKS, flag ? 1 : 0);
 	}
 
 	@Override

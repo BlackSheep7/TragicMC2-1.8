@@ -33,7 +33,6 @@ import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
 import com.google.common.base.Predicate;
 
 public class EntityAvris extends TragicMob {
-
 	public int rarity = 1;
 	private int timeAlive = 0;
 	

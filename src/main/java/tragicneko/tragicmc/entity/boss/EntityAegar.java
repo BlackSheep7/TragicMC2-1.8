@@ -39,6 +39,16 @@ import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityAegar extends TragicBoss implements IMultiPart {
+	
+	public static final int DW_HYPERMODE = 20;
+	public static final int DW_STUN_TICKS = 21;
+	public static final int DW_SHOCKWAVE_TICKS = 22;
+	public static final int DW_ATTACK_TIME = 23;
+	public static final int DW_HURT_TIME = 24;
+	public static final int DW_LASER_TICKS = 25;
+	public static final int DW_MORTOR_TICKS = 26;
+	public static final int DW_AUTO_TICKS = 27;
+	public static final int DW_TARGET_ID = 28;
 
 	public EntityPart[] aegarParts;
 
@@ -89,35 +99,35 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
-		this.dataWatcher.addObject(20, Integer.valueOf(0));
-		this.dataWatcher.addObject(21, Integer.valueOf(0));
-		this.dataWatcher.addObject(22, Integer.valueOf(0));
-		this.dataWatcher.addObject(23, Integer.valueOf(0));
-		this.dataWatcher.addObject(24, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HYPERMODE, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_STUN_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_SHOCKWAVE_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HURT_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_LASER_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_MORTOR_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_AUTO_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_TARGET_ID, Integer.valueOf(0));
 	}
 
 	public boolean getHypermode()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16) == 1;
+		return this.dataWatcher.getWatchableObjectInt(DW_HYPERMODE) == 1;
 	}
 
 	private void setHypermode(boolean flag)
 	{
-		this.dataWatcher.updateObject(16, flag ? 1 : 0);
+		this.dataWatcher.updateObject(DW_HYPERMODE, flag ? 1 : 0);
 	}
 
 	public int getStunTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_STUN_TICKS);
 	}
 
 	private void setStunTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_STUN_TICKS, i);
 	}
 
 	private void decrementStunTicks()
@@ -127,12 +137,12 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 	public int getShockwaveTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_SHOCKWAVE_TICKS);
 	}
 
 	private void setShockwaveTicks(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_SHOCKWAVE_TICKS, i);
 	}
 
 	private void decrementShockwaveTicks()
@@ -142,12 +152,12 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	private void decrementAttackTime()
@@ -157,12 +167,12 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 	public int getHurtTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_HURT_TIME);
 	}
 
 	private void setHurtTime(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_HURT_TIME, i);
 	}
 
 	private void decrementHurtTime()
@@ -172,12 +182,12 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 	public int getLaserTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(21);
+		return this.dataWatcher.getWatchableObjectInt(DW_LASER_TICKS);
 	}
 
 	private void setLaserTicks(int i)
 	{
-		this.dataWatcher.updateObject(21, i);
+		this.dataWatcher.updateObject(DW_LASER_TICKS, i);
 	}
 
 	private void decrementLaserTicks()
@@ -187,12 +197,12 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 	public int getMortorTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(22);
+		return this.dataWatcher.getWatchableObjectInt(DW_MORTOR_TICKS);
 	}
 
 	private void setMortorTicks(int i)
 	{
-		this.dataWatcher.updateObject(22, i);
+		this.dataWatcher.updateObject(DW_MORTOR_TICKS, i);
 	}
 
 	private void decrementMortorTicks()
@@ -202,12 +212,12 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 	public int getAutoTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(23);
+		return this.dataWatcher.getWatchableObjectInt(DW_AUTO_TICKS);
 	}
 
 	private void setAutoTicks(int i)
 	{
-		this.dataWatcher.updateObject(23, i);
+		this.dataWatcher.updateObject(DW_AUTO_TICKS, i);
 	}
 
 	private void decrementAutoTicks()
@@ -217,12 +227,12 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 	public int getTargetID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(24);
+		return this.dataWatcher.getWatchableObjectInt(DW_TARGET_ID);
 	}
 
 	private void setTargetID(int i)
 	{
-		this.dataWatcher.updateObject(24, i);
+		this.dataWatcher.updateObject(DW_TARGET_ID, i);
 	}
 
 	private boolean canUseAbility()

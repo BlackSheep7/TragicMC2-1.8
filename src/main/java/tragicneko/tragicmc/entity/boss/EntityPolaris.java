@@ -45,6 +45,10 @@ import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import com.google.common.base.Predicate;
 
 public class EntityPolaris extends TragicBoss {
+	
+	public static final int DW_ATTACK_TIME = 20;
+	public static final int DW_DAYTIME = 21;
+	public static final int DW_CLONE = 22;
 
 	public static final Predicate golemTarget = new Predicate() {
 		@Override
@@ -128,19 +132,19 @@ public class EntityPolaris extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_DAYTIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_CLONE, Integer.valueOf(0));
 	}
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	private void decrementAttackTime()
@@ -155,22 +159,22 @@ public class EntityPolaris extends TragicBoss {
 	 */
 	public boolean getDaytime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17) == 0;
+		return this.dataWatcher.getWatchableObjectInt(DW_DAYTIME) == 0;
 	}
 
 	private void setDaytime(boolean flag)
 	{
-		this.dataWatcher.updateObject(17, flag ? 0 : 1);
+		this.dataWatcher.updateObject(DW_DAYTIME, flag ? 0 : 1);
 	}
 
 	public boolean isClone()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18) == 1;
+		return this.dataWatcher.getWatchableObjectInt(DW_CLONE) == 1;
 	}
 
 	public void setClone()
 	{
-		this.dataWatcher.updateObject(18, 1);
+		this.dataWatcher.updateObject(DW_CLONE, 1);
 	}
 
 	@Override

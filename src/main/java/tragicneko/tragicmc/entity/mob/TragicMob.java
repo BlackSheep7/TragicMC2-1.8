@@ -54,6 +54,9 @@ public abstract class TragicMob extends EntityMob
 {
 	protected TragicMiniBoss superiorForm;
 	
+	public static final int DW_CHANGE_STATE = 16;
+	public static final int DW_CORRUPTION_TICKS = 17;
+	
 	public static final Predicate playerTarget = new Predicate() {
 		@Override
 		public boolean apply(Object input) {
@@ -82,19 +85,19 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	protected void entityInit()
 	{
-		super.entityInit(); //TODO fix datawatcher values, 15 is apparently used by vanilla
-		this.dataWatcher.addObject(14, Byte.valueOf((byte) 0));
-		this.dataWatcher.addObject(15, Integer.valueOf(0));
+		super.entityInit();
+		this.dataWatcher.addObject(DW_CHANGE_STATE, Byte.valueOf((byte) 0));
+		this.dataWatcher.addObject(DW_CORRUPTION_TICKS, Integer.valueOf(0));
 	}
 
 	public int getCorruptionTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(15);
+		return this.dataWatcher.getWatchableObjectInt(DW_CORRUPTION_TICKS);
 	}
 
 	protected void setCorruptionTicks(int i)
 	{
-		this.dataWatcher.updateObject(15, i);
+		this.dataWatcher.updateObject(DW_CORRUPTION_TICKS, i);
 	}
 
 	protected void incrementCorruptionTicks()
@@ -105,7 +108,11 @@ public abstract class TragicMob extends EntityMob
 
 	public boolean isChanging()
 	{
-		return this.dataWatcher.getWatchableObjectByte(14) == 1;
+		return this.dataWatcher.getWatchableObjectByte(DW_CHANGE_STATE) == 1;
+	}
+	
+	public void setChanging(boolean flag) {
+		this.dataWatcher.updateObject(DW_CHANGE_STATE, flag ? (byte) 1 : (byte) 0); 
 	}
 
 	@Override
@@ -191,12 +198,12 @@ public abstract class TragicMob extends EntityMob
 
 			if (this.canChange() && this.getCorruptionTicks() >= 400 && this.rand.nextInt(200) <= TragicConfig.mobTransformationChance && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
 			{
-				this.dataWatcher.updateObject(14, (byte) 1);
+				this.setChanging(true);
 			}
 		}
 		else if (this.canChange() && this.ticksExisted >= 6000 && this.ticksExisted % 20 == 0 && this.rand.nextInt(100) <= TragicConfig.mobTransformationChance)
 		{
-			this.dataWatcher.updateObject(14, (byte) 1);
+			this.setChanging(true);
 		}
 
 		if (this.getIllumination())
@@ -219,7 +226,7 @@ public abstract class TragicMob extends EntityMob
 			this.worldObj.spawnEntityInWorld(boss);
 			boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
 			boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
-			boss.dataWatcher.updateObject(14, (byte) 0);
+			boss.setChanging(false);
 			boss.playSound("tragicmc:random.change", 1.0F, 1.0F);
 		}
 	}
@@ -274,7 +281,7 @@ public abstract class TragicMob extends EntityMob
 	{
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("corruptionTicks")) this.setCorruptionTicks(tag.getInteger("corruptionTicks"));
-		if (tag.hasKey("changeState")) this.dataWatcher.updateObject(14, tag.getByte("changeState"));
+		if (tag.hasKey("changeState")) this.setChanging(tag.getByte("changeState") == 1);
 	}
 
 	@Override
@@ -282,7 +289,7 @@ public abstract class TragicMob extends EntityMob
 	{
 		super.writeEntityToNBT(tag);
 		tag.setInteger("corruptionTicks", this.getCorruptionTicks());
-		tag.setByte("changeState", this.dataWatcher.getWatchableObjectByte(14));
+		tag.setByte("changeState", this.isChanging() ? (byte) 1 : (byte) 0);
 	}
 
 	public boolean getMobGriefing()

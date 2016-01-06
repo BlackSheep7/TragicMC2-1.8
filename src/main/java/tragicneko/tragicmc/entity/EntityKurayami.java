@@ -37,6 +37,10 @@ import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EntityKurayami extends EntityGolem {
+	
+	public static final int DW_HURT_TIME = 20;
+	public static final int DW_ATTACK_TIME = 21;
+	public static final int DW_FIRING_TICKS = 22;
 
 	public EntityPlayer owner;
 	public int armorValue;
@@ -109,39 +113,39 @@ public class EntityKurayami extends EntityGolem {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(15, Integer.valueOf(0));
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HURT_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FIRING_TICKS, Integer.valueOf(0));
 	}
 
 	public int getHurtTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(15);
+		return this.dataWatcher.getWatchableObjectInt(DW_HURT_TIME);
 	}
 
 	private void setHurtTime(int i)
 	{
-		this.dataWatcher.updateObject(15, i);
+		this.dataWatcher.updateObject(DW_HURT_TIME, i);
 	}
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	public int getFiringTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_FIRING_TICKS);
 	}
 
 	private void setFiringTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_FIRING_TICKS, i);
 	}
 
 	@Override

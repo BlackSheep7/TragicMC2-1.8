@@ -36,6 +36,8 @@ import com.google.common.base.Predicate;
 
 public class EntityErkel extends TragicMob {
 	
+	public static final int DW_TEXTURE_ID = 20;
+	
 	public static final Predicate bossTarget = new Predicate() {
 		@Override
 		public boolean apply(Object o) {
@@ -61,7 +63,7 @@ public class EntityErkel extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.getDataWatcher().addObject(16, (byte) 0);
+		this.dataWatcher.addObject(DW_TEXTURE_ID, (byte) 0);
 	}
 
 	@Override
@@ -177,12 +179,12 @@ public class EntityErkel extends TragicMob {
 
 	private void setTextureId(byte b)
 	{
-		this.getDataWatcher().updateObject(16, b);
+		this.dataWatcher.updateObject(DW_TEXTURE_ID, b);
 	}
 
 	public byte getTextureId()
 	{
-		return this.getDataWatcher().getWatchableObjectByte(16);
+		return this.dataWatcher.getWatchableObjectByte(DW_TEXTURE_ID);
 	}
 
 	@Override

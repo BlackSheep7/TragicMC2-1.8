@@ -35,6 +35,11 @@ import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 
 public class EntityTox extends TragicMob {
+	
+	public static final int DW_TOX_TYPE = 20;
+	public static final int DW_FIRING_TICKS = 21;
+	public static final int DW_ATTACK_TIME = 22;
+	public static final int DW_WIGGLE_TIME = 23;
 
 	public EntityTox(World par1World) {
 		super(par1World);
@@ -57,20 +62,20 @@ public class EntityTox extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, (byte) 0);
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_TOX_TYPE, (byte) 0);
+		this.dataWatcher.addObject(DW_FIRING_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_WIGGLE_TIME, Integer.valueOf(0));
 	}
 
 	public byte getToxType()
 	{
-		return this.dataWatcher.getWatchableObjectByte(16);
+		return this.dataWatcher.getWatchableObjectByte(DW_TOX_TYPE);
 	}
 
 	protected void setToxType(byte b)
 	{
-		this.dataWatcher.updateObject(16, b);
+		this.dataWatcher.updateObject(DW_TOX_TYPE, b);
 
 		if (b == 0)
 		{
@@ -85,12 +90,12 @@ public class EntityTox extends TragicMob {
 
 	public int getFiringTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_FIRING_TICKS);
 	}
 
 	protected void setFiringTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_FIRING_TICKS, i);
 	}
 
 	protected void decrementFiringTicks()
@@ -106,12 +111,12 @@ public class EntityTox extends TragicMob {
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	protected void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	protected void decrementAttackTime()
@@ -122,12 +127,12 @@ public class EntityTox extends TragicMob {
 
 	public int getWiggleTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_WIGGLE_TIME);
 	}
 
 	protected void setWiggleTime(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_WIGGLE_TIME, i);
 	}
 
 	protected void decrementWiggleTime()

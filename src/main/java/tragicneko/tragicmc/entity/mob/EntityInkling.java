@@ -30,6 +30,8 @@ import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityAIBurn;
 
 public class EntityInkling extends TragicMob {
+	
+	public static final int DW_VISIBLE_TICKS = 20;
 
 	public EntityInkling(World par1World) {
 		super(par1World);
@@ -51,17 +53,17 @@ public class EntityInkling extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_VISIBLE_TICKS, Integer.valueOf(0));
 	}
 
 	public int getVisibleTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_VISIBLE_TICKS);
 	}
 
 	private void setVisibleTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_VISIBLE_TICKS, i);
 	}
 
 	private void decrementVisibleTicks()

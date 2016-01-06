@@ -16,6 +16,8 @@ import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 
 public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
+	
+	public static final int DW_CHARGE_TICKS = 24;
 
 	public EntityGreaterStin(World par1World) {
 		super(par1World);
@@ -45,17 +47,17 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(20, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_CHARGE_TICKS, Integer.valueOf(0));
 	}
 
 	public int getChargeTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_CHARGE_TICKS);
 	}
 
 	protected void setChargeTicks(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_CHARGE_TICKS, i);
 	}
 
 	protected void decrementChargeTicks()

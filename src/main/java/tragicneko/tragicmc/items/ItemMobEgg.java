@@ -1,8 +1,12 @@
 package tragicneko.tragicmc.items;
 
+import java.util.Iterator;
+import java.util.List;
+
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
@@ -11,7 +15,6 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
@@ -225,5 +228,16 @@ public class ItemMobEgg extends Item
     private static TragicEntityList.EntityEggInfo getEggInfo(ItemStack stack)
     {
         return (TragicEntityList.EntityEggInfo)EntityList.entityEggs.get(stack.getMetadata());
+    }
+    
+    public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
+    {
+        Iterator iterator = TragicEntityList.entityEggs.values().iterator();
+
+        while (iterator.hasNext())
+        {
+            TragicEntityList.EntityEggInfo entityegginfo = (TragicEntityList.EntityEggInfo)iterator.next();
+            subItems.add(new ItemStack(itemIn, 1, entityegginfo.spawnedID));
+        }
     }
 }

@@ -29,6 +29,8 @@ import tragicneko.tragicmc.entity.projectile.EntityIreEnergy;
 import com.google.common.base.Predicate;
 
 public class EntityIre extends TragicMob {
+	
+	public static final int DW_TARGET_ID = 20;
 
 	public static byte ireTick; //ticks per world tick, each Ire will either heal or attack at this time and take that opportunity to update their target
 	public static short ireNetSize; //updated by each Ire currently being updated in the world, whatever Ire has the most Ire near them will be the value set per Ire tick
@@ -74,18 +76,17 @@ public class EntityIre extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //kill ticks
-		this.dataWatcher.addObject(17, Integer.valueOf(0)); //target id
+		this.dataWatcher.addObject(DW_TARGET_ID, Integer.valueOf(0)); //target id
 	}
 
 	private void setTargetId(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_TARGET_ID, i);
 	}
 
 	public int getTargetId()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_TARGET_ID);
 	}
 
 	@Override

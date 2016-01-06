@@ -42,6 +42,11 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 
 public class EntityJabba extends TragicMob {
 
+	public static final int DW_ANGER_TICKS = 20;
+	public static final int DW_JABBA_TYPE = 21;
+	public static final int DW_ATTACK_TICKS = 22;
+	public static final int DW_WORM_TICKS = 23;
+	
 	private static AttributeModifier lowHealthDamageBoost = new AttributeModifier(UUID.fromString("8c159dc4-aacf-461f-b3e9-66dc9fbf6e99"), "jabbaLowHealthDamageBoost", TragicConfig.modifier[6], 0);
 
 	public EntityJabba(World par1World) {
@@ -73,20 +78,20 @@ public class EntityJabba extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, (byte) 0);
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ANGER_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_JABBA_TYPE, (byte) 0);
+		this.dataWatcher.addObject(DW_ATTACK_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_WORM_TICKS, Integer.valueOf(0));
 	}
 
 	protected void setAngerTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_ANGER_TICKS, i);
 	}
 
 	public int getAngerTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_ANGER_TICKS);
 	}
 
 	protected void incrementAngerTicks()
@@ -103,12 +108,12 @@ public class EntityJabba extends TragicMob {
 
 	public byte getJabbaType()
 	{
-		return this.dataWatcher.getWatchableObjectByte(17);
+		return this.dataWatcher.getWatchableObjectByte(DW_JABBA_TYPE);
 	}
 
 	protected void setJabbaType(byte b)
 	{
-		this.dataWatcher.updateObject(17, b);
+		this.dataWatcher.updateObject(DW_JABBA_TYPE, b);
 		this.isImmuneToFire = b == 0;
 		if (b == 1) this.experienceValue = 6;
 
@@ -124,12 +129,12 @@ public class EntityJabba extends TragicMob {
 
 	public int getAttackTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TICKS);
 	}
 
 	protected void setAttackTicks(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TICKS, i);
 	}
 
 	protected void decrementAttackTicks()
@@ -140,12 +145,12 @@ public class EntityJabba extends TragicMob {
 
 	public int getWormTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_WORM_TICKS);
 	}
 
 	protected void setWormTicks(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_WORM_TICKS, i);
 	}
 
 	protected void decrementWormTicks()

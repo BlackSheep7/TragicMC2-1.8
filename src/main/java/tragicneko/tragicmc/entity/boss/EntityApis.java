@@ -43,6 +43,12 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityApis extends TragicBoss {
 	
+	public static final int DW_CHARGE_TICKS = 20;
+	public static final int DW_REFLECTION_TICKS = 21;
+	public static final int DW_STOMP_TICKS = 22;
+	public static final int DW_ATTACK_TIME = 23;
+	public static final int DW_HURT_TIME = 24;
+	
 	public int reflectionBuffer;
 	private AttributeModifier mod = new AttributeModifier(UUID.fromString("08bd1ef5-8f24-4ee4-9ffa-10cdef76b7ae"), "apisStompDebuff", TragicConfig.modifier[13], 0);
 
@@ -103,21 +109,21 @@ public class EntityApis extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
-		this.dataWatcher.addObject(20, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_CHARGE_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_REFLECTION_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_STOMP_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HURT_TIME, Integer.valueOf(0));
 	}
 
 	public int getChargeTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_CHARGE_TICKS);
 	}
 
 	private void setChargeTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_CHARGE_TICKS, i);
 	}
 
 	private void decrementChargeTicks()
@@ -133,12 +139,12 @@ public class EntityApis extends TragicBoss {
 
 	public int getReflectionTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_REFLECTION_TICKS);
 	}
 
 	private void setReflectionTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_REFLECTION_TICKS, i);
 	}
 
 	private void decrementReflectionTicks()
@@ -154,12 +160,12 @@ public class EntityApis extends TragicBoss {
 
 	public int getStompTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_STOMP_TICKS);
 	}
 
 	private void setStompTicks(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_STOMP_TICKS, i);
 	}
 
 	private void decrementStompTicks()
@@ -175,12 +181,12 @@ public class EntityApis extends TragicBoss {
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	private void decrementAttackTime()
@@ -191,12 +197,12 @@ public class EntityApis extends TragicBoss {
 
 	private void setHurtTime(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_HURT_TIME, i);
 	}
 
 	public int getHurtTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_HURT_TIME);
 	}
 
 	@Override

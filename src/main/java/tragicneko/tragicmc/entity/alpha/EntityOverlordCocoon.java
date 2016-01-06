@@ -34,6 +34,8 @@ import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityOverlordCocoon extends TragicBoss {
+	
+	public static final int DW_PHASE_TICKS = 20;
 
 	private boolean phaseChange = false;
 	private float phaseDamage;
@@ -106,17 +108,17 @@ public class EntityOverlordCocoon extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //phaseTicks
+		this.dataWatcher.addObject(DW_PHASE_TICKS, Integer.valueOf(0)); //phaseTicks
 	}
 
 	private void setPhaseTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_PHASE_TICKS, i);
 	}
 
 	public int getPhaseTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_PHASE_TICKS);
 	}
 
 	@Override

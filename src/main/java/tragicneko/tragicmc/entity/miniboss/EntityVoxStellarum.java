@@ -27,6 +27,9 @@ import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 
 public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
+	
+	public static final int DW_SPIN_TICKS = 25;
+	public static final int DW_HEAL_TICKS = 26;
 
 	public EntityVoxStellarum(World par1World) {
 		super(par1World);
@@ -74,25 +77,25 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	public void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(21, Integer.valueOf(0));
-		this.dataWatcher.addObject(22, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_SPIN_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HEAL_TICKS, Integer.valueOf(0));
 	}
 
 	@Override
 	protected void setNorVoxType(byte b)
 	{
-		this.dataWatcher.updateObject(17, (byte) 0);
+		this.dataWatcher.updateObject(DW_NOR_VOX_TYPE, (byte) 0);
 		this.setSize(2.475F, 2.725F);
 	}
 
 	public int getSpinTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(21);
+		return this.dataWatcher.getWatchableObjectInt(DW_SPIN_TICKS);
 	}
 
 	private void setSpinTicks(int i)
 	{
-		this.dataWatcher.updateObject(21, i);
+		this.dataWatcher.updateObject(DW_SPIN_TICKS, i);
 	}
 
 	private void decrementSpinTicks()
@@ -108,12 +111,12 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 
 	public int getHealTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(22);
+		return this.dataWatcher.getWatchableObjectInt(DW_HEAL_TICKS);
 	}
 
 	private void setHealTicks(int i)
 	{
-		this.dataWatcher.updateObject(22, i);
+		this.dataWatcher.updateObject(DW_HEAL_TICKS, i);
 	}
 
 	public boolean isHealing()

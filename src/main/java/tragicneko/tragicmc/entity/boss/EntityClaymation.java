@@ -61,6 +61,12 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityClaymation extends TragicBoss {
+	
+	public static final int DW_ACTUAL_HEALTH = 20;
+	public static final int DW_FORM = 21;
+	public static final int DW_UTILITY = 22;
+	public static final int DW_UTILITY_2 = 23;
+	public static final int DW_UTILITY_3 = 24;
 
 	private double[][] formValues = new double[][] {{claymationStats[0], claymationStats[1], claymationStats[2], claymationStats[3], claymationStats[4]}, //claymation
 			{minotaurStats[0], minotaurStats[1], minotaurStats[2], minotaurStats[3], minotaurStats[4]}, //minotaur
@@ -117,26 +123,26 @@ public class EntityClaymation extends TragicBoss {
 	{
 		super.entityInit();
 		float f = (float) claymationStats[0];
-		this.dataWatcher.addObject(16, Float.valueOf(f)); //Claymation's actual health
-		this.dataWatcher.addObject(17, Integer.valueOf(0)); //current form
-		this.dataWatcher.addObject(18, Integer.valueOf(0)); //utility form integer
-		this.dataWatcher.addObject(19, Integer.valueOf(0)); //utility form integer 2
-		this.dataWatcher.addObject(20, Integer.valueOf(0)); //utility form integer 3
+		this.dataWatcher.addObject(DW_ACTUAL_HEALTH, Float.valueOf(f)); //Claymation's actual health
+		this.dataWatcher.addObject(DW_FORM, Integer.valueOf(0)); //current form
+		this.dataWatcher.addObject(DW_UTILITY, Integer.valueOf(0)); //utility form integer
+		this.dataWatcher.addObject(DW_UTILITY_2, Integer.valueOf(0)); //utility form integer 2
+		this.dataWatcher.addObject(DW_UTILITY_3, Integer.valueOf(0)); //utility form integer 3
 	}
 
 	private void updateHealth(float f)
 	{
-		this.dataWatcher.updateObject(16, f);
+		this.dataWatcher.updateObject(DW_ACTUAL_HEALTH, f);
 	}
 
 	public float getActualHealth()
 	{
-		return this.dataWatcher.getWatchableObjectFloat(16);
+		return this.dataWatcher.getWatchableObjectFloat(DW_ACTUAL_HEALTH);
 	}
 
 	private void setEntityForm(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_FORM, i);
 		this.formTicks = 0;
 
 		this.setFormAttributes();
@@ -185,14 +191,14 @@ public class EntityClaymation extends TragicBoss {
 	 */
 	public int getEntityForm()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_FORM);
 	}
 
 	private void resetUtilityIntegers()
 	{
-		this.dataWatcher.updateObject(18, 0);
-		this.dataWatcher.updateObject(19, 0);
-		this.dataWatcher.updateObject(20, 0);
+		this.dataWatcher.updateObject(DW_UTILITY, 0);
+		this.dataWatcher.updateObject(DW_UTILITY_2, 0);
+		this.dataWatcher.updateObject(DW_UTILITY_3, 0);
 	}
 
 	@Override
@@ -231,18 +237,17 @@ public class EntityClaymation extends TragicBoss {
 			}
 			else
 			{
-				this.dataWatcher.updateObject(18, 50);
+				this.setUtilityInt(50);
 				if (this.getHealth() < this.getMaxHealth())
 				{
 					this.heal(12.0F);
 					this.updateHealth(this.getHealth());
 				}
 			}
-
 		}
 		else if (this.formTicks >= 600 && this.getEntityForm() != 0)
 		{
-			if (this.getAttackTarget() != null)
+			if (this.getAttackTarget() != null && TragicConfig.claymationTransformation)
 			{
 				this.setEntityForm(rand.nextInt(9) + 1);
 			}
@@ -1092,12 +1097,12 @@ public class EntityClaymation extends TragicBoss {
 
 	public int getUtilityInt()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_UTILITY);
 	}
 
 	private void setUtilityInt(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_UTILITY, i);
 	}
 
 	private void decrementUtilityInt()
@@ -1114,12 +1119,12 @@ public class EntityClaymation extends TragicBoss {
 
 	public int getUtilityInt2()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_UTILITY_2);
 	}
 
 	private void setUtilityInt2(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_UTILITY_2, i);
 	}
 
 	private void decrementUtilityInt2()
@@ -1130,12 +1135,12 @@ public class EntityClaymation extends TragicBoss {
 
 	public int getUtilityInt3()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_UTILITY_3);
 	}
 
 	private void setUtilityInt3(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_UTILITY_3, i);
 	}
 
 	private void decrementUtilityInt3()

@@ -36,6 +36,12 @@ import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 
 public class EntityCryse extends TragicMob {
+	
+	public static final int DW_SPIN_TICKS = 20;
+	public static final int DW_CRYSE_TYPE = 21;
+	public static final int DW_TEXTURE_ID = 22;
+	public static final int DW_ATTACK_TIME = 23;
+	public static final int DW_FLUTTER_TICKS = 24;
 
 	public EntityCryse(World par1World) {
 		super(par1World);
@@ -80,16 +86,16 @@ public class EntityCryse extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, (byte) 0);
-		this.dataWatcher.addObject(18, (byte) 0);
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
-		this.dataWatcher.addObject(20, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_SPIN_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_CRYSE_TYPE, (byte) 0);
+		this.dataWatcher.addObject(DW_TEXTURE_ID, (byte) 0);
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FLUTTER_TICKS, Integer.valueOf(0));
 	}
 
 	public int getSpinTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_SPIN_TICKS);
 	}
 
 	protected void decrementSpinTicks()
@@ -100,7 +106,7 @@ public class EntityCryse extends TragicMob {
 
 	protected void setSpinTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_SPIN_TICKS, i);
 	}
 
 	public boolean isSpinning()
@@ -110,12 +116,12 @@ public class EntityCryse extends TragicMob {
 
 	public byte getCryseType()
 	{
-		return this.dataWatcher.getWatchableObjectByte(17);
+		return this.dataWatcher.getWatchableObjectByte(DW_CRYSE_TYPE);
 	}
 
 	protected void setCryseType(byte b)
 	{
-		this.dataWatcher.updateObject(17, b);
+		this.dataWatcher.updateObject(DW_CRYSE_TYPE, b);
 
 		if (b == 0)
 		{
@@ -130,22 +136,22 @@ public class EntityCryse extends TragicMob {
 
 	public byte getTextureID()
 	{
-		return this.dataWatcher.getWatchableObjectByte(18);
+		return this.dataWatcher.getWatchableObjectByte(DW_TEXTURE_ID);
 	}
 
 	protected void setTextureID(byte b)
 	{
-		this.dataWatcher.updateObject(18, b);
+		this.dataWatcher.updateObject(DW_TEXTURE_ID, b);
 	}
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	protected void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	private void decrementAttackTime()
@@ -156,12 +162,12 @@ public class EntityCryse extends TragicMob {
 
 	public int getFlutterTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_FLUTTER_TICKS);
 	}
 
 	protected void setFlutterTicks(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_FLUTTER_TICKS, i);
 	}
 
 	private void decrementFlutterTicks()
@@ -229,7 +235,7 @@ public class EntityCryse extends TragicMob {
 	{
 		if (this.worldObj.isRemote) return false;
 
-		if (this.isSpinning()) this.setSpinTicks(0);
+		if (this.isSpinning()) this.dataWatcher.updateObject(DW_SPIN_TICKS, 0);
 		if (this.isFluttering()) this.setFlutterTicks(0);
 
 		if (par1DamageSource.isFireDamage())
@@ -281,7 +287,7 @@ public class EntityCryse extends TragicMob {
 
 		if (result)
 		{
-			if (this.isSpinning()) this.dataWatcher.updateObject(16, 0);
+			if (this.isSpinning()) this.setSpinTicks(0);
 			if (this.getFlutterTicks() > 0) this.setFlutterTicks(0);
 
 			if (par1Entity instanceof EntityLivingBase)

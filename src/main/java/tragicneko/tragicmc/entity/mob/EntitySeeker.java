@@ -28,6 +28,9 @@ import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntitySeeker extends TragicMob {
+	
+	public static final int DW_KILL_TICKS = 20;
+	public static final int DW_TARGET_ID = 21;
 
 	private int timeSinceTarget;
 	private boolean shouldRelocate;
@@ -77,28 +80,28 @@ public class EntitySeeker extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //kill ticks
-		this.dataWatcher.addObject(17, Integer.valueOf(0)); //target id
+		this.dataWatcher.addObject(DW_KILL_TICKS, Integer.valueOf(0)); //kill ticks
+		this.dataWatcher.addObject(DW_TARGET_ID, Integer.valueOf(0)); //target id
 	}
 
 	private void setKillTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_KILL_TICKS, i);
 	}
 
 	public int getKillTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_KILL_TICKS);
 	}
 
 	private void setTargetId(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_TARGET_ID, i);
 	}
 
 	public int getTargetId()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_TARGET_ID);
 	}
 
 	@Override

@@ -49,6 +49,9 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 
 public class EntityRagr extends TragicMob {
+	
+	public static final int DW_ANGER_TICKS = 20;
+	public static final int DW_RAGR_TYPE = 21;
 
 	public static Set crushableBlocks = Sets.newHashSet(new Block[] {Blocks.yellow_flower, Blocks.red_flower, Blocks.red_mushroom, Blocks.brown_mushroom, Blocks.tallgrass,
 			Blocks.leaves, Blocks.leaves2, TragicBlocks.HallowedLeaves, TragicBlocks.AshenLeaves, TragicBlocks.DarkLeaves, TragicBlocks.PaintedLeaves,
@@ -90,18 +93,18 @@ public class EntityRagr extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, (byte) 0);
+		this.dataWatcher.addObject(DW_ANGER_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_RAGR_TYPE, (byte) 0);
 	}
 
 	public int getAngerTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_ANGER_TICKS);
 	}
 
 	private void setAngerTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_ANGER_TICKS, i);
 	}
 
 	private void incrementAngerTicks()
@@ -118,12 +121,12 @@ public class EntityRagr extends TragicMob {
 	
 	public byte getRagrType() 
 	{
-		return this.dataWatcher.getWatchableObjectByte(17);
+		return this.dataWatcher.getWatchableObjectByte(DW_RAGR_TYPE);
 	}
 	
 	protected void setRagrType(byte b)
 	{
-		this.dataWatcher.updateObject(17, b);
+		this.dataWatcher.updateObject(DW_RAGR_TYPE, b);
 
 		if (b != 0)
 		{

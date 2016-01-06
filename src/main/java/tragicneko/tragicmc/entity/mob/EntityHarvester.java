@@ -24,6 +24,9 @@ import tragicneko.tragicmc.TragicEntities;
 
 public class EntityHarvester extends TragicMob {
 
+	private static final int DW_RELEASE_TICKS = 20;
+	private static final int DW_DIRECTION = 21;
+	
 	private int directionTicks;
 
 	public EntityHarvester(World par1World) {
@@ -65,28 +68,28 @@ public class EntityHarvester extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //should release
-		this.dataWatcher.addObject(17, Integer.valueOf(0)); //direction
+		this.dataWatcher.addObject(DW_RELEASE_TICKS, Integer.valueOf(0)); //should release
+		this.dataWatcher.addObject(DW_DIRECTION, Integer.valueOf(0)); //direction
 	}
 
 	private void setReleaseTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_RELEASE_TICKS, i);
 	}
 
 	public int getReleaseTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_RELEASE_TICKS);
 	}
 
 	private void setDirection(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_DIRECTION, i);
 	}
 
 	public int getDirection()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_DIRECTION);
 	}
 
 	@Override

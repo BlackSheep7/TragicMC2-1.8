@@ -38,6 +38,11 @@ import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityStin extends TragicMob {
+	
+	public static final int DW_AGE_TICKS = 20;
+	public static final int DW_CLIMBABLE = 21;
+	public static final int DW_CLIMB_DIRECTION = 22;
+	public static final int DW_GALLOP_TICKS = 23;
 
 	protected EntityAIBase targetPlayer = new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget);
 
@@ -72,20 +77,20 @@ public class EntityStin extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, (byte) 0);
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_AGE_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_CLIMBABLE, (byte) 0);
+		this.dataWatcher.addObject(DW_CLIMB_DIRECTION, (byte) 0);
+		this.dataWatcher.addObject(DW_GALLOP_TICKS, Integer.valueOf(0));
 	}
 
 	public int getAgeTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_AGE_TICKS);
 	}
 
 	protected void setAgeTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_AGE_TICKS, i);
 	}
 
 	protected void incrementAgeTicks()
@@ -118,12 +123,12 @@ public class EntityStin extends TragicMob {
 
 	protected void setCanClimb(boolean flag)
 	{
-		this.dataWatcher.updateObject(17, flag ? 1 : 0);
+		this.dataWatcher.updateObject(DW_CLIMBABLE, flag ? (byte) 1 : (byte) 0);
 	}
 
 	protected boolean canClimb()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17) == 1;
+		return this.dataWatcher.getWatchableObjectByte(DW_CLIMBABLE) == 1;
 	}
 
 	@Override
@@ -138,7 +143,7 @@ public class EntityStin extends TragicMob {
 	 */
 	public byte getClimbDirection()
 	{
-		return this.dataWatcher.getWatchableObjectByte(18);
+		return this.dataWatcher.getWatchableObjectByte(DW_CLIMB_DIRECTION);
 	}
 
 	/**
@@ -147,17 +152,17 @@ public class EntityStin extends TragicMob {
 	 */
 	protected void setClimbDirection(byte b)
 	{
-		this.dataWatcher.updateObject(18, b);
+		this.dataWatcher.updateObject(DW_CLIMB_DIRECTION, b);
 	}
 
 	public int getGallopTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_GALLOP_TICKS);
 	}
 
 	protected void setGallopTicks(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_GALLOP_TICKS, i);
 	}
 
 	public boolean isGalloping()

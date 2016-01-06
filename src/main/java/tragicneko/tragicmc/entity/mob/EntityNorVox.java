@@ -41,6 +41,12 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 
 public class EntityNorVox extends TragicMob {
 
+	public static final int DW_FIRING_TICKS = 20;
+	public static final int DW_TEXTURE_ID = 21;
+	public static final int DW_NOR_VOX_TYPE = 22;
+	public static final int DW_ATTACK_TIME = 23;
+	public static final int DW_NOD_TICKS = 24;
+	
 	protected AttributeModifier mod = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17"), "norVoxSpeedDebuff", TragicConfig.modifier[7], 0);
 
 	public EntityNorVox(World par1World) {
@@ -84,11 +90,11 @@ public class EntityNorVox extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, (byte) 0);
-		this.dataWatcher.addObject(18, (byte) 0);
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
-		this.dataWatcher.addObject(20, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_FIRING_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_NOR_VOX_TYPE, (byte) 0);
+		this.dataWatcher.addObject(DW_TEXTURE_ID, (byte) 0);
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_NOD_TICKS, Integer.valueOf(0));
 	}
 
 	@Override
@@ -99,12 +105,12 @@ public class EntityNorVox extends TragicMob {
 
 	public int getFiringTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_FIRING_TICKS);
 	}
 
 	protected void setFiringTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_FIRING_TICKS, i);
 	}
 
 	protected void decrementFiringTicks()
@@ -115,22 +121,22 @@ public class EntityNorVox extends TragicMob {
 
 	public byte getTextureID()
 	{
-		return this.dataWatcher.getWatchableObjectByte(18);
+		return this.dataWatcher.getWatchableObjectByte(DW_TEXTURE_ID);
 	}
 
 	protected void setTextureID(byte b)
 	{
-		this.dataWatcher.updateObject(18, b);
+		this.dataWatcher.updateObject(DW_TEXTURE_ID, b);
 	}
 
 	public byte getNorVoxType()
 	{
-		return this.dataWatcher.getWatchableObjectByte(17);
+		return this.dataWatcher.getWatchableObjectByte(DW_NOR_VOX_TYPE);
 	}
 
 	protected void setNorVoxType(byte b)
 	{
-		this.dataWatcher.updateObject(17, b);
+		this.dataWatcher.updateObject(DW_NOR_VOX_TYPE, b);
 
 		if (b == 0)
 		{
@@ -150,12 +156,12 @@ public class EntityNorVox extends TragicMob {
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	protected void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	protected void decrementAttackTime()
@@ -166,12 +172,12 @@ public class EntityNorVox extends TragicMob {
 
 	public int getNodTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_NOD_TICKS);
 	}
 
 	protected void setNodTicks(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_NOD_TICKS, i);
 	}
 
 	protected void decrementNodTicks()

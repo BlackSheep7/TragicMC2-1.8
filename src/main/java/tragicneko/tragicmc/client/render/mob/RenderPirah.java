@@ -30,8 +30,7 @@ public class RenderPirah extends RenderLiving {
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		EntityPirah pirah = (EntityPirah) entity;
-		float scale = pirah.getPirahType() == 0 ? 1.0F : 1.225F;
-		if (pirah.getTextureID() == 7) scale *= 1.5F;
+		float scale = pirah.getTextureID() == 7 ? 1.5F : 1.0F;
 		GL11.glScalef(scale, scale, scale);
 	}
 
@@ -44,7 +43,7 @@ public class RenderPirah extends RenderLiving {
 	{
 		int i = entity.getTextureID();
 		if (i > textures.length) i = 0;
-		return entity.getPirahType() == 0 ? textures[i] : textures2[i];
+		return textures[i];
 	}
 
 }
