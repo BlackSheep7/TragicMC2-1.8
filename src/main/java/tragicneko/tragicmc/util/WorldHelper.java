@@ -293,7 +293,7 @@ public class WorldHelper {
 		final int y = pos.getY();
 		for (int i = 0; y - i > 0; ++i)
 		{
-			if (world.getBlockState(pos.down(i)).getBlock().getMaterial().blocksMovement()) return i;
+			if (getBlock(world, pos.down(i)).getMaterial().blocksMovement()) return i;
 		}
 
 		return y;
@@ -302,5 +302,9 @@ public class WorldHelper {
 	public static BlockPos getBlockPos(Entity entity)
 	{
 		return new BlockPos(entity.posX, entity.posY, entity.posZ);
+	}
+	
+	public static Block getBlock(World world, BlockPos pos) {
+		return world.getBlockState(pos).getBlock();
 	}
 }

@@ -138,8 +138,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 					Xcoord += random.nextInt(8) - random.nextInt(8);
 					Zcoord += random.nextInt(8) - random.nextInt(8);
 					Ycoord += random.nextInt(2) - random.nextInt(2);
-					//TODO fix
-					//new WorldGenDeadBush(bush).generate(world, random, Xcoord, Ycoord, Zcoord);
+					new WorldGenCustomTallGrass(bush.getDefaultState()).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 				}
 			}
 			else if (trBiome instanceof BiomeGenDecayingWasteland)
@@ -149,8 +148,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 					Xcoord += random.nextInt(8) - random.nextInt(8);
 					Zcoord += random.nextInt(8) - random.nextInt(8);
 					Ycoord += random.nextInt(2) - random.nextInt(2);
-					//TODO fix
-					//new WorldGenDeadBush(TragicBlocks.DeadBush).generate(world, random, Xcoord, Ycoord, Zcoord);
+					new WorldGenCustomTallGrass(TragicBlocks.DeadBush.getDefaultState()).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 				}
 			}
 		}

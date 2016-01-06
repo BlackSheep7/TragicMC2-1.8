@@ -2,20 +2,19 @@ package tragicneko.tragicmc.worldgen.biome;
 
 import java.util.Random;
 
-import net.minecraft.world.World;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityTox;
-import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
-import tragicneko.tragicmc.worldgen.WorldGenLargePaintedTree;
-import tragicneko.tragicmc.worldgen.WorldGenPaintedShrubs;
-import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomHugeJungleTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomOakTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomShrubs;
+import tragicneko.tragicmc.worldgen.WorldGenCustomTallGrass;
 
 public class BiomeGenPaintedForest extends TragicBiome {
 
@@ -45,35 +44,39 @@ public class BiomeGenPaintedForest extends TragicBiome {
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)
 	{
-		return null; //new WorldGenTallGrass(TragicBlocks.PaintedTallGrass, 0);
+		return new WorldGenCustomTallGrass(TragicBlocks.PaintedTallGrass.getDefaultState());
 	}
 
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
+		IBlockState wood = TragicBlocks.PaintedWood.getDefaultState();
+		IBlockState leaf = TragicBlocks.PaintedLeaves.getDefaultState();
+		IBlockState vine = TragicBlocks.Glowvine.getDefaultState();
+		WorldGenCustomShrubs shrubs = new WorldGenCustomShrubs(wood, leaf);
 		if (variant == 1 || variant == 3)
 		{
 			if (rand.nextInt(4) != 0)
 			{
-				return new WorldGenPaintedShrubs();
+				return shrubs;
 			}
 			else
 			{
-				return new WorldGenPaintedTree(false, rand.nextBoolean());
+				return new WorldGenCustomOakTree(false, 4, wood, leaf);
 			}
 		}
 		else
 		{
 			if (rand.nextInt(8) != 0)
 			{
-				return new WorldGenLargePaintedTree(false, rand.nextInt(3) + 4, 10);
+				return new WorldGenCustomHugeJungleTree(false, rand.nextInt(3) + 4, 10, leaf, wood, vine);
 			}
 			else if (rand.nextInt(8) == 0)
 			{
-				return new WorldGenPaintedShrubs();
+				return shrubs;
 			}
 		}
 
-		return new WorldGenPaintedTree(false, rand.nextBoolean());
+		return new WorldGenCustomOakTree(false, 6, wood, leaf);
 	}
 }

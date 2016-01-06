@@ -28,13 +28,13 @@ public class SchematicCelestialTemple extends Schematic {
 	@Override
 	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
-		ArrayList<int[]> list;
+		ArrayList<BlockPos> list;
 		byte relays = (byte) (6 + (rand.nextInt(variant + 1) + 1) * (rand.nextInt(variant + 1) + 1));
 		Block block;
 		double regression = 0.88977745D;
 		double cutoff = 0.48943755D;
 		double size;
-		ArrayList<int[]> cands = new ArrayList<int[]>();
+		ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 		int yMax;
 		int Xcoord;
 		int Zcoord;
@@ -75,12 +75,12 @@ public class SchematicCelestialTemple extends Schematic {
 
 				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-				for (int[] coords2 : list)
+				for (BlockPos coords2 : list)
 				{
-					block = world.getBlockState(new BlockPos(coords2[0], coords2[1], coords2[2])).getBlock();
+					block = world.getBlockState(coords2).getBlock();
 					if (Structure.validBlocks.contains(block) && !cands.contains(coords2))
 					{
-						if (yMax < coords2[1]) yMax = coords2[1];
+						if (yMax < coords2.getY()) yMax = coords2.getY();
 						cands.add(coords2);
 					}
 				}
@@ -88,19 +88,19 @@ public class SchematicCelestialTemple extends Schematic {
 
 			byte rnd = (byte) (rand.nextInt(3) + 1);
 
-			for (int[] coords2 : cands)
+			for (BlockPos coords2 : cands)
 			{
-				if (coords2[1] >= yMax)
+				if (coords2.getY() >= yMax)
 				{
-					this.setBlock(world, coords2[0], coords2[1], coords2[2], TragicBlocks.AshenGrass, 0, 2);
+					this.setBlock(world, coords2.getX(), coords2.getY(), coords2.getZ(), TragicBlocks.AshenGrass, 0, 2);
 				}
-				else if (coords2[1] >= yMax - rnd - rand.nextInt(2))
+				else if (coords2.getY() >= yMax - rnd - rand.nextInt(2))
 				{
-					this.setBlock(world, coords2[0], coords2[1], coords2[2], TragicBlocks.DeadDirt, 0, 2);
+					this.setBlock(world, coords2.getX(), coords2.getY(), coords2.getZ(), TragicBlocks.DeadDirt, 0, 2);
 				}
 				else
 				{
-					this.setBlock(world, coords2[0], coords2[1], coords2[2], TragicBlocks.DarkStone, 0, 2);
+					this.setBlock(world, coords2.getX(), coords2.getY(), coords2.getZ(), TragicBlocks.DarkStone, 0, 2);
 				}
 			}
 		}

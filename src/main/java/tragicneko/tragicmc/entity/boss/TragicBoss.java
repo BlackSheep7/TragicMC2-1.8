@@ -103,13 +103,13 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (this.worldObj.isRemote) return;
 
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 4.0D, this.posX, this.posY, this.posZ);
-		int[] coords;
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 4.0D, this.posX, this.posY, this.posZ);
+		BlockPos coords;
 
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords= list.get(i);
-			if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock().getMaterial() == Material.fire) this.worldObj.setBlockToAir(new BlockPos(coords[0], coords[1], coords[2]));
+			if (this.worldObj.getBlockState(coords).getBlock().getMaterial() == Material.fire) this.worldObj.setBlockToAir(coords);
 		}
 
 		if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)

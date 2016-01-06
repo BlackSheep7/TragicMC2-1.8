@@ -50,10 +50,10 @@ public class CustomSpikesWorldGen implements IWorldGen {
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 
-		ArrayList<int[]> list;
+		ArrayList<BlockPos> list;
 		double spikeSize;
 		byte spikeType;
-		ArrayList<int[]> cands = new ArrayList<int[]>();
+		ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 		double regress = regression;
 		byte m = meta;
 
@@ -126,16 +126,16 @@ public class CustomSpikesWorldGen implements IWorldGen {
 
 					list = WorldHelper.getBlocksInSphericalRange(world, spikeSize, Xcoord, Ycoord + y1, Zcoord);
 
-					for (int[] coords : list)
+					for (BlockPos coords : list)
 					{
-						Block ablock = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+						Block ablock = world.getBlockState(coords).getBlock();
 						if (Structure.validBlocks.contains(ablock) && ablock != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
 					}
 				}
 
-				for (int[] coords : cands)
+				for (BlockPos coords : cands)
 				{
-					world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), block.getStateFromMeta(m), 2);
+					world.setBlockState(coords, block.getStateFromMeta(m), 2);
 				}
 			}
 		}
@@ -144,8 +144,8 @@ public class CustomSpikesWorldGen implements IWorldGen {
 
 	public void generateChildSpike(World world, Random rand, double size, double Xcoord, double Ycoord, double Zcoord, Block spike, int meta)
 	{
-		ArrayList<int[]> list;
-		ArrayList<int[]> cands = new ArrayList<int[]>();
+		ArrayList<BlockPos> list;
+		ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 		Block block;
 
 		for (byte y1 = 0; y1 < Byte.MAX_VALUE; y1++)
@@ -165,16 +165,16 @@ public class CustomSpikesWorldGen implements IWorldGen {
 
 			list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-			for (int[] coords : list)
+			for (BlockPos coords : list)
 			{
-				block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+				block = world.getBlockState(coords).getBlock();
 				if (Structure.validBlocks.contains(block) && !cands.contains(coords)) cands.add(coords);
 			}
 		}
 
-		for (int[] coords : cands)
+		for (BlockPos coords : cands)
 		{
-			world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), spike.getStateFromMeta(meta), 2);
+			world.setBlockState(coords, spike.getStateFromMeta(meta), 2);
 		}
 	}
 }

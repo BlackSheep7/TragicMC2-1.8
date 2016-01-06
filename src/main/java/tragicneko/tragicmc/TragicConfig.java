@@ -178,6 +178,8 @@ public class TragicConfig {
 
 	public static boolean[] griefConfig = new boolean[12];
 	public static double[] modifier = new double[32];
+	
+	private static Enchantment[] enchantList;
 
 	public static void load()
 	{
@@ -4057,9 +4059,6 @@ public class TragicConfig {
 		prop.comment = "The Health buff you gain from wearing any of the Overlord Armor set.";
 		modifier[++m] = prop.getDouble(5.0);
 
-		allowWorldGen = false;
-		allowDimension = false;
-		//TODO remove these
 		initializeMasterConfigs();
 		postProcessConfigs();
 		initializeRemainingVariables();
@@ -4643,24 +4642,29 @@ public class TragicConfig {
 		return findOpenID(BiomeGenBase.getBiomeGenArray(), start, true);
 	}
 
-	public static int findEnchantID(int start) {
-		Enchantment[] list = null;
+	public static int findEnchantID(int start) {	
 		
+		return findOpenID(enchantList, start, true);
+	}
+
+	public static int findPotionID(int start) {
+		return findOpenID(Potion.potionTypes, start, false);
+	}
+	
+	private void reflectEnchantmentList() {
+		enchantList = null;
 		try
 		{
 			Field f = ReflectionHelper.findField(Enchantment.class, "enchantmentsList");
 			Field modfield = Field.class.getDeclaredField("modifiers");
 			modfield.setAccessible(true);
 			modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
-			list = (Enchantment[]) f.get(null);
+			enchantList = (Enchantment[]) f.get(null);
 		}
 		catch (Exception e) {
 			TragicMC.logError("Error while reflecting the Enchantment list array");
+			enchantList = Enchantment.enchantmentsBookList;
+			return;
 		}
-		return findOpenID(list, start, true);
-	}
-
-	public static int findPotionID(int start) {
-		return findOpenID(Potion.potionTypes, start, false);
 	}
 }

@@ -636,12 +636,12 @@ public class SchematicObsidianCavern extends Schematic {
 		switch(variant)
 		{
 		case 0:
-			ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(world, 3.0D, x, 0, z);
-			int[] coords;
+			ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(world, 3.0D, x, 0, z);
+			BlockPos coords;
 			for (int i = 0; i < list.size(); i++)
 			{
 				coords = list.get(i);
-				this.setBlockToAir(world, coords[0], coords[1], coords[2]);
+				this.setBlockToAir(world, coords.getX(), coords.getY(), coords.getZ());
 			}
 			this.setBlock(world, x, 0, z, bedrock);
 			this.setBlock(world, x, 1, z, chest);

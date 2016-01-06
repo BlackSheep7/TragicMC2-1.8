@@ -35,11 +35,11 @@ public class InvertedSpikeWorldGen implements IWorldGen {
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 
-		ArrayList<int[]> list;
+		ArrayList<BlockPos> list;
 		Material material;
 		double size;
 		byte spikeType;
-		ArrayList<int[]> cands = new ArrayList<int[]>();
+		ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 
 		for (byte buzza = 0; buzza < this.iterations; buzza++)
 		{
@@ -104,22 +104,22 @@ public class InvertedSpikeWorldGen implements IWorldGen {
 
 				list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-				for (int[] coords : list)
+				for (BlockPos coords : list)
 				{
-					material = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock().getMaterial();
+					material = world.getBlockState(coords).getBlock().getMaterial();
 					if (!material.isLiquid() && material != Material.air && !cands.contains(coords)) cands.add(coords);
 				}
 			}
 
-			for (int[] coords : cands) world.setBlockToAir(new BlockPos(coords[0], coords[1], coords[2]));
+			for (BlockPos coords : cands) world.setBlockToAir(coords);
 		}
 
 	}
 
 	public void generateChildSpike(World world, Random rand, double size, double Xcoord, double Ycoord, double Zcoord)
 	{
-		ArrayList<int[]> list;
-		ArrayList<int[]> cands = new ArrayList<int[]>();
+		ArrayList<BlockPos> list;
+		ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 		Material material;
 
 		for (byte y1 = 0; y1 < 64; y1++)
@@ -139,13 +139,13 @@ public class InvertedSpikeWorldGen implements IWorldGen {
 
 			list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-			for (int[] coords : list)
+			for (BlockPos coords : list)
 			{
-				material = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock().getMaterial();
+				material = world.getBlockState(coords).getBlock().getMaterial();
 				if (!material.isLiquid() && material != Material.air && !cands.contains(coords)) cands.add(coords);
 			}
 		}
 
-		for (int[] coords : cands) world.setBlockToAir(new BlockPos(coords[0], coords[1], coords[2]));
+		for (BlockPos coords : cands) world.setBlockToAir(coords);
 	}
 }

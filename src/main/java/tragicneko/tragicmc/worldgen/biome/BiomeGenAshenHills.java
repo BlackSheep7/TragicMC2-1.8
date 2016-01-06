@@ -7,7 +7,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
@@ -18,8 +17,9 @@ import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen;
 import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
-import tragicneko.tragicmc.worldgen.WorldGenAshenShrubs;
-import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomSavannaTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomShrubs;
+import tragicneko.tragicmc.worldgen.WorldGenCustomTallGrass;
 
 public class BiomeGenAshenHills extends TragicBiome {
 
@@ -66,15 +66,15 @@ public class BiomeGenAshenHills extends TragicBiome {
 	{
 		if (rand.nextInt(16) == 0)
 		{
-			return new WorldGenAshenShrubs();
+			return new WorldGenCustomShrubs(TragicBlocks.AshenWood.getDefaultState(), TragicBlocks.AshenLeaves.getDefaultState());
 		}
-		return new WorldGenAshenTree(false);
+		return new WorldGenCustomSavannaTree(false, TragicBlocks.AshenWood.getDefaultState(), TragicBlocks.AshenLeaves.getDefaultState());
 	}
 
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand)
 	{
-		return null; //new WorldGenTallGrass(rand.nextInt(16) == 0 ? TragicBlocks.DriedGrass : TragicBlocks.AshenTallGrass, 0);
+		return new WorldGenCustomTallGrass(rand.nextInt(16) == 0 ? TragicBlocks.DriedGrass.getDefaultState() : TragicBlocks.AshenTallGrass.getDefaultState());
 	}
 
 	@Override

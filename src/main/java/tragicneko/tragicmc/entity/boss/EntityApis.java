@@ -266,16 +266,16 @@ public class EntityApis extends TragicBoss {
 
 				if (this.rand.nextInt(4) == 0 && this.onGround && this.ticksExisted % 2 == 0 && this.worldObj.isDaytime() && this.getHealth() <= this.getMaxHealth() / 4)
 				{
-					ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(worldObj, 0.75, this.posX, this.posY, this.posZ);
+					ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(worldObj, 0.75, this.posX, this.posY, this.posZ);
 					Block block;
-					int[] coords;
+					BlockPos coords;
 
 					for (int i = 0; i < list.size(); i++)
 					{
 						coords = list.get(i);
-						block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+						block = this.worldObj.getBlockState(coords).getBlock();
 
-						if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos(coords[0], coords[1] - 1, coords[2]))) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), Blocks.fire.getDefaultState());
+						if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(this.worldObj, coords.down())) this.worldObj.setBlockState(coords, Blocks.fire.getDefaultState());
 					}
 				}
 			}

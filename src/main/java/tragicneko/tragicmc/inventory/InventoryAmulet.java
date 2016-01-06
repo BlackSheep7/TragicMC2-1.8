@@ -5,8 +5,6 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
 import tragicneko.tragicmc.items.amulet.ItemAmulet;
 
 public class InventoryAmulet extends InventoryBasic {

@@ -66,7 +66,7 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 		int Ycoord = world.getTopSolidOrLiquidBlock(pos).getY();
 
 		byte mew = (byte) (variant == 2 ? 8 : 2);
-		ArrayList<int[]> cands = new ArrayList<int[]>();
+		ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 		Block block;
 		
 		byte i;
@@ -112,10 +112,10 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 				cands.clear();
 				cands.addAll(WorldHelper.getBlocksInSphericalRange(world, (rand.nextDouble() * 2.25) + 1.5, Xcoord, Ycoord - 1, Zcoord));
 
-				for (int[] coords : cands)
+				for (BlockPos coords : cands)
 				{
-					block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
-					if (block.isReplaceable(world, new BlockPos(coords[0], coords[1], coords[2]))) world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.ScorchedRock.getDefaultState());
+					block = world.getBlockState(coords).getBlock();
+					if (block.isReplaceable(world, coords)) world.setBlockState(coords, TragicBlocks.ScorchedRock.getDefaultState());
 				}
 			}
 		}

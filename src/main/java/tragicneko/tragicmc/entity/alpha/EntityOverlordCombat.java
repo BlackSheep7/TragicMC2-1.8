@@ -587,12 +587,12 @@ public class EntityOverlordCombat extends TragicBoss {
 			this.reflectionBuffer = 200;
 			if (this.motionY < 0 && !this.onGround)
 			{
-				ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
-				for (int[] coords : list)
+				ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
+				for (BlockPos coords : list)
 				{
-					if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock()))
+					if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock()))
 					{
-						this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.OverlordBarrier.getDefaultState(), 2);
+						this.worldObj.setBlockState(coords, TragicBlocks.OverlordBarrier.getDefaultState(), 2);
 					}
 				}
 			}
@@ -611,12 +611,12 @@ public class EntityOverlordCombat extends TragicBoss {
 
 		if (this.posY <= 1 && this.motionY < 0 && !this.onGround && this.getReflectionTicks() == 0)
 		{
-			ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
-			for (int[] coords : list)
+			ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
+			for (BlockPos coords : list)
 			{
-				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock()))
+				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock()))
 				{
-					this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.OverlordBarrier.getDefaultState(), 2);
+					this.worldObj.setBlockState(coords, TragicBlocks.OverlordBarrier.getDefaultState(), 2);
 				}
 			}
 		}

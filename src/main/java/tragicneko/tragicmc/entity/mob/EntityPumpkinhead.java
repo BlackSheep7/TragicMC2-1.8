@@ -82,23 +82,23 @@ public class EntityPumpkinhead extends TragicMob {
 		this.dataWatcher.updateObject(16, 2.0F);
 	}
 
-	public int[] getHomeCoordinates()
+	public BlockPos getHomeCoordinates()
 	{
-		return new int [] {this.dataWatcher.getWatchableObjectInt(17), this.dataWatcher.getWatchableObjectInt(18), this.dataWatcher.getWatchableObjectInt(19)};
+		return new BlockPos(this.dataWatcher.getWatchableObjectInt(17), this.dataWatcher.getWatchableObjectInt(18), this.dataWatcher.getWatchableObjectInt(19));
 	}
 
-	private void setHomeCoordinates(int[] coords)
+	private void setHomeCoordinates(BlockPos pos)
 	{
-		this.dataWatcher.updateObject(17, coords[0]);
-		this.dataWatcher.updateObject(18, coords[1]);
-		this.dataWatcher.updateObject(19, coords[2]);
-		//this.setHomeArea(coords[0], coords[1], coords[2], 12);
+		this.dataWatcher.updateObject(17, pos.getX());
+		this.dataWatcher.updateObject(18, pos.getY());
+		this.dataWatcher.updateObject(19, pos.getZ());
+		this.func_175449_a(pos, 12);
 	}
 
 	public boolean hasHomePumpkin()
 	{
-		int[] coords = this.getHomeCoordinates();
-		return this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.pumpkin || this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.lit_pumpkin;
+		BlockPos coords = this.getHomeCoordinates();
+		return this.worldObj.getBlockState(coords).getBlock() == Blocks.pumpkin || this.worldObj.getBlockState(coords).getBlock() == Blocks.lit_pumpkin;
 	}
 
 	public int getAngerTicks()
@@ -149,9 +149,9 @@ public class EntityPumpkinhead extends TragicMob {
 			{
 				if (rand.nextBoolean())
 				{
-					double d0 = this.getHomeCoordinates()[0] - this.posX + 0.5D;
-					double d1 = this.getHomeCoordinates()[1] - this.posY - 0.5D;
-					double d2 = this.getHomeCoordinates()[2] - this.posZ + 0.5D;
+					double d0 = this.getHomeCoordinates().getX() - this.posX + 0.5D;
+					double d1 = this.getHomeCoordinates().getY() - this.posY - 0.5D;
+					double d2 = this.getHomeCoordinates().getZ() - this.posZ + 0.5D;
 
 					for (int i = 0; i < 4; i++)
 					{
@@ -233,26 +233,26 @@ public class EntityPumpkinhead extends TragicMob {
 
 	public boolean isPumpkinNearby()
 	{
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
-		int[] coords;
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
+		BlockPos coords;
 
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.pumpkin || this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.lit_pumpkin) return true;
+			if (this.worldObj.getBlockState(coords).getBlock() == Blocks.pumpkin || this.worldObj.getBlockState(coords).getBlock() == Blocks.lit_pumpkin) return true;
 		}
 		return false;
 	}
 
-	public int[] getNearbyPumpkin()
+	public BlockPos getNearbyPumpkin()
 	{
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
-		int[] coords;
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
+		BlockPos coords;
 
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.pumpkin || this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.lit_pumpkin) return coords;
+			if (this.worldObj.getBlockState(coords).getBlock() == Blocks.pumpkin || this.worldObj.getBlockState(coords).getBlock() == Blocks.lit_pumpkin) return coords;
 		}
 
 		return null;
@@ -261,17 +261,17 @@ public class EntityPumpkinhead extends TragicMob {
 	public void createHomePumpkin()
 	{
 		if (!TragicConfig.pumpkinheadPumpkinSpawn) return;
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
-		int[] coords;
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
+		BlockPos coords;
 		Block block;
 
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
-			if (block.canBeReplacedByLeaves(worldObj, new BlockPos(coords[0], coords[1], coords[2])) && World.doesBlockHaveSolidTopSurface(worldObj, new BlockPos(coords[0], coords[1] - 1, coords[2])))
+			block = this.worldObj.getBlockState(coords).getBlock();
+			if (block.canBeReplacedByLeaves(worldObj, coords) && World.doesBlockHaveSolidTopSurface(worldObj, coords.down()))
 			{
-				this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), Blocks.lit_pumpkin.getDefaultState());
+				this.worldObj.setBlockState(coords, Blocks.lit_pumpkin.getDefaultState());
 				this.setHomeCoordinates(coords);
 				break;
 			}
@@ -322,7 +322,7 @@ public class EntityPumpkinhead extends TragicMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("homeCoords")) this.setHomeCoordinates(tag.getIntArray("homeCoords"));;
+		if (tag.hasKey("homeCoords")) this.setHomeCoordinates(convertArrayToPos(tag.getIntArray("homeCoords")));
 		if (tag.hasKey("angerTicks")) this.setAngerTicks(tag.getInteger("angerTicks"));
 		if (tag.hasKey("modValue")) this.setModValue(tag.getFloat("modValue"));
 	}
@@ -331,7 +331,7 @@ public class EntityPumpkinhead extends TragicMob {
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setIntArray("homeCoords", this.getHomeCoordinates());
+		if (this.hasHomePumpkin()) tag.setIntArray("homeCoords", convertPosToArray(this.getHomeCoordinates()));
 		tag.setInteger("angerTicks", this.getAngerTicks());
 		tag.setFloat("modValue", this.getModValue());
 	}
@@ -381,5 +381,13 @@ public class EntityPumpkinhead extends TragicMob {
 	public int getTalkInterval()
 	{
 		return this.isAngry() ? 40 : 320;
+	}
+	
+	public static int[] convertPosToArray(BlockPos pos) {
+		return new int[] {pos.getX(), pos.getY(), pos.getZ()};
+	}
+	
+	public static BlockPos convertArrayToPos(int[] array) {
+		return new BlockPos(array[0], array[1], array[2]);
 	}
 }

@@ -143,8 +143,9 @@ public class AchievementEvents {
 				{
 					boolean flag2 = true;
 
-					for (ItemStack stack : amu.inventory.inventory)
+					for (int i = 0; i < amu.inventory.getSizeInventory(); i++)
 					{
+						ItemStack stack = amu.inventory.getStackInSlot(i);
 						if (stack != null && stack.getItem() instanceof ItemAmulet)
 						{
 							mp.triggerAchievement(TragicAchievements.amulet);

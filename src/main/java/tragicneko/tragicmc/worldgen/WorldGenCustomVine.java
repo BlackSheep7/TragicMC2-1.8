@@ -2,49 +2,52 @@ package tragicneko.tragicmc.worldgen;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Facing;
+import net.minecraft.block.BlockVine;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import tragicneko.tragicmc.TragicBlocks;
 
 public class WorldGenCustomVine extends WorldGenerator {
 
-	public final Block theBlock;
-	public final int maxHeight;
+	private final IBlockState vineState;
+	private final int maxHeight;
 
-	public WorldGenCustomVine(Block block, int attempts)
+	public WorldGenCustomVine(IBlockState vine, int attempts)
 	{
-		this.theBlock = block;
+		this.vineState = vine;
 		this.maxHeight = attempts;
 	}
 
-	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z)
-	{
-		int l = x;
+	public boolean generate(World worldIn, Random rand, BlockPos pos)
+    {
+        for (; pos.getY() < this.maxHeight; pos = pos.up())
+        {
+            if (worldIn.isAirBlock(pos))
+            {
+                EnumFacing[] aenumfacing = EnumFacing.Plane.HORIZONTAL.facings();
+                int i = aenumfacing.length;
 
-		for (int i1 = z; y < this.maxHeight; ++y)
-		{
-			if (world.isAirBlock(x, y, z))
-			{
-				for (int j1 = 2; j1 <= 5; ++j1)
-				{
-					if (this.theBlock.canPlaceBlockOnSide(world, x, y, z, j1))
-					{
-						world.setBlock(x, y, z, this.theBlock, 1 << Direction.facingToDirection[Facing.oppositeSide[j1]], 2);
-						break;
-					}
-				}
-			}
-			else
-			{
-				x = l + rand.nextInt(4) - rand.nextInt(4);
-				z = i1 + rand.nextInt(4) - rand.nextInt(4);
-			}
-		}
+                for (int j = 0; j < i; ++j)
+                {
+                    EnumFacing enumfacing = aenumfacing[j];
 
-		return true;
-	}
+                    if (Blocks.vine.canPlaceBlockOnSide(worldIn, pos, enumfacing))
+                    {
+                        IBlockState iblockstate = this.vineState.withProperty(BlockVine.NORTH, Boolean.valueOf(enumfacing == EnumFacing.NORTH)).withProperty(BlockVine.EAST, Boolean.valueOf(enumfacing == EnumFacing.EAST)).withProperty(BlockVine.SOUTH, Boolean.valueOf(enumfacing == EnumFacing.SOUTH)).withProperty(BlockVine.WEST, Boolean.valueOf(enumfacing == EnumFacing.WEST));
+                        worldIn.setBlockState(pos, iblockstate, 2);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                pos = pos.add(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
+            }
+        }
+
+        return true;
+    }
 }

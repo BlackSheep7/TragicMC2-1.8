@@ -243,53 +243,52 @@ public class EntityRagr extends TragicMob {
 		int y = (int) this.posY;
 		int z = (int) this.posZ;
 		dist = MathHelper.clamp_float(dist / 2.0F, 1.0F, 4.0F);
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, dist, x, y, z);
-		int[] coords;
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(worldObj, dist, x, y, z);
+		BlockPos coords;
 		Block block;
 
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			BlockPos pos = new BlockPos(coords[0], coords[1], coords[2]);
-			block = this.worldObj.getBlockState(pos).getBlock();
+			block = this.worldObj.getBlockState(coords).getBlock();
 
 			if (EntityRagr.crushableBlocks.contains(block))
 			{
-				this.worldObj.setBlockToAir(pos);
+				this.worldObj.setBlockToAir(coords);
 			}
 			else if (block == Blocks.grass)
 			{
-				this.worldObj.setBlockState(pos, Blocks.dirt.getDefaultState());
+				this.worldObj.setBlockState(coords, Blocks.dirt.getDefaultState());
 			}
 			else if (block == Blocks.stone)
 			{
-				this.worldObj.setBlockState(pos, Blocks.cobblestone.getDefaultState());
+				this.worldObj.setBlockState(coords, Blocks.cobblestone.getDefaultState());
 			}
 			else if (block == Blocks.stonebrick)
 			{
-				this.worldObj.setBlockState(pos, Blocks.stonebrick.getStateFromMeta(2), 2);
+				this.worldObj.setBlockState(coords, Blocks.stonebrick.getStateFromMeta(2), 2);
 			}
 			else if (block == Blocks.cobblestone)
 			{
-				this.worldObj.setBlockState(pos, Blocks.gravel.getDefaultState());
+				this.worldObj.setBlockState(coords, Blocks.gravel.getDefaultState());
 			}
 			else if (TragicConfig.allowNonMobBlocks) //if mobsOnly mode is enabled all of these blocks will be null
 			{
 				if (block instanceof BlockGenericGrass)
 				{
-					this.worldObj.setBlockState(pos, TragicBlocks.DeadDirt.getDefaultState());
+					this.worldObj.setBlockState(coords, TragicBlocks.DeadDirt.getDefaultState());
 				}
 				else if (block instanceof BlockPermafrost)
 				{
-					this.worldObj.setBlockState(pos, TragicBlocks.Permafrost.getStateFromMeta(1), 2);
+					this.worldObj.setBlockState(coords, TragicBlocks.Permafrost.getStateFromMeta(1), 2);
 				}
 				else if (block == TragicBlocks.DarkStone)
 				{
-					this.worldObj.setBlockState(pos, TragicBlocks.DarkCobblestone.getDefaultState());
+					this.worldObj.setBlockState(coords, TragicBlocks.DarkCobblestone.getDefaultState());
 				}
 				else if (block instanceof BlockDarkCobble)
 				{
-					this.worldObj.setBlockState(pos, TragicBlocks.DeadDirt.getDefaultState());
+					this.worldObj.setBlockState(coords, TragicBlocks.DeadDirt.getDefaultState());
 				}
 			}
 		}

@@ -6,16 +6,14 @@ import java.util.Random;
 
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ReportedException;
-import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.GenLayerFuzzyZoom;
-import net.minecraft.world.gen.layer.GenLayerSmooth;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 import net.minecraft.world.gen.layer.IntCache;
@@ -78,10 +76,15 @@ public class TragicWorldChunkManager extends WorldChunkManager
 	}
 
 	@Override
-	public BiomeGenBase getBiomeGenAt(int x, int z)
-	{
-		return this.biomeCache.getBiomeGenAt(x, z);
-	}
+	public BiomeGenBase getBiomeGenerator(BlockPos pos)
+    {
+        return this.getBiomeGenerator(pos, (BiomeGenBase)null);
+    }
+
+    public BiomeGenBase getBiomeGenerator(BlockPos pos, BiomeGenBase biome)
+    {
+        return this.biomeCache.func_180284_a(pos.getX(), pos.getZ(), biome);
+    }
 
 	@Override
 	public float[] getRainfall(float[] store, int x, int z, int width, int height)
@@ -239,34 +242,34 @@ public class TragicWorldChunkManager extends WorldChunkManager
 		}
 	}
 
-	@Override
-	public ChunkPosition findBiomePosition(int x, int z, int range, List list, Random random)
-	{
-		IntCache.resetIntCache();
-		int x1 = x - range >> 2;
-			int z1 = z - range >> 2;
-			int x2 = x + range >> 2;
-			int z2 = z + range >> 2;
-			int x3 = x2 - x1 + 1;
-			int z3 = z2 - z1 + 1;
-			int len = x3 * z3;
-			int[] aint = this.genLayerBiomes.getInts(x1, z1, x3, z3);
-			ChunkPosition chunkposition = null;
+	public BlockPos findBiomePosition(int x, int z, int range, List biomes, Random random)
+    {
+        IntCache.resetIntCache();
+        int l = x - range >> 2;
+        int i1 = z - range >> 2;
+        int j1 = x + range >> 2;
+        int k1 = z + range >> 2;
+        int l1 = j1 - l + 1;
+        int i2 = k1 - i1 + 1;
+        int[] aint = this.genLayerBiomes.getInts(l, i1, l1, i2);
+        BlockPos blockpos = null;
+        int j2 = 0;
 
-			for (int i = 0; i < len; ++i)
-			{
-				int x4 = x1 + i % x3 << 2;
-				int z4 = z1 + i / x3 << 2;
-				BiomeGenBase biome = BiomeGenBase.getBiome(aint[i]);
+        for (int k2 = 0; k2 < l1 * i2; ++k2)
+        {
+            int l2 = l + k2 % l1 << 2;
+            int i3 = i1 + k2 / l1 << 2;
+            BiomeGenBase biomegenbase = BiomeGenBase.getBiome(aint[k2]);
 
-				if (list.contains(biome) && (chunkposition == null || random.nextInt(i + 1) == 0))
-				{
-					chunkposition = new ChunkPosition(x4, 0, z4);
-				}
-			}
+            if (biomes.contains(biomegenbase) && (blockpos == null || random.nextInt(j2 + 1) == 0))
+            {
+                blockpos = new BlockPos(l2, 0, i3);
+                ++j2;
+            }
+        }
 
-			return chunkposition;
-	}
+        return blockpos;
+    }
 
 	@Override
 	public final void cleanupCache()

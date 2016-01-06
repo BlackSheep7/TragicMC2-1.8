@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.worldgen.biome;
 
-import java.util.List;
-
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
@@ -28,11 +25,5 @@ public class BiomeGenSynapse extends TragicBiome {
 		if (TragicConfig.allowHarvester) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHarvester.class, TragicConfig.harvesterSC, TragicConfig.harvesterGS[0], TragicConfig.harvesterGS[1]));
 		this.fillerBlock = TragicBlocks.CircuitBlock.getDefaultState();
 		this.topBlock = TragicBlocks.CircuitBlock.getDefaultState();
-	}
-
-	@Override
-	public List getSpawnableList(EnumCreatureType p_76747_1_)
-	{
-		return super.getSpawnableList(p_76747_1_);
 	}
 }

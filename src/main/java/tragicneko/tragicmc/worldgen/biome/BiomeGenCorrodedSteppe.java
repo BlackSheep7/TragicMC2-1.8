@@ -53,7 +53,7 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		this.toxicCobbleGen = new RuggedTerrainWorldGen(TragicBlocks.DarkCobblestone, (byte) 2, TragicBlocks.DarkCobblestone, (byte) 6, 4.0D, 3.0D, false, (byte) 8);
 		this.gasGen = new SurfaceWorldGen2((byte) (variant == 0 || variant == 4 ? 14 : (variant >= 3 ? 7 : 2)), TragicBlocks.RadiatedGas, (byte) 0, (byte) 4, (byte) 8);
 		this.voidPitGen = new VoidPitWorldGen(2.5D, 2.0D);
-		this.vineGen = new WorldGenCustomVine(TragicBlocks.WickedVine, 84);
+		this.vineGen = new WorldGenCustomVine(TragicBlocks.WickedVine.getDefaultState(), 84);
 		this.deathglowGen = new SurfacePlantWorldGen((byte) 2, TragicBlocks.Deathglow, (byte) 14, (byte) 4, (byte) 4, (byte) 2);
 	}
 
@@ -70,20 +70,20 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		{
 			k = pos.getX() + rand.nextInt(16) - 8;
 			l = pos.getZ() + rand.nextInt(16) - 8;
-			this.vineGen.generate(world, rand, k, rand.nextInt(64) + 42, l);
+			this.vineGen.generate(world, rand, new BlockPos(k, rand.nextInt(64) + 42, l));
 		}
 
 		int Xcoord = pos.getX() + rand.nextInt(16);
 		int Zcoord = pos.getZ() + rand.nextInt(16);
 		int Ycoord = rand.nextInt(236) + 10;
-		ArrayList<int[]> cands;
+		ArrayList<BlockPos> cands;
 		cands = WorldHelper.getBlocksInSphericalRange(world, 3.75, Xcoord, Ycoord, Zcoord);
 		Block block;
 		boolean flag = true;
 
-		for (int[] coords : cands)
+		for (BlockPos coords : cands)
 		{
-			block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+			block = world.getBlockState(coords).getBlock();
 			if (!block.isOpaqueCube() || block.getMaterial() == Material.air || block.getMaterial().isLiquid())
 			{
 				flag = false;
@@ -94,7 +94,7 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		if (flag)
 		{
 			cands = WorldHelper.getBlocksInSphericalRange(world, 2.75, Xcoord, Ycoord, Zcoord);
-			for (int[] coords : cands) world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.ExplosiveGas.getDefaultState());
+			for (BlockPos coords : cands) world.setBlockState(coords, TragicBlocks.ExplosiveGas.getDefaultState());
 		}
 
 		this.gasGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);

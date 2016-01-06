@@ -840,12 +840,12 @@ public class EntityOverlordCore extends TragicBoss {
 	{
 		if (!this.worldObj.isRemote)
 		{
-			ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, ((int) this.posX) + 0.5, ((int) this.posY) - 0.5, ((int) this.posZ) + 0.5);
-			for (int[] coords : list)
+			ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, ((int) this.posX) + 0.5, ((int) this.posY) - 0.5, ((int) this.posZ) + 0.5);
+			for (BlockPos coords : list)
 			{
-				if (replaceableBlocks.contains(this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock()))
+				if (replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock()))
 				{
-					this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), !TragicConfig.allowNonMobBlocks ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState(), 2);
+					this.worldObj.setBlockState(coords, !TragicConfig.allowNonMobBlocks ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState(), 2);
 				}
 			}
 		}

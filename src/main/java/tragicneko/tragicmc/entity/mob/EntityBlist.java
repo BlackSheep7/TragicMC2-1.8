@@ -28,8 +28,8 @@ public class EntityBlist extends TragicMob {
 
 	private double[] motions = new double[] {0, 0, 0};
 	private int chargeBuffer = 80;
-	private int[] attachedBlock;
-	private int[] gridCoords;
+	private BlockPos attachedBlock;
+	private BlockPos gridCoords;
 	private boolean isAttached = false;
 	
 	public static final Predicate nonSpeciesTarget = new Predicate() {
@@ -155,7 +155,7 @@ public class EntityBlist extends TragicMob {
 		}
 		else
 		{
-			this.gridCoords = new int[] {(int) this.posX, (int) this.posY, (int) this.posZ};
+			this.gridCoords = WorldHelper.getBlockPos(this);
 			if (this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()) && this.ticksExisted % 5 == 0 && this.chargeBuffer == 0)
 			{
 				double d0 = MathHelper.clamp_double(this.getAttackTarget().posX - this.posX, -3.4D, 3.4D);
@@ -169,11 +169,11 @@ public class EntityBlist extends TragicMob {
 			}
 			
 			this.attachedBlock = null;
-			ArrayList<int[]> adj = WorldHelper.getBlocksAdjacent(this.gridCoords);
+			ArrayList<BlockPos> adj = WorldHelper.getBlocksAdjacent(this.gridCoords);
 			
-			for (int[] coord : adj)
+			for (BlockPos coord : adj)
 			{
-				Block block = this.worldObj.getBlockState(new BlockPos(coord[0], coord[1], coord[2])).getBlock();
+				Block block = this.worldObj.getBlockState(coord).getBlock();
 				if (block.getMaterial().blocksMovement() && block.isOpaqueCube())
 				{
 					this.attachedBlock = coord;

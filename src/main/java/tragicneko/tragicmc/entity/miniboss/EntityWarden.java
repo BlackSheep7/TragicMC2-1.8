@@ -64,14 +64,14 @@ public class EntityWarden extends EntityLockbot implements TragicMiniBoss {
 			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
 			{
 				EntityWither wither = new EntityWither(this.worldObj);
-				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 1.0, mop.getBlockPos().getX(), mop.getBlockPos().getY() + this.getEyeHeight(), mop.getBlockPos().getZ());
+				ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 1.0, mop.getBlockPos().getX(), mop.getBlockPos().getY() + this.getEyeHeight(), mop.getBlockPos().getZ());
 				
-				for (int[] coords : list)
+				for (BlockPos coords : list)
 				{
-					Block block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
-					if (!block.isAir(this.worldObj, new BlockPos(coords[0], coords[1], coords[2])) && block.canEntityDestroy(this.worldObj, new BlockPos(coords[0], coords[1], coords[2]), wither))
+					Block block = this.worldObj.getBlockState(coords).getBlock();
+					if (!block.isAir(this.worldObj, coords) && block.canEntityDestroy(this.worldObj, coords, wither))
 					{
-						this.worldObj.destroyBlock(new BlockPos(coords[0], coords[1], coords[2]), true);
+						this.worldObj.destroyBlock(coords, true);
 					}
 				}				
 			}

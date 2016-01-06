@@ -39,6 +39,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -385,11 +386,11 @@ public class EntityDeathReaper extends TragicBoss {
 
 				if (this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 1 && TragicConfig.skultarWitheringGas)
 				{
-					List<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX, this.posY, this.posZ);
-					for (int[] coords : list)
+					List<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX, this.posY, this.posZ);
+					for (BlockPos coords : list)
 					{
-						Block block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
-						if ((block == Blocks.air || block == TragicBlocks.WitheringGas) && World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos(coords[0], coords[1] - 1, coords[2]))) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.WitheringGas.getDefaultState());
+						Block block = this.worldObj.getBlockState(coords).getBlock();
+						if ((EntityOverlordCore.replaceableBlocks.contains(block) || block == TragicBlocks.WitheringGas) && World.doesBlockHaveSolidTopSurface(this.worldObj, coords.down())) this.worldObj.setBlockState(coords, TragicBlocks.WitheringGas.getDefaultState());
 					}
 
 				}

@@ -727,35 +727,34 @@ public class EntityClaymation extends TragicBoss {
 		int y = (int) this.posY;
 		int z = (int) this.posZ;
 		par1 = MathHelper.clamp_float(par1 / 2.0F, 1.0F, 4.0F);
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, par1, x, y, z);
-		int[] coords;
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(worldObj, par1, x, y, z);
+		BlockPos coords;
 		Block block;
 
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			BlockPos pos = new BlockPos(coords[0], coords[1], coords[2]);
-			block = this.worldObj.getBlockState(pos).getBlock();
+			block = this.worldObj.getBlockState(coords).getBlock();
 
 			if (crushableBlocks.contains(block))
 			{
-				this.worldObj.setBlockToAir(pos);
+				this.worldObj.setBlockToAir(coords);
 			}
 			else if (block == Blocks.grass)
 			{
-				this.worldObj.setBlockState(pos, Blocks.dirt.getDefaultState());
+				this.worldObj.setBlockState(coords, Blocks.dirt.getDefaultState());
 			}
 			else if (block == Blocks.stone)
 			{
-				this.worldObj.setBlockState(pos, Blocks.cobblestone.getDefaultState());
+				this.worldObj.setBlockState(coords, Blocks.cobblestone.getDefaultState());
 			}
 			else if (block == Blocks.stonebrick)
 			{
-				this.worldObj.setBlockState(pos, Blocks.stonebrick.getStateFromMeta(2), 2);
+				this.worldObj.setBlockState(coords, Blocks.stonebrick.getStateFromMeta(2), 2);
 			}
 			else if (block == Blocks.cobblestone)
 			{
-				this.worldObj.setBlockState(pos, Blocks.gravel.getDefaultState());
+				this.worldObj.setBlockState(coords, Blocks.gravel.getDefaultState());
 			}
 		}
 	}

@@ -39,8 +39,8 @@ public class PitWorldGen implements IWorldGen {
 		int depth = Ycoord - this.depth - random.nextInt(this.depthVar + 1);
 
 		double size;
-		ArrayList<int[]> list;
-		ArrayList<int[]> cands = new ArrayList<int[]>();
+		ArrayList<BlockPos> list;
+		ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 
 		size = this.variation * random.nextDouble() + this.radius;
 
@@ -50,7 +50,7 @@ public class PitWorldGen implements IWorldGen {
 			{
 				list = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
 
-				for (int[] coords : list)
+				for (BlockPos coords : list)
 				{
 					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 				}
@@ -58,14 +58,14 @@ public class PitWorldGen implements IWorldGen {
 
 			list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
 
-			for (int[] coords : list)
+			for (BlockPos coords : list)
 			{
 				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
 
-			for (int[] coords : list)
+			for (BlockPos coords : list)
 			{
 				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 			}
@@ -73,10 +73,10 @@ public class PitWorldGen implements IWorldGen {
 			if (size >= 3.0D && random.nextInt(4) == 0) size *= 0.987425D; //reduces size of the void pit randomly, similarly to spikes, but this is to reduce lag
 		}
 
-		for (int[] coords2 : cands)
+		for (BlockPos coords2 : cands)
 		{
-			if (coords2[1] > depth + 1) world.setBlockToAir(new BlockPos(coords2[0], coords2[1], coords2[2]));
-			else world.setBlockState(new BlockPos(coords2[0], coords2[1], coords2[2]), this.block.getStateFromMeta(meta), 2);
+			if (coords2.getY() > depth + 1 || random.nextBoolean()) world.setBlockToAir(coords2);
+			else world.setBlockState(coords2, this.block.getStateFromMeta(meta), 2);
 		}
 	}
 }

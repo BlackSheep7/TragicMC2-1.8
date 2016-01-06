@@ -22,13 +22,13 @@ public class IsleWorldGen implements IWorldGen {
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 
-		ArrayList<int[]> list;
+		ArrayList<BlockPos> list;
 		byte relays = (byte) (1 + random.nextInt(3));
 		Block block;
 		double regression = 0.86977745D;
 		double cutoff = 0.48943755D;
 		double size;
-		ArrayList<int[]> cands = new ArrayList<int[]>();
+		ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 		int yMax;
 
 		for (byte buzza = 0; buzza < relays; buzza++)
@@ -54,22 +54,22 @@ public class IsleWorldGen implements IWorldGen {
 
 				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-				for (int[] coords2 : list)
+				for (BlockPos coords2 : list)
 				{
-					block = world.getBlockState(new BlockPos(coords2[0], coords2[1], coords2[2])).getBlock();
+					block = world.getBlockState(coords2).getBlock();
 					if (Structure.validBlocks.contains(block) && !cands.contains(coords2)) cands.add(coords2);
 				}
 			}
 
-			for (int[] coords2 : cands)
+			for (BlockPos coords2 : cands)
 			{
-				if (coords2[1] >= yMax)
+				if (coords2.getY() >= yMax)
 				{
-					world.setBlockState(new BlockPos(coords2[0], coords2[1], coords2[2]), TragicBlocks.ErodedStone.getStateFromMeta(0), 2);
+					world.setBlockState(coords2, TragicBlocks.ErodedStone.getStateFromMeta(0), 2);
 				}
 				else
 				{
-					world.setBlockState(new BlockPos(coords2[0], coords2[1], coords2[2]), TragicBlocks.DarkStone.getStateFromMeta(0), 2);
+					world.setBlockState(coords2, TragicBlocks.DarkStone.getStateFromMeta(0), 2);
 				}
 			}
 			Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();

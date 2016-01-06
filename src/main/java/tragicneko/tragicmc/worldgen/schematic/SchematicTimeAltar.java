@@ -36,8 +36,8 @@ public class SchematicTimeAltar extends Schematic {
 			}
 		}
 
-		ArrayList<int[]> list;
-		int[] coords;
+		ArrayList<BlockPos> list;
+		BlockPos coords;
 		Block block;
 
 		list = WorldHelper.getBlocksInCircularRange(world, 8.0D, x, y, z);
@@ -45,8 +45,8 @@ public class SchematicTimeAltar extends Schematic {
 		for (int i = 0; i < list.size(); i++) //creates a giant circle of quartz with star crystal inside of it sparingly
 		{
 			coords = list.get(i);
-			block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
-			if (Structure.validBlocks.contains(block)) this.setBlock(world, coords[0], coords[1], coords[2], quartz, 0, 2);
+			block = world.getBlockState(coords).getBlock();
+			if (Structure.validBlocks.contains(block)) this.setBlock(world, coords.getX(), coords.getY(), coords.getZ(), quartz, 0, 2);
 		}
 
 		list = WorldHelper.getBlocksInCircularRange(world, 4.446D, x, y, z);
@@ -54,8 +54,8 @@ public class SchematicTimeAltar extends Schematic {
 		for (int i = 0; i < list.size(); i++) //creates a smaller hemisphere of star crystal to provide lighting
 		{
 			coords = list.get(i);
-			block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
-			if (block == quartz) this.setBlock(world, coords[0], coords[1], coords[2], crystal, variant, 2);
+			block = world.getBlockState(coords).getBlock();
+			if (block == quartz) this.setBlock(world, coords.getX(), coords.getY(), coords.getZ(), crystal, variant, 2);
 		}
 
 		//Creates a structure in the middle that you can use to create another time controller, it comes with a summon block on top though

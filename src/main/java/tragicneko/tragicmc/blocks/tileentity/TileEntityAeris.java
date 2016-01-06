@@ -54,14 +54,14 @@ public class TileEntityAeris extends TileEntity {
 
 			if (this.corruptedTicks % 20 == 0)
 			{
-				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 5.0, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+				ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 5.0, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
 				Block block;
-				for (int[] coords : list)
+				for (BlockPos coords : list)
 				{
-					block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
-					if (block != TragicBlocks.Aeris && coords[1] >= this.getPos().getY() && block.getMaterial() != Material.air)
+					block = this.worldObj.getBlockState(coords).getBlock();
+					if (block != TragicBlocks.Aeris && coords.getY() >= this.getPos().getY() && block.getMaterial() != Material.air)
 					{
-						this.worldObj.destroyBlock(new BlockPos(coords[0], coords[1], coords[2]), true);
+						this.worldObj.destroyBlock(coords, true);
 					}
 				}
 			}

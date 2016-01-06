@@ -15,7 +15,7 @@ import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.worldgen.StringWorldGen;
 import tragicneko.tragicmc.worldgen.SurfacePlantWorldGen;
 import tragicneko.tragicmc.worldgen.SurfaceWorldGen2;
-import tragicneko.tragicmc.worldgen.WorldGenHallowedTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomOakTree;
 
 public class BiomeGenHallowedHills extends TragicBiome {
 
@@ -55,7 +55,7 @@ public class BiomeGenHallowedHills extends TragicBiome {
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return new WorldGenHallowedTree(false);
+		return new WorldGenCustomOakTree(false, 4, TragicBlocks.HallowedWood.getDefaultState(), TragicBlocks.HallowedLeaves.getDefaultState()).setTrim(TragicBlocks.HallowedLeafTrim.getDefaultState());
 	}
 
 	@Override

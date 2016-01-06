@@ -15,7 +15,8 @@ import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
-import tragicneko.tragicmc.worldgen.WorldGenBleachedOakTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomLollipopTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomTallGrass;
 
 public class BiomeGenStarlitPrarie extends TragicBiome {
 
@@ -45,15 +46,15 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 	}
 
 	@Override
-	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)
+	public WorldGenerator getRandomWorldGenForGrass(Random rand)
 	{
-		return null; //new WorldGenTallGrass(TragicBlocks.StarlitTallGrass, 0);
+		return new WorldGenCustomTallGrass(TragicBlocks.StarlitTallGrass.getDefaultState());
 	}
 
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return new WorldGenBleachedOakTree(false, rand.nextBoolean());
+		return new WorldGenCustomLollipopTree(TragicBlocks.BleachedWood.getDefaultState(), TragicBlocks.BleachedLeaves.getDefaultState());
 	}
 
 	@Override

@@ -157,12 +157,12 @@ public class EntityOverlordCocoon extends TragicBoss {
 		{
 			this.setPhaseTicks(this.getPhaseTicks() - 1);
 
-			List<int[]> lst2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX + rand.nextInt(4) - rand.nextInt(4), this.posY, this.posZ + rand.nextInt(4) - rand.nextInt(4));
-			for (int[] coords : lst2)
+			List<BlockPos> lst2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX + rand.nextInt(4) - rand.nextInt(4), this.posY, this.posZ + rand.nextInt(4) - rand.nextInt(4));
+			for (BlockPos coords : lst2)
 			{
-				if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos(coords[0], coords[1] - 1, coords[2])) && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock()))
+				if (World.doesBlockHaveSolidTopSurface(this.worldObj, coords.down()) && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock()))
 				{
-					this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), TragicBlocks.CorruptedGas.getDefaultState());
+					this.worldObj.setBlockState(coords, TragicBlocks.CorruptedGas.getDefaultState());
 				}
 			}
 
@@ -392,18 +392,18 @@ public class EntityOverlordCocoon extends TragicBoss {
 	{
 		if (!this.worldObj.isRemote)
 		{
-			List<int[]> lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.5, this.posX, this.posY + 1, this.posZ);
+			List<BlockPos> lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.5, this.posX, this.posY + 1, this.posZ);
 
-			for (int[] coord: lst)
+			for (BlockPos coord: lst)
 			{
-				if (this.posY >= coord[1]) this.worldObj.setBlockToAir(new BlockPos(coord[0], coord[1], coord[2]));
+				if (this.posY >= coord.getY()) this.worldObj.setBlockToAir(coord);
 			}
 
 			lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);
 
-			for (int[] coords : lst)
+			for (BlockPos coords : lst)
 			{
-				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock())) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), !TragicConfig.allowNonMobBlocks ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState());
+				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock())) this.worldObj.setBlockState(coords, !TragicConfig.allowNonMobBlocks ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState());
 			}
 
 			this.spawnSeekers();

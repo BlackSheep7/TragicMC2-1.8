@@ -220,8 +220,8 @@ public class EntityStin extends TragicMob {
 		if (!this.isAdult())
 		{
 			this.setCanClimb(this.isCollidedHorizontally);
-			ArrayList<int[]> list;
-			int[] coords;
+			ArrayList<BlockPos> list;
+			BlockPos coords;
 			Block block;
 			if (this.isOnLadder())
 			{
@@ -229,11 +229,11 @@ public class EntityStin extends TragicMob {
 				for (int i = 0; i < list.size(); i++)
 				{
 					coords = list.get(i);
-					block = worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+					block = worldObj.getBlockState(coords).getBlock();
 					if (block.isOpaqueCube())
 					{
-						double d0 = Math.abs(this.posX) - Math.abs(coords[0]);
-						double d2 = Math.abs(this.posZ) - Math.abs(coords[2]);
+						double d0 = Math.abs(this.posX) - Math.abs(coords.getX());
+						double d2 = Math.abs(this.posZ) - Math.abs(coords.getZ());
 
 						if (d0 >= 0 && d2 >= 0)
 						{

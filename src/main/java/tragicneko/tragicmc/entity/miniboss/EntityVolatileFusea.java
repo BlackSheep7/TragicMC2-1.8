@@ -64,19 +64,19 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 		{
 			if (TragicConfig.volatileFuseaElementalChange)
 			{
-				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 5.25, this.posX, this.posY, this.posZ);
+				ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 5.25, this.posX, this.posY, this.posZ);
 				Block block;
 
-				for (int[] coords : list)
+				for (BlockPos coords : list)
 				{
-					block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+					block = this.worldObj.getBlockState(coords).getBlock();
 
 					if (block.getMaterial() == Material.water || block instanceof BlockIce)
 					{
 						this.volatype = 2;
 						break;
 					}
-					else if (block.isProvidingWeakPower(this.worldObj, new BlockPos(coords[0], coords[1], coords[2]), this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])), EnumFacing.UP) > 0 || block.isProvidingStrongPower(this.worldObj, new BlockPos(coords[0], coords[1], coords[2]), this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])), EnumFacing.UP) > 0)
+					else if (block.isProvidingWeakPower(this.worldObj, coords, this.worldObj.getBlockState(coords), EnumFacing.UP) > 0 || block.isProvidingStrongPower(this.worldObj, coords, this.worldObj.getBlockState(coords), EnumFacing.UP) > 0)
 					{
 						this.volatype = 3;
 						break;

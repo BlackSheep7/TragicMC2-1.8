@@ -29,8 +29,8 @@ public class VoidPitWorldGen implements IWorldGen {
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
 
 		double size;
-		ArrayList<int[]> list;
-		ArrayList<int[]> cands = new ArrayList<int[]>();
+		ArrayList<BlockPos> list;
+		ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 
 		size = this.variation * random.nextDouble() + this.radius;
 
@@ -40,7 +40,7 @@ public class VoidPitWorldGen implements IWorldGen {
 			{
 				list = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
 
-				for (int[] coords : list)
+				for (BlockPos coords : list)
 				{
 					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 				}
@@ -48,14 +48,14 @@ public class VoidPitWorldGen implements IWorldGen {
 
 			list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
 
-			for (int[] coords : list)
+			for (BlockPos coords : list)
 			{
 				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
 
-			for (int[] coords : list)
+			for (BlockPos coords : list)
 			{
 				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 			}
@@ -63,9 +63,9 @@ public class VoidPitWorldGen implements IWorldGen {
 			if (size >= 3.0D && random.nextInt(4) == 0) size *= 0.977425D; //reduces size of the void pit randomly, similarly to spikes, but this is to reduce lag
 		}
 
-		for (int[] coords2 : cands)
+		for (BlockPos coords2 : cands)
 		{
-			world.setBlockToAir(new BlockPos(coords2[0], coords2[1], coords2[2]));
+			world.setBlockToAir(coords2);
 		}
 	}
 

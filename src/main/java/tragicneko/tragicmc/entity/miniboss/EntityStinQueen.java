@@ -15,6 +15,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -99,13 +100,13 @@ public class EntityStinQueen extends EntityGreaterStin {
 					this.spawnBabies();
 				}
 
-				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.75D, this.posX, this.posY, this.posZ);
-				int[] coords;
+				ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.75D, this.posX, this.posY, this.posZ);
+				BlockPos coords;
 
 				for (int i = 0 ; i < list.size(); i++)
 				{
 					coords = list.get(i);
-					if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.air) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), Blocks.web.getDefaultState());
+					if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock())) this.worldObj.setBlockState(coords, Blocks.web.getDefaultState());
 				}
 			}
 		}
@@ -187,13 +188,13 @@ public class EntityStinQueen extends EntityGreaterStin {
 		super.teleportEnemyAway(entity, flag);
 
 		if (!TragicConfig.stinQueenWebs) return flag;
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.5D, entity.posX, entity.posY, entity.posZ);
-		int[] coords;
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.5D, entity.posX, entity.posY, entity.posZ);
+		BlockPos coords;
 
 		for (int i = 0 ; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			if (this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == Blocks.air) this.worldObj.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), Blocks.web.getDefaultState());
+			if (this.worldObj.getBlockState(coords).getBlock() == Blocks.air) this.worldObj.setBlockState(coords, Blocks.web.getDefaultState());
 		}
 
 		return flag;

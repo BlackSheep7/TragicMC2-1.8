@@ -19,13 +19,13 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
-import tragicneko.tragicmc.worldgen.WorldGenBleachedOakTree;
-import tragicneko.tragicmc.worldgen.WorldGenDarkForestTree;
-import tragicneko.tragicmc.worldgen.WorldGenHallowedTree;
-import tragicneko.tragicmc.worldgen.WorldGenLargePaintedTree;
-import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomCanopyTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomHugeJungleTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomLollipopTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomOakTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomSavannaTree;
 
 public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 
@@ -94,24 +94,24 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 		case 0:
 			if (rand.nextBoolean())
 			{
-				object = new WorldGenPaintedTree(true, rand.nextBoolean());
+				object = new WorldGenCustomOakTree(false, 4, TragicBlocks.PaintedWood.getDefaultState(), TragicBlocks.PaintedLeaves.getDefaultState());
 			}
 			else
 			{
-				object = new WorldGenLargePaintedTree(true, rand.nextInt(3) + 4, 10);
+				object = new WorldGenCustomHugeJungleTree(false, rand.nextInt(3) + 4, 10, TragicBlocks.PaintedLeaves.getDefaultState(), TragicBlocks.PaintedWood.getDefaultState(), TragicBlocks.Glowvine.getDefaultState());
 			}
 			break;
 		case 1:
-			object = new WorldGenBleachedOakTree(true, true);
+			object = new WorldGenCustomLollipopTree(TragicBlocks.BleachedWood.getDefaultState(), TragicBlocks.BleachedLeaves.getDefaultState());
 			break;
 		case 2:
-			object = new WorldGenAshenTree(true);
+			object = new WorldGenCustomSavannaTree(true, TragicBlocks.AshenWood.getDefaultState(), TragicBlocks.AshenLeaves.getDefaultState());
 			break;
 		case 3:
-			object = new WorldGenHallowedTree(true);
+			object = new WorldGenCustomOakTree(true, 4, TragicBlocks.HallowedWood.getDefaultState(), TragicBlocks.HallowedLeaves.getDefaultState());
 			break;
 		case 4:
-			object = new WorldGenDarkForestTree();
+			object = new WorldGenCustomCanopyTree(TragicBlocks.Darkwood.getDefaultState(), TragicBlocks.DarkLeaves.getDefaultState());
 			break;
 		default:
 			return;

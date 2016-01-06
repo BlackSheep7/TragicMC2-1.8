@@ -44,7 +44,7 @@ public class RuggedTerrainWorldGen implements IWorldGen {
 		int y = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
 
 		double radius;
-		ArrayList<int[]> list;
+		ArrayList<BlockPos> list;
 		Block block;
 
 		for (byte pow = 0; pow < this.iterations; pow++)
@@ -57,16 +57,16 @@ public class RuggedTerrainWorldGen implements IWorldGen {
 			{
 				list = WorldHelper.getBlocksInCircularRange(world, radius, x, y + y1, z);
 
-				for (int[] coords : list)
+				for (BlockPos coords : list)
 				{
 					if (random.nextInt(16) != 0) continue;
 
-					block = world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
-					if (!world.getBlockState(new BlockPos(coords[0], coords[1] - 1, coords[2])).getBlock().isOpaqueCube()) continue;
+					block = world.getBlockState(coords).getBlock();
+					if (!world.getBlockState(coords.down()).getBlock().isOpaqueCube()) continue;
 
 					if (block == this.toReplace || block.getMaterial() == Material.air && this.replacesAir || block instanceof BlockGenericTallGrass)
 					{
-						world.setBlockState(new BlockPos(coords[0], coords[1], coords[2]), this.block.getStateFromMeta(meta), 2);
+						world.setBlockState(coords, this.block.getStateFromMeta(meta), 2);
 					}
 				}
 			}

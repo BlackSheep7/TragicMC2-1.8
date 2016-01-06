@@ -52,10 +52,10 @@ public class HangingCoralWorldGen extends WorldGenerator {
 				if (world.getBlockState(new BlockPos(i1, j1, k1)).getBlock().getMaterial() == Material.air)
 				{
 					byte b = 0;
-					ArrayList<int[]> list = WorldHelper.getBlocksAdjacent(new int[] {i1, j1, k1});
-					for (int[] coords : list)
+					ArrayList<BlockPos> list = WorldHelper.getBlocksAdjacent(new BlockPos(i1, j1, k1));
+					for (BlockPos coords : list)
 					{
-						if (world.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock() == block) b++;
+						if (world.getBlockState(coords).getBlock() == block) b++;
 					}
 
 					if (b == 1) world.setBlockState(new BlockPos(i1, j1, k1), block.getStateFromMeta(meta), 2);

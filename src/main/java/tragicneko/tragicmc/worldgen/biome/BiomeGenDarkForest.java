@@ -17,7 +17,8 @@ import tragicneko.tragicmc.entity.mob.EntityParasmite;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
 import tragicneko.tragicmc.worldgen.SurfaceWorldGen2;
-import tragicneko.tragicmc.worldgen.WorldGenDarkForestTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomCanopyTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomTallGrass;
 
 public class BiomeGenDarkForest extends TragicBiome {
 
@@ -54,13 +55,13 @@ public class BiomeGenDarkForest extends TragicBiome {
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)
 	{
-		return null; //new WorldGenTallGrass(TragicBlocks.DarkTallGrass.getDefaultState(), 0);
+		return new WorldGenCustomTallGrass(TragicBlocks.DarkTallGrass.getDefaultState());
 	}
 
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return new WorldGenDarkForestTree();
+		return new WorldGenCustomCanopyTree(TragicBlocks.Darkwood.getDefaultState(), TragicBlocks.DarkLeaves.getDefaultState());
 	}
 
 	@Override

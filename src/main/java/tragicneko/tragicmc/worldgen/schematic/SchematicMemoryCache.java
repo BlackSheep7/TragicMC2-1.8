@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class SchematicMemoryCache extends Schematic {
@@ -19,18 +19,18 @@ public class SchematicMemoryCache extends Schematic {
 	@Override
 	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 		double size = rand.nextDouble() * 4.45D + 5.55D;
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(world, size, x, y, z);
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(world, size, x, y, z);
 
-		for (int[] coords : list)
+		for (BlockPos coords : list)
 		{
-			this.setBlock(world, coords[0], coords[1], coords[2], TragicBlocks.Conduit, 0, 2);
+			this.setBlock(world, coords.getX(), coords.getY(), coords.getZ(), TragicBlocks.Conduit, 0, 2);
 		}
 
 		list = WorldHelper.getBlocksInSphericalRange(world, size - 1.0D, x, y, z);
 
-		for (int[] coords : list)
+		for (BlockPos coords : list)
 		{
-			this.setBlockToAir(world, coords[0], coords[1], coords[2]);
+			this.setBlockToAir(world, coords.getX(), coords.getY(), coords.getZ());
 		}
 
 		for (int x1 = -1; x1 < 2; x1++)

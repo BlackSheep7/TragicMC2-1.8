@@ -474,16 +474,16 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	}
 
 	private void destroyBlocks() {
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, this.width - 0.725D, this.posX, this.posY + this.height / 2.0D + 1.2D, this.posZ);
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, this.width - 0.725D, this.posX, this.posY + this.height / 2.0D + 1.2D, this.posZ);
 		Block block;
 
-		for (int[] coords : list)
+		for (BlockPos coords : list)
 		{
-			block = this.worldObj.getBlockState(new BlockPos(coords[0], coords[1], coords[2])).getBlock();
+			block = this.worldObj.getBlockState(coords).getBlock();
 
-			if (!block.isAir(this.worldObj, new BlockPos(coords[0], coords[1], coords[2])) && block.canEntityDestroy(this.worldObj, new BlockPos(coords[0], coords[1], coords[2]), new EntityWither(this.worldObj)))
+			if (!block.isAir(this.worldObj, coords) && block.canEntityDestroy(this.worldObj, coords, new EntityWither(this.worldObj)))
 			{
-				this.worldObj.destroyBlock(new BlockPos(coords[0], coords[1], coords[2]), true);
+				this.worldObj.destroyBlock(coords, true);
 			}
 		}
 	}
