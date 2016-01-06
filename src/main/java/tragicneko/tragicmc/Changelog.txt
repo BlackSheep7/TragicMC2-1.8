@@ -4452,18 +4452,17 @@ More error fixing done, a few more and I can start up the mod (with some things 
 Fixed Enchantment list return for automatic config id setting
 Fixed derps with blockstate setup
 Fixed error with my custom entity list
-There's an error with datawatchers for mobs (forgot about that), and with the Challenge scrolls
 Fixed lots of errors with Dimensions, going to need to do a huge update to the generation/chunk manager code for both
 dimensions and for the other worldgen I have that uses vanilla code
+Updated generation/chunk manager code for both dimensions, working on updating the last of the feature worldgen code
+This includes changing some to work as more general code
+Finished resolving all of the errors, now I'm going to fix stuff that isn't explicitly erroring like the datawatchers
 
 TODO: Remember to override illumination method for my mobs so that the ones that need to have it do it
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
 TODO: Move teleporting into the super classes for Entities, with some hooks to change particles and do something when a teleport is successful
 TODO: Add a utility method for teleporting the player somewhere (so I don't have to copy-paste a block of code just for this)
-TODO: Cleanup variable names in overridden methods, they make the code difficult to read for others and make it more complicated
-to update code in situations such as this port
-TODO: Add a utility method for getting a Block from a pos instead of a blockstate, some methods only require the block so this would be faster
-TODO: Add configurability of enchantment weights
+TODO: Add configurability of enchantment weights, mirror this to the 1.7.10 version
 
 //Changed common entity functions
 func_145780_a(int x, int y, int z, Block block) ---> playStepSound(BlockPos pos, Block block)
