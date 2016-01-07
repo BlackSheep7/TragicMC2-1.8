@@ -30,14 +30,14 @@ public class BlockSteamVent extends Block {
 	{
 		world.scheduleUpdate(pos, this, this.tickRate(world));
 	}
-/*
-	@Override //TODO change method call
-	public void onEntityWalking(World world, BlockPos pos, Entity entity)
+
+	@Override
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
 	{
 		entity.motionY += 0.8 * world.rand.nextDouble();
 		entity.velocityChanged = true;
 		if (!entity.isImmuneToFire() && world.rand.nextInt(256) == 0) entity.setFire(8 + world.rand.nextInt(4));
-	} */
+	}
 
 	@Override
 	public int tickRate(World world)

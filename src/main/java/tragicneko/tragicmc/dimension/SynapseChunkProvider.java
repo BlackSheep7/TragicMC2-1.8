@@ -354,7 +354,7 @@ public class SynapseChunkProvider implements IChunkProvider
 		 BlockFalling.fallInstantly = true;
 		 int k = x * 16;
 		 int l = z * 16;
-		 BlockPos pos = new BlockPos(k + 8, 0, l + 8);
+		 BlockPos pos = new BlockPos(k, 0, l);
 		 BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
 		 biomegenbase.decorate(this.worldObj, this.worldObj.rand, pos);
 		 int a;

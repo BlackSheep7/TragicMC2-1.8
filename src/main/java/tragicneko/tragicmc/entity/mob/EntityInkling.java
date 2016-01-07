@@ -226,102 +226,6 @@ public class EntityInkling extends TragicMob {
 		return (int) inklingStats[5];
 	}
 
-	protected boolean teleportRandomly()
-	{
-		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 24.0D;
-		double d1 = this.posY + (this.rand.nextInt(64) - 32);
-		double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 24.0D;
-		return this.teleportTo(d0, d1, d2);
-	}
-
-	protected boolean teleportToEntity(Entity par1Entity)
-	{
-		Vec3 vec3 = new Vec3(this.posX - par1Entity.posX, this.getEntityBoundingBox().minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
-		vec3 = vec3.normalize();
-		double d0 = 16.0D;
-		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
-		double d2 = this.posY + (this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
-		double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
-		return this.teleportTo(d1, d2, d3);
-	}
-
-	protected boolean teleportTo(double par1, double par3, double par5)
-	{
-		double d3 = this.posX;
-		double d4 = this.posY;
-		double d5 = this.posZ;
-		this.posX = par1;
-		this.posY = par3;
-		this.posZ = par5;
-		boolean flag = false;
-		int i = MathHelper.floor_double(this.posX);
-		int j = MathHelper.floor_double(this.posY);
-		int k = MathHelper.floor_double(this.posZ);
-
-		boolean flag2 = false;
-
-		if (this.worldObj.getLight(new BlockPos(i, j, k)) <= 8)
-		{
-			flag2 = true;
-		}
-
-		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4) && flag2)
-		{
-			boolean flag1 = false;
-
-			while (!flag1 && j > 0)
-			{
-				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
-
-				if (block.getMaterial().blocksMovement())
-				{
-					flag1 = true;
-				}
-				else
-				{
-					--this.posY;
-					--j;
-				}
-			}
-
-			if (flag1)
-			{
-				this.setPosition(this.posX, this.posY, this.posZ);
-
-				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
-				{
-					flag = true;
-				}
-			}
-		}
-
-		if (!flag)
-		{
-			this.setPosition(d3, d4, d5);
-			return false;
-		}
-		else
-		{
-			short short1 = 128;
-
-			for (int l = 0; l < short1; ++l)
-			{
-				double d6 = l / (short1 - 1.0D);
-				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
-				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d7, d8, d9, f, f1, f2);
-			}
-
-			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 0.2F, 1.0F);
-			this.playSound("mob.endermen.portal", 0.2F, 1.0F);
-			return true;
-		}
-	}
-
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -374,5 +278,10 @@ public class EntityInkling extends TragicMob {
 	public int getTalkInterval()
 	{
 		return 320;
+	}
+	
+	@Override
+	protected EnumParticleTypes getTeleportParticle() {
+		return EnumParticleTypes.SMOKE_NORMAL;
 	}
 }

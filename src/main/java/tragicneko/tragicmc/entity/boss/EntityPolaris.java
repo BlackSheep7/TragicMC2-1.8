@@ -45,7 +45,7 @@ import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import com.google.common.base.Predicate;
 
 public class EntityPolaris extends TragicBoss {
-	
+
 	public static final int DW_ATTACK_TIME = 20;
 	public static final int DW_DAYTIME = 21;
 	public static final int DW_CLONE = 22;
@@ -55,7 +55,7 @@ public class EntityPolaris extends TragicBoss {
 		public boolean apply(Object input) {
 			return canApply((Entity) input);
 		}
-		
+
 		public boolean canApply(Entity entity) {
 			return entity instanceof EntityGolem;
 		}
@@ -120,7 +120,7 @@ public class EntityPolaris extends TragicBoss {
 		super.onDeath(src);
 		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.polaris);
 	}
-	
+
 	@Override
 	protected void dropFewItems(boolean flag, int l)
 	{
@@ -299,114 +299,27 @@ public class EntityPolaris extends TragicBoss {
 	@Override
 	public void fall(float dist, float multi){}
 
-	protected boolean teleportRandomly()
+	@Override
+	protected void onTeleport(double d3, double d4, double d5)
 	{
-		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 24.0D;
-		double d1 = this.posY + (this.rand.nextInt(48) - 24);
-		double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 24.0D;
-		return this.teleportTo(d0, d1, d2);
-	}
-
-	protected boolean teleportToEntity(Entity par1Entity)
-	{
-		Vec3 vec3 = new Vec3(this.posX - par1Entity.posX, this.getEntityBoundingBox().minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
-		vec3 = vec3.normalize();
-		double d0 = 16.0D;
-		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
-		double d2 = this.posY + (this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
-		double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
-		return this.teleportTo(d1, d2, d3);
-	}
-
-	protected boolean teleportTo(double par1, double par3, double par5)
-	{
-		if (this.isClone()) return false;
-
-		double d3 = this.posX;
-		double d4 = this.posY;
-		double d5 = this.posZ;
-		this.posX = par1;
-		this.posY = par3;
-		this.posZ = par5;
-		boolean flag = false;
-		int i = MathHelper.floor_double(this.posX);
-		int j = MathHelper.floor_double(this.posY);
-		int k = MathHelper.floor_double(this.posZ);
-
-		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4))
+		if (rand.nextBoolean() && this.getHealth() <= this.getMaxHealth() / 2 && TragicConfig.polarisAfterImage)
 		{
-			boolean flag1 = false;
-
-			while (!flag1 && j > 0)
+			ArrayList<Entity> list = (ArrayList<Entity>) this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
+			for (int mow = 0; mow < list.size(); mow++)
 			{
-				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
-
-				if (block.getMaterial().blocksMovement())
-				{
-					flag1 = true;
-				}
-				else
-				{
-					--this.posY;
-					--j;
-				}
+				if (list.get(mow) == this) list.remove(mow);
 			}
 
-			if (flag1)
+			if (list.size() <= 3)
 			{
-				this.setPosition(this.posX, this.posY, this.posZ);
-
-				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
-				{
-					flag = true;
-				}
+				EntityPolaris polar = new EntityPolaris(this.worldObj);
+				polar.copyLocationAndAnglesFrom(this);
+				polar.setPosition(d3, d4, d5);
+				polar.setClone();
+				this.worldObj.spawnEntityInWorld(polar);
+				if (this.getAttackTarget() != null) polar.setAttackTarget(this.getAttackTarget());
+				polar.func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos(d3, d4, d5)), null);
 			}
-		}
-
-		if (!flag)
-		{
-			this.setPosition(d3, d4, d5);
-			return false;
-		}
-		else
-		{
-
-			short short1 = 128;
-
-			for (int l = 0; l < short1; ++l)
-			{
-				double d6 = l / (short1 - 1.0D);
-				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
-				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
-			}
-			this.worldObj.playSoundEffect(d3, d4, d5, TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.clone" : "mob.endermen.portal", 0.4F, 1.0F);
-			this.playSound(TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.clone" : "mob.endermen.portal", 0.4F, 1.0F);
-
-			if (rand.nextBoolean() && this.getHealth() <= this.getMaxHealth() / 2 && TragicConfig.polarisAfterImage)
-			{
-				ArrayList<Entity> list = (ArrayList<Entity>) this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
-				for (int mow = 0; mow < list.size(); mow++)
-				{
-					if (list.get(mow) == this) list.remove(mow);
-				}
-
-				if (list.size() <= 3)
-				{
-					EntityPolaris polar = new EntityPolaris(this.worldObj);
-					polar.copyLocationAndAnglesFrom(this);
-					polar.setPosition(d3, d4, d5);
-					polar.setClone();
-					this.worldObj.spawnEntityInWorld(polar);
-					if (this.getAttackTarget() != null) polar.setAttackTarget(this.getAttackTarget());
-					polar.func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos(d3, d4, d5)), null);
-				}
-			}
-			return true;
 		}
 	}
 
@@ -469,5 +382,15 @@ public class EntityPolaris extends TragicBoss {
 	public int getTalkInterval()
 	{
 		return super.getTalkInterval();
+	}
+	
+	@Override
+	protected String getTeleportSound() {
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.clone" : super.getTeleportSound();
+	}
+	
+	@Override
+	protected int getTeleportLight() {
+		return 15;
 	}
 }

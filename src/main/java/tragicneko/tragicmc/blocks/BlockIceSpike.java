@@ -73,13 +73,13 @@ public class BlockIceSpike extends Block {
 		Block block = world.getBlockState(pos).getBlock();
 		return block == this ? false : super.shouldSideBeRendered(world, pos, facing);
 	}
-	/*
-	@Override //TODO change method call
-	public void onEntityWalking(World world, BlockPos pos, IBlockState state, Entity entity)
+	
+	@Override 
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
-		super.onEntityWalking(world, pos, entity);
+		super.onEntityCollidedWithBlock(world, pos, entity);
 		if (world.rand.nextInt(4) == 0 && entity instanceof EntityLivingBase) entity.attackEntityFrom(new DamageSource("iceSpike").setDamageBypassesArmor(), 1F);
-	} */
+	}
 	
 	@Override
 	protected BlockState createBlockState()

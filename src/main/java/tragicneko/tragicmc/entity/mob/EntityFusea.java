@@ -258,4 +258,9 @@ public class EntityFusea extends TragicMob {
 		super.onDeath(src);
 		if (!this.hasDamagedEntity && TragicConfig.allowAchievements && src.isFireDamage() && this.getAttackTarget() instanceof EntityPlayerMP) ((EntityPlayerMP) this.getAttackTarget()).triggerAchievement(TragicAchievements.fusea);
 	}
+	
+	@Override
+	public boolean getIllumination() {
+		return true;
+	}
 }

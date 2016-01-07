@@ -75,16 +75,6 @@ public class BlockQuicksand extends BlockFalling
 		if (!(entity instanceof EntityFallingBlock)) entity.onGround = true;
 		if (world.getBlockState(pos).getValue(VARIANT) == EnumVariant.SLUDGE && entity instanceof EntityLivingBase && world.rand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60 + world.rand.nextInt(40)));
 	}
-/*
-	@Override //TODO change method call
-	public void onEntityWalking(World world, BlockPos pos, Entity entity)
-	{
-		if (entity instanceof EntityBlaze || entity instanceof EntityGhast || entity instanceof EntityPlague || entity instanceof EntityHunter || entity instanceof EntityParasmite) return;
-		entity.motionX *= 0.0015;
-		entity.motionZ *= 0.0015;
-		entity.motionY = -0.5;
-		entity.velocityChanged = true;
-	} */
 
 	@Override
 	public void onFallenUpon(World world, BlockPos pos, Entity entity, float distance)

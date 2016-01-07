@@ -6,6 +6,8 @@ import java.util.Random;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,6 +25,7 @@ public class BlockGenericLeaves extends BlockLeaves {
 	{
 		super();
 		this.setCreativeTab(TragicMC.Survival);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
 	}
 
 	@Override
@@ -73,4 +76,36 @@ public class BlockGenericLeaves extends BlockLeaves {
 	public EnumType getWoodType(int meta) {
 		return EnumType.OAK;
 	}
+	
+	@Override
+	protected BlockState createBlockState()
+    {
+        return new BlockState(this, new IProperty[] {CHECK_DECAY, DECAYABLE});
+    }
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+    {
+		return this.getDefaultState().withProperty(CHECK_DECAY, Boolean.valueOf(meta % 2 == 0)).withProperty(DECAYABLE, Boolean.valueOf(meta > 1));
+    }
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+    {
+		boolean check = (Boolean) state.getValue(CHECK_DECAY);
+		boolean decay = (Boolean) state.getValue(DECAYABLE);
+		
+		if (check && decay) return 2;
+		else if (check && !decay) return 1;
+		else if (!check && decay) return 3;
+		else if (!check && !decay) return 0;
+		
+		return 0;
+    }
+	
+	@Override
+	protected ItemStack createStackedBlock(IBlockState state)
+    {
+		return new ItemStack(Item.getItemFromBlock(this), 1, 0);
+    }
 }

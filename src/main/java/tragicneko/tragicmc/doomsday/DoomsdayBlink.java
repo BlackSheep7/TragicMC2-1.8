@@ -24,7 +24,7 @@ public class DoomsdayBlink extends Doomsday {
 		if (mop.typeOfHit == MovingObjectType.BLOCK && player instanceof EntityPlayerMP && ((EntityPlayerMP) player).playerNetServerHandler.getNetworkManager().isChannelOpen())
 		{
 			if (player.isRiding()) player.mountEntity((Entity)null);
-			//TODO make sure blink offsets are correct via world helper method
+			
 			double d4 = WorldHelper.getXPositionFromSide(mop.sideHit, mop.hitVec.xCoord);
 			double d5 = WorldHelper.getYPositionFromSide(mop.sideHit, mop.hitVec.yCoord);
 			double d6 = WorldHelper.getZPositionFromSide(mop.sideHit, mop.hitVec.zCoord);

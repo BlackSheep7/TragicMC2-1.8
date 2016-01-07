@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -95,42 +96,13 @@ public class ItemEverlastingLight extends Item {
 				else
 				{
 					if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-					{/*//TODO fix everlasting light
-						int i = movingobjectposition.blockX;
-						int j = movingobjectposition.blockY;
-						int k = movingobjectposition.blockZ;
+					{
+						BlockPos pos = movingobjectposition.getBlockPos();
 
-						if (!par2World.canMineBlock(par3EntityPlayer, i, j, k))
-						{
-							return par1ItemStack;
-						}
+						if (!par2World.canMineBlockBody(par3EntityPlayer, pos)) return par1ItemStack;
+						if (!par3EntityPlayer.canPlayerEdit(pos, movingobjectposition.sideHit, par1ItemStack)) return par1ItemStack;
 
-						if (!par3EntityPlayer.canPlayerEdit(i, j, k, movingobjectposition.sideHit, par1ItemStack))
-						{
-							return par1ItemStack;
-						}
-
-						switch(movingobjectposition.sideHit)
-						{
-						case 0:
-							par2World.setBlock(i, j - 1, k, TragicBlocks.Light);
-							break;
-						case 1:
-							par2World.setBlock(i, j + 1, k, TragicBlocks.Light);
-							break;
-						case 2:
-							par2World.setBlock(i, j, k - 1, TragicBlocks.Light);
-							break;
-						case 3:
-							par2World.setBlock(i, j, k + 1, TragicBlocks.Light);
-							break;
-						case 4:
-							par2World.setBlock(i - 1, j, k, TragicBlocks.Light);
-							break;
-						case 5:
-							par2World.setBlock(i + 1, j, k, TragicBlocks.Light);
-							break;
-						} */
+						par2World.setBlockState(pos.offset(movingobjectposition.sideHit), TragicBlocks.Light.getDefaultState());
 						par1ItemStack.damageItem(1, par3EntityPlayer);
 						return par1ItemStack;
 					}

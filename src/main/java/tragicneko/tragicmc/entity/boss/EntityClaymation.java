@@ -1002,94 +1002,6 @@ public class EntityClaymation extends TragicBoss {
 		}
 	}
 
-	protected boolean teleportRandomly()
-	{
-		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 24.0D;
-		double d1 = this.posY + (this.rand.nextInt(48) - 24);
-		double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 24.0D;
-		return this.teleportTo(d0, d1, d2);
-	}
-
-	protected boolean teleportToEntity(Entity par1Entity)
-	{
-		Vec3 vec3 = new Vec3(this.posX - par1Entity.posX, this.getEntityBoundingBox().minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
-		vec3 = vec3.normalize();
-		double d0 = 16.0D;
-		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
-		double d2 = this.posY + (this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
-		double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
-		return this.teleportTo(d1, d2, d3);
-	}
-
-	protected boolean teleportTo(double par1, double par3, double par5)
-	{
-		double d3 = this.posX;
-		double d4 = this.posY;
-		double d5 = this.posZ;
-		this.posX = par1;
-		this.posY = par3;
-		this.posZ = par5;
-		boolean flag = false;
-		int i = MathHelper.floor_double(this.posX);
-		int j = MathHelper.floor_double(this.posY);
-		int k = MathHelper.floor_double(this.posZ);
-
-		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4))
-		{
-			boolean flag1 = false;
-
-			while (!flag1 && j > 0)
-			{
-				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
-
-				if (block.getMaterial().blocksMovement())
-				{
-					flag1 = true;
-				}
-				else
-				{
-					--this.posY;
-					--j;
-				}
-			}
-
-			if (flag1)
-			{
-				this.setPosition(this.posX, this.posY, this.posZ);
-
-				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
-				{
-					flag = true;
-				}
-			}
-		}
-
-		if (!flag)
-		{
-			this.setPosition(d3, d4, d5);
-			return false;
-		}
-		else
-		{
-			short short1 = 128;
-
-			for (int l = 0; l < short1; ++l)
-			{
-				double d6 = l / (short1 - 1.0D);
-				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
-				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle(EnumParticleTypes.FLAME, d7, d8, d9, f, f1, f2);
-			}
-			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
-			this.playSound(this.getLivingSound() == null ? "mob.endermen.portal" : this.getLivingSound(), 1.0F, 1.0F);
-			return true;
-		}
-	}
-
 	private void updateAsIronGolem()
 	{
 		//Nobody's home!
@@ -1312,39 +1224,9 @@ public class EntityClaymation extends TragicBoss {
 					{
 						if (entity instanceof EntityPlayerMP)
 						{
-							EntityPlayerMP mp = (EntityPlayerMP) entity;
-
-							if (mp.capabilities.isCreativeMode) return flag;
-
-							if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && this.worldObj == mp.worldObj)
-							{
-								if (mp.isRiding()) mp.mountEntity(null);
-								AxisAlignedBB bb = mp.getEntityBoundingBox();
-								bb.offset(x + x1, y + y1, z + z1);
-
-								if (this.worldObj.checkNoEntityCollision(bb) && this.worldObj.getCollidingBoundingBoxes(mp, bb).isEmpty() &&
-										!this.worldObj.isAnyLiquid(bb))
-								{
-									mp.playerNetServerHandler.setPlayerLocation(x + x1, y + y1, z + z1, mp.rotationYaw, mp.rotationPitch);
-									short short1 = 128;
-
-									for (int l = 0; l < short1; ++l)
-									{
-										double d6 = l / (short1 - 1.0D);
-										float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
-										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-										this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
-									}
-									mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
-									mp.fallDistance = 0.0F;
-									this.worldObj.playSoundAtEntity(mp, "mob.endermen.portal", 0.4F, 0.4F);
-									return flag;
-								}
-							}
+							boolean flag2 = this.teleportPlayer((EntityPlayerMP) entity);
+							if (flag2) entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
+							return flag2;
 						}
 						else
 						{
@@ -1365,10 +1247,10 @@ public class EntityClaymation extends TragicBoss {
 									double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 									double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
 									double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-									this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
+									this.worldObj.spawnParticle(this.getTeleportParticle(), d7, d8, d9, f, f1, f2);
 								}
 
-								this.worldObj.playSoundAtEntity(entity, "mob.endermen.portal", 0.4F, 0.4F);
+								this.worldObj.playSoundAtEntity(entity, this.getTeleportSound(), 0.4F, 0.4F);
 								entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
 								return flag;
 							}
@@ -1837,5 +1719,15 @@ public class EntityClaymation extends TragicBoss {
 	{
 		super.dropFewItems(flag, l);
 		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 15)));
+	}
+	
+	@Override
+	protected EnumParticleTypes getTeleportParticle() {
+		return this.getEntityForm() == 8 ? EnumParticleTypes.FLAME : (this.getEntityForm() == 3 ? EnumParticleTypes.SMOKE_NORMAL : super.getTeleportParticle());
+	}
+	
+	@Override
+	protected String getTeleportSound() {
+		return this.getEntityForm() == 3 ? "tragicmc:mob.stin.teleport" : super.getTeleportSound();
 	}
 }

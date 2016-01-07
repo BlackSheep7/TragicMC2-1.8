@@ -208,32 +208,9 @@ public class EntityPsygote extends TragicMob {
 
 		if (this.getAttackTarget() instanceof EntityPlayerMP)
 		{
-			EntityPlayerMP mp = (EntityPlayerMP) this.getAttackTarget();
-
-			if (mp.capabilities.isCreativeMode) return;
-
-			if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && this.worldObj == mp.worldObj)
+			if (this.teleportPlayer((EntityPlayerMP) this.getAttackTarget()))
 			{
-				if (mp.isRiding()) mp.mountEntity(null);
-
-				mp.playerNetServerHandler.setPlayerLocation(x2, y2, z2, mp.rotationYaw, mp.rotationPitch);
-				short short1 = 128;
-
-				for (int l = 0; l < short1; ++l)
-				{
-					double d6 = l / (short1 - 1.0D);
-					float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-					float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-					float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-					double d7 = x + ((x2) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-					double d8 = y + ((y2) - y) * d6 + this.rand.nextDouble() * this.height;
-					double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-					this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d7, d8, d9, f, f1, f2);
-				}
-				mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
-				mp.fallDistance = 0.0F;
-				this.worldObj.playSoundAtEntity(mp, "mob.endermen.portal", 0.4F, 0.4F);
-
+				this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 			}
 		}
 		else
@@ -251,10 +228,10 @@ public class EntityPsygote extends TragicMob {
 				double d7 = x + ((x2) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				double d8 = y + ((y2) - y) * d6 + this.rand.nextDouble() * this.height;
 				double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-				this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
+				this.worldObj.spawnParticle(getTeleportParticle(), d7, d8, d9, f, f1, f2);
 			}
 
-			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "mob.endermen.portal", 0.4F, 0.4F);
+			this.worldObj.playSoundAtEntity(this.getAttackTarget(), getTeleportSound(), 0.4F, 0.4F);
 			this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.blindness.id, 60, 0));
 		}
 
@@ -374,5 +351,10 @@ public class EntityPsygote extends TragicMob {
 		{
 			((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.psygote);
 		}
+	}
+	
+	@Override
+	protected EnumParticleTypes getTeleportParticle() {
+		return EnumParticleTypes.SMOKE_NORMAL;
 	}
 }

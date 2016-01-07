@@ -1,13 +1,47 @@
 package tragicneko.tragicmc.items;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBreakable;
+import net.minecraft.block.BlockFalling;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenBigTree;
+import net.minecraft.world.gen.feature.WorldGenCanopyTree;
+import net.minecraft.world.gen.feature.WorldGenForest;
+import net.minecraft.world.gen.feature.WorldGenMegaJungle;
+import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
+import net.minecraft.world.gen.feature.WorldGenSavannaTree;
+import net.minecraft.world.gen.feature.WorldGenTaiga2;
+import net.minecraft.world.gen.feature.WorldGenTrees;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
+import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.WorldGenCustomHugeJungleTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomLollipopTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomOakTree;
+import tragicneko.tragicmc.worldgen.WorldGenCustomSavannaTree;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class ItemGenerator extends Item {
 
@@ -36,15 +70,14 @@ public class ItemGenerator extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		return super.onItemRightClick(stack, world, player); /*//TODO fix generator item
 		if (world.isRemote) return stack;
 		Random random = world.rand;
 
 		double size;
 		int meta = stack.getItemDamage();
 
-		int[] coords;
-		ArrayList<int[]> list;
+		BlockPos coords;
+		ArrayList<BlockPos> list;
 
 		String[] names;
 		Set<Block> filter;
@@ -80,7 +113,7 @@ public class ItemGenerator extends Item {
 					for (int mapping = 0; mapping < list.size(); mapping++)
 					{
 						coords = list.get(mapping);
-						if (random.nextInt(2) != 0 && !filter.contains(world.getBlock(coords[0], coords[1], coords[2]))) world.setBlockToAir(coords[0], coords[1], coords[2]);
+						if (random.nextInt(2) != 0 && !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
 					}
 				}
 
@@ -89,7 +122,7 @@ public class ItemGenerator extends Item {
 				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
 					coords = list.get(mapping);
-					if (random.nextInt(2) != 0 && !filter.contains(world.getBlock(coords[0], coords[1], coords[2]))) world.setBlockToAir(coords[0], coords[1], coords[2]);
+					if (random.nextInt(2) != 0 && !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
 				}
 
 				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
@@ -97,7 +130,7 @@ public class ItemGenerator extends Item {
 				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
 					coords = list.get(mapping);
-					if (random.nextInt(2) != 0 && !filter.contains(world.getBlock(coords[0], coords[1], coords[2]))) world.setBlockToAir(coords[0], coords[1], coords[2]);
+					if (random.nextInt(2) != 0 && !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
 				}
 			}
 
@@ -122,20 +155,20 @@ public class ItemGenerator extends Item {
 
 			if (!TragicConfig.sphereGenUsesFilter)
 			{
-				while (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable) || ablock.hasTileEntity(0) || ablock instanceof BlockFalling)
+				while (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable) || ablock.hasTileEntity(ablock.getDefaultState()) || ablock instanceof BlockFalling)
 				{
 					ablock = Block.getBlockById(random.nextInt(4096));
 					attempts++;
 					if (attempts > 40) break;
 				}
 				
-				if (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable)|| ablock.hasTileEntity(0) || ablock instanceof BlockFalling) ablock = Blocks.tnt;
+				if (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable)|| ablock.hasTileEntity(ablock.getDefaultState()) || ablock instanceof BlockFalling) ablock = Blocks.tnt;
 			}
 			
 			for (int i = 0; i < list.size(); i++)
 			{
 				coords = list.get(i);
-				world.setBlock(coords[0], coords[1], coords[2], ablock);
+				world.setBlockState(coords, ablock.getDefaultState());
 			}
 
 			if (!list.isEmpty() && ablock != null)
@@ -159,7 +192,7 @@ public class ItemGenerator extends Item {
 			for (int i = 0; i < list.size(); i++)
 			{
 				coords = list.get(i);
-				if (!TragicConfig.eraserUsesFilter || !filter.contains(world.getBlock(coords[0], coords[1], coords[2]))) world.setBlockToAir(coords[0], coords[1], coords[2]);
+				if (!TragicConfig.eraserUsesFilter || !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
 			}
 
 			if (!list.isEmpty())
@@ -174,9 +207,9 @@ public class ItemGenerator extends Item {
 			{
 				coords = list.get(i);
 
-				if (world.getBlock(coords[0], coords[1], coords[2]) instanceof BlockLiquid)
+				if (world.getBlockState(coords).getBlock() instanceof BlockLiquid)
 				{
-					world.setBlockToAir(coords[0], coords[1], coords[2]);
+					world.setBlockToAir(coords);
 				}
 			}
 
@@ -213,16 +246,16 @@ public class ItemGenerator extends Item {
 				object = new WorldGenTrees(true, 4 + random.nextInt(7), 3, 3, false);
 				break;
 			case 7:
-				object = new WorldGenBleachedTree(true, random.nextBoolean());
+				object = new WorldGenCustomLollipopTree(TragicBlocks.BleachedWood.getDefaultState(), TragicBlocks.BleachedLeaves.getDefaultState());
 				break;
 			case 8:
-				object = new WorldGenAshenTree(true);
+				object = new WorldGenCustomSavannaTree(random.nextBoolean(), TragicBlocks.AshenWood.getDefaultState(), TragicBlocks.AshenLeaves.getDefaultState());
 				break;
 			case 9:
-				object = new WorldGenLargePaintedTree(true, random.nextInt(3) + 4, 10);
+				object = new WorldGenCustomHugeJungleTree(true, random.nextInt(3) + 4, 10, TragicBlocks.PaintedLeaves.getDefaultState(), TragicBlocks.PaintedWood.getDefaultState(), TragicBlocks.Glowvine.getDefaultState());
 				break;
 			case 10:
-				object = new WorldGenPaintedTree(true, random.nextBoolean());
+				object = new WorldGenCustomOakTree(true, 6, TragicBlocks.PaintedWood.getDefaultState(), TragicBlocks.PaintedLeaves.getDefaultState());
 				break;
 			}
 
@@ -232,12 +265,12 @@ public class ItemGenerator extends Item {
 				{
 					for (int x1 = -1; x1 < 2; x1++)
 					{
-						world.setBlockToAir(Xcoord + x1, Ycoord + y1, Zcoord + z1);
+						world.setBlockToAir(new BlockPos(Xcoord + x1, Ycoord + y1, Zcoord + z1));
 					}
 				}
 			}
 
-			if (object.generate(world, random, Xcoord, Ycoord, Zcoord))
+			if (object.generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord)))
 			{
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Tree generated successfully"));
 			}
@@ -291,7 +324,7 @@ public class ItemGenerator extends Item {
 				for (int j = 0; j < list.size(); j++)
 				{
 					coords = list.get(j);
-					world.setBlock(coords[0], coords[1], coords[2], spike, blockMeta, 2);
+					world.setBlockState(coords, spike.getStateFromMeta(blockMeta), 2);
 				}
 			}
 			break;
@@ -313,7 +346,7 @@ public class ItemGenerator extends Item {
 				for (int j = 0; j < list.size(); j++)
 				{
 					coords = list.get(j);
-					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.StarCrystal, blockMeta2, 2);
+					world.setBlockState(coords, TragicBlocks.StarCrystal.getStateFromMeta(blockMeta2), 2);
 				}
 			}
 			break;
@@ -329,12 +362,12 @@ public class ItemGenerator extends Item {
 		case 9:
 			double regression = 0.88977745D;
 			double cutoff = 0.48943755D;
-			ArrayList<int[]> cands = new ArrayList<int[]>();
+			ArrayList<BlockPos> cands = new ArrayList<BlockPos>();
 
 			size = random.nextDouble() * 3.5D + 1.5D;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
-			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + 1 + random.nextInt(18) + 10;
+			Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY() + 1 + random.nextInt(18) + 10;
 			int yMax = Ycoord;
 
 			for (int y1 = 0; y1 > -32; y1--)
@@ -353,12 +386,12 @@ public class ItemGenerator extends Item {
 
 				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-				for (int[] coords2 : list)
+				for (BlockPos coords2 : list)
 				{
-					block = world.getBlock(coords2[0], coords2[1], coords2[2]);
+					block = world.getBlockState(coords2).getBlock();
 					if (Structure.validBlocks.contains(block) && !cands.contains(coords2))
 					{
-						if (yMax < coords2[1]) yMax = coords2[1];
+						if (yMax < coords2.getY()) yMax = coords2.getY();
 						cands.add(coords2);
 					}
 				}
@@ -366,19 +399,19 @@ public class ItemGenerator extends Item {
 
 			int rand = random.nextInt(4) + 2;
 
-			for (int[] coords2 : cands)
+			for (BlockPos coords2 : cands)
 			{
-				if (coords2[1] >= yMax)
+				if (coords2.getY() >= yMax)
 				{
-					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.ErodedStone, 0, 2);
+					world.setBlockState(coords2, TragicBlocks.ErodedStone.getDefaultState(), 2);
 				}
-				else if (coords2[1] >= yMax - rand - random.nextInt(2))
+				else if (coords2.getY() >= yMax - rand - random.nextInt(2))
 				{
-					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DeadDirt, 0, 2);
+					world.setBlockState(coords2, TragicBlocks.DeadDirt.getDefaultState(), 2);
 				}
 				else
 				{
-					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DarkStone, 0, 2);
+					world.setBlockState(coords2, TragicBlocks.DarkStone.getDefaultState(), 2);
 				}
 			}
 
@@ -392,7 +425,7 @@ public class ItemGenerator extends Item {
 		case 11:
 			int depth = Ycoord - 10 - random.nextInt(10);
 			size = 3.0D * random.nextDouble() + 3.0D;
-			cands = new ArrayList<int[]>();
+			cands = new ArrayList<BlockPos>();
 
 			for (int pow = 0; pow + Ycoord >= depth && pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
 			{
@@ -429,16 +462,16 @@ public class ItemGenerator extends Item {
 			block = random.nextBoolean() ? TragicBlocks.IceSpike : (random.nextBoolean() ? Blocks.flowing_lava : (random.nextBoolean() ? TragicBlocks.RadiatedGas : TragicBlocks.Quicksand));
 			int m = block == TragicBlocks.Quicksand && random.nextBoolean() ? 3 : 0;
 
-			for (int[] coords2 : cands)
+			for (BlockPos coords2 : cands)
 			{
-				if (coords2[1] > depth + 1) world.setBlockToAir(coords2[0], coords2[1], coords2[2]);
-				else world.setBlock(coords2[0], coords2[1], coords2[2], block, m, 3);
+				if (coords2.getY() > depth + 1) world.setBlockToAir(coords2);
+				else world.setBlockState(coords2, block.getStateFromMeta(m), 3);
 			}
 			player.addChatMessage(new ChatComponentText("Pit generated using " + block.getUnlocalizedName() + " as the bottom."));
 			break;
 		}
 
-		return stack; */
+		return stack;
 	}
 
 	@Override

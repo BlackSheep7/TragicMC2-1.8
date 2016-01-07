@@ -11,6 +11,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.chunk.Chunk;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.items.ItemCorruptedEgg;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class TileEntityAeris extends TileEntity {
@@ -36,10 +37,9 @@ public class TileEntityAeris extends TileEntity {
 				if (this.getBlockMetadata() == 1)
 				{
 					for (int i = 0; i < this.worldObj.rand.nextInt(3) + 1; i++)
-					{/*//TODO fix after updating corrupted egg item
-						ItemCorruptedEgg.spawnCreature(this.worldObj, this.xCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble() * 4),
-								this.yCoord,
-								this.zCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble() * 4)); */
+					{
+						ItemCorruptedEgg.spawnCreature(this.worldObj, this.pos.getX() + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble() * 4),
+								this.pos.getY(), this.pos.getZ() + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble() * 4));
 					}
 				}
 			}

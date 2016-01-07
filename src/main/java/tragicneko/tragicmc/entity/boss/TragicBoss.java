@@ -3,6 +3,7 @@ package tragicneko.tragicmc.entity.boss;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,7 +16,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
@@ -148,10 +151,13 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		
 		if (!this.worldObj.isRemote && this.getIllumination())
 		{
-			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
-			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlockState(new BlockPos(x, y, z)).getBlock())) this.worldObj.setBlockState(new BlockPos(x, y, z), TragicBlocks.Luminescence.getDefaultState());
+			int w = MathHelper.floor_float(this.width);
+			int h = MathHelper.floor_float(this.height);
+			int x = (int) (rand.nextInt(w) - rand.nextInt(w));
+			int y = (int) (rand.nextInt(h) - rand.nextInt(h)) + ((int) this.height * 2 / 3);
+			int z = (int) (rand.nextInt(w) - rand.nextInt(w));
+			BlockPos pos = WorldHelper.getBlockPos(this).add(x, y, z);
+			if (EntityOverlordCore.replaceableBlocks.contains(WorldHelper.getBlock(this.worldObj, pos))) this.worldObj.setBlockState(pos, TragicBlocks.Luminescence.getDefaultState());
 		}
 	}
 
@@ -298,6 +304,163 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	
 	public boolean getIllumination()
 	{
+		return false;
+	}
+	
+	protected boolean teleportRandomly()
+	{
+		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 24.0D;
+		double d1 = this.posY + (this.rand.nextInt(64) - 32);
+		double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 24.0D;
+		return this.teleportTo(d0, d1, d2);
+	}
+
+	protected boolean teleportToEntity(Entity par1Entity)
+	{
+		Vec3 vec3 = new Vec3(this.posX - par1Entity.posX, this.getEntityBoundingBox().minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		vec3 = vec3.normalize();
+		double d0 = 16.0D;
+		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
+		double d2 = this.posY + (this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
+		double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
+		return this.teleportTo(d1, d2, d3);
+	}
+
+	protected boolean teleportTo(double par1, double par3, double par5)
+	{
+		double d3 = this.posX;
+		double d4 = this.posY;
+		double d5 = this.posZ;
+		this.posX = par1;
+		this.posY = par3;
+		this.posZ = par5;
+		boolean flag = false;
+		int i = MathHelper.floor_double(this.posX);
+		int j = MathHelper.floor_double(this.posY);
+		int k = MathHelper.floor_double(this.posZ);
+
+		boolean flag2 = false;
+
+		if (this.worldObj.getLight(new BlockPos(i, j, k)) <= getTeleportLight())
+		{
+			flag2 = true;
+		}
+
+		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4) && flag2)
+		{
+			boolean flag1 = false;
+
+			while (!flag1 && j > 0)
+			{
+				Block block = this.worldObj.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
+
+				if (block.getMaterial().blocksMovement())
+				{
+					flag1 = true;
+				}
+				else
+				{
+					--this.posY;
+					--j;
+				}
+			}
+
+			if (flag1)
+			{
+				this.setPosition(this.posX, this.posY, this.posZ);
+
+				if (this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox()))
+				{
+					flag = true;
+				}
+			}
+		}
+
+		if (!flag)
+		{
+			this.setPosition(d3, d4, d5);
+			return false;
+		}
+		else
+		{
+			short short1 = 128;
+
+			for (int l = 0; l < short1; ++l)
+			{
+				double d6 = l / (short1 - 1.0D);
+				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
+				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
+				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
+				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
+				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				this.worldObj.spawnParticle(getTeleportParticle(), d7, d8, d9, f, f1, f2);
+			}
+			
+			this.worldObj.playSoundEffect(d3, d4, d5, getTeleportSound(), 0.2F, 1.0F);
+			this.playSound(getTeleportSound(), 0.2F, 1.0F);
+			this.onTeleport(d3, d4, d5);
+			return true;
+		}
+	}
+	
+	protected String getTeleportSound() {
+		return "mob.endermen.portal";
+	}
+	
+	protected EnumParticleTypes getTeleportParticle() {
+		return EnumParticleTypes.PORTAL;
+	}
+	
+	protected int getTeleportLight() {
+		return 8;
+	}
+	
+	/**
+	 * Called on successful teleport of this entity, includes previous coordinates before teleport
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
+	protected void onTeleport(double x, double y, double z) {
+		
+	}
+	
+	protected boolean teleportPlayer(EntityPlayerMP mp) {
+		if (mp.capabilities.isCreativeMode) return false;
+		
+		double x = mp.posX;
+		double y = mp.posY;
+		double z = mp.posZ;
+		
+		double x2 = this.posX;
+		double y2 = this.posY;
+		double z2 = this.posZ;
+
+		if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && this.worldObj == mp.worldObj)
+		{
+			if (mp.isRiding()) mp.mountEntity(null);
+
+			mp.playerNetServerHandler.setPlayerLocation(x2, y2, z2, mp.rotationYaw, mp.rotationPitch);
+			short short1 = 128;
+
+			for (int l = 0; l < short1; ++l)
+			{
+				double d6 = l / (short1 - 1.0D);
+				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
+				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
+				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
+				double d7 = x + ((x2) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				double d8 = y + ((y2) - y) * d6 + this.rand.nextDouble() * this.height;
+				double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				this.worldObj.spawnParticle(getTeleportParticle(), d7, d8, d9, f, f1, f2);
+			}
+			
+			mp.fallDistance = 0.0F;
+			this.worldObj.playSoundAtEntity(mp, getTeleportSound(), 0.4F, 0.4F);
+			return true;
+		}
+		
 		return false;
 	}
 }

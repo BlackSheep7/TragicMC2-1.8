@@ -51,17 +51,17 @@ public class BlockGeyser extends Block {
 		}
 		world.scheduleUpdate(pos, this, this.tickRate(world));
 	}
-/*
-	@Override //TODO change method
-	public void onEntityWalking(World world, BlockPos pos, IBlockState state, Entity entity)
+
+	@Override
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
-		if (isSteaming)
+		if (((Boolean) state.getValue(STEAMING)).booleanValue())
 		{
 			entity.motionY += 1.4 * world.rand.nextDouble();
 			entity.velocityChanged = true;
 			if (!entity.isImmuneToFire() && world.rand.nextInt(16) == 0) entity.setFire(8 + world.rand.nextInt(4));
 		}
-	} */
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

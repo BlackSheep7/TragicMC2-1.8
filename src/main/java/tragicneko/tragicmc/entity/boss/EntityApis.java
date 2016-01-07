@@ -517,4 +517,9 @@ public class EntityApis extends TragicBoss {
 		tag.setInteger("stompTicks", this.getStompTicks());
 		tag.setInteger("attackTime", this.getAttackTime());
 	}
+	
+	@Override
+	public boolean getIllumination() {
+		return true;
+	}
 }

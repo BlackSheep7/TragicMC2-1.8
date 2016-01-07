@@ -25,7 +25,7 @@ import tragicneko.tragicmc.TragicMC;
 public class BlockTragicFlower extends BlockBush implements IGrowable {
 
 	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockTragicFlower.EnumVariant.class);
-	public static final PropertyEnum VARIANT2 = PropertyEnum.create("variant", BlockTragicFlower.EnumVariant2.class);
+	public static final PropertyEnum VARIANT2 = PropertyEnum.create("variant2", BlockTragicFlower.EnumVariant2.class);
 
 	private final int flowerSet;
 	private static IProperty[] properties = new IProperty[] {VARIANT, VARIANT2};

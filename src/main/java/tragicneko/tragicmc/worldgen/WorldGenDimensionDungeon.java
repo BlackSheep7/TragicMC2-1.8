@@ -143,7 +143,7 @@ public class WorldGenDimensionDungeon extends WorldGenerator {
 
                                     if (tileentity1 instanceof TileEntityChest)
                                     {
-                                        WeightedRandomChestContent.generateChestContents(rand, Arrays.asList(TragicItems.NetherStructureHook), (TileEntityChest)tileentity1, TragicItems.NetherStructureHook.getCount(rand));
+                                        WeightedRandomChestContent.generateChestContents(rand, TragicItems.NetherStructureHook.getItems(rand), (TileEntityChest)tileentity1, TragicItems.NetherStructureHook.getCount(rand));
                                     }
 
                                     break label197;

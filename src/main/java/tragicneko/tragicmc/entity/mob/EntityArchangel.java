@@ -453,4 +453,9 @@ public class EntityArchangel extends TragicMob {
 	{
 		
 	}
+	
+	@Override
+	public boolean getIllumination() {
+		return true;
+	}
 }

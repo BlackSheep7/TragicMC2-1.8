@@ -453,7 +453,7 @@ public class PotionEvents {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					target = (EntityLivingBase) list.get(i);
-					if (target.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
+					if (Minecraft.getMinecraft().thePlayer != null && target.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
 					{
 						for (int j = 0; j < 4; j++)
 						{

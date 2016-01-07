@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.model.ModelLargeChest;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
@@ -17,124 +18,155 @@ public class RenderSoulChest extends TileEntitySpecialRenderer
 {
 	private static final ResourceLocation doubleTexture = new ResourceLocation("tragicmc:textures/entities/SoulChestDouble.png");
 	private static final ResourceLocation singleTexture = new ResourceLocation("tragicmc:textures/entities/SoulChestSingle.png");
-	private ModelChest singleModel = new ModelChest();
-	private ModelChest doubleModel = new ModelLargeChest();
+	private ModelChest simpleChest = new ModelChest();
+	private ModelChest doubleChest = new ModelLargeChest();
 
 	public void renderTileEntityAt(TileEntityChest te, double x, double y, double z, float partialTick, int renderPass)
-	{
-		int i;
+    {
+		int j;
 
-		if (!te.hasWorldObj())
-		{
-			i = 0;
-		}
-		else
-		{
-			Block block = te.getBlockType();
-			i = te.getBlockMetadata();
+        if (!te.hasWorldObj())
+        {
+            j = 0;
+        }
+        else
+        {
+            Block block = te.getBlockType();
+            j = te.getBlockMetadata();
 
-			if (block instanceof BlockChest && i == 0)
-			{	/*//TODO fix chest render
-				try
-				{
-					((BlockChest)block).func_149954_e(te.getWorld(), te.getPos().getX(), te.getPos().getY(), te.getPos().getZ());
-				}
-				catch (ClassCastException e)
-				{
-					FMLLog.severe("Attempted to render a chest at %d,  %d, %d that was not a chest", te.xCoord, te.yCoord, te.zCoord);
-				} */
-				i = te.getBlockMetadata();
-			}
+            if (block instanceof BlockChest && j == 0)
+            {
+                ((BlockChest)block).checkForSurroundingChests(te.getWorld(), te.getPos(), te.getWorld().getBlockState(te.getPos()));
+                j = te.getBlockMetadata();
+            }
 
-			te.checkForAdjacentChests();
-		}
+            te.checkForAdjacentChests();
+        }
 
-		if (te.adjacentChestZNeg == null && te.adjacentChestXNeg == null)
-		{
-			ModelChest modelchest;
+        if (te.adjacentChestZNeg == null && te.adjacentChestXNeg == null)
+        {
+            ModelChest modelchest;
 
-			if (te.adjacentChestXPos == null && te.adjacentChestZPos == null)
-			{
-				modelchest = this.singleModel;
-				this.bindTexture(singleTexture);
-			}
-			else
-			{
-				modelchest = this.doubleModel;
-				this.bindTexture(doubleTexture);
-			}
+            if (te.adjacentChestXPos == null && te.adjacentChestZPos == null)
+            {
+                modelchest = this.simpleChest;
 
-			GL11.glPushMatrix();
-			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			GL11.glTranslatef((float)x, (float)y + 1.0F, (float)z + 1.0F);
-			GL11.glScalef(1.0F, -1.0F, -1.0F);
-			GL11.glTranslatef(0.5F, 0.5F, 0.5F);
-			short short1 = 0;
+                if (renderPass >= 0)
+                {
+                    this.bindTexture(DESTROY_STAGES[renderPass]);
+                    GlStateManager.matrixMode(5890);
+                    GlStateManager.pushMatrix();
+                    GlStateManager.scale(4.0F, 4.0F, 1.0F);
+                    GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
+                    GlStateManager.matrixMode(5888);
+                }
+                else
+                {
+                    this.bindTexture(singleTexture);
+                }
+            }
+            else
+            {
+                modelchest = this.doubleChest;
 
-			if (i == 2)
-			{
-				short1 = 180;
-			}
+                if (renderPass >= 0)
+                {
+                    this.bindTexture(DESTROY_STAGES[renderPass]);
+                    GlStateManager.matrixMode(5890);
+                    GlStateManager.pushMatrix();
+                    GlStateManager.scale(8.0F, 4.0F, 1.0F);
+                    GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
+                    GlStateManager.matrixMode(5888);
+                }
+                else
+                {
+                    this.bindTexture(doubleTexture);
+                }
+            }
 
-			if (i == 3)
-			{
-				short1 = 0;
-			}
+            GlStateManager.pushMatrix();
+            GlStateManager.enableRescaleNormal();
 
-			if (i == 4)
-			{
-				short1 = 90;
-			}
+            if (renderPass < 0)
+            {
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            }
 
-			if (i == 5)
-			{
-				short1 = -90;
-			}
+            GlStateManager.translate((float)x, (float)y + 1.0F, (float)z + 1.0F);
+            GlStateManager.scale(1.0F, -1.0F, -1.0F);
+            GlStateManager.translate(0.5F, 0.5F, 0.5F);
+            short short1 = 0;
 
-			if (i == 2 && te.adjacentChestXPos != null)
-			{
-				GL11.glTranslatef(1.0F, 0.0F, 0.0F);
-			}
+            if (j == 2)
+            {
+                short1 = 180;
+            }
 
-			if (i == 5 && te.adjacentChestZPos != null)
-			{
-				GL11.glTranslatef(0.0F, 0.0F, -1.0F);
-			}
+            if (j == 3)
+            {
+                short1 = 0;
+            }
 
-			GL11.glRotatef(short1, 0.0F, 1.0F, 0.0F);
-			GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
-			float f1 = te.prevLidAngle + (te.lidAngle - te.prevLidAngle) * partialTick;
-			float f2;
+            if (j == 4)
+            {
+                short1 = 90;
+            }
 
-			if (te.adjacentChestZNeg != null)
-			{
-				f2 = te.adjacentChestZNeg.prevLidAngle + (te.adjacentChestZNeg.lidAngle - te.adjacentChestZNeg.prevLidAngle) * partialTick;
+            if (j == 5)
+            {
+                short1 = -90;
+            }
 
-				if (f2 > f1)
-				{
-					f1 = f2;
-				}
-			}
+            if (j == 2 && te.adjacentChestXPos != null)
+            {
+                GlStateManager.translate(1.0F, 0.0F, 0.0F);
+            }
 
-			if (te.adjacentChestXNeg != null)
-			{
-				f2 = te.adjacentChestXNeg.prevLidAngle + (te.adjacentChestXNeg.lidAngle - te.adjacentChestXNeg.prevLidAngle) * partialTick;
+            if (j == 5 && te.adjacentChestZPos != null)
+            {
+                GlStateManager.translate(0.0F, 0.0F, -1.0F);
+            }
 
-				if (f2 > f1)
-				{
-					f1 = f2;
-				}
-			}
+            GlStateManager.rotate((float)short1, 0.0F, 1.0F, 0.0F);
+            GlStateManager.translate(-0.5F, -0.5F, -0.5F);
+            float f1 = te.prevLidAngle + (te.lidAngle - te.prevLidAngle) * partialTick;
+            float f2;
 
-			f1 = 1.0F - f1;
-			f1 = 1.0F - f1 * f1 * f1;
-			modelchest.chestLid.rotateAngleX = -(f1 * (float)Math.PI / 2.0F);
-			modelchest.renderAll();
-			GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-			GL11.glPopMatrix();
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		}
+            if (te.adjacentChestZNeg != null)
+            {
+                f2 = te.adjacentChestZNeg.prevLidAngle + (te.adjacentChestZNeg.lidAngle - te.adjacentChestZNeg.prevLidAngle) * partialTick;
+
+                if (f2 > f1)
+                {
+                    f1 = f2;
+                }
+            }
+
+            if (te.adjacentChestXNeg != null)
+            {
+                f2 = te.adjacentChestXNeg.prevLidAngle + (te.adjacentChestXNeg.lidAngle - te.adjacentChestXNeg.prevLidAngle) * partialTick;
+
+                if (f2 > f1)
+                {
+                    f1 = f2;
+                }
+            }
+
+            f1 = 1.0F - f1;
+            f1 = 1.0F - f1 * f1 * f1;
+            modelchest.chestLid.rotateAngleX = -(f1 * (float)Math.PI / 2.0F);
+            modelchest.renderAll();
+            GlStateManager.disableRescaleNormal();
+            GlStateManager.popMatrix();
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+
+            if (renderPass >= 0)
+            {
+                GlStateManager.matrixMode(5890);
+                GlStateManager.popMatrix();
+                GlStateManager.matrixMode(5888);
+            }
+        }
 	}
 
 	@Override

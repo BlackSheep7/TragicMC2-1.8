@@ -485,4 +485,9 @@ public class EntityJabba extends TragicMob {
     {
         return "TragicMC.Janna";
     }
+	
+	@Override
+	public boolean getIllumination() {
+		return true;
+	}
 }

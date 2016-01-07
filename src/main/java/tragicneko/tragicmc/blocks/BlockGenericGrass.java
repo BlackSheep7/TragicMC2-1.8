@@ -3,6 +3,7 @@ package tragicneko.tragicmc.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDeadBush;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.BlockLog;
@@ -105,9 +106,9 @@ public class BlockGenericGrass extends BlockGrass {
                     }
                     else
                     {
-                        IBlockState iblockstate2 = Blocks.tallgrass.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.GRASS);
+                        IBlockState iblockstate2 = this.getTallGrass().getDefaultState();
 
-                        if (Blocks.tallgrass.canBlockStay(world, blockpos2, iblockstate2))
+                        if (((BlockBush) this.getTallGrass()).canBlockStay(world, blockpos2, iblockstate2))
                         {
                             world.setBlockState(blockpos2, iblockstate2, 3);
                         }

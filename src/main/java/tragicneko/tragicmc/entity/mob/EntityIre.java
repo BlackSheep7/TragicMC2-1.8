@@ -287,4 +287,9 @@ public class EntityIre extends TragicMob {
 			}
 		}
 	}
+	
+	@Override
+	public boolean getIllumination() {
+		return true;
+	}
 }

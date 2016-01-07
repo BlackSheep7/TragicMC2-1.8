@@ -667,4 +667,9 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 		super.dropFewItems(flag, l);
 		if (flag) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.SynapseLink)));
 	}
+	
+	@Override
+	public boolean getIllumination() {
+		return true;
+	}
 }

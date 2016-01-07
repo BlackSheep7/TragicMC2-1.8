@@ -345,39 +345,9 @@ public class EntityStin extends TragicMob {
 					{
 						if (entity instanceof EntityPlayerMP)
 						{
-							EntityPlayerMP mp = (EntityPlayerMP) entity;
-
-							if (mp.capabilities.isCreativeMode) return flag;
-
-							if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && this.worldObj == mp.worldObj)
-							{
-								if (mp.isRiding()) mp.mountEntity(null);
-								AxisAlignedBB bb = mp.getEntityBoundingBox();
-								bb.offset(x + x1, y + y1, z + z1);
-
-								if (this.worldObj.checkNoEntityCollision(bb) && this.worldObj.getCollidingBoundingBoxes(mp, bb).isEmpty() &&
-										!this.worldObj.isAnyLiquid(bb))
-								{
-									mp.playerNetServerHandler.setPlayerLocation(x + x1, y + y1, z + z1, mp.rotationYaw, mp.rotationPitch);
-									short short1 = 128;
-
-									for (int l = 0; l < short1; ++l)
-									{
-										double d6 = l / (short1 - 1.0D);
-										float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
-										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-										this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
-									}
-									mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
-									mp.fallDistance = 0.0F;
-									this.worldObj.playSoundAtEntity(mp, TragicConfig.allowMobSounds ? "tragicmc:mob.stin.teleport" : "mob.endermen.portal", 0.4F, 0.4F);
-									return flag;
-								}
-							}
+							boolean flag2 = this.teleportPlayer((EntityPlayerMP) entity);
+							if (flag2) entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
+							return flag2;
 						}
 						else
 						{
@@ -398,10 +368,10 @@ public class EntityStin extends TragicMob {
 									double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 									double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
 									double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
-									this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, d7, d8, d9, f, f1, f2);
+									this.worldObj.spawnParticle(getTeleportParticle(), d7, d8, d9, f, f1, f2);
 								}
 
-								this.worldObj.playSoundAtEntity(entity, TragicConfig.allowMobSounds ? "tragicmc:mob.stin.teleport" : "mob.endermen.portal", 0.4F, 0.4F);
+								this.worldObj.playSoundAtEntity(entity, getTeleportSound(), 0.4F, 0.4F);
 								entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
 								return flag;
 							}
@@ -509,4 +479,14 @@ public class EntityStin extends TragicMob {
     {
         return "TragicMC.StinBaby";
     }
+	
+	@Override
+	protected String getTeleportSound() {
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.telelport" : super.getTeleportSound();
+	}
+	
+	@Override
+	protected EnumParticleTypes getTeleportParticle() {
+		return EnumParticleTypes.SMOKE_NORMAL;
+	}
 }

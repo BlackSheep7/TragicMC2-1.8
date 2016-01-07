@@ -277,4 +277,9 @@ public class EntityWisp extends TragicMob {
 	{
 		return 220;
 	}
+	
+	@Override
+	public boolean getIllumination() {
+		return true;
+	}
 }
