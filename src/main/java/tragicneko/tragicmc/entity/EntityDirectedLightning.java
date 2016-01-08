@@ -14,6 +14,8 @@ import net.minecraft.world.World;
 
 public class EntityDirectedLightning extends EntityWeatherEffect
 {
+	public static final int DW_USER_ID = 5;
+	
 	private int lightningState;
 	public long boltVertex;
 	private int boltLivingTime;
@@ -119,18 +121,18 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 
 	public int getUserID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(3);
+		return this.dataWatcher.getWatchableObjectInt(DW_USER_ID);
 	}
 
 	private void setUserID(Entity entity)
 	{
 		if (entity == null) return;
-		this.dataWatcher.updateObject(3, entity.getEntityId());
+		this.dataWatcher.updateObject(DW_USER_ID, entity.getEntityId());
 	}
 
 	@Override
 	protected void entityInit() {
-		this.dataWatcher.addObject(3, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_USER_ID, Integer.valueOf(0));
 	}
 
 	@Override

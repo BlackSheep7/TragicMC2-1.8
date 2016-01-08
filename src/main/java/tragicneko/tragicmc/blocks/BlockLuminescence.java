@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
@@ -89,4 +90,9 @@ public class BlockLuminescence extends Block {
 	
 	@Override
 	public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune) {}
+	
+	@Override
+	public EnumWorldBlockLayer getBlockLayer() {
+		return EnumWorldBlockLayer.TRANSLUCENT;
+	}
 }

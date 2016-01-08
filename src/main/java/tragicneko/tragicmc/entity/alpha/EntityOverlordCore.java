@@ -41,6 +41,13 @@ import tragicneko.tragicmc.util.WorldHelper;
 import com.google.common.collect.Sets;
 
 public class EntityOverlordCore extends TragicBoss {
+	
+	public static final int DW_HOVER_TICKS = 20;
+	public static final int DW_VULNERABLE_TICKS = 21;
+	public static final int DW_HURT_TICKS = 22;
+	public static final int DW_NEAR_TARGET = 23;
+	public static final int DW_DROP_TICKS = 24;
+	public static final int DW_TRANSFORMATION_TICKS = 25;
 
 	public double targetX;
 	public double targetY;
@@ -115,22 +122,22 @@ public class EntityOverlordCore extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
-		this.dataWatcher.addObject(19, Integer.valueOf(0));
-		this.dataWatcher.addObject(20, Integer.valueOf(0));
-		this.dataWatcher.addObject(21, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HOVER_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_VULNERABLE_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_HURT_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_NEAR_TARGET, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_DROP_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_TRANSFORMATION_TICKS, Integer.valueOf(0));
 	}
 
 	public int getHoverTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_HOVER_TICKS);
 	}
 
 	private void setHoverTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_HOVER_TICKS, i);
 	}
 
 	private void decrementHoverTicks()
@@ -140,12 +147,12 @@ public class EntityOverlordCore extends TragicBoss {
 
 	public int getVulnerableTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_VULNERABLE_TICKS);
 	}
 
 	private void setVulnerableTicks(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_VULNERABLE_TICKS, i);
 	}
 
 	private void decrementVulnerableTicks()
@@ -155,12 +162,12 @@ public class EntityOverlordCore extends TragicBoss {
 
 	public int getHurtTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_HURT_TICKS);
 	}
 
 	private void setHurtTicks(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_HURT_TICKS, i);
 	}
 
 	private void decrementHurtTicks()
@@ -170,22 +177,22 @@ public class EntityOverlordCore extends TragicBoss {
 
 	public boolean isNearTarget()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19) == 0;
+		return this.dataWatcher.getWatchableObjectInt(DW_NEAR_TARGET) == 0;
 	}
 
 	private void setNearTarget(boolean flag)
 	{
-		this.dataWatcher.updateObject(19, flag ? 0 : 1);
+		this.dataWatcher.updateObject(DW_NEAR_TARGET, flag ? 0 : 1);
 	}
 
 	public int getDropTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_DROP_TICKS);
 	}
 
 	private void setDropTicks(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_DROP_TICKS, i);
 	}
 
 	private void decrementDropTicks()
@@ -195,12 +202,12 @@ public class EntityOverlordCore extends TragicBoss {
 
 	private void setTransformationTicks(int i)
 	{
-		this.dataWatcher.updateObject(21, i);
+		this.dataWatcher.updateObject(DW_TRANSFORMATION_TICKS, i);
 	}
 
 	public int getTransformationTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(21);
+		return this.dataWatcher.getWatchableObjectInt(DW_TRANSFORMATION_TICKS);
 	}
 
 	private void decrementTransformationTicks()

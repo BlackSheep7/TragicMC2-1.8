@@ -18,6 +18,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -142,5 +143,10 @@ public class BlockGas extends Block {
 	public boolean isAir(IBlockAccess world, BlockPos pos)
 	{
 		return true;
+	}
+	
+	@Override
+	public EnumWorldBlockLayer getBlockLayer() {
+		return EnumWorldBlockLayer.TRANSLUCENT;
 	}
 }

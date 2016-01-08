@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -84,5 +85,10 @@ public class BlockDigitalSea extends Block {
 	{
 		if (world.getBlockState(pos).getBlock() == this) return false;
 		return super.shouldSideBeRendered(world, pos, facing);
+	}
+	
+	@Override
+	public EnumWorldBlockLayer getBlockLayer() {
+		return EnumWorldBlockLayer.TRANSLUCENT;
 	}
 }

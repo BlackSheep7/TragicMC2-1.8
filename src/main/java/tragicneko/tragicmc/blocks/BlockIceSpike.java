@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -40,12 +41,6 @@ public class BlockIceSpike extends Block {
 	{
 		IBlockState state = world.getBlockState(pos);
 		if (!((Boolean) state.getValue(FLIP))) entity.attackEntityFrom(DamageSource.cactus, distance * 1.5F);
-	}
-
-	@Override
-	public int getRenderType()
-	{
-		return 1;
 	}
 
 	@Override
@@ -99,4 +94,9 @@ public class BlockIceSpike extends Block {
 		boolean comp = ((Boolean) state.getValue(FLIP)).booleanValue();
 		return comp ? 1 : 0;
     }
+	
+	@Override
+	public EnumWorldBlockLayer getBlockLayer() {
+		return EnumWorldBlockLayer.CUTOUT;
+	}
 }

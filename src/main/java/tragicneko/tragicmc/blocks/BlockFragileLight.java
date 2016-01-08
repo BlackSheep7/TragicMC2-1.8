@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,11 +13,13 @@ import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.blocks.BlockFox.EnumVariant;
 
 public class BlockFragileLight extends Block {
 
@@ -32,6 +35,7 @@ public class BlockFragileLight extends Block {
 		this.setLightOpacity(0);
 		this.setLightLevel(!flag ? 0.2F : 0.6F);
 		this.setTickRandomly(true);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VISIBLE, false));
 	}
 
 	@Override
@@ -77,9 +81,25 @@ public class BlockFragileLight extends Block {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderType()
-	{
-		return 1;
+	public EnumWorldBlockLayer getBlockLayer() {
+		return EnumWorldBlockLayer.CUTOUT;
 	}
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, VISIBLE);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+    {
+		return this.getDefaultState().withProperty(VISIBLE, meta > 0);
+    }
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+    {
+		return ((Boolean) state.getValue(VISIBLE)).booleanValue() ? 1 : 0;
+    }
 }

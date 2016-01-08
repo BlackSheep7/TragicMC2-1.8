@@ -41,6 +41,15 @@ import tragicneko.tragicmc.util.WorldHelper;
 import com.google.common.base.Predicate;
 
 public class EntityOverlordCombat extends TragicBoss {
+	
+	public static final int DW_UNSTABLE_TICKS = 20;
+	public static final int DW_HURT_TIME = 21;
+	public static final int DW_ATTACK_TIME = 22;
+	public static final int DW_LEAP_TICKS = 23;
+	public static final int DW_CHARGE_TICKS = 24;
+	public static final int DW_GRAPPLE_TICKS = 25;
+	public static final int DW_REFLECTION_TICKS = 26;
+	public static final int DW_TRANSFORMATION_TICKS = 27;
 
 	private boolean hasLeaped;
 	private int aggregate = 1;
@@ -188,94 +197,94 @@ public class EntityOverlordCombat extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //unstable ticks
-		this.dataWatcher.addObject(17, Integer.valueOf(0)); //hurt time
-		this.dataWatcher.addObject(18, Integer.valueOf(0)); //attack time
-		this.dataWatcher.addObject(19, Integer.valueOf(0)); //leap ticks
-		this.dataWatcher.addObject(20, Integer.valueOf(0)); //charge ticks
-		this.dataWatcher.addObject(21, Integer.valueOf(0)); //grapple ticks
-		this.dataWatcher.addObject(22, Integer.valueOf(0)); //reflection ticks
-		this.dataWatcher.addObject(23, Integer.valueOf(0)); //transformation ticks
+		this.dataWatcher.addObject(DW_UNSTABLE_TICKS, Integer.valueOf(0)); //unstable ticks
+		this.dataWatcher.addObject(DW_HURT_TIME, Integer.valueOf(0)); //hurt time
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0)); //attack time
+		this.dataWatcher.addObject(DW_LEAP_TICKS, Integer.valueOf(0)); //leap ticks
+		this.dataWatcher.addObject(DW_CHARGE_TICKS, Integer.valueOf(0)); //charge ticks
+		this.dataWatcher.addObject(DW_GRAPPLE_TICKS, Integer.valueOf(0)); //grapple ticks
+		this.dataWatcher.addObject(DW_REFLECTION_TICKS, Integer.valueOf(0)); //reflection ticks
+		this.dataWatcher.addObject(DW_TRANSFORMATION_TICKS, Integer.valueOf(0)); //transformation ticks
 	}
 
 	private void setUnstableTicks(int i)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(DW_UNSTABLE_TICKS, i);
 	}
 
 	public int getUnstableTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectInt(DW_UNSTABLE_TICKS);
 	}
 
 	private void setHurtTime(int i)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(DW_HURT_TIME, i);
 	}
 
 	public int getHurtTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectInt(DW_HURT_TIME);
 	}
 
 	private void setAttackTime(int i)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	public int getAttackTime()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
 	}
 
 	private void setLeapTicks(int i)
 	{
-		this.dataWatcher.updateObject(19, i);
+		this.dataWatcher.updateObject(DW_LEAP_TICKS, i);
 	}
 
 	public int getLeapTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(19);
+		return this.dataWatcher.getWatchableObjectInt(DW_LEAP_TICKS);
 	}
 
 	private void setChargeTicks(int i)
 	{
-		this.dataWatcher.updateObject(20, i);
+		this.dataWatcher.updateObject(DW_CHARGE_TICKS, i);
 	}
 
 	public int getChargeTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(20);
+		return this.dataWatcher.getWatchableObjectInt(DW_CHARGE_TICKS);
 	}
 
 	private void setGrappleTicks(int i)
 	{
-		this.dataWatcher.updateObject(21, i);
+		this.dataWatcher.updateObject(DW_GRAPPLE_TICKS, i);
 	}
 
 	public int getGrappleTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(21);
+		return this.dataWatcher.getWatchableObjectInt(DW_GRAPPLE_TICKS);
 	}
 
 	private void setReflectionTicks(int i)
 	{
-		this.dataWatcher.updateObject(22, i);
+		this.dataWatcher.updateObject(DW_REFLECTION_TICKS, i);
 	}
 
 	public int getReflectionTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(22);
+		return this.dataWatcher.getWatchableObjectInt(DW_REFLECTION_TICKS);
 	}
 
 	private void setTransformationTicks(int i)
 	{
-		this.dataWatcher.updateObject(23, i);
+		this.dataWatcher.updateObject(DW_TRANSFORMATION_TICKS, i);
 	}
 
 	public int getTransformationTicks()
 	{
-		return this.dataWatcher.getWatchableObjectInt(23);
+		return this.dataWatcher.getWatchableObjectInt(DW_TRANSFORMATION_TICKS);
 	}
 
 	public EntityOverlordCombat setTransforming()
