@@ -369,7 +369,6 @@ public class ClientProxy extends CommonProxy {
 		{
 			
 		}
-		
 	}
 
 	public void initRenders() {
@@ -408,6 +407,86 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.Tungsten, ZERO, "tungsten");
 			registerItemToMesher(TragicItems.Ruby, ZERO, "ruby");
 			registerItemToMesher(TragicItems.Sapphire, ZERO, "sapphire");
+			
+			registerItemToMesher(TragicItems.SkullHelmet, ZERO, "skull_helmet");
+			registerItemToMesher(TragicItems.SkullPlate, ZERO, "skull_plate");
+			registerItemToMesher(TragicItems.SkullLegs, ZERO, "skull_legs");
+			registerItemToMesher(TragicItems.SkullBoots, ZERO, "skull_boots");
+			
+			registerItemToMesher(TragicItems.HuntersCap, ZERO, "hunters_cap");
+			registerItemToMesher(TragicItems.HuntersTunic, ZERO, "hunters_tunic");
+			registerItemToMesher(TragicItems.HuntersLegs, ZERO, "hunters_legs");
+			registerItemToMesher(TragicItems.HuntersBoots, ZERO, "hunters_boots");
+			
+			registerItemToMesher(TragicItems.MercuryHelm, ZERO, "mercury_helm");
+			registerItemToMesher(TragicItems.MercuryPlate, ZERO, "mercury_plate");
+			registerItemToMesher(TragicItems.MercuryLegs, ZERO, "mercury_legs");
+			registerItemToMesher(TragicItems.MercuryBoots, ZERO, "mercury_boots");
+			
+			registerItemToMesher(TragicItems.TungstenHelm, ZERO, "tungsten_helm");
+			registerItemToMesher(TragicItems.TungstenPlate, ZERO, "tungsten_plate");
+			registerItemToMesher(TragicItems.TungstenLegs, ZERO, "tungsten_legs");
+			registerItemToMesher(TragicItems.TungstenBoots, ZERO, "tungsten_boots");
+			
+			registerItemToMesher(TragicItems.LightHelm, ZERO, "light_helm");
+			registerItemToMesher(TragicItems.LightPlate, ZERO, "light_plate");
+			registerItemToMesher(TragicItems.LightLegs, ZERO, "light_legs");
+			registerItemToMesher(TragicItems.LightBoots, ZERO, "light_boots");
+			
+			registerItemToMesher(TragicItems.DarkHelm, ZERO, "dark_helm");
+			registerItemToMesher(TragicItems.DarkPlate, ZERO, "dark_plate");
+			registerItemToMesher(TragicItems.DarkLegs, ZERO, "dark_legs");
+			registerItemToMesher(TragicItems.DarkBoots, ZERO, "dark_boots");
+			
+			registerItemToMesher(TragicItems.OverlordHelm, ZERO, "overlord_helm");
+			registerItemToMesher(TragicItems.OverlordPlate, ZERO, "overlord_plate");
+			registerItemToMesher(TragicItems.OverlordLegs, ZERO, "overlord_legs");
+			registerItemToMesher(TragicItems.OverlordBoots, ZERO, "overlord_boots");
+			
+			registerItemToMesher(TragicItems.MercuryDagger, ZERO, "mercury_dagger");
+			registerItemToMesher(TragicItems.HuntersBow, ZERO, "hunters_bow");
+			registerItemToMesher(TragicItems.PitchBlack, ZERO, "pitch_black");
+			registerItemToMesher(TragicItems.BlindingLight, ZERO, "blinding_light");
+			registerItemToMesher(TragicItems.GravitySpike, ZERO, "gravity_spike");
+			registerItemToMesher(TragicItems.HarmonyBell, ZERO, "harmony_bell");
+			registerItemToMesher(TragicItems.MourningStar, ZERO, "mourning_star");
+			registerItemToMesher(TragicItems.BeastlyClaws, ZERO, "beastly_claws");
+			registerItemToMesher(TragicItems.GuiltyThorn, ZERO, "guilty_thorn");
+			registerItemToMesher(TragicItems.NekoLauncher, ZERO, "neko_launcher");
+			registerItemToMesher(TragicItems.ReaperScythe, ZERO, "reaper_scythe");
+			registerItemToMesher(TragicItems.WitheringAxe, ZERO, "withering_axe");
+			registerItemToMesher(TragicItems.FrozenLightning, ZERO, "frozen_lightning");
+			registerItemToMesher(TragicItems.CelestialAegis, ZERO, "celestial_aegis");
+			registerItemToMesher(TragicItems.CelestialLongbow, ZERO, "celestial_longbow");
+			registerItemToMesher(TragicItems.SilentHellraiser, ZERO, "silent_hellraiser");
+			
+			registerItemToMesher(TragicItems.Titan, ZERO, "titan");
+			registerItemToMesher(TragicItems.Splinter, ZERO, "splinter");
+			registerItemToMesher(TragicItems.Butcher, ZERO, "butcher");
+			registerItemToMesher(TragicItems.Thardus, ZERO, "thardus");
+			registerItemToMesher(TragicItems.Paranoia, ZERO, "paranoia");
+			registerItemToMesher(TragicItems.DragonFang, ZERO, "dragon_fang");
+			
+			registerItemToMesher(TragicItems.Sentinel, ZERO, "sentinel");
+			
+			registerItemToMesher(TragicItems.Scythe, ZERO, "scythe");
+			registerItemToMesher(TragicItems.EverlastingLight, ZERO, "everlasting_light");
+			registerItemToMesher(TragicItems.Jack, ZERO, "jack");
+			registerItemToMesher(TragicItems.TungstenJack, ZERO, "tungsten_jack");
+			registerItemToMesher(TragicItems.CelestialJack, ZERO, "celestial_jack");
+			
+			registerItemToMesher(TragicItems.Ectoplasm, ZERO, "ectoplasm");
+			registerItemToMesher(TragicItems.ToughLeather, ZERO, "tough_leather");
+			registerItemToMesher(TragicItems.WovenSilk, ZERO, "woven_silk");
+			registerItemToMesher(TragicItems.CrushedIce, ZERO, "crushed_ice");
+			registerItemToMesher(TragicItems.LightParticles, ZERO, "light_particles");
+			registerItemToMesher(TragicItems.DarkParticles, ZERO, "dark_particles");
+			registerItemToMesher(TragicItems.IceOrb, ZERO, "ice_orb");
+			registerItemToMesher(TragicItems.GravityOrb, ZERO, "gravity_orb");
+			registerItemToMesher(TragicItems.FireOrb, ZERO, "fire_orb");
+			registerItemToMesher(TragicItems.LightningOrb, ZERO, "lightning_orb");
+			registerItemToMesher(TragicItems.AquaOrb, ZERO, "aqua_orb");
+			registerItemToMesher(TragicItems.Thorns, ZERO, "thorns");
 		}
 	}
 
