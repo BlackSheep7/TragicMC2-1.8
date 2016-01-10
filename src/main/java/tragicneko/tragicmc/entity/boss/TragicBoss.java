@@ -2,6 +2,7 @@ package tragicneko.tragicmc.entity.boss;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -34,17 +35,17 @@ import tragicneko.tragicmc.util.WorldHelper;
 public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 {
 	private boolean hasDamagedEntity = false; //for achievement can't touch this, kill a boss without being hurt by it
-	
+
 	public TragicBoss(World par1World) {
 		super(par1World);
 		this.experienceValue = 100;
 	}
-	
+
 	@Override
 	protected void dropFewItems(boolean flag, int l)
 	{
 		super.dropFewItems(flag, l);
-		
+
 		int x = 3 + l;
 		int amt = 0;
 
@@ -90,7 +91,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		{
 			ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), false);
 			if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
-			
+
 			if (TragicConfig.allowNonMobItems)
 			{
 				drop = new ItemStack(TragicItems.EtherealDistortion);
@@ -118,16 +119,16 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) par1.getEntity();
-			
+
 			if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.killBoss);
-			
+
 			if (!this.hasDamagedEntity && TragicConfig.allowAchievements && player instanceof EntityPlayerMP)
 			{
 				player.triggerAchievement(TragicAchievements.cantTouchThis);
 			}
 		}
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -148,7 +149,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 		if (this.worldObj.getDifficulty() == EnumDifficulty.EASY && !TragicConfig.allowEasyBosses || this.posY <= -30 || this.posY > 280) this.setDead();
-		
+
 		if (!this.worldObj.isRemote && this.getIllumination())
 		{
 			int w = MathHelper.floor_float(this.width);
@@ -158,6 +159,17 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 			int z = (int) (rand.nextInt(w) - rand.nextInt(w));
 			BlockPos pos = WorldHelper.getBlockPos(this).add(x, y, z);
 			if (EntityOverlordCore.replaceableBlocks.contains(WorldHelper.getBlock(this.worldObj, pos))) this.worldObj.setBlockState(pos, TragicBlocks.Luminescence.getDefaultState());
+		}
+
+		if (!this.worldObj.isRemote && TragicConfig.bossesDenyFlight)
+		{
+			List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0));
+
+			for (EntityPlayerMP mp : list)
+			{
+				if (!mp.capabilities.isCreativeMode) mp.capabilities.allowFlying = false;
+				if (TragicConfig.allowFlight && mp.isPotionActive(TragicPotion.Flight)) mp.removePotionEffect(TragicPotion.Flight.id);
+			}
 		}
 	}
 
@@ -194,9 +206,9 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false;
-		
+
 		boolean flag = super.attackEntityAsMob(par1Entity);
-		
+
 		if (flag) this.hasDamagedEntity = true;
 		return flag;
 	}
@@ -289,7 +301,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		}
 		return posY;
 	}
-	
+
 	public boolean isHalloween()
 	{
 		Calendar calendar = this.worldObj.getCurrentDate();
@@ -301,12 +313,12 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		return false;
 	}
-	
+
 	public boolean getIllumination()
 	{
 		return false;
 	}
-	
+
 	protected boolean teleportRandomly()
 	{
 		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 24.0D;
@@ -396,26 +408,26 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				this.worldObj.spawnParticle(getTeleportParticle(), d7, d8, d9, f, f1, f2);
 			}
-			
+
 			this.worldObj.playSoundEffect(d3, d4, d5, getTeleportSound(), 0.2F, 1.0F);
 			this.playSound(getTeleportSound(), 0.2F, 1.0F);
 			this.onTeleport(d3, d4, d5);
 			return true;
 		}
 	}
-	
+
 	protected String getTeleportSound() {
 		return "mob.endermen.portal";
 	}
-	
+
 	protected EnumParticleTypes getTeleportParticle() {
 		return EnumParticleTypes.PORTAL;
 	}
-	
+
 	protected int getTeleportLight() {
 		return 8;
 	}
-	
+
 	/**
 	 * Called on successful teleport of this entity, includes previous coordinates before teleport
 	 * @param x
@@ -423,16 +435,16 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	 * @param z
 	 */
 	protected void onTeleport(double x, double y, double z) {
-		
+
 	}
-	
+
 	protected boolean teleportPlayer(EntityPlayerMP mp) {
 		if (mp.capabilities.isCreativeMode) return false;
-		
+
 		double x = mp.posX;
 		double y = mp.posY;
 		double z = mp.posZ;
-		
+
 		double x2 = this.posX;
 		double y2 = this.posY;
 		double z2 = this.posZ;
@@ -455,12 +467,12 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 				double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				this.worldObj.spawnParticle(getTeleportParticle(), d7, d8, d9, f, f1, f2);
 			}
-			
+
 			mp.fallDistance = 0.0F;
 			this.worldObj.playSoundAtEntity(mp, getTeleportSound(), 0.4F, 0.4F);
 			return true;
 		}
-		
+
 		return false;
 	}
 }

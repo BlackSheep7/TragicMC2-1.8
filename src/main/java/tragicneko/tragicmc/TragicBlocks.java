@@ -201,7 +201,6 @@ public class TragicBlocks {
 	public static Block MoltenRock;
 	public static Block ScorchedRock;
 	public static Block Geyser;
-	public static Block GeyserSteaming;
 	public static Block SteamVent;
 
 	public static Block HallowedGrass;

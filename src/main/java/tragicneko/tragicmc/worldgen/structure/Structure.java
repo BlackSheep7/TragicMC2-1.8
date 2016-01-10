@@ -1,19 +1,13 @@
 package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
-import java.util.Set;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
-
-import com.google.common.collect.Sets;
 
 public class Structure extends WorldGenerator {
 
@@ -41,18 +35,6 @@ public class Structure extends WorldGenerator {
 	public static Structure hackerNet = new StructureHackerNet(15, "hackerNet");
 	public static Structure cubeMaze = new StructureCubeMaze(16, "cubeMaze");
 	public static Structure outlook = new StructureOutlook(17, "outlook");
-
-	public static final Set validBlocks = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.tallgrass, Blocks.yellow_flower, Blocks.red_flower, Blocks.double_plant,
-			Blocks.snow_layer, Blocks.snow, Blocks.stone, Blocks.sand, Blocks.air, Blocks.netherrack, TragicBlocks.Quicksand, Blocks.ice, Blocks.water, Blocks.lava,
-			Blocks.dirt, Blocks.gravel, Blocks.clay, Blocks.hardened_clay, TragicBlocks.DarkStone, TragicBlocks.DarkSand, TragicBlocks.DeadDirt, Blocks.leaves,
-			Blocks.packed_ice, TragicBlocks.AshenGrass, TragicBlocks.BrushedGrass, TragicBlocks.AshenLeaves, TragicBlocks.AshenTallGrass, TragicBlocks.DeadBush,
-			TragicBlocks.AshenBush, TragicBlocks.BleachedLeaves, TragicBlocks.PaintedLeaves, TragicBlocks.Glowvine, TragicBlocks.DriedGrass, TragicBlocks.PaintedTallGrass,
-			TragicBlocks.StarlitGrass, TragicBlocks.StarlitTallGrass, TragicBlocks.StarCrystal, TragicBlocks.ErodedStone, TragicBlocks.DarkCobblestone,
-			TragicBlocks.HallowedGrass, TragicBlocks.HallowedLeaves, TragicBlocks.HallowedLeafTrim, TragicBlocks.MoltenRock, TragicBlocks.ScorchedRock,
-			TragicBlocks.StructureSeed, TragicBlocks.Luminescence, TragicBlocks.ExplosiveGas, TragicBlocks.RadiatedGas, TragicBlocks.CorruptedGas,
-			TragicBlocks.WitheringGas, TragicBlocks.WickedVine, TragicBlocks.Permafrost, TragicBlocks.IcedDirt, TragicBlocks.IceSpike, TragicBlocks.IceSpikeHanging,
-			TragicBlocks.Light, TragicBlocks.FragileLight, TragicBlocks.Crystal, TragicBlocks.DarkGrass, TragicBlocks.Lichen,
-			TragicBlocks.Moss, TragicBlocks.TragicFlower, TragicBlocks.TragicFlower2});
 
 	public Structure(Schematic sch, int id, String s)
 	{
@@ -103,33 +85,7 @@ public class Structure extends WorldGenerator {
 	 */
 	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
 	{
-		if (!validBlocks.contains(world.getBlockState(pos).getBlock()) || pos.getY() + this.height >= world.provider.getActualHeight()) return false;
-
-		if (this.isSurfaceStructure())
-		{
-			if (pos.getY() <= 50 || !World.doesBlockHaveSolidTopSurface(world, pos.down()) ||
-					!world.getBlockState(pos.down()).getBlock().isOpaqueCube() || !world.canBlockSeeSky(pos)) return false;
-
-			for (int y1 = 1; y1 < this.height; y1++)
-			{
-				if (!validBlocks.contains(world.getBlockState(pos.up(y1)).getBlock())) return false;
-			}
-		}
-		else
-		{
-			for (int y1 = 0; y1 < this.height; y1++)
-			{
-				if (!validBlocks.contains(world.getBlockState(pos.down(y1)).getBlock()) ||
-						!validBlocks.contains(world.getBlockState(pos.east(y1)).getBlock()) ||
-						!validBlocks.contains(world.getBlockState(pos.west(y1)).getBlock()) ||
-						!validBlocks.contains(world.getBlockState(pos.south(y1)).getBlock()) ||
-						!validBlocks.contains(world.getBlockState(pos.north(y1)).getBlock()))
-				{
-					return false;
-				}
-			}
-		}
-		return true;
+		return World.doesBlockHaveSolidTopSurface(world, pos.down()) && pos.getY() + this.height < world.provider.getActualHeight();
 	}
 
 	/**

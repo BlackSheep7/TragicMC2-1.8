@@ -50,7 +50,7 @@ public class SurfacePlantWorldGen implements IWorldGen {
 				if (Ycoord + y1 < 0 || Ycoord + y1 > world.getActualHeight()) break;
 				block = world.getBlockState(new BlockPos(Xcoord, Ycoord + y1, Zcoord)).getBlock();
 
-				if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, new BlockPos(Xcoord, Ycoord + y1, Zcoord)) || block.isAir(world, new BlockPos(Xcoord, Ycoord + y1, Zcoord)))
+				if (block.canBeReplacedByLeaves(world, new BlockPos(Xcoord, Ycoord + y1, Zcoord)) || block.isAir(world, new BlockPos(Xcoord, Ycoord + y1, Zcoord)))
 				{
 					if (this.block.canPlaceBlockAt(world, new BlockPos(Xcoord, Ycoord + y1, Zcoord))) world.setBlockState(new BlockPos(Xcoord, Ycoord + y1, Zcoord), this.block.getStateFromMeta(meta), 2);
 				}

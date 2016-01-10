@@ -45,8 +45,7 @@ public class SchematicTimeAltar extends Schematic {
 		for (int i = 0; i < list.size(); i++) //creates a giant circle of quartz with star crystal inside of it sparingly
 		{
 			coords = list.get(i);
-			block = world.getBlockState(coords).getBlock();
-			if (Structure.validBlocks.contains(block)) this.setBlock(world, coords.getX(), coords.getY(), coords.getZ(), quartz, 0, 2);
+			this.setBlock(world, coords.getX(), coords.getY(), coords.getZ(), quartz, 0, 2);
 		}
 
 		list = WorldHelper.getBlocksInCircularRange(world, 4.446D, x, y, z);

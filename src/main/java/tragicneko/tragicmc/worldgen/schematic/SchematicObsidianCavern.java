@@ -230,7 +230,6 @@ public class SchematicObsidianCavern extends Schematic {
 
 	public void generateCaveOpening(int variant, World world, Random rand, int x, int y, int z) {
 
-		Set set = Structure.validBlocks;
 		Block luxury = SchematicDesertTower.luxuryBlocks[rand.nextInt(SchematicDesertTower.luxuryBlocks.length)];
 		int meta = 0;
 
@@ -583,10 +582,7 @@ public class SchematicObsidianCavern extends Schematic {
 					{
 						for (int z1 = -3; z1 < 4; z1++)
 						{
-							if (set.contains(world.getBlockState(new BlockPos(x + x1, y + y1, z + z1)).getBlock()))
-							{
-								this.setBlock(world, x + x1, y + y1, z + z1, obs);
-							}
+							this.setBlock(world, x + x1, y + y1, z + z1, obs);
 						}
 					}
 					break;
@@ -595,10 +591,7 @@ public class SchematicObsidianCavern extends Schematic {
 					{
 						for (int z1 = -2; z1 < 3; z1++)
 						{
-							if (set.contains(world.getBlockState(new BlockPos(x + x1, y + y1, z + z1)).getBlock()))
-							{
-								this.setBlock(world, x + x1, y + y1, z + z1, obs);
-							}
+							this.setBlock(world, x + x1, y + y1, z + z1, obs);
 						}
 					}
 					break;
@@ -607,7 +600,7 @@ public class SchematicObsidianCavern extends Schematic {
 					{
 						for (int z1 = -1; z1 < 2; z1++)
 						{
-							if (set.contains(world.getBlockState(new BlockPos(x + x1, y + y1, z + z1)).getBlock()) && (x1 != 0 && z1 != 0))
+							if (x1 != 0 && z1 != 0)
 							{
 								this.setBlock(world, x + x1, y + y1, z + z1, obs);
 							}

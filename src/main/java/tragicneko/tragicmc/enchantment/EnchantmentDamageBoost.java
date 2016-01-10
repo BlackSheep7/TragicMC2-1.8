@@ -43,20 +43,13 @@ public class EnchantmentDamageBoost extends Enchantment {
 	@Override
 	public boolean canApplyTogether(Enchantment par1Enchantment)
 	{
-		Boolean flag = true;
-
-		if (par1Enchantment instanceof EnchantmentDamage || par1Enchantment instanceof EnchantmentDamageBoost)
-		{
-			flag = false;
-		}
-
-		return flag;
+		return !(par1Enchantment instanceof EnchantmentDamage || par1Enchantment instanceof EnchantmentDamageBoost);
 	}
 
 	@Override
 	public boolean canApply(ItemStack par1ItemStack)
 	{
-		return par1ItemStack.getItem() instanceof ItemAxe ? true : super.canApply(par1ItemStack);
+		return par1ItemStack.getItem() instanceof ItemAxe || super.canApply(par1ItemStack);
 	}
 
 	public float calcModifierLiving(int par1, EntityLivingBase par2EntityLivingBase)

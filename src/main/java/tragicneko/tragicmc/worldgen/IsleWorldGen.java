@@ -57,7 +57,7 @@ public class IsleWorldGen implements IWorldGen {
 				for (BlockPos coords2 : list)
 				{
 					block = world.getBlockState(coords2).getBlock();
-					if (Structure.validBlocks.contains(block) && !cands.contains(coords2)) cands.add(coords2);
+					if (!cands.contains(coords2)) cands.add(coords2);
 				}
 			}
 
@@ -74,7 +74,6 @@ public class IsleWorldGen implements IWorldGen {
 			}
 			Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 		}
-		//seed: -4219481829119480244 x: 4200 z: 4600
 	}
 
 }

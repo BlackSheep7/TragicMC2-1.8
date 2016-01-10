@@ -44,7 +44,7 @@ public class StringWorldGen implements IWorldGen {
 			if (cands.contains(cand)) continue;
 			ablock = world.getBlockState(new BlockPos(Xcoord, Ycoord, Zcoord)).getBlock();
 
-			if (Structure.validBlocks.contains(ablock) || ablock.canBeReplacedByLeaves(world, new BlockPos(Xcoord, Ycoord, Zcoord)) || ablock.isAir(world, new BlockPos(Xcoord, Ycoord, Zcoord))) cands.add(cand);
+			if (ablock.canBeReplacedByLeaves(world, new BlockPos(Xcoord, Ycoord, Zcoord)) || ablock.isAir(world, new BlockPos(Xcoord, Ycoord, Zcoord))) cands.add(cand);
 		}
 
 		for (int[] coords : cands)

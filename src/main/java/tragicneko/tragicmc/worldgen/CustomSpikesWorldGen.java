@@ -8,6 +8,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -63,8 +64,10 @@ public class CustomSpikesWorldGen implements IWorldGen {
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
+			
+			Block block = WorldHelper.getBlock(world, new BlockPos(Xcoord, Ycoord, Zcoord).down());
 
-			if (Structure.validBlocks.contains(world.getBlockState(new BlockPos(Xcoord, Ycoord - 1, Zcoord))))
+			if (World.doesBlockHaveSolidTopSurface(world, new BlockPos(Xcoord, Ycoord, Zcoord).down()) && block.isOpaqueCube())
 			{
 				spikeType = (byte) (this.usesSpikeTypes ? random.nextInt(6) : random.nextInt(2));
 				if (this.isStarCrystal) m = (byte) random.nextInt(16);
@@ -129,7 +132,7 @@ public class CustomSpikesWorldGen implements IWorldGen {
 					for (BlockPos coords : list)
 					{
 						Block ablock = world.getBlockState(coords).getBlock();
-						if (Structure.validBlocks.contains(ablock) && ablock != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
+						if (ablock != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
 					}
 				}
 
@@ -168,7 +171,7 @@ public class CustomSpikesWorldGen implements IWorldGen {
 			for (BlockPos coords : list)
 			{
 				block = world.getBlockState(coords).getBlock();
-				if (Structure.validBlocks.contains(block) && !cands.contains(coords)) cands.add(coords);
+				if (!cands.contains(coords)) cands.add(coords);
 			}
 		}
 

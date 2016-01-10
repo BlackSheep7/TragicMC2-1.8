@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.blocks.BlockErodedStone.EnumVariant;
 
 public class BlockGeyser extends Block {
 
@@ -35,10 +34,10 @@ public class BlockGeyser extends Block {
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
 		boolean isSteaming = ((Boolean) state.getValue(STEAMING)).booleanValue();
-		int i = 4 + (isSteaming ? 4 : 0);
+		int i = 8 + (isSteaming ? 20 : 4);
 		if (isSteaming && !world.getBlockState(pos.up()).getBlock().isOpaqueCube() && !world.getBlockState(pos.up(2)).getBlock().isOpaqueCube())
 		{
-			for (int j = 0; j < 16; j++)
+			for (byte j = 0; j < 8; j++)
 			{
 				world.spawnParticle(EnumParticleTypes.CLOUD, pos.getX() + rand.nextDouble() - rand.nextDouble() + 0.5, pos.getY() + 0.25, pos.getZ() + rand.nextDouble() - rand.nextDouble() + 0.5,
 						(rand.nextFloat() - rand.nextFloat()) * 0.1F, 0.5F + rand.nextFloat(), (rand.nextFloat() - rand.nextFloat()) * 0.1F);
@@ -53,11 +52,11 @@ public class BlockGeyser extends Block {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
 	{
-		if (((Boolean) state.getValue(STEAMING)).booleanValue())
+		if (((Boolean) world.getBlockState(pos).getValue(STEAMING)).booleanValue())
 		{
-			entity.motionY += 1.4 * world.rand.nextDouble();
+			entity.motionY += 0.8D * world.rand.nextDouble() + 0.6D;
 			entity.velocityChanged = true;
 			if (!entity.isImmuneToFire() && world.rand.nextInt(16) == 0) entity.setFire(8 + world.rand.nextInt(4));
 		}
@@ -69,7 +68,7 @@ public class BlockGeyser extends Block {
 	{
 		if (((Boolean) state.getValue(STEAMING)).booleanValue() && !world.getBlockState(pos.up()).getBlock().isOpaqueCube() && !world.getBlockState(pos.up(2)).getBlock().isOpaqueCube())
 		{
-			for (int i = 0; i < 32; i++)
+			for (byte i = 0; i < 8; i++)
 			{
 				world.spawnParticle(EnumParticleTypes.CLOUD, pos.getX() + ((rand.nextDouble() - rand.nextDouble()) * 0.5) + 0.5, pos.getY() + 0.25, pos.getZ() + ((rand.nextDouble() - rand.nextDouble()) * 0.5) + 0.5,
 						(rand.nextFloat() - rand.nextFloat()) * 0.1F, 1.0F + rand.nextFloat(), (rand.nextFloat() - rand.nextFloat()) * 0.1F);

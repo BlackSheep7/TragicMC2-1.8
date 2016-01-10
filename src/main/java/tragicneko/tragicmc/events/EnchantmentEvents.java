@@ -120,7 +120,7 @@ public class EnchantmentEvents {
 					if (e < 1) return;
 					MovingObjectPosition mop = WorldHelper.getMOPFromEntity(event.getPlayer(), event.getPlayer().capabilities.isCreativeMode ? 4.5 : 3.5);
 
-					if (mop != null) //TODO ensure veteran mines the correct blocks
+					if (mop != null)
 					{
 						if (mop.sideHit == EnumFacing.DOWN || mop.sideHit == EnumFacing.UP)
 						{
@@ -197,7 +197,7 @@ public class EnchantmentEvents {
 							}
 						}
 
-						tool.attemptDamageItem(e + rand.nextInt(e), rand);
+						if (!event.getPlayer().capabilities.isCreativeMode) tool.attemptDamageItem(e + rand.nextInt(e), rand);
 					}
 				}
 			}

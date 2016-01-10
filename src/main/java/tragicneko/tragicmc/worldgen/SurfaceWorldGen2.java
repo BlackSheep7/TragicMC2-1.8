@@ -44,7 +44,7 @@ public class SurfaceWorldGen2 implements IWorldGen {
 			if (Ycoord < 0 || Ycoord > 256) break;
 			block = world.getBlockState(new BlockPos(Xcoord, Ycoord, Zcoord)).getBlock();
 
-			if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, new BlockPos(Xcoord, Ycoord, Zcoord)) || block.isAir(world, new BlockPos(Xcoord, Ycoord, Zcoord)))
+			if (block.canBeReplacedByLeaves(world, new BlockPos(Xcoord, Ycoord, Zcoord)) || block.isAir(world, new BlockPos(Xcoord, Ycoord, Zcoord)))
 			{
 				if (World.doesBlockHaveSolidTopSurface(world, new BlockPos(Xcoord, Ycoord - 1, Zcoord)) && !block.getMaterial().isLiquid()) world.setBlockState(new BlockPos(Xcoord, Ycoord, Zcoord), this.block.getStateFromMeta(meta), 2);
 			}

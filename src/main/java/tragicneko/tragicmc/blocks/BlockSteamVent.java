@@ -34,7 +34,7 @@ public class BlockSteamVent extends Block {
 	@Override
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
 	{
-		entity.motionY += 0.8 * world.rand.nextDouble();
+		entity.motionY += 0.6 * world.rand.nextDouble();
 		entity.velocityChanged = true;
 		if (!entity.isImmuneToFire() && world.rand.nextInt(256) == 0) entity.setFire(8 + world.rand.nextInt(4));
 	}
