@@ -4464,14 +4464,18 @@ Fixed some things that were commented out before
 Updated entities to use the superclass methods for teleporting and for giving off "light", fixed error with smaller entities
 Fixed error with custom leaf blocks and custom worldgen using an invalid parameter
 
-3.46.2870++ <213> [Works in 1.8, just need the blockstates/item models set up]
+3.46.2870++ <213> (January 7, 2016) [Works in 1.8, just need the blockstates/item models set up]
 Fixed error with rendering for certain blocks, setup block world layers for some
 Fixed error with Directed Lightning datwatcher
 Updated datawatchers for Overlord 
+Fixed bug with Spikes not generating properly in the Dimension
+Removed structure valid blocks set, it wasn't working properly for worldgen for some reason and has just caused bugs 
+Fixed Geyser block not properly pushing entities upwards
+Added ability to nullify flight when fighting a boss
+Added configurability of enchantment weights
 
 TODO: Add textures for armor (not the armor model ones)
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
-TODO: Add configurability of enchantment weights, mirror this to the 1.7.10 version
 
 //Changed common entity functions
 func_145780_a(int x, int y, int z, Block block) ---> playStepSound(BlockPos pos, Block block)
