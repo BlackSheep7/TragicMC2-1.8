@@ -269,8 +269,7 @@ tile.tragicmc.celledLamp.lightBlue.name=Celled Lamp (Light Blue)
 tile.tragicmc.synapseCore.name=Synapse Core
 tile.tragicmc.overlordBarrier.name=Overlord Barrier
 
-tile.tragicmc.digitalSea.active.name=Digital Sea (Active)
-tile.tragicmc.digitalSea.inactive.name=Digital Sea
+tile.tragicmc.digitalSea.name=Digital Sea
 
 tile.tragicmc.darkSandstone.smooth.name=Smooth Dark Sandstone
 tile.tragicmc.darkSandstone.gridded.name=Gridded Dark Sandstone
