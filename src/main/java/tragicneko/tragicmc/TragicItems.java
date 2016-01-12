@@ -14,6 +14,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
@@ -681,6 +682,7 @@ public class TragicItems {
 
 						entity.fallDistance = 0F;
 						if (!world.isRemote) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 5));
+						else world.spawnParticle(EnumParticleTypes.CRIT, entity.posX + world.rand.nextDouble() - world.rand.nextDouble(), entity.posY + 1.0 + world.rand.nextDouble() - world.rand.nextDouble(), entity.posZ + world.rand.nextDouble() - world.rand.nextDouble(), 0, 0, 0);
 					}
 				}
 			}

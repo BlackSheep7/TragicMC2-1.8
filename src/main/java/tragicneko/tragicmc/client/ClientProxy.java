@@ -487,6 +487,51 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.LightningOrb, ZERO, "lightning_orb");
 			registerItemToMesher(TragicItems.AquaOrb, ZERO, "aqua_orb");
 			registerItemToMesher(TragicItems.Thorns, ZERO, "thorns");
+			registerItemToMesher(TragicItems.Horn, ZERO, "horn");
+			registerItemToMesher(TragicItems.BoneMarrow, ZERO, "bone_marrow");
+			registerItemToMesher(TragicItems.LightIngot, ZERO, "light_ingot");
+			registerItemToMesher(TragicItems.DarkIngot, ZERO, "dark_ingot");
+			registerItemToMesher(TragicItems.KitsuneTail, ZERO, "kitsune_tail");
+			registerItemToMesher(TragicItems.DeathlyHallow, ZERO, "deathly_hallow");
+			registerItemToMesher(TragicItems.EmpariahClaw, ZERO, "empariah_claw");
+			registerItemToMesher(TragicItems.StarPieces, ZERO, "star_pieces");
+			registerItemToMesher(TragicItems.TimeEssence, ZERO, "time_essence");
+			registerItemToMesher(TragicItems.PureLight, ZERO, "pure_light");
+			registerItemToMesher(TragicItems.LunarPowder, ZERO, "lunar_powder");
+			registerItemToMesher(TragicItems.CelestialDiamond, ZERO, "celestial_diamond");
+			registerItemToMesher(TragicItems.StinHorn, ZERO, "stin_horn");
+			registerItemToMesher(TragicItems.WispParticles, ZERO, "wisp_particles");
+			registerItemToMesher(TragicItems.IcyFur, ZERO, "icy_fur");
+			registerItemToMesher(TragicItems.PureDarkness, ZERO, "pure_darkness");
+			registerItemToMesher(TragicItems.LivingClay, ZERO, "living_clay");
+			registerItemToMesher(TragicItems.CelestialSteel, ZERO, "celestial_steel");
+			registerItemToMesher(TragicItems.SynapseCrystal, ZERO, "synapse_crystal");
+			registerItemToMesher(TragicItems.CorruptedEye, ZERO, "corrupted_eye");
+			registerItemToMesher(TragicItems.CorruptedEssence, ZERO, "corrupted_essence");
+			registerItemToMesher(TragicItems.CorruptedEgg, ZERO, "corrupted_egg");
+			registerItemToMesher(TragicItems.UnstableIsotope, ZERO, "unstable_isotope");
+			registerItemToMesher(TragicItems.ArchangelFeather, ZERO, "archangel_feather");
+			registerItemToMesher(TragicItems.WingsOfLiberation, ZERO, "wings_of_liberation");
+			registerItemToMesher(TragicItems.IreNode, ZERO, "ire_node");
+			registerItemToMesher(TragicItems.IreNetParticleCannon, ZERO, "irenet_particle_cannon");
+			registerItemToMesher(TragicItems.CatalyticCompound, ZERO, "catalytic_compound");
+			registerItemToMesher(TragicItems.InterestingResin, ZERO, "interesting_resin");
+			registerItemToMesher(TragicItems.Chitin, ZERO, "chitin");
+			registerItemToMesher(TragicItems.SoulExcess, ZERO, "soul_excess");
+			registerItemToMesher(TragicItems.EtherealDistortion, ZERO, "ethereal_distortion");
+			
+			registerItemToMesher(TragicItems.ToxicAmalgation, ZERO, "toxic_amalgation");
+			registerItemToMesher(TragicItems.ParadoxicalFormula, ZERO, "paradoxical_formula");
+			registerItemToMesher(TragicItems.RadiatedInfusion, ZERO, "radiated_infusion");
+			registerItemToMesher(TragicItems.ImpossibleReaction, ZERO, "impossible_reaction");
+			registerItemToMesher(TragicItems.InfallibleMetal, ZERO, "infallible_metal");
+			registerItemToMesher(TragicItems.ComplexCircuitry, ZERO, "complex_circuitry");
+			registerItemToMesher(TragicItems.NauseatingConcoction, ZERO, "nauseating_concoction");
+			registerItemToMesher(TragicItems.CreepyIdol, ZERO, "creepy_idol");
+			registerItemToMesher(TragicItems.PurifiedEnergy, ZERO, "purified_energy");
+			registerItemToMesher(TragicItems.Shadowskin, ZERO, "shadowskin");
+			
+			registerItemToMesher(TragicItems.IceCream, ZERO, "ice_cream");
 		}
 	}
 
