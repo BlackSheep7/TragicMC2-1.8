@@ -401,6 +401,9 @@ public class EntityDeathReaper extends TragicBoss {
 
 				}
 			}
+			
+			int i = this.getDemeanor() > 0 ? 8 : 16;
+			if (this.ticksExisted % i == 0 && !this.isDead && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.heartbeat", 0.8F, 1.0F);
 		}
 	}
 
@@ -570,13 +573,11 @@ public class EntityDeathReaper extends TragicBoss {
 		{
 			this.incrementDemeanor();
 			if (flag) this.incrementDemeanor();
-			//if (this.getAttackTarget() != null && this.isBeingAggressive() && rand.nextInt(16) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.angry", 1.0F, 1.0F);
 		}
 		else
 		{
 			this.decrementDemeanor();
 			if (flag) this.decrementDemeanor();
-			//if (this.getAttackTarget() != null && !this.isBeingAggressive() && rand.nextInt(16) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.passive", 1.0F, 1.0F);
 		}
 	}
 
@@ -613,19 +614,19 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return null; //rand.nextInt(16) == 0 ? "tragicmc:boss.skultar.laugh" : "tragicmc:boss.skultar.living";
+		return "mob.skeleton.say";
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return super.getHurtSound(); // rand.nextInt(6) != 0 ? super.getHurtSound() : "tragicmc:boss.skultar.hurt";
+		return TragicConfig.allowMobSounds && rand.nextBoolean() ? "tragicmc:boss.skultar.laugh" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return null; //"tragicmc:boss.skultar.laugh";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.skultar.laugh" : null;
 	}
 
 	@Override
@@ -642,12 +643,12 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public float getSoundVolume()
 	{
-		return 1.0F;
+		return 0.4F;
 	}
 
 	@Override
 	public int getTalkInterval()
 	{
-		return 350;
+		return 170;
 	}
 }
