@@ -4473,6 +4473,9 @@ Removed structure valid blocks set, it wasn't working properly for worldgen for 
 Fixed Geyser block not properly pushing entities upwards
 Added ability to nullify flight when fighting a boss
 Added configurability of enchantment weights
+Doing more mesher registrations for items and blocks
+Added particle effect when Wings of Liberation are in use
+Mirrored sound additions from the 1.7.10 version, new projectile, rocket launcher and Skultar sounds
 
 TODO: Add textures for armor (not the armor model ones)
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
@@ -4579,10 +4582,7 @@ Admin
 
 TODO still:
 Finish recording sounds:
--Sound for when a rocket is fired either by a Tragic Neko or by a player
--Sounds for various projectiles, either firing them or giving them ambient sounds
 -Sound for when the Overlord Cocoon form is damaged enough or not during it's instance
--Rerecord Skultar sounds, didn't like the first attempts
 -Apis sounds: Mad bull sounds
 -Yeti sounds: Deep beastly sounds
 -Claymation sounds: soppy, clay sounds
