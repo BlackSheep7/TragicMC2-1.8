@@ -98,6 +98,7 @@ public class TragicConfig {
 	public static boolean[] mobConfig = new boolean[16];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowMobTransformation;
 	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs, allowEasyBosses, allowMobSounds, bossesDenyFlight;
+	public static boolean allowMobInfighting, allowMobIllumination;
 	public static int commonDropRate, rareDropRate, mobTransformationChance, bossDamageCap, groupBuffChance;
 	public static boolean[] mobAllow = new boolean[64];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
@@ -2027,6 +2028,14 @@ public class TragicConfig {
 		
 		prop = config.get(cat.getName(), "bossesDenyFlight", false);
 		prop.comment = "When being near Bosses, do they cancel Flight for the player?";
+		mobConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowMobInfighting", true);
+		prop.comment = "Can mobs from the mod target other mob from the mod?";
+		mobConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowMobIllumination", true);
+		prop.comment = "Can mobs glow via a Luminescence block?";
 		mobConfig[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "commonMobDropChance", 25);
@@ -4359,6 +4368,8 @@ public class TragicConfig {
 		allowEasyBosses = mobConfig[++m];
 		allowMobSounds = mobConfig[++m];
 		bossesDenyFlight = mobConfig[++m];
+		allowMobInfighting = mobConfig[++m];
+		allowMobIllumination = mobConfig[++m];
 
 		allowJabba = mobAllow[m = 0];
 		allowJanna = mobAllow[++m];
@@ -4544,6 +4555,9 @@ public class TragicConfig {
 		mobAllow[33] = false; //avris
 		mobAllow[18] = false; //wisps
 		mobAllow[20] = false; //erkel
+		
+		mobConfig[11] = true; //bosses deny flight
+		mobConfig[12] = true; //disallows mob infighting so that they focus on players more
 
 		//TODO setup mob stat changes for hardcore mode
 		modifier[10] += 10.0; //dynamic health scaling increased by 10 for all mobs

@@ -140,6 +140,7 @@ public abstract class TragicMob extends EntityMob
 		}
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
+		if (this.getAttackTarget() != null && !TragicConfig.allowMobInfighting && (this.getAttackTarget() instanceof TragicMob || this.getAttackTarget() instanceof TragicBoss)) this.setAttackTarget(null);
 
 		if (this.getAttackTarget() == null && this.canCorrupt() && TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption.id))
 		{
@@ -151,7 +152,7 @@ public abstract class TragicMob extends EntityMob
 			{
 				result = entityplayer;
 			}
-			else
+			else if (TragicConfig.allowMobInfighting)
 			{
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
@@ -210,7 +211,7 @@ public abstract class TragicMob extends EntityMob
 			this.setChanging(true);
 		}
 
-		if (this.getIllumination())
+		if (this.getIllumination() && TragicConfig.allowMobIllumination)
 		{
 			int w = MathHelper.floor_float(this.width);
 			int h = MathHelper.floor_float(this.height);
