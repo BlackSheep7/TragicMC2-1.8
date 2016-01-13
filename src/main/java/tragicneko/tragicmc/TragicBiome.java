@@ -2,12 +2,9 @@ package tragicneko.tragicmc;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -30,6 +27,7 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenSynapse;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenTaintedSpikes;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenWilds;
 
 public class TragicBiome extends BiomeGenBase {
 
@@ -55,11 +53,11 @@ public class TragicBiome extends BiomeGenBase {
 	public static BiomeGenBase WildPlains, IriseiPlains, SeraleisSerenade;
 	public static BiomeGenBase WildForest, WildDenseForest, ImbertonForest, KlahksTrove, UpsidusVeld;
 	public static BiomeGenBase WildValley, CeresteValley, RelicanthicValley;
-	public static BiomeGenBase WildHills, WildForestHills, WildExtemeHills, KluveTerrace, ZybianHeights, TurbulentHeights, HalsydeHills, IronveinHills;
+	public static BiomeGenBase WildHills, WildForestHills, WildExtremeHills, KluveTerrace, ZybianHeights, TurbulentHeights, HalsydeHills, IronveinHills;
 	public static BiomeGenBase WildSteppes, WildSavanna, GandreaSteppes, TombstoneFields, PrahpsPast;
 	public static BiomeGenBase WildDesert, FerrierScarlands, DesertOfAkhora, VeneriaOasis;
 	public static BiomeGenBase WildRiver, RiverOfSouls, FyxisRiver;
-	public static BiomeGenBase WildLake, WildOcean, SeaOfSorrow, VexinLake, StelSea, ExivSea;
+	public static BiomeGenBase WildLake, WildOcean, SeaOfSorrow, VexinLake, StelSea, ExivSea, AggroLake;
 	public static BiomeGenBase WildMountains, LarinthianMountains, EttenDrove, IrsalasVolcano;
 	
 	//Nerve Center biome
@@ -186,6 +184,7 @@ public class TragicBiome extends BiomeGenBase {
 
 	public static void load()
 	{
+		//Collision/Synapse biomes
 		DecayingHills = new BiomeGenDecayingWasteland(TragicConfig.idDecayingHills, (byte) 0).setBiomeName("tragicmc.decayingHills");
 		DecayingValley = new BiomeGenDecayingWasteland(TragicConfig.idDecayingValley, (byte) 1).setBiomeName("tragicmc.decayingValley");
 		DecayingWasteland = new BiomeGenDecayingWasteland(TragicConfig.idDecayingWasteland, (byte) 2).setBiomeName("tragicmc.decayingWasteland");
@@ -239,5 +238,65 @@ public class TragicBiome extends BiomeGenBase {
 		DarkForest = new BiomeGenDarkForest(TragicConfig.idDarkForest, (byte) 0).setBiomeName("tragicmc.darkForest");
 		DarkForestHills = new BiomeGenDarkForest(TragicConfig.idDarkForestHills, (byte) 1).setBiomeName("tragicmc.darkForestHills");
 		DarkMarsh = new BiomeGenDarkForest(TragicConfig.idDarkMarsh, (byte) 2).setBiomeName("tragicmc.darkMarsh");
+		
+		//Wilds/Nerve Center biomes
+		WildPlains = new BiomeGenWilds(200, (byte) 0).setBiomeName("tragicmc.wildPlains");
+		IriseiPlains = new BiomeGenWilds(201, (byte) 1).setBiomeName("tragicmc.iriseiPlains");
+		SeraleisSerenade = new BiomeGenWilds(202, (byte) 2).setBiomeName("tragicmc.seraleisSerenade");
+		
+		WildForest = new BiomeGenWilds(203, (byte) 0).setBiomeName("tragicmc.wildForest");
+		ImbertonForest = new BiomeGenWilds(204, (byte) 1).setBiomeName("tragicmc.imbertonForest");
+		UpsidusVeld = new BiomeGenWilds(205, (byte) 2).setBiomeName("tragicmc.upsidusVeld");
+		
+		WildDenseForest = new BiomeGenWilds(206, (byte) 0).setBiomeName("tragicmc.wildDenseForest");
+		KlahksTrove = new BiomeGenWilds(207, (byte) 1).setBiomeName("tragicmc.klahksTrove");
+		
+		WildValley = new BiomeGenWilds(208, (byte) 0).setBiomeName("tragicmc.wildValley");
+		CeresteValley = new BiomeGenWilds(209, (byte) 1).setBiomeName("tragicmc.ceresteValley");
+		RelicanthicValley = new BiomeGenWilds(210, (byte) 2).setBiomeName("tragicmc.relicanthicValley");
+		
+		WildHills = new BiomeGenWilds(211, (byte) 0).setBiomeName("tragicmc.wildHills");
+		KluveTerrace = new BiomeGenWilds(212, (byte) 1).setBiomeName("tragicmc.kluveTerrace");
+		IronveinHills = new BiomeGenWilds(213, (byte) 2).setBiomeName("tragicmc.ironveinHills");
+		
+		WildForestHills = new BiomeGenWilds(214, (byte) 0).setBiomeName("tragicmc.wildForestHills");
+		HalsydeHills = new BiomeGenWilds(215, (byte) 1).setBiomeName("tragicmc.halsydeHills");
+		
+		WildExtremeHills = new BiomeGenWilds(216, (byte) 0).setBiomeName("tragicmc.wildExtremeHills");
+		ZybianHeights = new BiomeGenWilds(217, (byte) 0).setBiomeName("tragicmc.zybianHeights");
+		TurbulentHeights = new BiomeGenWilds(218, (byte) 0).setBiomeName("tragicmc.turbulentHeights");
+		
+		WildSteppes = new BiomeGenWilds(219, (byte) 0).setBiomeName("tragicmc.wildSteppes");
+		GandreaSteppes = new BiomeGenWilds(220, (byte) 1).setBiomeName("tragicmc.gandreaSteppes");
+		TombstoneFields = new BiomeGenWilds(221, (byte) 2).setBiomeName("tragicmc.tombstoneFields");
+		
+		WildSavanna = new BiomeGenWilds(222, (byte) 0).setBiomeName("tragicmc.wildSavanna");
+		PrahpsPast = new BiomeGenWilds(223, (byte) 1).setBiomeName("tragicmc.prahpsPast");
+		
+		WildDesert = new BiomeGenWilds(224, (byte) 0).setBiomeName("tragicmc.wildDesert");
+		FerrierScarlands = new BiomeGenWilds(225, (byte) 1).setBiomeName("tragicmc.ferrierScarlands");
+		DesertOfAkhora = new BiomeGenWilds(226, (byte) 2).setBiomeName("tragicmc.desertOfAkhora");
+		VeneriaOasis = new BiomeGenWilds(227, (byte) 3).setBiomeName("tragicmc.veneriaOasis");
+		
+		WildRiver = new BiomeGenWilds(228, (byte) 0).setBiomeName("tragicmc.wildRiver");
+		RiverOfSouls = new BiomeGenWilds(229, (byte) 1).setBiomeName("tragicmc.riverOfSouls");
+		FyxisRiver = new BiomeGenWilds(230, (byte) 2).setBiomeName("tragicmc.fyxisRiver");
+		
+		WildLake = new BiomeGenWilds(231, (byte) 0).setBiomeName("tragicmc.wildLake");
+		VexinLake = new BiomeGenWilds(232, (byte) 1).setBiomeName("tragicmc.vexinLake");
+		AggroLake = new BiomeGenWilds(233, (byte) 2).setBiomeName("tragicmc.aggroLake");
+		
+		WildOcean = new BiomeGenWilds(234, (byte) 0).setBiomeName("tragicmc.wildOcean");
+		SeaOfSorrow = new BiomeGenWilds(235, (byte) 1).setBiomeName("tragicmc.seaOfSorrow");
+		VexinLake = new BiomeGenWilds(236, (byte) 2).setBiomeName("tragicmc.vexinLake");
+		StelSea = new BiomeGenWilds(237, (byte) 3).setBiomeName("tragicmc.stelSea");
+		ExivSea = new BiomeGenWilds(238, (byte) 4).setBiomeName("tragicmc.exivSea");
+		
+		WildMountains = new BiomeGenWilds(239, (byte) 0).setBiomeName("tragicmc.wildMountains");
+		LarinthianMountains = new BiomeGenWilds(240, (byte) 1).setBiomeName("tragicmc.larinthianMountains");
+		EttenDrove = new BiomeGenWilds(241, (byte) 2).setBiomeName("tragicmc.ettenDrove");
+		IrsalasVolcano = new BiomeGenWilds(242, (byte) 3).setBiomeName("tragicmc.irsalasVolcano");
+		
+		NerveCenter = new BiomeGenWilds(243, (byte) 4).setBiomeName("tragicmc.nerveCenter");
 	}
 }

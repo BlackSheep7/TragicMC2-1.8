@@ -197,6 +197,13 @@ public class TragicMC
 				DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
 				logInfo("Dimension (Synapse) was registered with an ID of " + TragicConfig.synapseID);
 			}
+			
+			int id = TragicConfig.synapseID + 1;
+			if (DimensionManager.isDimensionRegistered(id)) id = DimensionManager.getNextFreeDimId();
+			int provId = id;
+			
+			DimensionManager.registerProviderType(provId, tragicneko.tragicmc.dimension.WildsWorldProvider.class, false);
+			DimensionManager.registerDimension(id, provId);
 
 			TragicBiome.load();
 			MinecraftForge.ORE_GEN_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
