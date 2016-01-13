@@ -4476,6 +4476,7 @@ Added configurability of enchantment weights
 Doing more mesher registrations for items and blocks
 Added particle effect when Wings of Liberation are in use
 Mirrored sound additions from the 1.7.10 version, new projectile, rocket launcher and Skultar sounds
+Added config options for disabling mob infighting and mob illumination via Luminescence
 
 TODO: Add textures for armor (not the armor model ones)
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
@@ -4521,6 +4522,7 @@ Working on the Lasher now, it'll again use a modified version of the Archangel f
 (or despawns) and then will swoop down and attack their target then fly back up (if possible, otherwise stays and slashes at it's target)
 The Trapper is the Mini-Boss version, it'll use the same AI but it'll have a chance to grab it's target and slash at them continuously until it gets dazed
 or killed
+Working on setting up the Wilds Dimension with the sub-biomes
 
 First Expansion:
 Working on new mob AI, pets and item systems while I wait for driver updates so that I can record sounds
@@ -4531,7 +4533,7 @@ one active out of each tier
 Might add something like resource nodes, these would be blocks that give a certain resource and can be right-clicked to take it, after a long period of time
 they'll "regrow" the resource, these would not be moveable, this would be something exclusive to the Wilds
 The Wilds will have sub-biomes, these will generate independently from the surface biome, this will affect the entities that spawn underground as well as the
-type of blocks and terrain that generates
+type of blocks, structures and terrain that generates
 
 Mobs:
 Pyragr*
