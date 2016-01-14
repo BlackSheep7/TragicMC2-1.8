@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.util.WeightedRandom;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
@@ -12,8 +13,8 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 
 public class WildsBiomeGenLayer extends GenLayer {
-
-	private ArrayList[] biomeList;
+	
+	private ArrayList<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
 
 	public WildsBiomeGenLayer(long seed, GenLayer genlayer)
 	{
@@ -24,102 +25,95 @@ public class WildsBiomeGenLayer extends GenLayer {
 	public WildsBiomeGenLayer(long seed)
 	{
 		super(seed);
-		biomeList = new ArrayList[10];
 
-		ArrayList<BiomeEntry> decayingBiomes = new ArrayList<BiomeEntry>();
-		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingWasteland, TragicConfig.decayingWastelandW));
-		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingHills, TragicConfig.decayingHillsW));
-		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingMountains, TragicConfig.decayingMountainsW));
-		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingValley, TragicConfig.decayingValleyW));
-
-		ArrayList<BiomeEntry> paintedBiomes = new ArrayList<BiomeEntry>();
-		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedForest, TragicConfig.paintedForestW));
-		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedHills, TragicConfig.paintedHillsW));
-		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedPlains, TragicConfig.paintedPlainsW));
-		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedClearing, TragicConfig.paintedClearingW));
-
-		ArrayList<BiomeEntry> ashenBiomes = new ArrayList<BiomeEntry>();
-		ashenBiomes.add(new BiomeEntry(TragicBiome.AshenBadlands, TragicConfig.ashenBadlandsW));
-		ashenBiomes.add(new BiomeEntry(TragicBiome.AshenHills, TragicConfig.ashenHillsW));
-		ashenBiomes.add(new BiomeEntry(TragicBiome.AshenMountains, TragicConfig.ashenMountainsW));
-
-		ArrayList<BiomeEntry> starlitBiomes = new ArrayList<BiomeEntry>();
-		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitPrarie, TragicConfig.starlitPrarieW));
-		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitPlateaus, TragicConfig.starlitPlateausW));
-		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitLowlands, TragicConfig.starlitLowlandsW));
-		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitCliffs, TragicConfig.starlitCliffsW));
-
-		ArrayList<BiomeEntry> taintedBiomes = new ArrayList<BiomeEntry>();
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedLowlands, TragicConfig.taintedLowlandsW));
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedSpikes, TragicConfig.taintedSpikesW));
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedIsles, TragicConfig.taintedIslesW));
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedRises, TragicConfig.taintedRisesW));
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedScarlands, TragicConfig.taintedScarlandsW));
-
-		ArrayList<BiomeEntry> hallowedBiomes = new ArrayList<BiomeEntry>();
-		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedHills, TragicConfig.hallowedHillsW));
-		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedForest, TragicConfig.hallowedForestW));
-		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedPrarie, TragicConfig.hallowedPrarieW));
-		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedCliffs, TragicConfig.hallowedCliffsW));
-
-		ArrayList<BiomeEntry> scorchedBiomes = new ArrayList<BiomeEntry>();
-		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedWastelands, TragicConfig.scorchedWastelandsW));
-		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedValley, TragicConfig.scorchedValleyW));
-		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedScarlands, TragicConfig.scorchedScarlandsW));
-
-		ArrayList<BiomeEntry> corrodedBiomes = new ArrayList<BiomeEntry>();
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedSteppe, TragicConfig.corrodedSteppeW));
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedHeights, TragicConfig.corrodedHeightsW));
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedVeld, TragicConfig.corrodedVeldW));
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedRunoff, TragicConfig.corrodedRunoffW));
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedFallout, TragicConfig.corrodedFalloutW));
-
-		ArrayList<BiomeEntry> frozenBiomes = new ArrayList<BiomeEntry>();
-		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenTundra, TragicConfig.frozenTundraW));
-		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenHills, TragicConfig.frozenHillsW));
-		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenDepths, TragicConfig.frozenDepthsW));
-
-		ArrayList<BiomeEntry> darkForestBiomes = new ArrayList<BiomeEntry>();
-		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkForest, TragicConfig.darkForestW));
-		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkForestHills, TragicConfig.darkForestHillsW));
-		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkMarsh, TragicConfig.darkMarshW));
-
-		biomeList[0] = decayingBiomes;
-		biomeList[1] = paintedBiomes;
-		biomeList[2] = ashenBiomes;
-		biomeList[3] = starlitBiomes;
-		biomeList[4] = taintedBiomes;
-		biomeList[5] = hallowedBiomes;
-		biomeList[6] = scorchedBiomes;
-		biomeList[7] = corrodedBiomes;
-		biomeList[8] = frozenBiomes;
-		biomeList[9] = darkForestBiomes;
+		ArrayList<BiomeGenBase> list = new ArrayList<BiomeGenBase>();
+		list.add(0, TragicBiome.WildPlains);
+		list.add(1, TragicBiome.WildForest);
+		list.add(2, TragicBiome.WildDenseForest);
+		list.add(3, TragicBiome.WildValley);
+		list.add(4, TragicBiome.WildHills);
+		list.add(5, TragicBiome.WildExtremeHills);
+		list.add(6, TragicBiome.WildSteppes);
+		list.add(7, TragicBiome.WildSavanna);
+		list.add(8, TragicBiome.WildDesert);
+		list.add(9, TragicBiome.WildRiver);
+		list.add(10, TragicBiome.WildOcean);
+		list.add(11, TragicBiome.WildMountains);
 	}
 
 	@Override
 	public int[] getInts(int x, int z, int width, int depth)
 	{
-		int[] dest = IntCache.getIntCache(width * depth);
+		int[] aint = this.parent.getInts(x, z, width, depth);
+		int[] aint1 = IntCache.getIntCache(width * depth);
 
-		for (int dz = 0; dz < depth; dz++)
+		for (int i1 = 0; i1 < depth; ++i1)
 		{
-			for (int dx = 0; dx < width; dx++)
+			for (int j1 = 0; j1 < width; ++j1)
 			{
-				this.initChunkSeed(dx + x, dz + z);
-				try
+				this.initChunkSeed((long)(j1 + x), (long)(i1 + z));
+				int k1 = aint[j1 + i1 * width];
+				int l1 = (k1 & 3840) >> 8;
+				k1 &= -3841;
+			
+				if (k1 == TragicBiome.WildOcean.biomeID)
 				{
-					List<BiomeEntry> biomes = biomeList[this.nextInt(biomeList.length)];
-					dest[dx + dz * width] = this.nextInt(1000) <= TragicConfig.crystalW ? TragicBiome.Crystal.biomeID : ((BiomeEntry)WeightedRandom.getRandomItem(biomes, this.nextInt(WeightedRandom.getTotalWeight(biomes)))).biome.biomeID;
+					aint1[j1 + i1 * width] = k1;
 				}
-				catch (Exception e)
+				else if (k1 == BiomeGenBase.deepOcean.biomeID)
 				{
-					TragicMC.logError("Error adding a biome entry to the gen layer, defaulting biome to Decaying Wasteland", e);
-					dest[dx + dz * width] = TragicBiome.DecayingWasteland.biomeID;
-					continue;
+					aint[j1 + i1 * width] = TragicBiome.WildDeepOcean.biomeID;
+				}
+				else if (k1 == BiomeGenBase.river.biomeID)
+				{
+					aint[j1 + i1 + width] = TragicBiome.WildRiver.biomeID;
+				}
+				else if (k1 == 1 || k1 == 2)
+				{
+					if (l1 > 0)
+					{
+						aint1[j1 + i1 * width] = TragicBiome.WildPlains.biomeID; //getBiomeForTemp(BiomeGenBase.TempCategory.MEDIUM);
+					}
+					else
+					{
+						aint1[j1 + i1 * width] = TragicBiome.WildDesert.biomeID; //getBiomeForTemp(BiomeGenBase.TempCategory.WARM);
+					}
+				}
+				else if (k1 == 3)
+				{
+					aint1[j1 + i1 * width] = TragicBiome.WildExtremeHills.biomeID; //getBiomeForTemp(BiomeGenBase.TempCategory.COLD);
+				}
+				else if (k1 == BiomeGenBase.mushroomIsland.biomeID)
+				{
+					aint[j1 + i1 * width] = TragicBiome.WildIsland.biomeID;
+				}
+				else
+				{
+					aint[j1 + i1 * width] = TragicBiome.WildOcean.biomeID;
 				}
 			}
 		}
 
-		return dest;
+		return aint1;
+	}
+
+	public int getBiomeForTemp(BiomeGenBase.TempCategory cat)
+	{
+		ArrayList<BiomeGenBase> list = new ArrayList<BiomeGenBase>();
+		for (BiomeGenBase b : biomes)
+		{
+			if (b != null && b.getTempCategory() == cat) list.add(b);
+		}
+		
+		if (!list.isEmpty())
+		{
+			if (list.size() == 1) return ((BiomeGenBase) list.get(0)).biomeID;
+			else
+			{
+				return ((BiomeGenBase) list.get(this.nextInt(list.size()))).biomeID;
+			}
+		}
+
+		return TragicBiome.WildOcean.biomeID;
 	}
 }

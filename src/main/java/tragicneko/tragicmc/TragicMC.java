@@ -197,7 +197,7 @@ public class TragicMC
 				DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
 				logInfo("Dimension (Synapse) was registered with an ID of " + TragicConfig.synapseID);
 			}
-			
+			//TODO remove after done testing the Wilds dimension 
 			int id = TragicConfig.synapseID + 1;
 			if (DimensionManager.isDimensionRegistered(id)) id = DimensionManager.getNextFreeDimId();
 			int provId = id;
@@ -271,7 +271,9 @@ public class TragicMC
 		else if (TragicConfig.allowAchievements)
 		{
 			logWarning("Achievements are enabled in config but are disabled due to certain blocks and items being disabled. This is to prevent game crashes from ocurring.");
+			TragicConfig.allowAchievements = false;
 		}
+		
 		proxy.preInitRenders(); //added for 1.8's tedious block/item rendering process
 	}
 

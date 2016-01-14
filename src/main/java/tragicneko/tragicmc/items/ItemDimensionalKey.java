@@ -14,6 +14,7 @@ import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
@@ -43,7 +44,7 @@ public class ItemDimensionalKey extends Item {
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		String s = this.targetDimension == 1 ? "the End" : (this.targetDimension == 2 ? "the Collision" : (this.targetDimension == -1 ? "the Nether" : "the Synapse"));
+		String s = DimensionManager.getProvider(this.targetDimension).getDimensionName();
 		par2List.add(EnumChatFormatting.DARK_RED + "Teleports you to " + s + "!");
 		par2List.add("Hold down right-click for a couple");
 		par2List.add("seconds then let go to use.");

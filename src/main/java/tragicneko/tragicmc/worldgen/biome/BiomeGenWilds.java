@@ -14,6 +14,12 @@ public class BiomeGenWilds extends TragicBiome {
 
 	public BiomeGenWilds(int par1, byte par2) {
 		super(par1, par2);
+		this.topBlock = Blocks.dirt.getDefaultState();
+		this.fillerBlock = Blocks.stone.getDefaultState();
+		this.spawnableMonsterList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
 	}
 	
 	@Override
@@ -63,11 +69,11 @@ public class BiomeGenWilds extends TragicBiome {
 
                         k = l;
 
-                        if (k1 >= 96)
+                        if (k1 >= 62)
                         {
                             chk.setBlockState(j1, k1, i1, iblockstate);
                         }
-                        else if (k1 < 88 - l)
+                        else if (k1 < 56 - l)
                         {
                             iblockstate = null;
                             iblockstate1 = TragicBlocks.DarkStone.getDefaultState();

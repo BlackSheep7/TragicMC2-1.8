@@ -59,6 +59,8 @@ public class TragicBiome extends BiomeGenBase {
 	public static BiomeGenBase WildRiver, RiverOfSouls, FyxisRiver;
 	public static BiomeGenBase WildLake, WildOcean, SeaOfSorrow, VexinLake, StelSea, ExivSea, AggroLake;
 	public static BiomeGenBase WildMountains, LarinthianMountains, EttenDrove, IrsalasVolcano;
+	public static BiomeGenBase WildIsland, TorsianIsle, IslaDeMuerte;
+	public static BiomeGenBase WildDeepOcean, LeviaTriangle, DesolateDepths;
 	
 	//Nerve Center biome
 	public static BiomeGenBase NerveCenter;
@@ -297,6 +299,14 @@ public class TragicBiome extends BiomeGenBase {
 		EttenDrove = new BiomeGenWilds(241, (byte) 2).setBiomeName("tragicmc.ettenDrove");
 		IrsalasVolcano = new BiomeGenWilds(242, (byte) 3).setBiomeName("tragicmc.irsalasVolcano");
 		
-		NerveCenter = new BiomeGenWilds(243, (byte) 4).setBiomeName("tragicmc.nerveCenter");
+		WildIsland = new BiomeGenWilds(243, (byte) 0).setBiomeName("tragicmc.wildIsland");
+		TorsianIsle = new BiomeGenWilds(244, (byte) 1).setBiomeName("tragicmc.torsianIsle");
+		IslaDeMuerte = new BiomeGenWilds(245, (byte) 2).setBiomeName("tragicmc.islaDeMuerte");
+		
+		WildDeepOcean = new BiomeGenWilds(246, (byte) 0).setBiomeName("tragicmc.wildDeepOcean");
+		LeviaTriangle = new BiomeGenWilds(247, (byte) 1).setBiomeName("tragicmc.leviaTriangle");
+		DesolateDepths = new BiomeGenWilds(248, (byte) 2).setBiomeName("tragicmc.desolateDepths");
+		
+		NerveCenter = new BiomeGenWilds(249, (byte) 0).setBiomeName("tragicmc.nerveCenter");
 	}
 }

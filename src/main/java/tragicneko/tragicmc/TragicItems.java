@@ -264,7 +264,7 @@ public class TragicItems {
 	public static Item DeathglowSeeds;
 	public static Item SkyFruitSeeds;
 
-	public static Item DimensionalKey, DimensionalKeyEnd, DimensionalKeyNether, DimensionalKeySynapse;
+	public static Item DimensionalKey, DimensionalKeyEnd, DimensionalKeyNether, DimensionalKeySynapse, DimensionalKeyWilds;
 	public static Item SynapseLink, SynapseCrystal;
 
 	public static Item BowOfJustice;
@@ -1186,6 +1186,9 @@ public class TragicItems {
 
 			DimensionalKeySynapse = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
 			GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
+			
+			DimensionalKeyWilds = (new ItemDimensionalKey(TragicConfig.synapseID + 1).setUnlocalizedName("tragicmc.dimensionalKey.wilds").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
+			GameRegistry.registerItem(DimensionalKeyWilds, "dimensionalKeyWilds");
 
 			SynapseLink = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(SynapseLink, "synapseLink");
