@@ -290,22 +290,21 @@ public class TragicBiome extends BiomeGenBase {
 		
 		WildOcean = new BiomeGenWilds(234, (byte) 0).setBiomeName("tragicmc.wildOcean");
 		SeaOfSorrow = new BiomeGenWilds(235, (byte) 1).setBiomeName("tragicmc.seaOfSorrow");
-		VexinLake = new BiomeGenWilds(236, (byte) 2).setBiomeName("tragicmc.vexinLake");
-		StelSea = new BiomeGenWilds(237, (byte) 3).setBiomeName("tragicmc.stelSea");
-		ExivSea = new BiomeGenWilds(238, (byte) 4).setBiomeName("tragicmc.exivSea");
+		StelSea = new BiomeGenWilds(236, (byte) 2).setBiomeName("tragicmc.stelSea");
+		ExivSea = new BiomeGenWilds(237, (byte) 3).setBiomeName("tragicmc.exivSea");
 		
-		WildMountains = new BiomeGenWilds(239, (byte) 0).setBiomeName("tragicmc.wildMountains");
-		LarinthianMountains = new BiomeGenWilds(240, (byte) 1).setBiomeName("tragicmc.larinthianMountains");
-		EttenDrove = new BiomeGenWilds(241, (byte) 2).setBiomeName("tragicmc.ettenDrove");
-		IrsalasVolcano = new BiomeGenWilds(242, (byte) 3).setBiomeName("tragicmc.irsalasVolcano");
+		WildMountains = new BiomeGenWilds(238, (byte) 0).setBiomeName("tragicmc.wildMountains");
+		LarinthianMountains = new BiomeGenWilds(239, (byte) 1).setBiomeName("tragicmc.larinthianMountains");
+		EttenDrove = new BiomeGenWilds(240, (byte) 2).setBiomeName("tragicmc.ettenDrove");
+		IrsalasVolcano = new BiomeGenWilds(241, (byte) 3).setBiomeName("tragicmc.irsalasVolcano");
 		
-		WildIsland = new BiomeGenWilds(243, (byte) 0).setBiomeName("tragicmc.wildIsland");
-		TorsianIsle = new BiomeGenWilds(244, (byte) 1).setBiomeName("tragicmc.torsianIsle");
-		IslaDeMuerte = new BiomeGenWilds(245, (byte) 2).setBiomeName("tragicmc.islaDeMuerte");
+		WildIsland = new BiomeGenWilds(242, (byte) 0).setBiomeName("tragicmc.wildIsland");
+		TorsianIsle = new BiomeGenWilds(243, (byte) 1).setBiomeName("tragicmc.torsianIsle");
+		IslaDeMuerte = new BiomeGenWilds(244, (byte) 2).setBiomeName("tragicmc.islaDeMuerte");
 		
-		WildDeepOcean = new BiomeGenWilds(246, (byte) 0).setBiomeName("tragicmc.wildDeepOcean");
-		LeviaTriangle = new BiomeGenWilds(247, (byte) 1).setBiomeName("tragicmc.leviaTriangle");
-		DesolateDepths = new BiomeGenWilds(248, (byte) 2).setBiomeName("tragicmc.desolateDepths");
+		WildDeepOcean = new BiomeGenWilds(245, (byte) 0).setBiomeName("tragicmc.wildDeepOcean");
+		LeviaTriangle = new BiomeGenWilds(246, (byte) 1).setBiomeName("tragicmc.leviaTriangle");
+		DesolateDepths = new BiomeGenWilds(247, (byte) 2).setBiomeName("tragicmc.desolateDepths");
 		
 		NerveCenter = new BiomeGenWilds(249, (byte) 0).setBiomeName("tragicmc.nerveCenter");
 	}

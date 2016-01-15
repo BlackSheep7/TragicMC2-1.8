@@ -20,20 +20,15 @@ import net.minecraft.world.gen.layer.GenLayerAddSnow;
 import net.minecraft.world.gen.layer.GenLayerDeepOcean;
 import net.minecraft.world.gen.layer.GenLayerEdge;
 import net.minecraft.world.gen.layer.GenLayerFuzzyZoom;
-import net.minecraft.world.gen.layer.GenLayerHills;
 import net.minecraft.world.gen.layer.GenLayerIsland;
-import net.minecraft.world.gen.layer.GenLayerRareBiome;
 import net.minecraft.world.gen.layer.GenLayerRemoveTooMuchOcean;
 import net.minecraft.world.gen.layer.GenLayerRiver;
 import net.minecraft.world.gen.layer.GenLayerRiverInit;
-import net.minecraft.world.gen.layer.GenLayerRiverMix;
-import net.minecraft.world.gen.layer.GenLayerShore;
 import net.minecraft.world.gen.layer.GenLayerSmooth;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 import net.minecraft.world.gen.layer.IntCache;
 import tragicneko.tragicmc.TragicBiome;
-import tragicneko.tragicmc.TragicConfig;
 
 public class WildsChunkManager extends WorldChunkManager
 {
@@ -103,40 +98,26 @@ public class WildsChunkManager extends WorldChunkManager
         GenLayerRiverInit genlayerriverinit = new GenLayerRiverInit(100L, genlayer);
         
 		GenLayer biomes = new WildsBiomeGenLayer(seed, genlayer2);
-		biomes = GenLayerZoom.magnify(100L, biomes, 6);
-		//biomes = new WildsBiomeEdgeGenLayer(seed, biomes); //Add biome transitions when necessary, so that an icy biome won't be right next to a desert biome
+		biomes = GenLayerZoom.magnify(100L, biomes, 4); //4 is the biome size, 6 is the vanilla amount for large biomes
+		biomes = new WildsBiomeEdgeGenLayer(seed, biomes); //Add biome transitions when necessary, so that an icy biome won't be right next to a desert biome
 		GenLayer zoom = new GenLayerVoronoiZoom(10L, biomes);
 		
 		GenLayer genlayer1 = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
-        //GenLayerHills genlayerhills = new GenLayerHills(1000L, biomes, genlayer1); //Add base variants (i.e. Dense Forest, Deep Ocean, Forest hills)
+        WildsBiomeBaseVariantGenLayer genlayerhills = new WildsBiomeBaseVariantGenLayer(1000L, biomes, genlayer1); //Add base variants (i.e. Dense Forest, Deep Ocean, Forest hills)
         genlayer = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
-        genlayer = GenLayerZoom.magnify(1000L, genlayer, 6);
+        genlayer = GenLayerZoom.magnify(1000L, genlayer, 4);
         GenLayerRiver genlayerriver = new GenLayerRiver(1L, genlayer);
         GenLayerSmooth genlayersmooth = new GenLayerSmooth(1000L, genlayerriver);
-        //Object object = new GenLayerRareBiome(1001L, genlayerhills); //Add rare biomes, one in 100 chance for each plausible one to generate from a base biome
-        /*
-        for (int l = 0; l < 6; ++l)
-        {
+        Object object = new WildsRareBiomeGenLayer(1001L, genlayerhills); //Add rare biomes, one in 100 chance for each plausible one to generate from a base biome
+        
+        for (byte l = 0; l < 6; ++l)
             object = new GenLayerZoom((long)(1000 + l), (GenLayer)object);
-
-            if (l == 0)
-            {
-                object = new GenLayerAddIsland(3L, (GenLayer)object); //break up huge masses of land or ocean by setting random areas to the opposite
-            }
-			else if (l == 1)
-            {
-                object = new GenLayerShore(1000L, (GenLayer)object); //Add shores for biomes that border an ocean or are islands
-            }
-        } */
         
-        //GenLayerSmooth genlayersmooth1 = new GenLayerSmooth(1000L, (GenLayer)object); //smooths out the islands and zoom done previously
-        //GenLayerRiverMix genlayerrivermix = new GenLayerRiverMix(100L, genlayersmooth1, genlayersmooth); //generate rivers based on current and previous gen layer
-        //GenLayerVoronoiZoom genlayervoronoizoom = new GenLayerVoronoiZoom(10L, genlayerrivermix); //define the biome border more cleanly
-        //genlayerrivermix.initWorldGenSeed(seed);
-        //genlayervoronoizoom.initWorldGenSeed(seed);
-        
-		biomes.initWorldGenSeed(seed);
-		zoom.initWorldGenSeed(seed);
+        GenLayerSmooth genlayersmooth1 = new GenLayerSmooth(1000L, (GenLayer)object); //smooths out the zoom done previously
+        WildsRiverMixGenLayer genlayerrivermix = new WildsRiverMixGenLayer(100L, genlayersmooth1, genlayersmooth); //creates a gen layer based on the river mask and biome layer made previously
+        GenLayerVoronoiZoom genlayervoronoizoom = new GenLayerVoronoiZoom(10L, genlayerrivermix); //define the biome border more cleanly
+        genlayerrivermix.initWorldGenSeed(seed);
+        genlayervoronoizoom.initWorldGenSeed(seed);
 		
 		GenLayer subBiomes = new WildsSubBiomeGenLayer(seed);
 		subBiomes = GenLayerZoom.magnify(110L, subBiomes, 9);
@@ -145,7 +126,7 @@ public class WildsChunkManager extends WorldChunkManager
 		subBiomes.initWorldGenSeed(seed);
 		zoom2.initWorldGenSeed(seed);
 
-		return new GenLayer[] {biomes, zoom, subBiomes, zoom2};
+		return new GenLayer[] {genlayerrivermix, genlayervoronoizoom, subBiomes, zoom2};
 	}
 
 	@Override
