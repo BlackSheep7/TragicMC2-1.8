@@ -244,6 +244,7 @@ public class MiscEvents {
 					catch (Exception e)
 					{
 						TragicMC.logError("Error caused while reflecting for burn potion effect", e);
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
 					}
 
 					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));

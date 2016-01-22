@@ -50,7 +50,7 @@ public class EntityLockbot extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return true; //TragicConfig.allowWarden; //TODO change
+		return true; //TragicConfig.allowWarden; //TODO change when the Warden is no longer hidden
 	}
 
 	@Override

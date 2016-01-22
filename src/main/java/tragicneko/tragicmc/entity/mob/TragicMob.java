@@ -215,8 +215,8 @@ public abstract class TragicMob extends EntityMob
 		{
 			int w = MathHelper.floor_float(this.width);
 			int h = MathHelper.floor_float(this.height);
-			if (w < 1) w = 1;
-			if (h < 1) h = 1;
+			if (w < 2) w = 2;
+			if (h < 2) h = 2;
 			int x = (int) (rand.nextInt(w) - rand.nextInt(w));
 			int y = (int) (rand.nextInt(h) - rand.nextInt(h)) + ((int) this.height * 2 / 3);
 			int z = (int) (rand.nextInt(w) - rand.nextInt(w));

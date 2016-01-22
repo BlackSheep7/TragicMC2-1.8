@@ -1127,6 +1127,9 @@ public class TragicItems {
 
 			LuckAmulet = (new AmuletLuck());
 			GameRegistry.registerItem(LuckAmulet, "luckAmulet");
+			
+			AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicMC.Survival));
+			GameRegistry.registerItem(AmuletRelease, "amuletRelease");
 		}
 
 		//Armor and Tool materials
@@ -1146,9 +1149,6 @@ public class TragicItems {
 		toolCelesJack.setRepairItem(new ItemStack(CelestialSteel));
 
 		//Special item registrations
-		MobStatue = (new ItemStatue());
-		GameRegistry.registerItem(MobStatue, "mobStatue");
-
 		if (TragicConfig.allowDoom)
 		{
 			DoomConsume = (new ItemDoomUpgrade().setUnlocalizedName("tragicmc.doomConsume").setMaxStackSize(1).setCreativeTab(TragicMC.Survival));
@@ -1156,22 +1156,16 @@ public class TragicItems {
 
 			CooldownDefuse = (new ItemCooldownDefuse().setUnlocalizedName("tragicmc.cooldownDefuse").setMaxStackSize(16).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(CooldownDefuse, "cooldownDefuse");
-		}
-
-		if (TragicConfig.allowAmulets)
-		{
-			AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicMC.Survival));
-			GameRegistry.registerItem(AmuletRelease, "amuletRelease");
-		}
-
-		if (TragicConfig.allowDoom)
-		{
+			
 			BloodSacrifice = (new ItemBloodSacrifice().setUnlocalizedName("tragicmc.bloodSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(BloodSacrifice, "bloodSacrifice");
 
 			NourishmentSacrifice = (new ItemNourishmentSacrifice().setUnlocalizedName("tragicmc.nourishmentSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(NourishmentSacrifice, "nourishmentSacrifice");
 		}
+
+		MobStatue = (new ItemStatue());
+		GameRegistry.registerItem(MobStatue, "mobStatue");
 
 		if (TragicConfig.allowDimension)
 		{

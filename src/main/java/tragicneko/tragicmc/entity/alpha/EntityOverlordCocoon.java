@@ -27,6 +27,7 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
@@ -332,7 +333,8 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			if (rand.nextInt(4) == 0 && this.getAttackTarget() != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.setAttackTarget(entity);
 
-			if (flag && this.hurtResistantTime == 0 || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse && this.hurtResistantTime == 0)
+			if (flag && this.hurtResistantTime == 0 || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse && this.hurtResistantTime == 0 ||
+					entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())
 			{
 				this.phaseDamage += MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, TragicConfig.bossDamageCap);
 
@@ -398,7 +400,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			for (BlockPos coord: lst)
 			{
-				if (this.posY >= coord.getY()) this.worldObj.setBlockToAir(coord);
+				if (this.posY >= coord.getY() && this.worldObj.getBlockState(coord).getBlock().getBlockHardness(this.worldObj, coord) > 0F) this.worldObj.setBlockToAir(coord);
 			}
 
 			lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);

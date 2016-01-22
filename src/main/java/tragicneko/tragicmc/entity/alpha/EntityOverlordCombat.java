@@ -29,6 +29,7 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
@@ -428,6 +429,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 		if (this.getTransformationTicks() > 0)
 		{
+			if (this.getTransformationTicks() == 120 && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcombat.wam", 1.6F, 0.6F);
 			this.setTransformationTicks(this.getTransformationTicks() - 1);
 
 			this.reflectionBuffer = 0;
@@ -647,7 +649,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				return false;
 			}
 
-			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse)// || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
+			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse || entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())// || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
 			{
 				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 16)
 				{

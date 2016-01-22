@@ -15,6 +15,8 @@ import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EntityDimensionalAnomaly extends Entity {
+	
+	private static final int DW_TIME_TO_LIVE = 5;
 
 	public EntityDimensionalAnomaly(World par1World) {
 		super(par1World);
@@ -96,17 +98,17 @@ public class EntityDimensionalAnomaly extends Entity {
 
 	@Override
 	protected void entityInit() {
-		this.dataWatcher.addObject(2, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_TIME_TO_LIVE, Integer.valueOf(0));
 	}
 
 	public int getTimeToLive()
 	{
-		return this.dataWatcher.getWatchableObjectInt(2);
+		return this.dataWatcher.getWatchableObjectInt(DW_TIME_TO_LIVE);
 	}
 
 	public void setTimeToLive(int i)
 	{
-		this.dataWatcher.updateObject(2, i);
+		this.dataWatcher.updateObject(DW_TIME_TO_LIVE, i);
 	}
 
 	@Override
