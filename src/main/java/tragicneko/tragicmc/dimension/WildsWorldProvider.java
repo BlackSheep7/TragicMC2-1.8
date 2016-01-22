@@ -20,13 +20,6 @@ public class WildsWorldProvider extends WorldProvider
 		this.dimensionId = TragicConfig.collisionID;
 	}
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public IRenderHandler getSkyRenderer()
-	{
-		return ClientProxy.collisionSkyRenderer;
-	}
-
 	@Override
 	public void registerWorldChunkManager()
 	{
@@ -56,7 +49,7 @@ public class WildsWorldProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public boolean isSkyColored()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
@@ -75,7 +68,7 @@ public class WildsWorldProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public float getCloudHeight()
 	{
-		return 240.0F;
+		return 160.0F;
 	}
 
 	@Override
@@ -142,7 +135,7 @@ public class WildsWorldProvider extends WorldProvider
 	@Override
 	public float calculateCelestialAngle(long time, float f)
 	{
-		int j = (int) (17000L % 24000L);
+		int j = (int) (time % 24000L);
 		float f1 = (j + f) / 24000.0F - 0.25F;
 		if (f1 < 0.0F)
 		{
@@ -157,7 +150,6 @@ public class WildsWorldProvider extends WorldProvider
 		f1 = f2 + (f1 - f2) / 3.0F;
 		return f1;
 	}
-
 
 	@Override
 	protected void generateLightBrightnessTable()
@@ -180,8 +172,8 @@ public class WildsWorldProvider extends WorldProvider
 	public String getInternalNameSuffix() {
 		return "Wilds";
 	}
-	/*
+	
 	public TragicSubBiome getSubBiomeForGen(BlockPos pos) {
-		return this.worldChunkMgr.getSubBiomeGenAt(pos);
-	} */
+		return ((WildsChunkManager) this.worldChunkMgr).getSubBiomeGenAt(pos);
+	}
 }

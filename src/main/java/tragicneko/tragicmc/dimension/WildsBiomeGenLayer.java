@@ -26,56 +26,54 @@ public class WildsBiomeGenLayer extends GenLayer {
 				this.initChunkSeed((long)(j1 + x), (long)(i1 + z));
 				int k1 = aint[j1 + i1 * width];
 				int l1 = (k1 & 3840) >> 8;
-			k1 &= -3841;
+				k1 &= -3841;
 
-			if (k1 == TragicBiome.WildOcean.biomeID)
-			{
-				aint1[j1 + i1 * width] = k1;
-			}
-			else if (k1 == BiomeGenBase.deepOcean.biomeID)
-			{
-				aint[j1 + i1 * width] = TragicBiome.WildDeepOcean.biomeID;
-			}
-			else if (k1 == BiomeGenBase.river.biomeID)
-			{
-				aint[j1 + i1 + width] = TragicBiome.WildRiver.biomeID;
-			}
-			else if (k1 == 1 || k1 == 2)
-			{
-				if (l1 > 0)
+				if (k1 == TragicBiome.WildOcean.biomeID || k1 == BiomeGenBase.ocean.biomeID)
 				{
-					if (this.nextInt(3) == 0)
+					aint1[j1 + i1 * width] = TragicBiome.WildOcean.biomeID;
+				}
+				else if (k1 == BiomeGenBase.deepOcean.biomeID)
+				{
+					aint1[j1 + i1 * width] = TragicBiome.WildDeepOcean.biomeID;
+				}
+				else if (k1 == BiomeGenBase.river.biomeID)
+				{
+					aint1[j1 + i1 + width] = TragicBiome.WildRiver.biomeID;
+				}
+				else if (k1 == 1 || k1 == 2)
+				{
+					if (l1 > 0)
 					{
-						aint1[j1 + i1 * width] = TragicBiome.WildPlains.biomeID;
-					}
-					else if (this.nextInt(5) == 0)
-					{
-						aint[j1 + i1 * width] = TragicBiome.WildSteppes.biomeID;
+						if (this.nextInt(3) == 0)
+						{
+							aint1[j1 + i1 * width] = TragicBiome.WildPlains.biomeID;
+						}
+						else if (this.nextInt(5) == 0)
+						{
+							aint1[j1 + i1 * width] = TragicBiome.WildSteppes.biomeID;
+						}
+						else
+						{
+							aint1[j1 + i1 * width] = TragicBiome.WildForest.biomeID;
+						}
 					}
 					else
 					{
-						aint[j1 + i1 * width] = TragicBiome.WildForest.biomeID;
+						aint1[j1 + i1 * width] = TragicBiome.WildDesert.biomeID;
 					}
+				}
+				else if (k1 == 3)
+				{
+					aint1[j1 + i1 * width] = TragicBiome.WildHills.biomeID;
+				}
+				else if (k1 == BiomeGenBase.mushroomIsland.biomeID)
+				{
+					aint1[j1 + i1 * width] = TragicBiome.WildIsland.biomeID;
 				}
 				else
 				{
-					aint1[j1 + i1 * width] = TragicBiome.WildDesert.biomeID;
+					aint1[j1 + i1 * width] = TragicBiome.WildPlains.biomeID;
 				}
-			}
-			else if (k1 == 3)
-			{
-
-				aint[j1 + i1 * width] = TragicBiome.WildHills.biomeID;
-
-			}
-			else if (k1 == BiomeGenBase.mushroomIsland.biomeID)
-			{
-				aint[j1 + i1 * width] = TragicBiome.WildIsland.biomeID;
-			}
-			else
-			{
-				aint[j1 + i1 * width] = TragicBiome.WildOcean.biomeID;
-			}
 			}
 		}
 

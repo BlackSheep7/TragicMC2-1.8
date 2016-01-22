@@ -25,7 +25,7 @@ public class WildsRareBiomeGenLayer extends GenLayer
 				this.initChunkSeed((long)(j1 + areaX), (long)(i1 + areaY));
 				int k1 = aint[j1 + 1 + (i1 + 1) * (areaWidth + 2)];
 
-				if (this.nextInt(57) == 0)
+				if (this.nextInt(48) == 0)
 				{
 					if (k1 == TragicBiome.WildPlains.biomeID)
 					{

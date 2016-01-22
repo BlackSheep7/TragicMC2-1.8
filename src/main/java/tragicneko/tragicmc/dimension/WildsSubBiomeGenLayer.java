@@ -50,7 +50,6 @@ public class WildsSubBiomeGenLayer extends GenLayer {
 				}
 				catch (Exception e)
 				{
-					TragicMC.logError("Error adding a sub-biome entry to the gen layer, defaulting sub-biome to Ferris", e);
 					dest[dx + dz * width] = TragicSubBiome.ferris.subID;
 					continue;
 				}

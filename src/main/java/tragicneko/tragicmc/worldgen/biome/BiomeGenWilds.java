@@ -5,10 +5,11 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import tragicneko.tragicmc.TragicBiome;
-import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.dimension.WildsWorldProvider;
 
 public class BiomeGenWilds extends TragicBiome {
 
@@ -33,6 +34,7 @@ public class BiomeGenWilds extends TragicBiome {
 		boolean flag = true;
         IBlockState iblockstate = this.topBlock;
         IBlockState iblockstate1 = this.fillerBlock;
+        IBlockState subBlock = ((WildsWorldProvider) worldIn.provider).getSubBiomeForGen(new BlockPos(x, 0, z)).subBlock;
         int k = -1;
         int l = (int)(d / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
         int i1 = x & 15;
@@ -52,14 +54,14 @@ public class BiomeGenWilds extends TragicBiome {
                 {
                     k = -1;
                 }
-                else if (iblockstate2.getBlock() == TragicBlocks.DarkStone)
+                else if (iblockstate2.getBlock() == Blocks.stone)
                 {
                     if (k == -1)
                     {
                         if (l <= 0)
                         {
                             iblockstate = null;
-                            iblockstate1 = TragicBlocks.DarkStone.getDefaultState();
+                            iblockstate1 = subBlock;
                         }
                         else if (k1 >= 59 && k1 <= 64)
                         {
@@ -76,8 +78,8 @@ public class BiomeGenWilds extends TragicBiome {
                         else if (k1 < 56 - l)
                         {
                             iblockstate = null;
-                            iblockstate1 = TragicBlocks.DarkStone.getDefaultState();
-                            chk.setBlockState(j1, k1, i1, TragicBlocks.DarkStone.getDefaultState());
+                            iblockstate1 = subBlock;
+                            chk.setBlockState(j1, k1, i1, subBlock);
                         }
                         else
                         {
@@ -93,5 +95,4 @@ public class BiomeGenWilds extends TragicBiome {
             }
         }
 	}
-
 }

@@ -29,6 +29,7 @@ import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 import net.minecraft.world.gen.layer.IntCache;
 import tragicneko.tragicmc.TragicBiome;
+import tragicneko.tragicmc.worldgen.subbiome.TragicSubBiome;
 
 public class WildsChunkManager extends WorldChunkManager
 {
@@ -37,11 +38,13 @@ public class WildsChunkManager extends WorldChunkManager
 	private GenLayer genLayerSubBiomes;
 	private GenLayer genLayerSubBiomeIndex;
 	private BiomeCache biomeCache;
+	private SubBiomeCache subBiomeCache;
 	private List<BiomeGenBase> spawnBiomes;
 
 	public WildsChunkManager(long seed, WorldType worldType)
 	{
 		this.biomeCache = new BiomeCache(this);
+		this.subBiomeCache = new SubBiomeCache(this);
 		this.spawnBiomes = new ArrayList<BiomeGenBase>();
 		this.addBiomes(this.spawnBiomes);
 
@@ -98,22 +101,21 @@ public class WildsChunkManager extends WorldChunkManager
         GenLayerRiverInit genlayerriverinit = new GenLayerRiverInit(100L, genlayer);
         
 		GenLayer biomes = new WildsBiomeGenLayer(seed, genlayer2);
-		biomes = GenLayerZoom.magnify(100L, biomes, 4); //4 is the biome size, 6 is the vanilla amount for large biomes
+		biomes = GenLayerZoom.magnify(100L, biomes, 5); //4 is the biome size, 6 is the vanilla amount for large biomes
 		biomes = new WildsBiomeEdgeGenLayer(seed, biomes); //Add biome transitions when necessary, so that an icy biome won't be right next to a desert biome
-		GenLayer zoom = new GenLayerVoronoiZoom(10L, biomes);
 		
 		GenLayer genlayer1 = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
         WildsBiomeBaseVariantGenLayer genlayerhills = new WildsBiomeBaseVariantGenLayer(1000L, biomes, genlayer1); //Add base variants (i.e. Dense Forest, Deep Ocean, Forest hills)
         genlayer = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
-        genlayer = GenLayerZoom.magnify(1000L, genlayer, 4);
+        genlayer = GenLayerZoom.magnify(1000L, genlayer, 5);
         GenLayerRiver genlayerriver = new GenLayerRiver(1L, genlayer);
         GenLayerSmooth genlayersmooth = new GenLayerSmooth(1000L, genlayerriver);
-        Object object = new WildsRareBiomeGenLayer(1001L, genlayerhills); //Add rare biomes, one in 100 chance for each plausible one to generate from a base biome
+        GenLayer object = new WildsRareBiomeGenLayer(1001L, genlayerhills); //Add rare biomes, one in 100 chance for each plausible one to generate from a base biome
         
-        for (byte l = 0; l < 6; ++l)
-            object = new GenLayerZoom((long)(1000 + l), (GenLayer)object);
+        for (byte l = 0; l < 5; l++)
+        	object = new GenLayerZoom((long) (1000 + l), object);
         
-        GenLayerSmooth genlayersmooth1 = new GenLayerSmooth(1000L, (GenLayer)object); //smooths out the zoom done previously
+        GenLayerSmooth genlayersmooth1 = new GenLayerSmooth(1000L, object);
         WildsRiverMixGenLayer genlayerrivermix = new WildsRiverMixGenLayer(100L, genlayersmooth1, genlayersmooth); //creates a gen layer based on the river mask and biome layer made previously
         GenLayerVoronoiZoom genlayervoronoizoom = new GenLayerVoronoiZoom(10L, genlayerrivermix); //define the biome border more cleanly
         genlayerrivermix.initWorldGenSeed(seed);
@@ -265,6 +267,34 @@ public class WildsChunkManager extends WorldChunkManager
 
 		return store;
 	}
+	
+	public TragicSubBiome[] getBiomeGenAt(TragicSubBiome[] store, int x, int z, int width, int height, boolean cache)
+	{
+		IntCache.resetIntCache();
+
+		int len = width * height;
+
+		if (store == null || store.length < len)
+		{
+			store = new TragicSubBiome[len];
+		}
+
+		if (cache && width == 16 && height == 16 && (x & 0xF) == 0 && (z & 0xF) == 0)
+		{
+			TragicSubBiome[] biomes = this.subBiomeCache.getCachedBiomes(x, z);
+			System.arraycopy(biomes, 0, store, 0, len);
+			return store;
+		}
+
+		int[] ints = this.genLayerSubBiomeIndex.getInts(x, z, width, height);
+
+		for (int i = 0; i < len; ++i)
+		{
+			store[i] = TragicSubBiome.subBiomes[ints[i]];
+		}
+
+		return store;
+	}
 
 	@Override
 	public boolean areBiomesViable(int x, int z, int range, List biomes)
@@ -335,5 +365,11 @@ public class WildsChunkManager extends WorldChunkManager
 	public final void cleanupCache()
 	{
 		this.biomeCache.cleanupCache();
+		this.subBiomeCache.cleanupCache();
+	}
+	
+	public TragicSubBiome getSubBiomeGenAt(BlockPos pos)
+	{
+		return this.subBiomeCache.func_180284_a(pos.getX(), pos.getZ(), null);
 	}
 }

@@ -31,11 +31,7 @@ public class WildsBiomeBaseVariantGenLayer extends GenLayer
                 int l1 = aint1[j1 + 1 + (i1 + 1) * (areaWidth + 2)];
                 boolean flag = (l1 - 2) % 29 == 0;
 
-                if (k1 != 0 && l1 >= 2 && (l1 - 2) % 29 == 1 && k1 < 128)
-                {
-                    aint2[j1 + i1 * areaWidth] = k1; //another attempt to break up monotony by including a mutated variant, we don't need this though
-                }
-                else if (this.nextInt(3) != 0 && !flag)
+                if (this.nextInt(3) != 0 && !flag)
                 {
                     aint2[j1 + i1 * areaWidth] = k1; //random chance to not change it to a variant
                 }
@@ -85,17 +81,17 @@ public class WildsBiomeBaseVariantGenLayer extends GenLayer
                     {
                         i2 = TragicBiome.WildDeepOcean.biomeID;
                     }
-                    else if (k1 == TragicBiome.WildDeepOcean.biomeID && this.nextInt(3) == 0)
+                    else if (k1 == TragicBiome.WildDeepOcean.biomeID)
                     {
-                        j2 = this.nextInt(2);
+                        j2 = this.nextInt(4);
 
                         if (j2 == 0)
                         {
-                            i2 = TragicBiome.WildPlains.biomeID;
+                            i2 = TragicBiome.WildIsland.biomeID;
                         }
                         else
                         {
-                            i2 = TragicBiome.WildForest.biomeID;
+                            i2 = TragicBiome.WildPlains.biomeID;
                         }
                     }
 

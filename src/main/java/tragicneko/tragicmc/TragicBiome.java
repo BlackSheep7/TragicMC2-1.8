@@ -61,6 +61,7 @@ public class TragicBiome extends BiomeGenBase {
 	public static BiomeGenBase WildMountains, LarinthianMountains, EttenDrove, IrsalasVolcano;
 	public static BiomeGenBase WildIsland, TorsianIsle, IslaDeMuerte;
 	public static BiomeGenBase WildDeepOcean, LeviaTriangle, DesolateDepths;
+	public static BiomeGenBase WildBeach;
 	
 	//Nerve Center biome
 	public static BiomeGenBase NerveCenter;
@@ -70,7 +71,7 @@ public class TragicBiome extends BiomeGenBase {
 		this.variant = par2;
 		this.spawnableCreatureList.clear();
 		this.spawnableMonsterList.clear();
-		this.fillerBlock = TragicBlocks.DarkStone.getDefaultState();
+		this.topBlock = TragicBlocks.DarkStone.getDefaultState();
 		this.topBlock = TragicBlocks.DeadDirt.getDefaultState();
 		this.theBiomeDecorator.flowersPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = -999;
@@ -122,7 +123,7 @@ public class TragicBiome extends BiomeGenBase {
     {
 		boolean flag = true;
         IBlockState iblockstate = this.topBlock;
-        IBlockState iblockstate1 = this.fillerBlock;
+        IBlockState iblockstate1 = this.topBlock;
         int k = -1;
         int l = (int)(d / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
         int i1 = x & 15;
@@ -154,7 +155,7 @@ public class TragicBiome extends BiomeGenBase {
                         else if (k1 >= 59 && k1 <= 64)
                         {
                             iblockstate = this.topBlock;
-                            iblockstate1 = this.fillerBlock;
+                            iblockstate1 = this.topBlock;
                         }
 
                         k = l;
@@ -244,67 +245,103 @@ public class TragicBiome extends BiomeGenBase {
 		//Wilds/Nerve Center biomes
 		WildPlains = new BiomeGenWilds(200, (byte) 0).setBiomeName("tragicmc.wildPlains");
 		IriseiPlains = new BiomeGenWilds(201, (byte) 1).setBiomeName("tragicmc.iriseiPlains");
+		IriseiPlains.topBlock = Blocks.emerald_block.getDefaultState();
 		SeraleisSerenade = new BiomeGenWilds(202, (byte) 2).setBiomeName("tragicmc.seraleisSerenade");
+		SeraleisSerenade.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildForest = new BiomeGenWilds(203, (byte) 0).setBiomeName("tragicmc.wildForest");
 		ImbertonForest = new BiomeGenWilds(204, (byte) 1).setBiomeName("tragicmc.imbertonForest");
+		ImbertonForest.topBlock = Blocks.emerald_block.getDefaultState();
 		UpsidusVeld = new BiomeGenWilds(205, (byte) 2).setBiomeName("tragicmc.upsidusVeld");
+		UpsidusVeld.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildDenseForest = new BiomeGenWilds(206, (byte) 0).setBiomeName("tragicmc.wildDenseForest");
 		KlahksTrove = new BiomeGenWilds(207, (byte) 1).setBiomeName("tragicmc.klahksTrove");
+		KlahksTrove.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildValley = new BiomeGenWilds(208, (byte) 0).setBiomeName("tragicmc.wildValley");
 		CeresteValley = new BiomeGenWilds(209, (byte) 1).setBiomeName("tragicmc.ceresteValley");
+		CeresteValley.topBlock = Blocks.emerald_block.getDefaultState();
 		RelicanthicValley = new BiomeGenWilds(210, (byte) 2).setBiomeName("tragicmc.relicanthicValley");
+		RelicanthicValley.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildHills = new BiomeGenWilds(211, (byte) 0).setBiomeName("tragicmc.wildHills");
 		KluveTerrace = new BiomeGenWilds(212, (byte) 1).setBiomeName("tragicmc.kluveTerrace");
+		KluveTerrace.topBlock = Blocks.emerald_block.getDefaultState();
 		IronveinHills = new BiomeGenWilds(213, (byte) 2).setBiomeName("tragicmc.ironveinHills");
+		IronveinHills.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildForestHills = new BiomeGenWilds(214, (byte) 0).setBiomeName("tragicmc.wildForestHills");
 		HalsydeHills = new BiomeGenWilds(215, (byte) 1).setBiomeName("tragicmc.halsydeHills");
+		HalsydeHills.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildExtremeHills = new BiomeGenWilds(216, (byte) 0).setBiomeName("tragicmc.wildExtremeHills");
 		ZybianHeights = new BiomeGenWilds(217, (byte) 0).setBiomeName("tragicmc.zybianHeights");
+		ZybianHeights.topBlock = Blocks.emerald_block.getDefaultState();
 		TurbulentHeights = new BiomeGenWilds(218, (byte) 0).setBiomeName("tragicmc.turbulentHeights");
+		TurbulentHeights.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildSteppes = new BiomeGenWilds(219, (byte) 0).setBiomeName("tragicmc.wildSteppes");
 		GandreaSteppes = new BiomeGenWilds(220, (byte) 1).setBiomeName("tragicmc.gandreaSteppes");
+		GandreaSteppes.topBlock = Blocks.emerald_block.getDefaultState();
 		TombstoneFields = new BiomeGenWilds(221, (byte) 2).setBiomeName("tragicmc.tombstoneFields");
+		TombstoneFields.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildSavanna = new BiomeGenWilds(222, (byte) 0).setBiomeName("tragicmc.wildSavanna");
 		PrahpsPast = new BiomeGenWilds(223, (byte) 1).setBiomeName("tragicmc.prahpsPast");
+		PrahpsPast.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildDesert = new BiomeGenWilds(224, (byte) 0).setBiomeName("tragicmc.wildDesert");
 		FerrierScarlands = new BiomeGenWilds(225, (byte) 1).setBiomeName("tragicmc.ferrierScarlands");
+		FerrierScarlands.topBlock = Blocks.emerald_block.getDefaultState();
 		DesertOfAkhora = new BiomeGenWilds(226, (byte) 2).setBiomeName("tragicmc.desertOfAkhora");
+		DesertOfAkhora.topBlock = Blocks.emerald_block.getDefaultState();
 		VeneriaOasis = new BiomeGenWilds(227, (byte) 3).setBiomeName("tragicmc.veneriaOasis");
+		VeneriaOasis.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildRiver = new BiomeGenWilds(228, (byte) 0).setBiomeName("tragicmc.wildRiver");
+		WildRiver.topBlock = Blocks.bedrock.getDefaultState();
 		RiverOfSouls = new BiomeGenWilds(229, (byte) 1).setBiomeName("tragicmc.riverOfSouls");
+		RiverOfSouls.topBlock = Blocks.lapis_block.getDefaultState();
 		FyxisRiver = new BiomeGenWilds(230, (byte) 2).setBiomeName("tragicmc.fyxisRiver");
+		FyxisRiver.topBlock = Blocks.lapis_block.getDefaultState();
 		
 		WildLake = new BiomeGenWilds(231, (byte) 0).setBiomeName("tragicmc.wildLake");
+		WildLake.topBlock = Blocks.bedrock.getDefaultState();
 		VexinLake = new BiomeGenWilds(232, (byte) 1).setBiomeName("tragicmc.vexinLake");
+		VexinLake.topBlock = Blocks.lapis_block.getDefaultState();
 		AggroLake = new BiomeGenWilds(233, (byte) 2).setBiomeName("tragicmc.aggroLake");
+		AggroLake.topBlock = Blocks.lapis_block.getDefaultState();
 		
 		WildOcean = new BiomeGenWilds(234, (byte) 0).setBiomeName("tragicmc.wildOcean");
+		WildOcean.topBlock = Blocks.bedrock.getDefaultState();
 		SeaOfSorrow = new BiomeGenWilds(235, (byte) 1).setBiomeName("tragicmc.seaOfSorrow");
+		SeaOfSorrow.topBlock = Blocks.lapis_block.getDefaultState();
 		StelSea = new BiomeGenWilds(236, (byte) 2).setBiomeName("tragicmc.stelSea");
+		StelSea.topBlock = Blocks.lapis_block.getDefaultState();
 		ExivSea = new BiomeGenWilds(237, (byte) 3).setBiomeName("tragicmc.exivSea");
+		ExivSea.topBlock = Blocks.lapis_block.getDefaultState();
 		
 		WildMountains = new BiomeGenWilds(238, (byte) 0).setBiomeName("tragicmc.wildMountains");
 		LarinthianMountains = new BiomeGenWilds(239, (byte) 1).setBiomeName("tragicmc.larinthianMountains");
+		LarinthianMountains.topBlock = Blocks.emerald_block.getDefaultState();
 		EttenDrove = new BiomeGenWilds(240, (byte) 2).setBiomeName("tragicmc.ettenDrove");
+		EttenDrove.topBlock = Blocks.emerald_block.getDefaultState();
 		IrsalasVolcano = new BiomeGenWilds(241, (byte) 3).setBiomeName("tragicmc.irsalasVolcano");
+		IrsalasVolcano.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildIsland = new BiomeGenWilds(242, (byte) 0).setBiomeName("tragicmc.wildIsland");
 		TorsianIsle = new BiomeGenWilds(243, (byte) 1).setBiomeName("tragicmc.torsianIsle");
+		TorsianIsle.topBlock = Blocks.emerald_block.getDefaultState();
 		IslaDeMuerte = new BiomeGenWilds(244, (byte) 2).setBiomeName("tragicmc.islaDeMuerte");
+		IslaDeMuerte.topBlock = Blocks.emerald_block.getDefaultState();
 		
 		WildDeepOcean = new BiomeGenWilds(245, (byte) 0).setBiomeName("tragicmc.wildDeepOcean");
+		WildDeepOcean.topBlock = Blocks.bedrock.getDefaultState();
 		LeviaTriangle = new BiomeGenWilds(246, (byte) 1).setBiomeName("tragicmc.leviaTriangle");
+		LeviaTriangle.topBlock = Blocks.bedrock.getDefaultState();
 		DesolateDepths = new BiomeGenWilds(247, (byte) 2).setBiomeName("tragicmc.desolateDepths");
+		DesolateDepths.topBlock = Blocks.bedrock.getDefaultState();
 		
 		NerveCenter = new BiomeGenWilds(249, (byte) 0).setBiomeName("tragicmc.nerveCenter");
 	}

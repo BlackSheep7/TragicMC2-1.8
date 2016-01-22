@@ -1,12 +1,9 @@
 package tragicneko.tragicmc.dimension;
 
-import static tragicneko.tragicmc.TragicBlocks.DarkStone;
-
 import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.BlockFalling;
-import net.minecraft.block.state.pattern.BlockHelper;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
@@ -23,15 +20,6 @@ import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraft.world.gen.feature.WorldGenMinable;
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.worldgen.DimensionLayerWorldGen;
-import tragicneko.tragicmc.worldgen.DimensionOreWorldGen;
-import tragicneko.tragicmc.worldgen.FlowerWorldGen2;
-import tragicneko.tragicmc.worldgen.WorldGenDimensionDungeon;
-import tragicneko.tragicmc.worldgen.WorldGenDimensionLakes;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 
 public class WildsChunkProvider implements IChunkProvider
 {
@@ -136,7 +124,7 @@ public class WildsChunkProvider implements IChunkProvider
 							{
 								if ((d15 += d16) > 0.0D)
 								{
-									primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, DarkStone.getDefaultState());
+									primer.setBlockState(k * 4 + i3, k2 * 8 + l2, j1 * 4 + j3, Blocks.stone.getDefaultState());
 								}
 								else if (k2 * 8 + l2 < 96)
 								{
