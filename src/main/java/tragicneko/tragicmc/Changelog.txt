@@ -4477,6 +4477,8 @@ Doing more mesher registrations for items and blocks
 Added particle effect when Wings of Liberation are in use
 Mirrored sound additions from the 1.7.10 version, new projectile, rocket launcher and Skultar sounds
 Added config options for disabling mob infighting and mob illumination via Luminescence
+Fixed renders for most of the mobs
+Fixed missed datawatcher for Dimensional Anomalies
 
 TODO: Add textures for armor (not the armor model ones)
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
@@ -4522,10 +4524,12 @@ Working on the Lasher now, it'll again use a modified version of the Archangel f
 (or despawns) and then will swoop down and attack their target then fly back up (if possible, otherwise stays and slashes at it's target)
 The Trapper is the Mini-Boss version, it'll use the same AI but it'll have a chance to grab it's target and slash at them continuously until it gets dazed
 or killed
-Working on setting up the Wilds Dimension with the sub-biomes
+Got the Wilds Dimension set up, there are some corrections I need to make still to prevent any Vanilla ones from creeping in but it is setup pretty well so far
+River rare variants need to be setup differently from the other rare variants but otherwise the rare biomes are working mostly how I want
+Still need to test the sub-biomes to make sure they are generating correctly
 
 First Expansion:
-Working on new mob AI, pets and item systems while I wait for driver updates so that I can record sounds
+Working on new mob AI, pets and item systems while I finish the port to 1.8
 Going to work on the pet leveling system now, which will use a hybrid version of the borderlands and call of duty systems, you level up the pet, every 5 levels
 you can unlock a new ability, which will unlock a new tier, you can then level them up enough to eventually unlock all of the abilities but you can only have
 one active out of each tier
