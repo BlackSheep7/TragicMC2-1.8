@@ -209,6 +209,13 @@
 		"sounds": [
 			"boss/overlordcore/negate"]
     },
+    "boss.overlordcombat.living":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/overlordcombat/living", "boss/overlordcombat/living2",
+            "boss/overlordcombat/living3", "boss/overlordcombat/living4"]
+    },
 	"boss.overlordcombat.hurt":
     {
 		"category": "hostile",
