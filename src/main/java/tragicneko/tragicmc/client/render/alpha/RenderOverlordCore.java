@@ -1,9 +1,11 @@
 package tragicneko.tragicmc.client.render.alpha;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -41,19 +43,6 @@ public class RenderOverlordCore extends RenderBoss {
 	{
 		EntityOverlordCore core = (EntityOverlordCore) entity;
 
-		if (core.deathTime > 0)
-		{
-			float f6 = core.deathTime / 300.0F;
-			GL11.glDepthFunc(GL11.GL_LEQUAL);
-			GL11.glEnable(GL11.GL_ALPHA_TEST);
-			GL11.glAlphaFunc(GL11.GL_GREATER, f6);
-			this.bindTexture(enderDragonExplodingTextures);
-			GL11.glTranslated(entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3);
-			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-			GL11.glDepthFunc(GL11.GL_EQUAL);
-		}
-
 		this.bindEntityTexture(core);
 
 		if (!core.isInvisible() && core.getVulnerableTicks() == 0 && core.getTransformationTicks() <= 60 && core.getTransformationTicks() >= 20)
@@ -62,96 +51,25 @@ public class RenderOverlordCore extends RenderBoss {
 		}
 		else if (!core.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
 		{
-			float trans = 1.0F;
-
-			GL11.glPushMatrix();
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, trans);
-			GL11.glDepthMask(false);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.03921569F);
-			if (core.deathTime > 0) GL11.glTranslated(entity.getRNG().nextGaussian() * 0.2, entity.getRNG().nextGaussian() * 0.2, entity.getRNG().nextGaussian() * 0.2);
-			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-			GL11.glDepthMask(true);
-			GL11.glPopMatrix();
+			float f = 1.0F;
+			if (core.deathTime > 0)
+			{
+				f = MathHelper.cos(core.ticksExisted * 0.2F) * 0.8F + 0.2F;
+				GlStateManager.translate(entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3);
+			}
+			GlStateManager.color(f, f, f, 1.0F);
+			GlStateManager.enableNormalize();
+			GlStateManager.enableBlend();
+			GlStateManager.blendFunc(770, 771);
+			this.mainModel.render(entity, par2, par3, par4, par5, par6, par7);
+			GlStateManager.disableBlend();
+			GlStateManager.disableNormalize();
 		}
 		else
 		{
 			this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, core);
 		}
 	}
-/*
-	@Override
-	protected int shouldRenderPass(EntityLivingBase entity, int pass, float partialTick)
-	{
-		EntityOverlordCore core = (EntityOverlordCore) entity;
-
-		if (core.isInvisible())
-		{
-			GL11.glDepthMask(false);
-			return 0;
-		}
-		else
-		{
-			GL11.glDepthMask(true);
-		}
-
-		if (pass == 0)
-		{
-			this.setRenderPassModel(this.mainModel);
-			GL11.glEnable(GL11.GL_NORMALIZE);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			return 1;
-		}
-		//This was commented from here
-		if (core.deathTime > 0)
-		{
-			Random rand = core.getRNG();
-			if (pass == 1)
-			{
-				float f1 = core.deathTime + partialTick;
-				this.bindTexture(texture);
-				GL11.glMatrixMode(GL11.GL_TEXTURE);
-				GL11.glLoadIdentity();
-				float f2 = MathHelper.cos(f1 * 0.02F) * 3.0F;
-				float f3 = f1 * 0.01F;
-				GL11.glTranslatef(f2, f3, 0.0F);
-				this.setRenderPassModel(this.mainModel);
-				GL11.glMatrixMode(GL11.GL_MODELVIEW);
-				GL11.glEnable(GL11.GL_BLEND);
-				float f4 = 1.0F;
-				GL11.glColor4f(f4, f4, f4, 1.0F);
-				GL11.glDisable(GL11.GL_LIGHTING);
-				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
-				GL11.glTranslatef(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
-				GL11.glScalef(1.1F + rand.nextFloat(), 1.1F + rand.nextFloat(), 1.1F + rand.nextFloat());
-				return 1;
-			}
-
-			if (pass == 2)
-			{
-				GL11.glMatrixMode(GL11.GL_TEXTURE);
-				GL11.glLoadIdentity();
-				GL11.glMatrixMode(GL11.GL_MODELVIEW);
-				GL11.glEnable(GL11.GL_LIGHTING);
-				GL11.glDisable(GL11.GL_BLEND);
-				return -1;
-			}
-		}	//Up to here
-
-		if (pass == 1)
-		{
-			if (core.getVulnerableTicks() == 0 || core.getTransformationTicks() >= 20 && core.getTransformationTicks() <= 60) return -1;
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		}
-
-		return -1;
-
-	} */
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
@@ -160,7 +78,7 @@ public class RenderOverlordCore extends RenderBoss {
 
 	public ResourceLocation getEntityTexture(EntityOverlordCore core)
 	{
-		return core.getVulnerableTicks() > 0 || core.getTransformationTicks() <= 60 && core.getTransformationTicks() >= 20 ? damagedTexture : texture;
+		return core.getVulnerableTicks() > 0 && core.deathTime == 0 || core.getTransformationTicks() <= 60 && core.getTransformationTicks() >= 20 ? damagedTexture : texture;
 	}
 
 }

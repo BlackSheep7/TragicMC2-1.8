@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.boss;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -34,21 +35,15 @@ public class RenderVoxStellarum extends RenderLiving {
 
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
 		{
-			GL11.glPushMatrix();
-
 			float[] rgb = this.getRGBThroughTextureID(par1EntityLivingBase.getTextureID());
 
-			GL11.glColor4f(rgb[0] * 2.55F, rgb[1] * 2.55F, rgb[2] * 2.55F, 0.85F);
-			GL11.glDepthMask(false);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
-			this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.2F);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glDepthMask(true);
-			GL11.glPopMatrix();
-
+			GlStateManager.color(rgb[0], rgb[1], rgb[2], 0.85F);
+            GlStateManager.enableNormalize();
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc(770, 771);
+            this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
+            GlStateManager.disableBlend();
+            GlStateManager.disableNormalize();
 
 		}
 		else

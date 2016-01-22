@@ -2,7 +2,6 @@ package tragicneko.tragicmc.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -10,7 +9,6 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -56,7 +54,6 @@ import tragicneko.tragicmc.client.model.armor.ModelOverlordArmor;
 import tragicneko.tragicmc.client.render.RenderDarkCrystal;
 import tragicneko.tragicmc.client.render.RenderDimensionalAnomaly;
 import tragicneko.tragicmc.client.render.RenderDirectedLightning;
-import tragicneko.tragicmc.client.render.RenderEpicWeapon;
 import tragicneko.tragicmc.client.render.RenderGuardianShield;
 import tragicneko.tragicmc.client.render.RenderLargeRock;
 import tragicneko.tragicmc.client.render.RenderLock;
@@ -179,6 +176,7 @@ import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 import tragicneko.tragicmc.events.ClientEvents;
 import tragicneko.tragicmc.events.MouseEvents;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class ClientProxy extends CommonProxy {
 
@@ -230,23 +228,6 @@ public class ClientProxy extends CommonProxy {
 
 		//Tile Entity render registration (shouldn't be used too often)
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoulChest.class, new RenderSoulChest());
-
-		//Weapon models
-		if (TragicConfig.allowWeaponModels)
-		{
-			MinecraftForgeClient.registerItemRenderer(TragicItems.ReaperScythe, new RenderEpicWeapon(0, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.Butcher, new RenderEpicWeapon(1, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.DragonFang, new RenderEpicWeapon(2, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.Thardus, new RenderEpicWeapon(3, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.Splinter, new RenderEpicWeapon(4, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.Paranoia, new RenderEpicWeapon(5, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.CelestialAegis, new RenderEpicWeapon(6, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.Titan, new RenderEpicWeapon(7, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.SilentHellraiser, new RenderEpicWeapon(8, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.Sentinel, new RenderEpicWeapon(9, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.NekoLauncher, new RenderEpicWeapon(10, mc));
-			MinecraftForgeClient.registerItemRenderer(TragicItems.IreNetParticleCannon, new RenderEpicWeapon(11, mc));
-		}
 
 		//Projectile renders
 		Item item = TragicItems.Projectile;
@@ -342,32 +323,33 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderOverlordCombat(rm));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore(rm));
 	}
-	
+
 	private static final String[] projectileItems = new String[] {"rock", "lava_rock", "pumpkinbomb", "large_pumpkinbomb",
-			"poison_barb", "neko_rocket", "neko_sticky_bomb", "neko_cluster_bomb", "neko_mini_bomb", "solar_bomb",
-			"spirit_cast", "spore", "banana", "large_rock", "icicle", "time_bomb", "star_shard", "dark_lightning",
-			"pitch_black", "dark_energy", "dark_mortor", "web_bomb", "crystal_mortor", "overlord_mortor", "ire_energy"};
-	
+		"poison_barb", "neko_rocket", "neko_sticky_bomb", "neko_cluster_bomb", "neko_mini_bomb", "solar_bomb",
+		"spirit_cast", "spore", "banana", "large_rock", "icicle", "time_bomb", "star_shard", "dark_lightning",
+		"pitch_black", "dark_energy", "dark_mortor", "web_bomb", "crystal_mortor", "overlord_mortor", "ire_energy"};
+
 	private static final String[] compactOreItems = new String[] {"ruby", "sapphire", "tungsten", "mercury", "quicksilver"};
-	
+	private static final String[] quicksandItems = new String[] {"quicksand", "mud", "dredge", "sludge"};
+
 	@Override
 	public void preInitRenders() {
 		if (!TragicConfig.allowNonMobBlocks)
 		{
-			
+
 		}
 		else
 		{
 			registerBlockToBakery(TragicBlocks.CompactOre, compactOreItems);
 		}
-		
+
 		if (!TragicConfig.allowNonMobItems)
 		{
 			registerItemToBakery(TragicItems.Projectile, projectileItems);
 		}
 		else
 		{
-			
+
 		}
 	}
 
@@ -375,7 +357,7 @@ public class ClientProxy extends CommonProxy {
 		//Mesher for new block/item registrations in 1.8
 		Item ib; //Itemblock for block registrations
 		int i; //for loops
-		
+
 		if (!TragicConfig.allowNonMobBlocks)
 		{
 			registerBlockToMesherIgnoreMeta(TragicBlocks.SummonBlock);
@@ -389,8 +371,23 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.RubyOre, ZERO, "ruby_ore");
 			registerBlockToMesher(TragicBlocks.SapphireOre, ZERO, "sapphire_ore");
 			for (i = 0; i < compactOreItems.length; i++) registerBlockToMesher(TragicBlocks.CompactOre, i, compactOreItems[i]);
+
+			registerBlockToMesher(TragicBlocks.Wax, ZERO, "wax");
+			registerBlockToMesher(TragicBlocks.Light, ZERO, "light");
+			registerBlockToMesher(TragicBlocks.Candle, ZERO, "candle");
+			registerBlockToMesher(TragicBlocks.PotatoBlock, ZERO, "potato_block");
+			registerBlockToMesher(TragicBlocks.CarrotBlock, ZERO, "carrot_block");
+			registerBlockToMesher(TragicBlocks.SandstonePressurePlate, ZERO, "sandstone_pressure_plate");
+			registerBlockToMesher(TragicBlocks.NetherBrickPressurePlate, ZERO, "nether_brick_pressure_plate");
+			registerBlockToMesher(TragicBlocks.SummonBlock, ZERO, "summon_block");
+			for (i = 0; i < Structure.structureList.length; i++)
+			{
+				if (Structure.structureList[i] != null)
+					registerBlockToMesher(TragicBlocks.StructureSeed, i, Structure.structureList[i].getUnlocalizedName()); //TODO change to get mesher name
+			}
+			for (i = 0; i < quicksandItems.length; i++) registerBlockToMesher(TragicBlocks.Quicksand, i, quicksandItems[i]);
 		}
-		
+
 		if (!TragicConfig.allowNonMobItems)
 		{
 			registerItemToMesherIgnoreMeta(TragicItems.SpawnEgg);
@@ -407,42 +404,42 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.Tungsten, ZERO, "tungsten");
 			registerItemToMesher(TragicItems.Ruby, ZERO, "ruby");
 			registerItemToMesher(TragicItems.Sapphire, ZERO, "sapphire");
-			
+
 			registerItemToMesher(TragicItems.SkullHelmet, ZERO, "skull_helmet");
 			registerItemToMesher(TragicItems.SkullPlate, ZERO, "skull_plate");
 			registerItemToMesher(TragicItems.SkullLegs, ZERO, "skull_legs");
 			registerItemToMesher(TragicItems.SkullBoots, ZERO, "skull_boots");
-			
+
 			registerItemToMesher(TragicItems.HuntersCap, ZERO, "hunters_cap");
 			registerItemToMesher(TragicItems.HuntersTunic, ZERO, "hunters_tunic");
 			registerItemToMesher(TragicItems.HuntersLegs, ZERO, "hunters_legs");
 			registerItemToMesher(TragicItems.HuntersBoots, ZERO, "hunters_boots");
-			
+
 			registerItemToMesher(TragicItems.MercuryHelm, ZERO, "mercury_helm");
 			registerItemToMesher(TragicItems.MercuryPlate, ZERO, "mercury_plate");
 			registerItemToMesher(TragicItems.MercuryLegs, ZERO, "mercury_legs");
 			registerItemToMesher(TragicItems.MercuryBoots, ZERO, "mercury_boots");
-			
+
 			registerItemToMesher(TragicItems.TungstenHelm, ZERO, "tungsten_helm");
 			registerItemToMesher(TragicItems.TungstenPlate, ZERO, "tungsten_plate");
 			registerItemToMesher(TragicItems.TungstenLegs, ZERO, "tungsten_legs");
 			registerItemToMesher(TragicItems.TungstenBoots, ZERO, "tungsten_boots");
-			
+
 			registerItemToMesher(TragicItems.LightHelm, ZERO, "light_helm");
 			registerItemToMesher(TragicItems.LightPlate, ZERO, "light_plate");
 			registerItemToMesher(TragicItems.LightLegs, ZERO, "light_legs");
 			registerItemToMesher(TragicItems.LightBoots, ZERO, "light_boots");
-			
+
 			registerItemToMesher(TragicItems.DarkHelm, ZERO, "dark_helm");
 			registerItemToMesher(TragicItems.DarkPlate, ZERO, "dark_plate");
 			registerItemToMesher(TragicItems.DarkLegs, ZERO, "dark_legs");
 			registerItemToMesher(TragicItems.DarkBoots, ZERO, "dark_boots");
-			
+
 			registerItemToMesher(TragicItems.OverlordHelm, ZERO, "overlord_helm");
 			registerItemToMesher(TragicItems.OverlordPlate, ZERO, "overlord_plate");
 			registerItemToMesher(TragicItems.OverlordLegs, ZERO, "overlord_legs");
 			registerItemToMesher(TragicItems.OverlordBoots, ZERO, "overlord_boots");
-			
+
 			registerItemToMesher(TragicItems.MercuryDagger, ZERO, "mercury_dagger");
 			registerItemToMesher(TragicItems.HuntersBow, ZERO, "hunters_bow");
 			registerItemToMesher(TragicItems.PitchBlack, ZERO, "pitch_black");
@@ -459,22 +456,22 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.CelestialAegis, ZERO, "celestial_aegis");
 			registerItemToMesher(TragicItems.CelestialLongbow, ZERO, "celestial_longbow");
 			registerItemToMesher(TragicItems.SilentHellraiser, ZERO, "silent_hellraiser");
-			
+
 			registerItemToMesher(TragicItems.Titan, ZERO, "titan");
 			registerItemToMesher(TragicItems.Splinter, ZERO, "splinter");
 			registerItemToMesher(TragicItems.Butcher, ZERO, "butcher");
 			registerItemToMesher(TragicItems.Thardus, ZERO, "thardus");
 			registerItemToMesher(TragicItems.Paranoia, ZERO, "paranoia");
 			registerItemToMesher(TragicItems.DragonFang, ZERO, "dragon_fang");
-			
+
 			registerItemToMesher(TragicItems.Sentinel, ZERO, "sentinel");
-			
+
 			registerItemToMesher(TragicItems.Scythe, ZERO, "scythe");
 			registerItemToMesher(TragicItems.EverlastingLight, ZERO, "everlasting_light");
 			registerItemToMesher(TragicItems.Jack, ZERO, "jack");
 			registerItemToMesher(TragicItems.TungstenJack, ZERO, "tungsten_jack");
 			registerItemToMesher(TragicItems.CelestialJack, ZERO, "celestial_jack");
-			
+
 			registerItemToMesher(TragicItems.Ectoplasm, ZERO, "ectoplasm");
 			registerItemToMesher(TragicItems.ToughLeather, ZERO, "tough_leather");
 			registerItemToMesher(TragicItems.WovenSilk, ZERO, "woven_silk");
@@ -519,7 +516,7 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.Chitin, ZERO, "chitin");
 			registerItemToMesher(TragicItems.SoulExcess, ZERO, "soul_excess");
 			registerItemToMesher(TragicItems.EtherealDistortion, ZERO, "ethereal_distortion");
-			
+
 			registerItemToMesher(TragicItems.ToxicAmalgation, ZERO, "toxic_amalgation");
 			registerItemToMesher(TragicItems.ParadoxicalFormula, ZERO, "paradoxical_formula");
 			registerItemToMesher(TragicItems.RadiatedInfusion, ZERO, "radiated_infusion");
@@ -530,8 +527,125 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.CreepyIdol, ZERO, "creepy_idol");
 			registerItemToMesher(TragicItems.PurifiedEnergy, ZERO, "purified_energy");
 			registerItemToMesher(TragicItems.Shadowskin, ZERO, "shadowskin");
-			
+
 			registerItemToMesher(TragicItems.IceCream, ZERO, "ice_cream");
+			registerItemToMesher(TragicItems.Honeydrop, ZERO, "honeydrop");
+			registerItemToMesher(TragicItems.Gloopii, ZERO, "gloopii");
+			registerItemToMesher(TragicItems.Deathglow, ZERO, "deathglow");
+			registerItemToMesher(TragicItems.Rice, ZERO, "rice");
+			registerItemToMesher(TragicItems.Sushi, ZERO, "sushi");
+			registerItemToMesher(TragicItems.GoldenSushi, ZERO, "golden_sushi");
+			registerItemToMesher(TragicItems.Banana, ZERO, "banana");
+			registerItemToMesher(TragicItems.BananaSplit, ZERO, "banana_split");
+			registerItemToMesher(TragicItems.SkyFruit, ZERO, "skyfruit");
+			registerItemToMesher(TragicItems.Tentacle, ZERO, "tentacle");
+			registerItemToMesher(TragicItems.HoneydropSeeds, ZERO, "honeydrop_seeds");
+			registerItemToMesher(TragicItems.DeathglowSeeds, ZERO, "deathglow_seeds");
+			registerItemToMesher(TragicItems.SkyFruitSeeds, ZERO, "skyfruit_seeds");
+
+			registerItemToMesher(TragicItems.RubyCharm, ZERO, "ruby_charm");
+			registerItemToMesher(TragicItems.SapphireCharm, ZERO, "sapphire_charm");
+			registerItemToMesher(TragicItems.DiamondCharm, ZERO, "diamond_charm");
+			registerItemToMesher(TragicItems.EmeraldCharm, ZERO, "emerald_charm");
+			registerItemToMesher(TragicItems.AwakeningStone, ZERO, "awakening_stone");
+			registerItemToMesher(TragicItems.ObsidianOrb, ZERO, "obsidian_orb");
+			registerItemToMesher(TragicItems.CryingObsidianOrb, ZERO, "crying_obsidian_orb");
+			registerItemToMesher(TragicItems.BleedingObsidianOrb, ZERO, "zero_obsidian_orb");
+			registerItemToMesher(TragicItems.DyingObsidianOrb, ZERO, "dying_obsidian_orb");
+
+			registerItemToMesher(TragicItems.Talisman, ZERO, "talisman");
+			registerItemToMesher(TragicItems.RainDanceTalisman, ZERO, "rain_dance_talisman");
+			registerItemToMesher(TragicItems.SunnyDayTalisman, ZERO, "sunny_day_talisman");
+			registerItemToMesher(TragicItems.ThunderstormTalisman, ZERO, "thunderstorm_talisman");
+			registerItemToMesher(TragicItems.TimeManipulatorTalisman, ZERO, "time_manipulator_talisman");
+			registerItemToMesher(TragicItems.MoonlightTalisman, ZERO, "moonlight_talisman");
+			registerItemToMesher(TragicItems.SynthesisTalisman, ZERO, "synthesis_talisman");
+			registerItemToMesher(TragicItems.HydrationTalisman, ZERO, "hydration_talisman");
+			registerItemToMesher(TragicItems.LightningRodTalisman, ZERO, "lightning_rod_talisman");
+
+			if (TragicConfig.allowAmulets)
+			{
+				registerItemToMesher(TragicItems.KitsuneAmulet, ZERO, "kitsune_amulet");
+				registerItemToMesher(TragicItems.PeaceAmulet, ZERO, "peace_amulet");
+				registerItemToMesher(TragicItems.YetiAmulet, ZERO, "yeti_amulet");
+				registerItemToMesher(TragicItems.ClaymationAmulet, ZERO, "claymation_amulet");
+				registerItemToMesher(TragicItems.ChickenAmulet, ZERO, "chicken_amulet");
+				registerItemToMesher(TragicItems.MartyrAmulet, ZERO, "martyr_amulet");
+				registerItemToMesher(TragicItems.PiercingAmulet, ZERO, "piercing_amulet");
+				registerItemToMesher(TragicItems.BlacksmithAmulet, ZERO, "blacksmith_amulet");
+				registerItemToMesher(TragicItems.ApisAmulet, ZERO, "apis_amulet");
+				registerItemToMesher(TragicItems.CreeperAmulet, ZERO, "creeper_amulet");
+				registerItemToMesher(TragicItems.ZombieAmulet, ZERO, "zombie_amulet");
+				registerItemToMesher(TragicItems.SkeletonAmulet, ZERO, "skeleton_amulet");
+				registerItemToMesher(TragicItems.SunkenAmulet, ZERO, "sunken_amulet");
+				registerItemToMesher(TragicItems.TimeAmulet, ZERO, "time_amulet");
+				registerItemToMesher(TragicItems.IceAmulet, ZERO, "ice_amulet");
+				registerItemToMesher(TragicItems.SnowGolemAmulet, ZERO, "snow_golem_amulet");
+				registerItemToMesher(TragicItems.IronGolemAmulet, ZERO, "iron_golem_amulet");
+				registerItemToMesher(TragicItems.EndermanAmulet, ZERO, "enderman_amulet");
+				registerItemToMesher(TragicItems.WitherAmulet, ZERO, "wither_amulet");
+				registerItemToMesher(TragicItems.SpiderAmulet, ZERO, "spider_amulet");
+				registerItemToMesher(TragicItems.StinAmulet, ZERO, "stin_amulet");
+				registerItemToMesher(TragicItems.PolarisAmulet, ZERO, "polaris_amulet");
+				registerItemToMesher(TragicItems.OverlordAmulet, ZERO, "overlord_amulet");
+				registerItemToMesher(TragicItems.LightningAmulet, ZERO, "lightning_amulet");
+				registerItemToMesher(TragicItems.ConsumptionAmulet, ZERO, "consumption_amulet");
+				registerItemToMesher(TragicItems.SupernaturalAmulet, ZERO, "supernatural_amulet");
+				registerItemToMesher(TragicItems.UndeadAmulet, ZERO, "undead_amulet");
+				registerItemToMesher(TragicItems.EnderDragonAmulet, ZERO, "ender_dragon_amulet");
+				registerItemToMesher(TragicItems.FuseaAmulet, ZERO, "fusea_amulet");
+				registerItemToMesher(TragicItems.EnyvilAmulet, ZERO, "enyvil_amulet");
+				registerItemToMesher(TragicItems.LuckAmulet, ZERO, "luck_amulet");
+
+				registerItemToMesher(TragicItems.AmuletRelease, ZERO, "amulet_release");
+			}
+
+
+
+			if (TragicConfig.allowDoom)
+			{
+				registerItemToMesher(TragicItems.DoomConsume, ZERO, "doom_consume");
+				registerItemToMesher(TragicItems.CooldownDefuse, ZERO, "cooldown_defuse");
+
+				registerItemToMesher(TragicItems.BloodSacrifice, ZERO, "blood_sacrifice");
+				registerItemToMesher(TragicItems.NourishmentSacrifice, ZERO, "nourishment_sacrifice");
+			}
+
+			registerItemToMesher(TragicItems.MobStatue, ZERO, "mob_statue");
+
+			if (TragicConfig.allowDimension)
+			{
+				registerItemToMesher(TragicItems.DimensionalKey, ZERO, "dimensional_key");
+				registerItemToMesher(TragicItems.DimensionalKeyEnd, ZERO, "dimensional_key_end");
+				registerItemToMesher(TragicItems.DimensionalKeyNether, ZERO, "dimensional_key_nether");
+				registerItemToMesher(TragicItems.DimensionalKeySynapse, ZERO, "dimensional_key_synapse");
+				registerItemToMesher(TragicItems.DimensionalKeyWilds, ZERO, "dimensional_key_wilds");
+				registerItemToMesher(TragicItems.SynapseLink, ZERO, "synapse_link");
+			}
+
+			if (TragicConfig.allowDoomsdays)
+			{
+				registerItemToMesher(TragicItems.DoomsdayScroll, ZERO, "doomsday_scroll");
+			}
+
+			registerItemToMesher(TragicItems.BowOfJustice, ZERO, "bow_of_justice");
+			registerItemToMesher(TragicItems.SwordOfJustice, ZERO, "sword_of_justice");
+
+			if (TragicConfig.allowGeneratorItems)
+			{
+				registerItemToMesher(TragicItems.Generator, ZERO, "generator_item");
+			}
+
+			registerItemToMesher(TragicItems.NekoNekoWand, ZERO, "neko_neko_wand");
+			registerItemToMesher(TragicItems.SoundExtrapolator, ZERO, "sound_extrapolator");
+
+			if (TragicConfig.allowMobs)
+			{
+				registerItemToMesherIgnoreMeta(TragicItems.SpawnEgg);
+			}
+
+			for (i = 0; i < projectileItems.length; i++)
+				registerItemToMesher(TragicItems.Projectile, i, projectileItems[i]);
 		}
 	}
 
@@ -545,7 +659,7 @@ public class ClientProxy extends CommonProxy {
 	{
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(moddir + location, "inventory"));
 	}
-	
+
 	public static void registerItemToMesherIgnoreMeta(Item item)
 	{
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, ZERO, new ModelResourceLocation("spawn_egg", "inventory"));
@@ -555,7 +669,7 @@ public class ClientProxy extends CommonProxy {
 	{
 		registerItemToMesher(Item.getItemFromBlock(block), meta, location);
 	}
-	
+
 	public static void registerBlockToMesherIgnoreMeta(Block block)
 	{
 		registerItemToMesherIgnoreMeta(Item.getItemFromBlock(block));

@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -38,53 +39,21 @@ public class RenderFusea extends RenderLiving {
 
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
 		{
-			float[] rgb = new float[] {1.0F, 1.0F, 1.0F};
 			float trans = 0.65F;
 
-			GL11.glPushMatrix();
-			GL11.glColor4f(rgb[0] * 2.55F, rgb[1] * 2.55F, rgb[2] * 2.55F, trans);
-			GL11.glDepthMask(false);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
-			this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-			GL11.glDepthMask(true);
-			GL11.glPopMatrix();
+			GlStateManager.color(1.0F, 1.0F, 1.0F, trans);
+            GlStateManager.enableNormalize();
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc(770, 771);
+            this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
+            GlStateManager.disableBlend();
+            GlStateManager.disableNormalize();
 		}
 		else
 		{
 			this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, par1EntityLivingBase);
 		}
 	}
-/*//TODO change method call
-	@Override
-	protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
-	{
-		if (p_77032_1_.isInvisible())
-		{
-			return 0;
-		}
-		else if (p_77032_2_ == 0)
-		{
-			this.setRenderPassModel(this.mainModel);
-			GL11.glEnable(GL11.GL_NORMALIZE);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			return 1;
-		}
-		else
-		{
-			if (p_77032_2_ == 1)
-			{
-				GL11.glDisable(GL11.GL_BLEND);
-				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			}
-
-			return -1;
-		}
-	} */
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {
