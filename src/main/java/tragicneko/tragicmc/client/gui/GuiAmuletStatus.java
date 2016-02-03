@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -39,29 +40,33 @@ public class GuiAmuletStatus extends Gui
 	@SubscribeEvent(priority=EventPriority.NORMAL)
 	public void onRenderOverlay(RenderGameOverlayEvent event)
 	{
-		if (event.isCancelable() || event.type != ElementType.EXPERIENCE || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
+		if (event.isCancelable() || event.type != ElementType.PORTAL || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
 		PropertyAmulets amu = PropertyAmulets.get(this.mc.thePlayer);
 		if (amu == null || amu.getSlotsOpen() <= 0) return;
 
 		int xPos = TragicConfig.guiX + 1;
 		int yPos = TragicConfig.guiY + 11;
-		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
+		this.mc.renderEngine.bindTexture(getTextureFromConfig());
 		int length = 0;
 		if (amu.getSlotsOpen() == 1) length = 20;
 		if (amu.getSlotsOpen() == 2) length = 40;
 		if (amu.getSlotsOpen() == 3) length = 60;
 
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
-		GL11.glDepthMask(false);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		float trans = TragicConfig.guiTransparency / 100.0F;
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, trans);
-		GL11.glDisable(GL11.GL_ALPHA_TEST);
-
+		GlStateManager.enableBlend();
+		GlStateManager.disableDepth();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableAlpha();
+		
+		float trans = ((float) TragicConfig.guiTransparency / 100.0F);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, trans);
+		
 		drawTexturedModalRect(xPos, yPos, 0, 0, length, 20);
 
+		GlStateManager.enableAlpha();
+		GlStateManager.enableDepth();
+		GlStateManager.disableBlend();
+		
 		ItemStack stack;
 
 		for (byte i = 0; i < 3; i++)
@@ -72,7 +77,7 @@ public class GuiAmuletStatus extends Gui
 
 				itemRender.renderItemAndEffectIntoGUI(stack, xPos + 3 + (20 * i), yPos + 2);
 				itemRender.renderItemOverlayIntoGUI(mc.fontRendererObj, stack, xPos + 2 + (20 * i), yPos + 4, stack.getDisplayName());
-				GL11.glDisable(GL11.GL_LIGHTING);
+				GlStateManager.disableLighting();
 			}
 			else if (amu.getSlotsOpen() < i + 1 && TragicConfig.amuletMaxSlots >= i + 1)
 			{
@@ -81,10 +86,6 @@ public class GuiAmuletStatus extends Gui
 				this.mc.fontRendererObj.drawString(s.trim(), xPos + 8 + (20 * i), yPos + 6, color.getRGB());
 			}
 		}
-
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
-		GL11.glDepthMask(true);
 	}
 
 	public static ResourceLocation getTextureFromConfig()

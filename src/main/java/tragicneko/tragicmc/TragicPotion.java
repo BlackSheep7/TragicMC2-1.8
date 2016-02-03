@@ -26,14 +26,16 @@ public class TragicPotion extends Potion {
 
 	@Override
 	public void renderInventoryEffect(int x, int y, PotionEffect effect, net.minecraft.client.Minecraft mc)
-	{/*
+	{
 		x += 6;
 		y += 7;
-		net.minecraft.client.renderer.entity.RenderItem itemRender = new net.minecraft.client.renderer.entity.RenderItem();
+		net.minecraft.client.renderer.entity.RenderItem itemRender = mc.getRenderItem();
 		if (this.stackIcon == null) this.stackIcon = new ItemStack(Items.apple);
-		net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
-		itemRender.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), this.stackIcon, x, y, false);
-		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting(); */
+		net.minecraft.client.renderer.GlStateManager.enableRescaleNormal();
+		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+		itemRender.renderItemIntoGUI(this.stackIcon, x, y);
+		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+		net.minecraft.client.renderer.GlStateManager.disableRescaleNormal();
 	}
 
 	public static void load()
@@ -96,7 +98,7 @@ public class TragicPotion extends Potion {
 		if (Inhibit != null) ((TragicPotion) Inhibit).setIcon(new ItemStack(TragicItems.Ash));
 		if (LeadFoot != null) ((TragicPotion) LeadFoot).setIcon(new ItemStack(Blocks.anvil));
 		if (Hacked != null) ((TragicPotion) Hacked).setIcon(new ItemStack(TragicBlocks.CircuitBlock));
-		if (Burned != null) ((TragicPotion) Burned).setIcon(new ItemStack(Blocks.fire));
+		if (Burned != null) ((TragicPotion) Burned).setIcon(new ItemStack(TragicBlocks.SmoothNetherrack));
 		//((TragicPotion) Deafening).setIcon(new ItemStack(Items.record_11));
 		//((TragicPotion) Nightmare).setIcon(new ItemStack(TragicItems.CorruptedEgg));
 		//((TragicPotion) Exasperate).setIcon(new ItemStack(TragicItems.EnchantedTears));

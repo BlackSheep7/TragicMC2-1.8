@@ -65,7 +65,7 @@ public class GuiAmuletInventory extends GuiContainer
 	 */
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
-		mc.getTextureManager().bindTexture(getTextureFromConfig());
+		mc.renderEngine.bindTexture(getTextureFromConfig());
 		drawTexturedModalRect(guiLeft + 16, guiTop - 2, 0, 0, xSize, ySize + 24);
 	}
 

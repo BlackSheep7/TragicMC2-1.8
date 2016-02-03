@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -48,7 +49,7 @@ public class GuiDoom extends Gui
 	@SubscribeEvent(priority=EventPriority.NORMAL)
 	public void onRenderOverlay(RenderGameOverlayEvent event)
 	{
-		if (event.isCancelable() || event.type != ElementType.EXPERIENCE || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
+		if (event.isCancelable() || event.type != ElementType.PORTAL || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
 		PropertyDoom props = PropertyDoom.get(this.mc.thePlayer);
 		if (props == null || props.getMaxDoom() == 0) return;
@@ -57,13 +58,13 @@ public class GuiDoom extends Gui
 		int yPos = TragicConfig.guiY;
 		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
 
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
-		GL11.glDepthMask(false);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		float trans = TragicConfig.guiTransparency / 100.0F;
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, trans);
-		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		GlStateManager.enableBlend();
+		GlStateManager.disableDepth();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableAlpha();
+		
+		float trans = ((float) TragicConfig.guiTransparency / 100.0F);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, trans);
 
 		drawTexturedModalRect(xPos, yPos, 0, 0, 56, 9);
 
@@ -241,9 +242,9 @@ public class GuiDoom extends Gui
 			}
 		}
 
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
-		GL11.glDepthMask(true);
+		GlStateManager.enableAlpha();
+		GlStateManager.enableDepth();
+		GlStateManager.disableBlend();
 	}
 
 	public static ResourceLocation getTextureFromConfig()

@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicMC.rand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
@@ -80,7 +81,7 @@ public class ClientEvents extends Gui {
 		{
 			PropertyMisc misc = PropertyMisc.get(player);
 			if (misc == null) return;
-			
+
 			TragicMC.logInfo("Frozen input received.");
 
 			if (misc.isFrozen)
@@ -95,9 +96,9 @@ public class ClientEvents extends Gui {
 				misc.isFrozen = true;
 				misc.frozenInputs = 30 + (20 * player.getActivePotionEffect(TragicPotion.Frozen).getAmplifier());
 			}
-			
+
 			TragicMC.logInfo("Frozen input left is " + misc.frozenInputs);
-			
+
 			if (event.isCancelable()) event.setCanceled(true);
 		} */
 	}
@@ -241,11 +242,15 @@ public class ClientEvents extends Gui {
 	@SubscribeEvent
 	public void renderHackedEffects(RenderGameOverlayEvent event)
 	{
-		((BlockGenericLeaves) TragicBlocks.PaintedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
-		((BlockGenericLeaves) TragicBlocks.AshenLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
-		((BlockGenericLeaves) TragicBlocks.BleachedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
-		((BlockGenericLeaves) TragicBlocks.HallowedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
-		((BlockGenericLeaves) TragicBlocks.DarkLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		if (TragicConfig.allowNonMobBlocks)
+		{
+			((BlockGenericLeaves) TragicBlocks.PaintedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+			((BlockGenericLeaves) TragicBlocks.AshenLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+			((BlockGenericLeaves) TragicBlocks.BleachedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+			((BlockGenericLeaves) TragicBlocks.HallowedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+			((BlockGenericLeaves) TragicBlocks.DarkLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		}
+		
 		if (event.type != ElementType.PORTAL) return;
 
 		Minecraft mc = Minecraft.getMinecraft();
@@ -260,13 +265,14 @@ public class ClientEvents extends Gui {
 		if (!flag && !flag2 && !flag3 && !flag4 && !flag5) return;
 
 		mc.renderEngine.bindTexture(flag ? hackedTexture : divinityTexture);
+		
+		GlStateManager.enableBlend();
+		GlStateManager.disableDepth();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableAlpha();
 
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
-		GL11.glDepthMask(false);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		float f = 2.25F;
-		float trans = flag ? MathHelper.cos(event.partialTicks / f) * 2.625F - f : 0.0725F;
+		float f = 2.635F;
+		float trans = flag ? 0.325F - MathHelper.cos(mc.thePlayer.ticksExisted / f) * 0.225F : 0.0975F;
 
 		float r = rgb[color][0];
 		float g = flag3 ? 0F : rgb[color][1];
@@ -274,33 +280,30 @@ public class ClientEvents extends Gui {
 
 		if (flag4)
 		{
-			GL11.glColor4f(0.1F, 0.1F, 0.1F, 0.7F);
+			GlStateManager.color(0.1F, 0.1F, 0.1F, 0.7F);
 		}
 		else if (!flag5)
 		{
-			GL11.glColor4f(r, g, b, trans);
+			GlStateManager.color(r, g, b, trans);
 		}
 		else if (flag5)
 		{/*
 			int a = 30 + (20 * mc.thePlayer.getActivePotionEffect(TragicPotion.Frozen).getAmplifier());
 			PropertyMisc misc = PropertyMisc.get(mc.thePlayer);
 			int t = misc != null && misc.isFrozen ? misc.frozenInputs : 0;
-			GL11.glColor4f(0.848F, 0.888F, 0.995F, (float) t / (float) a); */
+			GlStateManager(0.848F, 0.888F, 0.995F, (float) t / (float) a); */
 		}
 
-		GL11.glDisable(GL11.GL_ALPHA_TEST);
-
 		drawTexturedModalRect(0, 0, 0, 0, mc.displayWidth, mc.displayHeight);
-
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
-		GL11.glDepthMask(true);
+		GlStateManager.enableAlpha();
+		GlStateManager.enableDepth();
+		GlStateManager.disableBlend();
 
 		counter++;
 		if (counter > 20)
 		{
 			counter = 0;
-			color = flag2 && TragicConfig.allowDivinityColorChange ? color + 1 : 0;
+			color = flag2 && TragicConfig.allowDivinityColorChange ? rand.nextInt(rgb.length) : 0;
 			if (color >= rgb.length) color = 0;
 		}
 	}
