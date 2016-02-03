@@ -623,4 +623,13 @@ public class VanillaChangingEvents {
 			event.lightning.entityDropItem(new ItemStack(TragicItems.LightningOrb, 1), rand.nextFloat() - rand.nextFloat());
 		}
 	}
+	
+	@SubscribeEvent
+	public void onFall(LivingHurtEvent event)
+	{
+		if (event.source == DamageSource.fall && TragicConfig.allowCripple && TragicConfig.allowCripplingFall && !event.entityLiving.worldObj.isRemote && event.ammount > 1.5F)
+		{
+			event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 1500, 0));
+		}
+	}
 }

@@ -160,7 +160,7 @@ public class TragicConfig {
 	private static boolean[] vanillaConfig = new boolean[24];
 	public static boolean allowVanillaMobBuffs, allowExtraMobEffects, allowAnimalRetribution, allowMobModdedArmor, allowRespawnPunishment, allowExtraExplosiveEffects;
 	public static boolean allowMobBlindnessDebuff, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowDrudgeGen, allowAnimalGolemCorruption;
-	public static boolean allowCowMinotaurCreation, allowIronGolemHitCooldown, allowNauseaRandomMiss, allowBlindnessReachDebuff;
+	public static boolean allowCowMinotaurCreation, allowIronGolemHitCooldown, allowNauseaRandomMiss, allowBlindnessReachDebuff, allowCripplingFall;
 	public static int rubyOreRate, sapphireOreRate, mercuryOreRate, tungstenOreRate, drudgeRate, silverfishRate, rubyOreVeinSize, sapphireOreVeinSize, mercuryOreVeinSize;
 	public static int tungstenOreVeinSize, drudgeVeinSize, silverfishVeinSize, aerisRarity, nauseaMissChance;
 	public static double blindnessReachDebuffAmount;
@@ -176,7 +176,7 @@ public class TragicConfig {
 	public static boolean allowPvP, allowDefaultLores, allowCorruptionTransfer;
 	public static int challengeScrollDropChance, mobStatueDropChance;
 
-	public static boolean allowAnimatedGui, allowArmorModels, allowWeaponModels, allowDivinityColorChange, showDoomGui, showAmuletStatusGui, allowDimensionalMusic;
+	public static boolean allowAnimatedGui, allowArmorModels, allowWeaponModels, allowDivinityColorChange, showDoomGui, showAmuletStatusGui, allowDimensionalMusic, allowPotionEffectOverlays;
 	public static int guiTransparency, guiTexture, guiX, guiY;
 
 	public static boolean[] griefConfig = new boolean[12];
@@ -3294,7 +3294,11 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowBlindnessReachDebuff", false);
 		prop.comment = "Should Blindness debuff your Reach?";
 		vanillaConfig[++m] = prop.getBoolean(false);
-
+		
+		prop = config.get(cat.getName(), "allowCripplingFall", false);
+		prop.comment = "Should a fall that damages you inflict Cripple?";
+		vanillaConfig[++m] = prop.getBoolean(false);
+		
 		prop = config.get(cat.getName(), "rubyOreGenRate", 10);
 		rubyOreRate = prop.getInt(10);
 
@@ -3551,25 +3555,36 @@ public class TragicConfig {
 		cat.setShowInGui(true);
 
 		prop = config.get(cat.getName(), "allowAnimatedGui", true);
+		prop.comment = "Whether or not the Doom GUI is animated.";
 		allowAnimatedGui = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "allowArmorModels", true);
+		prop.comment = "Whether or not custom armor models are rendered for armor that has it";
 		allowArmorModels = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "allowWeaponModels", true);
+		prop.comment = "Whether or not custom weapon models are used for weapons that have it";
 		allowWeaponModels = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "allowDivinityColorChange", true);
+		prop.comment = "Whether the Divinity potion effect has a rainbow-like render overlay";
 		allowDivinityColorChange = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "showDoomGui", true);
+		prop.comment = "Whether the Doom GUI is rendered";
 		showDoomGui = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "showAmuletStatusGui", true);
+		prop.comment = "Whether the Amulet Status GUI is rendered";
 		showAmuletStatusGui = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "allowDimensionalMusic", true);
+		prop.comment = "Whether Dimension-specific music is played";
 		allowDimensionalMusic = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowPotionEffectOverlays", true);
+		prop.comment = "Whether certain potion effects have an overlay rendered while they are active";
+		allowPotionEffectOverlays = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "guiTransparency", 100);
 		guiTransparency = clamp(prop.getInt(100), 1, 100);
@@ -4469,6 +4484,7 @@ public class TragicConfig {
 		allowIronGolemHitCooldown = vanillaConfig[++m];
 		allowNauseaRandomMiss = vanillaConfig[++m];
 		allowBlindnessReachDebuff = vanillaConfig[++m];
+		allowCripplingFall = vanillaConfig[++m];
 		
 		allowVoidPitGen = worldGenConfig[m = 0];
 		allowSpikeGen = worldGenConfig[++m];

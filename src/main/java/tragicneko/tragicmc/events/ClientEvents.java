@@ -253,7 +253,7 @@ public class ClientEvents extends Gui {
 			((BlockGenericLeaves) TragicBlocks.DarkLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 		}
 
-		if (event.type != ElementType.PORTAL) return;
+		if (event.type != ElementType.PORTAL || !TragicConfig.allowPotionEffectOverlays) return;
 
 		Minecraft mc = Minecraft.getMinecraft();
 		if (mc.thePlayer == null) return;

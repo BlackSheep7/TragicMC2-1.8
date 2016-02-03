@@ -58,7 +58,7 @@ public class MiscEvents {
 	public static AttributeModifier lightMod = new AttributeModifier(UUID.fromString("7611c3b7-5bb8-4597-849b-c75788f8cc9b"), "lightningRodAttackBuff", TragicConfig.modifier[20], 0);
 
 	private static boolean DO_FIRE_REFLECTION = true;
-	
+
 	@SubscribeEvent
 	public void quicksandJumping(LivingJumpEvent event)
 	{
@@ -231,28 +231,31 @@ public class MiscEvents {
 	}
 
 	@SubscribeEvent
-	public void onOverlordArmorUpdate(LivingUpdateEvent event)
+	public void onUpdate(LivingUpdateEvent event)
 	{
 		if (event.entityLiving.worldObj.isRemote) return;
 
 		if (event.entityLiving instanceof EntityPlayer)
 		{
-			if (TragicConfig.allowBurned && DO_FIRE_REFLECTION)
+			if (TragicConfig.allowBurned)
 			{
 				if (event.entityLiving.isBurning())
 				{
 					int burn = 5;
 
-					try 
+					if (DO_FIRE_REFLECTION)
 					{
-						Field f = ReflectionHelper.findField(Entity.class, "fire");
-						burn = f.getInt(event.entityLiving);
-					}
-					catch (Exception e)
-					{
-						TragicMC.logError("Error caused while reflecting for burn potion effect, this effect will be temporarily disabled until the game is restarted.", e);
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
-						DO_FIRE_REFLECTION = false;
+						try 
+						{
+							Field f = ReflectionHelper.findField(Entity.class, "fire");
+							burn = f.getInt(event.entityLiving);
+						}
+						catch (Exception e)
+						{
+							TragicMC.logError("Error caused while reflecting for burn potion effect, this effect will be temporarily disabled until the game is restarted.", e);
+							event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
+							DO_FIRE_REFLECTION = false;
+						}
 					}
 
 					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
@@ -397,7 +400,7 @@ public class MiscEvents {
 
 		return false;
 	}
-
+/*
 	@SubscribeEvent
 	public void onPlayerKill(LivingDeathEvent event)
 	{
@@ -413,5 +416,5 @@ public class MiscEvents {
 			}
 
 		}
-	}
+	} */
 }
