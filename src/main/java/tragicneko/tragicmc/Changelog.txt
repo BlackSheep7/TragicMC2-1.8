@@ -4513,6 +4513,10 @@ Re-enabled rendering of icons for potion effects, fixed crash related to renderi
 Updated potion effect overlay textures
 Fixed Bleeding Obsidian Orb not counting for the Wonder Orb achievement
 Fixed wrong textures being used for Ruby/Sapphire Ore
+Modified block models for the Conduit block to make them more unique looking
+Fixed Armor models not working, they apparently changed the slots used and broke isChild on modelbiped
+Fixed enchanting armor properly based on their Lore, I broke this without realizing, derp
+Do proper rotation for models on sword-like items
 
 TODO: Seperate overlay for Generator items (just for ease), do the same for mob statues
 TODO: Add textures for armor when armor models are disabled
