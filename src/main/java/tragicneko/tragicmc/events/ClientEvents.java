@@ -37,7 +37,9 @@ import tragicneko.tragicmc.util.AmuletHelper;
 public class ClientEvents extends Gui {
 
 	private static ResourceLocation hackedTexture = new ResourceLocation("tragicmc:textures/environment/collisionSky.png");
-	private static ResourceLocation divinityTexture = new ResourceLocation("tragicmc:textures/environment/divinity.png");
+	private static ResourceLocation divinityTexture = new ResourceLocation("tragicmc:textures/environment/divinity2.png");
+	private static ResourceLocation frozenTexture = new ResourceLocation("tragicmc:textures/environment/frozen.png");
+	private static ResourceLocation nightmareTexture = new ResourceLocation("tragicmc:textures/environment/nightmare.png");
 
 	private static final float[][] rgb = new float[][] {{1F, 1F, 1F}, {1F, 0.3F, 0.3F}, {0.3F, 0.9F, 0.9F}, {0.1F, 0.8F, 0.1F}, {1F, 0.3F, 1F}, {0.8F, 0.1F, 0.1F}, {0F, 0.1F, 0.8F},
 		{0.8F, 0.3F, 0.5F}, {0.6F, 0.3F, 0.9F}, {0.3F, 0.3F, 0.3F}, {0.6F, 0.6F, 0.9F}, {0.1F, 0.1F, 0.1F}};
@@ -272,26 +274,29 @@ public class ClientEvents extends Gui {
 		GlStateManager.disableAlpha();
 
 		float f = 2.635F;
-		float trans = flag ? 0.325F - MathHelper.cos(mc.thePlayer.ticksExisted / f) * 0.225F : 0.0975F;
+		float f1 = flag4 ? 0.525F : 0.325F;
+		float f2 = 0.225F;
+		float trans = flag || flag4 ? f1 - MathHelper.cos(mc.thePlayer.ticksExisted / f) * f2 : 0.1375F;
 
-		float r = rgb[color][0];
+		float r = flag3 ? 1F : rgb[color][0];
 		float g = flag3 ? 0F : rgb[color][1];
 		float b = flag3 ? 0F : rgb[color][2];
 
 		if (flag4)
 		{
-			GlStateManager.color(0.1F, 0.1F, 0.1F, 0.7F);
+			GlStateManager.color(0.1F, 0.1F, 0.1F, trans);
 		}
 		else if (!flag5)
 		{
 			GlStateManager.color(r, g, b, trans);
 		}
 		else if (flag5)
-		{/*
-			int a = 30 + (20 * mc.thePlayer.getActivePotionEffect(TragicPotion.Frozen).getAmplifier());
-			PropertyMisc misc = PropertyMisc.get(mc.thePlayer);
-			int t = misc != null && misc.isFrozen ? misc.frozenInputs : 0;
-			GlStateManager(0.848F, 0.888F, 0.995F, (float) t / (float) a); */
+		{
+			//int a = 30 + (20 * mc.thePlayer.getActivePotionEffect(TragicPotion.Frozen).getAmplifier());
+			//PropertyMisc misc = PropertyMisc.get(mc.thePlayer);
+			//int t = misc != null && misc.isFrozen ? misc.frozenInputs : 0;
+			//float f3 = 60.0F / 100.0F; //(float) t / (float) a;
+			//GlStateManager.color(0.848F, 0.888F, 0.995F, f3);
 		}
 
 		drawTexturedModalRect(0, 0, 0, 0, mc.displayWidth, mc.displayHeight);
