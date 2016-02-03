@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "particle": "tragicmc:blocks/AshenLeaves",
+        "side": "tragicmc:blocks/AshenLeavesSide",
+        "top": "tragicmc:blocks/AshenLeavesTop",
+        "bottom": "tragicmc:blocks/AshenLeaves"
+    }
+}

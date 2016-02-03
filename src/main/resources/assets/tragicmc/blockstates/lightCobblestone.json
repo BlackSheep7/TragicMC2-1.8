@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "variant=normal": { "model": "tragicmc:lightCobblestone" },
+        "variant=frozen": { "model": "tragicmc:lightCobblestoneFrozen" },
+        "variant=glowing": { "model": "tragicmc:lightCobblestoneGlowing" }
+    }
+}

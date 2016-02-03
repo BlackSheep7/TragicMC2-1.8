@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "variant=bramble": { "model": "tragicmc:bramble" },
+        "variant=tangleweed": { "model": "tragicmc:tangleweed" },
+        "variant=death_claw": { "model": "tragicmc:deathClaw" },
+        "variant=fusche": { "model": "tragicmc:fusche" },
+        "variant=osiris": { "model": "tragicmc:osiris" },
+        "variant=thusk": { "model": "tragicmc:thusk" },
+        "variant=podtail": { "model": "tragicmc:podtail" },
+        "variant=fanbrush": { "model": "tragicmc:fanbrush" },
+        "variant=torchweed": { "model": "tragicmc:torchweed" },
+        "variant=halon": { "model": "tragicmc:halon" },
+        "variant=rizaphora": { "model": "tragicmc:rizaphora" },
+        "variant=black_spot": { "model": "tragicmc:blackSpot" },
+        "variant=nannon": { "model": "tragicmc:nannon" },
+        "variant=barbed_wire": { "model": "tragicmc:barbedWire" },
+        "variant=kern": { "model": "tragicmc:kern" },
+        "variant=flahgrass": { "model": "tragicmc:flahgrass" }
+    }
+}

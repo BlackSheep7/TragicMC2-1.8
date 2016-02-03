@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "variant=crying": { "model": "tragicmc:cryingObsidian" },
+        "variant=bleeding": { "model": "tragicmc:bleedingObsidian" },
+        "variant=dying": { "model": "tragicmc:dyingObsidian" }
+    }
+}

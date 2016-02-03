@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.blocks;
 
-import static net.minecraft.init.Blocks.air;
-
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -77,5 +75,4 @@ public class BlockSynapseCore extends Block {
 			}
 		}
 	}
-
 }

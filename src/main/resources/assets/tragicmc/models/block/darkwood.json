@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "tragicmc:blocks/DarkwoodLogTop",
+        "side": "tragicmc:blocks/DarkwoodLogSide"
+    }
+}

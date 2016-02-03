@@ -1,0 +1,7 @@
+{
+    "parent": "tragicmc:block/vineU",
+    "textures": {
+        "particle": "tragicmc:blocks/Moss",
+        "vine": "tragicmc:blocks/Moss"
+    }
+}

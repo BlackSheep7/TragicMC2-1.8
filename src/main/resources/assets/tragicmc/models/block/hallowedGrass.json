@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "side": "tragicmc:blocks/HallowedGrassSide",
+        "top": "tragicmc:blocks/HallowedGrassTop",
+        "bottom": "tragicmc:blocks/NormalDeadDirt"
+    }
+}

@@ -88,7 +88,7 @@ public class TragicMC
 {
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
-	public static final String VERSION = "3.46.2858";
+	public static final String VERSION = "3.47.2904";
 	public static final String ACCEPTED_VERSION = "[1.8]";
 	public static final String VERSION_JSON = "https://gist.githubusercontent.com/TragicNeko/d70456c2715e735920a1/raw/a7a25b91d3462b12e77c69e9166cd3b3fe7cdb1a/TragicMC2-Version.json";
 
@@ -155,7 +155,7 @@ public class TragicMC
 		TragicBlocks.load();
 		TragicItems.load();
 		if (TragicConfig.allowRandomWeaponLore && TragicConfig.allowNonMobItems) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
-		if (TragicConfig.allowPotions) TragicPotion.setPotionIcons();
+		if (TragicConfig.allowPotions && TragicConfig.allowNonMobBlocks && TragicConfig.allowNonMobItems) TragicPotion.setPotionIcons();
 		if (TragicConfig.allowRecipes) TragicRecipes.load();
 		if (TragicConfig.allowAmulets) registerEvent(new AmuletEvents());
 
@@ -197,13 +197,13 @@ public class TragicMC
 				DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
 				logInfo("Dimension (Synapse) was registered with an ID of " + TragicConfig.synapseID);
 			}
-			//TODO remove after done testing the Wilds dimension 
+			/* 
 			int id = TragicConfig.synapseID + 1;
 			if (DimensionManager.isDimensionRegistered(id)) id = DimensionManager.getNextFreeDimId();
 			int provId = id;
 			
 			DimensionManager.registerProviderType(provId, tragicneko.tragicmc.dimension.WildsWorldProvider.class, false);
-			DimensionManager.registerDimension(id, provId);
+			DimensionManager.registerDimension(id, provId); */
 
 			TragicBiome.load();
 			MinecraftForge.ORE_GEN_BUS.register(new tragicneko.tragicmc.events.MiscEvents());

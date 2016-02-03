@@ -1,13 +1,13 @@
 package tragicneko.tragicmc.dimension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
-import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;

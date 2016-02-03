@@ -3,13 +3,14 @@ package tragicneko.tragicmc.blocks.tileentity;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
@@ -26,7 +27,7 @@ import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 
-public class TileEntitySummonBlock extends TileEntity {
+public class TileEntitySummonBlock extends TileEntity implements IUpdatePlayerListBox {
 
 	private static final String[] taunts = new String[] {"The choice is made, the Traveller has come!", "They're here...", "Ready? ... FIGHT!", "Mortal Kombat!",
 		"Begin.", "Let's get ready to RUMBLE!", "Come now, make up and hug it out", "Come play with us, forever and ever and ever and ever...", "Oh no!", "Kissy kissy~",
@@ -35,7 +36,7 @@ public class TileEntitySummonBlock extends TileEntity {
 		"Knock knock", "Did you see how he turned the Summon Block?", "I'm distracting you!", "I am Groot", "We are Groot"};
 
 	@Override
-	public void updateContainingBlockInfo()
+	public void update()
 	{
 		if (this.worldObj.isRemote) return;
 
@@ -52,8 +53,8 @@ public class TileEntitySummonBlock extends TileEntity {
 	private void updateState()
 	{
 		double d0 = 12.0;
-
-		AxisAlignedBB axisalignedbb = this.blockType.getCollisionBoundingBox(this.worldObj, this.getPos(), this.worldObj.getBlockState(this.getPos())).expand(d0, d0, d0);
+		IBlockState state = this.worldObj.getBlockState(this.getPos());
+		AxisAlignedBB axisalignedbb = state.getBlock().getCollisionBoundingBox(this.worldObj, this.getPos(), state).expand(d0, d0, d0);
 		List<EntityPlayer> list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
 		if (!list.isEmpty())
@@ -73,7 +74,8 @@ public class TileEntitySummonBlock extends TileEntity {
 
 	private void spawnBoss(EntityPlayer player)
 	{
-		int meta = this.getBlockMetadata();
+		IBlockState state = this.worldObj.getBlockState(this.getPos());
+		int meta = state.getBlock().getMetaFromState(state);
 		EntityLivingBase boss = null;
 
 		if (meta == 2 && TragicConfig.allowApis)
@@ -121,7 +123,7 @@ public class TileEntitySummonBlock extends TileEntity {
 			boss = new EntityAegar(this.worldObj);
 		}
 
-		if (boss instanceof TragicBoss && this.worldObj.getDifficulty().getDifficultyId() < 2 && player != null)
+		if (boss instanceof TragicBoss && this.worldObj.getDifficulty().getDifficultyId() < 2 && !TragicConfig.allowEasyBosses && player != null)
 		{
 			player.addChatMessage(new ChatComponentText("Difficulty needs to be raised to spawn this boss."));
 			return;

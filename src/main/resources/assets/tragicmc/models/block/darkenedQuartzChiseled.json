@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "side": "tragicmc:blocks/ChiseledDarkenedQuartzSide",
+        "end": "tragicmc:blocks/ChiseledDarkenedQuartz"
+    }
+}

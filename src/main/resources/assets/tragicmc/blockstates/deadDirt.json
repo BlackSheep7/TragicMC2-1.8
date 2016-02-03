@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "variant=normal": { "model": "tragicmc:deadDirt" },
+        "variant=rugged": { "model": "tragicmc:deadDirtRugged" },
+        "variant=mixed": { "model": "tragicmc:deadDirtMixed" }
+    }
+}

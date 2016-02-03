@@ -8,12 +8,13 @@ import java.util.UUID;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumParticleTypes;
 
-public class TileEntitySoulChest extends TileEntityChest {
+public class TileEntitySoulChest extends TileEntityChest implements IUpdatePlayerListBox {
 
 	private int souls = 0;
 	public int requiredSouls = 30;
@@ -39,10 +40,8 @@ public class TileEntitySoulChest extends TileEntityChest {
 	}
 
 	@Override
-	public void updateContainingBlockInfo()
+	public void update()
 	{
-		super.updateContainingBlockInfo();
-
 		if (this.souls >= this.requiredSouls) return;
 
 		List<EntityMob> list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.pos.getX(), this.pos.getY(), this.pos.getZ()).expand(6.0, 6.0, 6.0));

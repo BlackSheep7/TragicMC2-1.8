@@ -1,0 +1,15 @@
+{
+    "variants": {
+        "boss=wither": { "model": "tragicmc:witherSummon" },
+        "boss=ender_dragon": { "model": "tragicmc:enderDragonSummon" },
+        "boss=apis": { "model": "tragicmc:apisSummon" },
+        "boss=skultar": { "model": "tragicmc:deathReaperSummon" },
+        "boss=kitsunakuma": { "model": "tragicmc:kitsuneSummon" },
+        "boss=polaris": { "model": "tragicmc:polarisSummon" },
+        "boss=empariah": { "model": "tragicmc:yetiSummon" },
+        "boss=time_controller": { "model": "tragicmc:timeControllerSummon" },
+        "boss=enyvil": { "model": "tragicmc:enyvilSummon" },
+        "boss=claymation": { "model": "tragicmc:claymationSummon" },
+        "boss=aegar": { "model": "tragicmc:aegarSummon" }
+    }
+}

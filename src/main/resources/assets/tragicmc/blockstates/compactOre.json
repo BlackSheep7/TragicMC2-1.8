@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "variant=mercury": { "model": "tragicmc:mercuryBlock" },
+        "variant=ruby": { "model": "tragicmc:rubyBlock" },
+        "variant=sapphire": { "model": "tragicmc:sapphireBlock" },
+        "variant=tungsten": { "model": "tragicmc:tungstenBlock" },
+        "variant=quicksilver": {"model": "tragicmc:quicksilverBlock" }
+    }
+}

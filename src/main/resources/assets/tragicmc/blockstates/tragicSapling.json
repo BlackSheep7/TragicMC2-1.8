@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "variant=painted": { "model": "tragicmc:saplingPainted" },
+        "variant=bleached": { "model": "tragicmc:saplingBleached" },
+        "variant=ashen": { "model": "tragicmc:saplingAshen" },
+        "variant=hallowed": { "model": "tragicmc:saplingHallowed" },
+        "variant=darkwood": { "model": "tragicmc:saplingDarkwood" }
+    }
+}

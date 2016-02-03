@@ -184,7 +184,7 @@ public abstract class Schematic {
 	
 	public void setBlock(World world, int x, int y, int z, Block block, int meta, int flag)
 	{
-		world.setBlockState(new BlockPos(x, y, z), block.getStateFromMeta(meta), flag);
+		world.setBlockState(new BlockPos(x, y, z), block.getStateFromMeta(meta), 3);
 	}
 
 	/*

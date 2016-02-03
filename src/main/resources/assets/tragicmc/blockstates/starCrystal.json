@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "color=white": { "model": "tragicmc:starCrystalWhite" },
+        "color=orange": { "model": "tragicmc:starCrystalOrange" },
+        "color=magenta": { "model": "tragicmc:starCrystalMagenta" },
+        "color=light_blue": { "model": "tragicmc:starCrystalLightBlue" },
+        "color=yellow": { "model": "tragicmc:starCrystalYellow" },
+        "color=lime": { "model": "tragicmc:starCrystalLime" },
+        "color=pink": { "model": "tragicmc:starCrystalPink" },
+        "color=gray": { "model": "tragicmc:starCrystalGray" },
+        "color=silver": { "model": "tragicmc:starCrystalSilver" },
+        "color=cyan": { "model": "tragicmc:starCrystalCyan" },
+        "color=purple": { "model": "tragicmc:starCrystalPurple" },
+        "color=blue": { "model": "tragicmc:starCrystalBlue" },
+        "color=brown": { "model": "tragicmc:starCrystalBrown" },
+        "color=green": { "model": "tragicmc:starCrystalGreen" },
+        "color=red": { "model": "tragicmc:starCrystalRed" },
+        "color=black": { "model": "tragicmc:starCrystalBlack" }
+    }
+}

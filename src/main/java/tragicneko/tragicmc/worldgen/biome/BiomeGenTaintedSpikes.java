@@ -37,7 +37,7 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 		this.minHeight = heights[variant][1];
 		this.fillerBlock = TragicBlocks.DarkStone.getDefaultState();
 		this.topBlock = TragicBlocks.ErodedStone.getDefaultState();
-		this.spikeWorldGen = new CustomSpikesWorldGen((byte) (variant == 0 ? 3 : 1), TragicBlocks.DarkStone, (byte) 14, 0.93477745D, 0.42943755D, 1.5D, 1.0D);
+		this.spikeWorldGen = new CustomSpikesWorldGen((byte) (variant == 0 ? 3 : 1), TragicBlocks.Spike, (byte) 0, 0.93477745D, 0.42943755D, 1.5D, 1.0D);
 		this.scarGen = new InvertedSpikeWorldGen((byte) 4, 1.5, 2.5, 0.91977745D, 0.48943755D);
 		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.ErodedStone, (byte) 2, TragicBlocks.ErodedStone, (byte) 3, 2.0D, 2.5D, true, (byte) 8);
 		this.isleGen = new IsleWorldGen();

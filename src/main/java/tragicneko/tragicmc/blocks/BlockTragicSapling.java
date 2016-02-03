@@ -6,6 +6,8 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -13,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -30,7 +33,7 @@ import tragicneko.tragicmc.worldgen.WorldGenCustomSavannaTree;
 
 public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 
-	private String[] treeNames = new String[] {"Painted", "Bleached", "Ashen", "Hallowed", "Darkwood"};
+	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockTragicSapling.EnumVariant.class);
 
 	public BlockTragicSapling()
 	{
@@ -40,6 +43,7 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
 		this.setCreativeTab(TragicMC.Survival);
 		this.setStepSound(soundTypeGrass);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumVariant.PAINTED));
 	}
 
 	@Override
@@ -137,5 +141,57 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 	@Override
 	public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
 		return world.getBlockState(pos);
+	}
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, VARIANT);
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return meta == 0 || meta >= EnumVariant.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(VARIANT, EnumVariant.values()[meta]);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		Comparable comp = state.getValue(VARIANT);
+
+		for (byte m = 0; m < 16; m++)
+		{
+
+			if (m >= EnumVariant.values().length) return 0;
+			if (EnumVariant.values()[m] == comp) return m;
+		}
+
+		return 0;
+	}
+	
+	public enum EnumVariant implements IStringSerializable {
+		PAINTED("painted"),
+		BLEACHED("bleached"),
+		ASHEN("ashen"),
+		HALLOWED("hallowed"),
+		DARKWOOD("darkwood");
+		
+		private final String name;
+		
+		private EnumVariant(String name)
+		{
+			this.name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return this.name;
+		}
+
+		@Override
+		public String getName() {
+			return this.name;
+		}
 	}
 }

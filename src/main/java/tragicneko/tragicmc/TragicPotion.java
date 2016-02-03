@@ -95,7 +95,7 @@ public class TragicPotion extends Potion {
 		if (Submission != null) ((TragicPotion) Submission).setIcon(new ItemStack(TragicItems.Thorns));
 		if (Inhibit != null) ((TragicPotion) Inhibit).setIcon(new ItemStack(TragicItems.Ash));
 		if (LeadFoot != null) ((TragicPotion) LeadFoot).setIcon(new ItemStack(Blocks.anvil));
-		if (Hacked != null) ((TragicPotion) Hacked).setIcon(new ItemStack(TragicBlocks.OverlordBarrier));
+		if (Hacked != null) ((TragicPotion) Hacked).setIcon(new ItemStack(TragicBlocks.CircuitBlock));
 		if (Burned != null) ((TragicPotion) Burned).setIcon(new ItemStack(Blocks.fire));
 		//((TragicPotion) Deafening).setIcon(new ItemStack(Items.record_11));
 		//((TragicPotion) Nightmare).setIcon(new ItemStack(TragicItems.CorruptedEgg));

@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "facing=up": { "model": "tragicmc:candle" },
+        "facing=east": { "model": "tragicmc:candleWall" },
+        "facing=south": { "model": "tragicmc:candleWall", "y": 90 },
+        "facing=west": { "model": "tragicmc:candleWall", "y": 180 },
+        "facing=north": { "model": "tragicmc:candleWall", "y": 270 }
+    }
+}

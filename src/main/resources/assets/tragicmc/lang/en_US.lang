@@ -31,6 +31,8 @@ tile.tragicmc.candle.name=Candle
 tile.tragicmc.potatoBlock.name=Giant Potato
 tile.tragicmc.carrotBlock.name=Giant Carrot
 
+tile.tragicmc.spike.name=Spike Block
+
 tile.tragicmc.summonBlock.apis.name=Summon Apis
 tile.tragicmc.summonBlock.wither.name=Summon Wither
 tile.tragicmc.summonBlock.enderDragon.name=Summon Ender Dragon
@@ -286,7 +288,7 @@ tile.tragicmc.aeris.pureAeris.name=Aeris (Pure)
 tile.tragicmc.aeris.partiallyCorruptedAeris.name=Aeris (Partially Corrupted)
 tile.tragicmc.aeris.corruptedAeris.name=Aeris (Corrupted)
 
-tile.tragicmc.geyserNormal.name=Geyser
+tile.tragicmc.geyser.name=Geyser
 tile.tragicmc.steamVent.name=Steam Vent
 tile.tragicmc.moltenRock.name=Molten Rock
 tile.tragicmc.scorchedRock.name=Scorched Rock
@@ -597,6 +599,7 @@ item.tragicmc.dimensionalKey.collision.name=Dimensional Key (The Collision)
 item.tragicmc.dimensionalKey.end.name=Dimensional Key (The End)
 item.tragicmc.dimensionalKey.nether.name=Dimensional Key (Nether)
 item.tragicmc.dimensionalKey.synapse.name=Dimensional Key (Synapse)
+item.tragicmc.dimensionalKey.wilds.name=Dimensional Key (The Wilds)
 
 item.tragicmc.synapseLink.name=Synapse Link
 item.tragicmc.synapseCrystal.name=Synapse Crystal

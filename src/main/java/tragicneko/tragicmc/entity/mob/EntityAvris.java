@@ -3,6 +3,7 @@ package tragicneko.tragicmc.entity.mob;
 import static tragicneko.tragicmc.TragicConfig.avrisStats;
 
 import java.util.List;
+import java.util.Arrays;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -24,7 +25,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.items.ItemChallenge;

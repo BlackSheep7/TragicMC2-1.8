@@ -114,7 +114,7 @@ public class ItemAmulet extends Item {
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int par2)
 	{
-		if (par2 == 0)
+		if (par2 == 1)
 		{
 			return this.amuletColor;
 		}

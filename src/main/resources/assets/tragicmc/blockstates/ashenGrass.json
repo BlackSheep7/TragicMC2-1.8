@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "snowy=false": { "model": "tragicmc:ashenGrass" },
+        "snowy=true": { "model": "tragicmc:ashenGrass" }
+    }
+}

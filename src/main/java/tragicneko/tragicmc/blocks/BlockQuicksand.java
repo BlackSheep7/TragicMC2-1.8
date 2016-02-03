@@ -111,7 +111,7 @@ public class BlockQuicksand extends BlockFalling
 	@Override
 	public int getRenderType()
 	{
-		return 0;
+		return 3;
 	}
 
 

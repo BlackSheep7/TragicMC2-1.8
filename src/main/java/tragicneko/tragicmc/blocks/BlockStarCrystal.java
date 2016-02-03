@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -80,11 +81,27 @@ public class BlockStarCrystal extends BlockColored {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing facing)
-	{
-		Block block = world.getBlockState(pos).getBlock();
-		return block == this ? false : super.shouldSideBeRendered(world, pos, facing);
+	public EnumWorldBlockLayer getBlockLayer() {
+		return EnumWorldBlockLayer.TRANSLUCENT;
 	}
 
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+	{
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		Block block = iblockstate.getBlock();
+
+		if (worldIn.getBlockState(pos.offset(side.getOpposite())) != iblockstate)
+		{
+			return true;
+		}
+
+		if (block == this)
+		{
+			return false;
+		}
+
+		return super.shouldSideBeRendered(worldIn, pos, side);
+	}
 }

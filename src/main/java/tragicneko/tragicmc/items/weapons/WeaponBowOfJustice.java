@@ -110,4 +110,5 @@ public class WeaponBowOfJustice extends ItemBow {
 			stack.addEnchantment(Enchantment.looting, 10);
 		}
 	}
+
 }

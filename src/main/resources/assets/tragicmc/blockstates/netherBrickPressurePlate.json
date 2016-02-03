@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=true": { "model": "tragicmc:netherBrickPressurePlateUp" },
+        "powered=false": { "model": "tragicmc:netherBrickPressurePlateDown"}
+    }
+}

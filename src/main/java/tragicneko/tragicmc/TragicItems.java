@@ -1,5 +1,6 @@
 package tragicneko.tragicmc;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.material.Material;
@@ -26,7 +27,6 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.ItemAmuletRelease;
 import tragicneko.tragicmc.items.ItemBleedingObsidianOrb;
@@ -331,8 +331,11 @@ public class TragicItems {
 	{
 		if (!TragicConfig.allowNonMobItems)
 		{
-			SpawnEgg = (new ItemMobEgg());
-			GameRegistry.registerItem(SpawnEgg, "spawnEgg");
+			if (TragicConfig.allowMobs)
+			{
+				SpawnEgg = (new ItemMobEgg());
+				GameRegistry.registerItem(SpawnEgg, "spawnEgg");
+			}
 
 			BowOfJustice = (new WeaponBowOfJustice().setUnlocalizedName("tragicmc.bowOfJustice"));
 			GameRegistry.registerItem(BowOfJustice, "bowOfJustice");
@@ -614,7 +617,7 @@ public class TragicItems {
 		GameRegistry.registerItem(DeathlyHallow, "deathlyHallow");
 
 		EmpariahClaw = (new ItemGeneric().setUnlocalizedName("tragicmc.yetiClaw").setCreativeTab(TragicMC.Survival));
-		GameRegistry.registerItem(EmpariahClaw, "yetiClaw");
+		GameRegistry.registerItem(EmpariahClaw, "empariahClaw");
 
 		StarPieces = (new ItemGeneric().setUnlocalizedName("tragicmc.starPieces").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(StarPieces, "starPieces");
@@ -807,13 +810,13 @@ public class TragicItems {
 		GameRegistry.registerItem(IceCream, "iceCream");
 
 		Honeydrop = (new ItemExoticFruit(9, false).setUnlocalizedName("tragicmc.exoticFruit").setMaxStackSize(16).setCreativeTab(TragicMC.Survival));
-		GameRegistry.registerItem(Honeydrop, "exoticFruit");
+		GameRegistry.registerItem(Honeydrop, "honeydrop");
 
 		Gloopii = (new ItemGooeyFruit(6, false).setUnlocalizedName("tragicmc.gooeyFruit").setMaxStackSize(8).setCreativeTab(TragicMC.Survival));
-		GameRegistry.registerItem(Gloopii, "gooeyFruit");
+		GameRegistry.registerItem(Gloopii, "gloopii");
 
 		Deathglow = (new ItemNastyFruit(4, false).setUnlocalizedName("tragicmc.nastyFruit").setMaxStackSize(8).setCreativeTab(TragicMC.Survival));
-		GameRegistry.registerItem(Deathglow, "nastyFruit");
+		GameRegistry.registerItem(Deathglow, "deathglow");
 
 		Rice = (new ItemRice(2, false).setUnlocalizedName("tragicmc.rice").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(Rice, "rice");
@@ -1127,7 +1130,7 @@ public class TragicItems {
 
 			LuckAmulet = (new AmuletLuck());
 			GameRegistry.registerItem(LuckAmulet, "luckAmulet");
-			
+
 			AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(AmuletRelease, "amuletRelease");
 		}
@@ -1156,7 +1159,7 @@ public class TragicItems {
 
 			CooldownDefuse = (new ItemCooldownDefuse().setUnlocalizedName("tragicmc.cooldownDefuse").setMaxStackSize(16).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(CooldownDefuse, "cooldownDefuse");
-			
+
 			BloodSacrifice = (new ItemBloodSacrifice().setUnlocalizedName("tragicmc.bloodSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(BloodSacrifice, "bloodSacrifice");
 
@@ -1180,9 +1183,9 @@ public class TragicItems {
 
 			DimensionalKeySynapse = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
 			GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
-			
+			/*
 			DimensionalKeyWilds = (new ItemDimensionalKey(TragicConfig.synapseID + 1).setUnlocalizedName("tragicmc.dimensionalKey.wilds").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
-			GameRegistry.registerItem(DimensionalKeyWilds, "dimensionalKeyWilds");
+			GameRegistry.registerItem(DimensionalKeyWilds, "dimensionalKeyWilds"); */
 
 			SynapseLink = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(SynapseLink, "synapseLink");

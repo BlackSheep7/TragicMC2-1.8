@@ -11,17 +11,20 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class BlockStructureSeed extends BlockContainer {
 	
-	public static final PropertyInteger STRUCTURE = PropertyInteger.create("structure_id", 0, Structure.structureList.length);
+	public static final PropertyInteger STRUCTURE = PropertyInteger.create("structure_id", 0, 15);
 
 	public BlockStructureSeed() {
-		super(Material.gourd);
+		super(Material.plants);
 		this.setResistance(100.0F);
 		this.setHardness(10.0F);
 		this.setCreativeTab(TragicMC.Creative);
@@ -30,15 +33,15 @@ public class BlockStructureSeed extends BlockContainer {
 	}
 
 	@Override
-	public boolean isOpaqueCube()
+	public boolean isFullBlock()
 	{
 		return false;
 	}
-
+	
 	@Override
-	public int getRenderType()
+	public boolean isOpaqueCube()
 	{
-		return 1;
+		return false;
 	}
 
 	@Override
@@ -55,7 +58,7 @@ public class BlockStructureSeed extends BlockContainer {
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < Structure.structureList.length && Structure.structureList[i] != null; i++)
+		for (int i = 0; i < Structure.structureList.length && Structure.structureList[i] != null && i < 16; i++)
 			par3.add(new ItemStack(par1, 1, i));
 	}
 	
@@ -63,6 +66,13 @@ public class BlockStructureSeed extends BlockContainer {
 	protected BlockState createBlockState()
 	{
 		return new BlockState(this, STRUCTURE);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public EnumWorldBlockLayer getBlockLayer()
+	{
+		return EnumWorldBlockLayer.CUTOUT;
 	}
 	
 	@Override
@@ -75,5 +85,11 @@ public class BlockStructureSeed extends BlockContainer {
 	public int getMetaFromState(IBlockState state)
     {
 		return ((Integer) state.getValue(STRUCTURE)).intValue();
+    }
+	
+	@Override
+	public int getRenderType()
+    {
+		return 3;
     }
 }

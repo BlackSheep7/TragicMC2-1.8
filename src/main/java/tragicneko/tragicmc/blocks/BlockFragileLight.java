@@ -19,13 +19,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockFox.EnumVariant;
 
 public class BlockFragileLight extends Block {
 
 	public static final PropertyBool VISIBLE = PropertyBool.create("visible");
 
-	public BlockFragileLight(boolean flag) {
+	public BlockFragileLight() {
 		super(Material.glass);
 		this.setHarvestLevel("pickaxe", 0);
 		this.setUnlocalizedName("tragicmc.fragileLight");
@@ -33,9 +34,17 @@ public class BlockFragileLight extends Block {
 		this.setResistance(0.5F);
 		this.setStepSound(Block.soundTypeGlass);
 		this.setLightOpacity(0);
-		this.setLightLevel(!flag ? 0.2F : 0.6F);
 		this.setTickRandomly(true);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(VISIBLE, false));
+		this.setCreativeTab(TragicMC.Survival);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VISIBLE, true));
+	}
+	
+	@Override
+	public int getLightValue(IBlockAccess access, BlockPos pos)
+	{
+		IBlockState state = access.getBlockState(pos);
+		
+		return (Boolean) state.getValue(VISIBLE) ? 12 : 4;
 	}
 
 	@Override
@@ -59,11 +68,7 @@ public class BlockFragileLight extends Block {
 	@Override
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
-		if (!world.isRemote && entity instanceof EntityLivingBase && ((Boolean) state.getValue(VISIBLE)))
-		{
-			world.setBlockState(pos, this.getDefaultState().withProperty(VISIBLE, true));
-			world.scheduleUpdate(pos, this, 10);
-		}
+		
 	}
 
 	@Override
@@ -73,16 +78,8 @@ public class BlockFragileLight extends Block {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing facing)
-	{
-		Block block = world.getBlockState(pos).getBlock();
-		return block == this ? false : super.shouldSideBeRendered(world, pos, facing);
-	}
-
-	@Override
 	public EnumWorldBlockLayer getBlockLayer() {
-		return EnumWorldBlockLayer.CUTOUT;
+		return EnumWorldBlockLayer.TRANSLUCENT;
 	}
 	
 	@Override
@@ -94,12 +91,12 @@ public class BlockFragileLight extends Block {
 	@Override
 	public IBlockState getStateFromMeta(int meta)
     {
-		return this.getDefaultState().withProperty(VISIBLE, meta > 0);
+		return this.getDefaultState().withProperty(VISIBLE, meta == 0);
     }
 	
 	@Override
 	public int getMetaFromState(IBlockState state)
     {
-		return ((Boolean) state.getValue(VISIBLE)).booleanValue() ? 1 : 0;
+		return ((Boolean) state.getValue(VISIBLE)).booleanValue() ? 0 : 1;
     }
 }

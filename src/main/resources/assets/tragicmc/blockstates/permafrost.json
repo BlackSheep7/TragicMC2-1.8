@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=normal": { "model": "tragicmc:permafrost" },
+        "variant=cracked": { "model": "tragicmc:permafrostCracked" }
+    }
+}

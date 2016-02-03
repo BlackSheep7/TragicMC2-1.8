@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "tragicmc:luminescence" },
+        "facing=west": { "model": "tragicmc:luminescence" },
+        "facing=south": { "model": "tragicmc:luminescence" },
+        "facing=east": { "model": "tragicmc:luminescence" }
+    }
+}

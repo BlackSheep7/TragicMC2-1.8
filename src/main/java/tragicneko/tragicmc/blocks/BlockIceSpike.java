@@ -24,7 +24,7 @@ public class BlockIceSpike extends Block {
 
 	public static final PropertyBool FLIP = PropertyBool.create("flip");
 
-	public BlockIceSpike(boolean flag) {
+	public BlockIceSpike() {
 		super(Material.coral);
 		this.setCreativeTab(TragicMC.Survival);
 		this.setUnlocalizedName("tragicmc.iceSpike");
@@ -57,6 +57,18 @@ public class BlockIceSpike extends Block {
 
 	@Override
 	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isFullBlock()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isFullCube()
 	{
 		return false;
 	}

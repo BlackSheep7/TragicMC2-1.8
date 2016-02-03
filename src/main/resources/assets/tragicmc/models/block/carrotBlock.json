@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "side": "tragicmc:blocks/CarrotBlock",
+        "top": "tragicmc:blocks/CarrotBlock_Top",
+        "bottom": "tragicmc:blocks/CarrotBlock_Bottom"
+    }
+}

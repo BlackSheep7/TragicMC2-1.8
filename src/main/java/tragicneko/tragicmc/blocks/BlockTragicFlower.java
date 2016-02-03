@@ -8,7 +8,6 @@ import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -19,24 +18,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
 
 public class BlockTragicFlower extends BlockBush implements IGrowable {
 
 	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockTragicFlower.EnumVariant.class);
-	public static final PropertyEnum VARIANT2 = PropertyEnum.create("variant2", BlockTragicFlower.EnumVariant2.class);
 
-	private final int flowerSet;
-	private static IProperty[] properties = new IProperty[] {VARIANT, VARIANT2};
-
-	public BlockTragicFlower(int i) {
+	public BlockTragicFlower() {
 		super();
-		this.flowerSet = i;
 		this.setCreativeTab(TragicMC.Survival);
 		this.setUnlocalizedName("tragicmc.flower");
 		this.setStepSound(soundTypeGrass);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(this.properties[this.flowerSet], this.flowerSet == 0 ? EnumVariant.BLUE_SPIRANTHES : EnumVariant2.BRAMBLE));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumVariant.BLUE_SPIRANTHES));
 	}
 
 	@Override
@@ -79,7 +75,7 @@ public class BlockTragicFlower extends BlockBush implements IGrowable {
 		if (rand.nextInt(4) != 0) return;
 
 		int meta = this.getMetaFromState(state);
-		if (this.flowerSet == 0 && meta == 14 && rand.nextInt(4) != 0) return;
+		if (meta == 14 && rand.nextInt(4) != 0) return;
 
 		this.dropBlockAsItem(world, pos, state, 0);
 	}
@@ -87,40 +83,35 @@ public class BlockTragicFlower extends BlockBush implements IGrowable {
 	@Override
 	protected BlockState createBlockState()
 	{
-		return new BlockState(this, VARIANT, VARIANT2);
+		return new BlockState(this, VARIANT);
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		if (this.flowerSet == 1)
-		{
-			return meta == 0 || meta >= EnumVariant2.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(this.properties[this.flowerSet], EnumVariant2.values()[meta]);
-		}
-		return meta == 0 || meta >= EnumVariant.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(this.properties[this.flowerSet], EnumVariant.values()[meta]);
+		return meta == 0 || meta >= EnumVariant.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(VARIANT, EnumVariant.values()[meta]);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		Comparable comp = state.getValue(this.properties[this.flowerSet]);
+		Comparable comp = state.getValue(VARIANT);
 
 		for (byte m = 0; m < 16; m++)
 		{
-			if (this.flowerSet == 0)
-			{
-				if (m >= EnumVariant.values().length) return 0;
-				if (EnumVariant.values()[m] == comp) return m;
-			}
-			else if (this.flowerSet == 1)
-			{
-				if (m >= EnumVariant2.values().length) return 0;
-				if (EnumVariant2.values()[m] == comp) return m;
-			}
+
+			if (m >= EnumVariant.values().length) return 0;
+			if (EnumVariant.values()[m] == comp) return m;
 		}
 
 		return 0;
 	}
+	
+	@SideOnly(Side.CLIENT)
+    public Block.EnumOffsetType getOffsetType()
+    {
+        return Block.EnumOffsetType.XYZ;
+    }
 
 	public enum EnumVariant implements IStringSerializable {
 		BLUE_SPIRANTHES("blue_spiranthes"),
@@ -143,42 +134,6 @@ public class BlockTragicFlower extends BlockBush implements IGrowable {
 		private final String name;
 
 		private EnumVariant(String name)
-		{
-			this.name = name;
-		}
-
-		@Override
-		public String toString() {
-			return this.name;
-		}
-
-		@Override
-		public String getName() {
-			return this.name;
-		}
-	}
-	
-	public enum EnumVariant2 implements IStringSerializable {
-		BRAMBLE("bramble"),
-		TANGLEWEED("tangleweed"),
-		DEATH_CLAW("death_claw"),
-		FUSCHE("fusche"),
-		OSIRIS("osiris"),
-		THUSK("thusk"),
-		PODTAIL("podtail"),
-		FANBRUSH("fanbrush"),
-		TORCHWEED("torchweed"),
-		HALON("halon"),
-		RIZAPHORA("rizaphora"),
-		BLACK_SPOT("black_spot"),
-		NANNON("nannon"),
-		BARBED_WIRE("barbed_wire"),
-		KERN("kern"),
-		FLAHGRASS("flahgrass");
-
-		private final String name;
-
-		private EnumVariant2(String name)
 		{
 			this.name = name;
 		}

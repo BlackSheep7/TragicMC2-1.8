@@ -3,6 +3,7 @@ package tragicneko.tragicmc.events;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockCarrot;
 import net.minecraft.block.BlockPotato;
 import net.minecraft.block.material.Material;
@@ -18,7 +19,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -37,6 +41,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.blocks.BlockFragileLight;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
@@ -183,13 +188,13 @@ public class MiscEvents {
 	public void carrotAndPotatoBlockCreation(BonemealEvent event)
 	{
 		if (!TragicConfig.allowNonMobBlocks) return;
-		if (event.block == Blocks.carrots)
+		if (event.block.getBlock() == Blocks.carrots)
 		{
 			int meta = ((Integer) event.world.getBlockState(event.pos).getValue(BlockCarrot.AGE)).intValue();
 
 			if (meta >= 7)
 			{
-				if (event.world.rand.nextInt(4) == 0)
+				if (event.world.rand.nextInt(4) == 0 && !event.world.isRemote)
 				{
 					event.world.setBlockState(event.pos, TragicBlocks.CarrotBlock.getDefaultState());
 					event.world.playSoundAtEntity(event.entityPlayer, "random.pop", 0.8F, 1.0F);
@@ -198,13 +203,13 @@ public class MiscEvents {
 			}
 		}
 
-		if (event.block == Blocks.potatoes)
+		if (event.block.getBlock() == Blocks.potatoes)
 		{
 			int meta = ((Integer) event.world.getBlockState(event.pos).getValue(BlockPotato.AGE)).intValue();
 
 			if (meta >= 7)
 			{
-				if (event.world.rand.nextInt(4) == 0)
+				if (event.world.rand.nextInt(4) == 0 && !event.world.isRemote)
 				{
 					event.world.setBlockState(event.pos, TragicBlocks.PotatoBlock.getDefaultState());
 					event.world.playSoundAtEntity(event.entityPlayer, "random.pop", 0.8F, 1.0F);
@@ -285,16 +290,16 @@ public class MiscEvents {
 				{
 					ins.applyModifier(synthMod);
 				}
-				
+
 				ins.removeModifier(moonMod);
 				if (player.inventory.hasItem(TragicItems.MoonlightTalisman) && !player.worldObj.isRaining() && !player.worldObj.isThundering() && !player.worldObj.isDaytime())
 				{
 					ins.applyModifier(moonMod);
 				}
 			}
-			
+
 			ins = player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance);
-			
+
 			if (ins != null)
 			{
 				ins.removeModifier(hydraMod);
@@ -304,13 +309,13 @@ public class MiscEvents {
 					ins.applyModifier(hydraMod);
 				}
 			}
-			
+
 			ins = player.getEntityAttribute(SharedMonsterAttributes.attackDamage);
-			
+
 			if (ins != null)
 			{
 				ins.removeModifier(lightMod);
-				
+
 				if (player.inventory.hasItem(TragicItems.LightningRodTalisman) && player.worldObj.isThundering())
 				{
 					ins.applyModifier(lightMod);
@@ -343,7 +348,51 @@ public class MiscEvents {
 		{
 			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
 			if (misc != null) misc.onUpdate();
+
+			if (TragicConfig.allowNonMobBlocks && !event.entityLiving.worldObj.isRemote && event.entityLiving.ticksExisted % 5 == 0) this.isBlockInBB(event.entityLiving.worldObj, event.entityLiving.getEntityBoundingBox());
 		}
+	}
+
+	public boolean isBlockInBB(World world, AxisAlignedBB bb)
+	{
+		int i = MathHelper.floor_double(bb.minX);
+		int j = MathHelper.floor_double(bb.maxX + 1.0D);
+		int k = MathHelper.floor_double(bb.minY);
+		int l = MathHelper.floor_double(bb.maxY + 1.0D);
+		int i1 = MathHelper.floor_double(bb.minZ);
+		int j1 = MathHelper.floor_double(bb.maxZ + 1.0D);
+
+		if (world.isAreaLoaded(new BlockPos(i, k, i1), new BlockPos(j, l, j1), true))
+		{
+			for (int k1 = i; k1 < j; ++k1)
+			{
+				for (int l1 = k; l1 < l; ++l1)
+				{
+					for (int i2 = i1; i2 < j1; ++i2)
+					{
+						BlockPos pos = new BlockPos(k1, l1, i2);
+						Block block = world.getBlockState(pos).getBlock();
+
+						if (block == TragicBlocks.FragileLight)
+						{
+							if (((Boolean) world.getBlockState(pos).getValue(BlockFragileLight.VISIBLE)))
+							{
+								world.setBlockState(pos, TragicBlocks.FragileLight.getDefaultState().withProperty(BlockFragileLight.VISIBLE, false), 3);
+								world.scheduleUpdate(pos, TragicBlocks.FragileLight, 60);
+								return true;
+							}
+							else if (world.rand.nextInt(4) == 0)
+							{
+								world.destroyBlock(pos, true);
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 
 	@SubscribeEvent

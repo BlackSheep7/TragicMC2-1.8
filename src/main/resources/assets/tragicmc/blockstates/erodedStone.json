@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "variant=smooth": { "model": "tragicmc:erodedStone" },
+        "variant=carved": { "model": "tragicmc:erodedStoneCarved" },
+        "variant=scattered": { "model": "tragicmc:erodedStoneScattered" }
+    }
+}

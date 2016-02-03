@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "variant=normal": { "model": "tragicmc:darkSandstone" },
+        "variant=smooth": { "model": "tragicmc:darkSandstoneSmooth" },
+        "variant=bricked": { "model": "tragicmc:darkSandstoneBricked" },
+        "variant=chiseled": { "model": "tragicmc:darkSandstoneChiseled" },
+        "variant=gridded": { "model": "tragicmc:darkSandstoneGridded" },
+        "variant=carved": { "model": "tragicmc:darkSandstoneCarved" }
+    }
+}

@@ -74,7 +74,7 @@ public class BiomeGenAshenHills extends TragicBiome {
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand)
 	{
-		return new WorldGenCustomTallGrass(rand.nextInt(16) == 0 ? TragicBlocks.DriedGrass.getDefaultState() : TragicBlocks.AshenTallGrass.getDefaultState());
+		return new WorldGenCustomTallGrass(rand.nextInt(16) == 0 ? TragicBlocks.DriedTallGrass.getDefaultState() : TragicBlocks.AshenTallGrass.getDefaultState());
 	}
 
 	@Override

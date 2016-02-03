@@ -28,7 +28,7 @@ public class ItemScythe extends TragicTool {
 			Blocks.melon_block, Blocks.melon_stem, Blocks.nether_wart, Blocks.potatoes, Blocks.pumpkin_stem,
 			Blocks.red_flower, Blocks.reeds, Blocks.sapling, Blocks.sponge, Blocks.tripwire, Blocks.vine,
 			Blocks.waterlily, Blocks.web, Blocks.wheat, Blocks.yellow_flower, TragicBlocks.CarrotBlock, TragicBlocks.PotatoBlock,
-			TragicBlocks.AshenTallGrass, TragicBlocks.DriedGrass, TragicBlocks.StarlitTallGrass, TragicBlocks.PaintedTallGrass,
+			TragicBlocks.AshenTallGrass, TragicBlocks.DriedTallGrass, TragicBlocks.StarlitTallGrass, TragicBlocks.PaintedTallGrass,
 			TragicBlocks.Glowvine, TragicBlocks.DeadBush, TragicBlocks.AshenBush, TragicBlocks.TragicFlower, TragicBlocks.TragicSapling,
 			TragicBlocks.HallowedLeafTrim, TragicBlocks.HallowedLeaves, TragicBlocks.DarkLeaves, TragicBlocks.WickedVine, TragicBlocks.DarkVine});
 

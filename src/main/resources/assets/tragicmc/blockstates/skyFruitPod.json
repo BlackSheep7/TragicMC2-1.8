@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "age=0,facing=south": { "model": "tragicmc:skyFruitPod" },
+        "age=0,facing=west": { "model": "tragicmc:skyFruitPod", "y": 90 },
+        "age=0,facing=north": { "model": "tragicmc:skyFruitPod", "y": 180 },
+        "age=0,facing=east": { "model": "tragicmc:skyFruitPod", "y": 270 },
+        "age=1,facing=south": { "model": "tragicmc:skyFruitPod2" },
+        "age=1,facing=west": { "model": "tragicmc:skyFruitPod2", "y": 90 },
+        "age=1,facing=north": { "model": "tragicmc:skyFruitPod2", "y": 180 },
+        "age=1,facing=east": { "model": "tragicmc:skyFruitPod2", "y": 270 },
+        "age=2,facing=south": { "model": "tragicmc:skyFruitPod3" },
+        "age=2,facing=west": { "model": "tragicmc:skyFruitPod3", "y": 90 },
+        "age=2,facing=north": { "model": "tragicmc:skyFruitPod3", "y": 180 },
+        "age=2,facing=east": { "model": "tragicmc:skyFruitPod3", "y": 270 }
+    }
+}

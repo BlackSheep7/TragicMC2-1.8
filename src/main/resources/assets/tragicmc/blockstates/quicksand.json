@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "variant=normal": { "model": "tragicmc:quicksand" },
+        "variant=mud": { "model": "tragicmc:mud" },
+        "variant=drudge": { "model": "tragicmc:drudge" },
+        "variant=sludge": { "model": "tragicmc:sludge" }
+    }
+}

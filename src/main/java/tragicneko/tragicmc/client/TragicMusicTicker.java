@@ -70,7 +70,7 @@ public class TragicMusicTicker implements IUpdatePlayerListBox {
 
 			if (this.currentTrack != null)
 			{					
-				if (!this.currentTrack.getSoundLocation().equals(music.loc))
+				if (this.currentTrack.getSoundLocation() != music.loc)
 				{
 					this.mc.getSoundHandler().stopSound(this.currentTrack);
 					this.buffer = MathHelper.getRandomIntegerInRange(this.rand, 0, music.min / 2);
@@ -98,7 +98,7 @@ public class TragicMusicTicker implements IUpdatePlayerListBox {
 	{
 		MusicType musictype = mc.getAmbientMusicType();
 
-		if (event.sound.getSoundLocation().equals(musictype.getMusicLocation()))
+		if (event.sound.getSoundLocation() == musictype.getMusicLocation())
 		{
 			if (mc.theWorld != null && (mc.theWorld.provider instanceof TragicWorldProvider || mc.theWorld.provider instanceof SynapseWorldProvider))
 			{

@@ -6,9 +6,9 @@ import static net.minecraft.init.Blocks.standing_sign;
 import static net.minecraft.init.Blocks.wall_sign;
 import static tragicneko.tragicmc.TragicBlocks.CelledBlock;
 import static tragicneko.tragicmc.TragicBlocks.CelledLamp;
-import static tragicneko.tragicmc.TragicBlocks.DarkStone;
 import static tragicneko.tragicmc.TragicBlocks.ErodedStone;
 import static tragicneko.tragicmc.TragicBlocks.SoulChest;
+import static tragicneko.tragicmc.TragicBlocks.Spike;
 import static tragicneko.tragicmc.TragicBlocks.SummonBlock;
 
 import java.util.Random;
@@ -66,26 +66,26 @@ public class SchematicCorruptedSpire extends Schematic {
 
 		//first layer
 		//1st row
-		this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-		this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 		//2nd row
 		this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -116,7 +116,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 		//3rd row
-		this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 20, bedrock);
 		this.setBlock(world, x - 13, y, z - 19, bedrock);
 		this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -125,9 +125,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 		this.setBlock(world, x - 13, y, z - 14, bedrock);
 		this.setBlock(world, x - 13, y, z - 13, bedrock);
-		this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 3, bedrock);
 		this.setBlock(world, x - 13, y, z - 2, bedrock);
 		this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -136,9 +136,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 3, bedrock);
 		this.setBlock(world, x - 13, y, z + 4, bedrock);
-		this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 14, bedrock);
 		this.setBlock(world, x - 13, y, z + 15, bedrock);
 		this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -147,18 +147,18 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 20, bedrock);
 		this.setBlock(world, x - 13, y, z + 21, bedrock);
-		this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 		//4th row
 		this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 21, bedrock);
 		this.setBlock(world, x - 12, y, z - 20, bedrock);
-		this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 13, bedrock);
 		this.setBlock(world, x - 12, y, z - 12, bedrock);
 		this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -166,12 +166,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 4, bedrock);
 		this.setBlock(world, x - 12, y, z - 3, bedrock);
-		this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 4, bedrock);
 		this.setBlock(world, x - 12, y, z + 5, bedrock);
 		this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -179,67 +179,67 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 13, bedrock);
 		this.setBlock(world, x - 12, y, z + 14, bedrock);
-		this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 21, bedrock);
 		this.setBlock(world, x - 12, y, z + 22, bedrock);
 		this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 		//5th row
-		this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 22, bedrock);
 		this.setBlock(world, x - 11, y, z - 21, bedrock);
-		this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 19, ErodedStone, 1, 2);
 		this.setBlock(world, x - 11, y, z - 18, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 17, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 16, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 12, bedrock);
 		this.setBlock(world, x - 11, y, z - 11, bedrock);
-		this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 5, bedrock);
 		this.setBlock(world, x - 11, y, z - 4, bedrock);
-		this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x - 11, y, z - 1, ErodedStone);
 		this.setBlock(world, x - 11, y, z, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 1, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 5, bedrock);
 		this.setBlock(world, x - 11, y, z + 6, bedrock);
-		this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 12, bedrock);
 		this.setBlock(world, x - 11, y, z + 13, bedrock);
-		this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 15, ErodedStone, 1, 2);
 		this.setBlock(world, x - 11, y, z + 16, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 17, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 18, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 22, bedrock);
 		this.setBlock(world, x - 11, y, z + 23, bedrock);
-		this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 		//6th row
 		this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 23, bedrock);
 		this.setBlock(world, x - 10, y, z - 22, bedrock);
-		this.setBlock(world, x - 10, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 20, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 19, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 18, ErodedStone);
@@ -248,15 +248,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 10, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 11, bedrock);
 		this.setBlock(world, x - 10, y, z - 10, bedrock);
 		this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 6, bedrock);
 		this.setBlock(world, x - 10, y, z - 5, bedrock);
-		this.setBlock(world, x - 10, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 2, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 1, ErodedStone);
@@ -265,15 +265,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 10, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 6, bedrock);
 		this.setBlock(world, x - 10, y, z + 7, bedrock);
 		this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 11, bedrock);
 		this.setBlock(world, x - 10, y, z + 12, bedrock);
-		this.setBlock(world, x - 10, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 14, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 15, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 16, ErodedStone);
@@ -282,16 +282,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 10, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 23, bedrock);
 		this.setBlock(world, x - 10, y, z + 24, bedrock);
 		this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 		//7th row
-		this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 24, bedrock);
 		this.setBlock(world, x - 9, y, z - 23, bedrock);
-		this.setBlock(world, x - 9, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 21, ErodedStone, 1, 2);
 		this.setBlock(world, x - 9, y, z - 20, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 19, ErodedStone);
@@ -302,13 +302,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 13, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 10, bedrock);
 		this.setBlock(world, x - 9, y, z - 9, bedrock);
 		this.setBlock(world, x - 9, y, z - 8, bedrock);
 		this.setBlock(world, x - 9, y, z - 7, bedrock);
 		this.setBlock(world, x - 9, y, z - 6, bedrock);
-		this.setBlock(world, x - 9, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x - 9, y, z - 3, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 2, ErodedStone);
@@ -319,13 +319,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 4, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 7, bedrock);
 		this.setBlock(world, x - 9, y, z + 8, bedrock);
 		this.setBlock(world, x - 9, y, z + 9, bedrock);
 		this.setBlock(world, x - 9, y, z + 10, bedrock);
 		this.setBlock(world, x - 9, y, z + 11, bedrock);
-		this.setBlock(world, x - 9, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 13, ErodedStone, 1, 2);
 		this.setBlock(world, x - 9, y, z + 14, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 15, ErodedStone);
@@ -336,10 +336,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 21, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 24, bedrock);
 		this.setBlock(world, x - 9, y, z + 25, bedrock);
-		this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 		//8th row
 		this.setBlock(world, x - 8, y, z - 25, CelledBlock);
@@ -558,10 +558,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 5, y, z + 26, CelledBlock);
 
 		//12th row
-		this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 24, bedrock);
 		this.setBlock(world, x - 4, y, z - 23, bedrock);
-		this.setBlock(world, x - 4, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 21, ErodedStone, 1, 2);
 		this.setBlock(world, x - 4, y, z - 20, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 19, ErodedStone);
@@ -572,13 +572,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 4, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 13, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 10, bedrock);
 		this.setBlock(world, x - 4, y, z - 9, bedrock);
 		this.setBlock(world, x - 4, y, z - 8, bedrock);
 		this.setBlock(world, x - 4, y, z - 7, bedrock);
 		this.setBlock(world, x - 4, y, z - 6, bedrock);
-		this.setBlock(world, x - 4, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x - 4, y, z - 3, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 2, ErodedStone);
@@ -589,13 +589,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 4, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 4, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 7, bedrock);
 		this.setBlock(world, x - 4, y, z + 8, bedrock);
 		this.setBlock(world, x - 4, y, z + 9, bedrock);
 		this.setBlock(world, x - 4, y, z + 10, bedrock);
 		this.setBlock(world, x - 4, y, z + 11, bedrock);
-		this.setBlock(world, x - 4, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 13, ErodedStone, 1, 2);
 		this.setBlock(world, x - 4, y, z + 14, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 15, ErodedStone);
@@ -606,16 +606,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 4, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 21, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 24, bedrock);
 		this.setBlock(world, x - 4, y, z + 25, bedrock);
-		this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 		//13th row
 		this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 23, bedrock);
 		this.setBlock(world, x - 3, y, z - 22, bedrock);
-		this.setBlock(world, x - 3, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 20, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 19, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 18, ErodedStone);
@@ -624,15 +624,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 11, bedrock);
 		this.setBlock(world, x - 3, y, z - 10, bedrock);
 		this.setBlock(world, x - 3, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 6, bedrock);
 		this.setBlock(world, x - 3, y, z - 5, bedrock);
-		this.setBlock(world, x - 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 2, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 1, ErodedStone);
@@ -641,15 +641,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 6, bedrock);
 		this.setBlock(world, x - 3, y, z + 7, bedrock);
 		this.setBlock(world, x - 3, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 11, bedrock);
 		this.setBlock(world, x - 3, y, z + 12, bedrock);
-		this.setBlock(world, x - 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 14, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 15, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 16, ErodedStone);
@@ -658,111 +658,111 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 23, bedrock);
 		this.setBlock(world, x - 3, y, z + 24, bedrock);
 		this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 		//14th row
-		this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 22, bedrock);
 		this.setBlock(world, x - 2, y, z - 21, bedrock);
-		this.setBlock(world, x - 2, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 19, ErodedStone, 1, 2);
 		this.setBlock(world, x - 2, y, z - 18, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 17, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 16, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 12, bedrock);
 		this.setBlock(world, x - 2, y, z - 11, bedrock);
-		this.setBlock(world, x - 2, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 5, bedrock);
 		this.setBlock(world, x - 2, y, z - 4, bedrock);
-		this.setBlock(world, x - 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x - 2, y, z - 1, ErodedStone);
 		this.setBlock(world, x - 2, y, z, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 1, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 5, bedrock);
 		this.setBlock(world, x - 2, y, z + 6, bedrock);
-		this.setBlock(world, x - 2, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 12, bedrock);
 		this.setBlock(world, x - 2, y, z + 13, bedrock);
-		this.setBlock(world, x - 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 15, ErodedStone, 1, 2);
 		this.setBlock(world, x - 2, y, z + 16, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 17, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 18, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 22, bedrock);
 		this.setBlock(world, x - 2, y, z + 23, bedrock);
-		this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 		//15th row
 		this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 21, bedrock);
 		this.setBlock(world, x - 1, y, z - 20, bedrock);
-		this.setBlock(world, x - 1, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 13, bedrock);
 		this.setBlock(world, x - 1, y, z - 12, bedrock);
-		this.setBlock(world, x - 1, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 10, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 4, bedrock);
 		this.setBlock(world, x - 1, y, z - 3, bedrock);
-		this.setBlock(world, x - 1, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 4, bedrock);
 		this.setBlock(world, x - 1, y, z + 5, bedrock);
 		this.setBlock(world, x - 1, y, z + 6, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 10, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 11, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 13, bedrock);
 		this.setBlock(world, x - 1, y, z + 14, bedrock);
-		this.setBlock(world, x - 1, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 21, bedrock);
 		this.setBlock(world, x - 1, y, z + 22, bedrock);
 		this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 		//16th row
-		this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 20, bedrock);
 		this.setBlock(world, x, y, z - 19, bedrock);
 		this.setBlock(world, x, y, z - 18, CelledBlock);
@@ -771,17 +771,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z - 15, CelledBlock);
 		this.setBlock(world, x, y, z - 14, bedrock);
 		this.setBlock(world, x, y, z - 13, bedrock);
-		this.setBlock(world, x, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 12, Spike, 0, 2);
 
 		this.setBlock(world, x, y, z - 11, ErodedStone);
 		this.setBlock(world, x, y, z - 10, ErodedStone);
 		this.setBlock(world, x, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z - 8, ErodedStone, 2, 2);
-		this.setBlock(world, x, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 3, bedrock);
 		this.setBlock(world, x, y, z - 2, bedrock);
 		this.setBlock(world, x, y, z - 1, CelledBlock);
@@ -790,17 +790,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 2, CelledBlock);
 		this.setBlock(world, x, y, z + 3, bedrock);
 		this.setBlock(world, x, y, z + 4, bedrock);
-		this.setBlock(world, x, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 8, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 8, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z + 10, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z + 11, ErodedStone);
 		this.setBlock(world, x, y, z + 12, ErodedStone);
 
-		this.setBlock(world, x, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 14, bedrock);
 		this.setBlock(world, x, y, z + 15, bedrock);
 		this.setBlock(world, x, y, z + 16, CelledBlock);
@@ -809,7 +809,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 19, CelledBlock);
 		this.setBlock(world, x, y, z + 20, bedrock);
 		this.setBlock(world, x, y, z + 21, bedrock);
-		this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 		//17th row
 		this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -819,16 +819,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z - 16, bedrock);
 		this.setBlock(world, x + 1, y, z - 15, bedrock);
 		this.setBlock(world, x + 1, y, z - 14, bedrock);
-		this.setBlock(world, x + 1, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 12, ErodedStone, 2, 2);
 		this.setBlock(world, x + 1, y, z - 11, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 10, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 1, y, z - 2, bedrock);
 		this.setBlock(world, x + 1, y, z - 1, bedrock);
@@ -837,16 +837,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 2, bedrock);
 		this.setBlock(world, x + 1, y, z + 3, bedrock);
 		this.setBlock(world, x + 1, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 1, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 8, ErodedStone, 2, 2);
 		this.setBlock(world, x + 1, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 11, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 12, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 13, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 15, bedrock);
 		this.setBlock(world, x + 1, y, z + 16, bedrock);
 		this.setBlock(world, x + 1, y, z + 17, bedrock);
@@ -856,60 +856,60 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 		//18th row
-		this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 15, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 14, bedrock);
-		this.setBlock(world, x + 2, y, z - 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 11, ErodedStone, 2, 2);
 		this.setBlock(world, x + 2, y, z - 10, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 2, bedrock);
 		this.setBlock(world, x + 2, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 3, bedrock);
-		this.setBlock(world, x + 2, y, z + 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 7, ErodedStone, 2, 2);
 		this.setBlock(world, x + 2, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 11, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z + 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 15, bedrock);
 		this.setBlock(world, x + 2, y, z + 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 19, CelledBlock);
-		this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 		//19th row
 		this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 14, bedrock);
 		this.setBlock(world, x + 3, y, z - 13, bedrock);
-		this.setBlock(world, x + 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 11, ErodedStone, 2, 2);
 		this.setBlock(world, x + 3, y, z - 10, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 2, bedrock);
 		this.setBlock(world, x + 3, y, z - 1, bedrock);
@@ -918,31 +918,31 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 3, y, z + 2, bedrock);
 		this.setBlock(world, x + 3, y, z + 3, bedrock);
 		this.setBlock(world, x + 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 3, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 7, ErodedStone, 2, 2);
 		this.setBlock(world, x + 3, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 11, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 14, bedrock);
 		this.setBlock(world, x + 3, y, z + 15, bedrock);
 		this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 		//20th row
-		this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 13, bedrock);
-		this.setBlock(world, x + 4, y, z - 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 10, ErodedStone, 2, 2);
 		this.setBlock(world, x + 4, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 6, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 5, ErodedStone, 2, 2);
-		this.setBlock(world, x + 4, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 3, bedrock);
 		this.setBlock(world, x + 4, y, z - 2, bedrock);
 		this.setBlock(world, x + 4, y, z - 1, CelledBlock);
@@ -951,91 +951,91 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 4, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 4, y, z + 3, bedrock);
 		this.setBlock(world, x + 4, y, z + 4, bedrock);
-		this.setBlock(world, x + 4, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 6, ErodedStone, 2, 2);
 		this.setBlock(world, x + 4, y, z + 7, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 11, ErodedStone, 2, 2);
-		this.setBlock(world, x + 4, y, z + 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 14, bedrock);
-		this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 		//21st row
-		this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 13, bedrock);
 		this.setBlock(world, x + 5, y, z - 12, bedrock);
-		this.setBlock(world, x + 5, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z - 8, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 5, y, z - 6, ErodedStone);
-		this.setBlock(world, x + 5, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 4, bedrock);
 		this.setBlock(world, x + 5, y, z - 3, bedrock);
-		this.setBlock(world, x + 5, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 5, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x + 5, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 5, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x + 5, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 4, bedrock);
 		this.setBlock(world, x + 5, y, z + 5, bedrock);
-		this.setBlock(world, x + 5, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 7, ErodedStone);
 		this.setBlock(world, x + 5, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 5, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z + 10, ErodedStone, 2, 2);
-		this.setBlock(world, x + 5, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 13, bedrock);
 		this.setBlock(world, x + 5, y, z + 14, bedrock);
-		this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 		//22nd row
-		this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 12, bedrock);
 		this.setBlock(world, x + 6, y, z - 11, bedrock);
-		this.setBlock(world, x + 6, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 5, bedrock);
 		this.setBlock(world, x + 6, y, z - 4, bedrock);
-		this.setBlock(world, x + 6, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x + 6, y, z - 1, ErodedStone);
 		this.setBlock(world, x + 6, y, z, ErodedStone);
 		this.setBlock(world, x + 6, y, z + 1, ErodedStone);
 		this.setBlock(world, x + 6, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 6, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 6, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 5, bedrock);
 		this.setBlock(world, x + 6, y, z + 6, bedrock);
-		this.setBlock(world, x + 6, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 8, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 12, bedrock);
 		this.setBlock(world, x + 6, y, z + 13, bedrock);
-		this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 		//23rd row
 		this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 11, bedrock);
 		this.setBlock(world, x + 7, y, z - 10, bedrock);
 		this.setBlock(world, x + 7, y, z - 9, bedrock);
-		this.setBlock(world, x + 7, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z - 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z - 7, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 6, bedrock);
 		this.setBlock(world, x + 7, y, z - 5, bedrock);
-		this.setBlock(world, x + 7, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 7, y, z - 2, ErodedStone);
 		this.setBlock(world, x + 7, y, z - 1, ErodedStone);
@@ -1044,25 +1044,25 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 7, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 7, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 7, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 6, bedrock);
 		this.setBlock(world, x + 7, y, z + 7, bedrock);
-		this.setBlock(world, x + 7, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 10, bedrock);
 		this.setBlock(world, x + 7, y, z + 11, bedrock);
 		this.setBlock(world, x + 7, y, z + 12, bedrock);
-		this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 		//24th row
-		this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 9, bedrock);
 		this.setBlock(world, x + 8, y, z - 8, bedrock);
 		this.setBlock(world, x + 8, y, z - 7, bedrock);
 		this.setBlock(world, x + 8, y, z - 6, bedrock);
-		this.setBlock(world, x + 8, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x + 8, y, z - 3, ErodedStone);
 		this.setBlock(world, x + 8, y, z - 2, ErodedStone);
@@ -1073,13 +1073,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 8, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 8, y, z + 4, ErodedStone);
 		this.setBlock(world, x + 8, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 8, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z + 7, bedrock);
 		this.setBlock(world, x + 8, y, z + 8, bedrock);
 		this.setBlock(world, x + 8, y, z + 9, bedrock);
 		this.setBlock(world, x + 8, y, z + 10, bedrock);
-		this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 		//25th row
 		this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -1164,10 +1164,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 		//29th row
-		this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 7, bedrock);
 		this.setBlock(world, x + 13, y, z - 6, bedrock);
-		this.setBlock(world, x + 13, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x + 13, y, z - 3, ErodedStone);
 		this.setBlock(world, x + 13, y, z - 2, ErodedStone);
@@ -1178,16 +1178,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 13, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 13, y, z + 4, ErodedStone);
 		this.setBlock(world, x + 13, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 13, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z + 7, bedrock);
 		this.setBlock(world, x + 13, y, z + 8, bedrock);
-		this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 		//30th row
 		this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 6, bedrock);
 		this.setBlock(world, x + 14, y, z - 5, bedrock);
-		this.setBlock(world, x + 14, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 2, ErodedStone);
 		this.setBlock(world, x + 14, y, z - 1, ErodedStone);
@@ -1196,43 +1196,43 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 14, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 14, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 14, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 14, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z + 6, bedrock);
 		this.setBlock(world, x + 14, y, z + 7, bedrock);
 		this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 		//31st row
-		this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 5, bedrock);
 		this.setBlock(world, x + 15, y, z - 4, bedrock);
-		this.setBlock(world, x + 15, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x + 15, y, z - 1, ErodedStone);
 		this.setBlock(world, x + 15, y, z, ErodedStone);
 		this.setBlock(world, x + 15, y, z + 1, ErodedStone);
 		this.setBlock(world, x + 15, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 15, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 15, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z + 5, bedrock);
 		this.setBlock(world, x + 15, y, z + 6, bedrock);
-		this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 		//32nd row
 		this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z - 4, bedrock);
 		this.setBlock(world, x + 16, y, z - 3, bedrock);
-		this.setBlock(world, x + 16, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x + 16, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z + 4, bedrock);
 		this.setBlock(world, x + 16, y, z + 5, bedrock);
 		this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 		//33rd row
-		this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 17, y, z - 3, bedrock);
 		this.setBlock(world, x + 17, y, z - 2, bedrock);
 		this.setBlock(world, x + 17, y, z - 1, CelledBlock);
@@ -1241,7 +1241,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 17, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 17, y, z + 3, bedrock);
 		this.setBlock(world, x + 17, y, z + 4, bedrock);
-		this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 		//34th row
 		this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -1254,37 +1254,37 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 		//35th row
-		this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-		this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 
 		for (byte i = 0; i < 2; i++) //Second/Third layer
 		{
 			y++;
 			//1st row
-			this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 			this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 			this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 			this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 			this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-			this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-			this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 			this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 			this.setBlockToAir(world, x - 15, y, z);
 			this.setBlockToAir(world, x - 15, y, z + 1);
 			this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-			this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-			this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 			this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-			this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 			//2nd row
 			this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -1315,7 +1315,7 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 			//3rd row
-			this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 			this.setBlock(world, x - 13, y, z - 20, bedrock);
 			this.setBlock(world, x - 13, y, z - 19, bedrock);
 			this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -1324,9 +1324,9 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 			this.setBlock(world, x - 13, y, z - 14, bedrock);
 			this.setBlock(world, x - 13, y, z - 13, bedrock);
-			this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-			this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x - 13, y, z - 3, bedrock);
 			this.setBlock(world, x - 13, y, z - 2, bedrock);
 			this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -1335,9 +1335,9 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 			this.setBlock(world, x - 13, y, z + 3, bedrock);
 			this.setBlock(world, x - 13, y, z + 4, bedrock);
-			this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-			this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x - 13, y, z + 14, bedrock);
 			this.setBlock(world, x - 13, y, z + 15, bedrock);
 			this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -1346,18 +1346,18 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 			this.setBlock(world, x - 13, y, z + 20, bedrock);
 			this.setBlock(world, x - 13, y, z + 21, bedrock);
-			this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 			//4th row
 			this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 			this.setBlock(world, x - 12, y, z - 21, bedrock);
 			this.setBlock(world, x - 12, y, z - 20, bedrock);
-			this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 			this.setBlockToAir(world, x - 12, y, z - 18);
 			this.setBlockToAir(world, x - 12, y, z - 17);
 			this.setBlockToAir(world, x - 12, y, z - 16);
 			this.setBlockToAir(world, x - 12, y, z - 15);
-			this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 			this.setBlock(world, x - 12, y, z - 13, bedrock);
 			this.setBlock(world, x - 12, y, z - 12, bedrock);
 			this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -1365,12 +1365,12 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 			this.setBlock(world, x - 12, y, z - 4, bedrock);
 			this.setBlock(world, x - 12, y, z - 3, bedrock);
-			this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 			this.setBlockToAir(world, x - 12, y, z - 1);
 			this.setBlockToAir(world, x - 12, y, z);
 			this.setBlockToAir(world, x - 12, y, z + 1);
 			this.setBlockToAir(world, x - 12, y, z + 2);
-			this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 			this.setBlock(world, x - 12, y, z + 4, bedrock);
 			this.setBlock(world, x - 12, y, z + 5, bedrock);
 			this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -1378,67 +1378,67 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 			this.setBlock(world, x - 12, y, z + 13, bedrock);
 			this.setBlock(world, x - 12, y, z + 14, bedrock);
-			this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 			this.setBlockToAir(world, x - 12, y, z + 16);
 			this.setBlockToAir(world, x - 12, y, z + 17);
 			this.setBlockToAir(world, x - 12, y, z + 18);
 			this.setBlockToAir(world, x - 12, y, z + 19);
-			this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 			this.setBlock(world, x - 12, y, z + 21, bedrock);
 			this.setBlock(world, x - 12, y, z + 22, bedrock);
 			this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 			//5th row
-			this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z - 22, bedrock);
 			this.setBlock(world, x - 11, y, z - 21, bedrock);
-			this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 			this.setBlockToAir(world, x - 11, y, z - 19);
 			this.setBlockToAir(world, x - 11, y, z - 18);
 			this.setBlockToAir(world, x - 11, y, z - 17);
 			this.setBlockToAir(world, x - 11, y, z - 16);
 			this.setBlockToAir(world, x - 11, y, z - 15);
 			this.setBlockToAir(world, x - 11, y, z - 14);
-			this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z - 12, bedrock);
 			this.setBlock(world, x - 11, y, z - 11, bedrock);
-			this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-			this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z - 5, bedrock);
 			this.setBlock(world, x - 11, y, z - 4, bedrock);
-			this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 			this.setBlockToAir(world, x - 11, y, z - 2);
 			this.setBlockToAir(world, x - 11, y, z - 1);
 			this.setBlockToAir(world, x - 11, y, z);
 			this.setBlockToAir(world, x - 11, y, z + 1);
 			this.setBlockToAir(world, x - 11, y, z + 2);
 			this.setBlockToAir(world, x - 11, y, z + 3);
-			this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z + 5, bedrock);
 			this.setBlock(world, x - 11, y, z + 6, bedrock);
-			this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-			this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z + 12, bedrock);
 			this.setBlock(world, x - 11, y, z + 13, bedrock);
-			this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 			this.setBlockToAir(world, x - 11, y, z + 15);
 			this.setBlockToAir(world, x - 11, y, z + 16);
 			this.setBlockToAir(world, x - 11, y, z + 17);
 			this.setBlockToAir(world, x - 11, y, z + 18);
 			this.setBlockToAir(world, x - 11, y, z + 19);
 			this.setBlockToAir(world, x - 11, y, z + 20);
-			this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z + 22, bedrock);
 			this.setBlock(world, x - 11, y, z + 23, bedrock);
-			this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 			//6th row
 			this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 			this.setBlock(world, x - 10, y, z - 23, bedrock);
 			this.setBlock(world, x - 10, y, z - 22, bedrock);
-			this.setBlock(world, x - 10, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z - 21, Spike, 0, 2);
 			this.setBlockToAir(world, x - 10, y, z - 20);
 			this.setBlockToAir(world, x - 10, y, z - 19);
 			this.setBlockToAir(world, x - 10, y, z - 18);
@@ -1447,15 +1447,15 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 10, y, z - 15);
 			this.setBlockToAir(world, x - 10, y, z - 14);
 			this.setBlockToAir(world, x - 10, y, z - 13);
-			this.setBlock(world, x - 10, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z - 12, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z - 11, bedrock);
 			this.setBlock(world, x - 10, y, z - 10, bedrock);
 			this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-			this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 			this.setBlock(world, x - 10, y, z - 6, bedrock);
 			this.setBlock(world, x - 10, y, z - 5, bedrock);
-			this.setBlock(world, x - 10, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z - 4, Spike, 0, 2);
 			this.setBlockToAir(world, x - 10, y, z - 3);
 			this.setBlockToAir(world, x - 10, y, z - 2);
 			this.setBlockToAir(world, x - 10, y, z - 1);
@@ -1464,15 +1464,15 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 10, y, z + 2);
 			this.setBlockToAir(world, x - 10, y, z + 3);
 			this.setBlockToAir(world, x - 10, y, z + 4);
-			this.setBlock(world, x - 10, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z + 5, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z + 6, bedrock);
 			this.setBlock(world, x - 10, y, z + 7, bedrock);
 			this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-			this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 			this.setBlock(world, x - 10, y, z + 11, bedrock);
 			this.setBlock(world, x - 10, y, z + 12, bedrock);
-			this.setBlock(world, x - 10, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z + 13, Spike, 0, 2);
 			this.setBlockToAir(world, x - 10, y, z + 14);
 			this.setBlockToAir(world, x - 10, y, z + 15);
 			this.setBlockToAir(world, x - 10, y, z + 16);
@@ -1481,16 +1481,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 10, y, z + 19);
 			this.setBlockToAir(world, x - 10, y, z + 20);
 			this.setBlockToAir(world, x - 10, y, z + 21);
-			this.setBlock(world, x - 10, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z + 22, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z + 23, bedrock);
 			this.setBlock(world, x - 10, y, z + 24, bedrock);
 			this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 			//7th row
-			this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 9, y, z - 24, bedrock);
 			this.setBlock(world, x - 9, y, z - 23, bedrock);
-			this.setBlock(world, x - 9, y, z - 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z - 22, Spike, 0, 2);
 			this.setBlockToAir(world, x - 9, y, z - 21);
 			this.setBlockToAir(world, x - 9, y, z - 20);
 			this.setBlockToAir(world, x - 9, y, z - 19);
@@ -1501,13 +1501,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 9, y, z - 14);
 			this.setBlockToAir(world, x - 9, y, z - 13);
 			this.setBlockToAir(world, x - 9, y, z - 12);
-			this.setBlock(world, x - 9, y, z - 11, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z - 11, Spike, 0, 2);
 			this.setBlock(world, x - 9, y, z - 10, bedrock);
 			this.setBlock(world, x - 9, y, z - 9, bedrock);
 			this.setBlock(world, x - 9, y, z - 8, bedrock);
 			this.setBlock(world, x - 9, y, z - 7, bedrock);
 			this.setBlock(world, x - 9, y, z - 6, bedrock);
-			this.setBlock(world, x - 9, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z - 5, Spike, 0, 2);
 			this.setBlockToAir(world, x - 9, y, z - 4);
 			this.setBlockToAir(world, x - 9, y, z - 3);
 			this.setBlockToAir(world, x - 9, y, z - 2);
@@ -1518,13 +1518,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 9, y, z + 3);
 			this.setBlockToAir(world, x - 9, y, z + 4);
 			this.setBlockToAir(world, x - 9, y, z + 5);
-			this.setBlock(world, x - 9, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z + 6, Spike, 0, 2);
 			this.setBlock(world, x - 9, y, z + 7, bedrock);
 			this.setBlock(world, x - 9, y, z + 8, bedrock);
 			this.setBlock(world, x - 9, y, z + 9, bedrock);
 			this.setBlock(world, x - 9, y, z + 10, bedrock);
 			this.setBlock(world, x - 9, y, z + 11, bedrock);
-			this.setBlock(world, x - 9, y, z + 12, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z + 12, Spike, 0, 2);
 			this.setBlockToAir(world, x - 9, y, z + 13);
 			this.setBlockToAir(world, x - 9, y, z + 14);
 			this.setBlockToAir(world, x - 9, y, z + 15);
@@ -1535,10 +1535,10 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 9, y, z + 20);
 			this.setBlockToAir(world, x - 9, y, z + 21);
 			this.setBlockToAir(world, x - 9, y, z + 22);
-			this.setBlock(world, x - 9, y, z + 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z + 23, Spike, 0, 2);
 			this.setBlock(world, x - 9, y, z + 24, bedrock);
 			this.setBlock(world, x - 9, y, z + 25, bedrock);
-			this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 			//8th row
 			this.setBlock(world, x - 8, y, z - 25, CelledBlock);
@@ -1757,10 +1757,10 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 5, y, z + 26, CelledBlock);
 
 			//12th row
-			this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 4, y, z - 24, bedrock);
 			this.setBlock(world, x - 4, y, z - 23, bedrock);
-			this.setBlock(world, x - 4, y, z - 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z - 22, Spike, 0, 2);
 			this.setBlockToAir(world, x - 4, y, z - 21);
 			this.setBlockToAir(world, x - 4, y, z - 20);
 			this.setBlockToAir(world, x - 4, y, z - 19);
@@ -1771,13 +1771,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 4, y, z - 14);
 			this.setBlockToAir(world, x - 4, y, z - 13);
 			this.setBlockToAir(world, x - 4, y, z - 12);
-			this.setBlock(world, x - 4, y, z - 11, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z - 11, Spike, 0, 2);
 			this.setBlock(world, x - 4, y, z - 10, bedrock);
 			this.setBlock(world, x - 4, y, z - 9, bedrock);
 			this.setBlock(world, x - 4, y, z - 8, bedrock);
 			this.setBlock(world, x - 4, y, z - 7, bedrock);
 			this.setBlock(world, x - 4, y, z - 6, bedrock);
-			this.setBlock(world, x - 4, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z - 5, Spike, 0, 2);
 			this.setBlockToAir(world, x - 4, y, z - 4);
 			this.setBlockToAir(world, x - 4, y, z - 3);
 			this.setBlockToAir(world, x - 4, y, z - 2);
@@ -1788,13 +1788,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 4, y, z + 3);
 			this.setBlockToAir(world, x - 4, y, z + 4);
 			this.setBlockToAir(world, x - 4, y, z + 5);
-			this.setBlock(world, x - 4, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z + 6, Spike, 0, 2);
 			this.setBlock(world, x - 4, y, z + 7, bedrock);
 			this.setBlock(world, x - 4, y, z + 8, bedrock);
 			this.setBlock(world, x - 4, y, z + 9, bedrock);
 			this.setBlock(world, x - 4, y, z + 10, bedrock);
 			this.setBlock(world, x - 4, y, z + 11, bedrock);
-			this.setBlock(world, x - 4, y, z + 12, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z + 12, Spike, 0, 2);
 			this.setBlockToAir(world, x - 4, y, z + 13);
 			this.setBlockToAir(world, x - 4, y, z + 14);
 			this.setBlockToAir(world, x - 4, y, z + 15);
@@ -1805,16 +1805,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 4, y, z + 20);
 			this.setBlockToAir(world, x - 4, y, z + 21);
 			this.setBlockToAir(world, x - 4, y, z + 22);
-			this.setBlock(world, x - 4, y, z + 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z + 23, Spike, 0, 2);
 			this.setBlock(world, x - 4, y, z + 24, bedrock);
 			this.setBlock(world, x - 4, y, z + 25, bedrock);
-			this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 			//13th row
 			this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
 			this.setBlock(world, x - 3, y, z - 23, bedrock);
 			this.setBlock(world, x - 3, y, z - 22, bedrock);
-			this.setBlock(world, x - 3, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z - 21, Spike, 0, 2);
 			this.setBlockToAir(world, x - 3, y, z - 20);
 			this.setBlockToAir(world, x - 3, y, z - 19);
 			this.setBlockToAir(world, x - 3, y, z - 18);
@@ -1827,11 +1827,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 3, y, z - 11, bedrock);
 			this.setBlock(world, x - 3, y, z - 10, bedrock);
 			this.setBlock(world, x - 3, y, z - 9, ErodedStone, 1, 2);
-			this.setBlock(world, x - 3, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z - 8, Spike, 0, 2);
 			this.setBlock(world, x - 3, y, z - 7, ErodedStone, 1, 2);
 			this.setBlock(world, x - 3, y, z - 6, bedrock);
 			this.setBlock(world, x - 3, y, z - 5, bedrock);
-			this.setBlock(world, x - 3, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z - 4, Spike, 0, 2);
 			this.setBlockToAir(world, x - 3, y, z - 3);
 			this.setBlockToAir(world, x - 3, y, z - 2);
 			this.setBlockToAir(world, x - 3, y, z - 1);
@@ -1840,11 +1840,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 3, y, z + 2);
 			this.setBlockToAir(world, x - 3, y, z + 3);
 			this.setBlockToAir(world, x - 3, y, z + 4);
-			this.setBlock(world, x - 3, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z + 5, Spike, 0, 2);
 			this.setBlock(world, x - 3, y, z + 6, bedrock);
 			this.setBlock(world, x - 3, y, z + 7, bedrock);
 			this.setBlock(world, x - 3, y, z + 8, ErodedStone, 1, 2);
-			this.setBlock(world, x - 3, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z + 9, Spike, 0, 2);
 			this.setBlock(world, x - 3, y, z + 10, ErodedStone, 1, 2);
 			this.setBlock(world, x - 3, y, z + 11, bedrock);
 			this.setBlock(world, x - 3, y, z + 12, bedrock);
@@ -1857,16 +1857,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 3, y, z + 19);
 			this.setBlockToAir(world, x - 3, y, z + 20);
 			this.setBlockToAir(world, x - 3, y, z + 21);
-			this.setBlock(world, x - 3, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z + 22, Spike, 0, 2);
 			this.setBlock(world, x - 3, y, z + 23, bedrock);
 			this.setBlock(world, x - 3, y, z + 24, bedrock);
 			this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 			//14th row
-			this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 			this.setBlock(world, x - 2, y, z - 22, bedrock);
 			this.setBlock(world, x - 2, y, z - 21, bedrock);
-			this.setBlock(world, x - 2, y, z - 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z - 20, Spike, 0, 2);
 			this.setBlockToAir(world, x - 2, y, z - 19);
 			this.setBlockToAir(world, x - 2, y, z - 18);
 			this.setBlockToAir(world, x - 2, y, z - 17);
@@ -1876,28 +1876,28 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 2, y, z - 13);
 			this.setBlockToAir(world, x - 2, y, z - 12);
 			this.setBlockToAir(world, x - 2, y, z - 11);
-			this.setBlock(world, x - 2, y, z - 10, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z - 9, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z - 8, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z - 7, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z - 10, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z - 9, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z - 8, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z - 7, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x - 2, y, z - 5, bedrock);
 			this.setBlock(world, x - 2, y, z - 4, bedrock);
-			this.setBlock(world, x - 2, y, z - 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z - 3, Spike, 0, 2);
 			this.setBlockToAir(world, x - 2, y, z - 2);
 			this.setBlockToAir(world, x - 2, y, z - 1);
 			this.setBlockToAir(world, x - 2, y, z);
 			this.setBlockToAir(world, x - 2, y, z + 1);
 			this.setBlockToAir(world, x - 2, y, z + 2);
 			this.setBlockToAir(world, x - 2, y, z + 3);
-			this.setBlock(world, x - 2, y, z + 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z + 4, Spike, 0, 2);
 			this.setBlock(world, x - 2, y, z + 5, bedrock);
 			this.setBlock(world, x - 2, y, z + 6, bedrock);
-			this.setBlock(world, x - 2, y, z + 7, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z + 8, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z + 9, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z + 10, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z + 11, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z + 7, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z + 8, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z + 9, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z + 10, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z + 11, Spike, 0, 2);
 			this.setBlockToAir(world, x - 2, y, z + 12);
 			this.setBlockToAir(world, x - 2, y, z + 13);
 			this.setBlockToAir(world, x - 2, y, z + 14);
@@ -1907,61 +1907,61 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 2, y, z + 18);
 			this.setBlockToAir(world, x - 2, y, z + 19);
 			this.setBlockToAir(world, x - 2, y, z + 20);
-			this.setBlock(world, x - 2, y, z + 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z + 21, Spike, 0, 2);
 			this.setBlock(world, x - 2, y, z + 22, bedrock);
 			this.setBlock(world, x - 2, y, z + 23, bedrock);
-			this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 			//15th row
 			this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
 			this.setBlock(world, x - 1, y, z - 21, bedrock);
 			this.setBlock(world, x - 1, y, z - 20, bedrock);
-			this.setBlock(world, x - 1, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z - 19, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z - 18);
 			this.setBlockToAir(world, x - 1, y, z - 17);
 			this.setBlockToAir(world, x - 1, y, z - 16);
 			this.setBlockToAir(world, x - 1, y, z - 15);
-			this.setBlock(world, x - 1, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z - 14, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z - 13);
 			this.setBlockToAir(world, x - 1, y, z - 12);
 			this.setBlockToAir(world, x - 1, y, z - 11);
 			this.setBlockToAir(world, x - 1, y, z - 10);
-			this.setBlock(world, x - 1, y, z - 9, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z - 8, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z - 7, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z - 9, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z - 8, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z - 7, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x - 1, y, z - 5, ErodedStone, 1, 2);
 			this.setBlock(world, x - 1, y, z - 4, bedrock);
 			this.setBlock(world, x - 1, y, z - 3, bedrock);
-			this.setBlock(world, x - 1, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z - 2, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z - 1);
 			this.setBlockToAir(world, x - 1, y, z);
 			this.setBlockToAir(world, x - 1, y, z + 1);
 			this.setBlockToAir(world, x - 1, y, z + 2);
-			this.setBlock(world, x - 1, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z + 3, Spike, 0, 2);
 			this.setBlock(world, x - 1, y, z + 4, bedrock);
 			this.setBlock(world, x - 1, y, z + 5, bedrock);
 			this.setBlock(world, x - 1, y, z + 6, ErodedStone, 1, 2);
-			this.setBlock(world, x - 1, y, z + 7, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z + 8, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z + 9, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z + 10, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z + 7, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z + 8, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z + 9, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z + 10, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z + 11);
 			this.setBlockToAir(world, x - 1, y, z + 12);
 			this.setBlockToAir(world, x - 1, y, z + 13);
 			this.setBlockToAir(world, x - 1, y, z + 14);
-			this.setBlock(world, x - 1, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z + 15, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z + 16);
 			this.setBlockToAir(world, x - 1, y, z + 17);
 			this.setBlockToAir(world, x - 1, y, z + 18);
 			this.setBlockToAir(world, x - 1, y, z + 19);
-			this.setBlock(world, x - 1, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z + 20, Spike, 0, 2);
 			this.setBlock(world, x - 1, y, z + 21, bedrock);
 			this.setBlock(world, x - 1, y, z + 22, bedrock);
 			this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 			//16th row
-			this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 			this.setBlock(world, x, y, z - 20, bedrock);
 			this.setBlock(world, x, y, z - 19, bedrock);
 			this.setBlock(world, x, y, z - 18, CelledBlock);
@@ -1976,11 +1976,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x, y, z - 10);
 			this.setBlockToAir(world, x, y, z - 9);
 			this.setBlockToAir(world, x, y, z - 8);
-			this.setBlock(world, x, y, z - 7, DarkStone, 14, 2);
-			this.setBlock(world, x, y, z - 6, DarkStone, 14, 2);
-			this.setBlock(world, x, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z - 7, Spike, 0, 2);
+			this.setBlock(world, x, y, z - 6, Spike, 0, 2);
+			this.setBlock(world, x, y, z - 5, Spike, 0, 2);
 
-			this.setBlock(world, x, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x, y, z - 3, bedrock);
 			this.setBlock(world, x, y, z - 2, bedrock);
 			this.setBlock(world, x, y, z - 1, CelledBlock);
@@ -1989,11 +1989,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x, y, z + 2, CelledBlock);
 			this.setBlock(world, x, y, z + 3, bedrock);
 			this.setBlock(world, x, y, z + 4, bedrock);
-			this.setBlock(world, x, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z + 5, Spike, 0, 2);
 
-			this.setBlock(world, x, y, z + 6, DarkStone, 14, 2);
-			this.setBlock(world, x, y, z + 7, DarkStone, 14, 2);
-			this.setBlock(world, x, y, z + 8, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z + 6, Spike, 0, 2);
+			this.setBlock(world, x, y, z + 7, Spike, 0, 2);
+			this.setBlock(world, x, y, z + 8, Spike, 0, 2);
 			this.setBlockToAir(world, x, y, z + 9);
 			this.setBlockToAir(world, x, y, z + 10);
 			this.setBlockToAir(world, x, y, z + 11);
@@ -2008,7 +2008,7 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x, y, z + 19, CelledBlock);
 			this.setBlock(world, x, y, z + 20, bedrock);
 			this.setBlock(world, x, y, z + 21, bedrock);
-			this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 			//17th row
 			this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -2018,16 +2018,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 1, y, z - 16, bedrock);
 			this.setBlock(world, x + 1, y, z - 15, bedrock);
 			this.setBlock(world, x + 1, y, z - 14, bedrock);
-			this.setBlock(world, x + 1, y, z - 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 1, y, z - 13, Spike, 0, 2);
 			this.setBlockToAir(world, x + 1, y, z - 12);
 			this.setBlockToAir(world, x + 1, y, z - 11);
 			this.setBlockToAir(world, x + 1, y, z - 10);
 			this.setBlockToAir(world, x + 1, y, z - 9);
 			this.setBlockToAir(world, x + 1, y, z - 8);
 			this.setBlockToAir(world, x + 1, y, z - 7);
-			this.setBlock(world, x + 1, y, z - 6, DarkStone, 14, 2);
-			this.setBlock(world, x + 1, y, z - 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 1, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 1, y, z - 6, Spike, 0, 2);
+			this.setBlock(world, x + 1, y, z - 5, Spike, 0, 2);
+			this.setBlock(world, x + 1, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x + 1, y, z - 3, ErodedStone, 1, 2);
 			this.setBlock(world, x + 1, y, z - 2, bedrock);
 			this.setBlock(world, x + 1, y, z - 1, bedrock);
@@ -2036,16 +2036,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 1, y, z + 2, bedrock);
 			this.setBlock(world, x + 1, y, z + 3, bedrock);
 			this.setBlock(world, x + 1, y, z + 4, ErodedStone, 1, 2);
-			this.setBlock(world, x + 1, y, z + 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 1, y, z + 6, DarkStone, 14, 2);
-			this.setBlock(world, x + 1, y, z + 7, DarkStone, 14, 2);
+			this.setBlock(world, x + 1, y, z + 5, Spike, 0, 2);
+			this.setBlock(world, x + 1, y, z + 6, Spike, 0, 2);
+			this.setBlock(world, x + 1, y, z + 7, Spike, 0, 2);
 			this.setBlockToAir(world, x + 1, y, z + 8);
 			this.setBlockToAir(world, x + 1, y, z + 9);
 			this.setBlockToAir(world, x + 1, y, z + 10);
 			this.setBlockToAir(world, x + 1, y, z + 11);
 			this.setBlockToAir(world, x + 1, y, z + 12);
 			this.setBlockToAir(world, x + 1, y, z + 13);
-			this.setBlock(world, x + 1, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 1, y, z + 14, Spike, 0, 2);
 			this.setBlock(world, x + 1, y, z + 15, bedrock);
 			this.setBlock(world, x + 1, y, z + 16, bedrock);
 			this.setBlock(world, x + 1, y, z + 17, bedrock);
@@ -2055,60 +2055,60 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 			//18th row
-			this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
 			this.setBlock(world, x + 2, y, z - 18, CelledBlock);
 			this.setBlock(world, x + 2, y, z - 17, CelledBlock);
 			this.setBlock(world, x + 2, y, z - 16, CelledBlock);
 			this.setBlock(world, x + 2, y, z - 15, CelledBlock);
 			this.setBlock(world, x + 2, y, z - 14, bedrock);
-			this.setBlock(world, x + 2, y, z - 13, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z - 13, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z - 12, Spike, 0, 2);
 			this.setBlockToAir(world, x + 2, y, z - 11);
 			this.setBlockToAir(world, x + 2, y, z - 10);
 			this.setBlockToAir(world, x + 2, y, z - 9);
 			this.setBlockToAir(world, x + 2, y, z - 8);
 			this.setBlockToAir(world, x + 2, y, z - 7);
 			this.setBlockToAir(world, x + 2, y, z - 6);
-			this.setBlock(world, x + 2, y, z - 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z - 4, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z - 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z - 5, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z - 4, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z - 3, Spike, 0, 2);
 			this.setBlock(world, x + 2, y, z - 2, bedrock);
 			this.setBlock(world, x + 2, y, z - 1, CelledBlock);
 			this.setBlock(world, x + 2, y, z, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 1, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 2, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 3, bedrock);
-			this.setBlock(world, x + 2, y, z + 4, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z + 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z + 4, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z + 5, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z + 6, Spike, 0, 2);
 			this.setBlockToAir(world, x + 2, y, z + 7);
 			this.setBlockToAir(world, x + 2, y, z + 8);
 			this.setBlockToAir(world, x + 2, y, z + 9);
 			this.setBlockToAir(world, x + 2, y, z + 10);
 			this.setBlockToAir(world, x + 2, y, z + 11);
 			this.setBlockToAir(world, x + 2, y, z + 12);
-			this.setBlock(world, x + 2, y, z + 13, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z + 13, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z + 14, Spike, 0, 2);
 			this.setBlock(world, x + 2, y, z + 15, bedrock);
 			this.setBlock(world, x + 2, y, z + 16, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 17, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 18, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 19, CelledBlock);
-			this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 			//19th row
 			this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
 			this.setBlock(world, x + 3, y, z - 14, bedrock);
 			this.setBlock(world, x + 3, y, z - 13, bedrock);
-			this.setBlock(world, x + 3, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 3, y, z - 12, Spike, 0, 2);
 			this.setBlockToAir(world, x + 3, y, z - 11);
 			this.setBlockToAir(world, x + 3, y, z - 10);
 			this.setBlockToAir(world, x + 3, y, z - 9);
 			this.setBlockToAir(world, x + 3, y, z - 8);
 			this.setBlockToAir(world, x + 3, y, z - 7);
 			this.setBlockToAir(world, x + 3, y, z - 6);
-			this.setBlock(world, x + 3, y, z - 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 3, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 3, y, z - 5, Spike, 0, 2);
+			this.setBlock(world, x + 3, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x + 3, y, z - 3, ErodedStone, 1, 2);
 			this.setBlock(world, x + 3, y, z - 2, bedrock);
 			this.setBlock(world, x + 3, y, z - 1, bedrock);
@@ -2117,31 +2117,31 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 3, y, z + 2, bedrock);
 			this.setBlock(world, x + 3, y, z + 3, bedrock);
 			this.setBlock(world, x + 3, y, z + 4, ErodedStone, 1, 2);
-			this.setBlock(world, x + 3, y, z + 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 3, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 3, y, z + 5, Spike, 0, 2);
+			this.setBlock(world, x + 3, y, z + 6, Spike, 0, 2);
 			this.setBlockToAir(world, x + 3, y, z + 7);
 			this.setBlockToAir(world, x + 3, y, z + 8);
 			this.setBlockToAir(world, x + 3, y, z + 9);
 			this.setBlockToAir(world, x + 3, y, z + 10);
 			this.setBlockToAir(world, x + 3, y, z + 11);
 			this.setBlockToAir(world, x + 3, y, z + 12);
-			this.setBlock(world, x + 3, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 3, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x + 3, y, z + 14, bedrock);
 			this.setBlock(world, x + 3, y, z + 15, bedrock);
 			this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 			//20th row
-			this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 			this.setBlock(world, x + 4, y, z - 13, bedrock);
-			this.setBlock(world, x + 4, y, z - 12, DarkStone, 14, 2);
-			this.setBlock(world, x + 4, y, z - 11, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z - 12, Spike, 0, 2);
+			this.setBlock(world, x + 4, y, z - 11, Spike, 0, 2);
 			this.setBlockToAir(world, x + 4, y, z - 10);
 			this.setBlockToAir(world, x + 4, y, z - 9);
 			this.setBlockToAir(world, x + 4, y, z - 8);
 			this.setBlockToAir(world, x + 4, y, z - 7);
 			this.setBlockToAir(world, x + 4, y, z - 6);
 			this.setBlockToAir(world, x + 4, y, z - 5);
-			this.setBlock(world, x + 4, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x + 4, y, z - 3, bedrock);
 			this.setBlock(world, x + 4, y, z - 2, bedrock);
 			this.setBlock(world, x + 4, y, z - 1, CelledBlock);
@@ -2150,24 +2150,24 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 4, y, z + 2, CelledBlock);
 			this.setBlock(world, x + 4, y, z + 3, bedrock);
 			this.setBlock(world, x + 4, y, z + 4, bedrock);
-			this.setBlock(world, x + 4, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z + 5, Spike, 0, 2);
 			this.setBlockToAir(world, x + 4, y, z + 6);
 			this.setBlockToAir(world, x + 4, y, z + 7);
 			this.setBlockToAir(world, x + 4, y, z + 8);
 			this.setBlockToAir(world, x + 4, y, z + 9);
 			this.setBlockToAir(world, x + 4, y, z + 10);
 			this.setBlockToAir(world, x + 4, y, z + 11);
-			this.setBlock(world, x + 4, y, z + 12, DarkStone, 14, 2);
-			this.setBlock(world, x + 4, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z + 12, Spike, 0, 2);
+			this.setBlock(world, x + 4, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x + 4, y, z + 14, bedrock);
-			this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 			//21st row
-			this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 			this.setBlock(world, x + 5, y, z - 13, bedrock);
 			this.setBlock(world, x + 5, y, z - 12, bedrock);
-			this.setBlock(world, x + 5, y, z - 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 5, y, z - 10, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z - 11, Spike, 0, 2);
+			this.setBlock(world, x + 5, y, z - 10, Spike, 0, 2);
 			this.setBlockToAir(world, x + 5, y, z - 9);
 			this.setBlockToAir(world, x + 5, y, z - 8);
 			this.setBlockToAir(world, x + 5, y, z - 7);
@@ -2175,12 +2175,12 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 5, y, z - 5);
 			this.setBlockToAir(world, x + 5, y, z - 4);
 			this.setBlockToAir(world, x + 5, y, z - 3);
-			this.setBlock(world, x + 5, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z - 2, Spike, 0, 2);
 			this.setBlockToAir(world, x + 5, y, z - 1);
 			this.setBlockToAir(world, x + 5, y, z);
 			this.setBlockToAir(world, x + 5, y, z + 1);
 			this.setBlockToAir(world, x + 5, y, z + 2);
-			this.setBlock(world, x + 5, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z + 3, Spike, 0, 2);
 			this.setBlockToAir(world, x + 5, y, z + 4);
 			this.setBlockToAir(world, x + 5, y, z + 5);
 			this.setBlockToAir(world, x + 5, y, z + 6);
@@ -2188,19 +2188,19 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 5, y, z + 8);
 			this.setBlockToAir(world, x + 5, y, z + 9);
 			this.setBlockToAir(world, x + 5, y, z + 10);
-			this.setBlock(world, x + 5, y, z + 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 5, y, z + 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z + 11, Spike, 0, 2);
+			this.setBlock(world, x + 5, y, z + 12, Spike, 0, 2);
 			this.setBlock(world, x + 5, y, z + 13, bedrock);
 			this.setBlock(world, x + 5, y, z + 14, bedrock);
-			this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 			//22nd row
-			this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 			this.setBlock(world, x + 6, y, z - 12, bedrock);
 			this.setBlock(world, x + 6, y, z - 11, bedrock);
-			this.setBlock(world, x + 6, y, z - 10, DarkStone, 14, 2);
-			this.setBlock(world, x + 6, y, z - 9, DarkStone, 14, 2);
-			this.setBlock(world, x + 6, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z - 10, Spike, 0, 2);
+			this.setBlock(world, x + 6, y, z - 9, Spike, 0, 2);
+			this.setBlock(world, x + 6, y, z - 8, Spike, 0, 2);
 			this.setBlockToAir(world, x + 6, y, z - 7);
 			this.setBlockToAir(world, x + 6, y, z - 6);
 			this.setBlockToAir(world, x + 6, y, z - 5);
@@ -2217,21 +2217,21 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 6, y, z + 6);
 			this.setBlockToAir(world, x + 6, y, z + 7);
 			this.setBlockToAir(world, x + 6, y, z + 8);
-			this.setBlock(world, x + 6, y, z + 9, DarkStone, 14, 2);
-			this.setBlock(world, x + 6, y, z + 10, DarkStone, 14, 2);
-			this.setBlock(world, x + 6, y, z + 11, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z + 9, Spike, 0, 2);
+			this.setBlock(world, x + 6, y, z + 10, Spike, 0, 2);
+			this.setBlock(world, x + 6, y, z + 11, Spike, 0, 2);
 			this.setBlock(world, x + 6, y, z + 12, bedrock);
 			this.setBlock(world, x + 6, y, z + 13, bedrock);
-			this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 			//23rd row
 			this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-			this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z - 11, bedrock);
 			this.setBlock(world, x + 7, y, z - 10, bedrock);
 			this.setBlock(world, x + 7, y, z - 9, bedrock);
-			this.setBlock(world, x + 7, y, z - 8, DarkStone, 14, 2);
-			this.setBlock(world, x + 7, y, z - 7, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z - 8, Spike, 0, 2);
+			this.setBlock(world, x + 7, y, z - 7, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z - 6, bedrock);
 			this.setBlockToAir(world, x + 7, y, z - 5);
 			this.setBlockToAir(world, x + 7, y, z - 4);
@@ -2246,22 +2246,22 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 7, y, z + 5);
 			this.setBlockToAir(world, x + 7, y, z + 6);
 			this.setBlock(world, x + 7, y, z + 7, bedrock);
-			this.setBlock(world, x + 7, y, z + 8, DarkStone, 14, 2);
-			this.setBlock(world, x + 7, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z + 8, Spike, 0, 2);
+			this.setBlock(world, x + 7, y, z + 9, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z + 10, bedrock);
 			this.setBlock(world, x + 7, y, z + 11, bedrock);
 			this.setBlock(world, x + 7, y, z + 12, bedrock);
-			this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 			//24th row
-			this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+			this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 			this.setBlock(world, x + 8, y, z - 9, bedrock);
 			this.setBlock(world, x + 8, y, z - 8, bedrock);
 			this.setBlock(world, x + 8, y, z - 7, bedrock);
 			this.setBlock(world, x + 8, y, z - 6, bedrock);
-			this.setBlock(world, x + 8, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z - 5, Spike, 0, 2);
 			this.setBlockToAir(world, x + 8, y, z - 4);
 			this.setBlockToAir(world, x + 8, y, z - 3);
 			this.setBlockToAir(world, x + 8, y, z - 2);
@@ -2272,13 +2272,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 8, y, z + 3);
 			this.setBlockToAir(world, x + 8, y, z + 4);
 			this.setBlockToAir(world, x + 8, y, z + 5);
-			this.setBlock(world, x + 8, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z + 6, Spike, 0, 2);
 			this.setBlock(world, x + 8, y, z + 7, bedrock);
 			this.setBlock(world, x + 8, y, z + 8, bedrock);
 			this.setBlock(world, x + 8, y, z + 9, bedrock);
 			this.setBlock(world, x + 8, y, z + 10, bedrock);
-			this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+			this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 			//25th row
 			this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -2363,10 +2363,10 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 			//29th row
-			this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 			this.setBlock(world, x + 13, y, z - 7, bedrock);
 			this.setBlock(world, x + 13, y, z - 6, bedrock);
-			this.setBlock(world, x + 13, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z - 5, Spike, 0, 2);
 			this.setBlockToAir(world, x + 13, y, z - 4);
 			this.setBlockToAir(world, x + 13, y, z - 3);
 			this.setBlockToAir(world, x + 13, y, z - 2);
@@ -2377,16 +2377,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 13, y, z + 3);
 			this.setBlockToAir(world, x + 13, y, z + 4);
 			this.setBlockToAir(world, x + 13, y, z + 5);
-			this.setBlock(world, x + 13, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z + 6, Spike, 0, 2);
 			this.setBlock(world, x + 13, y, z + 7, bedrock);
 			this.setBlock(world, x + 13, y, z + 8, bedrock);
-			this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 			//30th row
 			this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
 			this.setBlock(world, x + 14, y, z - 6, bedrock);
 			this.setBlock(world, x + 14, y, z - 5, bedrock);
-			this.setBlock(world, x + 14, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 14, y, z - 4, Spike, 0, 2);
 			this.setBlockToAir(world, x + 14, y, z - 3);
 			this.setBlockToAir(world, x + 14, y, z - 2);
 			this.setBlockToAir(world, x + 14, y, z - 1);
@@ -2395,43 +2395,43 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 14, y, z + 2);
 			this.setBlockToAir(world, x + 14, y, z + 3);
 			this.setBlockToAir(world, x + 14, y, z + 4);
-			this.setBlock(world, x + 14, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 14, y, z + 5, Spike, 0, 2);
 			this.setBlock(world, x + 14, y, z + 6, bedrock);
 			this.setBlock(world, x + 14, y, z + 7, bedrock);
 			this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 			//31st row
-			this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x + 15, y, z - 5, bedrock);
 			this.setBlock(world, x + 15, y, z - 4, bedrock);
-			this.setBlock(world, x + 15, y, z - 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z - 3, Spike, 0, 2);
 			this.setBlockToAir(world, x + 15, y, z - 2);
 			this.setBlockToAir(world, x + 15, y, z - 1);
 			this.setBlockToAir(world, x + 15, y, z);
 			this.setBlockToAir(world, x + 15, y, z + 1);
 			this.setBlockToAir(world, x + 15, y, z + 2);
 			this.setBlockToAir(world, x + 15, y, z + 3);
-			this.setBlock(world, x + 15, y, z + 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z + 4, Spike, 0, 2);
 			this.setBlock(world, x + 15, y, z + 5, bedrock);
 			this.setBlock(world, x + 15, y, z + 6, bedrock);
-			this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 			//32nd row
 			this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
 			this.setBlock(world, x + 16, y, z - 4, bedrock);
 			this.setBlock(world, x + 16, y, z - 3, bedrock);
-			this.setBlock(world, x + 16, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x + 16, y, z - 2, Spike, 0, 2);
 			this.setBlockToAir(world, x + 16, y, z - 1);
 			this.setBlockToAir(world, x + 16, y, z);
 			this.setBlockToAir(world, x + 16, y, z + 1);
 			this.setBlockToAir(world, x + 16, y, z + 2);
-			this.setBlock(world, x + 16, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 16, y, z + 3, Spike, 0, 2);
 			this.setBlock(world, x + 16, y, z + 4, bedrock);
 			this.setBlock(world, x + 16, y, z + 5, bedrock);
 			this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 			//33rd row
-			this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x + 17, y, z - 3, bedrock);
 			this.setBlock(world, x + 17, y, z - 2, bedrock);
 			this.setBlock(world, x + 17, y, z - 1, CelledBlock);
@@ -2440,7 +2440,7 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 17, y, z + 2, CelledBlock);
 			this.setBlock(world, x + 17, y, z + 3, bedrock);
 			this.setBlock(world, x + 17, y, z + 4, bedrock);
-			this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 			//34th row
 			this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -2453,12 +2453,12 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 			//35th row
-			this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 			this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 			this.setBlock(world, x + 19, y, z, CelledBlock);
 			this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 			this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-			this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 		}
 
 		this.setBlock(world, x - 1, y, z, wall_sign, 4, 2);
@@ -2475,26 +2475,26 @@ public class SchematicCorruptedSpire extends Schematic {
 		int y = y0 + 1;
 		//Fourth layer
 		//1st row
-		this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-		this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 		this.setBlockToAir(world, x - 15, y, z);
 		this.setBlockToAir(world, x - 15, y, z + 1);
 		this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 		//2nd row
 		this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -2525,7 +2525,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 		//3rd row
-		this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 20, bedrock);
 		this.setBlock(world, x - 13, y, z - 19, bedrock);
 		this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -2534,9 +2534,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 		this.setBlock(world, x - 13, y, z - 14, bedrock);
 		this.setBlock(world, x - 13, y, z - 13, bedrock);
-		this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 3, bedrock);
 		this.setBlock(world, x - 13, y, z - 2, bedrock);
 		this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -2545,9 +2545,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 3, bedrock);
 		this.setBlock(world, x - 13, y, z + 4, bedrock);
-		this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 14, bedrock);
 		this.setBlock(world, x - 13, y, z + 15, bedrock);
 		this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -2556,18 +2556,18 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 20, bedrock);
 		this.setBlock(world, x - 13, y, z + 21, bedrock);
-		this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 		//4th row
 		this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 21, bedrock);
 		this.setBlock(world, x - 12, y, z - 20, bedrock);
-		this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 		this.setBlockToAir(world, x - 12, y, z - 18);
 		this.setBlockToAir(world, x - 12, y, z - 17);
 		this.setBlockToAir(world, x - 12, y, z - 16);
 		this.setBlockToAir(world, x - 12, y, z - 15);
-		this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 13, bedrock);
 		this.setBlock(world, x - 12, y, z - 12, bedrock);
 		this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -2575,12 +2575,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 4, bedrock);
 		this.setBlock(world, x - 12, y, z - 3, bedrock);
-		this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 		this.setBlockToAir(world, x - 12, y, z - 1);
 		this.setBlockToAir(world, x - 12, y, z);
 		this.setBlockToAir(world, x - 12, y, z + 1);
 		this.setBlockToAir(world, x - 12, y, z + 2);
-		this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 4, bedrock);
 		this.setBlock(world, x - 12, y, z + 5, bedrock);
 		this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -2588,67 +2588,67 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 13, bedrock);
 		this.setBlock(world, x - 12, y, z + 14, bedrock);
-		this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 		this.setBlockToAir(world, x - 12, y, z + 16);
 		this.setBlockToAir(world, x - 12, y, z + 17);
 		this.setBlockToAir(world, x - 12, y, z + 18);
 		this.setBlockToAir(world, x - 12, y, z + 19);
-		this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 21, bedrock);
 		this.setBlock(world, x - 12, y, z + 22, bedrock);
 		this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 		//5th row
-		this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 22, bedrock);
 		this.setBlock(world, x - 11, y, z - 21, bedrock);
-		this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 		this.setBlockToAir(world, x - 11, y, z - 19);
 		this.setBlockToAir(world, x - 11, y, z - 18);
 		this.setBlockToAir(world, x - 11, y, z - 17);
 		this.setBlockToAir(world, x - 11, y, z - 16);
 		this.setBlockToAir(world, x - 11, y, z - 15);
 		this.setBlockToAir(world, x - 11, y, z - 14);
-		this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 12, bedrock);
 		this.setBlock(world, x - 11, y, z - 11, bedrock);
-		this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 5, bedrock);
 		this.setBlock(world, x - 11, y, z - 4, bedrock);
-		this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 		this.setBlockToAir(world, x - 11, y, z - 2);
 		this.setBlockToAir(world, x - 11, y, z - 1);
 		this.setBlockToAir(world, x - 11, y, z);
 		this.setBlockToAir(world, x - 11, y, z + 1);
 		this.setBlockToAir(world, x - 11, y, z + 2);
 		this.setBlockToAir(world, x - 11, y, z + 3);
-		this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 5, bedrock);
 		this.setBlock(world, x - 11, y, z + 6, bedrock);
-		this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 12, bedrock);
 		this.setBlock(world, x - 11, y, z + 13, bedrock);
-		this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 		this.setBlockToAir(world, x - 11, y, z + 15);
 		this.setBlockToAir(world, x - 11, y, z + 16);
 		this.setBlockToAir(world, x - 11, y, z + 17);
 		this.setBlockToAir(world, x - 11, y, z + 18);
 		this.setBlockToAir(world, x - 11, y, z + 19);
 		this.setBlockToAir(world, x - 11, y, z + 20);
-		this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 22, bedrock);
 		this.setBlock(world, x - 11, y, z + 23, bedrock);
-		this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 		//6th row
 		this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 23, bedrock);
 		this.setBlock(world, x - 10, y, z - 22, bedrock);
-		this.setBlock(world, x - 10, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 21, Spike, 0, 2);
 		this.setBlockToAir(world, x - 10, y, z - 20);
 		this.setBlockToAir(world, x - 10, y, z - 19);
 		this.setBlockToAir(world, x - 10, y, z - 18);
@@ -2657,15 +2657,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z - 15);
 		this.setBlockToAir(world, x - 10, y, z - 14);
 		this.setBlockToAir(world, x - 10, y, z - 13);
-		this.setBlock(world, x - 10, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 11, bedrock);
 		this.setBlock(world, x - 10, y, z - 10, bedrock);
 		this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 6, bedrock);
 		this.setBlock(world, x - 10, y, z - 5, bedrock);
-		this.setBlock(world, x - 10, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 3, CelledLamp);
 		this.setBlockToAir(world, x - 10, y, z - 2);
 		this.setBlockToAir(world, x - 10, y, z - 1);
@@ -2674,15 +2674,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z + 2);
 		this.setBlockToAir(world, x - 10, y, z + 3);
 		this.setBlock(world, x - 10, y, z + 4, CelledLamp);
-		this.setBlock(world, x - 10, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 6, bedrock);
 		this.setBlock(world, x - 10, y, z + 7, bedrock);
 		this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 11, bedrock);
 		this.setBlock(world, x - 10, y, z + 12, bedrock);
-		this.setBlock(world, x - 10, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 13, Spike, 0, 2);
 		this.setBlockToAir(world, x - 10, y, z + 14);
 		this.setBlockToAir(world, x - 10, y, z + 15);
 		this.setBlockToAir(world, x - 10, y, z + 16);
@@ -2691,16 +2691,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z + 19);
 		this.setBlockToAir(world, x - 10, y, z + 20);
 		this.setBlockToAir(world, x - 10, y, z + 21);
-		this.setBlock(world, x - 10, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 23, bedrock);
 		this.setBlock(world, x - 10, y, z + 24, bedrock);
 		this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 		//7th row
-		this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 24, bedrock);
 		this.setBlock(world, x - 9, y, z - 23, bedrock);
-		this.setBlock(world, x - 9, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 22, Spike, 0, 2);
 		this.setBlockToAir(world, x - 9, y, z - 21);
 		this.setBlockToAir(world, x - 9, y, z - 20);
 		this.setBlockToAir(world, x - 9, y, z - 19);
@@ -2711,13 +2711,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z - 14);
 		this.setBlockToAir(world, x - 9, y, z - 13);
 		this.setBlockToAir(world, x - 9, y, z - 12);
-		this.setBlock(world, x - 9, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 10, bedrock);
 		this.setBlock(world, x - 9, y, z - 9, bedrock);
 		this.setBlock(world, x - 9, y, z - 8, bedrock);
 		this.setBlock(world, x - 9, y, z - 7, bedrock);
 		this.setBlock(world, x - 9, y, z - 6, bedrock);
-		this.setBlock(world, x - 9, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 5, Spike, 0, 2);
 		this.setBlockToAir(world, x - 9, y, z - 4);
 		this.setBlockToAir(world, x - 9, y, z - 3);
 		this.setBlockToAir(world, x - 9, y, z - 2);
@@ -2728,13 +2728,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z + 3);
 		this.setBlockToAir(world, x - 9, y, z + 4);
 		this.setBlockToAir(world, x - 9, y, z + 5);
-		this.setBlock(world, x - 9, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 7, bedrock);
 		this.setBlock(world, x - 9, y, z + 8, bedrock);
 		this.setBlock(world, x - 9, y, z + 9, bedrock);
 		this.setBlock(world, x - 9, y, z + 10, bedrock);
 		this.setBlock(world, x - 9, y, z + 11, bedrock);
-		this.setBlock(world, x - 9, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 12, Spike, 0, 2);
 		this.setBlockToAir(world, x - 9, y, z + 13);
 		this.setBlockToAir(world, x - 9, y, z + 14);
 		this.setBlockToAir(world, x - 9, y, z + 15);
@@ -2745,10 +2745,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z + 20);
 		this.setBlockToAir(world, x - 9, y, z + 21);
 		this.setBlockToAir(world, x - 9, y, z + 22);
-		this.setBlock(world, x - 9, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 24, bedrock);
 		this.setBlock(world, x - 9, y, z + 25, bedrock);
-		this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 		//8th row
 		this.setBlock(world, x - 8, y, z - 25, CelledBlock);
@@ -2967,10 +2967,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 5, y, z + 26, CelledBlock);
 
 		//12th row
-		this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 24, bedrock);
 		this.setBlock(world, x - 4, y, z - 23, bedrock);
-		this.setBlock(world, x - 4, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 22, Spike, 0, 2);
 		this.setBlockToAir(world, x - 4, y, z - 21);
 		this.setBlockToAir(world, x - 4, y, z - 20);
 		this.setBlockToAir(world, x - 4, y, z - 19);
@@ -2981,13 +2981,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z - 14);
 		this.setBlockToAir(world, x - 4, y, z - 13);
 		this.setBlockToAir(world, x - 4, y, z - 12);
-		this.setBlock(world, x - 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 10, bedrock);
 		this.setBlock(world, x - 4, y, z - 9, bedrock);
 		this.setBlock(world, x - 4, y, z - 8, bedrock);
 		this.setBlock(world, x - 4, y, z - 7, bedrock);
 		this.setBlock(world, x - 4, y, z - 6, bedrock);
-		this.setBlock(world, x - 4, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 5, Spike, 0, 2);
 		this.setBlockToAir(world, x - 4, y, z - 4);
 		this.setBlockToAir(world, x - 4, y, z - 3);
 		this.setBlockToAir(world, x - 4, y, z - 2);
@@ -2998,13 +2998,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z + 3);
 		this.setBlockToAir(world, x - 4, y, z + 4);
 		this.setBlockToAir(world, x - 4, y, z + 5);
-		this.setBlock(world, x - 4, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 7, bedrock);
 		this.setBlock(world, x - 4, y, z + 8, bedrock);
 		this.setBlock(world, x - 4, y, z + 9, bedrock);
 		this.setBlock(world, x - 4, y, z + 10, bedrock);
 		this.setBlock(world, x - 4, y, z + 11, bedrock);
-		this.setBlock(world, x - 4, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 12, Spike, 0, 2);
 		this.setBlockToAir(world, x - 4, y, z + 13);
 		this.setBlockToAir(world, x - 4, y, z + 14);
 		this.setBlockToAir(world, x - 4, y, z + 15);
@@ -3015,16 +3015,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z + 20);
 		this.setBlockToAir(world, x - 4, y, z + 21);
 		this.setBlockToAir(world, x - 4, y, z + 22);
-		this.setBlock(world, x - 4, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 24, bedrock);
 		this.setBlock(world, x - 4, y, z + 25, bedrock);
-		this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 		//13th row
 		this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 23, bedrock);
 		this.setBlock(world, x - 3, y, z - 22, bedrock);
-		this.setBlock(world, x - 3, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 21, Spike, 0, 2);
 		this.setBlockToAir(world, x - 3, y, z - 20);
 		this.setBlockToAir(world, x - 3, y, z - 19);
 		this.setBlockToAir(world, x - 3, y, z - 18);
@@ -3037,11 +3037,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z - 11, bedrock);
 		this.setBlock(world, x - 3, y, z - 10, bedrock);
 		this.setBlock(world, x - 3, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 6, bedrock);
 		this.setBlock(world, x - 3, y, z - 5, bedrock);
-		this.setBlock(world, x - 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 3, CelledLamp);
 		this.setBlockToAir(world, x - 3, y, z - 2);
 		this.setBlockToAir(world, x - 3, y, z - 1);
@@ -3050,11 +3050,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z + 2);
 		this.setBlockToAir(world, x - 3, y, z + 3);
 		this.setBlock(world, x - 3, y, z + 4, CelledLamp);
-		this.setBlock(world, x - 3, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 6, bedrock);
 		this.setBlock(world, x - 3, y, z + 7, bedrock);
 		this.setBlock(world, x - 3, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 11, bedrock);
 		this.setBlock(world, x - 3, y, z + 12, bedrock);
@@ -3067,16 +3067,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z + 19);
 		this.setBlockToAir(world, x - 3, y, z + 20);
 		this.setBlockToAir(world, x - 3, y, z + 21);
-		this.setBlock(world, x - 3, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 23, bedrock);
 		this.setBlock(world, x - 3, y, z + 24, bedrock);
 		this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 		//14th row
-		this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 22, bedrock);
 		this.setBlock(world, x - 2, y, z - 21, bedrock);
-		this.setBlock(world, x - 2, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 20, Spike, 0, 2);
 		this.setBlockToAir(world, x - 2, y, z - 19);
 		this.setBlockToAir(world, x - 2, y, z - 18);
 		this.setBlockToAir(world, x - 2, y, z - 17);
@@ -3086,28 +3086,28 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 2, y, z - 13);
 		this.setBlockToAir(world, x - 2, y, z - 12);
 		this.setBlockToAir(world, x - 2, y, z - 11);
-		this.setBlock(world, x - 2, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 5, bedrock);
 		this.setBlock(world, x - 2, y, z - 4, bedrock);
-		this.setBlock(world, x - 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 3, Spike, 0, 2);
 		this.setBlockToAir(world, x - 2, y, z - 2);
 		this.setBlockToAir(world, x - 2, y, z - 1);
 		this.setBlockToAir(world, x - 2, y, z);
 		this.setBlockToAir(world, x - 2, y, z + 1);
 		this.setBlockToAir(world, x - 2, y, z + 2);
 		this.setBlockToAir(world, x - 2, y, z + 3);
-		this.setBlock(world, x - 2, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 5, bedrock);
 		this.setBlock(world, x - 2, y, z + 6, bedrock);
-		this.setBlock(world, x - 2, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 11, Spike, 0, 2);
 		this.setBlockToAir(world, x - 2, y, z + 12);
 		this.setBlockToAir(world, x - 2, y, z + 13);
 		this.setBlockToAir(world, x - 2, y, z + 14);
@@ -3117,61 +3117,61 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 2, y, z + 18);
 		this.setBlockToAir(world, x - 2, y, z + 19);
 		this.setBlockToAir(world, x - 2, y, z + 20);
-		this.setBlock(world, x - 2, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 22, bedrock);
 		this.setBlock(world, x - 2, y, z + 23, bedrock);
-		this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 		//15th row
 		this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 21, bedrock);
 		this.setBlock(world, x - 1, y, z - 20, bedrock);
-		this.setBlock(world, x - 1, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 19, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z - 18);
 		this.setBlockToAir(world, x - 1, y, z - 17);
 		this.setBlockToAir(world, x - 1, y, z - 16);
 		this.setBlockToAir(world, x - 1, y, z - 15);
-		this.setBlock(world, x - 1, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 14, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z - 13);
 		this.setBlockToAir(world, x - 1, y, z - 12);
 		this.setBlockToAir(world, x - 1, y, z - 11);
 		this.setBlockToAir(world, x - 1, y, z - 10);
-		this.setBlock(world, x - 1, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 4, bedrock);
 		this.setBlock(world, x - 1, y, z - 3, bedrock);
-		this.setBlock(world, x - 1, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 2, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z - 1);
 		this.setBlockToAir(world, x - 1, y, z);
 		this.setBlockToAir(world, x - 1, y, z + 1);
 		this.setBlockToAir(world, x - 1, y, z + 2);
-		this.setBlock(world, x - 1, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 4, bedrock);
 		this.setBlock(world, x - 1, y, z + 5, bedrock);
 		this.setBlock(world, x - 1, y, z + 6, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 10, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z + 11);
 		this.setBlockToAir(world, x - 1, y, z + 12);
 		this.setBlockToAir(world, x - 1, y, z + 13);
 		this.setBlockToAir(world, x - 1, y, z + 14);
-		this.setBlock(world, x - 1, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 15, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z + 16);
 		this.setBlockToAir(world, x - 1, y, z + 17);
 		this.setBlockToAir(world, x - 1, y, z + 18);
 		this.setBlockToAir(world, x - 1, y, z + 19);
-		this.setBlock(world, x - 1, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 21, bedrock);
 		this.setBlock(world, x - 1, y, z + 22, bedrock);
 		this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 		//16th row
-		this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 20, bedrock);
 		this.setBlock(world, x, y, z - 19, bedrock);
 		this.setBlock(world, x, y, z - 18, CelledBlock);
@@ -3186,11 +3186,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x, y, z - 10);
 		this.setBlockToAir(world, x, y, z - 9);
 		this.setBlockToAir(world, x, y, z - 8);
-		this.setBlock(world, x, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 3, bedrock);
 		this.setBlock(world, x, y, z - 2, bedrock);
 		this.setBlock(world, x, y, z - 1, CelledBlock);
@@ -3199,11 +3199,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 2, CelledBlock);
 		this.setBlock(world, x, y, z + 3, bedrock);
 		this.setBlock(world, x, y, z + 4, bedrock);
-		this.setBlock(world, x, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 8, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 8, Spike, 0, 2);
 		this.setBlockToAir(world, x, y, z + 9);
 		this.setBlockToAir(world, x, y, z + 10);
 		this.setBlockToAir(world, x, y, z + 11);
@@ -3218,7 +3218,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 19, CelledBlock);
 		this.setBlock(world, x, y, z + 20, bedrock);
 		this.setBlock(world, x, y, z + 21, bedrock);
-		this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 		//17th row
 		this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -3228,16 +3228,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z - 16, bedrock);
 		this.setBlock(world, x + 1, y, z - 15, bedrock);
 		this.setBlock(world, x + 1, y, z - 14, bedrock);
-		this.setBlock(world, x + 1, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 13, Spike, 0, 2);
 		this.setBlockToAir(world, x + 1, y, z - 12);
 		this.setBlockToAir(world, x + 1, y, z - 11);
 		this.setBlockToAir(world, x + 1, y, z - 10);
 		this.setBlockToAir(world, x + 1, y, z - 9);
 		this.setBlockToAir(world, x + 1, y, z - 8);
 		this.setBlockToAir(world, x + 1, y, z - 7);
-		this.setBlock(world, x + 1, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 1, y, z - 2, bedrock);
 		this.setBlock(world, x + 1, y, z - 1, bedrock);
@@ -3246,16 +3246,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 2, bedrock);
 		this.setBlock(world, x + 1, y, z + 3, bedrock);
 		this.setBlock(world, x + 1, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 1, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 7, Spike, 0, 2);
 		this.setBlockToAir(world, x + 1, y, z + 8);
 		this.setBlockToAir(world, x + 1, y, z + 9);
 		this.setBlockToAir(world, x + 1, y, z + 10);
 		this.setBlockToAir(world, x + 1, y, z + 11);
 		this.setBlockToAir(world, x + 1, y, z + 12);
 		this.setBlockToAir(world, x + 1, y, z + 13);
-		this.setBlock(world, x + 1, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 15, bedrock);
 		this.setBlock(world, x + 1, y, z + 16, bedrock);
 		this.setBlock(world, x + 1, y, z + 17, bedrock);
@@ -3265,60 +3265,60 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 		//18th row
-		this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 15, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 14, bedrock);
-		this.setBlock(world, x + 2, y, z - 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 12, Spike, 0, 2);
 		this.setBlockToAir(world, x + 2, y, z - 11);
 		this.setBlockToAir(world, x + 2, y, z - 10);
 		this.setBlockToAir(world, x + 2, y, z - 9);
 		this.setBlockToAir(world, x + 2, y, z - 8);
 		this.setBlockToAir(world, x + 2, y, z - 7);
 		this.setBlockToAir(world, x + 2, y, z - 6);
-		this.setBlock(world, x + 2, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 2, bedrock);
 		this.setBlock(world, x + 2, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 3, bedrock);
-		this.setBlock(world, x + 2, y, z + 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 6, Spike, 0, 2);
 		this.setBlockToAir(world, x + 2, y, z + 7);
 		this.setBlockToAir(world, x + 2, y, z + 8);
 		this.setBlockToAir(world, x + 2, y, z + 9);
 		this.setBlockToAir(world, x + 2, y, z + 10);
 		this.setBlockToAir(world, x + 2, y, z + 11);
 		this.setBlockToAir(world, x + 2, y, z + 12);
-		this.setBlock(world, x + 2, y, z + 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 15, bedrock);
 		this.setBlock(world, x + 2, y, z + 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 19, CelledBlock);
-		this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 		//19th row
 		this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 14, bedrock);
 		this.setBlock(world, x + 3, y, z - 13, bedrock);
-		this.setBlock(world, x + 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 12, Spike, 0, 2);
 		this.setBlockToAir(world, x + 3, y, z - 11);
 		this.setBlockToAir(world, x + 3, y, z - 10);
 		this.setBlockToAir(world, x + 3, y, z - 9);
 		this.setBlockToAir(world, x + 3, y, z - 8);
 		this.setBlockToAir(world, x + 3, y, z - 7);
 		this.setBlockToAir(world, x + 3, y, z - 6);
-		this.setBlock(world, x + 3, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 2, bedrock);
 		this.setBlock(world, x + 3, y, z - 1, bedrock);
@@ -3327,31 +3327,31 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 3, y, z + 2, bedrock);
 		this.setBlock(world, x + 3, y, z + 3, bedrock);
 		this.setBlock(world, x + 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 3, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z + 6, Spike, 0, 2);
 		this.setBlockToAir(world, x + 3, y, z + 7);
 		this.setBlockToAir(world, x + 3, y, z + 8);
 		this.setBlockToAir(world, x + 3, y, z + 9);
 		this.setBlockToAir(world, x + 3, y, z + 10);
 		this.setBlockToAir(world, x + 3, y, z + 11);
 		this.setBlockToAir(world, x + 3, y, z + 12);
-		this.setBlock(world, x + 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 14, bedrock);
 		this.setBlock(world, x + 3, y, z + 15, bedrock);
 		this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 		//20th row
-		this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 13, bedrock);
-		this.setBlock(world, x + 4, y, z - 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 10, CelledLamp);
 		this.setBlockToAir(world, x + 4, y, z - 9);
 		this.setBlockToAir(world, x + 4, y, z - 8);
 		this.setBlockToAir(world, x + 4, y, z - 7);
 		this.setBlockToAir(world, x + 4, y, z - 6);
 		this.setBlockToAir(world, x + 4, y, z - 5);
-		this.setBlock(world, x + 4, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 3, bedrock);
 		this.setBlock(world, x + 4, y, z - 2, bedrock);
 		this.setBlock(world, x + 4, y, z - 1, CelledBlock);
@@ -3360,24 +3360,24 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 4, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 4, y, z + 3, bedrock);
 		this.setBlock(world, x + 4, y, z + 4, bedrock);
-		this.setBlock(world, x + 4, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 5, Spike, 0, 2);
 		this.setBlockToAir(world, x + 4, y, z + 6);
 		this.setBlockToAir(world, x + 4, y, z + 7);
 		this.setBlockToAir(world, x + 4, y, z + 8);
 		this.setBlockToAir(world, x + 4, y, z + 9);
 		this.setBlockToAir(world, x + 4, y, z + 10);
 		this.setBlock(world, x + 4, y, z + 11, CelledLamp);
-		this.setBlock(world, x + 4, y, z + 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 14, bedrock);
-		this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 		//21st row
-		this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 13, bedrock);
 		this.setBlock(world, x + 5, y, z - 12, bedrock);
-		this.setBlock(world, x + 5, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z - 10, Spike, 0, 2);
 		this.setBlockToAir(world, x + 5, y, z - 9);
 		this.setBlockToAir(world, x + 5, y, z - 8);
 		this.setBlockToAir(world, x + 5, y, z - 7);
@@ -3385,12 +3385,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 5, y, z - 5);
 		this.setBlockToAir(world, x + 5, y, z - 4);
 		this.setBlockToAir(world, x + 5, y, z - 3);
-		this.setBlock(world, x + 5, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 2, Spike, 0, 2);
 		this.setBlockToAir(world, x + 5, y, z - 1);
 		this.setBlockToAir(world, x + 5, y, z);
 		this.setBlockToAir(world, x + 5, y, z + 1);
 		this.setBlockToAir(world, x + 5, y, z + 2);
-		this.setBlock(world, x + 5, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 3, Spike, 0, 2);
 		this.setBlockToAir(world, x + 5, y, z + 4);
 		this.setBlockToAir(world, x + 5, y, z + 5);
 		this.setBlockToAir(world, x + 5, y, z + 6);
@@ -3398,19 +3398,19 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 5, y, z + 8);
 		this.setBlockToAir(world, x + 5, y, z + 9);
 		this.setBlockToAir(world, x + 5, y, z + 10);
-		this.setBlock(world, x + 5, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 13, bedrock);
 		this.setBlock(world, x + 5, y, z + 14, bedrock);
-		this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 		//22nd row
-		this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 12, bedrock);
 		this.setBlock(world, x + 6, y, z - 11, bedrock);
-		this.setBlock(world, x + 6, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 8, Spike, 0, 2);
 		this.setBlockToAir(world, x + 6, y, z - 7);
 		this.setBlockToAir(world, x + 6, y, z - 6);
 		this.setBlockToAir(world, x + 6, y, z - 5);
@@ -3427,21 +3427,21 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 6, y, z + 6);
 		this.setBlockToAir(world, x + 6, y, z + 7);
 		this.setBlockToAir(world, x + 6, y, z + 8);
-		this.setBlock(world, x + 6, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 12, bedrock);
 		this.setBlock(world, x + 6, y, z + 13, bedrock);
-		this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 		//23rd row
 		this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 11, bedrock);
 		this.setBlock(world, x + 7, y, z - 10, bedrock);
 		this.setBlock(world, x + 7, y, z - 9, bedrock);
-		this.setBlock(world, x + 7, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z - 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z - 7, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 6, bedrock);
 		this.setBlockToAir(world, x + 7, y, z - 5);
 		this.setBlockToAir(world, x + 7, y, z - 4);
@@ -3456,22 +3456,22 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 7, y, z + 5);
 		this.setBlockToAir(world, x + 7, y, z + 6);
 		this.setBlock(world, x + 7, y, z + 7, bedrock);
-		this.setBlock(world, x + 7, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 10, bedrock);
 		this.setBlock(world, x + 7, y, z + 11, bedrock);
 		this.setBlock(world, x + 7, y, z + 12, bedrock);
-		this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 		//24th row
-		this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 9, bedrock);
 		this.setBlock(world, x + 8, y, z - 8, bedrock);
 		this.setBlock(world, x + 8, y, z - 7, bedrock);
 		this.setBlock(world, x + 8, y, z - 6, bedrock);
-		this.setBlock(world, x + 8, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 5, Spike, 0, 2);
 		this.setBlockToAir(world, x + 8, y, z - 4);
 		this.setBlockToAir(world, x + 8, y, z - 3);
 		this.setBlockToAir(world, x + 8, y, z - 2);
@@ -3482,13 +3482,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 8, y, z + 3);
 		this.setBlockToAir(world, x + 8, y, z + 4);
 		this.setBlockToAir(world, x + 8, y, z + 5);
-		this.setBlock(world, x + 8, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z + 7, bedrock);
 		this.setBlock(world, x + 8, y, z + 8, bedrock);
 		this.setBlock(world, x + 8, y, z + 9, bedrock);
 		this.setBlock(world, x + 8, y, z + 10, bedrock);
-		this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 		//25th row
 		this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -3573,10 +3573,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 		//29th row
-		this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 7, bedrock);
 		this.setBlock(world, x + 13, y, z - 6, bedrock);
-		this.setBlock(world, x + 13, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 5, Spike, 0, 2);
 		this.setBlockToAir(world, x + 13, y, z - 4);
 		this.setBlockToAir(world, x + 13, y, z - 3);
 		this.setBlockToAir(world, x + 13, y, z - 2);
@@ -3587,16 +3587,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 13, y, z + 3);
 		this.setBlockToAir(world, x + 13, y, z + 4);
 		this.setBlockToAir(world, x + 13, y, z + 5);
-		this.setBlock(world, x + 13, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z + 7, bedrock);
 		this.setBlock(world, x + 13, y, z + 8, bedrock);
-		this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 		//30th row
 		this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 6, bedrock);
 		this.setBlock(world, x + 14, y, z - 5, bedrock);
-		this.setBlock(world, x + 14, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z - 4, Spike, 0, 2);
 		this.setBlockToAir(world, x + 14, y, z - 3);
 		this.setBlockToAir(world, x + 14, y, z - 2);
 		this.setBlockToAir(world, x + 14, y, z - 1);
@@ -3605,43 +3605,43 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 14, y, z + 2);
 		this.setBlockToAir(world, x + 14, y, z + 3);
 		this.setBlockToAir(world, x + 14, y, z + 4);
-		this.setBlock(world, x + 14, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z + 6, bedrock);
 		this.setBlock(world, x + 14, y, z + 7, bedrock);
 		this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 		//31st row
-		this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 5, bedrock);
 		this.setBlock(world, x + 15, y, z - 4, bedrock);
-		this.setBlock(world, x + 15, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 3, Spike, 0, 2);
 		this.setBlockToAir(world, x + 15, y, z - 2);
 		this.setBlockToAir(world, x + 15, y, z - 1);
 		this.setBlockToAir(world, x + 15, y, z);
 		this.setBlockToAir(world, x + 15, y, z + 1);
 		this.setBlockToAir(world, x + 15, y, z + 2);
 		this.setBlockToAir(world, x + 15, y, z + 3);
-		this.setBlock(world, x + 15, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z + 5, bedrock);
 		this.setBlock(world, x + 15, y, z + 6, bedrock);
-		this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 		//32nd row
 		this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z - 4, bedrock);
 		this.setBlock(world, x + 16, y, z - 3, bedrock);
-		this.setBlock(world, x + 16, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z - 2, Spike, 0, 2);
 		this.setBlockToAir(world, x + 16, y, z - 1);
 		this.setBlockToAir(world, x + 16, y, z);
 		this.setBlockToAir(world, x + 16, y, z + 1);
 		this.setBlockToAir(world, x + 16, y, z + 2);
-		this.setBlock(world, x + 16, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z + 4, bedrock);
 		this.setBlock(world, x + 16, y, z + 5, bedrock);
 		this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 		//33rd row
-		this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 17, y, z - 3, bedrock);
 		this.setBlock(world, x + 17, y, z - 2, bedrock);
 		this.setBlock(world, x + 17, y, z - 1, CelledBlock);
@@ -3650,7 +3650,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 17, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 17, y, z + 3, bedrock);
 		this.setBlock(world, x + 17, y, z + 4, bedrock);
-		this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 		//34th row
 		this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -3663,36 +3663,36 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 		//35th row
-		this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-		this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 
 		y++;
 		//Fifth layer
 		//1st row
-		this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-		this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 		//2nd row
 		this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -3723,7 +3723,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 		//3rd row
-		this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 20, bedrock);
 		this.setBlock(world, x - 13, y, z - 19, bedrock);
 		this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -3732,9 +3732,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 		this.setBlock(world, x - 13, y, z - 14, bedrock);
 		this.setBlock(world, x - 13, y, z - 13, bedrock);
-		this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 3, bedrock);
 		this.setBlock(world, x - 13, y, z - 2, bedrock);
 		this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -3743,9 +3743,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 3, bedrock);
 		this.setBlock(world, x - 13, y, z + 4, bedrock);
-		this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 14, bedrock);
 		this.setBlock(world, x - 13, y, z + 15, bedrock);
 		this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -3754,18 +3754,18 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 20, bedrock);
 		this.setBlock(world, x - 13, y, z + 21, bedrock);
-		this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 		//4th row
 		this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 21, bedrock);
 		this.setBlock(world, x - 12, y, z - 20, bedrock);
-		this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 13, bedrock);
 		this.setBlock(world, x - 12, y, z - 12, bedrock);
 		this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -3773,12 +3773,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 4, bedrock);
 		this.setBlock(world, x - 12, y, z - 3, bedrock);
-		this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 4, bedrock);
 		this.setBlock(world, x - 12, y, z + 5, bedrock);
 		this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -3786,67 +3786,67 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 13, bedrock);
 		this.setBlock(world, x - 12, y, z + 14, bedrock);
-		this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 21, bedrock);
 		this.setBlock(world, x - 12, y, z + 22, bedrock);
 		this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 		//5th row
-		this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 22, bedrock);
 		this.setBlock(world, x - 11, y, z - 21, bedrock);
-		this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 19, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 11, y, z - 18);
 		this.setBlockToAir(world, x - 11, y, z - 17);
 		this.setBlockToAir(world, x - 11, y, z - 16);
 		this.setBlockToAir(world, x - 11, y, z - 15);
 		this.setBlock(world, x - 11, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 12, bedrock);
 		this.setBlock(world, x - 11, y, z - 11, bedrock);
-		this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 5, bedrock);
 		this.setBlock(world, x - 11, y, z - 4, bedrock);
-		this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 2, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 11, y, z - 1);
 		this.setBlockToAir(world, x - 11, y, z);
 		this.setBlockToAir(world, x - 11, y, z + 1);
 		this.setBlockToAir(world, x - 11, y, z + 2);
 		this.setBlock(world, x - 11, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 5, bedrock);
 		this.setBlock(world, x - 11, y, z + 6, bedrock);
-		this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 12, bedrock);
 		this.setBlock(world, x - 11, y, z + 13, bedrock);
-		this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 15, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 11, y, z + 16);
 		this.setBlockToAir(world, x - 11, y, z + 17);
 		this.setBlockToAir(world, x - 11, y, z + 18);
 		this.setBlockToAir(world, x - 11, y, z + 19);
 		this.setBlock(world, x - 11, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 22, bedrock);
 		this.setBlock(world, x - 11, y, z + 23, bedrock);
-		this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 		//6th row
 		this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 23, bedrock);
 		this.setBlock(world, x - 10, y, z - 22, bedrock);
-		this.setBlock(world, x - 10, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 20, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 10, y, z - 19);
 		this.setBlockToAir(world, x - 10, y, z - 18);
@@ -3855,15 +3855,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z - 15);
 		this.setBlockToAir(world, x - 10, y, z - 14);
 		this.setBlock(world, x - 10, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 11, bedrock);
 		this.setBlock(world, x - 10, y, z - 10, bedrock);
 		this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 6, bedrock);
 		this.setBlock(world, x - 10, y, z - 5, bedrock);
-		this.setBlock(world, x - 10, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 3, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 10, y, z - 2);
 		this.setBlockToAir(world, x - 10, y, z - 1);
@@ -3872,15 +3872,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z + 2);
 		this.setBlockToAir(world, x - 10, y, z + 3);
 		this.setBlock(world, x - 10, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 6, bedrock);
 		this.setBlock(world, x - 10, y, z + 7, bedrock);
 		this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 11, bedrock);
 		this.setBlock(world, x - 10, y, z + 12, bedrock);
-		this.setBlock(world, x - 10, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 14, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 10, y, z + 15);
 		this.setBlockToAir(world, x - 10, y, z + 16);
@@ -3889,16 +3889,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z + 19);
 		this.setBlockToAir(world, x - 10, y, z + 20);
 		this.setBlock(world, x - 10, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 23, bedrock);
 		this.setBlock(world, x - 10, y, z + 24, bedrock);
 		this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 		//7th row
-		this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 24, bedrock);
 		this.setBlock(world, x - 9, y, z - 23, bedrock);
-		this.setBlock(world, x - 9, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 21, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 9, y, z - 20);
 		this.setBlockToAir(world, x - 9, y, z - 19);
@@ -3909,13 +3909,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z - 14);
 		this.setBlockToAir(world, x - 9, y, z - 13);
 		this.setBlock(world, x - 9, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 10, bedrock);
 		this.setBlock(world, x - 9, y, z - 9, bedrock);
 		this.setBlock(world, x - 9, y, z - 8, bedrock);
 		this.setBlock(world, x - 9, y, z - 7, bedrock);
 		this.setBlock(world, x - 9, y, z - 6, bedrock);
-		this.setBlock(world, x - 9, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 4, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 9, y, z - 3);
 		this.setBlockToAir(world, x - 9, y, z - 2);
@@ -3926,13 +3926,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z + 3);
 		this.setBlockToAir(world, x - 9, y, z + 4);
 		this.setBlock(world, x - 9, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 7, bedrock);
 		this.setBlock(world, x - 9, y, z + 8, bedrock);
 		this.setBlock(world, x - 9, y, z + 9, bedrock);
 		this.setBlock(world, x - 9, y, z + 10, bedrock);
 		this.setBlock(world, x - 9, y, z + 11, bedrock);
-		this.setBlock(world, x - 9, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 13, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 9, y, z + 14);
 		this.setBlockToAir(world, x - 9, y, z + 15);
@@ -3943,10 +3943,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z + 20);
 		this.setBlockToAir(world, x - 9, y, z + 21);
 		this.setBlock(world, x - 9, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 24, bedrock);
 		this.setBlock(world, x - 9, y, z + 25, bedrock);
-		this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 		//8th row
 		this.setBlock(world, x - 8, y, z - 25, CelledBlock);
@@ -4165,10 +4165,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 5, y, z + 26, CelledBlock);
 
 		//12th row
-		this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 24, bedrock);
 		this.setBlock(world, x - 4, y, z - 23, bedrock);
-		this.setBlock(world, x - 4, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 21, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 4, y, z - 20);
 		this.setBlockToAir(world, x - 4, y, z - 19);
@@ -4179,13 +4179,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z - 14);
 		this.setBlockToAir(world, x - 4, y, z - 13);
 		this.setBlock(world, x - 4, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 10, bedrock);
 		this.setBlock(world, x - 4, y, z - 9, bedrock);
 		this.setBlock(world, x - 4, y, z - 8, bedrock);
 		this.setBlock(world, x - 4, y, z - 7, bedrock);
 		this.setBlock(world, x - 4, y, z - 6, bedrock);
-		this.setBlock(world, x - 4, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 4, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 4, y, z - 3);
 		this.setBlockToAir(world, x - 4, y, z - 2);
@@ -4196,13 +4196,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z + 3);
 		this.setBlockToAir(world, x - 4, y, z + 4);
 		this.setBlock(world, x - 4, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 7, bedrock);
 		this.setBlock(world, x - 4, y, z + 8, bedrock);
 		this.setBlock(world, x - 4, y, z + 9, bedrock);
 		this.setBlock(world, x - 4, y, z + 10, bedrock);
 		this.setBlock(world, x - 4, y, z + 11, bedrock);
-		this.setBlock(world, x - 4, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 13, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 4, y, z + 14);
 		this.setBlockToAir(world, x - 4, y, z + 15);
@@ -4213,16 +4213,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z + 20);
 		this.setBlockToAir(world, x - 4, y, z + 21);
 		this.setBlock(world, x - 4, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 24, bedrock);
 		this.setBlock(world, x - 4, y, z + 25, bedrock);
-		this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 		//13th row
 		this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 23, bedrock);
 		this.setBlock(world, x - 3, y, z - 22, bedrock);
-		this.setBlock(world, x - 3, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 20, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 3, y, z - 19);
 		this.setBlockToAir(world, x - 3, y, z - 18);
@@ -4231,15 +4231,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z - 15);
 		this.setBlockToAir(world, x - 3, y, z - 14);
 		this.setBlock(world, x - 3, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 11, bedrock);
 		this.setBlock(world, x - 3, y, z - 10, bedrock);
 		this.setBlock(world, x - 3, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 6, bedrock);
 		this.setBlock(world, x - 3, y, z - 5, bedrock);
-		this.setBlock(world, x - 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 3, y, z - 2);
 		this.setBlockToAir(world, x - 3, y, z - 1);
@@ -4248,15 +4248,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z + 2);
 		this.setBlockToAir(world, x - 3, y, z + 3);
 		this.setBlock(world, x - 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 6, bedrock);
 		this.setBlock(world, x - 3, y, z + 7, bedrock);
 		this.setBlock(world, x - 3, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 11, bedrock);
 		this.setBlock(world, x - 3, y, z + 12, bedrock);
-		this.setBlock(world, x - 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 14, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 3, y, z + 15);
 		this.setBlockToAir(world, x - 3, y, z + 16);
@@ -4265,111 +4265,111 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z + 19);
 		this.setBlockToAir(world, x - 3, y, z + 20);
 		this.setBlock(world, x - 3, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 23, bedrock);
 		this.setBlock(world, x - 3, y, z + 24, bedrock);
 		this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 		//14th row
-		this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 22, bedrock);
 		this.setBlock(world, x - 2, y, z - 21, bedrock);
-		this.setBlock(world, x - 2, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 19, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 2, y, z - 18);
 		this.setBlockToAir(world, x - 2, y, z - 17);
 		this.setBlockToAir(world, x - 2, y, z - 16);
 		this.setBlockToAir(world, x - 2, y, z - 15);
 		this.setBlock(world, x - 2, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 12, bedrock);
 		this.setBlock(world, x - 2, y, z - 11, bedrock);
-		this.setBlock(world, x - 2, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 5, bedrock);
 		this.setBlock(world, x - 2, y, z - 4, bedrock);
-		this.setBlock(world, x - 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 2, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 2, y, z - 1);
 		this.setBlockToAir(world, x - 2, y, z);
 		this.setBlockToAir(world, x - 2, y, z + 1);
 		this.setBlockToAir(world, x - 2, y, z + 2);
 		this.setBlock(world, x - 2, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 5, bedrock);
 		this.setBlock(world, x - 2, y, z + 6, bedrock);
-		this.setBlock(world, x - 2, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 12, bedrock);
 		this.setBlock(world, x - 2, y, z + 13, bedrock);
-		this.setBlock(world, x - 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 15, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 2, y, z + 16);
 		this.setBlockToAir(world, x - 2, y, z + 17);
 		this.setBlockToAir(world, x - 2, y, z + 18);
 		this.setBlockToAir(world, x - 2, y, z + 19);
 		this.setBlock(world, x - 2, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 22, bedrock);
 		this.setBlock(world, x - 2, y, z + 23, bedrock);
-		this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 		//15th row
 		this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 21, bedrock);
 		this.setBlock(world, x - 1, y, z - 20, bedrock);
-		this.setBlock(world, x - 1, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 13, bedrock);
 		this.setBlock(world, x - 1, y, z - 12, bedrock);
-		this.setBlock(world, x - 1, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 10, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 4, bedrock);
 		this.setBlock(world, x - 1, y, z - 3, bedrock);
-		this.setBlock(world, x - 1, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 4, bedrock);
 		this.setBlock(world, x - 1, y, z + 5, bedrock);
 		this.setBlock(world, x - 1, y, z + 6, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 10, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 11, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 13, bedrock);
 		this.setBlock(world, x - 1, y, z + 14, bedrock);
-		this.setBlock(world, x - 1, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 21, bedrock);
 		this.setBlock(world, x - 1, y, z + 22, bedrock);
 		this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 		//16th row
-		this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 20, bedrock);
 		this.setBlock(world, x, y, z - 19, bedrock);
 		this.setBlock(world, x, y, z - 18, CelledBlock);
@@ -4378,17 +4378,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z - 15, CelledBlock);
 		this.setBlock(world, x, y, z - 14, bedrock);
 		this.setBlock(world, x, y, z - 13, bedrock);
-		this.setBlock(world, x, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 12, Spike, 0, 2);
 
 		this.setBlockToAir(world, x, y, z - 11);
 		this.setBlockToAir(world, x, y, z - 10);
 		this.setBlock(world, x, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z - 8, ErodedStone, 2, 2);
-		this.setBlock(world, x, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 3, bedrock);
 		this.setBlock(world, x, y, z - 2, bedrock);
 		this.setBlock(world, x, y, z - 1, CelledBlock);
@@ -4397,17 +4397,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 2, CelledBlock);
 		this.setBlock(world, x, y, z + 3, bedrock);
 		this.setBlock(world, x, y, z + 4, bedrock);
-		this.setBlock(world, x, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 8, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 8, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z + 10, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x, y, z + 11);
 		this.setBlockToAir(world, x, y, z + 12);
 
-		this.setBlock(world, x, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 14, bedrock);
 		this.setBlock(world, x, y, z + 15, bedrock);
 		this.setBlock(world, x, y, z + 16, CelledBlock);
@@ -4416,7 +4416,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 19, CelledBlock);
 		this.setBlock(world, x, y, z + 20, bedrock);
 		this.setBlock(world, x, y, z + 21, bedrock);
-		this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 		//17th row
 		this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -4426,16 +4426,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z - 16, bedrock);
 		this.setBlock(world, x + 1, y, z - 15, bedrock);
 		this.setBlock(world, x + 1, y, z - 14, bedrock);
-		this.setBlock(world, x + 1, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 12, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 1, y, z - 11);
 		this.setBlockToAir(world, x + 1, y, z - 10);
 		this.setBlockToAir(world, x + 1, y, z - 9);
 		this.setBlockToAir(world, x + 1, y, z - 8);
 		this.setBlock(world, x + 1, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 1, y, z - 2, bedrock);
 		this.setBlock(world, x + 1, y, z - 1, bedrock);
@@ -4444,16 +4444,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 2, bedrock);
 		this.setBlock(world, x + 1, y, z + 3, bedrock);
 		this.setBlock(world, x + 1, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 1, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 8, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 1, y, z + 9);
 		this.setBlockToAir(world, x + 1, y, z + 10);
 		this.setBlockToAir(world, x + 1, y, z + 11);
 		this.setBlockToAir(world, x + 1, y, z + 12);
 		this.setBlock(world, x + 1, y, z + 13, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 15, bedrock);
 		this.setBlock(world, x + 1, y, z + 16, bedrock);
 		this.setBlock(world, x + 1, y, z + 17, bedrock);
@@ -4463,60 +4463,60 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 		//18th row
-		this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 15, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 14, bedrock);
-		this.setBlock(world, x + 2, y, z - 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 11, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 2, y, z - 10);
 		this.setBlockToAir(world, x + 2, y, z - 9);
 		this.setBlockToAir(world, x + 2, y, z - 8);
 		this.setBlockToAir(world, x + 2, y, z - 7);
 		this.setBlock(world, x + 2, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 2, bedrock);
 		this.setBlock(world, x + 2, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 3, bedrock);
-		this.setBlock(world, x + 2, y, z + 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 7, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 2, y, z + 8);
 		this.setBlockToAir(world, x + 2, y, z + 9);
 		this.setBlockToAir(world, x + 2, y, z + 10);
 		this.setBlockToAir(world, x + 2, y, z + 11);
 		this.setBlock(world, x + 2, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z + 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 15, bedrock);
 		this.setBlock(world, x + 2, y, z + 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 19, CelledBlock);
-		this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 		//19th row
 		this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 14, bedrock);
 		this.setBlock(world, x + 3, y, z - 13, bedrock);
-		this.setBlock(world, x + 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 11, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 3, y, z - 10);
 		this.setBlockToAir(world, x + 3, y, z - 9);
 		this.setBlockToAir(world, x + 3, y, z - 8);
 		this.setBlockToAir(world, x + 3, y, z - 7);
 		this.setBlock(world, x + 3, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 2, bedrock);
 		this.setBlock(world, x + 3, y, z - 1, bedrock);
@@ -4525,31 +4525,31 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 3, y, z + 2, bedrock);
 		this.setBlock(world, x + 3, y, z + 3, bedrock);
 		this.setBlock(world, x + 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 3, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 7, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 3, y, z + 8);
 		this.setBlockToAir(world, x + 3, y, z + 9);
 		this.setBlockToAir(world, x + 3, y, z + 10);
 		this.setBlockToAir(world, x + 3, y, z + 11);
 		this.setBlock(world, x + 3, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 14, bedrock);
 		this.setBlock(world, x + 3, y, z + 15, bedrock);
 		this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 		//20th row
-		this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 13, bedrock);
-		this.setBlock(world, x + 4, y, z - 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z - 10, Spike, 0, 2);
 		this.setBlockToAir(world, x + 4, y, z - 9);
 		this.setBlockToAir(world, x + 4, y, z - 8);
 		this.setBlockToAir(world, x + 4, y, z - 7);
 		this.setBlockToAir(world, x + 4, y, z - 6);
 		this.setBlock(world, x + 4, y, z - 5, ErodedStone, 2, 2);
-		this.setBlock(world, x + 4, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 3, bedrock);
 		this.setBlock(world, x + 4, y, z - 2, bedrock);
 		this.setBlock(world, x + 4, y, z - 1, CelledBlock);
@@ -4558,91 +4558,91 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 4, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 4, y, z + 3, bedrock);
 		this.setBlock(world, x + 4, y, z + 4, bedrock);
-		this.setBlock(world, x + 4, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 6, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 4, y, z + 7);
 		this.setBlockToAir(world, x + 4, y, z + 8);
 		this.setBlockToAir(world, x + 4, y, z + 9);
 		this.setBlockToAir(world, x + 4, y, z + 10);
-		this.setBlock(world, x + 4, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z + 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z + 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 14, bedrock);
-		this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 		//21st row
-		this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 13, bedrock);
 		this.setBlock(world, x + 5, y, z - 12, bedrock);
-		this.setBlock(world, x + 5, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z - 8, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 5, y, z - 7);
 		this.setBlockToAir(world, x + 5, y, z - 6);
-		this.setBlock(world, x + 5, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 4, bedrock);
 		this.setBlock(world, x + 5, y, z - 3, bedrock);
-		this.setBlock(world, x + 5, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 1, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z + 1, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z + 2, ErodedStone, 2, 2);
-		this.setBlock(world, x + 5, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 4, bedrock);
 		this.setBlock(world, x + 5, y, z + 5, bedrock);
-		this.setBlock(world, x + 5, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 6, Spike, 0, 2);
 		this.setBlockToAir(world, x + 5, y, z + 7);
 		this.setBlockToAir(world, x + 5, y, z + 8);
 		this.setBlock(world, x + 5, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z + 10, ErodedStone, 2, 2);
-		this.setBlock(world, x + 5, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 13, bedrock);
 		this.setBlock(world, x + 5, y, z + 14, bedrock);
-		this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 		//22nd row
-		this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 12, bedrock);
 		this.setBlock(world, x + 6, y, z - 11, bedrock);
-		this.setBlock(world, x + 6, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 5, bedrock);
 		this.setBlock(world, x + 6, y, z - 4, bedrock);
-		this.setBlock(world, x + 6, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 2, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 6, y, z - 1);
 		this.setBlockToAir(world, x + 6, y, z);
 		this.setBlockToAir(world, x + 6, y, z + 1);
 		this.setBlockToAir(world, x + 6, y, z + 2);
 		this.setBlock(world, x + 6, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 6, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 5, bedrock);
 		this.setBlock(world, x + 6, y, z + 6, bedrock);
-		this.setBlock(world, x + 6, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 8, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 12, bedrock);
 		this.setBlock(world, x + 6, y, z + 13, bedrock);
-		this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 		//23rd row
 		this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 11, bedrock);
 		this.setBlock(world, x + 7, y, z - 10, bedrock);
 		this.setBlock(world, x + 7, y, z - 9, bedrock);
-		this.setBlock(world, x + 7, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z - 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z - 7, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 6, bedrock);
 		this.setBlock(world, x + 7, y, z - 5, bedrock);
-		this.setBlock(world, x + 7, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 3, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 7, y, z - 2);
 		this.setBlockToAir(world, x + 7, y, z - 1);
@@ -4651,25 +4651,25 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 7, y, z + 2);
 		this.setBlockToAir(world, x + 7, y, z + 3);
 		this.setBlock(world, x + 7, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 6, bedrock);
 		this.setBlock(world, x + 7, y, z + 7, bedrock);
-		this.setBlock(world, x + 7, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 10, bedrock);
 		this.setBlock(world, x + 7, y, z + 11, bedrock);
 		this.setBlock(world, x + 7, y, z + 12, bedrock);
-		this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 		//24th row
-		this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 9, bedrock);
 		this.setBlock(world, x + 8, y, z - 8, bedrock);
 		this.setBlock(world, x + 8, y, z - 7, bedrock);
 		this.setBlock(world, x + 8, y, z - 6, bedrock);
-		this.setBlock(world, x + 8, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 4, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 8, y, z - 3);
 		this.setBlockToAir(world, x + 8, y, z - 2);
@@ -4680,13 +4680,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 8, y, z + 3);
 		this.setBlockToAir(world, x + 8, y, z + 4);
 		this.setBlock(world, x + 8, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 8, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z + 7, bedrock);
 		this.setBlock(world, x + 8, y, z + 8, bedrock);
 		this.setBlock(world, x + 8, y, z + 9, bedrock);
 		this.setBlock(world, x + 8, y, z + 10, bedrock);
-		this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 		//25th row
 		this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -4771,10 +4771,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 		//29th row
-		this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 7, bedrock);
 		this.setBlock(world, x + 13, y, z - 6, bedrock);
-		this.setBlock(world, x + 13, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 4, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 13, y, z - 3);
 		this.setBlockToAir(world, x + 13, y, z - 2);
@@ -4785,16 +4785,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 13, y, z + 3);
 		this.setBlockToAir(world, x + 13, y, z + 4);
 		this.setBlock(world, x + 13, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 13, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z + 7, bedrock);
 		this.setBlock(world, x + 13, y, z + 8, bedrock);
-		this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 		//30th row
 		this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 6, bedrock);
 		this.setBlock(world, x + 14, y, z - 5, bedrock);
-		this.setBlock(world, x + 14, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z - 3, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 14, y, z - 2);
 		this.setBlockToAir(world, x + 14, y, z - 1);
@@ -4803,43 +4803,43 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 14, y, z + 2);
 		this.setBlockToAir(world, x + 14, y, z + 3);
 		this.setBlock(world, x + 14, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 14, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z + 6, bedrock);
 		this.setBlock(world, x + 14, y, z + 7, bedrock);
 		this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 		//31st row
-		this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 5, bedrock);
 		this.setBlock(world, x + 15, y, z - 4, bedrock);
-		this.setBlock(world, x + 15, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 2, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 15, y, z - 1);
 		this.setBlockToAir(world, x + 15, y, z);
 		this.setBlockToAir(world, x + 15, y, z + 1);
 		this.setBlockToAir(world, x + 15, y, z + 2);
 		this.setBlock(world, x + 15, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 15, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z + 5, bedrock);
 		this.setBlock(world, x + 15, y, z + 6, bedrock);
-		this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 		//32nd row
 		this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z - 4, bedrock);
 		this.setBlock(world, x + 16, y, z - 3, bedrock);
-		this.setBlock(world, x + 16, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x + 16, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z + 4, bedrock);
 		this.setBlock(world, x + 16, y, z + 5, bedrock);
 		this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 		//33rd row
-		this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 17, y, z - 3, bedrock);
 		this.setBlock(world, x + 17, y, z - 2, bedrock);
 		this.setBlock(world, x + 17, y, z - 1, CelledBlock);
@@ -4848,7 +4848,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 17, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 17, y, z + 3, bedrock);
 		this.setBlock(world, x + 17, y, z + 4, bedrock);
-		this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 		//34th row
 		this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -4861,12 +4861,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 		//35th row
-		this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-		this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 
 		this.generateBedrockLayer(world, rand, x, y + 1, z);
 		this.placeSpawners(world, rand, x + 10, y - 3, z, false);
@@ -4915,26 +4915,26 @@ public class SchematicCorruptedSpire extends Schematic {
 	public void generateBedrockLayer(World world, Random rand, final int x, final int y, final int z)
 	{
 		//1st row
-		this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z - 18, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z - 17, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z - 16, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z - 15, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z - 18, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z - 17, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z - 16, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z - 15, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z - 1, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z + 1, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z + 2, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z - 1, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z + 1, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z + 2, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z + 16, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z + 17, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z + 18, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z + 19, DarkStone, 14, 2);
-		this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z + 16, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z + 17, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z + 18, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z + 19, Spike, 0, 2);
+		this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 		//2nd row
 		this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -4966,7 +4966,7 @@ public class SchematicCorruptedSpire extends Schematic {
 
 		//3rd row
 		this.setBlock(world, x - 13, y, z - 22, CelledLamp);
-		this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 20, bedrock);
 		this.setBlock(world, x - 13, y, z - 19, bedrock);
 		this.setBlock(world, x - 13, y, z - 18, bedrock);
@@ -4975,11 +4975,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z - 15, bedrock);
 		this.setBlock(world, x - 13, y, z - 14, bedrock);
 		this.setBlock(world, x - 13, y, z - 13, bedrock);
-		this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 11, CelledLamp);
 
 		this.setBlock(world, x - 13, y, z - 5, CelledLamp);
-		this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 3, bedrock);
 		this.setBlock(world, x - 13, y, z - 2, bedrock);
 		this.setBlock(world, x - 13, y, z - 1, bedrock);
@@ -4988,11 +4988,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 2, bedrock);
 		this.setBlock(world, x - 13, y, z + 3, bedrock);
 		this.setBlock(world, x - 13, y, z + 4, bedrock);
-		this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 6, CelledLamp);
 
 		this.setBlock(world, x - 13, y, z + 12, CelledLamp);
-		this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 14, bedrock);
 		this.setBlock(world, x - 13, y, z + 15, bedrock);
 		this.setBlock(world, x - 13, y, z + 16, bedrock);
@@ -5001,7 +5001,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 19, bedrock);
 		this.setBlock(world, x - 13, y, z + 20, bedrock);
 		this.setBlock(world, x - 13, y, z + 21, bedrock);
-		this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 23, CelledLamp);
 
 		//4th row
@@ -5045,7 +5045,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 		//5th row
-		this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 22, bedrock);
 		this.setBlock(world, x - 11, y, z - 21, bedrock);
 		this.setBlock(world, x - 11, y, z - 20, bedrock);
@@ -5058,9 +5058,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 11, y, z - 13, bedrock);
 		this.setBlock(world, x - 11, y, z - 12, bedrock);
 		this.setBlock(world, x - 11, y, z - 11, bedrock);
-		this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 5, bedrock);
 		this.setBlock(world, x - 11, y, z - 4, bedrock);
 		this.setBlock(world, x - 11, y, z - 3, bedrock);
@@ -5073,9 +5073,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 11, y, z + 4, bedrock);
 		this.setBlock(world, x - 11, y, z + 5, bedrock);
 		this.setBlock(world, x - 11, y, z + 6, bedrock);
-		this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 12, bedrock);
 		this.setBlock(world, x - 11, y, z + 13, bedrock);
 		this.setBlock(world, x - 11, y, z + 14, bedrock);
@@ -5088,50 +5088,50 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 11, y, z + 21, bedrock);
 		this.setBlock(world, x - 11, y, z + 22, bedrock);
 		this.setBlock(world, x - 11, y, z + 23, bedrock);
-		this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 		//6th row
 		this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 		for (byte z1 = -23; z1 < -9; z1++) this.setBlock(world, x - 10, y, z + z1, bedrock);
 		this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 		for (byte z1 = -6; z1 < 8; z1++) this.setBlock(world, x - 10, y, z + z1, bedrock);
 		this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 		for (byte z1 = 11; z1 < 25; z1++) this.setBlock(world, x - 10, y, z + z1, bedrock);
 		this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 		//7th row
-		this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 		for (byte z1 = -24; z1 < 26; z1++) this.setBlock(world, x - 9, y, z + z1, bedrock);
-		this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 		//8th row
-		this.setBlock(world, x - 8, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 8, y, z - 25, Spike, 0, 2);
 		for (byte z1 = -24; z1 < 26; z1++) this.setBlock(world, x - 8, y, z + z1, bedrock);
-		this.setBlock(world, x - 8, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 8, y, z + 26, Spike, 0, 2);
 
 		//9th row
-		this.setBlock(world, x - 7, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 7, y, z - 25, Spike, 0, 2);
 		for (byte z1 = -24; z1 < 26; z1++) this.setBlock(world, x - 7, y, z + z1, bedrock);
-		this.setBlock(world, x - 7, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 7, y, z + 26, Spike, 0, 2);
 
 		//10th row
-		this.setBlock(world, x - 6, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 6, y, z - 25, Spike, 0, 2);
 		for (byte z1 = -24; z1 < 26; z1++) this.setBlock(world, x - 6, y, z + z1, bedrock);
-		this.setBlock(world, x - 6, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 6, y, z + 26, Spike, 0, 2);
 
 		//11th row
-		this.setBlock(world, x - 5, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 5, y, z - 25, Spike, 0, 2);
 		for (byte z1 = -24; z1 < 26; z1++) this.setBlock(world, x - 5, y, z + z1, bedrock);
-		this.setBlock(world, x - 5, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 5, y, z + 26, Spike, 0, 2);
 
 		//12th row
-		this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 		for (byte z1 = -24; z1 < 26; z1++) this.setBlock(world, x - 4, y, z + z1, bedrock);
-		this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 		//13th row
 		this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
@@ -5139,9 +5139,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 		//14th row
-		this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 		for (byte z1 = -22; z1 < 24; z1++) this.setBlock(world, x - 2, y, z + z1, bedrock);
-		this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 		//15th row
 		this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
@@ -5150,9 +5150,9 @@ public class SchematicCorruptedSpire extends Schematic {
 
 		//16th row
 		this.setBlock(world, x, y, z - 22, CelledLamp);
-		this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 		for (byte z1 = -20; z1 < 22; z1++) this.setBlock(world, x, y, z + z1, bedrock);
-		this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 23, CelledLamp);
 
 		//17th row
@@ -5161,13 +5161,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 		//18th row
-		this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 18, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 17, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 18, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 17, Spike, 0, 2);
 		for (byte z1 = -16; z1 < 18; z1++) this.setBlock(world, x + 2, y, z + z1, bedrock);
-		this.setBlock(world, x + 2, y, z + 18, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 19, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 18, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 19, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 		//19th row
 		this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
@@ -5175,60 +5175,60 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 		//20th row
-		this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 		for (byte z1 = -13; z1 < 15; z1++) this.setBlock(world, x + 4, y, z + z1, bedrock);
-		this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 		//21st row
-		this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 		for (byte z1 = -13; z1 < 15; z1++) this.setBlock(world, x + 5, y, z + z1, bedrock);
-		this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 		//22nd row
-		this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 		for (byte z1 = -12; z1 < 14; z1++) this.setBlock(world, x + 6, y, z + z1, bedrock);
-		this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 		//23rd row
 		this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 		for (byte z1 = -11; z1 < 13; z1++) this.setBlock(world, x + 7, y, z + z1, bedrock);
-		this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 		//24th row
-		this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 		for (byte z1 = -9; z1 < 11; z1++) this.setBlock(world, x + 8, y, z + z1, bedrock);
-		this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 		//25th row
 		this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x + 9, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 9, y, z - 8, Spike, 0, 2);
 		for (byte z1 = -7; z1 < 9; z1++) this.setBlock(world, x + 9, y, z + z1, bedrock);
-		this.setBlock(world, x + 9, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 9, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x + 9, y, z + 10, ErodedStone, 1, 2);
 
 		//26th row
-		this.setBlock(world, x + 10, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 10, y, z - 8, Spike, 0, 2);
 		for (byte z1 = -7; z1 < 9; z1++) this.setBlock(world, x + 10, y, z + z1, bedrock);
-		this.setBlock(world, x + 10, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 10, y, z + 9, Spike, 0, 2);
 
 		//27th row
-		this.setBlock(world, x + 11, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 11, y, z - 8, Spike, 0, 2);
 		for (byte z1 = -7; z1 < 9; z1++) this.setBlock(world, x + 11, y, z + z1, bedrock);
-		this.setBlock(world, x + 11, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 11, y, z + 9, Spike, 0, 2);
 
 		//28th row
-		this.setBlock(world, x + 12, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 12, y, z - 8, Spike, 0, 2);
 		for (byte z1 = -7; z1 < 9; z1++) this.setBlock(world, x + 12, y, z + z1, bedrock);
-		this.setBlock(world, x + 12, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 12, y, z + 9, Spike, 0, 2);
 
 		//29th row
-		this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 		for (byte z1 = -7; z1 < 9; z1++) this.setBlock(world, x + 13, y, z + z1, bedrock);
-		this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 		//30th row
 		this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
@@ -5236,9 +5236,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 		//31st row
-		this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 		for (byte z1 = -5; z1 < 7; z1++) this.setBlock(world, x + 15, y, z + z1, bedrock);
-		this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 		//32nd row
 		this.setBlock(world, x + 16, y, z - 6, CelledLamp);
@@ -5248,9 +5248,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 16, y, z + 7, CelledLamp);
 
 		//33rd row
-		this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 		for (byte z1 = -3; z1 < 5; z1++) this.setBlock(world, x + 17, y, z + z1, bedrock);
-		this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 		//34th row
 		this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -5263,12 +5263,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 		//35th row
-		this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
-		this.setBlock(world, x + 19, y, z - 1, DarkStone, 14, 2);
-		this.setBlock(world, x + 19, y, z, DarkStone, 14, 2);
-		this.setBlock(world, x + 19, y, z + 1, DarkStone, 14, 2);
-		this.setBlock(world, x + 19, y, z + 2, DarkStone, 14, 2);
-		this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
+		this.setBlock(world, x + 19, y, z - 1, Spike, 0, 2);
+		this.setBlock(world, x + 19, y, z, Spike, 0, 2);
+		this.setBlock(world, x + 19, y, z + 1, Spike, 0, 2);
+		this.setBlock(world, x + 19, y, z + 2, Spike, 0, 2);
+		this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 	}
 
 	public byte generateBossFloor(World world, Random rand, final int x, final int y, final int z, final byte floorNumber, final byte lastHole)
@@ -5277,26 +5277,26 @@ public class SchematicCorruptedSpire extends Schematic {
 
 		//first layer
 		//1st row
-		this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-		this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 		//2nd row
 		this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -5327,7 +5327,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 		//3rd row
-		this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 20, bedrock);
 		this.setBlock(world, x - 13, y, z - 19, bedrock);
 		this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -5336,9 +5336,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 		this.setBlock(world, x - 13, y, z - 14, bedrock);
 		this.setBlock(world, x - 13, y, z - 13, bedrock);
-		this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 3, bedrock);
 		this.setBlock(world, x - 13, y, z - 2, bedrock);
 		this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -5347,9 +5347,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 3, bedrock);
 		this.setBlock(world, x - 13, y, z + 4, bedrock);
-		this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 14, bedrock);
 		this.setBlock(world, x - 13, y, z + 15, bedrock);
 		this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -5358,18 +5358,18 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 20, bedrock);
 		this.setBlock(world, x - 13, y, z + 21, bedrock);
-		this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 		//4th row
 		this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 21, bedrock);
 		this.setBlock(world, x - 12, y, z - 20, bedrock);
-		this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 13, bedrock);
 		this.setBlock(world, x - 12, y, z - 12, bedrock);
 		this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -5377,12 +5377,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 4, bedrock);
 		this.setBlock(world, x - 12, y, z - 3, bedrock);
-		this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 4, bedrock);
 		this.setBlock(world, x - 12, y, z + 5, bedrock);
 		this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -5390,67 +5390,67 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 13, bedrock);
 		this.setBlock(world, x - 12, y, z + 14, bedrock);
-		this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 21, bedrock);
 		this.setBlock(world, x - 12, y, z + 22, bedrock);
 		this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 		//5th row
-		this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 22, bedrock);
 		this.setBlock(world, x - 11, y, z - 21, bedrock);
-		this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 19, ErodedStone, 1, 2);
 		this.setBlock(world, x - 11, y, z - 18, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 17, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 16, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 12, bedrock);
 		this.setBlock(world, x - 11, y, z - 11, bedrock);
-		this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 5, bedrock);
 		this.setBlock(world, x - 11, y, z - 4, bedrock);
-		this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x - 11, y, z - 1, ErodedStone);
 		this.setBlock(world, x - 11, y, z, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 1, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 5, bedrock);
 		this.setBlock(world, x - 11, y, z + 6, bedrock);
-		this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 12, bedrock);
 		this.setBlock(world, x - 11, y, z + 13, bedrock);
-		this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 15, ErodedStone, 1, 2);
 		this.setBlock(world, x - 11, y, z + 16, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 17, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 18, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 22, bedrock);
 		this.setBlock(world, x - 11, y, z + 23, bedrock);
-		this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 		//6th row
 		this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 23, bedrock);
 		this.setBlock(world, x - 10, y, z - 22, bedrock);
-		this.setBlock(world, x - 10, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 20, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 19, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 18, ErodedStone);
@@ -5459,15 +5459,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 10, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 11, bedrock);
 		this.setBlock(world, x - 10, y, z - 10, bedrock);
 		this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 6, bedrock);
 		this.setBlock(world, x - 10, y, z - 5, bedrock);
-		this.setBlock(world, x - 10, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 2, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 1, ErodedStone);
@@ -5476,15 +5476,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 10, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 6, bedrock);
 		this.setBlock(world, x - 10, y, z + 7, bedrock);
 		this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 11, bedrock);
 		this.setBlock(world, x - 10, y, z + 12, bedrock);
-		this.setBlock(world, x - 10, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 14, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 15, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 16, ErodedStone);
@@ -5493,16 +5493,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 10, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 23, bedrock);
 		this.setBlock(world, x - 10, y, z + 24, bedrock);
 		this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 		//7th row
-		this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 24, bedrock);
 		this.setBlock(world, x - 9, y, z - 23, bedrock);
-		this.setBlock(world, x - 9, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 21, ErodedStone, 1, 2);
 		this.setBlock(world, x - 9, y, z - 20, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 19, ErodedStone);
@@ -5513,13 +5513,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 13, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 10, bedrock);
 		this.setBlock(world, x - 9, y, z - 9, bedrock);
 		this.setBlock(world, x - 9, y, z - 8, bedrock);
 		this.setBlock(world, x - 9, y, z - 7, bedrock);
 		this.setBlock(world, x - 9, y, z - 6, bedrock);
-		this.setBlock(world, x - 9, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x - 9, y, z - 3, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 2, ErodedStone);
@@ -5530,13 +5530,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 4, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 7, bedrock);
 		this.setBlock(world, x - 9, y, z + 8, bedrock);
 		this.setBlock(world, x - 9, y, z + 9, bedrock);
 		this.setBlock(world, x - 9, y, z + 10, bedrock);
 		this.setBlock(world, x - 9, y, z + 11, bedrock);
-		this.setBlock(world, x - 9, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 13, ErodedStone, 1, 2);
 		this.setBlock(world, x - 9, y, z + 14, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 15, ErodedStone);
@@ -5547,10 +5547,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 21, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 24, bedrock);
 		this.setBlock(world, x - 9, y, z + 25, bedrock);
-		this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 		//8th row
 		this.setBlock(world, x - 8, y, z - 25, CelledBlock);
@@ -5769,10 +5769,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 5, y, z + 26, CelledBlock);
 
 		//12th row
-		this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 24, bedrock);
 		this.setBlock(world, x - 4, y, z - 23, bedrock);
-		this.setBlock(world, x - 4, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 21, ErodedStone, 1, 2);
 		this.setBlock(world, x - 4, y, z - 20, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 19, ErodedStone);
@@ -5783,13 +5783,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 4, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 13, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 10, bedrock);
 		this.setBlock(world, x - 4, y, z - 9, bedrock);
 		this.setBlock(world, x - 4, y, z - 8, bedrock);
 		this.setBlock(world, x - 4, y, z - 7, bedrock);
 		this.setBlock(world, x - 4, y, z - 6, bedrock);
-		this.setBlock(world, x - 4, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x - 4, y, z - 3, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 2, ErodedStone);
@@ -5800,13 +5800,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 4, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 4, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 7, bedrock);
 		this.setBlock(world, x - 4, y, z + 8, bedrock);
 		this.setBlock(world, x - 4, y, z + 9, bedrock);
 		this.setBlock(world, x - 4, y, z + 10, bedrock);
 		this.setBlock(world, x - 4, y, z + 11, bedrock);
-		this.setBlock(world, x - 4, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 13, ErodedStone, 1, 2);
 		this.setBlock(world, x - 4, y, z + 14, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 15, ErodedStone);
@@ -5817,16 +5817,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 4, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 21, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 24, bedrock);
 		this.setBlock(world, x - 4, y, z + 25, bedrock);
-		this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 		//13th row
 		this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 23, bedrock);
 		this.setBlock(world, x - 3, y, z - 22, bedrock);
-		this.setBlock(world, x - 3, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 20, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 19, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 18, ErodedStone);
@@ -5835,15 +5835,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 11, bedrock);
 		this.setBlock(world, x - 3, y, z - 10, bedrock);
 		this.setBlock(world, x - 3, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 6, bedrock);
 		this.setBlock(world, x - 3, y, z - 5, bedrock);
-		this.setBlock(world, x - 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 2, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 1, ErodedStone);
@@ -5852,15 +5852,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 6, bedrock);
 		this.setBlock(world, x - 3, y, z + 7, bedrock);
 		this.setBlock(world, x - 3, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 11, bedrock);
 		this.setBlock(world, x - 3, y, z + 12, bedrock);
-		this.setBlock(world, x - 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 14, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 15, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 16, ErodedStone);
@@ -5869,111 +5869,111 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 23, bedrock);
 		this.setBlock(world, x - 3, y, z + 24, bedrock);
 		this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 		//14th row
-		this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 22, bedrock);
 		this.setBlock(world, x - 2, y, z - 21, bedrock);
-		this.setBlock(world, x - 2, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 19, ErodedStone, 1, 2);
 		this.setBlock(world, x - 2, y, z - 18, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 17, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 16, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 12, bedrock);
 		this.setBlock(world, x - 2, y, z - 11, bedrock);
-		this.setBlock(world, x - 2, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 5, bedrock);
 		this.setBlock(world, x - 2, y, z - 4, bedrock);
-		this.setBlock(world, x - 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x - 2, y, z - 1, ErodedStone);
 		this.setBlock(world, x - 2, y, z, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 1, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 5, bedrock);
 		this.setBlock(world, x - 2, y, z + 6, bedrock);
-		this.setBlock(world, x - 2, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 12, bedrock);
 		this.setBlock(world, x - 2, y, z + 13, bedrock);
-		this.setBlock(world, x - 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 15, ErodedStone, 1, 2);
 		this.setBlock(world, x - 2, y, z + 16, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 17, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 18, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 22, bedrock);
 		this.setBlock(world, x - 2, y, z + 23, bedrock);
-		this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 		//15th row
 		this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 21, bedrock);
 		this.setBlock(world, x - 1, y, z - 20, bedrock);
-		this.setBlock(world, x - 1, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 13, bedrock);
 		this.setBlock(world, x - 1, y, z - 12, bedrock);
-		this.setBlock(world, x - 1, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 10, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 4, bedrock);
 		this.setBlock(world, x - 1, y, z - 3, bedrock);
-		this.setBlock(world, x - 1, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 4, bedrock);
 		this.setBlock(world, x - 1, y, z + 5, bedrock);
 		this.setBlock(world, x - 1, y, z + 6, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 10, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 11, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 13, bedrock);
 		this.setBlock(world, x - 1, y, z + 14, bedrock);
-		this.setBlock(world, x - 1, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 21, bedrock);
 		this.setBlock(world, x - 1, y, z + 22, bedrock);
 		this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 		//16th row
-		this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 20, bedrock);
 		this.setBlock(world, x, y, z - 19, bedrock);
 		this.setBlock(world, x, y, z - 18, CelledBlock);
@@ -5982,17 +5982,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z - 15, CelledBlock);
 		this.setBlock(world, x, y, z - 14, bedrock);
 		this.setBlock(world, x, y, z - 13, bedrock);
-		this.setBlock(world, x, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 12, Spike, 0, 2);
 
 		this.setBlock(world, x, y, z - 11, ErodedStone);
 		this.setBlock(world, x, y, z - 10, ErodedStone);
 		this.setBlock(world, x, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z - 8, ErodedStone, 2, 2);
-		this.setBlock(world, x, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 3, bedrock);
 		this.setBlock(world, x, y, z - 2, bedrock);
 		this.setBlock(world, x, y, z - 1, CelledBlock);
@@ -6001,17 +6001,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 2, CelledBlock);
 		this.setBlock(world, x, y, z + 3, bedrock);
 		this.setBlock(world, x, y, z + 4, bedrock);
-		this.setBlock(world, x, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 8, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 8, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z + 10, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z + 11, ErodedStone);
 		this.setBlock(world, x, y, z + 12, ErodedStone);
 
-		this.setBlock(world, x, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 14, bedrock);
 		this.setBlock(world, x, y, z + 15, bedrock);
 		this.setBlock(world, x, y, z + 16, CelledBlock);
@@ -6020,7 +6020,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 19, CelledBlock);
 		this.setBlock(world, x, y, z + 20, bedrock);
 		this.setBlock(world, x, y, z + 21, bedrock);
-		this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 		//17th row
 		this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -6030,16 +6030,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z - 16, bedrock);
 		this.setBlock(world, x + 1, y, z - 15, bedrock);
 		this.setBlock(world, x + 1, y, z - 14, bedrock);
-		this.setBlock(world, x + 1, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 12, ErodedStone, 2, 2);
 		this.setBlock(world, x + 1, y, z - 11, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 10, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 1, y, z - 2, bedrock);
 		this.setBlock(world, x + 1, y, z - 1, bedrock);
@@ -6048,16 +6048,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 2, bedrock);
 		this.setBlock(world, x + 1, y, z + 3, bedrock);
 		this.setBlock(world, x + 1, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 1, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 8, ErodedStone, 2, 2);
 		this.setBlock(world, x + 1, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 11, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 12, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 13, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 15, bedrock);
 		this.setBlock(world, x + 1, y, z + 16, bedrock);
 		this.setBlock(world, x + 1, y, z + 17, bedrock);
@@ -6067,60 +6067,60 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 		//18th row
-		this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 15, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 14, bedrock);
-		this.setBlock(world, x + 2, y, z - 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 11, ErodedStone, 2, 2);
 		this.setBlock(world, x + 2, y, z - 10, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 2, bedrock);
 		this.setBlock(world, x + 2, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 3, bedrock);
-		this.setBlock(world, x + 2, y, z + 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 7, ErodedStone, 2, 2);
 		this.setBlock(world, x + 2, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 11, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z + 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 15, bedrock);
 		this.setBlock(world, x + 2, y, z + 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 19, CelledBlock);
-		this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 		//19th row
 		this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 14, bedrock);
 		this.setBlock(world, x + 3, y, z - 13, bedrock);
-		this.setBlock(world, x + 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 11, ErodedStone, 2, 2);
 		this.setBlock(world, x + 3, y, z - 10, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 2, bedrock);
 		this.setBlock(world, x + 3, y, z - 1, bedrock);
@@ -6129,31 +6129,31 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 3, y, z + 2, bedrock);
 		this.setBlock(world, x + 3, y, z + 3, bedrock);
 		this.setBlock(world, x + 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 3, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 7, ErodedStone, 2, 2);
 		this.setBlock(world, x + 3, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 11, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 14, bedrock);
 		this.setBlock(world, x + 3, y, z + 15, bedrock);
 		this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 		//20th row
-		this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 13, bedrock);
-		this.setBlock(world, x + 4, y, z - 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 10, ErodedStone, 2, 2);
 		this.setBlock(world, x + 4, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 6, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 5, ErodedStone, 2, 2);
-		this.setBlock(world, x + 4, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 3, bedrock);
 		this.setBlock(world, x + 4, y, z - 2, bedrock);
 		this.setBlock(world, x + 4, y, z - 1, CelledBlock);
@@ -6162,91 +6162,91 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 4, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 4, y, z + 3, bedrock);
 		this.setBlock(world, x + 4, y, z + 4, bedrock);
-		this.setBlock(world, x + 4, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 6, ErodedStone, 2, 2);
 		this.setBlock(world, x + 4, y, z + 7, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 11, ErodedStone, 2, 2);
-		this.setBlock(world, x + 4, y, z + 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 14, bedrock);
-		this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 		//21st row
-		this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 13, bedrock);
 		this.setBlock(world, x + 5, y, z - 12, bedrock);
-		this.setBlock(world, x + 5, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z - 8, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 5, y, z - 6, ErodedStone);
-		this.setBlock(world, x + 5, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 4, bedrock);
 		this.setBlock(world, x + 5, y, z - 3, bedrock);
-		this.setBlock(world, x + 5, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 5, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x + 5, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 5, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x + 5, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 4, bedrock);
 		this.setBlock(world, x + 5, y, z + 5, bedrock);
-		this.setBlock(world, x + 5, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 7, ErodedStone);
 		this.setBlock(world, x + 5, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 5, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z + 10, ErodedStone, 2, 2);
-		this.setBlock(world, x + 5, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 13, bedrock);
 		this.setBlock(world, x + 5, y, z + 14, bedrock);
-		this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 		//22nd row
-		this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 12, bedrock);
 		this.setBlock(world, x + 6, y, z - 11, bedrock);
-		this.setBlock(world, x + 6, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 5, bedrock);
 		this.setBlock(world, x + 6, y, z - 4, bedrock);
-		this.setBlock(world, x + 6, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x + 6, y, z - 1, ErodedStone);
 		this.setBlock(world, x + 6, y, z, ErodedStone);
 		this.setBlock(world, x + 6, y, z + 1, ErodedStone);
 		this.setBlock(world, x + 6, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 6, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 6, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 5, bedrock);
 		this.setBlock(world, x + 6, y, z + 6, bedrock);
-		this.setBlock(world, x + 6, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 8, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 12, bedrock);
 		this.setBlock(world, x + 6, y, z + 13, bedrock);
-		this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 		//23rd row
 		this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 11, bedrock);
 		this.setBlock(world, x + 7, y, z - 10, bedrock);
 		this.setBlock(world, x + 7, y, z - 9, bedrock);
-		this.setBlock(world, x + 7, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z - 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z - 7, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 6, bedrock);
 		this.setBlock(world, x + 7, y, z - 5, bedrock);
-		this.setBlock(world, x + 7, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 7, y, z - 2, ErodedStone);
 		this.setBlock(world, x + 7, y, z - 1, ErodedStone);
@@ -6255,25 +6255,25 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 7, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 7, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 7, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 6, bedrock);
 		this.setBlock(world, x + 7, y, z + 7, bedrock);
-		this.setBlock(world, x + 7, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 10, bedrock);
 		this.setBlock(world, x + 7, y, z + 11, bedrock);
 		this.setBlock(world, x + 7, y, z + 12, bedrock);
-		this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 		//24th row
-		this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 9, bedrock);
 		this.setBlock(world, x + 8, y, z - 8, bedrock);
 		this.setBlock(world, x + 8, y, z - 7, bedrock);
 		this.setBlock(world, x + 8, y, z - 6, bedrock);
-		this.setBlock(world, x + 8, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x + 8, y, z - 3, ErodedStone);
 		this.setBlock(world, x + 8, y, z - 2, ErodedStone);
@@ -6284,13 +6284,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 8, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 8, y, z + 4, ErodedStone);
 		this.setBlock(world, x + 8, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 8, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z + 7, bedrock);
 		this.setBlock(world, x + 8, y, z + 8, bedrock);
 		this.setBlock(world, x + 8, y, z + 9, bedrock);
 		this.setBlock(world, x + 8, y, z + 10, bedrock);
-		this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 		//25th row
 		this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -6375,10 +6375,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 		//29th row
-		this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 7, bedrock);
 		this.setBlock(world, x + 13, y, z - 6, bedrock);
-		this.setBlock(world, x + 13, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x + 13, y, z - 3, ErodedStone);
 		this.setBlock(world, x + 13, y, z - 2, ErodedStone);
@@ -6389,16 +6389,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 13, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 13, y, z + 4, ErodedStone);
 		this.setBlock(world, x + 13, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 13, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z + 7, bedrock);
 		this.setBlock(world, x + 13, y, z + 8, bedrock);
-		this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 		//30th row
 		this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 6, bedrock);
 		this.setBlock(world, x + 14, y, z - 5, bedrock);
-		this.setBlock(world, x + 14, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 2, ErodedStone);
 		this.setBlock(world, x + 14, y, z - 1, ErodedStone);
@@ -6407,43 +6407,43 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 14, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 14, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 14, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 14, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z + 6, bedrock);
 		this.setBlock(world, x + 14, y, z + 7, bedrock);
 		this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 		//31st row
-		this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 5, bedrock);
 		this.setBlock(world, x + 15, y, z - 4, bedrock);
-		this.setBlock(world, x + 15, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x + 15, y, z - 1, ErodedStone);
 		this.setBlock(world, x + 15, y, z, ErodedStone);
 		this.setBlock(world, x + 15, y, z + 1, ErodedStone);
 		this.setBlock(world, x + 15, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 15, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 15, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z + 5, bedrock);
 		this.setBlock(world, x + 15, y, z + 6, bedrock);
-		this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 		//32nd row
 		this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z - 4, bedrock);
 		this.setBlock(world, x + 16, y, z - 3, bedrock);
-		this.setBlock(world, x + 16, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x + 16, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z + 4, bedrock);
 		this.setBlock(world, x + 16, y, z + 5, bedrock);
 		this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 		//33rd row
-		this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 17, y, z - 3, bedrock);
 		this.setBlock(world, x + 17, y, z - 2, bedrock);
 		this.setBlock(world, x + 17, y, z - 1, CelledBlock);
@@ -6452,7 +6452,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 17, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 17, y, z + 3, bedrock);
 		this.setBlock(world, x + 17, y, z + 4, bedrock);
-		this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 		//34th row
 		this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -6465,12 +6465,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 		//35th row
-		this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-		this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 
 		return this.generateBossFloor2(world, rand, x, y, z, floorNumber, lastHole);
 	}
@@ -6482,26 +6482,26 @@ public class SchematicCorruptedSpire extends Schematic {
 		{
 			y++;
 			//1st row
-			this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 			this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 			this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 			this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 			this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-			this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-			this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 			this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 			this.setBlock(world, x - 15, y, z, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 1, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-			this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-			this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 			this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-			this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 			//2nd row
 			this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -6532,7 +6532,7 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 			//3rd row
-			this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 			this.setBlock(world, x - 13, y, z - 20, bedrock);
 			this.setBlock(world, x - 13, y, z - 19, bedrock);
 			this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -6541,9 +6541,9 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 			this.setBlock(world, x - 13, y, z - 14, bedrock);
 			this.setBlock(world, x - 13, y, z - 13, bedrock);
-			this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-			this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x - 13, y, z - 3, bedrock);
 			this.setBlock(world, x - 13, y, z - 2, bedrock);
 			this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -6552,9 +6552,9 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 			this.setBlock(world, x - 13, y, z + 3, bedrock);
 			this.setBlock(world, x - 13, y, z + 4, bedrock);
-			this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-			this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x - 13, y, z + 14, bedrock);
 			this.setBlock(world, x - 13, y, z + 15, bedrock);
 			this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -6563,18 +6563,18 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 			this.setBlock(world, x - 13, y, z + 20, bedrock);
 			this.setBlock(world, x - 13, y, z + 21, bedrock);
-			this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 			//4th row
 			this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 			this.setBlock(world, x - 12, y, z - 21, bedrock);
 			this.setBlock(world, x - 12, y, z - 20, bedrock);
-			this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 			this.setBlockToAir(world, x - 12, y, z - 18);
 			this.setBlockToAir(world, x - 12, y, z - 17);
 			this.setBlockToAir(world, x - 12, y, z - 16);
 			this.setBlockToAir(world, x - 12, y, z - 15);
-			this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 			this.setBlock(world, x - 12, y, z - 13, bedrock);
 			this.setBlock(world, x - 12, y, z - 12, bedrock);
 			this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -6582,12 +6582,12 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 			this.setBlock(world, x - 12, y, z - 4, bedrock);
 			this.setBlock(world, x - 12, y, z - 3, bedrock);
-			this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 			this.setBlockToAir(world, x - 12, y, z - 1);
 			this.setBlockToAir(world, x - 12, y, z);
 			this.setBlockToAir(world, x - 12, y, z + 1);
 			this.setBlockToAir(world, x - 12, y, z + 2);
-			this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 			this.setBlock(world, x - 12, y, z + 4, bedrock);
 			this.setBlock(world, x - 12, y, z + 5, bedrock);
 			this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -6595,61 +6595,61 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 			this.setBlock(world, x - 12, y, z + 13, bedrock);
 			this.setBlock(world, x - 12, y, z + 14, bedrock);
-			this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 			this.setBlockToAir(world, x - 12, y, z + 16);
 			this.setBlockToAir(world, x - 12, y, z + 17);
 			this.setBlockToAir(world, x - 12, y, z + 18);
 			this.setBlockToAir(world, x - 12, y, z + 19);
-			this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 			this.setBlock(world, x - 12, y, z + 21, bedrock);
 			this.setBlock(world, x - 12, y, z + 22, bedrock);
 			this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 			//5th row
-			this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z - 22, bedrock);
 			this.setBlock(world, x - 11, y, z - 21, bedrock);
-			this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 			this.setBlockToAir(world, x - 11, y, z - 19);
 			this.setBlockToAir(world, x - 11, y, z - 18);
 			this.setBlockToAir(world, x - 11, y, z - 17);
 			this.setBlockToAir(world, x - 11, y, z - 16);
 			this.setBlockToAir(world, x - 11, y, z - 15);
 			this.setBlockToAir(world, x - 11, y, z - 14);
-			this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z - 12, bedrock);
 			this.setBlock(world, x - 11, y, z - 11, bedrock);
-			this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-			this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z - 5, bedrock);
 			this.setBlock(world, x - 11, y, z - 4, bedrock);
-			this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 			this.setBlockToAir(world, x - 11, y, z - 2);
 			this.setBlockToAir(world, x - 11, y, z - 1);
 			this.setBlockToAir(world, x - 11, y, z);
 			this.setBlockToAir(world, x - 11, y, z + 1);
 			this.setBlockToAir(world, x - 11, y, z + 2);
 			this.setBlockToAir(world, x - 11, y, z + 3);
-			this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z + 5, bedrock);
 			this.setBlock(world, x - 11, y, z + 6, bedrock);
-			this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-			this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z + 12, bedrock);
 			this.setBlock(world, x - 11, y, z + 13, bedrock);
-			this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 			this.setBlockToAir(world, x - 11, y, z + 15);
 			this.setBlockToAir(world, x - 11, y, z + 16);
 			this.setBlockToAir(world, x - 11, y, z + 17);
 			this.setBlockToAir(world, x - 11, y, z + 18);
 			this.setBlockToAir(world, x - 11, y, z + 19);
 			this.setBlockToAir(world, x - 11, y, z + 20);
-			this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z + 22, bedrock);
 			this.setBlock(world, x - 11, y, z + 23, bedrock);
-			this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 			//6th row
 			this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
@@ -6659,7 +6659,7 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 10, y, z - 11, bedrock);
 			this.setBlock(world, x - 10, y, z - 10, bedrock);
 			this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-			this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 			this.setBlock(world, x - 10, y, z - 6, bedrock);
 			this.setBlock(world, x - 10, y, z - 5, bedrock);
@@ -6667,7 +6667,7 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 10, y, z + 6, bedrock);
 			this.setBlock(world, x - 10, y, z + 7, bedrock);
 			this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-			this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 			this.setBlock(world, x - 10, y, z + 11, bedrock);
 			this.setBlock(world, x - 10, y, z + 12, bedrock);
@@ -6677,58 +6677,58 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 			//7th row
-			this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 9, y, z - 24, bedrock);
 			this.setBlock(world, x - 9, y, z - 23, bedrock);
 			for (byte z1 = -22; z1 < 24; z1++) this.setBlockToAir(world, x - 9, y, z + z1);
 			this.setBlock(world, x - 9, y, z + 24, bedrock);
 			this.setBlock(world, x - 9, y, z + 25, bedrock);
-			this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 			//8th row
-			this.setBlock(world, x - 8, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 8, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 8, y, z - 24, bedrock);
 			this.setBlock(world, x - 8, y, z - 23, bedrock);
 			for (byte z1 = -22; z1 < 24; z1++) this.setBlockToAir(world, x - 8, y, z + z1);
 			this.setBlock(world, x - 8, y, z + 24, bedrock);
 			this.setBlock(world, x - 8, y, z + 25, bedrock);
-			this.setBlock(world, x - 8, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 8, y, z + 26, Spike, 0, 2);
 
 			//9th row
-			this.setBlock(world, x - 7, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 7, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 7, y, z - 24, bedrock);
 			this.setBlock(world, x - 7, y, z - 23, bedrock);
 			for (byte z1 = -22; z1 < 24; z1++) this.setBlockToAir(world, x - 7, y, z + z1);
 			this.setBlock(world, x - 7, y, z + 24, bedrock);
 			this.setBlock(world, x - 7, y, z + 25, bedrock);
-			this.setBlock(world, x - 7, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 7, y, z + 26, Spike, 0, 2);
 
 			//10th row
-			this.setBlock(world, x - 6, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 6, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 6, y, z - 24, bedrock);
 			this.setBlock(world, x - 6, y, z - 23, bedrock);
 			for (byte z1 = -22; z1 < 24; z1++) this.setBlockToAir(world, x - 6, y, z + z1);
 			this.setBlock(world, x - 6, y, z + 24, bedrock);
 			this.setBlock(world, x - 6, y, z + 25, bedrock);
-			this.setBlock(world, x - 6, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 6, y, z + 26, Spike, 0, 2);
 
 			//11th row
-			this.setBlock(world, x - 5, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 5, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 5, y, z - 24, bedrock);
 			this.setBlock(world, x - 5, y, z - 23, bedrock);
 			for (byte z1 = -22; z1 < 24; z1++) this.setBlockToAir(world, x - 5, y, z + z1);
 			this.setBlock(world, x - 5, y, z + 24, bedrock);
 			this.setBlock(world, x - 5, y, z + 25, bedrock);
-			this.setBlock(world, x - 5, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 5, y, z + 26, Spike, 0, 2);
 
 			//12th row
-			this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 4, y, z - 24, bedrock);
 			this.setBlock(world, x - 4, y, z - 23, bedrock);
 			for (byte z1 = -22; z1 < 24; z1++) this.setBlockToAir(world, x - 4, y, z + z1);
 			this.setBlock(world, x - 4, y, z + 24, bedrock);
 			this.setBlock(world, x - 4, y, z + 25, bedrock);
-			this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 			//13th row
 			this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
@@ -6740,13 +6740,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 			//14th row
-			this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 			this.setBlock(world, x - 2, y, z - 22, bedrock);
 			this.setBlock(world, x - 2, y, z - 21, bedrock);
 			for (byte z1 = -20; z1 < 22; z1++) this.setBlockToAir(world, x - 2, y, z + z1);
 			this.setBlock(world, x - 2, y, z + 22, bedrock);
 			this.setBlock(world, x - 2, y, z + 23, bedrock);
-			this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 			//15th row
 			this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
@@ -6758,13 +6758,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 			//16th row
-			this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 			this.setBlock(world, x, y, z - 20, bedrock);
 			this.setBlock(world, x, y, z - 19, bedrock);
 			for (byte z1 = -18; z1 < 20; z1++) this.setBlockToAir(world, x, y, z + z1);
 			this.setBlock(world, x, y, z + 20, bedrock);
 			this.setBlock(world, x, y, z + 21, bedrock);
-			this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 			//17th row
 			this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -6798,53 +6798,53 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 			//20th row
-			this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 			this.setBlock(world, x + 4, y, z - 13, bedrock);
 			this.setBlock(world, x + 4, y, z - 12, bedrock);
 			for (byte z1 = -11; z1 < 13; z1++) this.setBlockToAir(world, x + 4, y, z + z1);
 			this.setBlock(world, x + 4, y, z + 13, bedrock);
 			this.setBlock(world, x + 4, y, z + 14, bedrock);
-			this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 			//21st row
-			this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 			this.setBlock(world, x + 5, y, z - 13, bedrock);
 			this.setBlock(world, x + 5, y, z - 12, bedrock);
 			for (int z1 = -11; z1 < 13; z1++) this.setBlockToAir(world, x + 5, y, z + z1);
 			this.setBlock(world, x + 5, y, z + 13, bedrock);
 			this.setBlock(world, x + 5, y, z + 14, bedrock);
-			this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 			//22nd row
-			this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 			this.setBlock(world, x + 6, y, z - 12, bedrock);
 			this.setBlock(world, x + 6, y, z - 11, bedrock);
 			for (int z1 = -10; z1 < 13; z1++) this.setBlockToAir(world, x + 6, y, z + z1);
 			this.setBlock(world, x + 6, y, z + 12, bedrock);
 			this.setBlock(world, x + 6, y, z + 13, bedrock);
-			this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 			//23rd row
 			this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-			this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z - 11, bedrock);
 			this.setBlock(world, x + 7, y, z - 10, bedrock);
 			for (byte z1 = -9; z1 < 11; z1++) this.setBlockToAir(world, x + 7, y, z + z1);
 			this.setBlock(world, x + 7, y, z + 11, bedrock);
 			this.setBlock(world, x + 7, y, z + 12, bedrock);
-			this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 			//24th row
-			this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+			this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 			this.setBlock(world, x + 8, y, z - 9, bedrock);
 			this.setBlock(world, x + 8, y, z - 8, bedrock);
 			for (byte z1 = -7; z1 < 10; z1++) this.setBlockToAir(world, x + 8, y, z + z1);
 			this.setBlock(world, x + 8, y, z + 9, bedrock);
 			this.setBlock(world, x + 8, y, z + 10, bedrock);
-			this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+			this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 			//25th row
 			this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -6877,11 +6877,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 			//29th row
-			this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 			this.setBlock(world, x + 13, y, z - 7, bedrock);
 			for (byte z1 = -6; z1 < 8; z1++) this.setBlockToAir(world, x + 13, y, z + z1);
 			this.setBlock(world, x + 13, y, z + 8, bedrock);
-			this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 			//30th row
 			this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
@@ -6891,11 +6891,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 			//31st row
-			this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x + 15, y, z - 5, bedrock);
 			for (int z1 = -4; z1 < 6; z1++) this.setBlockToAir(world, x + 15, y, z + z1);
 			this.setBlock(world, x + 15, y, z + 6, bedrock);
-			this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 			//32nd row
 			this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
@@ -6905,11 +6905,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 			//33rd row
-			this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x + 17, y, z - 3, bedrock);
 			for (byte z1 = -2; z1 < 4; z1++) this.setBlockToAir(world, x + 17, y, z + z1);
 			this.setBlock(world, x + 17, y, z + 4, bedrock);
-			this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 			//34th row
 			this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -6922,12 +6922,12 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 			//35th row
-			this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 			this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 			this.setBlock(world, x + 19, y, z, CelledBlock);
 			this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 			this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-			this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 		}
 
 		this.setBlock(world, x + 5, y - 1, z - 11, CelledLamp);
@@ -6961,26 +6961,26 @@ public class SchematicCorruptedSpire extends Schematic {
 		//generates a normal floor
 		//first layer
 		//1st row
-		this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-		this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 		//2nd row
 		this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -7011,7 +7011,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 		//3rd row
-		this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 20, bedrock);
 		this.setBlock(world, x - 13, y, z - 19, bedrock);
 		this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -7020,9 +7020,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 		this.setBlock(world, x - 13, y, z - 14, bedrock);
 		this.setBlock(world, x - 13, y, z - 13, bedrock);
-		this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 3, bedrock);
 		this.setBlock(world, x - 13, y, z - 2, bedrock);
 		this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -7031,9 +7031,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 3, bedrock);
 		this.setBlock(world, x - 13, y, z + 4, bedrock);
-		this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 14, bedrock);
 		this.setBlock(world, x - 13, y, z + 15, bedrock);
 		this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -7042,18 +7042,18 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 20, bedrock);
 		this.setBlock(world, x - 13, y, z + 21, bedrock);
-		this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 		//4th row
 		this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 21, bedrock);
 		this.setBlock(world, x - 12, y, z - 20, bedrock);
-		this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 13, bedrock);
 		this.setBlock(world, x - 12, y, z - 12, bedrock);
 		this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -7061,12 +7061,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 4, bedrock);
 		this.setBlock(world, x - 12, y, z - 3, bedrock);
-		this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 4, bedrock);
 		this.setBlock(world, x - 12, y, z + 5, bedrock);
 		this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -7074,67 +7074,67 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 13, bedrock);
 		this.setBlock(world, x - 12, y, z + 14, bedrock);
-		this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 21, bedrock);
 		this.setBlock(world, x - 12, y, z + 22, bedrock);
 		this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 		//5th row
-		this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 22, bedrock);
 		this.setBlock(world, x - 11, y, z - 21, bedrock);
-		this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 19, ErodedStone, 1, 2);
 		this.setBlock(world, x - 11, y, z - 18, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 17, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 16, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 11, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 12, bedrock);
 		this.setBlock(world, x - 11, y, z - 11, bedrock);
-		this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 5, bedrock);
 		this.setBlock(world, x - 11, y, z - 4, bedrock);
-		this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x - 11, y, z - 1, ErodedStone);
 		this.setBlock(world, x - 11, y, z, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 1, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 5, bedrock);
 		this.setBlock(world, x - 11, y, z + 6, bedrock);
-		this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 12, bedrock);
 		this.setBlock(world, x - 11, y, z + 13, bedrock);
-		this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 15, ErodedStone, 1, 2);
 		this.setBlock(world, x - 11, y, z + 16, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 17, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 18, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 11, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 22, bedrock);
 		this.setBlock(world, x - 11, y, z + 23, bedrock);
-		this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 		//6th row
 		this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 23, bedrock);
 		this.setBlock(world, x - 10, y, z - 22, bedrock);
-		this.setBlock(world, x - 10, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 20, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 19, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 18, ErodedStone);
@@ -7143,15 +7143,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 10, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 11, bedrock);
 		this.setBlock(world, x - 10, y, z - 10, bedrock);
 		this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 6, bedrock);
 		this.setBlock(world, x - 10, y, z - 5, bedrock);
-		this.setBlock(world, x - 10, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 2, ErodedStone);
 		this.setBlock(world, x - 10, y, z - 1, ErodedStone);
@@ -7160,15 +7160,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 10, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 6, bedrock);
 		this.setBlock(world, x - 10, y, z + 7, bedrock);
 		this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 11, bedrock);
 		this.setBlock(world, x - 10, y, z + 12, bedrock);
-		this.setBlock(world, x - 10, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 14, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 15, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 16, ErodedStone);
@@ -7177,16 +7177,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 10, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 10, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 23, bedrock);
 		this.setBlock(world, x - 10, y, z + 24, bedrock);
 		this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 		//7th row
-		this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 24, bedrock);
 		this.setBlock(world, x - 9, y, z - 23, bedrock);
-		this.setBlock(world, x - 9, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 21, ErodedStone, 1, 2);
 		this.setBlock(world, x - 9, y, z - 20, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 19, ErodedStone);
@@ -7197,13 +7197,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 13, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 10, bedrock);
 		this.setBlock(world, x - 9, y, z - 9, bedrock);
 		this.setBlock(world, x - 9, y, z - 8, bedrock);
 		this.setBlock(world, x - 9, y, z - 7, bedrock);
 		this.setBlock(world, x - 9, y, z - 6, bedrock);
-		this.setBlock(world, x - 9, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x - 9, y, z - 3, ErodedStone);
 		this.setBlock(world, x - 9, y, z - 2, ErodedStone);
@@ -7214,13 +7214,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 4, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 7, bedrock);
 		this.setBlock(world, x - 9, y, z + 8, bedrock);
 		this.setBlock(world, x - 9, y, z + 9, bedrock);
 		this.setBlock(world, x - 9, y, z + 10, bedrock);
 		this.setBlock(world, x - 9, y, z + 11, bedrock);
-		this.setBlock(world, x - 9, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 13, ErodedStone, 1, 2);
 		this.setBlock(world, x - 9, y, z + 14, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 15, ErodedStone);
@@ -7231,10 +7231,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 21, ErodedStone);
 		this.setBlock(world, x - 9, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 24, bedrock);
 		this.setBlock(world, x - 9, y, z + 25, bedrock);
-		this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 		//8th row
 		this.setBlock(world, x - 8, y, z - 25, CelledBlock);
@@ -7453,10 +7453,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 5, y, z + 26, CelledBlock);
 
 		//12th row
-		this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 24, bedrock);
 		this.setBlock(world, x - 4, y, z - 23, bedrock);
-		this.setBlock(world, x - 4, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 21, ErodedStone, 1, 2);
 		this.setBlock(world, x - 4, y, z - 20, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 19, ErodedStone);
@@ -7467,13 +7467,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 4, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 13, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 10, bedrock);
 		this.setBlock(world, x - 4, y, z - 9, bedrock);
 		this.setBlock(world, x - 4, y, z - 8, bedrock);
 		this.setBlock(world, x - 4, y, z - 7, bedrock);
 		this.setBlock(world, x - 4, y, z - 6, bedrock);
-		this.setBlock(world, x - 4, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x - 4, y, z - 3, ErodedStone);
 		this.setBlock(world, x - 4, y, z - 2, ErodedStone);
@@ -7484,13 +7484,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 4, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 4, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 7, bedrock);
 		this.setBlock(world, x - 4, y, z + 8, bedrock);
 		this.setBlock(world, x - 4, y, z + 9, bedrock);
 		this.setBlock(world, x - 4, y, z + 10, bedrock);
 		this.setBlock(world, x - 4, y, z + 11, bedrock);
-		this.setBlock(world, x - 4, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 13, ErodedStone, 1, 2);
 		this.setBlock(world, x - 4, y, z + 14, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 15, ErodedStone);
@@ -7501,16 +7501,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 4, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 21, ErodedStone);
 		this.setBlock(world, x - 4, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 24, bedrock);
 		this.setBlock(world, x - 4, y, z + 25, bedrock);
-		this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 		//13th row
 		this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 23, bedrock);
 		this.setBlock(world, x - 3, y, z - 22, bedrock);
-		this.setBlock(world, x - 3, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 20, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 19, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 18, ErodedStone);
@@ -7519,15 +7519,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 14, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 11, bedrock);
 		this.setBlock(world, x - 3, y, z - 10, bedrock);
 		this.setBlock(world, x - 3, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 6, bedrock);
 		this.setBlock(world, x - 3, y, z - 5, bedrock);
-		this.setBlock(world, x - 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 2, ErodedStone);
 		this.setBlock(world, x - 3, y, z - 1, ErodedStone);
@@ -7536,15 +7536,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 3, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 6, bedrock);
 		this.setBlock(world, x - 3, y, z + 7, bedrock);
 		this.setBlock(world, x - 3, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 11, bedrock);
 		this.setBlock(world, x - 3, y, z + 12, bedrock);
-		this.setBlock(world, x - 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 14, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 15, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 16, ErodedStone);
@@ -7553,111 +7553,111 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 20, ErodedStone);
 		this.setBlock(world, x - 3, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 23, bedrock);
 		this.setBlock(world, x - 3, y, z + 24, bedrock);
 		this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 		//14th row
-		this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 22, bedrock);
 		this.setBlock(world, x - 2, y, z - 21, bedrock);
-		this.setBlock(world, x - 2, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 19, ErodedStone, 1, 2);
 		this.setBlock(world, x - 2, y, z - 18, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 17, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 16, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 15, ErodedStone);
 		this.setBlock(world, x - 2, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 12, bedrock);
 		this.setBlock(world, x - 2, y, z - 11, bedrock);
-		this.setBlock(world, x - 2, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 5, bedrock);
 		this.setBlock(world, x - 2, y, z - 4, bedrock);
-		this.setBlock(world, x - 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x - 2, y, z - 1, ErodedStone);
 		this.setBlock(world, x - 2, y, z, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 1, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 2, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 5, bedrock);
 		this.setBlock(world, x - 2, y, z + 6, bedrock);
-		this.setBlock(world, x - 2, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 12, bedrock);
 		this.setBlock(world, x - 2, y, z + 13, bedrock);
-		this.setBlock(world, x - 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 15, ErodedStone, 1, 2);
 		this.setBlock(world, x - 2, y, z + 16, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 17, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 18, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 19, ErodedStone);
 		this.setBlock(world, x - 2, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 22, bedrock);
 		this.setBlock(world, x - 2, y, z + 23, bedrock);
-		this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 		//15th row
 		this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 21, bedrock);
 		this.setBlock(world, x - 1, y, z - 20, bedrock);
-		this.setBlock(world, x - 1, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 13, bedrock);
 		this.setBlock(world, x - 1, y, z - 12, bedrock);
-		this.setBlock(world, x - 1, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 10, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 4, bedrock);
 		this.setBlock(world, x - 1, y, z - 3, bedrock);
-		this.setBlock(world, x - 1, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 4, bedrock);
 		this.setBlock(world, x - 1, y, z + 5, bedrock);
 		this.setBlock(world, x - 1, y, z + 6, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 10, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 11, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 13, bedrock);
 		this.setBlock(world, x - 1, y, z + 14, bedrock);
-		this.setBlock(world, x - 1, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 21, bedrock);
 		this.setBlock(world, x - 1, y, z + 22, bedrock);
 		this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 		//16th row
-		this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 20, bedrock);
 		this.setBlock(world, x, y, z - 19, bedrock);
 		this.setBlock(world, x, y, z - 18, CelledBlock);
@@ -7666,17 +7666,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z - 15, CelledBlock);
 		this.setBlock(world, x, y, z - 14, bedrock);
 		this.setBlock(world, x, y, z - 13, bedrock);
-		this.setBlock(world, x, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 12, Spike, 0, 2);
 
 		this.setBlock(world, x, y, z - 11, ErodedStone);
 		this.setBlock(world, x, y, z - 10, ErodedStone);
 		this.setBlock(world, x, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z - 8, ErodedStone, 2, 2);
-		this.setBlock(world, x, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 3, bedrock);
 		this.setBlock(world, x, y, z - 2, bedrock);
 		this.setBlock(world, x, y, z - 1, CelledBlock);
@@ -7685,17 +7685,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 2, CelledBlock);
 		this.setBlock(world, x, y, z + 3, bedrock);
 		this.setBlock(world, x, y, z + 4, bedrock);
-		this.setBlock(world, x, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 8, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 8, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z + 10, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z + 11, ErodedStone);
 		this.setBlock(world, x, y, z + 12, ErodedStone);
 
-		this.setBlock(world, x, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 14, bedrock);
 		this.setBlock(world, x, y, z + 15, bedrock);
 		this.setBlock(world, x, y, z + 16, CelledBlock);
@@ -7704,7 +7704,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 19, CelledBlock);
 		this.setBlock(world, x, y, z + 20, bedrock);
 		this.setBlock(world, x, y, z + 21, bedrock);
-		this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 		//17th row
 		this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -7714,16 +7714,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z - 16, bedrock);
 		this.setBlock(world, x + 1, y, z - 15, bedrock);
 		this.setBlock(world, x + 1, y, z - 14, bedrock);
-		this.setBlock(world, x + 1, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 12, ErodedStone, 2, 2);
 		this.setBlock(world, x + 1, y, z - 11, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 10, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 1, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 1, y, z - 2, bedrock);
 		this.setBlock(world, x + 1, y, z - 1, bedrock);
@@ -7732,16 +7732,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 2, bedrock);
 		this.setBlock(world, x + 1, y, z + 3, bedrock);
 		this.setBlock(world, x + 1, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 1, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 8, ErodedStone, 2, 2);
 		this.setBlock(world, x + 1, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 11, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 12, ErodedStone);
 		this.setBlock(world, x + 1, y, z + 13, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 15, bedrock);
 		this.setBlock(world, x + 1, y, z + 16, bedrock);
 		this.setBlock(world, x + 1, y, z + 17, bedrock);
@@ -7751,60 +7751,60 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 		//18th row
-		this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 15, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 14, bedrock);
-		this.setBlock(world, x + 2, y, z - 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 11, ErodedStone, 2, 2);
 		this.setBlock(world, x + 2, y, z - 10, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 2, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 2, bedrock);
 		this.setBlock(world, x + 2, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 3, bedrock);
-		this.setBlock(world, x + 2, y, z + 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 7, ErodedStone, 2, 2);
 		this.setBlock(world, x + 2, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 11, ErodedStone);
 		this.setBlock(world, x + 2, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z + 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 15, bedrock);
 		this.setBlock(world, x + 2, y, z + 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 19, CelledBlock);
-		this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 		//19th row
 		this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 14, bedrock);
 		this.setBlock(world, x + 3, y, z - 13, bedrock);
-		this.setBlock(world, x + 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 11, ErodedStone, 2, 2);
 		this.setBlock(world, x + 3, y, z - 10, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 3, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 2, bedrock);
 		this.setBlock(world, x + 3, y, z - 1, bedrock);
@@ -7813,31 +7813,31 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 3, y, z + 2, bedrock);
 		this.setBlock(world, x + 3, y, z + 3, bedrock);
 		this.setBlock(world, x + 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 3, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 7, ErodedStone, 2, 2);
 		this.setBlock(world, x + 3, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 11, ErodedStone);
 		this.setBlock(world, x + 3, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 14, bedrock);
 		this.setBlock(world, x + 3, y, z + 15, bedrock);
 		this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 		//20th row
-		this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 13, bedrock);
-		this.setBlock(world, x + 4, y, z - 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 10, ErodedStone, 2, 2);
 		this.setBlock(world, x + 4, y, z - 9, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 8, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 6, ErodedStone);
 		this.setBlock(world, x + 4, y, z - 5, ErodedStone, 2, 2);
-		this.setBlock(world, x + 4, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 3, bedrock);
 		this.setBlock(world, x + 4, y, z - 2, bedrock);
 		this.setBlock(world, x + 4, y, z - 1, CelledBlock);
@@ -7846,91 +7846,91 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 4, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 4, y, z + 3, bedrock);
 		this.setBlock(world, x + 4, y, z + 4, bedrock);
-		this.setBlock(world, x + 4, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 6, ErodedStone, 2, 2);
 		this.setBlock(world, x + 4, y, z + 7, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 9, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 10, ErodedStone);
 		this.setBlock(world, x + 4, y, z + 11, ErodedStone, 2, 2);
-		this.setBlock(world, x + 4, y, z + 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 14, bedrock);
-		this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 		//21st row
-		this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 13, bedrock);
 		this.setBlock(world, x + 5, y, z - 12, bedrock);
-		this.setBlock(world, x + 5, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z - 8, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z - 7, ErodedStone);
 		this.setBlock(world, x + 5, y, z - 6, ErodedStone);
-		this.setBlock(world, x + 5, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 4, bedrock);
 		this.setBlock(world, x + 5, y, z - 3, bedrock);
-		this.setBlock(world, x + 5, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 5, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x + 5, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 5, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x + 5, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 4, bedrock);
 		this.setBlock(world, x + 5, y, z + 5, bedrock);
-		this.setBlock(world, x + 5, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 7, ErodedStone);
 		this.setBlock(world, x + 5, y, z + 8, ErodedStone);
 		this.setBlock(world, x + 5, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z + 10, ErodedStone, 2, 2);
-		this.setBlock(world, x + 5, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 13, bedrock);
 		this.setBlock(world, x + 5, y, z + 14, bedrock);
-		this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 		//22nd row
-		this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 12, bedrock);
 		this.setBlock(world, x + 6, y, z - 11, bedrock);
-		this.setBlock(world, x + 6, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 5, bedrock);
 		this.setBlock(world, x + 6, y, z - 4, bedrock);
-		this.setBlock(world, x + 6, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x + 6, y, z - 1, ErodedStone);
 		this.setBlock(world, x + 6, y, z, ErodedStone);
 		this.setBlock(world, x + 6, y, z + 1, ErodedStone);
 		this.setBlock(world, x + 6, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 6, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 6, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 5, bedrock);
 		this.setBlock(world, x + 6, y, z + 6, bedrock);
-		this.setBlock(world, x + 6, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 8, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 12, bedrock);
 		this.setBlock(world, x + 6, y, z + 13, bedrock);
-		this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 		//23rd row
 		this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 11, bedrock);
 		this.setBlock(world, x + 7, y, z - 10, bedrock);
 		this.setBlock(world, x + 7, y, z - 9, bedrock);
-		this.setBlock(world, x + 7, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z - 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z - 7, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 6, bedrock);
 		this.setBlock(world, x + 7, y, z - 5, bedrock);
-		this.setBlock(world, x + 7, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 7, y, z - 2, ErodedStone);
 		this.setBlock(world, x + 7, y, z - 1, ErodedStone);
@@ -7939,25 +7939,25 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 7, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 7, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 7, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 6, bedrock);
 		this.setBlock(world, x + 7, y, z + 7, bedrock);
-		this.setBlock(world, x + 7, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 10, bedrock);
 		this.setBlock(world, x + 7, y, z + 11, bedrock);
 		this.setBlock(world, x + 7, y, z + 12, bedrock);
-		this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 		//24th row
-		this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 9, bedrock);
 		this.setBlock(world, x + 8, y, z - 8, bedrock);
 		this.setBlock(world, x + 8, y, z - 7, bedrock);
 		this.setBlock(world, x + 8, y, z - 6, bedrock);
-		this.setBlock(world, x + 8, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x + 8, y, z - 3, ErodedStone);
 		this.setBlock(world, x + 8, y, z - 2, ErodedStone);
@@ -7968,13 +7968,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 8, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 8, y, z + 4, ErodedStone);
 		this.setBlock(world, x + 8, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 8, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z + 7, bedrock);
 		this.setBlock(world, x + 8, y, z + 8, bedrock);
 		this.setBlock(world, x + 8, y, z + 9, bedrock);
 		this.setBlock(world, x + 8, y, z + 10, bedrock);
-		this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 		//25th row
 		this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -8059,10 +8059,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 		//29th row
-		this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 7, bedrock);
 		this.setBlock(world, x + 13, y, z - 6, bedrock);
-		this.setBlock(world, x + 13, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 4, ErodedStone, 1, 2);
 		this.setBlock(world, x + 13, y, z - 3, ErodedStone);
 		this.setBlock(world, x + 13, y, z - 2, ErodedStone);
@@ -8073,16 +8073,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 13, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 13, y, z + 4, ErodedStone);
 		this.setBlock(world, x + 13, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 13, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z + 7, bedrock);
 		this.setBlock(world, x + 13, y, z + 8, bedrock);
-		this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 		//30th row
 		this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 6, bedrock);
 		this.setBlock(world, x + 14, y, z - 5, bedrock);
-		this.setBlock(world, x + 14, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 2, ErodedStone);
 		this.setBlock(world, x + 14, y, z - 1, ErodedStone);
@@ -8091,43 +8091,43 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 14, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 14, y, z + 3, ErodedStone);
 		this.setBlock(world, x + 14, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 14, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z + 6, bedrock);
 		this.setBlock(world, x + 14, y, z + 7, bedrock);
 		this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 		//31st row
-		this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 5, bedrock);
 		this.setBlock(world, x + 15, y, z - 4, bedrock);
-		this.setBlock(world, x + 15, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 2, ErodedStone, 1, 2);
 		this.setBlock(world, x + 15, y, z - 1, ErodedStone);
 		this.setBlock(world, x + 15, y, z, ErodedStone);
 		this.setBlock(world, x + 15, y, z + 1, ErodedStone);
 		this.setBlock(world, x + 15, y, z + 2, ErodedStone);
 		this.setBlock(world, x + 15, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 15, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z + 5, bedrock);
 		this.setBlock(world, x + 15, y, z + 6, bedrock);
-		this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 		//32nd row
 		this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z - 4, bedrock);
 		this.setBlock(world, x + 16, y, z - 3, bedrock);
-		this.setBlock(world, x + 16, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x + 16, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z + 4, bedrock);
 		this.setBlock(world, x + 16, y, z + 5, bedrock);
 		this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 		//33rd row
-		this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 17, y, z - 3, bedrock);
 		this.setBlock(world, x + 17, y, z - 2, bedrock);
 		this.setBlock(world, x + 17, y, z - 1, CelledBlock);
@@ -8136,7 +8136,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 17, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 17, y, z + 3, bedrock);
 		this.setBlock(world, x + 17, y, z + 4, bedrock);
-		this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 		//34th row
 		this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -8149,37 +8149,37 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 		//35th row
-		this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-		this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 
 		for (byte i = 0; i < 2; i++) //Second/Third layer
 		{
 			y++;
 			//1st row
-			this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 			this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 			this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 			this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 			this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-			this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-			this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 			this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 			this.setBlock(world, x - 15, y, z, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 1, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-			this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-			this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 			this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 			this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-			this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 			//2nd row
 			this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -8210,7 +8210,7 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 			//3rd row
-			this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 			this.setBlock(world, x - 13, y, z - 20, bedrock);
 			this.setBlock(world, x - 13, y, z - 19, bedrock);
 			this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -8219,9 +8219,9 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 			this.setBlock(world, x - 13, y, z - 14, bedrock);
 			this.setBlock(world, x - 13, y, z - 13, bedrock);
-			this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-			this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x - 13, y, z - 3, bedrock);
 			this.setBlock(world, x - 13, y, z - 2, bedrock);
 			this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -8230,9 +8230,9 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 			this.setBlock(world, x - 13, y, z + 3, bedrock);
 			this.setBlock(world, x - 13, y, z + 4, bedrock);
-			this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-			this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x - 13, y, z + 14, bedrock);
 			this.setBlock(world, x - 13, y, z + 15, bedrock);
 			this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -8241,18 +8241,18 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 			this.setBlock(world, x - 13, y, z + 20, bedrock);
 			this.setBlock(world, x - 13, y, z + 21, bedrock);
-			this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 			//4th row
 			this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 			this.setBlock(world, x - 12, y, z - 21, bedrock);
 			this.setBlock(world, x - 12, y, z - 20, bedrock);
-			this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 			this.setBlockToAir(world, x - 12, y, z - 18);
 			this.setBlockToAir(world, x - 12, y, z - 17);
 			this.setBlockToAir(world, x - 12, y, z - 16);
 			this.setBlockToAir(world, x - 12, y, z - 15);
-			this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 			this.setBlock(world, x - 12, y, z - 13, bedrock);
 			this.setBlock(world, x - 12, y, z - 12, bedrock);
 			this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -8260,12 +8260,12 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 			this.setBlock(world, x - 12, y, z - 4, bedrock);
 			this.setBlock(world, x - 12, y, z - 3, bedrock);
-			this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 			this.setBlockToAir(world, x - 12, y, z - 1);
 			this.setBlockToAir(world, x - 12, y, z);
 			this.setBlockToAir(world, x - 12, y, z + 1);
 			this.setBlockToAir(world, x - 12, y, z + 2);
-			this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 			this.setBlock(world, x - 12, y, z + 4, bedrock);
 			this.setBlock(world, x - 12, y, z + 5, bedrock);
 			this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -8273,67 +8273,67 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 			this.setBlock(world, x - 12, y, z + 13, bedrock);
 			this.setBlock(world, x - 12, y, z + 14, bedrock);
-			this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 			this.setBlockToAir(world, x - 12, y, z + 16);
 			this.setBlockToAir(world, x - 12, y, z + 17);
 			this.setBlockToAir(world, x - 12, y, z + 18);
 			this.setBlockToAir(world, x - 12, y, z + 19);
-			this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 			this.setBlock(world, x - 12, y, z + 21, bedrock);
 			this.setBlock(world, x - 12, y, z + 22, bedrock);
 			this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 			//5th row
-			this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z - 22, bedrock);
 			this.setBlock(world, x - 11, y, z - 21, bedrock);
-			this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 			this.setBlockToAir(world, x - 11, y, z - 19);
 			this.setBlockToAir(world, x - 11, y, z - 18);
 			this.setBlockToAir(world, x - 11, y, z - 17);
 			this.setBlockToAir(world, x - 11, y, z - 16);
 			this.setBlockToAir(world, x - 11, y, z - 15);
 			this.setBlockToAir(world, x - 11, y, z - 14);
-			this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z - 12, bedrock);
 			this.setBlock(world, x - 11, y, z - 11, bedrock);
-			this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-			this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z - 5, bedrock);
 			this.setBlock(world, x - 11, y, z - 4, bedrock);
-			this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 			this.setBlockToAir(world, x - 11, y, z - 2);
 			this.setBlockToAir(world, x - 11, y, z - 1);
 			this.setBlockToAir(world, x - 11, y, z);
 			this.setBlockToAir(world, x - 11, y, z + 1);
 			this.setBlockToAir(world, x - 11, y, z + 2);
 			this.setBlockToAir(world, x - 11, y, z + 3);
-			this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z + 5, bedrock);
 			this.setBlock(world, x - 11, y, z + 6, bedrock);
-			this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-			this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z + 12, bedrock);
 			this.setBlock(world, x - 11, y, z + 13, bedrock);
-			this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 			this.setBlockToAir(world, x - 11, y, z + 15);
 			this.setBlockToAir(world, x - 11, y, z + 16);
 			this.setBlockToAir(world, x - 11, y, z + 17);
 			this.setBlockToAir(world, x - 11, y, z + 18);
 			this.setBlockToAir(world, x - 11, y, z + 19);
 			this.setBlockToAir(world, x - 11, y, z + 20);
-			this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 			this.setBlock(world, x - 11, y, z + 22, bedrock);
 			this.setBlock(world, x - 11, y, z + 23, bedrock);
-			this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+			this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 			//6th row
 			this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 			this.setBlock(world, x - 10, y, z - 23, bedrock);
 			this.setBlock(world, x - 10, y, z - 22, bedrock);
-			this.setBlock(world, x - 10, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z - 21, Spike, 0, 2);
 			this.setBlockToAir(world, x - 10, y, z - 20);
 			this.setBlockToAir(world, x - 10, y, z - 19);
 			this.setBlockToAir(world, x - 10, y, z - 18);
@@ -8342,15 +8342,15 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 10, y, z - 15);
 			this.setBlockToAir(world, x - 10, y, z - 14);
 			this.setBlockToAir(world, x - 10, y, z - 13);
-			this.setBlock(world, x - 10, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z - 12, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z - 11, bedrock);
 			this.setBlock(world, x - 10, y, z - 10, bedrock);
 			this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-			this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 			this.setBlock(world, x - 10, y, z - 6, bedrock);
 			this.setBlock(world, x - 10, y, z - 5, bedrock);
-			this.setBlock(world, x - 10, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z - 4, Spike, 0, 2);
 			this.setBlockToAir(world, x - 10, y, z - 3);
 			this.setBlockToAir(world, x - 10, y, z - 2);
 			this.setBlockToAir(world, x - 10, y, z - 1);
@@ -8359,15 +8359,15 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 10, y, z + 2);
 			this.setBlockToAir(world, x - 10, y, z + 3);
 			this.setBlockToAir(world, x - 10, y, z + 4);
-			this.setBlock(world, x - 10, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z + 5, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z + 6, bedrock);
 			this.setBlock(world, x - 10, y, z + 7, bedrock);
 			this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-			this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 			this.setBlock(world, x - 10, y, z + 11, bedrock);
 			this.setBlock(world, x - 10, y, z + 12, bedrock);
-			this.setBlock(world, x - 10, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z + 13, Spike, 0, 2);
 			this.setBlockToAir(world, x - 10, y, z + 14);
 			this.setBlockToAir(world, x - 10, y, z + 15);
 			this.setBlockToAir(world, x - 10, y, z + 16);
@@ -8376,16 +8376,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 10, y, z + 19);
 			this.setBlockToAir(world, x - 10, y, z + 20);
 			this.setBlockToAir(world, x - 10, y, z + 21);
-			this.setBlock(world, x - 10, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 10, y, z + 22, Spike, 0, 2);
 			this.setBlock(world, x - 10, y, z + 23, bedrock);
 			this.setBlock(world, x - 10, y, z + 24, bedrock);
 			this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 			//7th row
-			this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 9, y, z - 24, bedrock);
 			this.setBlock(world, x - 9, y, z - 23, bedrock);
-			this.setBlock(world, x - 9, y, z - 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z - 22, Spike, 0, 2);
 			this.setBlockToAir(world, x - 9, y, z - 21);
 			this.setBlockToAir(world, x - 9, y, z - 20);
 			this.setBlockToAir(world, x - 9, y, z - 19);
@@ -8396,13 +8396,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 9, y, z - 14);
 			this.setBlockToAir(world, x - 9, y, z - 13);
 			this.setBlockToAir(world, x - 9, y, z - 12);
-			this.setBlock(world, x - 9, y, z - 11, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z - 11, Spike, 0, 2);
 			this.setBlock(world, x - 9, y, z - 10, bedrock);
 			this.setBlock(world, x - 9, y, z - 9, bedrock);
 			this.setBlock(world, x - 9, y, z - 8, bedrock);
 			this.setBlock(world, x - 9, y, z - 7, bedrock);
 			this.setBlock(world, x - 9, y, z - 6, bedrock);
-			this.setBlock(world, x - 9, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z - 5, Spike, 0, 2);
 			this.setBlockToAir(world, x - 9, y, z - 4);
 			this.setBlockToAir(world, x - 9, y, z - 3);
 			this.setBlockToAir(world, x - 9, y, z - 2);
@@ -8413,13 +8413,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 9, y, z + 3);
 			this.setBlockToAir(world, x - 9, y, z + 4);
 			this.setBlockToAir(world, x - 9, y, z + 5);
-			this.setBlock(world, x - 9, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z + 6, Spike, 0, 2);
 			this.setBlock(world, x - 9, y, z + 7, bedrock);
 			this.setBlock(world, x - 9, y, z + 8, bedrock);
 			this.setBlock(world, x - 9, y, z + 9, bedrock);
 			this.setBlock(world, x - 9, y, z + 10, bedrock);
 			this.setBlock(world, x - 9, y, z + 11, bedrock);
-			this.setBlock(world, x - 9, y, z + 12, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z + 12, Spike, 0, 2);
 			this.setBlockToAir(world, x - 9, y, z + 13);
 			this.setBlockToAir(world, x - 9, y, z + 14);
 			this.setBlockToAir(world, x - 9, y, z + 15);
@@ -8430,10 +8430,10 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 9, y, z + 20);
 			this.setBlockToAir(world, x - 9, y, z + 21);
 			this.setBlockToAir(world, x - 9, y, z + 22);
-			this.setBlock(world, x - 9, y, z + 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z + 23, Spike, 0, 2);
 			this.setBlock(world, x - 9, y, z + 24, bedrock);
 			this.setBlock(world, x - 9, y, z + 25, bedrock);
-			this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 			//8th row
 			this.setBlock(world, x - 8, y, z - 25, CelledBlock);
@@ -8652,10 +8652,10 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 5, y, z + 26, CelledBlock);
 
 			//12th row
-			this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 			this.setBlock(world, x - 4, y, z - 24, bedrock);
 			this.setBlock(world, x - 4, y, z - 23, bedrock);
-			this.setBlock(world, x - 4, y, z - 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z - 22, Spike, 0, 2);
 			this.setBlockToAir(world, x - 4, y, z - 21);
 			this.setBlockToAir(world, x - 4, y, z - 20);
 			this.setBlockToAir(world, x - 4, y, z - 19);
@@ -8666,13 +8666,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 4, y, z - 14);
 			this.setBlockToAir(world, x - 4, y, z - 13);
 			this.setBlockToAir(world, x - 4, y, z - 12);
-			this.setBlock(world, x - 4, y, z - 11, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z - 11, Spike, 0, 2);
 			this.setBlock(world, x - 4, y, z - 10, bedrock);
 			this.setBlock(world, x - 4, y, z - 9, bedrock);
 			this.setBlock(world, x - 4, y, z - 8, bedrock);
 			this.setBlock(world, x - 4, y, z - 7, bedrock);
 			this.setBlock(world, x - 4, y, z - 6, bedrock);
-			this.setBlock(world, x - 4, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z - 5, Spike, 0, 2);
 			this.setBlockToAir(world, x - 4, y, z - 4);
 			this.setBlockToAir(world, x - 4, y, z - 3);
 			this.setBlockToAir(world, x - 4, y, z - 2);
@@ -8683,13 +8683,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 4, y, z + 3);
 			this.setBlockToAir(world, x - 4, y, z + 4);
 			this.setBlockToAir(world, x - 4, y, z + 5);
-			this.setBlock(world, x - 4, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z + 6, Spike, 0, 2);
 			this.setBlock(world, x - 4, y, z + 7, bedrock);
 			this.setBlock(world, x - 4, y, z + 8, bedrock);
 			this.setBlock(world, x - 4, y, z + 9, bedrock);
 			this.setBlock(world, x - 4, y, z + 10, bedrock);
 			this.setBlock(world, x - 4, y, z + 11, bedrock);
-			this.setBlock(world, x - 4, y, z + 12, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z + 12, Spike, 0, 2);
 			this.setBlockToAir(world, x - 4, y, z + 13);
 			this.setBlockToAir(world, x - 4, y, z + 14);
 			this.setBlockToAir(world, x - 4, y, z + 15);
@@ -8700,16 +8700,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 4, y, z + 20);
 			this.setBlockToAir(world, x - 4, y, z + 21);
 			this.setBlockToAir(world, x - 4, y, z + 22);
-			this.setBlock(world, x - 4, y, z + 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z + 23, Spike, 0, 2);
 			this.setBlock(world, x - 4, y, z + 24, bedrock);
 			this.setBlock(world, x - 4, y, z + 25, bedrock);
-			this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+			this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 			//13th row
 			this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
 			this.setBlock(world, x - 3, y, z - 23, bedrock);
 			this.setBlock(world, x - 3, y, z - 22, bedrock);
-			this.setBlock(world, x - 3, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z - 21, Spike, 0, 2);
 			this.setBlockToAir(world, x - 3, y, z - 20);
 			this.setBlockToAir(world, x - 3, y, z - 19);
 			this.setBlockToAir(world, x - 3, y, z - 18);
@@ -8722,11 +8722,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x - 3, y, z - 11, bedrock);
 			this.setBlock(world, x - 3, y, z - 10, bedrock);
 			this.setBlock(world, x - 3, y, z - 9, ErodedStone, 1, 2);
-			this.setBlock(world, x - 3, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z - 8, Spike, 0, 2);
 			this.setBlock(world, x - 3, y, z - 7, ErodedStone, 1, 2);
 			this.setBlock(world, x - 3, y, z - 6, bedrock);
 			this.setBlock(world, x - 3, y, z - 5, bedrock);
-			this.setBlock(world, x - 3, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z - 4, Spike, 0, 2);
 			this.setBlockToAir(world, x - 3, y, z - 3);
 			this.setBlockToAir(world, x - 3, y, z - 2);
 			this.setBlockToAir(world, x - 3, y, z - 1);
@@ -8735,11 +8735,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 3, y, z + 2);
 			this.setBlockToAir(world, x - 3, y, z + 3);
 			this.setBlockToAir(world, x - 3, y, z + 4);
-			this.setBlock(world, x - 3, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z + 5, Spike, 0, 2);
 			this.setBlock(world, x - 3, y, z + 6, bedrock);
 			this.setBlock(world, x - 3, y, z + 7, bedrock);
 			this.setBlock(world, x - 3, y, z + 8, ErodedStone, 1, 2);
-			this.setBlock(world, x - 3, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z + 9, Spike, 0, 2);
 			this.setBlock(world, x - 3, y, z + 10, ErodedStone, 1, 2);
 			this.setBlock(world, x - 3, y, z + 11, bedrock);
 			this.setBlock(world, x - 3, y, z + 12, bedrock);
@@ -8752,16 +8752,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 3, y, z + 19);
 			this.setBlockToAir(world, x - 3, y, z + 20);
 			this.setBlockToAir(world, x - 3, y, z + 21);
-			this.setBlock(world, x - 3, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x - 3, y, z + 22, Spike, 0, 2);
 			this.setBlock(world, x - 3, y, z + 23, bedrock);
 			this.setBlock(world, x - 3, y, z + 24, bedrock);
 			this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 			//14th row
-			this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 			this.setBlock(world, x - 2, y, z - 22, bedrock);
 			this.setBlock(world, x - 2, y, z - 21, bedrock);
-			this.setBlock(world, x - 2, y, z - 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z - 20, Spike, 0, 2);
 			this.setBlockToAir(world, x - 2, y, z - 19);
 			this.setBlockToAir(world, x - 2, y, z - 18);
 			this.setBlockToAir(world, x - 2, y, z - 17);
@@ -8771,28 +8771,28 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 2, y, z - 13);
 			this.setBlockToAir(world, x - 2, y, z - 12);
 			this.setBlockToAir(world, x - 2, y, z - 11);
-			this.setBlock(world, x - 2, y, z - 10, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z - 9, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z - 8, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z - 7, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z - 10, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z - 9, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z - 8, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z - 7, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x - 2, y, z - 5, bedrock);
 			this.setBlock(world, x - 2, y, z - 4, bedrock);
-			this.setBlock(world, x - 2, y, z - 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z - 3, Spike, 0, 2);
 			this.setBlockToAir(world, x - 2, y, z - 2);
 			this.setBlockToAir(world, x - 2, y, z - 1);
 			this.setBlockToAir(world, x - 2, y, z);
 			this.setBlockToAir(world, x - 2, y, z + 1);
 			this.setBlockToAir(world, x - 2, y, z + 2);
 			this.setBlockToAir(world, x - 2, y, z + 3);
-			this.setBlock(world, x - 2, y, z + 4, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z + 4, Spike, 0, 2);
 			this.setBlock(world, x - 2, y, z + 5, bedrock);
 			this.setBlock(world, x - 2, y, z + 6, bedrock);
-			this.setBlock(world, x - 2, y, z + 7, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z + 8, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z + 9, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z + 10, DarkStone, 14, 2);
-			this.setBlock(world, x - 2, y, z + 11, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z + 7, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z + 8, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z + 9, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z + 10, Spike, 0, 2);
+			this.setBlock(world, x - 2, y, z + 11, Spike, 0, 2);
 			this.setBlockToAir(world, x - 2, y, z + 12);
 			this.setBlockToAir(world, x - 2, y, z + 13);
 			this.setBlockToAir(world, x - 2, y, z + 14);
@@ -8802,61 +8802,61 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x - 2, y, z + 18);
 			this.setBlockToAir(world, x - 2, y, z + 19);
 			this.setBlockToAir(world, x - 2, y, z + 20);
-			this.setBlock(world, x - 2, y, z + 21, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z + 21, Spike, 0, 2);
 			this.setBlock(world, x - 2, y, z + 22, bedrock);
 			this.setBlock(world, x - 2, y, z + 23, bedrock);
-			this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+			this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 			//15th row
 			this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
 			this.setBlock(world, x - 1, y, z - 21, bedrock);
 			this.setBlock(world, x - 1, y, z - 20, bedrock);
-			this.setBlock(world, x - 1, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z - 19, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z - 18);
 			this.setBlockToAir(world, x - 1, y, z - 17);
 			this.setBlockToAir(world, x - 1, y, z - 16);
 			this.setBlockToAir(world, x - 1, y, z - 15);
-			this.setBlock(world, x - 1, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z - 14, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z - 13);
 			this.setBlockToAir(world, x - 1, y, z - 12);
 			this.setBlockToAir(world, x - 1, y, z - 11);
 			this.setBlockToAir(world, x - 1, y, z - 10);
-			this.setBlock(world, x - 1, y, z - 9, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z - 8, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z - 7, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z - 9, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z - 8, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z - 7, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x - 1, y, z - 5, ErodedStone, 1, 2);
 			this.setBlock(world, x - 1, y, z - 4, bedrock);
 			this.setBlock(world, x - 1, y, z - 3, bedrock);
-			this.setBlock(world, x - 1, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z - 2, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z - 1);
 			this.setBlockToAir(world, x - 1, y, z);
 			this.setBlockToAir(world, x - 1, y, z + 1);
 			this.setBlockToAir(world, x - 1, y, z + 2);
-			this.setBlock(world, x - 1, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z + 3, Spike, 0, 2);
 			this.setBlock(world, x - 1, y, z + 4, bedrock);
 			this.setBlock(world, x - 1, y, z + 5, bedrock);
 			this.setBlock(world, x - 1, y, z + 6, ErodedStone, 1, 2);
-			this.setBlock(world, x - 1, y, z + 7, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z + 8, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z + 9, DarkStone, 14, 2);
-			this.setBlock(world, x - 1, y, z + 10, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z + 7, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z + 8, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z + 9, Spike, 0, 2);
+			this.setBlock(world, x - 1, y, z + 10, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z + 11);
 			this.setBlockToAir(world, x - 1, y, z + 12);
 			this.setBlockToAir(world, x - 1, y, z + 13);
 			this.setBlockToAir(world, x - 1, y, z + 14);
-			this.setBlock(world, x - 1, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z + 15, Spike, 0, 2);
 			this.setBlockToAir(world, x - 1, y, z + 16);
 			this.setBlockToAir(world, x - 1, y, z + 17);
 			this.setBlockToAir(world, x - 1, y, z + 18);
 			this.setBlockToAir(world, x - 1, y, z + 19);
-			this.setBlock(world, x - 1, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x - 1, y, z + 20, Spike, 0, 2);
 			this.setBlock(world, x - 1, y, z + 21, bedrock);
 			this.setBlock(world, x - 1, y, z + 22, bedrock);
 			this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 			//16th row
-			this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 			this.setBlock(world, x, y, z - 20, bedrock);
 			this.setBlock(world, x, y, z - 19, bedrock);
 			this.setBlock(world, x, y, z - 18, CelledBlock);
@@ -8871,11 +8871,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x, y, z - 10);
 			this.setBlockToAir(world, x, y, z - 9);
 			this.setBlockToAir(world, x, y, z - 8);
-			this.setBlock(world, x, y, z - 7, DarkStone, 14, 2);
-			this.setBlock(world, x, y, z - 6, DarkStone, 14, 2);
-			this.setBlock(world, x, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z - 7, Spike, 0, 2);
+			this.setBlock(world, x, y, z - 6, Spike, 0, 2);
+			this.setBlock(world, x, y, z - 5, Spike, 0, 2);
 
-			this.setBlock(world, x, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x, y, z - 3, bedrock);
 			this.setBlock(world, x, y, z - 2, bedrock);
 			this.setBlock(world, x, y, z - 1, CelledBlock);
@@ -8884,11 +8884,11 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x, y, z + 2, CelledBlock);
 			this.setBlock(world, x, y, z + 3, bedrock);
 			this.setBlock(world, x, y, z + 4, bedrock);
-			this.setBlock(world, x, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z + 5, Spike, 0, 2);
 
-			this.setBlock(world, x, y, z + 6, DarkStone, 14, 2);
-			this.setBlock(world, x, y, z + 7, DarkStone, 14, 2);
-			this.setBlock(world, x, y, z + 8, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z + 6, Spike, 0, 2);
+			this.setBlock(world, x, y, z + 7, Spike, 0, 2);
+			this.setBlock(world, x, y, z + 8, Spike, 0, 2);
 			this.setBlockToAir(world, x, y, z + 9);
 			this.setBlockToAir(world, x, y, z + 10);
 			this.setBlockToAir(world, x, y, z + 11);
@@ -8903,7 +8903,7 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x, y, z + 19, CelledBlock);
 			this.setBlock(world, x, y, z + 20, bedrock);
 			this.setBlock(world, x, y, z + 21, bedrock);
-			this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+			this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 			//17th row
 			this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -8913,16 +8913,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 1, y, z - 16, bedrock);
 			this.setBlock(world, x + 1, y, z - 15, bedrock);
 			this.setBlock(world, x + 1, y, z - 14, bedrock);
-			this.setBlock(world, x + 1, y, z - 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 1, y, z - 13, Spike, 0, 2);
 			this.setBlockToAir(world, x + 1, y, z - 12);
 			this.setBlockToAir(world, x + 1, y, z - 11);
 			this.setBlockToAir(world, x + 1, y, z - 10);
 			this.setBlockToAir(world, x + 1, y, z - 9);
 			this.setBlockToAir(world, x + 1, y, z - 8);
 			this.setBlockToAir(world, x + 1, y, z - 7);
-			this.setBlock(world, x + 1, y, z - 6, DarkStone, 14, 2);
-			this.setBlock(world, x + 1, y, z - 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 1, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 1, y, z - 6, Spike, 0, 2);
+			this.setBlock(world, x + 1, y, z - 5, Spike, 0, 2);
+			this.setBlock(world, x + 1, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x + 1, y, z - 3, ErodedStone, 1, 2);
 			this.setBlock(world, x + 1, y, z - 2, bedrock);
 			this.setBlock(world, x + 1, y, z - 1, bedrock);
@@ -8931,16 +8931,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 1, y, z + 2, bedrock);
 			this.setBlock(world, x + 1, y, z + 3, bedrock);
 			this.setBlock(world, x + 1, y, z + 4, ErodedStone, 1, 2);
-			this.setBlock(world, x + 1, y, z + 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 1, y, z + 6, DarkStone, 14, 2);
-			this.setBlock(world, x + 1, y, z + 7, DarkStone, 14, 2);
+			this.setBlock(world, x + 1, y, z + 5, Spike, 0, 2);
+			this.setBlock(world, x + 1, y, z + 6, Spike, 0, 2);
+			this.setBlock(world, x + 1, y, z + 7, Spike, 0, 2);
 			this.setBlockToAir(world, x + 1, y, z + 8);
 			this.setBlockToAir(world, x + 1, y, z + 9);
 			this.setBlockToAir(world, x + 1, y, z + 10);
 			this.setBlockToAir(world, x + 1, y, z + 11);
 			this.setBlockToAir(world, x + 1, y, z + 12);
 			this.setBlockToAir(world, x + 1, y, z + 13);
-			this.setBlock(world, x + 1, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 1, y, z + 14, Spike, 0, 2);
 			this.setBlock(world, x + 1, y, z + 15, bedrock);
 			this.setBlock(world, x + 1, y, z + 16, bedrock);
 			this.setBlock(world, x + 1, y, z + 17, bedrock);
@@ -8950,60 +8950,60 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 			//18th row
-			this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
 			this.setBlock(world, x + 2, y, z - 18, CelledBlock);
 			this.setBlock(world, x + 2, y, z - 17, CelledBlock);
 			this.setBlock(world, x + 2, y, z - 16, CelledBlock);
 			this.setBlock(world, x + 2, y, z - 15, CelledBlock);
 			this.setBlock(world, x + 2, y, z - 14, bedrock);
-			this.setBlock(world, x + 2, y, z - 13, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z - 13, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z - 12, Spike, 0, 2);
 			this.setBlockToAir(world, x + 2, y, z - 11);
 			this.setBlockToAir(world, x + 2, y, z - 10);
 			this.setBlockToAir(world, x + 2, y, z - 9);
 			this.setBlockToAir(world, x + 2, y, z - 8);
 			this.setBlockToAir(world, x + 2, y, z - 7);
 			this.setBlockToAir(world, x + 2, y, z - 6);
-			this.setBlock(world, x + 2, y, z - 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z - 4, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z - 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z - 5, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z - 4, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z - 3, Spike, 0, 2);
 			this.setBlock(world, x + 2, y, z - 2, bedrock);
 			this.setBlock(world, x + 2, y, z - 1, CelledBlock);
 			this.setBlock(world, x + 2, y, z, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 1, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 2, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 3, bedrock);
-			this.setBlock(world, x + 2, y, z + 4, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z + 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z + 4, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z + 5, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z + 6, Spike, 0, 2);
 			this.setBlockToAir(world, x + 2, y, z + 7);
 			this.setBlockToAir(world, x + 2, y, z + 8);
 			this.setBlockToAir(world, x + 2, y, z + 9);
 			this.setBlockToAir(world, x + 2, y, z + 10);
 			this.setBlockToAir(world, x + 2, y, z + 11);
 			this.setBlockToAir(world, x + 2, y, z + 12);
-			this.setBlock(world, x + 2, y, z + 13, DarkStone, 14, 2);
-			this.setBlock(world, x + 2, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z + 13, Spike, 0, 2);
+			this.setBlock(world, x + 2, y, z + 14, Spike, 0, 2);
 			this.setBlock(world, x + 2, y, z + 15, bedrock);
 			this.setBlock(world, x + 2, y, z + 16, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 17, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 18, CelledBlock);
 			this.setBlock(world, x + 2, y, z + 19, CelledBlock);
-			this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+			this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 			//19th row
 			this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
 			this.setBlock(world, x + 3, y, z - 14, bedrock);
 			this.setBlock(world, x + 3, y, z - 13, bedrock);
-			this.setBlock(world, x + 3, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 3, y, z - 12, Spike, 0, 2);
 			this.setBlockToAir(world, x + 3, y, z - 11);
 			this.setBlockToAir(world, x + 3, y, z - 10);
 			this.setBlockToAir(world, x + 3, y, z - 9);
 			this.setBlockToAir(world, x + 3, y, z - 8);
 			this.setBlockToAir(world, x + 3, y, z - 7);
 			this.setBlockToAir(world, x + 3, y, z - 6);
-			this.setBlock(world, x + 3, y, z - 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 3, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 3, y, z - 5, Spike, 0, 2);
+			this.setBlock(world, x + 3, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x + 3, y, z - 3, ErodedStone, 1, 2);
 			this.setBlock(world, x + 3, y, z - 2, bedrock);
 			this.setBlock(world, x + 3, y, z - 1, bedrock);
@@ -9012,31 +9012,31 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 3, y, z + 2, bedrock);
 			this.setBlock(world, x + 3, y, z + 3, bedrock);
 			this.setBlock(world, x + 3, y, z + 4, ErodedStone, 1, 2);
-			this.setBlock(world, x + 3, y, z + 5, DarkStone, 14, 2);
-			this.setBlock(world, x + 3, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 3, y, z + 5, Spike, 0, 2);
+			this.setBlock(world, x + 3, y, z + 6, Spike, 0, 2);
 			this.setBlockToAir(world, x + 3, y, z + 7);
 			this.setBlockToAir(world, x + 3, y, z + 8);
 			this.setBlockToAir(world, x + 3, y, z + 9);
 			this.setBlockToAir(world, x + 3, y, z + 10);
 			this.setBlockToAir(world, x + 3, y, z + 11);
 			this.setBlockToAir(world, x + 3, y, z + 12);
-			this.setBlock(world, x + 3, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 3, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x + 3, y, z + 14, bedrock);
 			this.setBlock(world, x + 3, y, z + 15, bedrock);
 			this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 			//20th row
-			this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 			this.setBlock(world, x + 4, y, z - 13, bedrock);
-			this.setBlock(world, x + 4, y, z - 12, DarkStone, 14, 2);
-			this.setBlock(world, x + 4, y, z - 11, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z - 12, Spike, 0, 2);
+			this.setBlock(world, x + 4, y, z - 11, Spike, 0, 2);
 			this.setBlockToAir(world, x + 4, y, z - 10);
 			this.setBlockToAir(world, x + 4, y, z - 9);
 			this.setBlockToAir(world, x + 4, y, z - 8);
 			this.setBlockToAir(world, x + 4, y, z - 7);
 			this.setBlockToAir(world, x + 4, y, z - 6);
 			this.setBlockToAir(world, x + 4, y, z - 5);
-			this.setBlock(world, x + 4, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x + 4, y, z - 3, bedrock);
 			this.setBlock(world, x + 4, y, z - 2, bedrock);
 			this.setBlock(world, x + 4, y, z - 1, CelledBlock);
@@ -9045,24 +9045,24 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 4, y, z + 2, CelledBlock);
 			this.setBlock(world, x + 4, y, z + 3, bedrock);
 			this.setBlock(world, x + 4, y, z + 4, bedrock);
-			this.setBlock(world, x + 4, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z + 5, Spike, 0, 2);
 			this.setBlockToAir(world, x + 4, y, z + 6);
 			this.setBlockToAir(world, x + 4, y, z + 7);
 			this.setBlockToAir(world, x + 4, y, z + 8);
 			this.setBlockToAir(world, x + 4, y, z + 9);
 			this.setBlockToAir(world, x + 4, y, z + 10);
 			this.setBlockToAir(world, x + 4, y, z + 11);
-			this.setBlock(world, x + 4, y, z + 12, DarkStone, 14, 2);
-			this.setBlock(world, x + 4, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z + 12, Spike, 0, 2);
+			this.setBlock(world, x + 4, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x + 4, y, z + 14, bedrock);
-			this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 			//21st row
-			this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 			this.setBlock(world, x + 5, y, z - 13, bedrock);
 			this.setBlock(world, x + 5, y, z - 12, bedrock);
-			this.setBlock(world, x + 5, y, z - 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 5, y, z - 10, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z - 11, Spike, 0, 2);
+			this.setBlock(world, x + 5, y, z - 10, Spike, 0, 2);
 			this.setBlockToAir(world, x + 5, y, z - 9);
 			this.setBlockToAir(world, x + 5, y, z - 8);
 			this.setBlockToAir(world, x + 5, y, z - 7);
@@ -9070,12 +9070,12 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 5, y, z - 5);
 			this.setBlockToAir(world, x + 5, y, z - 4);
 			this.setBlockToAir(world, x + 5, y, z - 3);
-			this.setBlock(world, x + 5, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z - 2, Spike, 0, 2);
 			this.setBlockToAir(world, x + 5, y, z - 1);
 			this.setBlockToAir(world, x + 5, y, z);
 			this.setBlockToAir(world, x + 5, y, z + 1);
 			this.setBlockToAir(world, x + 5, y, z + 2);
-			this.setBlock(world, x + 5, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z + 3, Spike, 0, 2);
 			this.setBlockToAir(world, x + 5, y, z + 4);
 			this.setBlockToAir(world, x + 5, y, z + 5);
 			this.setBlockToAir(world, x + 5, y, z + 6);
@@ -9083,19 +9083,19 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 5, y, z + 8);
 			this.setBlockToAir(world, x + 5, y, z + 9);
 			this.setBlockToAir(world, x + 5, y, z + 10);
-			this.setBlock(world, x + 5, y, z + 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 5, y, z + 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z + 11, Spike, 0, 2);
+			this.setBlock(world, x + 5, y, z + 12, Spike, 0, 2);
 			this.setBlock(world, x + 5, y, z + 13, bedrock);
 			this.setBlock(world, x + 5, y, z + 14, bedrock);
-			this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+			this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 			//22nd row
-			this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 			this.setBlock(world, x + 6, y, z - 12, bedrock);
 			this.setBlock(world, x + 6, y, z - 11, bedrock);
-			this.setBlock(world, x + 6, y, z - 10, DarkStone, 14, 2);
-			this.setBlock(world, x + 6, y, z - 9, DarkStone, 14, 2);
-			this.setBlock(world, x + 6, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z - 10, Spike, 0, 2);
+			this.setBlock(world, x + 6, y, z - 9, Spike, 0, 2);
+			this.setBlock(world, x + 6, y, z - 8, Spike, 0, 2);
 			this.setBlockToAir(world, x + 6, y, z - 7);
 			this.setBlockToAir(world, x + 6, y, z - 6);
 			this.setBlockToAir(world, x + 6, y, z - 5);
@@ -9112,21 +9112,21 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 6, y, z + 6);
 			this.setBlockToAir(world, x + 6, y, z + 7);
 			this.setBlockToAir(world, x + 6, y, z + 8);
-			this.setBlock(world, x + 6, y, z + 9, DarkStone, 14, 2);
-			this.setBlock(world, x + 6, y, z + 10, DarkStone, 14, 2);
-			this.setBlock(world, x + 6, y, z + 11, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z + 9, Spike, 0, 2);
+			this.setBlock(world, x + 6, y, z + 10, Spike, 0, 2);
+			this.setBlock(world, x + 6, y, z + 11, Spike, 0, 2);
 			this.setBlock(world, x + 6, y, z + 12, bedrock);
 			this.setBlock(world, x + 6, y, z + 13, bedrock);
-			this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+			this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 			//23rd row
 			this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-			this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z - 11, bedrock);
 			this.setBlock(world, x + 7, y, z - 10, bedrock);
 			this.setBlock(world, x + 7, y, z - 9, bedrock);
-			this.setBlock(world, x + 7, y, z - 8, DarkStone, 14, 2);
-			this.setBlock(world, x + 7, y, z - 7, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z - 8, Spike, 0, 2);
+			this.setBlock(world, x + 7, y, z - 7, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z - 6, bedrock);
 			this.setBlockToAir(world, x + 7, y, z - 5);
 			this.setBlockToAir(world, x + 7, y, z - 4);
@@ -9141,22 +9141,22 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 7, y, z + 5);
 			this.setBlockToAir(world, x + 7, y, z + 6);
 			this.setBlock(world, x + 7, y, z + 7, bedrock);
-			this.setBlock(world, x + 7, y, z + 8, DarkStone, 14, 2);
-			this.setBlock(world, x + 7, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z + 8, Spike, 0, 2);
+			this.setBlock(world, x + 7, y, z + 9, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z + 10, bedrock);
 			this.setBlock(world, x + 7, y, z + 11, bedrock);
 			this.setBlock(world, x + 7, y, z + 12, bedrock);
-			this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+			this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 			this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 			//24th row
-			this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+			this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 			this.setBlock(world, x + 8, y, z - 9, bedrock);
 			this.setBlock(world, x + 8, y, z - 8, bedrock);
 			this.setBlock(world, x + 8, y, z - 7, bedrock);
 			this.setBlock(world, x + 8, y, z - 6, bedrock);
-			this.setBlock(world, x + 8, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z - 5, Spike, 0, 2);
 			this.setBlockToAir(world, x + 8, y, z - 4);
 			this.setBlockToAir(world, x + 8, y, z - 3);
 			this.setBlockToAir(world, x + 8, y, z - 2);
@@ -9167,13 +9167,13 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 8, y, z + 3);
 			this.setBlockToAir(world, x + 8, y, z + 4);
 			this.setBlockToAir(world, x + 8, y, z + 5);
-			this.setBlock(world, x + 8, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z + 6, Spike, 0, 2);
 			this.setBlock(world, x + 8, y, z + 7, bedrock);
 			this.setBlock(world, x + 8, y, z + 8, bedrock);
 			this.setBlock(world, x + 8, y, z + 9, bedrock);
 			this.setBlock(world, x + 8, y, z + 10, bedrock);
-			this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-			this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+			this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+			this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 			//25th row
 			this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -9258,10 +9258,10 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 			//29th row
-			this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 			this.setBlock(world, x + 13, y, z - 7, bedrock);
 			this.setBlock(world, x + 13, y, z - 6, bedrock);
-			this.setBlock(world, x + 13, y, z - 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z - 5, Spike, 0, 2);
 			this.setBlockToAir(world, x + 13, y, z - 4);
 			this.setBlockToAir(world, x + 13, y, z - 3);
 			this.setBlockToAir(world, x + 13, y, z - 2);
@@ -9272,16 +9272,16 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 13, y, z + 3);
 			this.setBlockToAir(world, x + 13, y, z + 4);
 			this.setBlockToAir(world, x + 13, y, z + 5);
-			this.setBlock(world, x + 13, y, z + 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z + 6, Spike, 0, 2);
 			this.setBlock(world, x + 13, y, z + 7, bedrock);
 			this.setBlock(world, x + 13, y, z + 8, bedrock);
-			this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+			this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 			//30th row
 			this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
 			this.setBlock(world, x + 14, y, z - 6, bedrock);
 			this.setBlock(world, x + 14, y, z - 5, bedrock);
-			this.setBlock(world, x + 14, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 14, y, z - 4, Spike, 0, 2);
 			this.setBlockToAir(world, x + 14, y, z - 3);
 			this.setBlockToAir(world, x + 14, y, z - 2);
 			this.setBlockToAir(world, x + 14, y, z - 1);
@@ -9290,43 +9290,43 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlockToAir(world, x + 14, y, z + 2);
 			this.setBlockToAir(world, x + 14, y, z + 3);
 			this.setBlockToAir(world, x + 14, y, z + 4);
-			this.setBlock(world, x + 14, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 14, y, z + 5, Spike, 0, 2);
 			this.setBlock(world, x + 14, y, z + 6, bedrock);
 			this.setBlock(world, x + 14, y, z + 7, bedrock);
 			this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 			//31st row
-			this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 			this.setBlock(world, x + 15, y, z - 5, bedrock);
 			this.setBlock(world, x + 15, y, z - 4, bedrock);
-			this.setBlock(world, x + 15, y, z - 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z - 3, Spike, 0, 2);
 			this.setBlockToAir(world, x + 15, y, z - 2);
 			this.setBlockToAir(world, x + 15, y, z - 1);
 			this.setBlockToAir(world, x + 15, y, z);
 			this.setBlockToAir(world, x + 15, y, z + 1);
 			this.setBlockToAir(world, x + 15, y, z + 2);
 			this.setBlockToAir(world, x + 15, y, z + 3);
-			this.setBlock(world, x + 15, y, z + 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z + 4, Spike, 0, 2);
 			this.setBlock(world, x + 15, y, z + 5, bedrock);
 			this.setBlock(world, x + 15, y, z + 6, bedrock);
-			this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+			this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 			//32nd row
 			this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
 			this.setBlock(world, x + 16, y, z - 4, bedrock);
 			this.setBlock(world, x + 16, y, z - 3, bedrock);
-			this.setBlock(world, x + 16, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x + 16, y, z - 2, Spike, 0, 2);
 			this.setBlockToAir(world, x + 16, y, z - 1);
 			this.setBlockToAir(world, x + 16, y, z);
 			this.setBlockToAir(world, x + 16, y, z + 1);
 			this.setBlockToAir(world, x + 16, y, z + 2);
-			this.setBlock(world, x + 16, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 16, y, z + 3, Spike, 0, 2);
 			this.setBlock(world, x + 16, y, z + 4, bedrock);
 			this.setBlock(world, x + 16, y, z + 5, bedrock);
 			this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 			//33rd row
-			this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+			this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 			this.setBlock(world, x + 17, y, z - 3, bedrock);
 			this.setBlock(world, x + 17, y, z - 2, bedrock);
 			this.setBlock(world, x + 17, y, z - 1, CelledBlock);
@@ -9335,7 +9335,7 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 17, y, z + 2, CelledBlock);
 			this.setBlock(world, x + 17, y, z + 3, bedrock);
 			this.setBlock(world, x + 17, y, z + 4, bedrock);
-			this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+			this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 			//34th row
 			this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -9348,12 +9348,12 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 			//35th row
-			this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+			this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 			this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 			this.setBlock(world, x + 19, y, z, CelledBlock);
 			this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 			this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-			this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+			this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 		}
 
 		this.setBlock(world, x - 1, y, z, wall_sign, 4, 2);
@@ -9369,26 +9369,26 @@ public class SchematicCorruptedSpire extends Schematic {
 		int y = y0 + 1;
 		//Fourth layer
 		//1st row
-		this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-		this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 		//2nd row
 		this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -9419,7 +9419,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 		//3rd row
-		this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 20, bedrock);
 		this.setBlock(world, x - 13, y, z - 19, bedrock);
 		this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -9428,9 +9428,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 		this.setBlock(world, x - 13, y, z - 14, bedrock);
 		this.setBlock(world, x - 13, y, z - 13, bedrock);
-		this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 3, bedrock);
 		this.setBlock(world, x - 13, y, z - 2, bedrock);
 		this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -9439,9 +9439,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 3, bedrock);
 		this.setBlock(world, x - 13, y, z + 4, bedrock);
-		this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 14, bedrock);
 		this.setBlock(world, x - 13, y, z + 15, bedrock);
 		this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -9450,18 +9450,18 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 20, bedrock);
 		this.setBlock(world, x - 13, y, z + 21, bedrock);
-		this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 		//4th row
 		this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 21, bedrock);
 		this.setBlock(world, x - 12, y, z - 20, bedrock);
-		this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 		this.setBlockToAir(world, x - 12, y, z - 18);
 		this.setBlockToAir(world, x - 12, y, z - 17);
 		this.setBlockToAir(world, x - 12, y, z - 16);
 		this.setBlockToAir(world, x - 12, y, z - 15);
-		this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 13, bedrock);
 		this.setBlock(world, x - 12, y, z - 12, bedrock);
 		this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -9469,12 +9469,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 4, bedrock);
 		this.setBlock(world, x - 12, y, z - 3, bedrock);
-		this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 		this.setBlockToAir(world, x - 12, y, z - 1);
 		this.setBlockToAir(world, x - 12, y, z);
 		this.setBlockToAir(world, x - 12, y, z + 1);
 		this.setBlockToAir(world, x - 12, y, z + 2);
-		this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 4, bedrock);
 		this.setBlock(world, x - 12, y, z + 5, bedrock);
 		this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -9482,67 +9482,67 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 13, bedrock);
 		this.setBlock(world, x - 12, y, z + 14, bedrock);
-		this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 		this.setBlockToAir(world, x - 12, y, z + 16);
 		this.setBlockToAir(world, x - 12, y, z + 17);
 		this.setBlockToAir(world, x - 12, y, z + 18);
 		this.setBlockToAir(world, x - 12, y, z + 19);
-		this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 21, bedrock);
 		this.setBlock(world, x - 12, y, z + 22, bedrock);
 		this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 		//5th row
-		this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 22, bedrock);
 		this.setBlock(world, x - 11, y, z - 21, bedrock);
-		this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 		this.setBlockToAir(world, x - 11, y, z - 19);
 		this.setBlockToAir(world, x - 11, y, z - 18);
 		this.setBlockToAir(world, x - 11, y, z - 17);
 		this.setBlockToAir(world, x - 11, y, z - 16);
 		this.setBlockToAir(world, x - 11, y, z - 15);
 		this.setBlockToAir(world, x - 11, y, z - 14);
-		this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 12, bedrock);
 		this.setBlock(world, x - 11, y, z - 11, bedrock);
-		this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 5, bedrock);
 		this.setBlock(world, x - 11, y, z - 4, bedrock);
-		this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 		this.setBlockToAir(world, x - 11, y, z - 2);
 		this.setBlockToAir(world, x - 11, y, z - 1);
 		this.setBlockToAir(world, x - 11, y, z);
 		this.setBlockToAir(world, x - 11, y, z + 1);
 		this.setBlockToAir(world, x - 11, y, z + 2);
 		this.setBlockToAir(world, x - 11, y, z + 3);
-		this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 5, bedrock);
 		this.setBlock(world, x - 11, y, z + 6, bedrock);
-		this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 12, bedrock);
 		this.setBlock(world, x - 11, y, z + 13, bedrock);
-		this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 		this.setBlockToAir(world, x - 11, y, z + 15);
 		this.setBlockToAir(world, x - 11, y, z + 16);
 		this.setBlockToAir(world, x - 11, y, z + 17);
 		this.setBlockToAir(world, x - 11, y, z + 18);
 		this.setBlockToAir(world, x - 11, y, z + 19);
 		this.setBlockToAir(world, x - 11, y, z + 20);
-		this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 22, bedrock);
 		this.setBlock(world, x - 11, y, z + 23, bedrock);
-		this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 		//6th row
 		this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 23, bedrock);
 		this.setBlock(world, x - 10, y, z - 22, bedrock);
-		this.setBlock(world, x - 10, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 21, Spike, 0, 2);
 		this.setBlockToAir(world, x - 10, y, z - 20);
 		this.setBlockToAir(world, x - 10, y, z - 19);
 		this.setBlockToAir(world, x - 10, y, z - 18);
@@ -9551,15 +9551,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z - 15);
 		this.setBlockToAir(world, x - 10, y, z - 14);
 		this.setBlockToAir(world, x - 10, y, z - 13);
-		this.setBlock(world, x - 10, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 11, bedrock);
 		this.setBlock(world, x - 10, y, z - 10, bedrock);
 		this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 6, bedrock);
 		this.setBlock(world, x - 10, y, z - 5, bedrock);
-		this.setBlock(world, x - 10, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 4, Spike, 0, 2);
 		this.setBlockToAir(world, x - 10, y, z - 3);
 		this.setBlockToAir(world, x - 10, y, z - 2);
 		this.setBlockToAir(world, x - 10, y, z - 1);
@@ -9568,15 +9568,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z + 2);
 		this.setBlockToAir(world, x - 10, y, z + 3);
 		this.setBlockToAir(world, x - 10, y, z + 4);
-		this.setBlock(world, x - 10, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 6, bedrock);
 		this.setBlock(world, x - 10, y, z + 7, bedrock);
 		this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 11, bedrock);
 		this.setBlock(world, x - 10, y, z + 12, bedrock);
-		this.setBlock(world, x - 10, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 13, Spike, 0, 2);
 		this.setBlockToAir(world, x - 10, y, z + 14);
 		this.setBlockToAir(world, x - 10, y, z + 15);
 		this.setBlockToAir(world, x - 10, y, z + 16);
@@ -9585,16 +9585,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z + 19);
 		this.setBlockToAir(world, x - 10, y, z + 20);
 		this.setBlockToAir(world, x - 10, y, z + 21);
-		this.setBlock(world, x - 10, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 23, bedrock);
 		this.setBlock(world, x - 10, y, z + 24, bedrock);
 		this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 		//7th row
-		this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 24, bedrock);
 		this.setBlock(world, x - 9, y, z - 23, bedrock);
-		this.setBlock(world, x - 9, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 22, Spike, 0, 2);
 		this.setBlockToAir(world, x - 9, y, z - 21);
 		this.setBlockToAir(world, x - 9, y, z - 20);
 		this.setBlockToAir(world, x - 9, y, z - 19);
@@ -9605,13 +9605,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z - 14);
 		this.setBlockToAir(world, x - 9, y, z - 13);
 		this.setBlockToAir(world, x - 9, y, z - 12);
-		this.setBlock(world, x - 9, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 10, bedrock);
 		this.setBlock(world, x - 9, y, z - 9, bedrock);
 		this.setBlock(world, x - 9, y, z - 8, bedrock);
 		this.setBlock(world, x - 9, y, z - 7, bedrock);
 		this.setBlock(world, x - 9, y, z - 6, bedrock);
-		this.setBlock(world, x - 9, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 5, Spike, 0, 2);
 		this.setBlockToAir(world, x - 9, y, z - 4);
 		this.setBlockToAir(world, x - 9, y, z - 3);
 		this.setBlockToAir(world, x - 9, y, z - 2);
@@ -9622,13 +9622,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z + 3);
 		this.setBlockToAir(world, x - 9, y, z + 4);
 		this.setBlockToAir(world, x - 9, y, z + 5);
-		this.setBlock(world, x - 9, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 7, bedrock);
 		this.setBlock(world, x - 9, y, z + 8, bedrock);
 		this.setBlock(world, x - 9, y, z + 9, bedrock);
 		this.setBlock(world, x - 9, y, z + 10, bedrock);
 		this.setBlock(world, x - 9, y, z + 11, bedrock);
-		this.setBlock(world, x - 9, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 12, Spike, 0, 2);
 		this.setBlockToAir(world, x - 9, y, z + 13);
 		this.setBlockToAir(world, x - 9, y, z + 14);
 		this.setBlockToAir(world, x - 9, y, z + 15);
@@ -9639,10 +9639,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z + 20);
 		this.setBlockToAir(world, x - 9, y, z + 21);
 		this.setBlockToAir(world, x - 9, y, z + 22);
-		this.setBlock(world, x - 9, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 24, bedrock);
 		this.setBlock(world, x - 9, y, z + 25, bedrock);
-		this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 		//8th row
 		this.setBlock(world, x - 8, y, z - 25, CelledBlock);
@@ -9861,10 +9861,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 5, y, z + 26, CelledBlock);
 
 		//12th row
-		this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 24, bedrock);
 		this.setBlock(world, x - 4, y, z - 23, bedrock);
-		this.setBlock(world, x - 4, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 22, Spike, 0, 2);
 		this.setBlockToAir(world, x - 4, y, z - 21);
 		this.setBlockToAir(world, x - 4, y, z - 20);
 		this.setBlockToAir(world, x - 4, y, z - 19);
@@ -9875,13 +9875,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z - 14);
 		this.setBlockToAir(world, x - 4, y, z - 13);
 		this.setBlockToAir(world, x - 4, y, z - 12);
-		this.setBlock(world, x - 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 10, bedrock);
 		this.setBlock(world, x - 4, y, z - 9, bedrock);
 		this.setBlock(world, x - 4, y, z - 8, bedrock);
 		this.setBlock(world, x - 4, y, z - 7, bedrock);
 		this.setBlock(world, x - 4, y, z - 6, bedrock);
-		this.setBlock(world, x - 4, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 5, Spike, 0, 2);
 		this.setBlockToAir(world, x - 4, y, z - 4);
 		this.setBlockToAir(world, x - 4, y, z - 3);
 		this.setBlockToAir(world, x - 4, y, z - 2);
@@ -9892,13 +9892,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z + 3);
 		this.setBlockToAir(world, x - 4, y, z + 4);
 		this.setBlockToAir(world, x - 4, y, z + 5);
-		this.setBlock(world, x - 4, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 7, bedrock);
 		this.setBlock(world, x - 4, y, z + 8, bedrock);
 		this.setBlock(world, x - 4, y, z + 9, bedrock);
 		this.setBlock(world, x - 4, y, z + 10, bedrock);
 		this.setBlock(world, x - 4, y, z + 11, bedrock);
-		this.setBlock(world, x - 4, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 12, Spike, 0, 2);
 		this.setBlockToAir(world, x - 4, y, z + 13);
 		this.setBlockToAir(world, x - 4, y, z + 14);
 		this.setBlockToAir(world, x - 4, y, z + 15);
@@ -9909,16 +9909,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z + 20);
 		this.setBlockToAir(world, x - 4, y, z + 21);
 		this.setBlockToAir(world, x - 4, y, z + 22);
-		this.setBlock(world, x - 4, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 24, bedrock);
 		this.setBlock(world, x - 4, y, z + 25, bedrock);
-		this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 		//13th row
 		this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 23, bedrock);
 		this.setBlock(world, x - 3, y, z - 22, bedrock);
-		this.setBlock(world, x - 3, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 21, Spike, 0, 2);
 		this.setBlockToAir(world, x - 3, y, z - 20);
 		this.setBlockToAir(world, x - 3, y, z - 19);
 		this.setBlockToAir(world, x - 3, y, z - 18);
@@ -9931,11 +9931,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 3, y, z - 11, bedrock);
 		this.setBlock(world, x - 3, y, z - 10, bedrock);
 		this.setBlock(world, x - 3, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 6, bedrock);
 		this.setBlock(world, x - 3, y, z - 5, bedrock);
-		this.setBlock(world, x - 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 4, Spike, 0, 2);
 		this.setBlockToAir(world, x - 3, y, z - 3);
 		this.setBlockToAir(world, x - 3, y, z - 2);
 		this.setBlockToAir(world, x - 3, y, z - 1);
@@ -9944,11 +9944,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z + 2);
 		this.setBlockToAir(world, x - 3, y, z + 3);
 		this.setBlockToAir(world, x - 3, y, z + 4);
-		this.setBlock(world, x - 3, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 6, bedrock);
 		this.setBlock(world, x - 3, y, z + 7, bedrock);
 		this.setBlock(world, x - 3, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 11, bedrock);
 		this.setBlock(world, x - 3, y, z + 12, bedrock);
@@ -9961,16 +9961,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z + 19);
 		this.setBlockToAir(world, x - 3, y, z + 20);
 		this.setBlockToAir(world, x - 3, y, z + 21);
-		this.setBlock(world, x - 3, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 23, bedrock);
 		this.setBlock(world, x - 3, y, z + 24, bedrock);
 		this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 		//14th row
-		this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 22, bedrock);
 		this.setBlock(world, x - 2, y, z - 21, bedrock);
-		this.setBlock(world, x - 2, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 20, Spike, 0, 2);
 		this.setBlockToAir(world, x - 2, y, z - 19);
 		this.setBlockToAir(world, x - 2, y, z - 18);
 		this.setBlockToAir(world, x - 2, y, z - 17);
@@ -9980,28 +9980,28 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 2, y, z - 13);
 		this.setBlockToAir(world, x - 2, y, z - 12);
 		this.setBlockToAir(world, x - 2, y, z - 11);
-		this.setBlock(world, x - 2, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 5, bedrock);
 		this.setBlock(world, x - 2, y, z - 4, bedrock);
-		this.setBlock(world, x - 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 3, Spike, 0, 2);
 		this.setBlockToAir(world, x - 2, y, z - 2);
 		this.setBlockToAir(world, x - 2, y, z - 1);
 		this.setBlockToAir(world, x - 2, y, z);
 		this.setBlockToAir(world, x - 2, y, z + 1);
 		this.setBlockToAir(world, x - 2, y, z + 2);
 		this.setBlockToAir(world, x - 2, y, z + 3);
-		this.setBlock(world, x - 2, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 5, bedrock);
 		this.setBlock(world, x - 2, y, z + 6, bedrock);
-		this.setBlock(world, x - 2, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 11, Spike, 0, 2);
 		this.setBlockToAir(world, x - 2, y, z + 12);
 		this.setBlockToAir(world, x - 2, y, z + 13);
 		this.setBlockToAir(world, x - 2, y, z + 14);
@@ -10011,61 +10011,61 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 2, y, z + 18);
 		this.setBlockToAir(world, x - 2, y, z + 19);
 		this.setBlockToAir(world, x - 2, y, z + 20);
-		this.setBlock(world, x - 2, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 22, bedrock);
 		this.setBlock(world, x - 2, y, z + 23, bedrock);
-		this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 		//15th row
 		this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 21, bedrock);
 		this.setBlock(world, x - 1, y, z - 20, bedrock);
-		this.setBlock(world, x - 1, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 19, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z - 18);
 		this.setBlockToAir(world, x - 1, y, z - 17);
 		this.setBlockToAir(world, x - 1, y, z - 16);
 		this.setBlockToAir(world, x - 1, y, z - 15);
-		this.setBlock(world, x - 1, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 14, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z - 13);
 		this.setBlockToAir(world, x - 1, y, z - 12);
 		this.setBlockToAir(world, x - 1, y, z - 11);
 		this.setBlockToAir(world, x - 1, y, z - 10);
-		this.setBlock(world, x - 1, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 4, bedrock);
 		this.setBlock(world, x - 1, y, z - 3, bedrock);
-		this.setBlock(world, x - 1, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 2, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z - 1);
 		this.setBlockToAir(world, x - 1, y, z);
 		this.setBlockToAir(world, x - 1, y, z + 1);
 		this.setBlockToAir(world, x - 1, y, z + 2);
-		this.setBlock(world, x - 1, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 4, bedrock);
 		this.setBlock(world, x - 1, y, z + 5, bedrock);
 		this.setBlock(world, x - 1, y, z + 6, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 10, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z + 11);
 		this.setBlockToAir(world, x - 1, y, z + 12);
 		this.setBlockToAir(world, x - 1, y, z + 13);
 		this.setBlockToAir(world, x - 1, y, z + 14);
-		this.setBlock(world, x - 1, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 15, Spike, 0, 2);
 		this.setBlockToAir(world, x - 1, y, z + 16);
 		this.setBlockToAir(world, x - 1, y, z + 17);
 		this.setBlockToAir(world, x - 1, y, z + 18);
 		this.setBlockToAir(world, x - 1, y, z + 19);
-		this.setBlock(world, x - 1, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 21, bedrock);
 		this.setBlock(world, x - 1, y, z + 22, bedrock);
 		this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 		//16th row
-		this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 20, bedrock);
 		this.setBlock(world, x, y, z - 19, bedrock);
 		this.setBlock(world, x, y, z - 18, CelledBlock);
@@ -10080,11 +10080,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x, y, z - 10);
 		this.setBlockToAir(world, x, y, z - 9);
 		this.setBlockToAir(world, x, y, z - 8);
-		this.setBlock(world, x, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 3, bedrock);
 		this.setBlock(world, x, y, z - 2, bedrock);
 		this.setBlock(world, x, y, z - 1, CelledBlock);
@@ -10093,11 +10093,11 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 2, CelledBlock);
 		this.setBlock(world, x, y, z + 3, bedrock);
 		this.setBlock(world, x, y, z + 4, bedrock);
-		this.setBlock(world, x, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 8, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 8, Spike, 0, 2);
 		this.setBlockToAir(world, x, y, z + 9);
 		this.setBlockToAir(world, x, y, z + 10);
 		this.setBlockToAir(world, x, y, z + 11);
@@ -10112,7 +10112,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 19, CelledBlock);
 		this.setBlock(world, x, y, z + 20, bedrock);
 		this.setBlock(world, x, y, z + 21, bedrock);
-		this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 		//17th row
 		this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -10122,16 +10122,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z - 16, bedrock);
 		this.setBlock(world, x + 1, y, z - 15, bedrock);
 		this.setBlock(world, x + 1, y, z - 14, bedrock);
-		this.setBlock(world, x + 1, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 13, Spike, 0, 2);
 		this.setBlockToAir(world, x + 1, y, z - 12);
 		this.setBlockToAir(world, x + 1, y, z - 11);
 		this.setBlockToAir(world, x + 1, y, z - 10);
 		this.setBlockToAir(world, x + 1, y, z - 9);
 		this.setBlockToAir(world, x + 1, y, z - 8);
 		this.setBlockToAir(world, x + 1, y, z - 7);
-		this.setBlock(world, x + 1, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 1, y, z - 2, bedrock);
 		this.setBlock(world, x + 1, y, z - 1, bedrock);
@@ -10140,16 +10140,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 2, bedrock);
 		this.setBlock(world, x + 1, y, z + 3, bedrock);
 		this.setBlock(world, x + 1, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 1, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 7, Spike, 0, 2);
 		this.setBlockToAir(world, x + 1, y, z + 8);
 		this.setBlockToAir(world, x + 1, y, z + 9);
 		this.setBlockToAir(world, x + 1, y, z + 10);
 		this.setBlockToAir(world, x + 1, y, z + 11);
 		this.setBlockToAir(world, x + 1, y, z + 12);
 		this.setBlockToAir(world, x + 1, y, z + 13);
-		this.setBlock(world, x + 1, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 15, bedrock);
 		this.setBlock(world, x + 1, y, z + 16, bedrock);
 		this.setBlock(world, x + 1, y, z + 17, bedrock);
@@ -10159,60 +10159,60 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 		//18th row
-		this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 15, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 14, bedrock);
-		this.setBlock(world, x + 2, y, z - 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 12, Spike, 0, 2);
 		this.setBlockToAir(world, x + 2, y, z - 11);
 		this.setBlockToAir(world, x + 2, y, z - 10);
 		this.setBlockToAir(world, x + 2, y, z - 9);
 		this.setBlockToAir(world, x + 2, y, z - 8);
 		this.setBlockToAir(world, x + 2, y, z - 7);
 		this.setBlockToAir(world, x + 2, y, z - 6);
-		this.setBlock(world, x + 2, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 2, bedrock);
 		this.setBlock(world, x + 2, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 3, bedrock);
-		this.setBlock(world, x + 2, y, z + 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 6, Spike, 0, 2);
 		this.setBlockToAir(world, x + 2, y, z + 7);
 		this.setBlockToAir(world, x + 2, y, z + 8);
 		this.setBlockToAir(world, x + 2, y, z + 9);
 		this.setBlockToAir(world, x + 2, y, z + 10);
 		this.setBlockToAir(world, x + 2, y, z + 11);
 		this.setBlockToAir(world, x + 2, y, z + 12);
-		this.setBlock(world, x + 2, y, z + 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 15, bedrock);
 		this.setBlock(world, x + 2, y, z + 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 19, CelledBlock);
-		this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 		//19th row
 		this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 14, bedrock);
 		this.setBlock(world, x + 3, y, z - 13, bedrock);
-		this.setBlock(world, x + 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 12, Spike, 0, 2);
 		this.setBlockToAir(world, x + 3, y, z - 11);
 		this.setBlockToAir(world, x + 3, y, z - 10);
 		this.setBlockToAir(world, x + 3, y, z - 9);
 		this.setBlockToAir(world, x + 3, y, z - 8);
 		this.setBlockToAir(world, x + 3, y, z - 7);
 		this.setBlockToAir(world, x + 3, y, z - 6);
-		this.setBlock(world, x + 3, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 2, bedrock);
 		this.setBlock(world, x + 3, y, z - 1, bedrock);
@@ -10221,31 +10221,31 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 3, y, z + 2, bedrock);
 		this.setBlock(world, x + 3, y, z + 3, bedrock);
 		this.setBlock(world, x + 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 3, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z + 6, Spike, 0, 2);
 		this.setBlockToAir(world, x + 3, y, z + 7);
 		this.setBlockToAir(world, x + 3, y, z + 8);
 		this.setBlockToAir(world, x + 3, y, z + 9);
 		this.setBlockToAir(world, x + 3, y, z + 10);
 		this.setBlockToAir(world, x + 3, y, z + 11);
 		this.setBlockToAir(world, x + 3, y, z + 12);
-		this.setBlock(world, x + 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 14, bedrock);
 		this.setBlock(world, x + 3, y, z + 15, bedrock);
 		this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 		//20th row
-		this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 13, bedrock);
-		this.setBlock(world, x + 4, y, z - 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 10, CelledLamp);
 		this.setBlockToAir(world, x + 4, y, z - 9);
 		this.setBlockToAir(world, x + 4, y, z - 8);
 		this.setBlockToAir(world, x + 4, y, z - 7);
 		this.setBlockToAir(world, x + 4, y, z - 6);
 		this.setBlockToAir(world, x + 4, y, z - 5);
-		this.setBlock(world, x + 4, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 3, bedrock);
 		this.setBlock(world, x + 4, y, z - 2, bedrock);
 		this.setBlock(world, x + 4, y, z - 1, CelledBlock);
@@ -10254,24 +10254,24 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 4, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 4, y, z + 3, bedrock);
 		this.setBlock(world, x + 4, y, z + 4, bedrock);
-		this.setBlock(world, x + 4, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 5, Spike, 0, 2);
 		this.setBlockToAir(world, x + 4, y, z + 6);
 		this.setBlockToAir(world, x + 4, y, z + 7);
 		this.setBlockToAir(world, x + 4, y, z + 8);
 		this.setBlockToAir(world, x + 4, y, z + 9);
 		this.setBlockToAir(world, x + 4, y, z + 10);
 		this.setBlock(world, x + 4, y, z + 11, CelledLamp);
-		this.setBlock(world, x + 4, y, z + 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 14, bedrock);
-		this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 		//21st row
-		this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 13, bedrock);
 		this.setBlock(world, x + 5, y, z - 12, bedrock);
-		this.setBlock(world, x + 5, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z - 10, Spike, 0, 2);
 		this.setBlockToAir(world, x + 5, y, z - 9);
 		this.setBlockToAir(world, x + 5, y, z - 8);
 		this.setBlockToAir(world, x + 5, y, z - 7);
@@ -10279,12 +10279,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 5, y, z - 5);
 		this.setBlockToAir(world, x + 5, y, z - 4);
 		this.setBlockToAir(world, x + 5, y, z - 3);
-		this.setBlock(world, x + 5, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 2, Spike, 0, 2);
 		this.setBlockToAir(world, x + 5, y, z - 1);
 		this.setBlockToAir(world, x + 5, y, z);
 		this.setBlockToAir(world, x + 5, y, z + 1);
 		this.setBlockToAir(world, x + 5, y, z + 2);
-		this.setBlock(world, x + 5, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 3, Spike, 0, 2);
 		this.setBlockToAir(world, x + 5, y, z + 4);
 		this.setBlockToAir(world, x + 5, y, z + 5);
 		this.setBlockToAir(world, x + 5, y, z + 6);
@@ -10292,19 +10292,19 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 5, y, z + 8);
 		this.setBlockToAir(world, x + 5, y, z + 9);
 		this.setBlockToAir(world, x + 5, y, z + 10);
-		this.setBlock(world, x + 5, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 13, bedrock);
 		this.setBlock(world, x + 5, y, z + 14, bedrock);
-		this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 		//22nd row
-		this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 12, bedrock);
 		this.setBlock(world, x + 6, y, z - 11, bedrock);
-		this.setBlock(world, x + 6, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 8, Spike, 0, 2);
 		this.setBlockToAir(world, x + 6, y, z - 7);
 		this.setBlockToAir(world, x + 6, y, z - 6);
 		this.setBlockToAir(world, x + 6, y, z - 5);
@@ -10321,21 +10321,21 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 6, y, z + 6);
 		this.setBlockToAir(world, x + 6, y, z + 7);
 		this.setBlockToAir(world, x + 6, y, z + 8);
-		this.setBlock(world, x + 6, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 12, bedrock);
 		this.setBlock(world, x + 6, y, z + 13, bedrock);
-		this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 		//23rd row
 		this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 11, bedrock);
 		this.setBlock(world, x + 7, y, z - 10, bedrock);
 		this.setBlock(world, x + 7, y, z - 9, bedrock);
-		this.setBlock(world, x + 7, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z - 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z - 7, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 6, bedrock);
 		this.setBlockToAir(world, x + 7, y, z - 5);
 		this.setBlockToAir(world, x + 7, y, z - 4);
@@ -10350,22 +10350,22 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 7, y, z + 5);
 		this.setBlockToAir(world, x + 7, y, z + 6);
 		this.setBlock(world, x + 7, y, z + 7, bedrock);
-		this.setBlock(world, x + 7, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 10, bedrock);
 		this.setBlock(world, x + 7, y, z + 11, bedrock);
 		this.setBlock(world, x + 7, y, z + 12, bedrock);
-		this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 		//24th row
-		this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 9, bedrock);
 		this.setBlock(world, x + 8, y, z - 8, bedrock);
 		this.setBlock(world, x + 8, y, z - 7, bedrock);
 		this.setBlock(world, x + 8, y, z - 6, bedrock);
-		this.setBlock(world, x + 8, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 5, Spike, 0, 2);
 		this.setBlockToAir(world, x + 8, y, z - 4);
 		this.setBlockToAir(world, x + 8, y, z - 3);
 		this.setBlockToAir(world, x + 8, y, z - 2);
@@ -10376,13 +10376,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 8, y, z + 3);
 		this.setBlockToAir(world, x + 8, y, z + 4);
 		this.setBlockToAir(world, x + 8, y, z + 5);
-		this.setBlock(world, x + 8, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z + 7, bedrock);
 		this.setBlock(world, x + 8, y, z + 8, bedrock);
 		this.setBlock(world, x + 8, y, z + 9, bedrock);
 		this.setBlock(world, x + 8, y, z + 10, bedrock);
-		this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 		//25th row
 		this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -10467,10 +10467,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 		//29th row
-		this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 7, bedrock);
 		this.setBlock(world, x + 13, y, z - 6, bedrock);
-		this.setBlock(world, x + 13, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 5, Spike, 0, 2);
 		this.setBlockToAir(world, x + 13, y, z - 4);
 		this.setBlockToAir(world, x + 13, y, z - 3);
 		this.setBlockToAir(world, x + 13, y, z - 2);
@@ -10481,16 +10481,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 13, y, z + 3);
 		this.setBlockToAir(world, x + 13, y, z + 4);
 		this.setBlockToAir(world, x + 13, y, z + 5);
-		this.setBlock(world, x + 13, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z + 7, bedrock);
 		this.setBlock(world, x + 13, y, z + 8, bedrock);
-		this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 		//30th row
 		this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 6, bedrock);
 		this.setBlock(world, x + 14, y, z - 5, bedrock);
-		this.setBlock(world, x + 14, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z - 4, Spike, 0, 2);
 		this.setBlockToAir(world, x + 14, y, z - 3);
 		this.setBlockToAir(world, x + 14, y, z - 2);
 		this.setBlockToAir(world, x + 14, y, z - 1);
@@ -10499,43 +10499,43 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 14, y, z + 2);
 		this.setBlockToAir(world, x + 14, y, z + 3);
 		this.setBlockToAir(world, x + 14, y, z + 4);
-		this.setBlock(world, x + 14, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z + 6, bedrock);
 		this.setBlock(world, x + 14, y, z + 7, bedrock);
 		this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 		//31st row
-		this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 5, bedrock);
 		this.setBlock(world, x + 15, y, z - 4, bedrock);
-		this.setBlock(world, x + 15, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 3, Spike, 0, 2);
 		this.setBlockToAir(world, x + 15, y, z - 2);
 		this.setBlockToAir(world, x + 15, y, z - 1);
 		this.setBlockToAir(world, x + 15, y, z);
 		this.setBlockToAir(world, x + 15, y, z + 1);
 		this.setBlockToAir(world, x + 15, y, z + 2);
 		this.setBlockToAir(world, x + 15, y, z + 3);
-		this.setBlock(world, x + 15, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z + 5, bedrock);
 		this.setBlock(world, x + 15, y, z + 6, bedrock);
-		this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 		//32nd row
 		this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z - 4, bedrock);
 		this.setBlock(world, x + 16, y, z - 3, bedrock);
-		this.setBlock(world, x + 16, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z - 2, Spike, 0, 2);
 		this.setBlockToAir(world, x + 16, y, z - 1);
 		this.setBlockToAir(world, x + 16, y, z);
 		this.setBlockToAir(world, x + 16, y, z + 1);
 		this.setBlockToAir(world, x + 16, y, z + 2);
-		this.setBlock(world, x + 16, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z + 4, bedrock);
 		this.setBlock(world, x + 16, y, z + 5, bedrock);
 		this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 		//33rd row
-		this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 17, y, z - 3, bedrock);
 		this.setBlock(world, x + 17, y, z - 2, bedrock);
 		this.setBlock(world, x + 17, y, z - 1, CelledBlock);
@@ -10544,7 +10544,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 17, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 17, y, z + 3, bedrock);
 		this.setBlock(world, x + 17, y, z + 4, bedrock);
-		this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 		//34th row
 		this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -10557,36 +10557,36 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 		//35th row
-		this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-		this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 
 		y++;
 		//Fifth layer
 		//1st row
-		this.setBlock(world, x - 15, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z - 15, CelledBlock);
-		this.setBlock(world, x - 15, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 14, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z - 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 1, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 2, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 3, Spike, 0, 2);
 
-		this.setBlock(world, x - 15, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 15, y, z + 16, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 17, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 18, CelledBlock);
 		this.setBlock(world, x - 15, y, z + 19, CelledBlock);
-		this.setBlock(world, x - 15, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 15, y, z + 20, Spike, 0, 2);
 
 		//2nd row
 		this.setBlock(world, x - 14, y, z - 20, ErodedStone, 1, 2);
@@ -10617,7 +10617,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 14, y, z + 21, ErodedStone, 1, 2);
 
 		//3rd row
-		this.setBlock(world, x - 13, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 20, bedrock);
 		this.setBlock(world, x - 13, y, z - 19, bedrock);
 		this.setBlock(world, x - 13, y, z - 18, CelledBlock);
@@ -10626,9 +10626,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z - 15, CelledBlock);
 		this.setBlock(world, x - 13, y, z - 14, bedrock);
 		this.setBlock(world, x - 13, y, z - 13, bedrock);
-		this.setBlock(world, x - 13, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 12, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z - 3, bedrock);
 		this.setBlock(world, x - 13, y, z - 2, bedrock);
 		this.setBlock(world, x - 13, y, z - 1, CelledBlock);
@@ -10637,9 +10637,9 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 2, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 3, bedrock);
 		this.setBlock(world, x - 13, y, z + 4, bedrock);
-		this.setBlock(world, x - 13, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x - 13, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 13, y, z + 14, bedrock);
 		this.setBlock(world, x - 13, y, z + 15, bedrock);
 		this.setBlock(world, x - 13, y, z + 16, CelledBlock);
@@ -10648,18 +10648,18 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 13, y, z + 19, CelledBlock);
 		this.setBlock(world, x - 13, y, z + 20, bedrock);
 		this.setBlock(world, x - 13, y, z + 21, bedrock);
-		this.setBlock(world, x - 13, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 13, y, z + 22, Spike, 0, 2);
 
 		//4th row
 		this.setBlock(world, x - 12, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 21, bedrock);
 		this.setBlock(world, x - 12, y, z - 20, bedrock);
-		this.setBlock(world, x - 12, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 13, bedrock);
 		this.setBlock(world, x - 12, y, z - 12, bedrock);
 		this.setBlock(world, x - 12, y, z - 11, ErodedStone, 1, 2);
@@ -10667,12 +10667,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z - 4, bedrock);
 		this.setBlock(world, x - 12, y, z - 3, bedrock);
-		this.setBlock(world, x - 12, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 4, bedrock);
 		this.setBlock(world, x - 12, y, z + 5, bedrock);
 		this.setBlock(world, x - 12, y, z + 6, ErodedStone, 1, 2);
@@ -10680,67 +10680,67 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 12, y, z + 12, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 13, bedrock);
 		this.setBlock(world, x - 12, y, z + 14, bedrock);
-		this.setBlock(world, x - 12, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 12, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 12, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 12, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 12, y, z + 21, bedrock);
 		this.setBlock(world, x - 12, y, z + 22, bedrock);
 		this.setBlock(world, x - 12, y, z + 23, ErodedStone, 1, 2);
 
 		//5th row
-		this.setBlock(world, x - 11, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 22, bedrock);
 		this.setBlock(world, x - 11, y, z - 21, bedrock);
-		this.setBlock(world, x - 11, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 19, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 11, y, z - 18);
 		this.setBlockToAir(world, x - 11, y, z - 17);
 		this.setBlockToAir(world, x - 11, y, z - 16);
 		this.setBlockToAir(world, x - 11, y, z - 15);
 		this.setBlock(world, x - 11, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 12, bedrock);
 		this.setBlock(world, x - 11, y, z - 11, bedrock);
-		this.setBlock(world, x - 11, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 10, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 5, bedrock);
 		this.setBlock(world, x - 11, y, z - 4, bedrock);
-		this.setBlock(world, x - 11, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z - 2, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 11, y, z - 1);
 		this.setBlockToAir(world, x - 11, y, z);
 		this.setBlockToAir(world, x - 11, y, z + 1);
 		this.setBlockToAir(world, x - 11, y, z + 2);
 		this.setBlock(world, x - 11, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 5, bedrock);
 		this.setBlock(world, x - 11, y, z + 6, bedrock);
-		this.setBlock(world, x - 11, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 7, Spike, 0, 2);
 
-		this.setBlock(world, x - 11, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 12, bedrock);
 		this.setBlock(world, x - 11, y, z + 13, bedrock);
-		this.setBlock(world, x - 11, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 15, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 11, y, z + 16);
 		this.setBlockToAir(world, x - 11, y, z + 17);
 		this.setBlockToAir(world, x - 11, y, z + 18);
 		this.setBlockToAir(world, x - 11, y, z + 19);
 		this.setBlock(world, x - 11, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 11, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 11, y, z + 22, bedrock);
 		this.setBlock(world, x - 11, y, z + 23, bedrock);
-		this.setBlock(world, x - 11, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 11, y, z + 24, Spike, 0, 2);
 
 		//6th row
 		this.setBlock(world, x - 10, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 23, bedrock);
 		this.setBlock(world, x - 10, y, z - 22, bedrock);
-		this.setBlock(world, x - 10, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 20, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 10, y, z - 19);
 		this.setBlockToAir(world, x - 10, y, z - 18);
@@ -10749,15 +10749,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z - 15);
 		this.setBlockToAir(world, x - 10, y, z - 14);
 		this.setBlock(world, x - 10, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 11, bedrock);
 		this.setBlock(world, x - 10, y, z - 10, bedrock);
 		this.setBlock(world, x - 10, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z - 6, bedrock);
 		this.setBlock(world, x - 10, y, z - 5, bedrock);
-		this.setBlock(world, x - 10, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z - 3, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 10, y, z - 2);
 		this.setBlockToAir(world, x - 10, y, z - 1);
@@ -10766,15 +10766,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z + 2);
 		this.setBlockToAir(world, x - 10, y, z + 3);
 		this.setBlock(world, x - 10, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 6, bedrock);
 		this.setBlock(world, x - 10, y, z + 7, bedrock);
 		this.setBlock(world, x - 10, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 10, y, z + 11, bedrock);
 		this.setBlock(world, x - 10, y, z + 12, bedrock);
-		this.setBlock(world, x - 10, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 14, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 10, y, z + 15);
 		this.setBlockToAir(world, x - 10, y, z + 16);
@@ -10783,16 +10783,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 10, y, z + 19);
 		this.setBlockToAir(world, x - 10, y, z + 20);
 		this.setBlock(world, x - 10, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 10, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 10, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 10, y, z + 23, bedrock);
 		this.setBlock(world, x - 10, y, z + 24, bedrock);
 		this.setBlock(world, x - 10, y, z + 25, ErodedStone, 1, 2);
 
 		//7th row
-		this.setBlock(world, x - 9, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 24, bedrock);
 		this.setBlock(world, x - 9, y, z - 23, bedrock);
-		this.setBlock(world, x - 9, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 21, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 9, y, z - 20);
 		this.setBlockToAir(world, x - 9, y, z - 19);
@@ -10803,13 +10803,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z - 14);
 		this.setBlockToAir(world, x - 9, y, z - 13);
 		this.setBlock(world, x - 9, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 10, bedrock);
 		this.setBlock(world, x - 9, y, z - 9, bedrock);
 		this.setBlock(world, x - 9, y, z - 8, bedrock);
 		this.setBlock(world, x - 9, y, z - 7, bedrock);
 		this.setBlock(world, x - 9, y, z - 6, bedrock);
-		this.setBlock(world, x - 9, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z - 4, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 9, y, z - 3);
 		this.setBlockToAir(world, x - 9, y, z - 2);
@@ -10820,13 +10820,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z + 3);
 		this.setBlockToAir(world, x - 9, y, z + 4);
 		this.setBlock(world, x - 9, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 7, bedrock);
 		this.setBlock(world, x - 9, y, z + 8, bedrock);
 		this.setBlock(world, x - 9, y, z + 9, bedrock);
 		this.setBlock(world, x - 9, y, z + 10, bedrock);
 		this.setBlock(world, x - 9, y, z + 11, bedrock);
-		this.setBlock(world, x - 9, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 13, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 9, y, z + 14);
 		this.setBlockToAir(world, x - 9, y, z + 15);
@@ -10837,10 +10837,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 9, y, z + 20);
 		this.setBlockToAir(world, x - 9, y, z + 21);
 		this.setBlock(world, x - 9, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 9, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 9, y, z + 24, bedrock);
 		this.setBlock(world, x - 9, y, z + 25, bedrock);
-		this.setBlock(world, x - 9, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 9, y, z + 26, Spike, 0, 2);
 
 		//8th row
 		this.setBlock(world, x - 8, y, z - 25, CelledBlock);
@@ -11059,10 +11059,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 5, y, z + 26, CelledBlock);
 
 		//12th row
-		this.setBlock(world, x - 4, y, z - 25, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 25, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 24, bedrock);
 		this.setBlock(world, x - 4, y, z - 23, bedrock);
-		this.setBlock(world, x - 4, y, z - 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 22, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 21, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 4, y, z - 20);
 		this.setBlockToAir(world, x - 4, y, z - 19);
@@ -11073,13 +11073,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z - 14);
 		this.setBlockToAir(world, x - 4, y, z - 13);
 		this.setBlock(world, x - 4, y, z - 12, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 10, bedrock);
 		this.setBlock(world, x - 4, y, z - 9, bedrock);
 		this.setBlock(world, x - 4, y, z - 8, bedrock);
 		this.setBlock(world, x - 4, y, z - 7, bedrock);
 		this.setBlock(world, x - 4, y, z - 6, bedrock);
-		this.setBlock(world, x - 4, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z - 4, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 4, y, z - 3);
 		this.setBlockToAir(world, x - 4, y, z - 2);
@@ -11090,13 +11090,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z + 3);
 		this.setBlockToAir(world, x - 4, y, z + 4);
 		this.setBlock(world, x - 4, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 7, bedrock);
 		this.setBlock(world, x - 4, y, z + 8, bedrock);
 		this.setBlock(world, x - 4, y, z + 9, bedrock);
 		this.setBlock(world, x - 4, y, z + 10, bedrock);
 		this.setBlock(world, x - 4, y, z + 11, bedrock);
-		this.setBlock(world, x - 4, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 13, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 4, y, z + 14);
 		this.setBlockToAir(world, x - 4, y, z + 15);
@@ -11107,16 +11107,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 4, y, z + 20);
 		this.setBlockToAir(world, x - 4, y, z + 21);
 		this.setBlock(world, x - 4, y, z + 22, ErodedStone, 1, 2);
-		this.setBlock(world, x - 4, y, z + 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 23, Spike, 0, 2);
 		this.setBlock(world, x - 4, y, z + 24, bedrock);
 		this.setBlock(world, x - 4, y, z + 25, bedrock);
-		this.setBlock(world, x - 4, y, z + 26, DarkStone, 14, 2);
+		this.setBlock(world, x - 4, y, z + 26, Spike, 0, 2);
 
 		//13th row
 		this.setBlock(world, x - 3, y, z - 24, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 23, bedrock);
 		this.setBlock(world, x - 3, y, z - 22, bedrock);
-		this.setBlock(world, x - 3, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 20, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 3, y, z - 19);
 		this.setBlockToAir(world, x - 3, y, z - 18);
@@ -11125,15 +11125,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z - 15);
 		this.setBlockToAir(world, x - 3, y, z - 14);
 		this.setBlock(world, x - 3, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 11, bedrock);
 		this.setBlock(world, x - 3, y, z - 10, bedrock);
 		this.setBlock(world, x - 3, y, z - 9, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z - 6, bedrock);
 		this.setBlock(world, x - 3, y, z - 5, bedrock);
-		this.setBlock(world, x - 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 3, y, z - 2);
 		this.setBlockToAir(world, x - 3, y, z - 1);
@@ -11142,15 +11142,15 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z + 2);
 		this.setBlockToAir(world, x - 3, y, z + 3);
 		this.setBlock(world, x - 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 6, bedrock);
 		this.setBlock(world, x - 3, y, z + 7, bedrock);
 		this.setBlock(world, x - 3, y, z + 8, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 10, ErodedStone, 1, 2);
 		this.setBlock(world, x - 3, y, z + 11, bedrock);
 		this.setBlock(world, x - 3, y, z + 12, bedrock);
-		this.setBlock(world, x - 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 14, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 3, y, z + 15);
 		this.setBlockToAir(world, x - 3, y, z + 16);
@@ -11159,111 +11159,111 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x - 3, y, z + 19);
 		this.setBlockToAir(world, x - 3, y, z + 20);
 		this.setBlock(world, x - 3, y, z + 21, ErodedStone, 1, 2);
-		this.setBlock(world, x - 3, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x - 3, y, z + 22, Spike, 0, 2);
 		this.setBlock(world, x - 3, y, z + 23, bedrock);
 		this.setBlock(world, x - 3, y, z + 24, bedrock);
 		this.setBlock(world, x - 3, y, z + 25, ErodedStone, 1, 2);
 
 		//14th row
-		this.setBlock(world, x - 2, y, z - 23, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 23, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 22, bedrock);
 		this.setBlock(world, x - 2, y, z - 21, bedrock);
-		this.setBlock(world, x - 2, y, z - 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 20, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 19, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 2, y, z - 18);
 		this.setBlockToAir(world, x - 2, y, z - 17);
 		this.setBlockToAir(world, x - 2, y, z - 16);
 		this.setBlockToAir(world, x - 2, y, z - 15);
 		this.setBlock(world, x - 2, y, z - 14, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 12, bedrock);
 		this.setBlock(world, x - 2, y, z - 11, bedrock);
-		this.setBlock(world, x - 2, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 5, bedrock);
 		this.setBlock(world, x - 2, y, z - 4, bedrock);
-		this.setBlock(world, x - 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z - 2, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 2, y, z - 1);
 		this.setBlockToAir(world, x - 2, y, z);
 		this.setBlockToAir(world, x - 2, y, z + 1);
 		this.setBlockToAir(world, x - 2, y, z + 2);
 		this.setBlock(world, x - 2, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 5, bedrock);
 		this.setBlock(world, x - 2, y, z + 6, bedrock);
-		this.setBlock(world, x - 2, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x - 2, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x - 2, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 12, bedrock);
 		this.setBlock(world, x - 2, y, z + 13, bedrock);
-		this.setBlock(world, x - 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 15, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x - 2, y, z + 16);
 		this.setBlockToAir(world, x - 2, y, z + 17);
 		this.setBlockToAir(world, x - 2, y, z + 18);
 		this.setBlockToAir(world, x - 2, y, z + 19);
 		this.setBlock(world, x - 2, y, z + 20, ErodedStone, 1, 2);
-		this.setBlock(world, x - 2, y, z + 21, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 21, Spike, 0, 2);
 		this.setBlock(world, x - 2, y, z + 22, bedrock);
 		this.setBlock(world, x - 2, y, z + 23, bedrock);
-		this.setBlock(world, x - 2, y, z + 24, DarkStone, 14, 2);
+		this.setBlock(world, x - 2, y, z + 24, Spike, 0, 2);
 
 		//15th row
 		this.setBlock(world, x - 1, y, z - 22, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 21, bedrock);
 		this.setBlock(world, x - 1, y, z - 20, bedrock);
-		this.setBlock(world, x - 1, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 15, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 13, bedrock);
 		this.setBlock(world, x - 1, y, z - 12, bedrock);
-		this.setBlock(world, x - 1, y, z - 11, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 11, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 10, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z - 4, bedrock);
 		this.setBlock(world, x - 1, y, z - 3, bedrock);
-		this.setBlock(world, x - 1, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 4, bedrock);
 		this.setBlock(world, x - 1, y, z + 5, bedrock);
 		this.setBlock(world, x - 1, y, z + 6, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x - 1, y, z + 10, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x - 1, y, z + 10, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 11, ErodedStone, 2, 2);
-		this.setBlock(world, x - 1, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 13, bedrock);
 		this.setBlock(world, x - 1, y, z + 14, bedrock);
-		this.setBlock(world, x - 1, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 15, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 16, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 17, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 18, ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y, z + 19, ErodedStone, 1, 2);
-		this.setBlock(world, x - 1, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x - 1, y, z + 20, Spike, 0, 2);
 		this.setBlock(world, x - 1, y, z + 21, bedrock);
 		this.setBlock(world, x - 1, y, z + 22, bedrock);
 		this.setBlock(world, x - 1, y, z + 23, ErodedStone, 1, 2);
 
 		//16th row
-		this.setBlock(world, x, y, z - 21, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 21, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 20, bedrock);
 		this.setBlock(world, x, y, z - 19, bedrock);
 		this.setBlock(world, x, y, z - 18, CelledBlock);
@@ -11272,17 +11272,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z - 15, CelledBlock);
 		this.setBlock(world, x, y, z - 14, bedrock);
 		this.setBlock(world, x, y, z - 13, bedrock);
-		this.setBlock(world, x, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 12, Spike, 0, 2);
 
 		this.setBlockToAir(world, x, y, z - 11);
 		this.setBlockToAir(world, x, y, z - 10);
 		this.setBlock(world, x, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z - 8, ErodedStone, 2, 2);
-		this.setBlock(world, x, y, z - 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z - 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x, y, z - 3, bedrock);
 		this.setBlock(world, x, y, z - 2, bedrock);
 		this.setBlock(world, x, y, z - 1, CelledBlock);
@@ -11291,17 +11291,17 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 2, CelledBlock);
 		this.setBlock(world, x, y, z + 3, bedrock);
 		this.setBlock(world, x, y, z + 4, bedrock);
-		this.setBlock(world, x, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 5, Spike, 0, 2);
 
-		this.setBlock(world, x, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 7, DarkStone, 14, 2);
-		this.setBlock(world, x, y, z + 8, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 7, Spike, 0, 2);
+		this.setBlock(world, x, y, z + 8, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x, y, z + 10, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x, y, z + 11);
 		this.setBlockToAir(world, x, y, z + 12);
 
-		this.setBlock(world, x, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x, y, z + 14, bedrock);
 		this.setBlock(world, x, y, z + 15, bedrock);
 		this.setBlock(world, x, y, z + 16, CelledBlock);
@@ -11310,7 +11310,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x, y, z + 19, CelledBlock);
 		this.setBlock(world, x, y, z + 20, bedrock);
 		this.setBlock(world, x, y, z + 21, bedrock);
-		this.setBlock(world, x, y, z + 22, DarkStone, 14, 2);
+		this.setBlock(world, x, y, z + 22, Spike, 0, 2);
 
 		//17th row
 		this.setBlock(world, x + 1, y, z - 20, ErodedStone, 1, 2);
@@ -11320,16 +11320,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z - 16, bedrock);
 		this.setBlock(world, x + 1, y, z - 15, bedrock);
 		this.setBlock(world, x + 1, y, z - 14, bedrock);
-		this.setBlock(world, x + 1, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 12, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 1, y, z - 11);
 		this.setBlockToAir(world, x + 1, y, z - 10);
 		this.setBlockToAir(world, x + 1, y, z - 9);
 		this.setBlockToAir(world, x + 1, y, z - 8);
 		this.setBlock(world, x + 1, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z - 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z - 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 1, y, z - 2, bedrock);
 		this.setBlock(world, x + 1, y, z - 1, bedrock);
@@ -11338,16 +11338,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 2, bedrock);
 		this.setBlock(world, x + 1, y, z + 3, bedrock);
 		this.setBlock(world, x + 1, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 1, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 6, DarkStone, 14, 2);
-		this.setBlock(world, x + 1, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 6, Spike, 0, 2);
+		this.setBlock(world, x + 1, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 8, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 1, y, z + 9);
 		this.setBlockToAir(world, x + 1, y, z + 10);
 		this.setBlockToAir(world, x + 1, y, z + 11);
 		this.setBlockToAir(world, x + 1, y, z + 12);
 		this.setBlock(world, x + 1, y, z + 13, ErodedStone, 2, 2);
-		this.setBlock(world, x + 1, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 1, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 1, y, z + 15, bedrock);
 		this.setBlock(world, x + 1, y, z + 16, bedrock);
 		this.setBlock(world, x + 1, y, z + 17, bedrock);
@@ -11357,60 +11357,60 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 1, y, z + 21, ErodedStone, 1, 2);
 
 		//18th row
-		this.setBlock(world, x + 2, y, z - 19, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 19, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 15, CelledBlock);
 		this.setBlock(world, x + 2, y, z - 14, bedrock);
-		this.setBlock(world, x + 2, y, z - 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 11, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 2, y, z - 10);
 		this.setBlockToAir(world, x + 2, y, z - 9);
 		this.setBlockToAir(world, x + 2, y, z - 8);
 		this.setBlockToAir(world, x + 2, y, z - 7);
 		this.setBlock(world, x + 2, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z - 2, bedrock);
 		this.setBlock(world, x + 2, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 3, bedrock);
-		this.setBlock(world, x + 2, y, z + 4, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 4, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 7, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 2, y, z + 8);
 		this.setBlockToAir(world, x + 2, y, z + 9);
 		this.setBlockToAir(world, x + 2, y, z + 10);
 		this.setBlockToAir(world, x + 2, y, z + 11);
 		this.setBlock(world, x + 2, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 2, y, z + 13, DarkStone, 14, 2);
-		this.setBlock(world, x + 2, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 13, Spike, 0, 2);
+		this.setBlock(world, x + 2, y, z + 14, Spike, 0, 2);
 		this.setBlock(world, x + 2, y, z + 15, bedrock);
 		this.setBlock(world, x + 2, y, z + 16, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 17, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 18, CelledBlock);
 		this.setBlock(world, x + 2, y, z + 19, CelledBlock);
-		this.setBlock(world, x + 2, y, z + 20, DarkStone, 14, 2);
+		this.setBlock(world, x + 2, y, z + 20, Spike, 0, 2);
 
 		//19th row
 		this.setBlock(world, x + 3, y, z - 15, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 14, bedrock);
 		this.setBlock(world, x + 3, y, z - 13, bedrock);
-		this.setBlock(world, x + 3, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 11, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 3, y, z - 10);
 		this.setBlockToAir(world, x + 3, y, z - 9);
 		this.setBlockToAir(world, x + 3, y, z - 8);
 		this.setBlockToAir(world, x + 3, y, z - 7);
 		this.setBlock(world, x + 3, y, z - 6, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z - 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z - 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z - 3, ErodedStone, 1, 2);
 		this.setBlock(world, x + 3, y, z - 2, bedrock);
 		this.setBlock(world, x + 3, y, z - 1, bedrock);
@@ -11419,31 +11419,31 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 3, y, z + 2, bedrock);
 		this.setBlock(world, x + 3, y, z + 3, bedrock);
 		this.setBlock(world, x + 3, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 3, y, z + 5, DarkStone, 14, 2);
-		this.setBlock(world, x + 3, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 5, Spike, 0, 2);
+		this.setBlock(world, x + 3, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 7, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 3, y, z + 8);
 		this.setBlockToAir(world, x + 3, y, z + 9);
 		this.setBlockToAir(world, x + 3, y, z + 10);
 		this.setBlockToAir(world, x + 3, y, z + 11);
 		this.setBlock(world, x + 3, y, z + 12, ErodedStone, 2, 2);
-		this.setBlock(world, x + 3, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 3, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 3, y, z + 14, bedrock);
 		this.setBlock(world, x + 3, y, z + 15, bedrock);
 		this.setBlock(world, x + 3, y, z + 16, ErodedStone, 1, 2);
 
 		//20th row
-		this.setBlock(world, x + 4, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 13, bedrock);
-		this.setBlock(world, x + 4, y, z - 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z - 10, Spike, 0, 2);
 		this.setBlockToAir(world, x + 4, y, z - 9);
 		this.setBlockToAir(world, x + 4, y, z - 8);
 		this.setBlockToAir(world, x + 4, y, z - 7);
 		this.setBlockToAir(world, x + 4, y, z - 6);
 		this.setBlock(world, x + 4, y, z - 5, ErodedStone, 2, 2);
-		this.setBlock(world, x + 4, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z - 3, bedrock);
 		this.setBlock(world, x + 4, y, z - 2, bedrock);
 		this.setBlock(world, x + 4, y, z - 1, CelledBlock);
@@ -11452,91 +11452,91 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 4, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 4, y, z + 3, bedrock);
 		this.setBlock(world, x + 4, y, z + 4, bedrock);
-		this.setBlock(world, x + 4, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 6, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 4, y, z + 7);
 		this.setBlockToAir(world, x + 4, y, z + 8);
 		this.setBlockToAir(world, x + 4, y, z + 9);
 		this.setBlockToAir(world, x + 4, y, z + 10);
-		this.setBlock(world, x + 4, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z + 12, DarkStone, 14, 2);
-		this.setBlock(world, x + 4, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z + 12, Spike, 0, 2);
+		this.setBlock(world, x + 4, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 4, y, z + 14, bedrock);
-		this.setBlock(world, x + 4, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 4, y, z + 15, Spike, 0, 2);
 
 		//21st row
-		this.setBlock(world, x + 5, y, z - 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 14, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 13, bedrock);
 		this.setBlock(world, x + 5, y, z - 12, bedrock);
-		this.setBlock(world, x + 5, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z - 8, ErodedStone, 2, 2);
 		this.setBlockToAir(world, x + 5, y, z - 7);
 		this.setBlockToAir(world, x + 5, y, z - 6);
-		this.setBlock(world, x + 5, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 4, bedrock);
 		this.setBlock(world, x + 5, y, z - 3, bedrock);
-		this.setBlock(world, x + 5, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z - 1, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z + 1, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z + 2, ErodedStone, 2, 2);
-		this.setBlock(world, x + 5, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 4, bedrock);
 		this.setBlock(world, x + 5, y, z + 5, bedrock);
-		this.setBlock(world, x + 5, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 6, Spike, 0, 2);
 		this.setBlockToAir(world, x + 5, y, z + 7);
 		this.setBlockToAir(world, x + 5, y, z + 8);
 		this.setBlock(world, x + 5, y, z + 9, ErodedStone, 2, 2);
 		this.setBlock(world, x + 5, y, z + 10, ErodedStone, 2, 2);
-		this.setBlock(world, x + 5, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 5, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 5, y, z + 12, Spike, 0, 2);
 		this.setBlock(world, x + 5, y, z + 13, bedrock);
 		this.setBlock(world, x + 5, y, z + 14, bedrock);
-		this.setBlock(world, x + 5, y, z + 15, DarkStone, 14, 2);
+		this.setBlock(world, x + 5, y, z + 15, Spike, 0, 2);
 
 		//22nd row
-		this.setBlock(world, x + 6, y, z - 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 13, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 12, bedrock);
 		this.setBlock(world, x + 6, y, z - 11, bedrock);
-		this.setBlock(world, x + 6, y, z - 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 7, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 5, bedrock);
 		this.setBlock(world, x + 6, y, z - 4, bedrock);
-		this.setBlock(world, x + 6, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z - 2, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 6, y, z - 1);
 		this.setBlockToAir(world, x + 6, y, z);
 		this.setBlockToAir(world, x + 6, y, z + 1);
 		this.setBlockToAir(world, x + 6, y, z + 2);
 		this.setBlock(world, x + 6, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 6, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 5, bedrock);
 		this.setBlock(world, x + 6, y, z + 6, bedrock);
-		this.setBlock(world, x + 6, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 7, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 8, ErodedStone, 2, 2);
-		this.setBlock(world, x + 6, y, z + 9, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 10, DarkStone, 14, 2);
-		this.setBlock(world, x + 6, y, z + 11, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 9, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 10, Spike, 0, 2);
+		this.setBlock(world, x + 6, y, z + 11, Spike, 0, 2);
 		this.setBlock(world, x + 6, y, z + 12, bedrock);
 		this.setBlock(world, x + 6, y, z + 13, bedrock);
-		this.setBlock(world, x + 6, y, z + 14, DarkStone, 14, 2);
+		this.setBlock(world, x + 6, y, z + 14, Spike, 0, 2);
 
 		//23rd row
 		this.setBlock(world, x + 7, y, z - 13, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z - 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 12, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 11, bedrock);
 		this.setBlock(world, x + 7, y, z - 10, bedrock);
 		this.setBlock(world, x + 7, y, z - 9, bedrock);
-		this.setBlock(world, x + 7, y, z - 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z - 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z - 7, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 6, bedrock);
 		this.setBlock(world, x + 7, y, z - 5, bedrock);
-		this.setBlock(world, x + 7, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z - 3, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 7, y, z - 2);
 		this.setBlockToAir(world, x + 7, y, z - 1);
@@ -11545,25 +11545,25 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 7, y, z + 2);
 		this.setBlockToAir(world, x + 7, y, z + 3);
 		this.setBlock(world, x + 7, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 7, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 6, bedrock);
 		this.setBlock(world, x + 7, y, z + 7, bedrock);
-		this.setBlock(world, x + 7, y, z + 8, DarkStone, 14, 2);
-		this.setBlock(world, x + 7, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 8, Spike, 0, 2);
+		this.setBlock(world, x + 7, y, z + 9, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 10, bedrock);
 		this.setBlock(world, x + 7, y, z + 11, bedrock);
 		this.setBlock(world, x + 7, y, z + 12, bedrock);
-		this.setBlock(world, x + 7, y, z + 13, DarkStone, 14, 2);
+		this.setBlock(world, x + 7, y, z + 13, Spike, 0, 2);
 		this.setBlock(world, x + 7, y, z + 14, ErodedStone, 1, 2);
 
 		//24th row
-		this.setBlock(world, x + 8, y, z - 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z - 10, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z - 10, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 9, bedrock);
 		this.setBlock(world, x + 8, y, z - 8, bedrock);
 		this.setBlock(world, x + 8, y, z - 7, bedrock);
 		this.setBlock(world, x + 8, y, z - 6, bedrock);
-		this.setBlock(world, x + 8, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z - 4, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 8, y, z - 3);
 		this.setBlockToAir(world, x + 8, y, z - 2);
@@ -11574,13 +11574,13 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 8, y, z + 3);
 		this.setBlockToAir(world, x + 8, y, z + 4);
 		this.setBlock(world, x + 8, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 8, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 8, y, z + 7, bedrock);
 		this.setBlock(world, x + 8, y, z + 8, bedrock);
 		this.setBlock(world, x + 8, y, z + 9, bedrock);
 		this.setBlock(world, x + 8, y, z + 10, bedrock);
-		this.setBlock(world, x + 8, y, z + 11, DarkStone, 14, 2);
-		this.setBlock(world, x + 8, y, z + 12, DarkStone, 14, 2);
+		this.setBlock(world, x + 8, y, z + 11, Spike, 0, 2);
+		this.setBlock(world, x + 8, y, z + 12, Spike, 0, 2);
 
 		//25th row
 		this.setBlock(world, x + 9, y, z - 9, ErodedStone, 1, 2);
@@ -11665,10 +11665,10 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 12, y, z + 9, CelledBlock);
 
 		//29th row
-		this.setBlock(world, x + 13, y, z - 8, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 8, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 7, bedrock);
 		this.setBlock(world, x + 13, y, z - 6, bedrock);
-		this.setBlock(world, x + 13, y, z - 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z - 5, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z - 4, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 13, y, z - 3);
 		this.setBlockToAir(world, x + 13, y, z - 2);
@@ -11679,16 +11679,16 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 13, y, z + 3);
 		this.setBlockToAir(world, x + 13, y, z + 4);
 		this.setBlock(world, x + 13, y, z + 5, ErodedStone, 1, 2);
-		this.setBlock(world, x + 13, y, z + 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 6, Spike, 0, 2);
 		this.setBlock(world, x + 13, y, z + 7, bedrock);
 		this.setBlock(world, x + 13, y, z + 8, bedrock);
-		this.setBlock(world, x + 13, y, z + 9, DarkStone, 14, 2);
+		this.setBlock(world, x + 13, y, z + 9, Spike, 0, 2);
 
 		//30th row
 		this.setBlock(world, x + 14, y, z - 7, ErodedStone, 1, 2);
 		this.setBlock(world, x + 14, y, z - 6, bedrock);
 		this.setBlock(world, x + 14, y, z - 5, bedrock);
-		this.setBlock(world, x + 14, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z - 3, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 14, y, z - 2);
 		this.setBlockToAir(world, x + 14, y, z - 1);
@@ -11697,43 +11697,43 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlockToAir(world, x + 14, y, z + 2);
 		this.setBlockToAir(world, x + 14, y, z + 3);
 		this.setBlock(world, x + 14, y, z + 4, ErodedStone, 1, 2);
-		this.setBlock(world, x + 14, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 14, y, z + 5, Spike, 0, 2);
 		this.setBlock(world, x + 14, y, z + 6, bedrock);
 		this.setBlock(world, x + 14, y, z + 7, bedrock);
 		this.setBlock(world, x + 14, y, z + 8, ErodedStone, 1, 2);
 
 		//31st row
-		this.setBlock(world, x + 15, y, z - 6, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 6, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 5, bedrock);
 		this.setBlock(world, x + 15, y, z - 4, bedrock);
-		this.setBlock(world, x + 15, y, z - 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z - 3, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z - 2, ErodedStone, 1, 2);
 		this.setBlockToAir(world, x + 15, y, z - 1);
 		this.setBlockToAir(world, x + 15, y, z);
 		this.setBlockToAir(world, x + 15, y, z + 1);
 		this.setBlockToAir(world, x + 15, y, z + 2);
 		this.setBlock(world, x + 15, y, z + 3, ErodedStone, 1, 2);
-		this.setBlock(world, x + 15, y, z + 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 4, Spike, 0, 2);
 		this.setBlock(world, x + 15, y, z + 5, bedrock);
 		this.setBlock(world, x + 15, y, z + 6, bedrock);
-		this.setBlock(world, x + 15, y, z + 7, DarkStone, 14, 2);
+		this.setBlock(world, x + 15, y, z + 7, Spike, 0, 2);
 
 		//32nd row
 		this.setBlock(world, x + 16, y, z - 5, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z - 4, bedrock);
 		this.setBlock(world, x + 16, y, z - 3, bedrock);
-		this.setBlock(world, x + 16, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z - 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 1, ErodedStone, 1, 2);
 		this.setBlock(world, x + 16, y, z + 2, ErodedStone, 1, 2);
-		this.setBlock(world, x + 16, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 16, y, z + 3, Spike, 0, 2);
 		this.setBlock(world, x + 16, y, z + 4, bedrock);
 		this.setBlock(world, x + 16, y, z + 5, bedrock);
 		this.setBlock(world, x + 16, y, z + 6, ErodedStone, 1, 2);
 
 		//33rd row
-		this.setBlock(world, x + 17, y, z - 4, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z - 4, Spike, 0, 2);
 		this.setBlock(world, x + 17, y, z - 3, bedrock);
 		this.setBlock(world, x + 17, y, z - 2, bedrock);
 		this.setBlock(world, x + 17, y, z - 1, CelledBlock);
@@ -11742,7 +11742,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 17, y, z + 2, CelledBlock);
 		this.setBlock(world, x + 17, y, z + 3, bedrock);
 		this.setBlock(world, x + 17, y, z + 4, bedrock);
-		this.setBlock(world, x + 17, y, z + 5, DarkStone, 14, 2);
+		this.setBlock(world, x + 17, y, z + 5, Spike, 0, 2);
 
 		//34th row
 		this.setBlock(world, x + 18, y, z - 3, ErodedStone, 1, 2);
@@ -11755,12 +11755,12 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x + 18, y, z + 4, ErodedStone, 1, 2);
 
 		//35th row
-		this.setBlock(world, x + 19, y, z - 2, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z - 2, Spike, 0, 2);
 		this.setBlock(world, x + 19, y, z - 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 1, CelledBlock);
 		this.setBlock(world, x + 19, y, z + 2, CelledBlock);
-		this.setBlock(world, x + 19, y, z + 3, DarkStone, 14, 2);
+		this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 
 		if ((floorNumber % 5) == 3)
 		{

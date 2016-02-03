@@ -8,7 +8,6 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -58,7 +57,7 @@ public class ItemMobEgg extends Item
     public int getColorFromItemStack(ItemStack stack, int renderPass)
     {
         TragicEntityList.EntityEggInfo entityegginfo = getEggInfo(stack);
-        return entityegginfo != null ? (renderPass == 0 ? entityegginfo.primaryColor : entityegginfo.secondaryColor) : 16777215;
+        return entityegginfo != null ? (renderPass == 1 ? entityegginfo.primaryColor : entityegginfo.secondaryColor) : 16777215;
     }
 
 	@Override
@@ -181,16 +180,16 @@ public class ItemMobEgg extends Item
 
 	public static Entity spawnCreature(World worldIn, int entityID, double x, double y, double z)
     {
-        if (!EntityList.entityEggs.containsKey(Integer.valueOf(entityID)))
+        if (!TragicEntityList.entityEggs.containsKey(Integer.valueOf(entityID)))
         {
             return null;
         }
-        return spawnCreature(worldIn, EntityList.getStringFromID(entityID), x, y, z);
+        return spawnCreature(worldIn, TragicEntityList.getStringFromID(entityID), x, y, z);
     }
 
     public static Entity spawnCreature(World worldIn, String name, double x, double y, double z)
     {
-        if (!EntityList.stringToClassMapping.containsKey(name))
+        if (!TragicEntityList.stringToClassMapping.containsKey(name))
         {
             return null;
         }
@@ -200,7 +199,7 @@ public class ItemMobEgg extends Item
 
             for (int j = 0; j < 1; ++j)
             {
-                entity = EntityList.createEntityByName(name, worldIn);
+                entity = TragicEntityList.createEntityByName(name, worldIn);
 
                 if (entity instanceof EntityLivingBase)
                 {
@@ -227,7 +226,7 @@ public class ItemMobEgg extends Item
 
     private static TragicEntityList.EntityEggInfo getEggInfo(ItemStack stack)
     {
-        return (TragicEntityList.EntityEggInfo)EntityList.entityEggs.get(stack.getMetadata());
+        return (TragicEntityList.EntityEggInfo)TragicEntityList.entityEggs.get(stack.getMetadata());
     }
     
     public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)

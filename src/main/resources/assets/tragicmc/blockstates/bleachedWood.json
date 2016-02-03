@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":  { "model": "tragicmc:bleachedWood" },
+        "axis=z":   { "model": "tragicmc:bleachedWoodSide" },
+        "axis=x":   { "model": "tragicmc:bleachedWoodSide", "y": 90 },
+        "axis=none": { "model": "tragicmc:bleachedWoodBark" }
+    }
+}

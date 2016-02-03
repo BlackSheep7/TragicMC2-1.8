@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "rotten=false": { "model": "tragicmc:boneBlock" },
+        "rotten=true": { "model": "tragicmc:boneBlockRotten" }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=true": { "model": "tragicmc:sandstonePressurePlateUp" },
+        "powered=false": { "model": "tragicmc:sandstonePressurePlateDown"}
+    }
+}

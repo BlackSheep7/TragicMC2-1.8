@@ -41,7 +41,7 @@ public class BlockDarkStone extends Block {
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (byte i = 0; i < 15; i++)
+		for (byte i = 0; i < 14; i++)
 			par3.add(new ItemStack(par1, 1, i));
 	}
 

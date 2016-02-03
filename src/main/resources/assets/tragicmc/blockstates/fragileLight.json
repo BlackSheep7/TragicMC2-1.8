@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "visible=true": { "model": "tragicmc:fragileLightVisible" },
+        "visible=false": { "model": "tragicmc:fragileLight" }
+    }
+}

@@ -44,7 +44,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (!par3EntityPlayer.isSneaking() || !TragicWeapon.canUseAbility(doom, TragicConfig.doomAbilityCost[5]))
+		if (!par3EntityPlayer.isSneaking() || !TragicWeapon.canUseAbility(doom, TragicConfig.doomAbilityCost[8]))
 		{
 			ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
 			MinecraftForge.EVENT_BUS.post(event);

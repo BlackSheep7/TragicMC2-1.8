@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "side": "tragicmc:blocks/SpikeSideDarkStone",
+        "top": "tragicmc:blocks/SpikeTopDarkStone",
+        "bottom": "tragicmc:blocks/SpikeTopDarkStone"
+    }
+}

@@ -124,7 +124,7 @@ public class BlockGenericGrass extends BlockGrass {
 	private Block getTallGrass() {
 		if (this == TragicBlocks.BrushedGrass) return TragicBlocks.PaintedTallGrass;
 		if (this == TragicBlocks.StarlitGrass) return TragicBlocks.StarlitTallGrass;
-		if (this == TragicBlocks.AshenGrass && TragicMC.rand.nextInt(16) == 0) return TragicMC.rand.nextBoolean() ? TragicBlocks.AshenTallGrass : TragicBlocks.DriedGrass;
+		if (this == TragicBlocks.AshenGrass && TragicMC.rand.nextInt(16) == 0) return TragicMC.rand.nextBoolean() ? TragicBlocks.AshenTallGrass : TragicBlocks.DriedTallGrass;
 		return TragicBlocks.DeadBush;
 	}
 

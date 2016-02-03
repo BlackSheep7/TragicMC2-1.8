@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "snowy=false": { "model": "tragicmc:starlitGrass" },
+        "snowy=true": { "model": "tragicmc:starlitGrass" }
+    }
+}

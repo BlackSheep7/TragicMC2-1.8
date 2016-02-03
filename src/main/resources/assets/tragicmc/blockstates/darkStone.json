@@ -1,0 +1,18 @@
+{
+    "variants": {
+        "beveled=false,type=black": { "model": "tragicmc:darkStoneBlack" },
+        "beveled=false,type=red": { "model": "tragicmc:darkStoneRed" },
+        "beveled=false,type=green": { "model": "tragicmc:darkStoneGreen" },
+        "beveled=false,type=teal": { "model": "tragicmc:darkStoneTeal" },
+        "beveled=false,type=brown": { "model": "tragicmc:darkStoneBrown" },
+        "beveled=false,type=violet": { "model": "tragicmc:darkStoneViolet" },
+        "beveled=false,type=navy": { "model": "tragicmc:darkStoneNavy" },
+        "beveled=true,type=black": { "model": "tragicmc:darkStoneBlackBeveled" },
+        "beveled=true,type=red": { "model": "tragicmc:darkStoneRedBeveled" },
+        "beveled=true,type=green": { "model": "tragicmc:darkStoneGreenBeveled" },
+        "beveled=true,type=teal": { "model": "tragicmc:darkStoneTealBeveled" },
+        "beveled=true,type=brown": { "model": "tragicmc:darkStoneBrownBeveled" },
+        "beveled=true,type=violet": { "model": "tragicmc:darkStoneVioletBeveled" },
+        "beveled=true,type=navy": { "model": "tragicmc:darkStoneNavyBeveled" }
+    }
+}

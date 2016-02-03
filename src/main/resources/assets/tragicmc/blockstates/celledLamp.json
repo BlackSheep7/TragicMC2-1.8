@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "color=white": { "model": "tragicmc:celledLampWhite" },
+        "color=orange": { "model": "tragicmc:celledLampOrange" },
+        "color=magenta": { "model": "tragicmc:celledLampMagenta" },
+        "color=light_blue": { "model": "tragicmc:celledLampLightBlue" },
+        "color=yellow": { "model": "tragicmc:celledLampYellow" },
+        "color=lime": { "model": "tragicmc:celledLampLime" },
+        "color=pink": { "model": "tragicmc:celledLampPink" },
+        "color=gray": { "model": "tragicmc:celledLampGray" },
+        "color=silver": { "model": "tragicmc:celledLampSilver" },
+        "color=cyan": { "model": "tragicmc:celledLampCyan" },
+        "color=purple": { "model": "tragicmc:celledLampPurple" },
+        "color=blue": { "model": "tragicmc:celledLampBlue" },
+        "color=brown": { "model": "tragicmc:celledLampBrown" },
+        "color=green": { "model": "tragicmc:celledLampGreen" },
+        "color=red": { "model": "tragicmc:celledLampRed" },
+        "color=black": { "model": "tragicmc:celledLampBlack" }
+    }
+}

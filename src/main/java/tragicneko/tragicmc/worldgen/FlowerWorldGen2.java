@@ -9,6 +9,7 @@ import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
+import tragicneko.tragicmc.blocks.BlockTragicFlower2;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
@@ -28,7 +29,7 @@ public class FlowerWorldGen2 implements IWorldGen {
 		int Zcoord = (chunkZ * 16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 		BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(Xcoord, 0, Zcoord));
-		BlockTragicFlower flower = (BlockTragicFlower) TragicBlocks.TragicFlower2;
+		BlockTragicFlower2 flower = (BlockTragicFlower2) TragicBlocks.TragicFlower2;
 		byte meta;
 		
 		if (!(biome instanceof TragicBiome)) return;

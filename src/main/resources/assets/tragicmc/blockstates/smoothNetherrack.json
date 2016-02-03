@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "variant=smooth": { "model": "tragicmc:smoothNetherrack" },
+        "variant=chiseled": { "model": "tragicmc:smoothNetherrackChiseled" },
+        "variant=beveled": { "model": "tragicmc:smoothNetherrackBeveled" },
+        "variant=sculpted": { "model": "tragicmc:smoothNetherrackSculpted" },
+        "variant=foxtail": { "model": "tragicmc:smoothNetherrackFoxtail" },
+        "variant=molten": { "model": "tragicmc:smoothNetherrackMolten" }
+    }
+}

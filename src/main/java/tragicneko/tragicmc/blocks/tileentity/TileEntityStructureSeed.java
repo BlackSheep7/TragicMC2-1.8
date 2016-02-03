@@ -1,22 +1,26 @@
 package tragicneko.tragicmc.blocks.tileentity;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
-public class TileEntityStructureSeed extends TileEntity {
+public class TileEntityStructureSeed extends TileEntity implements IUpdatePlayerListBox {
 
 	@Override
-	public void updateContainingBlockInfo()
+	public void update()
 	{
 		if (!this.worldObj.isRemote && this.worldObj.getTotalWorldTime() % 20L == 0L) this.growStructure();
 	}
 
 	public void growStructure()
 	{
-		int meta = this.getBlockMetadata();
+		IBlockState state = this.worldObj.getBlockState(this.getPos());
+		int meta = state.getBlock().getMetaFromState(state);
+		if (meta >= Structure.structureList.length) return;
 
 		Structure structure = Structure.structureList[meta];
 		if (structure == null)

@@ -1,9 +1,11 @@
 package tragicneko.tragicmc.blocks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.properties.IProperty;
@@ -12,10 +14,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
 
@@ -108,4 +110,24 @@ public class BlockGenericLeaves extends BlockLeaves {
     {
 		return new ItemStack(Item.getItemFromBlock(this), 1, 0);
     }
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+	{
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		Block block = iblockstate.getBlock();
+
+		if (worldIn.getBlockState(pos.offset(side.getOpposite())) != iblockstate)
+		{
+			return true;
+		}
+
+		if (block == this)
+		{
+			return false;
+		}
+
+		return super.shouldSideBeRendered(worldIn, pos, side);
+	}
 }

@@ -5,6 +5,8 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -16,9 +18,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.blocks.BlockTragicFlower.EnumVariant;
 
 public class BlockTragicOres extends Block {
 
+	public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockTragicOres.EnumVariant.class);
 	private int[] digLevels = new int[] {1, 2, 3, 3, 1, 2, 2, 2, 1, 0, 3};
 
 	public BlockTragicOres() {
@@ -29,6 +33,7 @@ public class BlockTragicOres extends Block {
 		this.setStepSound(soundTypeStone);
 		this.setUnlocalizedName("tragicmc.tragicOres");
 		this.setHarvestLevels();
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumVariant.MERCURY));
 	}
 
 	private void setHarvestLevels() {
@@ -64,6 +69,33 @@ public class BlockTragicOres extends Block {
 	public int damageDropped(IBlockState state)
 	{
 		return this.getMetaFromState(state);
+	}
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, VARIANT);
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return meta == 0 || meta >= EnumVariant.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(VARIANT, EnumVariant.values()[meta]);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		Comparable comp = state.getValue(VARIANT);
+
+		for (byte m = 0; m < 16; m++)
+		{
+
+			if (m >= EnumVariant.values().length) return 0;
+			if (EnumVariant.values()[m] == comp) return m;
+		}
+
+		return 0;
 	}
 
 	@Override

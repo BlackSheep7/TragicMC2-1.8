@@ -1,14 +1,18 @@
 package tragicneko.tragicmc.client;
 
+import joptsimple.internal.Strings;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -91,6 +95,7 @@ import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.dimension.SynapseSkyRenderer;
 import tragicneko.tragicmc.dimension.TragicSkyRenderer;
+import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
@@ -176,11 +181,16 @@ import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 import tragicneko.tragicmc.events.ClientEvents;
 import tragicneko.tragicmc.events.MouseEvents;
+import tragicneko.tragicmc.items.amulet.ItemAmulet;
+import tragicneko.tragicmc.items.amulet.ItemAmulet.EnumAmuletType;
+import tragicneko.tragicmc.util.TragicEntityList;
+import tragicneko.tragicmc.util.TragicEntityList.EntityEggInfo;
+import tragicneko.tragicmc.util.TragicEntityList.EnumEggType;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class ClientProxy extends CommonProxy {
 
-	public static final String moddir = "tragicmc:";
+	public static final String DOMAIN = "tragicmc:";
 
 	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
 	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);
@@ -204,7 +214,6 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders()
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		this.initRenders(); //1.8 block and item renders
 
 		//Render Manager
 		RenderManager rm = mc.getRenderManager();
@@ -324,328 +333,678 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore(rm));
 	}
 
-	private static final String[] projectileItems = new String[] {"rock", "lava_rock", "pumpkinbomb", "large_pumpkinbomb",
-		"poison_barb", "neko_rocket", "neko_sticky_bomb", "neko_cluster_bomb", "neko_mini_bomb", "solar_bomb",
-		"spirit_cast", "spore", "banana", "large_rock", "icicle", "time_bomb", "star_shard", "dark_lightning",
-		"pitch_black", "dark_energy", "dark_mortor", "web_bomb", "crystal_mortor", "overlord_mortor", "ire_energy"};
-
-	private static final String[] compactOreItems = new String[] {"ruby", "sapphire", "tungsten", "mercury", "quicksilver"};
-	private static final String[] quicksandItems = new String[] {"quicksand", "mud", "dredge", "sludge"};
+	private static final String[] compactOre = new String[] {"rubyBlock", "sapphireBlock", "tungstenBlock", "mercuryBlock", "quicksilverBlock"};
+	private static final String[] summonBlock = new String[] {"witherSummon", "enderDragonSummon", "apisSummon", "deathReaperSummon", "kitsuneSummon", "polarisSummon", "yetiSummon", "timeControllerSummon",
+		"enyvilSummon", "claymationSummon", "aegarSummon"};
+	private static final String[] quicksand = new String[] {"quicksand", "mud", "drudge", "sludge"};
+	private static final String[] darkStone = new String[] {"darkStoneBlack", "darkStoneRed", "darkStoneGreen", "darkStoneTeal", "darkStoneBrown", "darkStoneViolet", "darkStoneNavy",
+		"darkStoneBlackBeveled", "darkStoneRedBeveled", "darkStoneGreenBeveled", "darkStoneTealBeveled", "darkStoneBrownBeveled", "darkStoneVioletBeveled", "darkStoneNavyBeveled"};
+	private static final String[] darkCobble = new String[] {"darkCobblestone", "darkCobblestoneHot", "darkCobblestoneToxic", "darkCobblestoneAshen"};
+	private static final String[] lightCobble = new String[] {"lightCobblestone", "lightCobblestoneFrozen", "lightCobblestoneGlowing"};
+	private static final String[] obsidian = new String[] {"cryingObsidian", "bleedingObsidian", "dyingObsidian"};
+	private static final String[] deadDirt = new String[] {"deadDirt", "deadDirtRugged", "deadDirtMixed"};
+	private static final String[] darkSandstone = new String[] {"darkSandstone", "darkSandstoneSmooth", "darkSandstoneBricked", "darkSandstoneChiseled", "darkSandstoneGridded",
+		"darkSandstoneCarved"};
+	private static final String[] ores = new String[] {"oreMercury", "oreTungsten", "oreRuby", "oreSapphire", "oreLapis", "oreDiamond", "oreEmerald", "oreGold",
+	"oreIron", "oreCoal", "oreXP"};
+	private static final String[] boneBlock = new String[] {"boneBlock", "boneBlockRotten"};
+	private static final String[] smoothNetherrack = new String[] {"smoothNetherrack", "smoothNetherrackChiseled", "smoothNetherrackBeveled", "smoothNetherrackSculpted", "smoothNetherrackFoxtail",
+	"smoothNetherrackMolten"};
+	private static final String[] saplings = new String[] {"saplingPainted", "saplingBleached", "saplingAshen", "saplingHallowed", "saplingDarkwood"};
+	private static final String[] flowers = new String[] {"blueSpiranthes", "pinkSpiranthes", "redSpiranthes", "whiteSpiranthes", "blueCoral", "redCoral", "pinkGinger", "redGinger",
+		"bluebonnet", "violetSage", "pinkSage", "whiteSage", "birdOfParadise", "juniperBush", "stapelia", "thistle"};
+	private static final String[] flowers2 = new String[] {"bramble", "tangleweed", "deathClaw", "fusche", "osiris", "thusk", "podtail", "fanbrush", "torchweed",
+		"halon", "rizaphora", "blackSpot", "nannon", "barbedWire", "kern", "flahgrass"};
+	private static String[] colors = new String[] {"white", "orange", "magenta", "lightBlue", "yellow", "lime", "pink", "gray", "silver", "cyan", "purple", "blue", "brown",
+		"green", "red", "black"};
+	private static String[] erodedStone = new String[] {"erodedStone", "erodedStoneCarved", "erodedStoneScattered"};
+	private static String[] darkenedQuartz = new String[] {"darkenedQuartz", "darkenedQuartzChiseled", "darkenedQuartzPillared"};
+	private static String[] circuitBlock = new String[] {"circuitLive", "circuitDamaged", "circuitVeryDamaged", "circuitAged", "circuitDead"};
+	private static String[] aeris = new String[] {"aerisPure", "aerisCorrupting", "aerisCorrupt"};
+	private static String[] permafrost = new String[] {"permafrost", "permafrostCracked"};
+	private static String[] corsin = new String[] {"corsin", "corsinFaded", "corsinBrick", "corsinFadedBrick", "corsinCircle", "corsinCelled", "corsinScarred", "corsinCrystal", "corsinCrystalWrap"};
+	
+	private static final String[] spawnEggs = new String[] {"spawnEgg", "spawnEgg2", "spawnEgg3", "spawnEgg4", "spawnEgg5"};
+	private static final String[] huntersBow = new String[] {"huntersBow", "huntersBow1", "huntersBow2", "huntersBow3"};
+	private static final String[] celestialLongbow = new String[] {"celestialLongbow", "celestialLongbow1", "celestialLongbow2", "celestialLongbow3"};
+	private static final String[] everlastingLight = new String[] {"everlastingLight", "everlastingLight1", "everlastingLight2", "everlastingLight3"};
+	private static final String[] challengeScroll = new String[] {"challengeScroll", "challengeScrollInProgress", "challengeScrollComplete"};
+	private static final String[] amulets = new String[] {"amulet", "amulet2", "amulet3", "amulet4"}; 
+	private static final String[] projectile = new String[] {"rock", "lavaRock", "pumpkinbomb", "largePumpkinbomb",
+		"poisonBarb", "nekoRocket", "nekoStickyBomb", "nekoClusterBomb", "nekoMiniBomb", "solarBomb",
+		"spiritCast", "spore", "banana", "largeRock", "icicle", "timeBomb", "starShard", "darkLightning",
+		"pitchBlack", "darkEnergy", "darkMortor", "webBomb", "crystalMortor", "overlordMortor", "ireEnergy"};
+	private static final String[] generator = new String[] {"voidPitGenerator", "spikeGenerator", "starCrystalGenerator", "sphereGenerator",
+		"sphereEraser", "liquidRemover", "treeGenerator", "lightningSummoner", "explosionGenerator", "isleGenerator", "directedLightningSummoner",
+		"pitGenerator"};
+	private static final String[] statue = new String[] {"apis", "kitsune", "deathReaper", "timeController", "yeti", "polaris", "jarra", "kragul",
+		"magmox", "megaCryse", "stinKing", "stinQueen", "greaterStin", "voxStellarum", "enyvil", "claymation", "aegar", "overlord", "overlordCombat",
+		"overlordCocoon"};
 
 	@Override
 	public void preInitRenders() {
-		if (!TragicConfig.allowNonMobBlocks)
+		//TODO bookmark for Bakery name registrations 
+		registerBlockToBakery(TragicBlocks.SummonBlock, getPrefixedArray(summonBlock));
+		
+		if (TragicConfig.allowNonMobBlocks)
 		{
-
+			registerBlockToBakery(TragicBlocks.CompactOre, getPrefixedArray(compactOre));
+			registerBlockToBakery(TragicBlocks.Quicksand, getPrefixedArray(quicksand));
+			registerBlockToBakery(TragicBlocks.DarkStone, getPrefixedArray(darkStone));
+			registerBlockToBakery(TragicBlocks.DarkCobblestone, getPrefixedArray(darkCobble));
+			registerBlockToBakery(TragicBlocks.LightCobblestone, getPrefixedArray(lightCobble));
+			registerBlockToBakery(TragicBlocks.TragicObsidian, getPrefixedArray(obsidian));
+			registerBlockToBakery(TragicBlocks.DeadDirt, getPrefixedArray(deadDirt));
+			registerBlockToBakery(TragicBlocks.DarkSandstone, getPrefixedArray(darkSandstone));
+			registerBlockToBakery(TragicBlocks.TragicOres, getPrefixedArray(ores));
+			registerBlockToBakery(TragicBlocks.BoneBlock, getPrefixedArray(boneBlock));
+			registerBlockToBakery(TragicBlocks.SmoothNetherrack, getPrefixedArray(smoothNetherrack));
+			
+			registerBlockToBakery(TragicBlocks.TragicSapling, getPrefixedArray(saplings));
+			registerBlockToBakery(TragicBlocks.TragicFlower, getPrefixedArray(flowers));
+			registerBlockToBakery(TragicBlocks.TragicFlower2, getPrefixedArray(flowers2));
+			
+			registerBlockToBakery(TragicBlocks.StarCrystal, getPrefixedArray(capitalizeArray("starCrystal", colors)));
+			registerBlockToBakery(TragicBlocks.ErodedStone, getPrefixedArray(erodedStone));
+			registerBlockToBakery(TragicBlocks.DarkenedQuartz, getPrefixedArray(darkenedQuartz));
+			registerBlockToBakery(TragicBlocks.CircuitBlock, getPrefixedArray(circuitBlock));
+			registerBlockToBakery(TragicBlocks.CelledLamp, getPrefixedArray(capitalizeArray("celledLamp", colors)));
+			
+			registerBlockToBakery(TragicBlocks.WitheringGas, DOMAIN + "luminescence");
+			registerBlockToBakery(TragicBlocks.CorruptedGas, DOMAIN + "luminescence");
+			
+			registerBlockToBakery(TragicBlocks.Aeris, getPrefixedArray(aeris));
+			
+			registerBlockToBakery(TragicBlocks.RadiatedGas, DOMAIN + "luminescence");
+			registerBlockToBakery(TragicBlocks.ExplosiveGas, DOMAIN + "luminescence");
+			
+			registerBlockToBakery(TragicBlocks.Permafrost, getPrefixedArray(permafrost));
+			
+			registerBlockToBakery(TragicBlocks.DarkGas, DOMAIN + "luminescence");
+			registerBlockToBakery(TragicBlocks.SepticGas, DOMAIN + "luminescence");
+			
+			registerBlockToBakery(TragicBlocks.Corsin, getPrefixedArray(corsin));
 		}
-		else
-		{
-			registerBlockToBakery(TragicBlocks.CompactOre, compactOreItems);
-		}
 
-		if (!TragicConfig.allowNonMobItems)
-		{
-			registerItemToBakery(TragicItems.Projectile, projectileItems);
-		}
-		else
-		{
+		registerItemToBakery(TragicItems.Projectile, getPrefixedArray(projectile));
 
-		}
-	}
+		if (TragicConfig.allowMobs) registerItemToBakery(TragicItems.SpawnEgg, getPrefixedArray(spawnEggs));
 
-	public void initRenders() {
-		//Mesher for new block/item registrations in 1.8
-		Item ib; //Itemblock for block registrations
+		if (TragicConfig.allowNonMobItems)
+		{			
+			registerArmorToBakery(TragicItems.SkullHelmet, "skullHelmet");
+			registerArmorToBakery(TragicItems.SkullPlate, "skullPlate");
+			registerArmorToBakery(TragicItems.SkullLegs, "skullLegs");
+			registerArmorToBakery(TragicItems.SkullBoots, "skullBoots");
+			
+			registerArmorToBakery(TragicItems.HuntersCap, "huntersCap");
+			registerArmorToBakery(TragicItems.HuntersTunic, "huntersTunic");
+			registerArmorToBakery(TragicItems.HuntersLegs, "huntersLegs");
+			registerArmorToBakery(TragicItems.HuntersBoots, "huntersBoots");
+			
+			registerArmorToBakery(TragicItems.MercuryHelm, "mercuryHelm");
+			registerArmorToBakery(TragicItems.MercuryPlate, "mercuryPlate");
+			registerArmorToBakery(TragicItems.MercuryLegs, "mercuryLegs");
+			registerArmorToBakery(TragicItems.MercuryBoots, "mercuryBoots");
+			
+			registerArmorToBakery(TragicItems.TungstenHelm, "tungstenHelm");
+			registerArmorToBakery(TragicItems.TungstenPlate, "tungstenPlate");
+			registerArmorToBakery(TragicItems.TungstenLegs, "tungstenLegs");
+			registerArmorToBakery(TragicItems.TungstenBoots, "tungstenBoots");
+			
+			registerArmorToBakery(TragicItems.LightHelm, "lightHelm");
+			registerArmorToBakery(TragicItems.LightPlate, "lightPlate");
+			registerArmorToBakery(TragicItems.LightLegs, "lightLegs");
+			registerArmorToBakery(TragicItems.LightBoots, "lightBoots");
+			
+			registerArmorToBakery(TragicItems.DarkHelm, "darkHelm");
+			registerArmorToBakery(TragicItems.DarkPlate, "darkPlate");
+			registerArmorToBakery(TragicItems.DarkLegs, "darkLegs");
+			registerArmorToBakery(TragicItems.DarkBoots, "darkBoots");
+			
+			registerArmorToBakery(TragicItems.OverlordHelm, "overlordHelm");
+			registerArmorToBakery(TragicItems.OverlordPlate, "overlordPlate");
+			registerArmorToBakery(TragicItems.OverlordLegs, "overlordLegs");
+			registerArmorToBakery(TragicItems.OverlordBoots, "overlordBoots");
+			
+			registerItemToBakery(TragicItems.HuntersBow, getPrefixedArray(huntersBow));
+			registerItemToBakery(TragicItems.CelestialLongbow, getPrefixedArray(celestialLongbow));
+			registerItemToBakery(TragicItems.EverlastingLight, getPrefixedArray(everlastingLight));
+			if (TragicConfig.allowGeneratorItems) registerItemToBakery(TragicItems.Generator, getPrefixedArray(generator));
+			registerItemToBakery(TragicItems.MobStatue, getPrefixedArray(statue));
+			if (TragicConfig.allowAmulets)
+			{
+				registerAmuletToBakery(TragicItems.KitsuneAmulet);
+				registerAmuletToBakery(TragicItems.PeaceAmulet);
+				registerAmuletToBakery(TragicItems.YetiAmulet);
+				registerAmuletToBakery(TragicItems.ClaymationAmulet);
+				registerAmuletToBakery(TragicItems.ChickenAmulet);
+				registerAmuletToBakery(TragicItems.MartyrAmulet);
+				registerAmuletToBakery(TragicItems.PiercingAmulet);
+				registerAmuletToBakery(TragicItems.BlacksmithAmulet);
+				registerAmuletToBakery(TragicItems.ApisAmulet);
+				registerAmuletToBakery(TragicItems.CreeperAmulet);
+				registerAmuletToBakery(TragicItems.ZombieAmulet);
+				registerAmuletToBakery(TragicItems.SkeletonAmulet);
+				registerAmuletToBakery(TragicItems.SunkenAmulet);
+				registerAmuletToBakery(TragicItems.TimeAmulet);
+				registerAmuletToBakery(TragicItems.IceAmulet);
+				registerAmuletToBakery(TragicItems.SnowGolemAmulet);
+				registerAmuletToBakery(TragicItems.IronGolemAmulet);
+				registerAmuletToBakery(TragicItems.EndermanAmulet);
+				registerAmuletToBakery(TragicItems.WitherAmulet);
+				registerAmuletToBakery(TragicItems.SpiderAmulet);
+				registerAmuletToBakery(TragicItems.StinAmulet);
+				registerAmuletToBakery(TragicItems.PolarisAmulet);
+				registerAmuletToBakery(TragicItems.OverlordAmulet);
+				registerAmuletToBakery(TragicItems.LightningAmulet);
+				registerAmuletToBakery(TragicItems.ConsumptionAmulet);
+				registerAmuletToBakery(TragicItems.SupernaturalAmulet);
+				registerAmuletToBakery(TragicItems.UndeadAmulet);
+				registerAmuletToBakery(TragicItems.EnderDragonAmulet);
+				registerAmuletToBakery(TragicItems.FuseaAmulet);
+				registerAmuletToBakery(TragicItems.EnyvilAmulet);
+				registerAmuletToBakery(TragicItems.LuckAmulet);
+			}
+			if (TragicConfig.allowChallengeScrolls) registerItemToBakery(TragicItems.ChallengeScroll, getPrefixedArray(challengeScroll));
+		}
+		
+		//TODO bookmark for block mesher registrations
 		int i; //for loops
+		
+		for (i = 0; i < summonBlock.length; i++) registerBlockToMesher(TragicBlocks.SummonBlock, i, summonBlock[i]);
+		
+		registerBlockToMesher(TragicBlocks.Luminescence, ZERO, "luminescence");
+		if (TragicConfig.allowOverlord) registerBlockToMesher(TragicBlocks.OverlordBarrier, ZERO, "overlordBarrier");
 
-		if (!TragicConfig.allowNonMobBlocks)
+		if (TragicConfig.allowNonMobBlocks)
 		{
-			registerBlockToMesherIgnoreMeta(TragicBlocks.SummonBlock);
-			registerBlockToMesher(TragicBlocks.Luminescence, ZERO, "luminescence");
-			registerBlockToMesher(TragicBlocks.OverlordBarrier, ZERO, "overlord_barrier");
-		}
-		else
-		{
-			registerBlockToMesher(TragicBlocks.MercuryOre, ZERO, "red_mercury_ore");
-			registerBlockToMesher(TragicBlocks.TungstenOre, ZERO, "tungsten_ore");
-			registerBlockToMesher(TragicBlocks.RubyOre, ZERO, "ruby_ore");
-			registerBlockToMesher(TragicBlocks.SapphireOre, ZERO, "sapphire_ore");
-			for (i = 0; i < compactOreItems.length; i++) registerBlockToMesher(TragicBlocks.CompactOre, i, compactOreItems[i]);
+			registerBlockToMesher(TragicBlocks.MercuryOre, ZERO, "mercuryOre");
+			registerBlockToMesher(TragicBlocks.TungstenOre, ZERO, "tungstenOre");
+			registerBlockToMesher(TragicBlocks.RubyOre, ZERO, "rubyOre");
+			registerBlockToMesher(TragicBlocks.SapphireOre, ZERO, "sapphireOre");
+			for (i = 0; i < compactOre.length; i++) registerBlockToMesher(TragicBlocks.CompactOre, i, compactOre[i]);
 
 			registerBlockToMesher(TragicBlocks.Wax, ZERO, "wax");
 			registerBlockToMesher(TragicBlocks.Light, ZERO, "light");
 			registerBlockToMesher(TragicBlocks.Candle, ZERO, "candle");
-			registerBlockToMesher(TragicBlocks.PotatoBlock, ZERO, "potato_block");
-			registerBlockToMesher(TragicBlocks.CarrotBlock, ZERO, "carrot_block");
-			registerBlockToMesher(TragicBlocks.SandstonePressurePlate, ZERO, "sandstone_pressure_plate");
-			registerBlockToMesher(TragicBlocks.NetherBrickPressurePlate, ZERO, "nether_brick_pressure_plate");
-			registerBlockToMesher(TragicBlocks.SummonBlock, ZERO, "summon_block");
-			for (i = 0; i < Structure.structureList.length; i++)
-			{
-				if (Structure.structureList[i] != null)
-					registerBlockToMesher(TragicBlocks.StructureSeed, i, Structure.structureList[i].getUnlocalizedName()); //TODO change to get mesher name
+			registerBlockToMesher(TragicBlocks.PotatoBlock, ZERO, "potatoBlock");
+			registerBlockToMesher(TragicBlocks.CarrotBlock, ZERO, "carrotBlock");
+			registerBlockToMesher(TragicBlocks.SandstonePressurePlate, ZERO, "sandstonePressurePlate");
+			registerBlockToMesher(TragicBlocks.NetherBrickPressurePlate, ZERO, "netherBrickPressurePlate");
+			
+			for (i = 0; i < 16; i++) registerBlockToMesher(TragicBlocks.StructureSeed, i, "structureSeed");
+			for (i = 0; i < quicksand.length; i++) registerBlockToMesher(TragicBlocks.Quicksand, i, quicksand[i]);
+			
+			for (i = 0; i < darkStone.length; i++) registerBlockToMesher(TragicBlocks.DarkStone, i, darkStone[i]);
+			for (i = 0; i < darkCobble.length; i++) registerBlockToMesher(TragicBlocks.DarkCobblestone, i, darkCobble[i]);
+			for (i = 0; i < lightCobble.length; i++) registerBlockToMesher(TragicBlocks.LightCobblestone, i, lightCobble[i]);
+			registerBlockToMesher(TragicBlocks.LightStone, ZERO, "lightStone");
+			registerBlockToMesher(TragicBlocks.Spike, ZERO, "spike");
+			
+			for (i = 0; i < obsidian.length; i++) registerBlockToMesher(TragicBlocks.TragicObsidian, i, obsidian[i]);
+			for (i = 0; i < deadDirt.length; i++) registerBlockToMesher(TragicBlocks.DeadDirt, i, deadDirt[i]);
+			registerBlockToMesher(TragicBlocks.DarkSand, ZERO, "darkSand");
+			for (i = 0; i < darkSandstone.length; i++) registerBlockToMesher(TragicBlocks.DarkSandstone, i, darkSandstone[i]);
+			registerBlockToMesher(TragicBlocks.TimeDisruptionCube, ZERO, "timeDisruptor");
+			for (i = 0; i < ores.length; i++) registerBlockToMesher(TragicBlocks.TragicOres, i, ores[i]);
+			for (i = 0; i < boneBlock.length; i++) registerBlockToMesher(TragicBlocks.BoneBlock, i, boneBlock[i]);
+			for (i = 0; i < smoothNetherrack.length; i++) registerBlockToMesher(TragicBlocks.SmoothNetherrack, i, smoothNetherrack[i]);
+			
+			registerBlockToMesher(TragicBlocks.BrushedGrass, ZERO, "brushedGrass");
+			registerBlockToMesher(TragicBlocks.PaintedWood, ZERO, "paintedWood");
+			registerBlockToMesher(TragicBlocks.PaintedLeaves, ZERO, "paintedLeaves");
+			registerBlockToMesher(TragicBlocks.PaintedPlanks, ZERO, "paintedPlanks");
+			registerBlockToMesher(TragicBlocks.Glowvine, ZERO, "glowvine");
+			registerBlockToMesher(TragicBlocks.PaintedTallGrass, ZERO, "paintedTallGrass");
+			registerBlockToMesher(TragicBlocks.AshenGrass, ZERO, "ashenGrass");
+			registerBlockToMesher(TragicBlocks.AshenWood, ZERO, "ashenWood");
+			registerBlockToMesher(TragicBlocks.AshenLeaves, ZERO, "ashenLeaves");
+			registerBlockToMesher(TragicBlocks.AshenPlanks, ZERO, "ashenPlanks");
+			registerBlockToMesher(TragicBlocks.BleachedWood, ZERO, "bleachedWood");
+			registerBlockToMesher(TragicBlocks.BleachedLeaves, ZERO, "bleachedLeaves");
+			registerBlockToMesher(TragicBlocks.BleachedPlanks, ZERO, "bleachedPlanks");
+			
+			for (i = 0; i < saplings.length; i++) registerBlockToMesher(TragicBlocks.TragicSapling, i, saplings[i]);
+			for (i = 0; i < flowers.length; i++) registerBlockToMesher(TragicBlocks.TragicFlower, i, flowers[i]);
+			for (i = 0; i < flowers2.length; i++) registerBlockToMesher(TragicBlocks.TragicFlower2, i, flowers2[i]);
+			
+			registerBlockToMesher(TragicBlocks.AshenBush, ZERO, "ashenBush");
+			registerBlockToMesher(TragicBlocks.DeadBush, ZERO, "deadBush");
+			registerBlockToMesher(TragicBlocks.DriedTallGrass, ZERO, "driedTallGrass");
+			registerBlockToMesher(TragicBlocks.AshenTallGrass, ZERO, "ashenTallGrass");
+			registerBlockToMesher(TragicBlocks.StarlitGrass, ZERO, "starlitGrass");
+			for (i = 0; i < colors.length; i++) registerBlockToMesher(TragicBlocks.StarCrystal, i, "starCrystal" + capitalize(colors[i]));
+			registerBlockToMesher(TragicBlocks.StarlitTallGrass, ZERO, "starlitTallGrass");
+			for (i = 0; i < erodedStone.length; i++) registerBlockToMesher(TragicBlocks.ErodedStone, i, erodedStone[i]);
+			for (i = 0; i < darkenedQuartz.length; i++) registerBlockToMesher(TragicBlocks.DarkenedQuartz, i, darkenedQuartz[i]);
+			
+			for (i = 0; i < circuitBlock.length; i++) registerBlockToMesher(TragicBlocks.CircuitBlock, i, circuitBlock[i]);
+			registerBlockToMesher(TragicBlocks.CelledBlock, ZERO, "celled");
+			for (i = 0; i < colors.length; i++) registerBlockToMesher(TragicBlocks.CelledLamp, i, "celledLamp" + capitalize(colors[i]));
+			registerBlockToMesher(TragicBlocks.SynapseCore, ZERO, "synapseCore");
+			registerBlockToMesher(TragicBlocks.WitheringGas, ZERO, "luminescence");
+			registerBlockToMesher(TragicBlocks.CorruptedGas, ZERO, "luminescence");
+			registerBlockToMesher(TragicBlocks.Conduit, ZERO, "conduit");
+			registerBlockToMesher(TragicBlocks.DigitalSea, ZERO, "digitalSea");
+			
+			registerBlockToMesher(TragicBlocks.FrozenNetherrack, ZERO, "frozenNetherrack");
+			for (i = 0; i < aeris.length; i++) registerBlockToMesher(TragicBlocks.Aeris, i, aeris[i]);
+			registerBlockToMesher(TragicBlocks.MoltenRock, ZERO, "moltenRock");
+			registerBlockToMesher(TragicBlocks.ScorchedRock, ZERO, "scorchedRock");
+			registerBlockToMesher(TragicBlocks.Geyser, ZERO, "geyser");
+			registerBlockToMesher(TragicBlocks.SteamVent, ZERO, "steamVent");
+			registerBlockToMesher(TragicBlocks.HallowedGrass, ZERO, "hallowedGrass");
+			registerBlockToMesher(TragicBlocks.StringLight, ZERO, "stringLight");
+			registerBlockToMesher(TragicBlocks.FragileLight, ZERO, "fragileLight");
+			registerBlockToMesher(TragicBlocks.HallowedLeaves, ZERO, "hallowedLeaves");
+			registerBlockToMesher(TragicBlocks.HallowedLeafTrim, ZERO, "hallowedLeafTrim");
+			registerBlockToMesher(TragicBlocks.HallowedPlanks, ZERO, "hallowedPlanks");
+			registerBlockToMesher(TragicBlocks.HallowedWood, ZERO, "hallowedWood");
+			registerBlockToMesher(TragicBlocks.WickedVine, ZERO, "wickedVine");
+			
+			registerBlockToMesher(TragicBlocks.RadiatedGas, ZERO, "luminescence");
+			registerBlockToMesher(TragicBlocks.ExplosiveGas, ZERO, "luminescence");
+			registerBlockToMesher(TragicBlocks.SoulChest, ZERO, "soulChest");
+			
+			registerBlockToMesher(TragicBlocks.IcedDirt, ZERO, "icedDirt");
+			for (i = 0; i < permafrost.length; i++) registerBlockToMesher(TragicBlocks.Permafrost, i, permafrost[i]);
+			registerBlockToMesher(TragicBlocks.Moss, ZERO, "moss");
+			registerBlockToMesher(TragicBlocks.Lichen, ZERO, "lichen");
+			registerBlockToMesher(TragicBlocks.IceSpike, ZERO, "iceSpike");
+			registerBlockToMesher(TragicBlocks.Crystal, ZERO, "crystal");
+			registerBlockToMesher(TragicBlocks.DarkGrass, ZERO, "darkGrass");
+			registerBlockToMesher(TragicBlocks.DarkLeaves, ZERO, "darkLeaves");
+			registerBlockToMesher(TragicBlocks.Darkwood, ZERO, "darkwood");
+			registerBlockToMesher(TragicBlocks.DarkwoodPlanks, ZERO, "darkwoodPlanks");
+			registerBlockToMesher(TragicBlocks.DarkVine, ZERO, "darkVine");
+			registerBlockToMesher(TragicBlocks.DarkGas, ZERO, "luminescence");
+			registerBlockToMesher(TragicBlocks.DarkTallGrass, ZERO, "darkTallGrass");
+			registerBlockToMesher(TragicBlocks.SepticGas, ZERO, "luminescence");
+			registerBlockToMesher(TragicBlocks.SkyFruit, ZERO, "skyFruitPod");
+			registerBlockToMesher(TragicBlocks.Deathglow, ZERO, "deathglowPlant");
+			registerBlockToMesher(TragicBlocks.Honeydrop, ZERO, "honeydropPlant");
+			for (i = 0; i < corsin.length; i++) registerBlockToMesher(TragicBlocks.Corsin, i, corsin[i]);
+		}
+		
+		//items that are to be registered almost 100% of the time //TODO bookmark for item mesher registrations
+		registerItemWithCustomDefinition(TragicItems.BowOfJustice, new ItemMeshDefinition() {
+			@Override
+			public ModelResourceLocation getModelLocation(ItemStack stack) {
+				EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+				if (player == null || player.getItemInUse() != stack) return new ModelResourceLocation("bow", "inventory");
+				
+				int amt = player.getItemInUseDuration();
+
+				if (amt > 8)
+				{
+					return new ModelResourceLocation("bow_pulling_2", "inventory");
+				}
+				else if (amt > 4)
+				{
+					return new ModelResourceLocation("bow_pulling_1", "inventory");
+				}
+				else if (amt > 0)
+				{
+					return new ModelResourceLocation("bow_pulling_0", "inventory");
+				}
+				else
+				{
+					return new ModelResourceLocation("bow", "inventory");
+				}
 			}
-			for (i = 0; i < quicksandItems.length; i++) registerBlockToMesher(TragicBlocks.Quicksand, i, quicksandItems[i]);
+		});
+		registerItemToMesher(TragicItems.SwordOfJustice, ZERO, "swordOfJustice");
+		registerItemToMesher(TragicItems.NekoNekoWand, ZERO, "nekoNekoWand");
+		
+		if (TragicConfig.allowMobs)
+		{
+			for (i = 0; i < TragicEntityList.idToClassMapping.size(); i++)
+			{
+				if (TragicEntityList.idToClassMapping.containsKey(i))
+				{
+					EntityEggInfo info = (EntityEggInfo) TragicEntityList.entityEggs.get(i);
+					String s = info.eggType == EnumEggType.NORMAL ? "spawnEgg2" : (info.eggType == EnumEggType.MINIBOSS ? "spawnEgg4" : (info.eggType == EnumEggType.BOSS ? "spawnEgg" : (info.eggType == EnumEggType.ALPHA ? "spawnEgg5" : "spawnEgg3")));
+					registerItemToMesher(TragicItems.SpawnEgg, i, s);
+				}
+				else
+				{
+					registerItemToMesher(TragicItems.SpawnEgg, i, "spawnEgg2");
+				}
+			}
 		}
 
-		if (!TragicConfig.allowNonMobItems)
+		for (i = 0; i < projectile.length; i++)
+			registerItemToMesher(TragicItems.Projectile, i, projectile[i]);
+
+		if (TragicConfig.allowNonMobItems)
 		{
-			registerItemToMesherIgnoreMeta(TragicItems.SpawnEgg);
-			registerItemToMesher(TragicItems.BowOfJustice, ZERO, "bow_of_justice");
-			registerItemToMesher(TragicItems.SwordOfJustice, ZERO, "sword_of_justice");
-			registerItemToMesher(TragicItems.NekoNekoWand, ZERO, "neko_neko_wand");
-			for (i = 0; i < projectileItems.length; i++) registerItemToMesher(TragicItems.Projectile, i, projectileItems[i]);
-		}
-		else
-		{
-			registerItemToMesher(TragicItems.RedMercury, ZERO, "red_mercury");
+			registerItemToMesher(TragicItems.RedMercury, ZERO, "redMercury");
 			registerItemToMesher(TragicItems.Quicksilver, ZERO, "quicksilver");
-			registerItemToMesher(TragicItems.QuicksilverIngot, ZERO, "quicksilver_ingot");
+			registerItemToMesher(TragicItems.QuicksilverIngot, ZERO, "quicksilverIngot");
 			registerItemToMesher(TragicItems.Tungsten, ZERO, "tungsten");
 			registerItemToMesher(TragicItems.Ruby, ZERO, "ruby");
 			registerItemToMesher(TragicItems.Sapphire, ZERO, "sapphire");
 
-			registerItemToMesher(TragicItems.SkullHelmet, ZERO, "skull_helmet");
-			registerItemToMesher(TragicItems.SkullPlate, ZERO, "skull_plate");
-			registerItemToMesher(TragicItems.SkullLegs, ZERO, "skull_legs");
-			registerItemToMesher(TragicItems.SkullBoots, ZERO, "skull_boots");
+			registerArmorToMesher(TragicItems.SkullHelmet, "skullHelmet");
+			registerArmorToMesher(TragicItems.SkullPlate, "skullPlate");
+			registerArmorToMesher(TragicItems.SkullLegs, "skullLegs");
+			registerArmorToMesher(TragicItems.SkullBoots, "skullBoots");
 
-			registerItemToMesher(TragicItems.HuntersCap, ZERO, "hunters_cap");
-			registerItemToMesher(TragicItems.HuntersTunic, ZERO, "hunters_tunic");
-			registerItemToMesher(TragicItems.HuntersLegs, ZERO, "hunters_legs");
-			registerItemToMesher(TragicItems.HuntersBoots, ZERO, "hunters_boots");
+			registerArmorToMesher(TragicItems.HuntersCap, "huntersCap");
+			registerArmorToMesher(TragicItems.HuntersTunic, "huntersTunic");
+			registerArmorToMesher(TragicItems.HuntersLegs, "huntersLegs");
+			registerArmorToMesher(TragicItems.HuntersBoots, "huntersBoots");
 
-			registerItemToMesher(TragicItems.MercuryHelm, ZERO, "mercury_helm");
-			registerItemToMesher(TragicItems.MercuryPlate, ZERO, "mercury_plate");
-			registerItemToMesher(TragicItems.MercuryLegs, ZERO, "mercury_legs");
-			registerItemToMesher(TragicItems.MercuryBoots, ZERO, "mercury_boots");
+			registerArmorToMesher(TragicItems.MercuryHelm, "mercuryHelm");
+			registerArmorToMesher(TragicItems.MercuryPlate, "mercuryPlate");
+			registerArmorToMesher(TragicItems.MercuryLegs, "mercuryLegs");
+			registerArmorToMesher(TragicItems.MercuryBoots, "mercuryBoots");
 
-			registerItemToMesher(TragicItems.TungstenHelm, ZERO, "tungsten_helm");
-			registerItemToMesher(TragicItems.TungstenPlate, ZERO, "tungsten_plate");
-			registerItemToMesher(TragicItems.TungstenLegs, ZERO, "tungsten_legs");
-			registerItemToMesher(TragicItems.TungstenBoots, ZERO, "tungsten_boots");
+			registerArmorToMesher(TragicItems.TungstenHelm, "tungstenHelm");
+			registerArmorToMesher(TragicItems.TungstenPlate, "tungstenPlate");
+			registerArmorToMesher(TragicItems.TungstenLegs, "tungstenLegs");
+			registerArmorToMesher(TragicItems.TungstenBoots, "tungstenBoots");
 
-			registerItemToMesher(TragicItems.LightHelm, ZERO, "light_helm");
-			registerItemToMesher(TragicItems.LightPlate, ZERO, "light_plate");
-			registerItemToMesher(TragicItems.LightLegs, ZERO, "light_legs");
-			registerItemToMesher(TragicItems.LightBoots, ZERO, "light_boots");
+			registerArmorToMesher(TragicItems.LightHelm, "lightHelm");
+			registerArmorToMesher(TragicItems.LightPlate,"lightPlate");
+			registerArmorToMesher(TragicItems.LightLegs, "lightLegs");
+			registerArmorToMesher(TragicItems.LightBoots, "lightBoots");
 
-			registerItemToMesher(TragicItems.DarkHelm, ZERO, "dark_helm");
-			registerItemToMesher(TragicItems.DarkPlate, ZERO, "dark_plate");
-			registerItemToMesher(TragicItems.DarkLegs, ZERO, "dark_legs");
-			registerItemToMesher(TragicItems.DarkBoots, ZERO, "dark_boots");
+			registerArmorToMesher(TragicItems.DarkHelm, "darkHelm");
+			registerArmorToMesher(TragicItems.DarkPlate, "darkPlate");
+			registerArmorToMesher(TragicItems.DarkLegs, "darkLegs");
+			registerArmorToMesher(TragicItems.DarkBoots, "darkBoots");
 
-			registerItemToMesher(TragicItems.OverlordHelm, ZERO, "overlord_helm");
-			registerItemToMesher(TragicItems.OverlordPlate, ZERO, "overlord_plate");
-			registerItemToMesher(TragicItems.OverlordLegs, ZERO, "overlord_legs");
-			registerItemToMesher(TragicItems.OverlordBoots, ZERO, "overlord_boots");
+			registerArmorToMesher(TragicItems.OverlordHelm, "overlordHelm");
+			registerArmorToMesher(TragicItems.OverlordPlate, "overlordPlate");
+			registerArmorToMesher(TragicItems.OverlordLegs, "overlordLegs");
+			registerArmorToMesher(TragicItems.OverlordBoots, "overlordBoots");
 
-			registerItemToMesher(TragicItems.MercuryDagger, ZERO, "mercury_dagger");
-			registerItemToMesher(TragicItems.HuntersBow, ZERO, "hunters_bow");
-			registerItemToMesher(TragicItems.PitchBlack, ZERO, "pitch_black");
-			registerItemToMesher(TragicItems.BlindingLight, ZERO, "blinding_light");
-			registerItemToMesher(TragicItems.GravitySpike, ZERO, "gravity_spike");
-			registerItemToMesher(TragicItems.HarmonyBell, ZERO, "harmony_bell");
-			registerItemToMesher(TragicItems.MourningStar, ZERO, "mourning_star");
-			registerItemToMesher(TragicItems.BeastlyClaws, ZERO, "beastly_claws");
-			registerItemToMesher(TragicItems.GuiltyThorn, ZERO, "guilty_thorn");
-			registerItemToMesher(TragicItems.NekoLauncher, ZERO, "neko_launcher");
-			registerItemToMesher(TragicItems.ReaperScythe, ZERO, "reaper_scythe");
-			registerItemToMesher(TragicItems.WitheringAxe, ZERO, "withering_axe");
-			registerItemToMesher(TragicItems.FrozenLightning, ZERO, "frozen_lightning");
-			registerItemToMesher(TragicItems.CelestialAegis, ZERO, "celestial_aegis");
-			registerItemToMesher(TragicItems.CelestialLongbow, ZERO, "celestial_longbow");
-			registerItemToMesher(TragicItems.SilentHellraiser, ZERO, "silent_hellraiser");
+			registerItemToMesher(TragicItems.MercuryDagger, ZERO, "mercuryDagger");
+			registerItemWithCustomDefinition(TragicItems.HuntersBow, new ItemMeshDefinition() {
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+					if (player == null || player.getItemInUse() != stack) return new ModelResourceLocation(DOMAIN + "huntersBow", "inventory");
+					
+					int amt = player.getItemInUseDuration();
+
+					if (amt > 14)
+					{
+						return new ModelResourceLocation(DOMAIN + "huntersBow3", "inventory");
+					}
+					else if (amt > 8)
+					{
+						return new ModelResourceLocation(DOMAIN + "huntersBow2", "inventory");
+					}
+					else if (amt > 2)
+					{
+						return new ModelResourceLocation(DOMAIN + "huntersBow1", "inventory");
+					}
+					else
+					{
+						return new ModelResourceLocation(DOMAIN + "huntersBow", "inventory");
+					}
+				}
+			});
+			registerItemToMesher(TragicItems.PitchBlack, ZERO, "pitchBlack");
+			registerItemToMesher(TragicItems.BlindingLight, ZERO, "blindingLight");
+			registerItemToMesher(TragicItems.GravitySpike, ZERO, "gravitySpike");
+			registerItemToMesher(TragicItems.HarmonyBell, ZERO, "harmonyBell");
+			registerItemToMesher(TragicItems.MourningStar, ZERO, "mourningStar");
+			registerItemToMesher(TragicItems.BeastlyClaws, ZERO, "beastlyClaws");
+			registerItemToMesher(TragicItems.GuiltyThorn, ZERO, "guiltyThorn");
+			registerItemToMesher(TragicItems.NekoLauncher, ZERO, "nekoLauncher");
+			registerItemToMesher(TragicItems.ReaperScythe, ZERO, "reaperScythe");
+			registerItemToMesher(TragicItems.WitheringAxe, ZERO, "witheringAxe");
+			registerItemToMesher(TragicItems.FrozenLightning, ZERO, "frozenLightning");
+			registerItemToMesher(TragicItems.CelestialAegis, ZERO, "celestialAegis");
+			registerItemWithCustomDefinition(TragicItems.CelestialLongbow, new ItemMeshDefinition() {
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+					if (player == null || player.getItemInUse() != stack) return new ModelResourceLocation(DOMAIN + "celestialLongbow", "inventory");
+					
+					int amt = player.getItemInUseDuration();
+
+					if (amt > 48)
+					{
+						return new ModelResourceLocation(DOMAIN + "celestialLongbow3", "inventory");
+					}
+					else if (amt > 24)
+					{
+						return new ModelResourceLocation(DOMAIN + "celestialLongbow2", "inventory");
+					}
+					else if (amt > 8)
+					{
+						return new ModelResourceLocation(DOMAIN + "celestialLongbow1", "inventory");
+					}
+					else
+					{
+						return new ModelResourceLocation(DOMAIN + "celestialLongbow", "inventory");
+					}
+				}
+			});
+			registerItemToMesher(TragicItems.SilentHellraiser, ZERO, "silentHellraiser");
 
 			registerItemToMesher(TragicItems.Titan, ZERO, "titan");
 			registerItemToMesher(TragicItems.Splinter, ZERO, "splinter");
 			registerItemToMesher(TragicItems.Butcher, ZERO, "butcher");
 			registerItemToMesher(TragicItems.Thardus, ZERO, "thardus");
 			registerItemToMesher(TragicItems.Paranoia, ZERO, "paranoia");
-			registerItemToMesher(TragicItems.DragonFang, ZERO, "dragon_fang");
+			registerItemToMesher(TragicItems.DragonFang, ZERO, "dragonFang");
 
 			registerItemToMesher(TragicItems.Sentinel, ZERO, "sentinel");
 
 			registerItemToMesher(TragicItems.Scythe, ZERO, "scythe");
-			registerItemToMesher(TragicItems.EverlastingLight, ZERO, "everlasting_light");
+			registerItemWithCustomDefinition(TragicItems.EverlastingLight, new ItemMeshDefinition() {
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					
+					int amt = stack.getItemDamage();
+
+					if (amt > 248)
+					{
+						return new ModelResourceLocation(DOMAIN + "everlastingLight3", "inventory");
+					}
+					else if (amt > 185)
+					{
+						return new ModelResourceLocation(DOMAIN + "everlastingLight2", "inventory");
+					}
+					else if (amt > 124)
+					{
+						return new ModelResourceLocation(DOMAIN + "everlastingLight1", "inventory");
+					}
+					else
+					{
+						return new ModelResourceLocation(DOMAIN + "everlastingLight", "inventory");
+					}
+				}
+			});
 			registerItemToMesher(TragicItems.Jack, ZERO, "jack");
-			registerItemToMesher(TragicItems.TungstenJack, ZERO, "tungsten_jack");
-			registerItemToMesher(TragicItems.CelestialJack, ZERO, "celestial_jack");
+			registerItemToMesher(TragicItems.TungstenJack, ZERO, "tungstenJack");
+			registerItemToMesher(TragicItems.CelestialJack, ZERO, "celestialJack");
 
 			registerItemToMesher(TragicItems.Ectoplasm, ZERO, "ectoplasm");
-			registerItemToMesher(TragicItems.ToughLeather, ZERO, "tough_leather");
-			registerItemToMesher(TragicItems.WovenSilk, ZERO, "woven_silk");
-			registerItemToMesher(TragicItems.CrushedIce, ZERO, "crushed_ice");
-			registerItemToMesher(TragicItems.LightParticles, ZERO, "light_particles");
-			registerItemToMesher(TragicItems.DarkParticles, ZERO, "dark_particles");
-			registerItemToMesher(TragicItems.IceOrb, ZERO, "ice_orb");
-			registerItemToMesher(TragicItems.GravityOrb, ZERO, "gravity_orb");
-			registerItemToMesher(TragicItems.FireOrb, ZERO, "fire_orb");
-			registerItemToMesher(TragicItems.LightningOrb, ZERO, "lightning_orb");
-			registerItemToMesher(TragicItems.AquaOrb, ZERO, "aqua_orb");
+			registerItemToMesher(TragicItems.Ash, ZERO, "ash");
+			registerItemToMesher(TragicItems.EnchantedTears, ZERO, "enchantedTears");
+			registerItemToMesher(TragicItems.ToughLeather, ZERO, "toughLeather");
+			registerItemToMesher(TragicItems.WovenSilk, ZERO, "wovenSilk");
+			registerItemToMesher(TragicItems.CrushedIce, ZERO, "crushedIce");
+			registerItemToMesher(TragicItems.LightParticles, ZERO, "lightParticles");
+			registerItemToMesher(TragicItems.DarkParticles, ZERO, "darkParticles");
+			registerItemToMesher(TragicItems.IceOrb, ZERO, "iceOrb");
+			registerItemToMesher(TragicItems.GravityOrb, ZERO, "gravityOrb");
+			registerItemToMesher(TragicItems.FireOrb, ZERO, "fireOrb");
+			registerItemToMesher(TragicItems.LightningOrb, ZERO, "lightningOrb");
+			registerItemToMesher(TragicItems.AquaOrb, ZERO, "aquaOrb");
 			registerItemToMesher(TragicItems.Thorns, ZERO, "thorns");
 			registerItemToMesher(TragicItems.Horn, ZERO, "horn");
-			registerItemToMesher(TragicItems.BoneMarrow, ZERO, "bone_marrow");
-			registerItemToMesher(TragicItems.LightIngot, ZERO, "light_ingot");
-			registerItemToMesher(TragicItems.DarkIngot, ZERO, "dark_ingot");
-			registerItemToMesher(TragicItems.KitsuneTail, ZERO, "kitsune_tail");
-			registerItemToMesher(TragicItems.DeathlyHallow, ZERO, "deathly_hallow");
-			registerItemToMesher(TragicItems.EmpariahClaw, ZERO, "empariah_claw");
-			registerItemToMesher(TragicItems.StarPieces, ZERO, "star_pieces");
-			registerItemToMesher(TragicItems.TimeEssence, ZERO, "time_essence");
-			registerItemToMesher(TragicItems.PureLight, ZERO, "pure_light");
-			registerItemToMesher(TragicItems.LunarPowder, ZERO, "lunar_powder");
-			registerItemToMesher(TragicItems.CelestialDiamond, ZERO, "celestial_diamond");
-			registerItemToMesher(TragicItems.StinHorn, ZERO, "stin_horn");
-			registerItemToMesher(TragicItems.WispParticles, ZERO, "wisp_particles");
-			registerItemToMesher(TragicItems.IcyFur, ZERO, "icy_fur");
-			registerItemToMesher(TragicItems.PureDarkness, ZERO, "pure_darkness");
-			registerItemToMesher(TragicItems.LivingClay, ZERO, "living_clay");
-			registerItemToMesher(TragicItems.CelestialSteel, ZERO, "celestial_steel");
-			registerItemToMesher(TragicItems.SynapseCrystal, ZERO, "synapse_crystal");
-			registerItemToMesher(TragicItems.CorruptedEye, ZERO, "corrupted_eye");
-			registerItemToMesher(TragicItems.CorruptedEssence, ZERO, "corrupted_essence");
-			registerItemToMesher(TragicItems.CorruptedEgg, ZERO, "corrupted_egg");
-			registerItemToMesher(TragicItems.UnstableIsotope, ZERO, "unstable_isotope");
-			registerItemToMesher(TragicItems.ArchangelFeather, ZERO, "archangel_feather");
-			registerItemToMesher(TragicItems.WingsOfLiberation, ZERO, "wings_of_liberation");
-			registerItemToMesher(TragicItems.IreNode, ZERO, "ire_node");
-			registerItemToMesher(TragicItems.IreNetParticleCannon, ZERO, "irenet_particle_cannon");
-			registerItemToMesher(TragicItems.CatalyticCompound, ZERO, "catalytic_compound");
-			registerItemToMesher(TragicItems.InterestingResin, ZERO, "interesting_resin");
+			registerItemToMesher(TragicItems.BoneMarrow, ZERO, "boneMarrow");
+			registerItemToMesher(TragicItems.LightIngot, ZERO, "lightIngot");
+			registerItemToMesher(TragicItems.DarkIngot, ZERO, "darkIngot");
+			registerItemToMesher(TragicItems.KitsuneTail, ZERO, "kitsuneTail");
+			registerItemToMesher(TragicItems.DeathlyHallow, ZERO, "deathlyHallow");
+			registerItemToMesher(TragicItems.EmpariahClaw, ZERO, "empariahClaw");
+			registerItemToMesher(TragicItems.StarPieces, ZERO, "starPieces");
+			registerItemToMesher(TragicItems.TimeEssence, ZERO, "timeEssence");
+			registerItemToMesher(TragicItems.PureLight, ZERO, "pureLight");
+			registerItemToMesher(TragicItems.LunarPowder, ZERO, "lunarPowder");
+			registerItemToMesher(TragicItems.CelestialDiamond, ZERO, "celestialDiamond");
+			registerItemToMesher(TragicItems.StinHorn, ZERO, "stinHorn");
+			registerItemToMesher(TragicItems.WispParticles, ZERO, "wispParticles");
+			registerItemToMesher(TragicItems.IcyFur, ZERO, "icyFur");
+			registerItemToMesher(TragicItems.PureDarkness, ZERO, "pureDarkness");
+			registerItemToMesher(TragicItems.LivingClay, ZERO, "livingClay");
+			registerItemToMesher(TragicItems.CelestialSteel, ZERO, "celestialSteel");
+			registerItemToMesher(TragicItems.SynapseCrystal, ZERO, "synapseCrystal");
+			registerItemToMesher(TragicItems.CorruptedEye, ZERO, "corruptedEye");
+			registerItemToMesher(TragicItems.CorruptedEssence, ZERO, "corruptedEssence");
+			registerItemToMesher(TragicItems.CorruptedEgg, ZERO, "corruptedEgg");
+			registerItemToMesher(TragicItems.NanoBots, ZERO, "nanoBots");
+			registerItemToMesher(TragicItems.UnstableIsotope, ZERO, "unstableIsotope");
+			registerItemToMesher(TragicItems.ArchangelFeather, ZERO, "archangelFeather");
+			registerItemToMesher(TragicItems.WingsOfLiberation, ZERO, "wingsOfLiberation");
+			registerItemToMesher(TragicItems.IreNode, ZERO, "ireNode");
+			registerItemToMesher(TragicItems.IreNetParticleCannon, ZERO, "ireParticleCannon");
+			registerItemToMesher(TragicItems.CatalyticCompound, ZERO, "catalyticCompound");
+			registerItemToMesher(TragicItems.InterestingResin, ZERO, "interestingResin");
 			registerItemToMesher(TragicItems.Chitin, ZERO, "chitin");
-			registerItemToMesher(TragicItems.SoulExcess, ZERO, "soul_excess");
-			registerItemToMesher(TragicItems.EtherealDistortion, ZERO, "ethereal_distortion");
+			registerItemToMesher(TragicItems.SoulExcess, ZERO, "soulExcess");
+			registerItemToMesher(TragicItems.EtherealDistortion, ZERO, "etherealDistortion");
 
-			registerItemToMesher(TragicItems.ToxicAmalgation, ZERO, "toxic_amalgation");
-			registerItemToMesher(TragicItems.ParadoxicalFormula, ZERO, "paradoxical_formula");
-			registerItemToMesher(TragicItems.RadiatedInfusion, ZERO, "radiated_infusion");
-			registerItemToMesher(TragicItems.ImpossibleReaction, ZERO, "impossible_reaction");
-			registerItemToMesher(TragicItems.InfallibleMetal, ZERO, "infallible_metal");
-			registerItemToMesher(TragicItems.ComplexCircuitry, ZERO, "complex_circuitry");
-			registerItemToMesher(TragicItems.NauseatingConcoction, ZERO, "nauseating_concoction");
-			registerItemToMesher(TragicItems.CreepyIdol, ZERO, "creepy_idol");
-			registerItemToMesher(TragicItems.PurifiedEnergy, ZERO, "purified_energy");
+			registerItemToMesher(TragicItems.ToxicAmalgation, ZERO, "toxicAmalgation");
+			registerItemToMesher(TragicItems.ParadoxicalFormula, ZERO, "paradoxicalFormula");
+			registerItemToMesher(TragicItems.RadiatedInfusion, ZERO, "radiatedInfusion");
+			registerItemToMesher(TragicItems.ImpossibleReaction, ZERO, "impossibleReaction");
+			registerItemToMesher(TragicItems.InfallibleMetal, ZERO, "infallibleMetal");
+			registerItemToMesher(TragicItems.ComplexCircuitry, ZERO, "complexCircuitry");
+			registerItemToMesher(TragicItems.NauseatingConcoction, ZERO, "nauseatingConcoction");
+			registerItemToMesher(TragicItems.CreepyIdol, ZERO, "creepyIdol");
+			registerItemToMesher(TragicItems.PurifiedEnergy, ZERO, "purifiedEnergy");
 			registerItemToMesher(TragicItems.Shadowskin, ZERO, "shadowskin");
 
-			registerItemToMesher(TragicItems.IceCream, ZERO, "ice_cream");
+			registerItemToMesher(TragicItems.IceCream, ZERO, "iceCream");
 			registerItemToMesher(TragicItems.Honeydrop, ZERO, "honeydrop");
 			registerItemToMesher(TragicItems.Gloopii, ZERO, "gloopii");
 			registerItemToMesher(TragicItems.Deathglow, ZERO, "deathglow");
 			registerItemToMesher(TragicItems.Rice, ZERO, "rice");
 			registerItemToMesher(TragicItems.Sushi, ZERO, "sushi");
-			registerItemToMesher(TragicItems.GoldenSushi, ZERO, "golden_sushi");
+			registerItemToMesher(TragicItems.GoldenSushi, ZERO, "goldenSushi");
 			registerItemToMesher(TragicItems.Banana, ZERO, "banana");
-			registerItemToMesher(TragicItems.BananaSplit, ZERO, "banana_split");
-			registerItemToMesher(TragicItems.SkyFruit, ZERO, "skyfruit");
+			registerItemToMesher(TragicItems.BananaSplit, ZERO, "bananaSplit");
+			registerItemToMesher(TragicItems.SkyFruit, ZERO, "skyFruit");
 			registerItemToMesher(TragicItems.Tentacle, ZERO, "tentacle");
-			registerItemToMesher(TragicItems.HoneydropSeeds, ZERO, "honeydrop_seeds");
-			registerItemToMesher(TragicItems.DeathglowSeeds, ZERO, "deathglow_seeds");
-			registerItemToMesher(TragicItems.SkyFruitSeeds, ZERO, "skyfruit_seeds");
+			registerItemToMesher(TragicItems.HoneydropSeeds, ZERO, "honeydropSeeds");
+			registerItemToMesher(TragicItems.DeathglowSeeds, ZERO, "deathglowSeeds");
+			registerItemToMesher(TragicItems.SkyFruitSeeds, ZERO, "skyFruitSeeds");
 
-			registerItemToMesher(TragicItems.RubyCharm, ZERO, "ruby_charm");
-			registerItemToMesher(TragicItems.SapphireCharm, ZERO, "sapphire_charm");
-			registerItemToMesher(TragicItems.DiamondCharm, ZERO, "diamond_charm");
-			registerItemToMesher(TragicItems.EmeraldCharm, ZERO, "emerald_charm");
-			registerItemToMesher(TragicItems.AwakeningStone, ZERO, "awakening_stone");
-			registerItemToMesher(TragicItems.ObsidianOrb, ZERO, "obsidian_orb");
-			registerItemToMesher(TragicItems.CryingObsidianOrb, ZERO, "crying_obsidian_orb");
-			registerItemToMesher(TragicItems.BleedingObsidianOrb, ZERO, "zero_obsidian_orb");
-			registerItemToMesher(TragicItems.DyingObsidianOrb, ZERO, "dying_obsidian_orb");
+			registerItemToMesher(TragicItems.RubyCharm, ZERO, "rubyCharm");
+			registerItemToMesher(TragicItems.SapphireCharm, ZERO, "sapphireCharm");
+			registerItemToMesher(TragicItems.DiamondCharm, ZERO, "diamondCharm");
+			registerItemToMesher(TragicItems.EmeraldCharm, ZERO, "emeraldCharm");
+			registerItemToMesher(TragicItems.AwakeningStone, ZERO, "awakeningStone");
+			registerItemToMesher(TragicItems.ObsidianOrb, ZERO, "obsidianOrb");
+			registerItemToMesher(TragicItems.CryingObsidianOrb, ZERO, "cryingObsidianOrb");
+			registerItemToMesher(TragicItems.BleedingObsidianOrb, ZERO, "bleedingObsidianOrb");
+			registerItemToMesher(TragicItems.DyingObsidianOrb, ZERO, "dyingObsidianOrb");
 
 			registerItemToMesher(TragicItems.Talisman, ZERO, "talisman");
-			registerItemToMesher(TragicItems.RainDanceTalisman, ZERO, "rain_dance_talisman");
-			registerItemToMesher(TragicItems.SunnyDayTalisman, ZERO, "sunny_day_talisman");
-			registerItemToMesher(TragicItems.ThunderstormTalisman, ZERO, "thunderstorm_talisman");
-			registerItemToMesher(TragicItems.TimeManipulatorTalisman, ZERO, "time_manipulator_talisman");
-			registerItemToMesher(TragicItems.MoonlightTalisman, ZERO, "moonlight_talisman");
-			registerItemToMesher(TragicItems.SynthesisTalisman, ZERO, "synthesis_talisman");
-			registerItemToMesher(TragicItems.HydrationTalisman, ZERO, "hydration_talisman");
-			registerItemToMesher(TragicItems.LightningRodTalisman, ZERO, "lightning_rod_talisman");
+			registerItemToMesher(TragicItems.RainDanceTalisman, ZERO, "rainDanceTalisman");
+			registerItemToMesher(TragicItems.SunnyDayTalisman, ZERO, "sunnyDayTalisman");
+			registerItemToMesher(TragicItems.ThunderstormTalisman, ZERO, "thunderstormTalisman");
+			registerItemToMesher(TragicItems.TimeManipulatorTalisman, ZERO, "timeManipulatorTalisman");
+			registerItemToMesher(TragicItems.MoonlightTalisman, ZERO, "moonlightTalisman");
+			registerItemToMesher(TragicItems.SynthesisTalisman, ZERO, "synthesisTalisman");
+			registerItemToMesher(TragicItems.HydrationTalisman, ZERO, "hydrationTalisman");
+			registerItemToMesher(TragicItems.LightningRodTalisman, ZERO, "lightningRodTalisman");
 
 			if (TragicConfig.allowAmulets)
 			{
-				registerItemToMesher(TragicItems.KitsuneAmulet, ZERO, "kitsune_amulet");
-				registerItemToMesher(TragicItems.PeaceAmulet, ZERO, "peace_amulet");
-				registerItemToMesher(TragicItems.YetiAmulet, ZERO, "yeti_amulet");
-				registerItemToMesher(TragicItems.ClaymationAmulet, ZERO, "claymation_amulet");
-				registerItemToMesher(TragicItems.ChickenAmulet, ZERO, "chicken_amulet");
-				registerItemToMesher(TragicItems.MartyrAmulet, ZERO, "martyr_amulet");
-				registerItemToMesher(TragicItems.PiercingAmulet, ZERO, "piercing_amulet");
-				registerItemToMesher(TragicItems.BlacksmithAmulet, ZERO, "blacksmith_amulet");
-				registerItemToMesher(TragicItems.ApisAmulet, ZERO, "apis_amulet");
-				registerItemToMesher(TragicItems.CreeperAmulet, ZERO, "creeper_amulet");
-				registerItemToMesher(TragicItems.ZombieAmulet, ZERO, "zombie_amulet");
-				registerItemToMesher(TragicItems.SkeletonAmulet, ZERO, "skeleton_amulet");
-				registerItemToMesher(TragicItems.SunkenAmulet, ZERO, "sunken_amulet");
-				registerItemToMesher(TragicItems.TimeAmulet, ZERO, "time_amulet");
-				registerItemToMesher(TragicItems.IceAmulet, ZERO, "ice_amulet");
-				registerItemToMesher(TragicItems.SnowGolemAmulet, ZERO, "snow_golem_amulet");
-				registerItemToMesher(TragicItems.IronGolemAmulet, ZERO, "iron_golem_amulet");
-				registerItemToMesher(TragicItems.EndermanAmulet, ZERO, "enderman_amulet");
-				registerItemToMesher(TragicItems.WitherAmulet, ZERO, "wither_amulet");
-				registerItemToMesher(TragicItems.SpiderAmulet, ZERO, "spider_amulet");
-				registerItemToMesher(TragicItems.StinAmulet, ZERO, "stin_amulet");
-				registerItemToMesher(TragicItems.PolarisAmulet, ZERO, "polaris_amulet");
-				registerItemToMesher(TragicItems.OverlordAmulet, ZERO, "overlord_amulet");
-				registerItemToMesher(TragicItems.LightningAmulet, ZERO, "lightning_amulet");
-				registerItemToMesher(TragicItems.ConsumptionAmulet, ZERO, "consumption_amulet");
-				registerItemToMesher(TragicItems.SupernaturalAmulet, ZERO, "supernatural_amulet");
-				registerItemToMesher(TragicItems.UndeadAmulet, ZERO, "undead_amulet");
-				registerItemToMesher(TragicItems.EnderDragonAmulet, ZERO, "ender_dragon_amulet");
-				registerItemToMesher(TragicItems.FuseaAmulet, ZERO, "fusea_amulet");
-				registerItemToMesher(TragicItems.EnyvilAmulet, ZERO, "enyvil_amulet");
-				registerItemToMesher(TragicItems.LuckAmulet, ZERO, "luck_amulet");
+				registerAmuletToMesher(TragicItems.KitsuneAmulet);
+				registerAmuletToMesher(TragicItems.PeaceAmulet);
+				registerAmuletToMesher(TragicItems.YetiAmulet);
+				registerAmuletToMesher(TragicItems.ClaymationAmulet);
+				registerAmuletToMesher(TragicItems.ChickenAmulet);
+				registerAmuletToMesher(TragicItems.MartyrAmulet);
+				registerAmuletToMesher(TragicItems.PiercingAmulet);
+				registerAmuletToMesher(TragicItems.BlacksmithAmulet);
+				registerAmuletToMesher(TragicItems.ApisAmulet);
+				registerAmuletToMesher(TragicItems.CreeperAmulet);
+				registerAmuletToMesher(TragicItems.ZombieAmulet);
+				registerAmuletToMesher(TragicItems.SkeletonAmulet);
+				registerAmuletToMesher(TragicItems.SunkenAmulet);
+				registerAmuletToMesher(TragicItems.TimeAmulet);
+				registerAmuletToMesher(TragicItems.IceAmulet);
+				registerAmuletToMesher(TragicItems.SnowGolemAmulet);
+				registerAmuletToMesher(TragicItems.IronGolemAmulet);
+				registerAmuletToMesher(TragicItems.EndermanAmulet);
+				registerAmuletToMesher(TragicItems.WitherAmulet);
+				registerAmuletToMesher(TragicItems.SpiderAmulet);
+				registerAmuletToMesher(TragicItems.StinAmulet);
+				registerAmuletToMesher(TragicItems.PolarisAmulet);
+				registerAmuletToMesher(TragicItems.OverlordAmulet);
+				registerAmuletToMesher(TragicItems.LightningAmulet);
+				registerAmuletToMesher(TragicItems.ConsumptionAmulet);
+				registerAmuletToMesher(TragicItems.SupernaturalAmulet);
+				registerAmuletToMesher(TragicItems.UndeadAmulet);
+				registerAmuletToMesher(TragicItems.EnderDragonAmulet);
+				registerAmuletToMesher(TragicItems.FuseaAmulet);
+				registerAmuletToMesher(TragicItems.EnyvilAmulet);
+				registerAmuletToMesher(TragicItems.LuckAmulet);
 
-				registerItemToMesher(TragicItems.AmuletRelease, ZERO, "amulet_release");
+				registerItemToMesher(TragicItems.AmuletRelease, ZERO, "amuletRelease");
 			}
-
-
 
 			if (TragicConfig.allowDoom)
 			{
-				registerItemToMesher(TragicItems.DoomConsume, ZERO, "doom_consume");
-				registerItemToMesher(TragicItems.CooldownDefuse, ZERO, "cooldown_defuse");
+				registerItemToMesher(TragicItems.DoomConsume, ZERO, "doomConsume");
+				registerItemToMesher(TragicItems.CooldownDefuse, ZERO, "cooldownDefuse");
 
-				registerItemToMesher(TragicItems.BloodSacrifice, ZERO, "blood_sacrifice");
-				registerItemToMesher(TragicItems.NourishmentSacrifice, ZERO, "nourishment_sacrifice");
+				registerItemToMesher(TragicItems.BloodSacrifice, ZERO, "bloodSacrifice");
+				registerItemToMesher(TragicItems.NourishmentSacrifice, ZERO, "nourishmentSacrifice");
 			}
 
-			registerItemToMesher(TragicItems.MobStatue, ZERO, "mob_statue");
+			for (i = 0; i < statue.length; i++)
+				registerItemToMesher(TragicItems.MobStatue, i, statue[i]);
 
 			if (TragicConfig.allowDimension)
 			{
-				registerItemToMesher(TragicItems.DimensionalKey, ZERO, "dimensional_key");
-				registerItemToMesher(TragicItems.DimensionalKeyEnd, ZERO, "dimensional_key_end");
-				registerItemToMesher(TragicItems.DimensionalKeyNether, ZERO, "dimensional_key_nether");
-				registerItemToMesher(TragicItems.DimensionalKeySynapse, ZERO, "dimensional_key_synapse");
-				registerItemToMesher(TragicItems.DimensionalKeyWilds, ZERO, "dimensional_key_wilds");
-				registerItemToMesher(TragicItems.SynapseLink, ZERO, "synapse_link");
+				registerItemToMesher(TragicItems.DimensionalKey, ZERO, "dimensionalKey");
+				registerItemToMesher(TragicItems.DimensionalKeyEnd, ZERO, "dimensionalKeyEnd");
+				registerItemToMesher(TragicItems.DimensionalKeyNether, ZERO, "dimensionalKeyNether");
+				registerItemToMesher(TragicItems.DimensionalKeySynapse, ZERO, "dimensionalKeySynapse");
+				//registerItemToMesher(TragicItems.DimensionalKeyWilds, ZERO, "dimensionalKeyWilds");
+				registerItemToMesher(TragicItems.SynapseLink, ZERO, "synapseLink");
 			}
 
 			if (TragicConfig.allowDoomsdays)
 			{
-				registerItemToMesher(TragicItems.DoomsdayScroll, ZERO, "doomsday_scroll");
+				for (i = 1; i < Doomsday.doomsdayList.length; i++)
+				{
+					if (Doomsday.doomsdayList[i] != null && i - 1 >= 0)
+						registerItemToMesher(TragicItems.DoomsdayScroll, i - 1, "doomsdayScroll");
+				}
 			}
-
-			registerItemToMesher(TragicItems.BowOfJustice, ZERO, "bow_of_justice");
-			registerItemToMesher(TragicItems.SwordOfJustice, ZERO, "sword_of_justice");
+			
+			registerItemToMesher(TragicItems.SoundExtrapolator, ZERO, "soundExtrapolator");
 
 			if (TragicConfig.allowGeneratorItems)
 			{
-				registerItemToMesher(TragicItems.Generator, ZERO, "generator_item");
+				for (i = 0; i < generator.length; i++)
+					registerItemToMesher(TragicItems.Generator, i, generator[i]);
 			}
-
-			registerItemToMesher(TragicItems.NekoNekoWand, ZERO, "neko_neko_wand");
-			registerItemToMesher(TragicItems.SoundExtrapolator, ZERO, "sound_extrapolator");
-
-			if (TragicConfig.allowMobs)
+			
+			if (TragicConfig.allowChallengeScrolls)
 			{
-				registerItemToMesherIgnoreMeta(TragicItems.SpawnEgg);
+				for (i = 0; i < 251; i++)
+				{
+					if (i == 0) registerItemToMesher(TragicItems.ChallengeScroll, ZERO, "challengeScroll");
+					else if (i == 250) registerItemToMesher(TragicItems.ChallengeScroll, i, "challengeScrollComplete");
+					else registerItemToMesher(TragicItems.ChallengeScroll, i, "challengeScrollInProgress");
+				}
 			}
-
-			for (i = 0; i < projectileItems.length; i++)
-				registerItemToMesher(TragicItems.Projectile, i, projectileItems[i]);
 		}
 	}
 
@@ -655,33 +1014,98 @@ public class ClientProxy extends CommonProxy {
 		return Minecraft.getMinecraft().thePlayer;
 	}
 
-	public static void registerItemToMesher(Item item, int meta, String location)
+	private static void registerItemToMesher(Item item, int meta, String location)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(moddir + location, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(DOMAIN + location, "inventory"));
+	}
+	
+	private static void registerItemWithCustomDefinition(Item item, ItemMeshDefinition def)
+	{
+		ModelLoader.setCustomMeshDefinition(item, def);
+	}
+	
+	private static void registerAmuletToBakery(Item item)
+	{
+		ModelBakery.addVariantName(item, getPrefixedArray(amulets));
+	}
+	
+	private static void registerAmuletToMesher(Item item)
+	{
+		ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
+			@Override
+			public ModelResourceLocation getModelLocation(ItemStack stack) {
+				String def = ((ItemAmulet) stack.getItem()).amuletType == EnumAmuletType.NORMAL ? DOMAIN + amulets[0] : DOMAIN + amulets[3];
+				if (!stack.hasTagCompound()) return new ModelResourceLocation(def, "inventory");
+				
+				if (stack.getTagCompound().hasKey("amuletLevel"))
+				{
+					byte level = stack.getTagCompound().getByte("amuletLevel");
+					return new ModelResourceLocation(DOMAIN + amulets[level], "inventory");
+				}
+				return new ModelResourceLocation(def, "inventory");
+			}
+		});
+	}
+	
+	private static void registerArmorToBakery(Item item, String s)
+	{
+		ModelBakery.addVariantName(item, getPrefixedArray(new String[] {s, s + "2"}));
+	}
+	
+	private static void registerArmorToMesher(Item item, final String s)
+	{
+		ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
+			@Override
+			public ModelResourceLocation getModelLocation(ItemStack stack) {
+				
+				String s2 = stack.getItemDamage() >= stack.getMaxDamage() * 2 / 3 ? DOMAIN + s + "2" : DOMAIN + s;
+				return new ModelResourceLocation(s2, "inventory");
+			}
+		});
 	}
 
-	public static void registerItemToMesherIgnoreMeta(Item item)
-	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, ZERO, new ModelResourceLocation("spawn_egg", "inventory"));
-	}
-
-	public static void registerBlockToMesher(Block block, int meta, String location)
+	private static void registerBlockToMesher(Block block, int meta, String location)
 	{
 		registerItemToMesher(Item.getItemFromBlock(block), meta, location);
 	}
 
-	public static void registerBlockToMesherIgnoreMeta(Block block)
-	{
-		registerItemToMesherIgnoreMeta(Item.getItemFromBlock(block));
-	}
-
-	public static void registerBlockToBakery(Block block, String... names)
+	private static void registerBlockToBakery(Block block, String... names)
 	{
 		registerItemToBakery(Item.getItemFromBlock(block), names);
 	}
 
-	public static void registerItemToBakery(Item item, String... names)
+	private static void registerItemToBakery(Item item, String... names)
 	{
 		ModelBakery.addVariantName(item, names);
+	}
+	
+	private static String[] getPrefixedArray(String[] array) {
+		String[] newArray = new String[array.length];
+		
+		for (int i = 0; i < array.length; i++)
+		{
+			newArray[i] = DOMAIN + array[i];
+		}
+		
+		return newArray;
+	}
+	
+	private static String capitalize(String s)
+	{
+		char[] str = s.toCharArray();
+		str[0] = Character.toTitleCase(str[0]);
+		s = new String(str);
+		return s;
+	}
+	
+	private static String[] capitalizeArray(String s, String[] array) {
+		String[] newArray = new String[array.length];
+		
+		for (int i = 0; i < array.length; i++)
+		{
+			newArray[i] = s + capitalize(array[i]);
+		}
+		
+		return newArray;
 	}
 }

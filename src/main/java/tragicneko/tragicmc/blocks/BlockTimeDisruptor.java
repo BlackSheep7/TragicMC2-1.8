@@ -90,4 +90,10 @@ public class BlockTimeDisruptor extends BlockContainer {
 						0.0D, 0.0D, 0.0D);
 		}
 	}
+	
+	@Override
+	public int getRenderType()
+    {
+		return 3;
+    }
 }

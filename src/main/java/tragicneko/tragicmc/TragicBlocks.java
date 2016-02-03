@@ -17,6 +17,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -28,10 +29,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import tragicneko.tragicmc.blocks.BlockAeris;
+import tragicneko.tragicmc.blocks.BlockAshenLeaves;
 import tragicneko.tragicmc.blocks.BlockBone;
 import tragicneko.tragicmc.blocks.BlockCandle;
 import tragicneko.tragicmc.blocks.BlockCelledLamp;
 import tragicneko.tragicmc.blocks.BlockCircuit;
+import tragicneko.tragicmc.blocks.BlockConduit;
 import tragicneko.tragicmc.blocks.BlockCorsin;
 import tragicneko.tragicmc.blocks.BlockCrop;
 import tragicneko.tragicmc.blocks.BlockDarkCobble;
@@ -80,6 +83,7 @@ import tragicneko.tragicmc.blocks.BlockSummon;
 import tragicneko.tragicmc.blocks.BlockSynapseCore;
 import tragicneko.tragicmc.blocks.BlockTimeDisruptor;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
+import tragicneko.tragicmc.blocks.BlockTragicFlower2;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
 import tragicneko.tragicmc.blocks.BlockTragicSapling;
 import tragicneko.tragicmc.blocks.BlockWickedVine;
@@ -130,7 +134,7 @@ public class TragicBlocks {
 	public static Block DarkCobblestone;
 	public static Block LightCobblestone;
 	public static Block LightStone;
-	
+
 	public static Block Spike;
 
 	public static Block FrozenNetherrack;
@@ -173,7 +177,7 @@ public class TragicBlocks {
 	public static Block AshenBush;
 	public static Block DeadBush;
 
-	public static Block DriedGrass;
+	public static Block DriedTallGrass;
 	public static Block AshenTallGrass;
 
 	public static Block StarlitGrass;
@@ -216,7 +220,6 @@ public class TragicBlocks {
 	public static Block IcedDirt;
 	public static Block Permafrost;
 	public static Block IceSpike;
-	public static Block IceSpikeHanging;
 	public static Block Moss;
 	public static Block Lichen;
 
@@ -228,11 +231,11 @@ public class TragicBlocks {
 	public static Block DarkwoodPlanks;
 	public static Block DarkVine;
 	public static Block DarkTallGrass;
-	
+
 	public static Block SkyFruit;
 	public static Block Deathglow;
 	public static Block Honeydrop;
-	
+
 	public static Block Corsin;
 
 	public static void load()
@@ -247,8 +250,11 @@ public class TragicBlocks {
 			Luminescence = (new BlockLuminescence().setUnlocalizedName("tragicmc.luminescence"));
 			GameRegistry.registerBlock(Luminescence, ItemBlock.class, "luminescence");
 
-			OverlordBarrier = (new BlockOverlordBarrier());
-			GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
+			if (TragicConfig.allowOverlord)
+			{
+				OverlordBarrier = (new BlockOverlordBarrier());
+				GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
+			}
 			return;
 		}
 		MercuryOre = (new BlockGenericOre(1, true).setUnlocalizedName("tragicmc.mercuryOre").setHardness(4.0F).setResistance(5.0F));
@@ -313,7 +319,7 @@ public class TragicBlocks {
 
 		LightStone = (new BlockGeneric(Material.rock, "pickaxe", 0).setUnlocalizedName("tragicmc.lightStone").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
 		GameRegistry.registerBlock(LightStone, ItemBlock.class, "lightStone");
-		
+
 		Spike = (new BlockGeneric(Material.rock, "pickaxe", 0).setUnlocalizedName("tragicmc.spike").setHardness(1.5F).setResistance(3.0F));
 		GameRegistry.registerBlock(Spike, ItemBlock.class, "spike");
 
@@ -358,7 +364,7 @@ public class TragicBlocks {
 		Glowvine = (new BlockGlowvine().setUnlocalizedName("tragicmc.glowvine"));
 		GameRegistry.registerBlock(Glowvine, ItemBlock.class, "glowvine");
 
-		PaintedTallGrass = (new BlockGenericTallGrass("Painted").setUnlocalizedName("tragicmc.paintedTallGrass"));
+		PaintedTallGrass = (new BlockGenericTallGrass().setUnlocalizedName("tragicmc.paintedTallGrass"));
 		GameRegistry.registerBlock(PaintedTallGrass, ItemBlock.class, "paintedTallGrass");
 
 		AshenGrass = (new BlockGenericGrass("Ashen").setUnlocalizedName("tragicmc.ashenGrass"));
@@ -367,7 +373,7 @@ public class TragicBlocks {
 		AshenWood = (new BlockGenericLog(1).setUnlocalizedName("tragicmc.ashenWood"));
 		GameRegistry.registerBlock(AshenWood, ItemBlock.class, "ashenWood");
 
-		AshenLeaves = (new BlockGenericLeaves().setUnlocalizedName("tragicmc.ashenLeaves"));
+		AshenLeaves = (new BlockAshenLeaves());
 		GameRegistry.registerBlock(AshenLeaves, ItemBlock.class, "ashenLeaves");
 
 		AshenPlanks = (new BlockGenericPlanks().setUnlocalizedName("tragicmc.ashenPlanks"));
@@ -385,10 +391,10 @@ public class TragicBlocks {
 		TragicSapling = (new BlockTragicSapling());
 		GameRegistry.registerBlock(TragicSapling, ItemBlockTragicSapling.class, "tragicSapling");
 
-		TragicFlower = (new BlockTragicFlower(0));
+		TragicFlower = (new BlockTragicFlower());
 		GameRegistry.registerBlock(TragicFlower, ItemBlockTragicFlower.class, "tragicFlower");
-		
-		TragicFlower2 = (new BlockTragicFlower(1));
+
+		TragicFlower2 = (new BlockTragicFlower2());
 		GameRegistry.registerBlock(TragicFlower2, ItemBlockTragicFlower2.class, "tragicFlower2");
 
 		AshenBush = (new BlockGenericBush().setUnlocalizedName("tragicmc.ashenBush"));
@@ -397,10 +403,10 @@ public class TragicBlocks {
 		DeadBush = (new BlockGenericBush().setUnlocalizedName("tragicmc.deadBush"));
 		GameRegistry.registerBlock(DeadBush, ItemBlock.class, "deadBush");
 
-		DriedGrass = (new BlockGenericTallGrass("Dried").setUnlocalizedName("tragicmc.driedTallGrass"));
-		GameRegistry.registerBlock(DriedGrass, ItemBlock.class, "driedTallGrass");
+		DriedTallGrass = (new BlockGenericTallGrass().setUnlocalizedName("tragicmc.driedTallGrass"));
+		GameRegistry.registerBlock(DriedTallGrass, ItemBlock.class, "driedTallGrass");
 
-		AshenTallGrass = (new BlockGenericTallGrass("Ashen").setUnlocalizedName("tragicmc.ashenTallGrass"));
+		AshenTallGrass = (new BlockGenericTallGrass().setUnlocalizedName("tragicmc.ashenTallGrass"));
 		GameRegistry.registerBlock(AshenTallGrass, ItemBlock.class, "ashenTallGrass");
 
 		StarlitGrass = (new BlockGenericGrass("Starlit").setUnlocalizedName("tragicmc.starlitGrass").setLightLevel(0.25F));
@@ -409,7 +415,7 @@ public class TragicBlocks {
 		StarCrystal = (new BlockStarCrystal());
 		GameRegistry.registerBlock(StarCrystal, ItemBlockStarCrystal.class, "starCrystal");
 
-		StarlitTallGrass = (new BlockGenericTallGrass("Starlit").setUnlocalizedName("tragicmc.starlitTallGrass"));
+		StarlitTallGrass = (new BlockGenericTallGrass().setUnlocalizedName("tragicmc.starlitTallGrass"));
 		GameRegistry.registerBlock(StarlitTallGrass, ItemBlock.class, "starlitTallGrass");
 
 		ErodedStone = (new BlockErodedStone());
@@ -433,8 +439,11 @@ public class TragicBlocks {
 		SynapseCore = (new BlockSynapseCore().setUnlocalizedName("tragicmc.synapseCore").setHardness(20.0F).setResistance(45.0F).setStepSound(Block.soundTypeMetal));
 		GameRegistry.registerBlock(SynapseCore, ItemBlock.class, "synapseCore");
 
-		OverlordBarrier = (new BlockOverlordBarrier());
-		GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
+		if (TragicConfig.allowOverlord)
+		{
+			OverlordBarrier = (new BlockOverlordBarrier());
+			GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
+		}
 
 		WitheringGas = (new BlockGas().setUnlocalizedName("tragicmc.witheringGas"));
 		GameRegistry.registerBlock(WitheringGas, ItemBlock.class, "witheringGas");
@@ -467,22 +476,7 @@ public class TragicBlocks {
 		}.setUnlocalizedName("tragicmc.corruptedGas"));
 		GameRegistry.registerBlock(CorruptedGas, ItemBlock.class, "corruptedGas");
 
-		Conduit = (new BlockGeneric(Material.iron, "pickaxe", 0) {
-
-			@Override
-			public boolean isOpaqueCube()
-			{
-				return false;
-			}
-
-			@Override
-			@SideOnly(Side.CLIENT)
-			public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing facing)
-			{
-				Block block = world.getBlockState(pos).getBlock();
-				return block == this ? false : super.shouldSideBeRendered(world, pos, facing);
-			}
-		}.setUnlocalizedName("tragicmc.conduit").setHardness(12.0F).setResistance(100.0F).setStepSound(Block.soundTypeMetal).setLightLevel(1.0F).setLightOpacity(0));
+		Conduit = (new BlockConduit().setUnlocalizedName("tragicmc.conduit").setHardness(12.0F).setResistance(100.0F).setStepSound(Block.soundTypeMetal).setLightLevel(1.0F).setLightOpacity(0));
 		GameRegistry.registerBlock(Conduit, ItemBlock.class, "conduit");
 
 		DigitalSea = (new BlockDigitalSea());
@@ -520,13 +514,13 @@ public class TragicBlocks {
 		StringLight = (new BlockStringLight().setUnlocalizedName("tragicmc.stringLight"));
 		GameRegistry.registerBlock(StringLight, ItemBlock.class, "stringLight");
 
-		FragileLight = (new BlockFragileLight(true));
+		FragileLight = (new BlockFragileLight());
 		GameRegistry.registerBlock(FragileLight, ItemBlock.class, "fragileLight");
 
 		HallowedLeaves = (new BlockGenericLeaves().setUnlocalizedName("tragicmc.hallowedLeaves"));
 		GameRegistry.registerBlock(HallowedLeaves, ItemBlock.class, "hallowedLeaves");
 
-		HallowedLeafTrim = (new BlockLeafTrim("Hallowed").setUnlocalizedName("tragicmc.hallowedLeafTrim"));
+		HallowedLeafTrim = (new BlockLeafTrim().setUnlocalizedName("tragicmc.hallowedLeafTrim"));
 		GameRegistry.registerBlock(HallowedLeafTrim, ItemBlock.class, "hallowedLeafTrim");
 
 		HallowedPlanks = (new BlockGenericPlanks().setUnlocalizedName("tragicmc.hallowedPlanks"));
@@ -552,7 +546,7 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(IcedDirt, ItemBlock.class, "icedDirt");
 
 		Permafrost = new BlockPermafrost().setUnlocalizedName("tragicmc.permafrost");
-		GameRegistry.registerBlock(Permafrost, TragicItemBlock.class, "permafrost", new Object[] {new String[] {"normal", "cracked", "mossy"}, "permafrost"});
+		GameRegistry.registerBlock(Permafrost, TragicItemBlock.class, "permafrost", new Object[] {new String[] {"normal", "cracked"}, "permafrost"});
 
 		Moss = new BlockMoss().setUnlocalizedName("tragicmc.moss");
 		GameRegistry.registerBlock(Moss, ItemBlock.class, "moss");
@@ -560,13 +554,41 @@ public class TragicBlocks {
 		Lichen = new BlockGenericBush().setUnlocalizedName("tragicmc.lichen");
 		GameRegistry.registerBlock(Lichen, ItemBlock.class, "lichen");
 
-		IceSpike = new BlockIceSpike(true).setUnlocalizedName("tragicmc.iceSpike");
+		IceSpike = new BlockIceSpike().setUnlocalizedName("tragicmc.iceSpike");
 		GameRegistry.registerBlock(IceSpike, ItemBlock.class, "iceSpike");
 
-		IceSpikeHanging = new BlockIceSpike(false).setUnlocalizedName("tragicmc.iceSpikeHanging");
-		GameRegistry.registerBlock(IceSpikeHanging, null, "iceSpikeHanging");
+		Crystal = new BlockGeneric(Material.iron, "pickaxe", 3) {
+			
+			@Override
+			public boolean isOpaqueCube() {
+				return false;
+			}
+			
+			@Override
+			@SideOnly(Side.CLIENT)
+			public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+			{
+				IBlockState iblockstate = worldIn.getBlockState(pos);
+				Block block = iblockstate.getBlock();
 
-		Crystal = new BlockGeneric(Material.iron, "pickaxe", 3).setUnlocalizedName("tragicmc.crystal").setHardness(100.0F).setResistance(1000F);
+				if (worldIn.getBlockState(pos.offset(side.getOpposite())) != iblockstate)
+				{
+					return true;
+				}
+
+				if (block == this)
+				{
+					return false;
+				}
+
+				return super.shouldSideBeRendered(worldIn, pos, side);
+			}
+			
+			@Override
+			public EnumWorldBlockLayer getBlockLayer() {
+				return EnumWorldBlockLayer.TRANSLUCENT;
+			}
+		}.setUnlocalizedName("tragicmc.crystal").setHardness(100.0F).setResistance(1000F);
 		GameRegistry.registerBlock(Crystal, ItemBlock.class, "crystal");
 
 		DarkGrass = new BlockGenericGrass("Dark").setUnlocalizedName("tragicmc.darkGrass");
@@ -601,7 +623,7 @@ public class TragicBlocks {
 			@SideOnly(Side.CLIENT)
 			public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 			{
-				for (int i = 0; i < 10; i++)
+				for (byte i = 0; i < 10; i++)
 				{
 					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.0F, 0.0F, 0.0F);
@@ -615,7 +637,7 @@ public class TragicBlocks {
 		}.setUnlocalizedName("tragicmc.darkGas");
 		GameRegistry.registerBlock(DarkGas, ItemBlock.class, "darkGas");
 
-		DarkTallGrass = new BlockGenericTallGrass("Dark").setUnlocalizedName("tragicmc.darkTallGrass");
+		DarkTallGrass = new BlockGenericTallGrass().setUnlocalizedName("tragicmc.darkTallGrass");
 		GameRegistry.registerBlock(DarkTallGrass, ItemBlock.class, "darkTallGrass");
 
 		SepticGas = new BlockGas() {
@@ -638,7 +660,7 @@ public class TragicBlocks {
 			@SideOnly(Side.CLIENT)
 			public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 			{
-				for (int i = 0; i < 10; i++)
+				for (byte i = 0; i < 10; i++)
 				{
 					world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.4F, 1.0F, 0.4F);
@@ -648,27 +670,27 @@ public class TragicBlocks {
 			}
 		}.setUnlocalizedName("tragicmc.septicGas");
 		GameRegistry.registerBlock(SepticGas, ItemBlock.class, "septicGas");
-		
+
 		SkyFruit = new BlockFruit().setUnlocalizedName("tragicmc.skyFruit");
-		GameRegistry.registerBlock(SkyFruit, ItemBlock.class, "skyFruitBlock");
-		
+		GameRegistry.registerBlock(SkyFruit, ItemBlock.class, "skyFruitPod");
+
 		Deathglow = new BlockCrop().setUnlocalizedName("tragicmc.deathglow");
-		GameRegistry.registerBlock(Deathglow, ItemBlock.class, "deathglow");
-		
+		GameRegistry.registerBlock(Deathglow, ItemBlock.class, "deathglowPlant");
+
 		Honeydrop = new BlockCrop().setUnlocalizedName("tragicmc.honeydrop");
-		GameRegistry.registerBlock(Honeydrop, ItemBlock.class, "honeydrop");
-		
+		GameRegistry.registerBlock(Honeydrop, ItemBlock.class, "honeydropPlant");
+
 		Corsin = new BlockCorsin().setUnlocalizedName("tragicmc.corsin");
 		GameRegistry.registerBlock(Corsin, TragicItemBlock.class, "corsin", new Object[] {new String[] {"normal", "faded", "brick", "fadedBrick", "circle", "celled", "scarred", "crystal", "crystalWrap"}, "corsin"});
 
-		for (int i = 0; i < 3; i++)
+		for (byte i = 0; i < 3; i++)
 		{
 			OreDictionary.registerOre("blockQuicksand", new ItemStack(Quicksand, 1, i));
 			OreDictionary.registerOre("cobblestone", new ItemStack(LightCobblestone, 1, i));
 		}
 
-		for (int i = 0; i < 4; i++) OreDictionary.registerOre("cobblestone", new ItemStack(DarkCobblestone, 1, i));
-		for (int i = 0; i < 8; i++) OreDictionary.registerOre("stone", new ItemStack(DarkStone, 1, i));
+		for (byte i = 0; i < 4; i++) OreDictionary.registerOre("cobblestone", new ItemStack(DarkCobblestone, 1, i));
+		for (byte i = 0; i < 8; i++) OreDictionary.registerOre("stone", new ItemStack(DarkStone, 1, i));
 
 		OreDictionary.registerOre("stone", LightStone);
 		OreDictionary.registerOre("stone", ErodedStone);
@@ -701,7 +723,7 @@ public class TragicBlocks {
 		BiomeGenBase[] biomes = set.toArray(new BiomeGenBase[set.size()]);
 		boolean[] discrim = new boolean[16];
 
-		for (int j = 0; j < 16; j++) discrim[j] = true;
+		for (byte j = 0; j < 16; j++) discrim[j] = true;
 
 		for (BiomeGenBase b : biomes)
 		{
@@ -734,7 +756,7 @@ public class TragicBlocks {
 				discrim[15] = false;
 			}
 
-			for (int i = 0; i < 16; i++)
+			for (byte i = 0; i < 16; i++)
 			{
 				if (discrim[i]) b.addFlower(TragicFlower.getStateFromMeta(i), i == 14 ? 1 : 10);
 			}

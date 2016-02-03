@@ -21,6 +21,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
@@ -105,7 +106,6 @@ public class ClientEvents extends Gui {
 	public void onClientUpdate(LivingUpdateEvent event)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		//BlockGenericLeaves.fancyGraphics = Minecraft.isFancyGraphicsEnabled();
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 
 		if (player != null && TragicConfig.allowFlight && player.isPotionActive(TragicPotion.Flight.id) && mc.inGameHasFocus)
@@ -241,6 +241,11 @@ public class ClientEvents extends Gui {
 	@SubscribeEvent
 	public void renderHackedEffects(RenderGameOverlayEvent event)
 	{
+		((BlockGenericLeaves) TragicBlocks.PaintedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		((BlockGenericLeaves) TragicBlocks.AshenLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		((BlockGenericLeaves) TragicBlocks.BleachedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		((BlockGenericLeaves) TragicBlocks.HallowedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+		((BlockGenericLeaves) TragicBlocks.DarkLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 		if (event.type != ElementType.PORTAL) return;
 
 		Minecraft mc = Minecraft.getMinecraft();

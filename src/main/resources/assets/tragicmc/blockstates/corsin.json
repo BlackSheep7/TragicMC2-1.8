@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "variant=normal": { "model": "tragicmc:corsin" },
+        "variant=faded": { "model": "tragicmc:corsinFaded" },
+        "variant=brick": { "model": "tragicmc:corsinBrick" },
+        "variant=faded_brick": { "model": "tragicmc:corsinFadedBrick" },
+        "variant=circle": { "model": "tragicmc:corsinCircle" },
+        "variant=celled": { "model": "tragicmc:corsinCelled" },
+        "variant=scarred": { "model": "tragicmc:corsinScarred" },
+        "variant=crystal": { "model": "tragicmc:corsinCrystal" },
+        "variant=wrapped_crystal": { "model": "tragicmc:corsinCrystalWrap" }
+    }
+}

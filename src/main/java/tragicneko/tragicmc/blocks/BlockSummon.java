@@ -30,6 +30,7 @@ public class BlockSummon extends BlockContainer {
 		this.setHardness(150.0F);
 		this.setStepSound(soundTypeStone);
 		this.setUnlocalizedName("tragicmc.summonBlock");
+		this.setDefaultState(this.blockState.getBaseState().withProperty(BOSS, EnumBoss.WITHER));
 	}
 
 	@Override
@@ -85,7 +86,6 @@ public class BlockSummon extends BlockContainer {
 	public int getMetaFromState(IBlockState state)
     {
 		Comparable comp = state.getValue(BOSS);
-		EnumBoss en;
 		
 		for (byte m = 0; m < 16; m++)
 		{
@@ -94,6 +94,12 @@ public class BlockSummon extends BlockContainer {
 		}
 		
 		return 0;
+    }
+	
+	@Override
+	public int getRenderType()
+    {
+		return 3;
     }
 	
 	public enum EnumBoss implements IStringSerializable {

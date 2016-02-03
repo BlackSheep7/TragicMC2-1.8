@@ -122,7 +122,7 @@ public class TragicWeapon extends ItemSword {
 	 */
 	public static void updateAsWeapon(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
-		if (world.isRemote) return;
+		if (world.isRemote || stack == null) return;
 		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
 
 		if (!stack.getTagCompound().hasKey("cooldown")) stack.getTagCompound().setInteger("cooldown", 0);

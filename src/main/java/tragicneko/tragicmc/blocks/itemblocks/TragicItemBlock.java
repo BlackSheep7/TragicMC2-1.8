@@ -38,10 +38,4 @@ public class TragicItemBlock extends ItemBlock {
 	public int getMetadata(int damageValue) {
 		return damageValue;
 	}
-	/*
-	@SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int meta)
-    {
-		return this.field_150939_a.getIcon(0, meta);
-    } */
 }

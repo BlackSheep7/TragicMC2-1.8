@@ -1,0 +1,15 @@
+{
+    "variants": {
+        "variant=mercury": { "model": "tragicmc:oreMercury" },
+        "variant=tungsten": { "model": "tragicmc:oreTungsten" },
+        "variant=ruby": { "model": "tragicmc:oreRuby" },
+        "variant=sapphire": { "model": "tragicmc:oreSapphire" },
+        "variant=lapis": { "model": "tragicmc:oreLapis" },
+        "variant=diamond": { "model": "tragicmc:oreDiamond" },
+        "variant=emerald": { "model": "tragicmc:oreEmerald" },
+        "variant=gold": { "model": "tragicmc:oreGold" },
+        "variant=iron": { "model": "tragicmc:oreIron" },
+        "variant=coal": { "model": "tragicmc:oreCoal" },
+        "variant=xp": { "model": "tragicmc:oreXP" }
+    }
+}

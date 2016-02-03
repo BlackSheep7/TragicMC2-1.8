@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "variant=normal": { "model": "tragicmc:darkCobblestone" },
+        "variant=hot": { "model": "tragicmc:darkCobblestoneHot" },
+        "variant=toxic": { "model": "tragicmc:darkCobblestoneToxic" },
+        "variant=ashen": { "model": "tragicmc:darkCobblestoneAshen" }
+    }
+}

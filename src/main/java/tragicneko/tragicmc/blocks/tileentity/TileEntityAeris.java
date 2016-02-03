@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
@@ -14,14 +15,15 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.items.ItemCorruptedEgg;
 import tragicneko.tragicmc.util.WorldHelper;
 
-public class TileEntityAeris extends TileEntity {
+public class TileEntityAeris extends TileEntity implements IUpdatePlayerListBox {
 
 	private int corruptedTicks;
 
 	@Override
-	public void updateContainingBlockInfo()
+	public void update()
 	{
-		super.updateContainingBlockInfo();
+		if (this.blockType == null) return;
+		
 		IBlockState state = this.worldObj.getBlockState(this.getPos());
 		if (!this.worldObj.isRemote && this.getPos().getY() <= 50 && !this.worldObj.canBlockSeeSky(this.getPos()) && this.blockType.getMetaFromState(state) < 2)
 		{

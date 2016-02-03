@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "state=corrupt": { "model": "tragicmc:aerisCorrupt" },
+        "state=corrupting": { "model": "tragicmc:aerisCorrupting" },
+        "state=pure": { "model": "tragicmc:aerisPure" }
+    }
+}

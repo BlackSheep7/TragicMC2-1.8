@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "east=false,north=false,south=false,west=false": { "model": "tragicmc:conduit" },
+        "east=false,north=true,south=false,west=false": { "model": "tragicmc:conduitN", "uvlock": true },
+        "east=true,north=false,south=false,west=false": { "model": "tragicmc:conduitN", "y": 90, "uvlock": true },
+        "east=false,north=false,south=true,west=false": { "model": "tragicmc:conduitN", "y": 180, "uvlock": true },
+        "east=false,north=false,south=false,west=true": { "model": "tragicmc:conduitN", "y": 270, "uvlock": true },
+        "east=true,north=true,south=false,west=false": { "model": "tragicmc:conduitNE", "uvlock": true },
+        "east=true,north=false,south=true,west=false": { "model": "tragicmc:conduitNE", "y": 90, "uvlock": true },
+        "east=false,north=false,south=true,west=true": { "model": "tragicmc:conduitNE", "y": 180, "uvlock": true },
+        "east=false,north=true,south=false,west=true": { "model": "tragicmc:conduitNE", "y": 270, "uvlock": true },
+        "east=false,north=true,south=true,west=false": { "model": "tragicmc:conduitNS", "uvlock": true },
+        "east=true,north=false,south=false,west=true": { "model": "tragicmc:conduitNS", "y": 90, "uvlock": true },
+        "east=true,north=true,south=true,west=false": { "model": "tragicmc:conduitNSE", "uvlock": true },
+        "east=true,north=false,south=true,west=true": { "model": "tragicmc:conduitNSE", "y": 90, "uvlock": true },
+        "east=false,north=true,south=true,west=true": { "model": "tragicmc:conduitNSE", "y": 180, "uvlock": true },
+        "east=true,north=true,south=false,west=true": { "model": "tragicmc:conduitNSE", "y": 270, "uvlock": true },
+        "east=true,north=true,south=true,west=true": { "model": "tragicmc:conduitNSEW", "uvlock": true }
+    }
+}

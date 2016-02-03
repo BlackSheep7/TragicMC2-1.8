@@ -50,7 +50,12 @@ public class BlockDigitalSea extends Block {
 	{
 		return true;
 	}
-
+	
+	@Override
+	public boolean isReplaceable(World worldIn, BlockPos pos)
+    {
+        return true;
+    }
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
@@ -81,10 +86,22 @@ public class BlockDigitalSea extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess world, BlockPos pos, EnumFacing facing)
+	public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
 	{
-		if (world.getBlockState(pos).getBlock() == this) return false;
-		return super.shouldSideBeRendered(world, pos, facing);
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		Block block = iblockstate.getBlock();
+
+		if (worldIn.getBlockState(pos.offset(side.getOpposite())) != iblockstate)
+		{
+			return true;
+		}
+
+		if (block == this)
+		{
+			return false;
+		}
+
+		return super.shouldSideBeRendered(worldIn, pos, side);
 	}
 	
 	@Override

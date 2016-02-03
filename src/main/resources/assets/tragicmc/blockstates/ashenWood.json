@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":  { "model": "tragicmc:ashenWood" },
+        "axis=z":   { "model": "tragicmc:ashenWoodSide" },
+        "axis=x":   { "model": "tragicmc:ashenWoodSide", "y": 90 },
+        "axis=none": { "model": "tragicmc:ashenWoodBark" }
+    }
+}

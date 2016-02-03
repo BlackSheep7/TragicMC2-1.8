@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "state=live": { "model": "tragicmc:circuitLive" },
+        "state=damaged": { "model": "tragicmc:circuitDamaged" },
+        "state=very_damaged": { "model": "tragicmc:circuitVeryDamaged" },
+        "state=aged": { "model": "tragicmc:circuitAged" },
+        "state=dead": { "model": "tragicmc:circuitDead" }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "variant=blue_spiranthes": { "model": "tragicmc:blueSpiranthes" },
+        "variant=pink_spiranthes": { "model": "tragicmc:pinkSpiranthes" },
+        "variant=red_spiranthes": { "model": "tragicmc:redSpiranthes" },
+        "variant=white_spiranthes": { "model": "tragicmc:whiteSpiranthes" },
+        "variant=blue_coral": { "model": "tragicmc:blueCoral" },
+        "variant=red_coral": { "model": "tragicmc:redCoral" },
+        "variant=pink_ginger": { "model": "tragicmc:pinkGinger" },
+        "variant=red_ginger": { "model": "tragicmc:redGinger" },
+        "variant=bluebonnet": { "model": "tragicmc:bluebonnet" },
+        "variant=violet_sage": { "model": "tragicmc:violetSage" },
+        "variant=pink_sage": { "model": "tragicmc:pinkSage" },
+        "variant=white_sage": { "model": "tragicmc:whiteSage" },
+        "variant=bird_of_paradise": { "model": "tragicmc:birdOfParadise" },
+        "variant=juniper_bush": { "model": "tragicmc:juniperbush" },
+        "variant=stapelia": { "model": "tragicmc:stapelia" },
+        "variant=thistle": { "model": "tragicmc:thistle" }
+    }
+}

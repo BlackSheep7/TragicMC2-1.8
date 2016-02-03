@@ -37,7 +37,7 @@ public class BlockPermafrost extends Block {
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < 3; i++)
+		for (byte i = 0; i < 2; i++)
 			par3.add(new ItemStack(par1, 1, i));
 	}
 	
@@ -50,20 +50,19 @@ public class BlockPermafrost extends Block {
 	@Override
 	public IBlockState getStateFromMeta(int meta)
     {
-		return meta == 0 || meta >= EnumVariant.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(VARIANT, EnumVariant.values()[meta]);
+		return this.getDefaultState().withProperty(VARIANT, meta == 1 ? EnumVariant.CRACKED : EnumVariant.NORMAL);
     }
 	
 	@Override
 	public int getMetaFromState(IBlockState state)
     {
 		Comparable comp = state.getValue(VARIANT);
-		return comp == EnumVariant.CRACKED ? 1 : (comp == EnumVariant.MOSSY ? 2 : 0);
+		return comp == EnumVariant.CRACKED ? 1 : 0;
     }
 	
 	public enum EnumVariant implements IStringSerializable {
 		NORMAL("normal"),
-		CRACKED("cracked"),
-		MOSSY("mossy");
+		CRACKED("cracked");
 		
 		private final String name;
 		

@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "ashen=true,check_decay=true,decayable=true": { "model": "tragicmc:ashenLeaves" },
+        "ashen=true,check_decay=true,decayable=false": { "model": "tragicmc:ashenLeaves" },
+        "ashen=true,check_decay=false,decayable=true": { "model": "tragicmc:ashenLeaves" },
+        "ashen=true,check_decay=false,decayable=false": { "model": "tragicmc:ashenLeaves" },
+        "ashen=false,check_decay=true,decayable=true": { "model": "tragicmc:ashenLeavesClean" },
+        "ashen=false,check_decay=true,decayable=false": { "model": "tragicmc:ashenLeavesClean" },
+        "ashen=false,check_decay=false,decayable=true": { "model": "tragicmc:ashenLeavesClean" },
+        "ashen=false,check_decay=false,decayable=false": { "model": "tragicmc:ashenLeavesClean" }
+    }
+}

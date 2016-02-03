@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "steaming=true": { "model": "tragicmc:geyser" },
+        "steaming=false": { "model": "tragicmc:geyser" }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "flip=false": { "model": "tragicmc:iceSpike" },
+        "flip=true": { "model": "tragicmc:iceSpikeFlip" }
+    }
+}
