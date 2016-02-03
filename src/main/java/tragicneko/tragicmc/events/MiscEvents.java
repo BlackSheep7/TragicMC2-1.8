@@ -57,6 +57,8 @@ public class MiscEvents {
 	public static AttributeModifier moonMod = new AttributeModifier(UUID.fromString("7913bbbe-8b78-4e5f-8a7e-1d429e0ef1b6"), "moonlightModifier", TragicConfig.modifier[21], 0);
 	public static AttributeModifier lightMod = new AttributeModifier(UUID.fromString("7611c3b7-5bb8-4597-849b-c75788f8cc9b"), "lightningRodAttackBuff", TragicConfig.modifier[20], 0);
 
+	private static boolean DO_FIRE_REFLECTION = true;
+	
 	@SubscribeEvent
 	public void quicksandJumping(LivingJumpEvent event)
 	{
@@ -235,7 +237,7 @@ public class MiscEvents {
 
 		if (event.entityLiving instanceof EntityPlayer)
 		{
-			if (TragicConfig.allowBurned)
+			if (TragicConfig.allowBurned && DO_FIRE_REFLECTION)
 			{
 				if (event.entityLiving.isBurning())
 				{
@@ -248,8 +250,9 @@ public class MiscEvents {
 					}
 					catch (Exception e)
 					{
-						TragicMC.logError("Error caused while reflecting for burn potion effect", e);
+						TragicMC.logError("Error caused while reflecting for burn potion effect, this effect will be temporarily disabled until the game is restarted.", e);
 						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
+						DO_FIRE_REFLECTION = false;
 					}
 
 					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
