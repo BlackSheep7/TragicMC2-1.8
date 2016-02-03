@@ -4464,7 +4464,7 @@ Fixed some things that were commented out before
 Updated entities to use the superclass methods for teleporting and for giving off "light", fixed error with smaller entities
 Fixed error with custom leaf blocks and custom worldgen using an invalid parameter
 
-3.46.2870++ <213> (January 7, 2016) [Works in 1.8, just need the blockstates/item models set up]
+3.47.2904 <213> (January 7, 2016) [Works in 1.8, setup the block/item model json files]
 Fixed error with rendering for certain blocks, setup block world layers for some
 Fixed error with Directed Lightning datwatcher
 Updated datawatchers for Overlord 
@@ -4479,19 +4479,35 @@ Mirrored sound additions from the 1.7.10 version, new projectile, rocket launche
 Added config options for disabling mob infighting and mob illumination via Luminescence
 Fixed renders for most of the mobs
 Fixed missed datawatcher for Dimensional Anomalies
+Fixed music handler for the Dimensions
+Added json files for items
+Fixed Entity Egg error with colorizing the eggs due to the wrong Entity List being used
+Fixed reversed colorizing for amulets and mob eggs
+Added json files for special item instances (bows, everlasting light, amulets, low durability armor)
+Fixed Tile Entities not properly updating
+Fixed Structure Seed using meta values that were too high
+Changed Ashen Leaves to have an additional blockstate for having ash on top of it or not
+Changed GenericTallGrass to extend BlockBush instead, to avoid unnecessary blockstates
+Changed BlockLeafTrim to extend GenericTallGrass
+Fixed wrong meta value being set for tall grass in the Creative Tab
+Added ability for my tall grass and flowers to be slightly offset
+Fixed giant potato and carrot blocks not growing properly
+Changed DarkenedQuartz to inherit the blockstates from BlockQuartz for simplification of blockstates
+Fixed some schematics using Dark Stone instead of Spike (since it was separated from the DarkStone block to simplify it's blockstate)
+Created new block class for Conduit as it will act like a fence now, going to create custom blockstate models later on
+Changed Digital Sea to be replaceable (you can place a block in it's place now)
+Made Fragile Light work as originally intended, it "hides" when you collide with it and may break
+Removed mossy variant of Permafrost, modified Moss texture some, specifically so it'll "tile" better
+Finished adding json files for blocks
 
-TODO: Add textures for armor (not the armor model ones)
+3.47.2906++ <214> (January 28, 2016)
+Initial playtesting of the fully ported mod to ensure of no major bugs
+Fixed improper imports for Arrays (again), stupid other package with the same damn class name
+Going to add the textures for armor (not the armor models one) and then I'll do some more playtesting
+
+TODO: Seperate overlay for Generator items (just for ease), do the same for mob statues
+TODO: Add textures for armor when armor models are disabled
 TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
-
-//Changed common entity functions
-func_145780_a(int x, int y, int z, Block block) ---> playStepSound(BlockPos pos, Block block)
-onSpawnWithEgg(IEntityLivingData data) ---> func_180482_a(DifficultyInstance ins, IEntityLivingData data)
-fall(float par1) ---> fall(float dist, float multi)
-updateFallState(double par1, boolean par2) ---> func_180433_a(double par1, boolean par2, Block block, BlockPos pos)
-func_147480_a(int x, int y, int z, boolean flag) ---> destroyBlock(BlockPos pos, boolean dropItem)
-
-//Block function change
-Instead of quantiyDroppedWithBonus(...) use quantityDropped(IBlockState state, int fortune, Random rand) instead
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
