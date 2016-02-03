@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "tragicmc:blocks/Fanbrush"
+        "cross": "tragicmc:blocks/FanBrush"
     }
 }
