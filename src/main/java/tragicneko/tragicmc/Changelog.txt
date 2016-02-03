@@ -4500,10 +4500,19 @@ Made Fragile Light work as originally intended, it "hides" when you collide with
 Removed mossy variant of Permafrost, modified Moss texture some, specifically so it'll "tile" better
 Finished adding json files for blocks
 
-3.47.2906++ <214> (January 28, 2016)
+3.47.2904++ <214> (January 28, 2016)
 Initial playtesting of the fully ported mod to ensure of no major bugs
 Fixed improper imports for Arrays (again), stupid other package with the same damn class name
 Going to add the textures for armor (not the armor models one) and then I'll do some more playtesting
+Fixed typo in Fanbrush texture json and fixed inventory texture for Sky Fruit Pod
+Fixed crash when looking at the Ragr burning achievement in the achievement screen
+Fixed all Jacks having the highest harvest level
+Prevent lots of spam when the fire field can't be reflected for an entity when the Fire effect is attempting to set the right value for it's duration
+Updated code for some client-side rendering (guis, potion effect overlays, etc.)
+Re-enabled rendering of icons for potion effects, fixed crash related to rendering of the Fire potion effect icon
+Updated potion effect overlay textures
+Fixed Bleeding Obsidian Orb not counting for the Wonder Orb achievement
+Fixed wrong textures being used for Ruby/Sapphire Ore
 
 TODO: Seperate overlay for Generator items (just for ease), do the same for mob statues
 TODO: Add textures for armor when armor models are disabled
