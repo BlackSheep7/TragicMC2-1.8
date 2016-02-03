@@ -252,7 +252,7 @@ public class ClientEvents extends Gui {
 			((BlockGenericLeaves) TragicBlocks.HallowedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 			((BlockGenericLeaves) TragicBlocks.DarkLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 		}
-		
+
 		if (event.type != ElementType.PORTAL) return;
 
 		Minecraft mc = Minecraft.getMinecraft();
@@ -263,11 +263,12 @@ public class ClientEvents extends Gui {
 		boolean flag3 = TragicConfig.allowConvergence && mc.thePlayer.isPotionActive(TragicPotion.Convergence);
 		boolean flag4 = false; //mc.thePlayer.isPotionActive(TragicPotion.Nightmare);
 		boolean flag5 = false; //mc.thePlayer.isPotionActive(TragicPotion.Frozen);
+		boolean flag6 = TragicConfig.allowCorruption && mc.thePlayer.isPotionActive(TragicPotion.Corruption);
 
-		if (!flag && !flag2 && !flag3 && !flag4 && !flag5) return;
+		if (!flag && !flag2 && !flag3 && !flag4 && !flag5 && !flag6) return;
 
 		mc.renderEngine.bindTexture(flag ? hackedTexture : divinityTexture);
-		
+
 		GlStateManager.enableBlend();
 		GlStateManager.disableDepth();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -275,12 +276,14 @@ public class ClientEvents extends Gui {
 
 		float f = 2.635F;
 		float f1 = flag4 ? 0.525F : 0.325F;
-		float f2 = 0.225F;
-		float trans = flag || flag4 ? f1 - MathHelper.cos(mc.thePlayer.ticksExisted / f) * f2 : 0.1375F;
+		float f2 = flag6 ? 0.265F : 0.225F;
+		float trans = flag || flag4 || flag6 ? f1 - MathHelper.cos(mc.thePlayer.ticksExisted / f) * f2 : 0.1375F;
 
 		float r = flag3 ? 1F : rgb[color][0];
 		float g = flag3 ? 0F : rgb[color][1];
 		float b = flag3 ? 0F : rgb[color][2];
+
+		if (flag6) r = g = b= 0F;
 
 		if (flag4)
 		{
