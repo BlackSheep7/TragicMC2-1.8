@@ -64,12 +64,12 @@ public class ArmorLight extends TragicArmor {
 	@Override
 	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
 	{
-		return TragicConfig.allowArmorModels ? tragicneko.tragicmc.client.ClientProxy.modelsLight[slot] : null;
+		return TragicConfig.allowArmorModels ? tragicneko.tragicmc.client.ClientProxy.modelsLight[4 - slot] : null;
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return TragicConfig.allowArmorModels ? texture : (slot == 2 ? "tragicmc:textures/armor/Light2.png" : "tragicmc:textures/armor/Light1.png");
+		return TragicConfig.allowArmorModels ? texture : (slot == 1 ? "tragicmc:textures/armor/Light2.png" : "tragicmc:textures/armor/Light1.png");
 	}
 }

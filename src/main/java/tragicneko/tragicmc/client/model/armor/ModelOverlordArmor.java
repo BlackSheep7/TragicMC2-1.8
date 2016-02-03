@@ -313,9 +313,17 @@ public class ModelOverlordArmor extends ModelBiped {
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 
+		this.isChild = false;
+		this.isRiding = entity.isRiding();
 		this.isSneak = entity.isSneaking();
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
+		
+		if (this.isSneak)
+		{
+			GL11.glPushMatrix();
+			GL11.glTranslatef(0.0F, 0.2F, 0.0F);
+		}
+		
 		if (this.isChild)
 		{
 			float f6 = 2.0F;
@@ -336,7 +344,7 @@ public class ModelOverlordArmor extends ModelBiped {
 			GL11.glPopMatrix();
 		}
 		else
-		{
+		{ 
 			if (this.armorType == 0) this.bipedHead.render(f5);
 			if (this.armorType == 1) this.bipedBody.render(f5);
 			if (this.armorType == 1) this.bipedRightArm.render(f5);
@@ -345,6 +353,8 @@ public class ModelOverlordArmor extends ModelBiped {
 			if (this.armorType >= 2) this.bipedLeftLeg.render(f5);
 			if (this.armorType == 0) this.bipedHeadwear.render(f5);
 		}
+		
+		if (this.isSneak) GL11.glPopMatrix();
 	}
 
 	/**

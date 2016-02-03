@@ -197,10 +197,8 @@ public class ClientProxy extends CommonProxy {
 
 	public static final ModelOverlordArmor[] modelsOverlord = new ModelOverlordArmor[] {new ModelOverlordArmor(0), new ModelOverlordArmor(1),
 		new ModelOverlordArmor(2), new ModelOverlordArmor(3)};
-
 	public static final ModelLightArmor[] modelsLight = new ModelLightArmor[] {new ModelLightArmor(0), new ModelLightArmor(1),
 		new ModelLightArmor(2), new ModelLightArmor(3)};
-
 	public static final ModelDarkArmor[] modelsDark = new  ModelDarkArmor[] {new ModelDarkArmor(0), new ModelDarkArmor(1),
 		new ModelDarkArmor(2), new ModelDarkArmor(3)};
 

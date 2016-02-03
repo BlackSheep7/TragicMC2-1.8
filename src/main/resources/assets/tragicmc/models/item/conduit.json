@@ -1,5 +1,5 @@
 {
-    "parent": "tragicmc:block/conduitInventory",
+    "parent": "tragicmc:block/conduit",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

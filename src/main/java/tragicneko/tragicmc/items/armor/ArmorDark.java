@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
 
@@ -57,12 +58,12 @@ public class ArmorDark extends TragicArmor {
 	@Override
 	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
 	{
-		return TragicConfig.allowArmorModels ? tragicneko.tragicmc.client.ClientProxy.modelsDark[slot] : null;
+		return TragicConfig.allowArmorModels ? tragicneko.tragicmc.client.ClientProxy.modelsDark[4 - slot] : null;
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return TragicConfig.allowArmorModels ? texture : (slot == 2 ? "tragicmc:textures/armor/Dark2.png" : "tragicmc:textures/armor/Dark1.png");
+		return TragicConfig.allowArmorModels ? texture : (slot == 1 ? "tragicmc:textures/armor/Dark2.png" : "tragicmc:textures/armor/Dark1.png");
 	}
 }
