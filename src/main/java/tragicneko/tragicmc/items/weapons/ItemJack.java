@@ -37,9 +37,9 @@ public class ItemJack extends TragicTool {
 			TragicBlocks.DarkenedQuartz, TragicBlocks.BoneBlock, TragicBlocks.ErodedStone, TragicBlocks.SandstonePressurePlate, TragicBlocks.NetherBrickPressurePlate,
 			Blocks.wooden_button, Blocks.stone_button, Blocks.oak_door, Blocks.acacia_door, Blocks.wooden_slab, TragicBlocks.SummonBlock});
 
-	public ItemJack(ToolMaterial material, Doomsday dday) {
+	public ItemJack(ToolMaterial material, Doomsday dday, int harvestLevel) {
 		super(1.0F, material, blocksEffectiveAgainst, dday);
-		this.setHarvestLevel("pickaxe", 3);
+		this.setHarvestLevel("pickaxe", harvestLevel);
 		this.setCreativeTab(TragicMC.Survival);
 	}
 

@@ -539,13 +539,13 @@ public class TragicItems {
 		EverlastingLight = (new ItemEverlastingLight().setUnlocalizedName("tragicmc.everlastingLight").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(EverlastingLight, "everlastingLight");
 
-		Jack = (new ItemJack(toolBasic, null).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicMC.Survival));
+		Jack = (new ItemJack(toolBasic, null, 1).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(Jack, "jack");
 
-		TungstenJack = (new ItemJack(toolJack, Doomsday.MinerSkills) {}.setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicMC.Survival));
+		TungstenJack = (new ItemJack(toolJack, Doomsday.MinerSkills, 2) {}.setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(TungstenJack, "tungstenJack");
 
-		CelestialJack = (new ItemJack(toolCelesJack, Doomsday.RealityAlter) {}.setUnlocalizedName("tragicmc.celestialJack"));
+		CelestialJack = (new ItemJack(toolCelesJack, Doomsday.RealityAlter, 3) {}.setUnlocalizedName("tragicmc.celestialJack"));
 		GameRegistry.registerItem(CelestialJack, "celestialJack");
 
 		//Normal Item Registrations
