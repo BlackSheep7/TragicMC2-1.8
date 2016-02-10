@@ -27,7 +27,7 @@ public class BlockFragileLight extends Block {
 	public static final PropertyBool VISIBLE = PropertyBool.create("visible");
 
 	public BlockFragileLight() {
-		super(Material.glass);
+		super(Material.circuits);
 		this.setHarvestLevel("pickaxe", 0);
 		this.setUnlocalizedName("tragicmc.fragileLight");
 		this.setHardness(0.5F);

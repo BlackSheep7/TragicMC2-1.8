@@ -98,7 +98,7 @@ public class TragicConfig {
 	public static boolean[] mobConfig = new boolean[16];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowMobTransformation;
 	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs, allowEasyBosses, allowMobSounds, bossesDenyFlight;
-	public static boolean allowMobInfighting, allowMobIllumination;
+	public static boolean allowMobInfighting, allowMobIllumination, allowRandomSupportMob;
 	public static int commonDropRate, rareDropRate, mobTransformationChance, bossDamageCap, groupBuffChance;
 	public static boolean[] mobAllow = new boolean[64];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
@@ -2037,6 +2037,10 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowMobIllumination", true);
 		prop.comment = "Can mobs glow via a Luminescence block?";
 		mobConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowRandomSupportMob", false);
+		prop.comment = "Can Support mobs sometimes spawn and continuously buff other nearby mobs?";
+		mobConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "commonMobDropChance", 25);
 		prop.comment = "Affects the chances of getting common mob drops from the looting amount you killed mobs with, only affects mod-exclusive entities.";
@@ -4385,6 +4389,7 @@ public class TragicConfig {
 		bossesDenyFlight = mobConfig[++m];
 		allowMobInfighting = mobConfig[++m];
 		allowMobIllumination = mobConfig[++m];
+		allowRandomSupportMob = mobConfig[++m];
 
 		allowJabba = mobAllow[m = 0];
 		allowJanna = mobAllow[++m];

@@ -15,7 +15,7 @@ import tragicneko.tragicmc.TragicMC;
 public class BlockStringLight extends Block {
 
 	public BlockStringLight() {
-		super(Material.glass);
+		super(Material.circuits);
 		this.setLightLevel(0.81F);
 		this.setLightOpacity(0);
 		this.setResistance(0.1F);
@@ -32,6 +32,12 @@ public class BlockStringLight extends Block {
 
 	@Override
 	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isFullBlock()
 	{
 		return false;
 	}

@@ -30,11 +30,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
@@ -57,16 +59,20 @@ import com.google.common.base.Predicate;
 public abstract class TragicMob extends EntityMob
 {
 	protected TragicMiniBoss superiorForm;
-	
+
 	public static final int DW_CHANGE_STATE = 16;
 	public static final int DW_CORRUPTION_TICKS = 17;
-	
+	public static final int DW_SUPPORT = 18;
+
+	private int supportID = -1; //the potion id for the support buff applied to others
+	private int supportAmp = 1; //the potion amplifier for the support buff
+
 	public static final Predicate playerTarget = new Predicate() {
 		@Override
 		public boolean apply(Object input) {
 			return canApply((Entity) input);
 		}
-		
+
 		public boolean canApply(Entity entity) {
 			return entity instanceof EntityPlayer;
 		}
@@ -92,6 +98,7 @@ public abstract class TragicMob extends EntityMob
 		super.entityInit();
 		this.dataWatcher.addObject(DW_CHANGE_STATE, Byte.valueOf((byte) 0));
 		this.dataWatcher.addObject(DW_CORRUPTION_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_SUPPORT, Byte.valueOf((byte) 0));
 	}
 
 	public int getCorruptionTicks()
@@ -114,9 +121,17 @@ public abstract class TragicMob extends EntityMob
 	{
 		return this.dataWatcher.getWatchableObjectByte(DW_CHANGE_STATE) == 1;
 	}
-	
+
 	public void setChanging(boolean flag) {
 		this.dataWatcher.updateObject(DW_CHANGE_STATE, flag ? (byte) 1 : (byte) 0); 
+	}
+
+	public boolean isSupport() {
+		return this.dataWatcher.getWatchableObjectByte(DW_SUPPORT) == 1;
+	}
+
+	public void setSupport(boolean flag) {
+		this.dataWatcher.updateObject(DW_SUPPORT, flag ? (byte) 1 : (byte) 0);
 	}
 
 	@Override
@@ -130,13 +145,87 @@ public abstract class TragicMob extends EntityMob
 			{
 				this.spawnExplosionParticle();
 			}
+
+			if (this.isSupport() && this.worldObj.getDifficulty() == EnumDifficulty.HARD)
+			{
+				double d = 0.35D;
+				double d2 = 0.35D;
+
+				for (byte i = 0; i < 3; i++)
+				{
+					this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							(this.rand.nextDouble() - 0.6D) * 0.1D, this.rand.nextDouble() * 0.1D, (this.rand.nextDouble() - 0.6D) * 0.1D);
+
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE,
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							0.6D, 0.2D, 0.6D);
+
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE,
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							rand.nextDouble() * d + d2, rand.nextDouble() * d + d2, rand.nextDouble() * d + d2);
+
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE,
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							rand.nextDouble() * d + d2, rand.nextDouble() * d + d2, rand.nextDouble() * d + d2);
+
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE,
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							rand.nextDouble() * d + d2, rand.nextDouble() * d + d2, rand.nextDouble() * d + d2);
+				}
+			}
 			return;
+		}
+
+		if (this.isCorrupted())
+		{
+			TragicMC.logInfo("blah");
+			for (byte i = 0; i < 3; i++)
+			{
+				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB_AMBIENT,
+						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+						this.posY + this.rand.nextDouble() * this.height,
+						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+						0.2, 0.2, 0.2);
+			}
 		}
 
 		if (this.isChanging() && this.ticksExisted > 1)
 		{
 			this.change();
 			return;
+		}
+
+		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && this.isSupport() && this.ticksExisted % 30 == 0)
+		{
+			if (this.supportID < 0)
+			{
+				this.supportID = this.getRandomPotionID();
+				this.supportAmp = rand.nextInt(2);
+			}
+
+			if (Potion.potionTypes[this.supportID] != null)
+			{
+				PotionEffect effect = new PotionEffect(this.supportID, 300, this.supportAmp);
+				this.addPotionEffect(effect);
+
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
+
+				for (Entity e : list)
+				{
+					if (e instanceof EntityMob && this.canEntityBeSeen(e) && ((EntityMob) e).getAttackTarget() != this) ((EntityMob) e).addPotionEffect(effect);
+				}
+			}
 		}
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
@@ -292,6 +381,9 @@ public abstract class TragicMob extends EntityMob
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("corruptionTicks")) this.setCorruptionTicks(tag.getInteger("corruptionTicks"));
 		if (tag.hasKey("changeState")) this.setChanging(tag.getByte("changeState") == 1);
+		if (tag.hasKey("support")) this.setSupport(tag.getByte("support") == 1);
+		if (tag.hasKey("supportID")) this.supportID = tag.getInteger("supportID");
+		if (tag.hasKey("supportAmp")) this.supportAmp = tag.getInteger("supportAmp");
 	}
 
 	@Override
@@ -300,6 +392,9 @@ public abstract class TragicMob extends EntityMob
 		super.writeEntityToNBT(tag);
 		tag.setInteger("corruptionTicks", this.getCorruptionTicks());
 		tag.setByte("changeState", this.isChanging() ? (byte) 1 : (byte) 0);
+		tag.setByte("support", this.isSupport() ? (byte) 1 : (byte) 0);
+		tag.setInteger("supportID", this.supportID);
+		tag.setInteger("supportAmp", this.supportAmp);
 	}
 
 	public boolean getMobGriefing()
@@ -458,49 +553,14 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
 	{
+		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.allowRandomSupportMob) this.setSupport(rand.nextInt(100) == 0);
+
 		if (!TragicConfig.allowGroupBuffs) return super.func_180482_a(ins, data);
 		if (data == null)
 		{
 			if (rand.nextInt(200) <= TragicConfig.groupBuffChance)
 			{
-				int id = Potion.damageBoost.id;
-				switch(rand.nextInt(12))
-				{
-				case 0:
-				default:
-					break;
-				case 1:
-					id = Potion.moveSpeed.id;
-					break;
-				case 2:
-					id = Potion.invisibility.id;
-					break;
-				case 3:
-					id = this.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD ? Potion.poison.id : Potion.regeneration.id;
-					break;
-				case 4:
-					id = Potion.fireResistance.id;
-					break;
-				case 5:
-					id = Potion.resistance.id;
-					break;
-				case 6:
-					id = Potion.jump.id;
-					break;
-				case 7:
-					id = TragicConfig.allowImmunity ? TragicPotion.Immunity.id : Potion.digSpeed.id;
-					break;
-				case 8:
-					id = TragicConfig.allowClarity ? TragicPotion.Clarity.id : Potion.resistance.id;
-					break;
-				case 9:
-					id = TragicConfig.allowResurrection ? TragicPotion.Resurrection.id : Potion.digSpeed.id;
-					break;
-				case 10:
-					id = TragicConfig.allowAquaSuperiority ? TragicPotion.AquaSuperiority.id : Potion.jump.id;
-					break;
-				}
-
+				int id = this.getRandomPotionID();
 				PotionEffect effect = new PotionEffect(id, 99999, rand.nextInt(2));
 				this.addPotionEffect(effect);
 				return new GroupBuff(effect);
@@ -512,6 +572,48 @@ public abstract class TragicMob extends EntityMob
 			return super.func_180482_a(ins, data);
 		}
 		return super.func_180482_a(ins, data);
+	}
+
+	private int getRandomPotionID() {
+		int id = Potion.damageBoost.id;
+		switch(rand.nextInt(12))
+		{
+		case 0:
+		default:
+			break;
+		case 1:
+			id = Potion.moveSpeed.id;
+			break;
+		case 2:
+			id = Potion.invisibility.id;
+			break;
+		case 3:
+			id = this.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD ? Potion.poison.id : Potion.regeneration.id;
+			break;
+		case 4:
+			id = Potion.fireResistance.id;
+			break;
+		case 5:
+			id = Potion.resistance.id;
+			break;
+		case 6:
+			id = Potion.jump.id;
+			break;
+		case 7:
+			id = TragicConfig.allowImmunity ? TragicPotion.Immunity.id : Potion.digSpeed.id;
+			break;
+		case 8:
+			id = TragicConfig.allowClarity ? TragicPotion.Clarity.id : Potion.resistance.id;
+			break;
+		case 9:
+			id = TragicConfig.allowResurrection ? TragicPotion.Resurrection.id : Potion.digSpeed.id;
+			break;
+		case 10:
+			id = TragicConfig.allowAquaSuperiority ? TragicPotion.AquaSuperiority.id : Potion.jump.id;
+			break;
+		}
+
+		return id;
 	}
 
 	/**
@@ -641,7 +743,7 @@ public abstract class TragicMob extends EntityMob
 	{
 		return false;
 	}
-	
+
 	protected boolean teleportRandomly()
 	{
 		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 24.0D;
@@ -731,26 +833,26 @@ public abstract class TragicMob extends EntityMob
 				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				this.worldObj.spawnParticle(getTeleportParticle(), d7, d8, d9, f, f1, f2);
 			}
-			
+
 			this.worldObj.playSoundEffect(d3, d4, d5, getTeleportSound(), 0.2F, 1.0F);
 			this.playSound(getTeleportSound(), 0.2F, 1.0F);
 			this.onTeleport(d3, d4, d5);
 			return true;
 		}
 	}
-	
+
 	protected String getTeleportSound() {
 		return "mob.endermen.portal";
 	}
-	
+
 	protected EnumParticleTypes getTeleportParticle() {
 		return EnumParticleTypes.PORTAL;
 	}
-	
+
 	protected int getTeleportLight() {
 		return 8;
 	}
-	
+
 	/**
 	 * Called on successful teleport of this entity, includes previous coordinates before teleport
 	 * @param x
@@ -758,16 +860,16 @@ public abstract class TragicMob extends EntityMob
 	 * @param z
 	 */
 	protected void onTeleport(double x, double y, double z) {
-		
+
 	}
-	
+
 	protected boolean teleportPlayer(EntityPlayerMP mp) {
 		if (mp.capabilities.isCreativeMode) return false;
-		
+
 		double x = mp.posX;
 		double y = mp.posY;
 		double z = mp.posZ;
-		
+
 		double x2 = this.posX;
 		double y2 = this.posY;
 		double z2 = this.posZ;
@@ -790,12 +892,12 @@ public abstract class TragicMob extends EntityMob
 				double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				this.worldObj.spawnParticle(getTeleportParticle(), d7, d8, d9, f, f1, f2);
 			}
-			
+
 			mp.fallDistance = 0.0F;
 			this.worldObj.playSoundAtEntity(mp, getTeleportSound(), 0.4F, 0.4F);
 			return true;
 		}
-		
+
 		return false;
 	}
 }
