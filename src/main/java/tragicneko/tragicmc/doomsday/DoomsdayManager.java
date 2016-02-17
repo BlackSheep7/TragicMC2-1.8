@@ -192,7 +192,7 @@ public class DoomsdayManager {
 							temp = effect;
 						}
 						
-						if (!(effect.dday instanceof IExtendedDoomsday)&& TragicConfig.allowPartnerDoomsdays) //TODO test partner doomsdays
+						if (!(effect.dday instanceof IExtendedDoomsday)&& TragicConfig.allowPartnerDoomsdays)
 						{
 							Iterator<UUID> it = playerMap.keySet().iterator();
 							

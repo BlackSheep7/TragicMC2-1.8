@@ -2,10 +2,9 @@ package tragicneko.tragicmc.client.model.armor;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityAgeable;
-
-import org.lwjgl.opengl.GL11;
+import net.minecraft.entity.EntityLivingBase;
 
 /**
  * ModelDarkArmor - TragicNeko
@@ -386,39 +385,50 @@ public class ModelDarkArmor extends ModelBiped {
 		this.bipedLeftArm.addChild(this.shape55);
 		this.bipedHeadwear.addChild(this.shape25);
 	}
+	
+	@Override
+	public void setLivingAnimations(EntityLivingBase entity, float f, float f2, float partialTick)
+	{
+		this.isChild = entity.isChild();
+		this.isRiding = entity.isRiding();
+		this.isSneak = entity.isSneaking();
+	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 
-		this.isChild = false;
-		this.isRiding = entity.isRiding();
-		this.isSneak = entity.isSneaking();
+		if (entity instanceof EntityLivingBase) this.setLivingAnimations((EntityLivingBase) entity, f1, f2, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		
-		if (this.isSneak)
-		{
-			GL11.glPushMatrix();
-			GL11.glTranslatef(0.0F, 0.2F, 0.0F);
-		}
+		GlStateManager.pushMatrix();
+		if (this.isSneak) GlStateManager.translate(0.0, 0.2, 0.0);
+		
+		//ItemStack stack = entity instanceof EntityLivingBase ? ((EntityLivingBase) entity).getEquipmentInSlot(4 - this.armorType) : null;
+		//boolean enchanted = stack != null && stack.isItemEnchanted();
+
+		//GlStateManager.enableBlend();
+		GlStateManager.disableAlpha();
+		
+		//GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		//GlStateManager.color(1.0F, 1.0F, 1.0F, 0.695F);
 		
 		if (this.isChild)
 		{
 			float f6 = 2.0F;
-			GL11.glPushMatrix();
-			GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
-			GL11.glTranslatef(0.0F, 16.0F * f5, 0.0F);
+			GlStateManager.pushMatrix();
+			GlStateManager.scale(1.5F / f6, 1.5F / f6, 1.5F / f6);
+			GlStateManager.translate(0.0F, 16.0F * f5, 0.0F);
 			if (this.armorType == 0) this.bipedHead.render(f5);
-			GL11.glPopMatrix();
-			GL11.glPushMatrix();
-			GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
-			GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
+			GlStateManager.popMatrix();
+			GlStateManager.pushMatrix();
+			GlStateManager.scale(1.0F / f6, 1.0F / f6, 1.0F / f6);
+			GlStateManager.translate(0.0F, 24.0F * f5, 0.0F);
 			if (this.armorType == 1) this.bipedBody.render(f5);
 			if (this.armorType == 1) this.bipedRightArm.render(f5);
 			if (this.armorType == 1) this.bipedLeftArm.render(f5);
 			if (this.armorType >= 2) this.bipedRightLeg.render(f5);
 			if (this.armorType >= 2) this.bipedLeftLeg.render(f5);
 			if (this.armorType == 0) this.bipedHeadwear.render(f5);
-			GL11.glPopMatrix();
 		}
 		else
 		{ 
@@ -430,8 +440,11 @@ public class ModelDarkArmor extends ModelBiped {
 			if (this.armorType >= 2) this.bipedLeftLeg.render(f5);
 			if (this.armorType == 0) this.bipedHeadwear.render(f5);
 		}
-		
-		if (this.isSneak) GL11.glPopMatrix();
+
+		GlStateManager.enableAlpha();
+		//GlStateManager.disableBlend();
+		GlStateManager.popMatrix();
+
 	}
 
 	/**

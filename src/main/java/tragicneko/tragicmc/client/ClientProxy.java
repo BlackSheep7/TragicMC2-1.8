@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.client;
 
-import joptsimple.internal.Strings;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -186,7 +185,6 @@ import tragicneko.tragicmc.items.amulet.ItemAmulet.EnumAmuletType;
 import tragicneko.tragicmc.util.TragicEntityList;
 import tragicneko.tragicmc.util.TragicEntityList.EntityEggInfo;
 import tragicneko.tragicmc.util.TragicEntityList.EnumEggType;
-import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class ClientProxy extends CommonProxy {
 
@@ -194,6 +192,7 @@ public class ClientProxy extends CommonProxy {
 
 	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
 	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);
+	public static KeyBinding disableModels = new KeyBinding("Disable Models Shortcut", Keyboard.KEY_M, TragicMC.MODNAME);
 
 	public static final ModelOverlordArmor[] modelsOverlord = new ModelOverlordArmor[] {new ModelOverlordArmor(0), new ModelOverlordArmor(1),
 		new ModelOverlordArmor(2), new ModelOverlordArmor(3)};
@@ -342,9 +341,9 @@ public class ClientProxy extends CommonProxy {
 	private static final String[] obsidian = new String[] {"cryingObsidian", "bleedingObsidian", "dyingObsidian"};
 	private static final String[] deadDirt = new String[] {"deadDirt", "deadDirtRugged", "deadDirtMixed"};
 	private static final String[] darkSandstone = new String[] {"darkSandstone", "darkSandstoneSmooth", "darkSandstoneBricked", "darkSandstoneChiseled", "darkSandstoneGridded",
-		"darkSandstoneCarved"};
+	"darkSandstoneCarved"};
 	private static final String[] ores = new String[] {"oreMercury", "oreTungsten", "oreRuby", "oreSapphire", "oreLapis", "oreDiamond", "oreEmerald", "oreGold",
-	"oreIron", "oreCoal", "oreXP"};
+		"oreIron", "oreCoal", "oreXP"};
 	private static final String[] boneBlock = new String[] {"boneBlock", "boneBlockRotten"};
 	private static final String[] smoothNetherrack = new String[] {"smoothNetherrack", "smoothNetherrackChiseled", "smoothNetherrackBeveled", "smoothNetherrackSculpted", "smoothNetherrackFoxtail",
 	"smoothNetherrackMolten"};
@@ -361,7 +360,7 @@ public class ClientProxy extends CommonProxy {
 	private static String[] aeris = new String[] {"aerisPure", "aerisCorrupting", "aerisCorrupt"};
 	private static String[] permafrost = new String[] {"permafrost", "permafrostCracked"};
 	private static String[] corsin = new String[] {"corsin", "corsinFaded", "corsinBrick", "corsinFadedBrick", "corsinCircle", "corsinCelled", "corsinScarred", "corsinCrystal", "corsinCrystalWrap"};
-	
+
 	private static final String[] spawnEggs = new String[] {"spawnEgg", "spawnEgg2", "spawnEgg3", "spawnEgg4", "spawnEgg5"};
 	private static final String[] huntersBow = new String[] {"huntersBow", "huntersBow1", "huntersBow2", "huntersBow3"};
 	private static final String[] celestialLongbow = new String[] {"celestialLongbow", "celestialLongbow1", "celestialLongbow2", "celestialLongbow3"};
@@ -374,16 +373,16 @@ public class ClientProxy extends CommonProxy {
 		"pitchBlack", "darkEnergy", "darkMortor", "webBomb", "crystalMortor", "overlordMortor", "ireEnergy"};
 	private static final String[] generator = new String[] {"voidPitGenerator", "spikeGenerator", "starCrystalGenerator", "sphereGenerator",
 		"sphereEraser", "liquidRemover", "treeGenerator", "lightningSummoner", "explosionGenerator", "isleGenerator", "directedLightningSummoner",
-		"pitGenerator"};
+	"pitGenerator"};
 	private static final String[] statue = new String[] {"apis", "kitsune", "deathReaper", "timeController", "yeti", "polaris", "jarra", "kragul",
 		"magmox", "megaCryse", "stinKing", "stinQueen", "greaterStin", "voxStellarum", "enyvil", "claymation", "aegar", "overlord", "overlordCombat",
-		"overlordCocoon"};
+	"overlordCocoon"};
 
 	@Override
 	public void preInitRenders() {
 		//TODO bookmark for Bakery name registrations 
 		registerBlockToBakery(TragicBlocks.SummonBlock, getPrefixedArray(summonBlock));
-		
+
 		if (TragicConfig.allowNonMobBlocks)
 		{
 			registerBlockToBakery(TragicBlocks.CompactOre, getPrefixedArray(compactOre));
@@ -397,30 +396,30 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToBakery(TragicBlocks.TragicOres, getPrefixedArray(ores));
 			registerBlockToBakery(TragicBlocks.BoneBlock, getPrefixedArray(boneBlock));
 			registerBlockToBakery(TragicBlocks.SmoothNetherrack, getPrefixedArray(smoothNetherrack));
-			
+
 			registerBlockToBakery(TragicBlocks.TragicSapling, getPrefixedArray(saplings));
 			registerBlockToBakery(TragicBlocks.TragicFlower, getPrefixedArray(flowers));
 			registerBlockToBakery(TragicBlocks.TragicFlower2, getPrefixedArray(flowers2));
-			
+
 			registerBlockToBakery(TragicBlocks.StarCrystal, getPrefixedArray(capitalizeArray("starCrystal", colors)));
 			registerBlockToBakery(TragicBlocks.ErodedStone, getPrefixedArray(erodedStone));
 			registerBlockToBakery(TragicBlocks.DarkenedQuartz, getPrefixedArray(darkenedQuartz));
 			registerBlockToBakery(TragicBlocks.CircuitBlock, getPrefixedArray(circuitBlock));
 			registerBlockToBakery(TragicBlocks.CelledLamp, getPrefixedArray(capitalizeArray("celledLamp", colors)));
-			
+
 			registerBlockToBakery(TragicBlocks.WitheringGas, DOMAIN + "luminescence");
 			registerBlockToBakery(TragicBlocks.CorruptedGas, DOMAIN + "luminescence");
-			
+
 			registerBlockToBakery(TragicBlocks.Aeris, getPrefixedArray(aeris));
-			
+
 			registerBlockToBakery(TragicBlocks.RadiatedGas, DOMAIN + "luminescence");
 			registerBlockToBakery(TragicBlocks.ExplosiveGas, DOMAIN + "luminescence");
-			
+
 			registerBlockToBakery(TragicBlocks.Permafrost, getPrefixedArray(permafrost));
-			
+
 			registerBlockToBakery(TragicBlocks.DarkGas, DOMAIN + "luminescence");
 			registerBlockToBakery(TragicBlocks.SepticGas, DOMAIN + "luminescence");
-			
+
 			registerBlockToBakery(TragicBlocks.Corsin, getPrefixedArray(corsin));
 		}
 
@@ -434,40 +433,49 @@ public class ClientProxy extends CommonProxy {
 			registerArmorToBakery(TragicItems.SkullPlate, "skullPlate");
 			registerArmorToBakery(TragicItems.SkullLegs, "skullLegs");
 			registerArmorToBakery(TragicItems.SkullBoots, "skullBoots");
-			
+
 			registerArmorToBakery(TragicItems.HuntersCap, "huntersCap");
 			registerArmorToBakery(TragicItems.HuntersTunic, "huntersTunic");
 			registerArmorToBakery(TragicItems.HuntersLegs, "huntersLegs");
 			registerArmorToBakery(TragicItems.HuntersBoots, "huntersBoots");
-			
+
 			registerArmorToBakery(TragicItems.MercuryHelm, "mercuryHelm");
 			registerArmorToBakery(TragicItems.MercuryPlate, "mercuryPlate");
 			registerArmorToBakery(TragicItems.MercuryLegs, "mercuryLegs");
 			registerArmorToBakery(TragicItems.MercuryBoots, "mercuryBoots");
-			
+
 			registerArmorToBakery(TragicItems.TungstenHelm, "tungstenHelm");
 			registerArmorToBakery(TragicItems.TungstenPlate, "tungstenPlate");
 			registerArmorToBakery(TragicItems.TungstenLegs, "tungstenLegs");
 			registerArmorToBakery(TragicItems.TungstenBoots, "tungstenBoots");
-			
+
 			registerArmorToBakery(TragicItems.LightHelm, "lightHelm");
 			registerArmorToBakery(TragicItems.LightPlate, "lightPlate");
 			registerArmorToBakery(TragicItems.LightLegs, "lightLegs");
 			registerArmorToBakery(TragicItems.LightBoots, "lightBoots");
-			
+
 			registerArmorToBakery(TragicItems.DarkHelm, "darkHelm");
 			registerArmorToBakery(TragicItems.DarkPlate, "darkPlate");
 			registerArmorToBakery(TragicItems.DarkLegs, "darkLegs");
 			registerArmorToBakery(TragicItems.DarkBoots, "darkBoots");
-			
+
 			registerArmorToBakery(TragicItems.OverlordHelm, "overlordHelm");
 			registerArmorToBakery(TragicItems.OverlordPlate, "overlordPlate");
 			registerArmorToBakery(TragicItems.OverlordLegs, "overlordLegs");
 			registerArmorToBakery(TragicItems.OverlordBoots, "overlordBoots");
-			
+
+			registerWeaponToBakery(TragicItems.BeastlyClaws, "beastlyClaws");
+			registerWeaponToBakery(TragicItems.ReaperScythe, "reaperScythe");
+			registerWeaponToBakery(TragicItems.CelestialAegis, "celestialAegis");
+
+			registerWeaponToBakery(TragicItems.Butcher, "butcher");
+			registerWeaponToBakery(TragicItems.Paranoia, "paranoia");
+			registerWeaponToBakery(TragicItems.Splinter, "splinter");
+
 			registerItemToBakery(TragicItems.HuntersBow, getPrefixedArray(huntersBow));
 			registerItemToBakery(TragicItems.CelestialLongbow, getPrefixedArray(celestialLongbow));
 			registerItemToBakery(TragicItems.EverlastingLight, getPrefixedArray(everlastingLight));
+
 			if (TragicConfig.allowGeneratorItems) registerItemToBakery(TragicItems.Generator, getPrefixedArray(generator));
 			registerItemToBakery(TragicItems.MobStatue, getPrefixedArray(statue));
 			if (TragicConfig.allowAmulets)
@@ -506,12 +514,12 @@ public class ClientProxy extends CommonProxy {
 			}
 			if (TragicConfig.allowChallengeScrolls) registerItemToBakery(TragicItems.ChallengeScroll, getPrefixedArray(challengeScroll));
 		}
-		
+
 		//TODO bookmark for block mesher registrations
 		int i; //for loops
-		
+
 		for (i = 0; i < summonBlock.length; i++) registerBlockToMesher(TragicBlocks.SummonBlock, i, summonBlock[i]);
-		
+
 		registerBlockToMesher(TragicBlocks.Luminescence, ZERO, "luminescence");
 		if (TragicConfig.allowOverlord) registerBlockToMesher(TragicBlocks.OverlordBarrier, ZERO, "overlordBarrier");
 
@@ -530,16 +538,16 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.CarrotBlock, ZERO, "carrotBlock");
 			registerBlockToMesher(TragicBlocks.SandstonePressurePlate, ZERO, "sandstonePressurePlate");
 			registerBlockToMesher(TragicBlocks.NetherBrickPressurePlate, ZERO, "netherBrickPressurePlate");
-			
+
 			for (i = 0; i < 16; i++) registerBlockToMesher(TragicBlocks.StructureSeed, i, "structureSeed");
 			for (i = 0; i < quicksand.length; i++) registerBlockToMesher(TragicBlocks.Quicksand, i, quicksand[i]);
-			
+
 			for (i = 0; i < darkStone.length; i++) registerBlockToMesher(TragicBlocks.DarkStone, i, darkStone[i]);
 			for (i = 0; i < darkCobble.length; i++) registerBlockToMesher(TragicBlocks.DarkCobblestone, i, darkCobble[i]);
 			for (i = 0; i < lightCobble.length; i++) registerBlockToMesher(TragicBlocks.LightCobblestone, i, lightCobble[i]);
 			registerBlockToMesher(TragicBlocks.LightStone, ZERO, "lightStone");
 			registerBlockToMesher(TragicBlocks.Spike, ZERO, "spike");
-			
+
 			for (i = 0; i < obsidian.length; i++) registerBlockToMesher(TragicBlocks.TragicObsidian, i, obsidian[i]);
 			for (i = 0; i < deadDirt.length; i++) registerBlockToMesher(TragicBlocks.DeadDirt, i, deadDirt[i]);
 			registerBlockToMesher(TragicBlocks.DarkSand, ZERO, "darkSand");
@@ -548,7 +556,7 @@ public class ClientProxy extends CommonProxy {
 			for (i = 0; i < ores.length; i++) registerBlockToMesher(TragicBlocks.TragicOres, i, ores[i]);
 			for (i = 0; i < boneBlock.length; i++) registerBlockToMesher(TragicBlocks.BoneBlock, i, boneBlock[i]);
 			for (i = 0; i < smoothNetherrack.length; i++) registerBlockToMesher(TragicBlocks.SmoothNetherrack, i, smoothNetherrack[i]);
-			
+
 			registerBlockToMesher(TragicBlocks.BrushedGrass, ZERO, "brushedGrass");
 			registerBlockToMesher(TragicBlocks.PaintedWood, ZERO, "paintedWood");
 			registerBlockToMesher(TragicBlocks.PaintedLeaves, ZERO, "paintedLeaves");
@@ -562,11 +570,11 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.BleachedWood, ZERO, "bleachedWood");
 			registerBlockToMesher(TragicBlocks.BleachedLeaves, ZERO, "bleachedLeaves");
 			registerBlockToMesher(TragicBlocks.BleachedPlanks, ZERO, "bleachedPlanks");
-			
+
 			for (i = 0; i < saplings.length; i++) registerBlockToMesher(TragicBlocks.TragicSapling, i, saplings[i]);
 			for (i = 0; i < flowers.length; i++) registerBlockToMesher(TragicBlocks.TragicFlower, i, flowers[i]);
 			for (i = 0; i < flowers2.length; i++) registerBlockToMesher(TragicBlocks.TragicFlower2, i, flowers2[i]);
-			
+
 			registerBlockToMesher(TragicBlocks.AshenBush, ZERO, "ashenBush");
 			registerBlockToMesher(TragicBlocks.DeadBush, ZERO, "deadBush");
 			registerBlockToMesher(TragicBlocks.DriedTallGrass, ZERO, "driedTallGrass");
@@ -576,7 +584,7 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.StarlitTallGrass, ZERO, "starlitTallGrass");
 			for (i = 0; i < erodedStone.length; i++) registerBlockToMesher(TragicBlocks.ErodedStone, i, erodedStone[i]);
 			for (i = 0; i < darkenedQuartz.length; i++) registerBlockToMesher(TragicBlocks.DarkenedQuartz, i, darkenedQuartz[i]);
-			
+
 			for (i = 0; i < circuitBlock.length; i++) registerBlockToMesher(TragicBlocks.CircuitBlock, i, circuitBlock[i]);
 			registerBlockToMesher(TragicBlocks.CelledBlock, ZERO, "celled");
 			for (i = 0; i < colors.length; i++) registerBlockToMesher(TragicBlocks.CelledLamp, i, "celledLamp" + capitalize(colors[i]));
@@ -585,7 +593,7 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.CorruptedGas, ZERO, "luminescence");
 			registerBlockToMesher(TragicBlocks.Conduit, ZERO, "conduit");
 			registerBlockToMesher(TragicBlocks.DigitalSea, ZERO, "digitalSea");
-			
+
 			registerBlockToMesher(TragicBlocks.FrozenNetherrack, ZERO, "frozenNetherrack");
 			for (i = 0; i < aeris.length; i++) registerBlockToMesher(TragicBlocks.Aeris, i, aeris[i]);
 			registerBlockToMesher(TragicBlocks.MoltenRock, ZERO, "moltenRock");
@@ -600,11 +608,11 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.HallowedPlanks, ZERO, "hallowedPlanks");
 			registerBlockToMesher(TragicBlocks.HallowedWood, ZERO, "hallowedWood");
 			registerBlockToMesher(TragicBlocks.WickedVine, ZERO, "wickedVine");
-			
+
 			registerBlockToMesher(TragicBlocks.RadiatedGas, ZERO, "luminescence");
 			registerBlockToMesher(TragicBlocks.ExplosiveGas, ZERO, "luminescence");
 			registerBlockToMesher(TragicBlocks.SoulChest, ZERO, "soulChest");
-			
+
 			registerBlockToMesher(TragicBlocks.IcedDirt, ZERO, "icedDirt");
 			for (i = 0; i < permafrost.length; i++) registerBlockToMesher(TragicBlocks.Permafrost, i, permafrost[i]);
 			registerBlockToMesher(TragicBlocks.Moss, ZERO, "moss");
@@ -624,14 +632,14 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.Honeydrop, ZERO, "honeydropPlant");
 			for (i = 0; i < corsin.length; i++) registerBlockToMesher(TragicBlocks.Corsin, i, corsin[i]);
 		}
-		
+
 		//items that are to be registered almost 100% of the time //TODO bookmark for item mesher registrations
 		registerItemWithCustomDefinition(TragicItems.BowOfJustice, new ItemMeshDefinition() {
 			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack) {
 				EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 				if (player == null || player.getItemInUse() != stack) return new ModelResourceLocation("bow", "inventory");
-				
+
 				int amt = player.getItemInUseDuration();
 
 				if (amt > 8)
@@ -654,7 +662,7 @@ public class ClientProxy extends CommonProxy {
 		});
 		registerItemToMesher(TragicItems.SwordOfJustice, ZERO, "swordOfJustice");
 		registerItemToMesher(TragicItems.NekoNekoWand, ZERO, "nekoNekoWand");
-		
+
 		if (TragicConfig.allowMobs)
 		{
 			for (i = 0; i < TragicEntityList.idToClassMapping.size(); i++)
@@ -725,7 +733,7 @@ public class ClientProxy extends CommonProxy {
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
 					EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 					if (player == null || player.getItemInUse() != stack) return new ModelResourceLocation(DOMAIN + "huntersBow", "inventory");
-					
+
 					int amt = player.getItemInUseDuration();
 
 					if (amt > 14)
@@ -751,19 +759,38 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.GravitySpike, ZERO, "gravitySpike");
 			registerItemToMesher(TragicItems.HarmonyBell, ZERO, "harmonyBell");
 			registerItemToMesher(TragicItems.MourningStar, ZERO, "mourningStar");
-			registerItemToMesher(TragicItems.BeastlyClaws, ZERO, "beastlyClaws");
+			registerItemWithCustomDefinition(TragicItems.BeastlyClaws, new ItemMeshDefinition() {
+
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "beastlyClaws" : "beastlyClawsInventory"), "inventory");
+				}
+			});
 			registerItemToMesher(TragicItems.GuiltyThorn, ZERO, "guiltyThorn");
 			registerItemToMesher(TragicItems.NekoLauncher, ZERO, "nekoLauncher");
-			registerItemToMesher(TragicItems.ReaperScythe, ZERO, "reaperScythe");
+			registerItemWithCustomDefinition(TragicItems.ReaperScythe, new ItemMeshDefinition() {
+
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "reaperScythe" : "reaperScytheInventory"), "inventory");
+				}
+			});
 			registerItemToMesher(TragicItems.WitheringAxe, ZERO, "witheringAxe");
 			registerItemToMesher(TragicItems.FrozenLightning, ZERO, "frozenLightning");
-			registerItemToMesher(TragicItems.CelestialAegis, ZERO, "celestialAegis");
+			registerItemWithCustomDefinition(TragicItems.CelestialAegis, new ItemMeshDefinition() {
+
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "celestialAegis" : "celestialAegisInventory"), "inventory");
+				}
+			});
+			
 			registerItemWithCustomDefinition(TragicItems.CelestialLongbow, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
 					EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 					if (player == null || player.getItemInUse() != stack) return new ModelResourceLocation(DOMAIN + "celestialLongbow", "inventory");
-					
+
 					int amt = player.getItemInUseDuration();
 
 					if (amt > 48)
@@ -787,10 +814,28 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.SilentHellraiser, ZERO, "silentHellraiser");
 
 			registerItemToMesher(TragicItems.Titan, ZERO, "titan");
-			registerItemToMesher(TragicItems.Splinter, ZERO, "splinter");
-			registerItemToMesher(TragicItems.Butcher, ZERO, "butcher");
+			registerItemWithCustomDefinition(TragicItems.Splinter, new ItemMeshDefinition() {
+
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "splinter" : "splinterInventory"), "inventory");
+				}
+			});
+			registerItemWithCustomDefinition(TragicItems.Butcher, new ItemMeshDefinition() {
+
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "butcher" : "butcherInventory"), "inventory");
+				}
+			});
 			registerItemToMesher(TragicItems.Thardus, ZERO, "thardus");
-			registerItemToMesher(TragicItems.Paranoia, ZERO, "paranoia");
+			registerItemWithCustomDefinition(TragicItems.Paranoia, new ItemMeshDefinition() {
+
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "paranoia" : "paranoiaInventory"), "inventory");
+				}
+			});
 			registerItemToMesher(TragicItems.DragonFang, ZERO, "dragonFang");
 
 			registerItemToMesher(TragicItems.Sentinel, ZERO, "sentinel");
@@ -799,7 +844,7 @@ public class ClientProxy extends CommonProxy {
 			registerItemWithCustomDefinition(TragicItems.EverlastingLight, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					
+
 					int amt = stack.getItemDamage();
 
 					if (amt > 248)
@@ -985,7 +1030,7 @@ public class ClientProxy extends CommonProxy {
 						registerItemToMesher(TragicItems.DoomsdayScroll, i - 1, "doomsdayScroll");
 				}
 			}
-			
+
 			registerItemToMesher(TragicItems.SoundExtrapolator, ZERO, "soundExtrapolator");
 
 			if (TragicConfig.allowGeneratorItems)
@@ -993,7 +1038,7 @@ public class ClientProxy extends CommonProxy {
 				for (i = 0; i < generator.length; i++)
 					registerItemToMesher(TragicItems.Generator, i, generator[i]);
 			}
-			
+
 			if (TragicConfig.allowChallengeScrolls)
 			{
 				for (i = 0; i < 251; i++)
@@ -1016,17 +1061,17 @@ public class ClientProxy extends CommonProxy {
 	{
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(DOMAIN + location, "inventory"));
 	}
-	
+
 	private static void registerItemWithCustomDefinition(Item item, ItemMeshDefinition def)
 	{
 		ModelLoader.setCustomMeshDefinition(item, def);
 	}
-	
+
 	private static void registerAmuletToBakery(Item item)
 	{
 		ModelBakery.addVariantName(item, getPrefixedArray(amulets));
 	}
-	
+
 	private static void registerAmuletToMesher(Item item)
 	{
 		ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
@@ -1034,7 +1079,7 @@ public class ClientProxy extends CommonProxy {
 			public ModelResourceLocation getModelLocation(ItemStack stack) {
 				String def = ((ItemAmulet) stack.getItem()).amuletType == EnumAmuletType.NORMAL ? DOMAIN + amulets[0] : DOMAIN + amulets[3];
 				if (!stack.hasTagCompound()) return new ModelResourceLocation(def, "inventory");
-				
+
 				if (stack.getTagCompound().hasKey("amuletLevel"))
 				{
 					byte level = stack.getTagCompound().getByte("amuletLevel");
@@ -1044,18 +1089,18 @@ public class ClientProxy extends CommonProxy {
 			}
 		});
 	}
-	
+
 	private static void registerArmorToBakery(Item item, String s)
 	{
 		ModelBakery.addVariantName(item, getPrefixedArray(new String[] {s, s + "2"}));
 	}
-	
+
 	private static void registerArmorToMesher(Item item, final String s)
 	{
 		ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
 			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack) {
-				
+
 				String s2 = stack.getItemDamage() >= stack.getMaxDamage() * 2 / 3 ? DOMAIN + s + "2" : DOMAIN + s;
 				return new ModelResourceLocation(s2, "inventory");
 			}
@@ -1076,18 +1121,23 @@ public class ClientProxy extends CommonProxy {
 	{
 		ModelBakery.addVariantName(item, names);
 	}
-	
+
+	private static void registerWeaponToBakery(Item item, String name)
+	{
+		ModelBakery.addVariantName(item, DOMAIN + name, DOMAIN + name + "Inventory");
+	}
+
 	private static String[] getPrefixedArray(String[] array) {
 		String[] newArray = new String[array.length];
-		
+
 		for (int i = 0; i < array.length; i++)
 		{
 			newArray[i] = DOMAIN + array[i];
 		}
-		
+
 		return newArray;
 	}
-	
+
 	private static String capitalize(String s)
 	{
 		char[] str = s.toCharArray();
@@ -1095,15 +1145,15 @@ public class ClientProxy extends CommonProxy {
 		s = new String(str);
 		return s;
 	}
-	
+
 	private static String[] capitalizeArray(String s, String[] array) {
 		String[] newArray = new String[array.length];
-		
+
 		for (int i = 0; i < array.length; i++)
 		{
 			newArray[i] = s + capitalize(array[i]);
 		}
-		
+
 		return newArray;
 	}
 }

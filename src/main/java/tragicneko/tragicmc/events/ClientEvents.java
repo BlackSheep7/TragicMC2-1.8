@@ -70,6 +70,12 @@ public class ClientEvents extends Gui {
 			{
 				TragicMC.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
 			}
+			
+			if (ClientProxy.disableModels.isPressed()) //TODO remember to determine if this will be kept
+			{
+				TragicConfig.allowWeaponModels = !TragicConfig.allowWeaponModels;
+				TragicConfig.allowArmorModels = !TragicConfig.allowArmorModels;
+			}
 		}
 	}
 

@@ -2,6 +2,7 @@ package tragicneko.tragicmc.client.model.armor;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 
 import org.lwjgl.opengl.GL11;
@@ -390,30 +391,27 @@ public class ModelLightArmor extends ModelBiped {
 		this.isSneak = entity.isSneaking();
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		
-		if (this.isSneak)
-		{
-			GL11.glPushMatrix();
-			GL11.glTranslatef(0.0F, 0.2F, 0.0F);
-		}
+		GlStateManager.pushMatrix();
+		if (this.isSneak) GlStateManager.translate(0.0, 0.2, 0.0);
+		GlStateManager.disableAlpha();
 		
 		if (this.isChild)
 		{
 			float f6 = 2.0F;
-			GL11.glPushMatrix();
-			GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
-			GL11.glTranslatef(0.0F, 16.0F * f5, 0.0F);
+			GlStateManager.pushMatrix();
+			GlStateManager.scale(1.5F / f6, 1.5F / f6, 1.5F / f6);
+			GlStateManager.translate(0.0F, 16.0F * f5, 0.0F);
 			if (this.armorType == 0) this.bipedHead.render(f5);
-			GL11.glPopMatrix();
-			GL11.glPushMatrix();
-			GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
-			GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
+			GlStateManager.popMatrix();
+			GlStateManager.pushMatrix();
+			GlStateManager.scale(1.0F / f6, 1.0F / f6, 1.0F / f6);
+			GlStateManager.translate(0.0F, 24.0F * f5, 0.0F);
 			if (this.armorType == 1) this.bipedBody.render(f5);
 			if (this.armorType == 1) this.bipedRightArm.render(f5);
 			if (this.armorType == 1) this.bipedLeftArm.render(f5);
 			if (this.armorType >= 2) this.bipedRightLeg.render(f5);
 			if (this.armorType >= 2) this.bipedLeftLeg.render(f5);
 			if (this.armorType == 0) this.bipedHeadwear.render(f5);
-			GL11.glPopMatrix();
 		}
 		else
 		{ 
@@ -426,7 +424,8 @@ public class ModelLightArmor extends ModelBiped {
 			if (this.armorType == 0) this.bipedHeadwear.render(f5);
 		}
 		
-		if (this.isSneak) GL11.glPopMatrix();
+		GlStateManager.enableAlpha();
+		GlStateManager.popMatrix();
 	}
 
 	/**
