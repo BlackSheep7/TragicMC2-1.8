@@ -4503,7 +4503,6 @@ Finished adding json files for blocks
 3.47.2904++ <214> (January 28, 2016)
 Initial playtesting of the fully ported mod to ensure of no major bugs
 Fixed improper imports for Arrays (again), stupid other package with the same damn class name
-Going to add the textures for armor (not the armor models one) and then I'll do some more playtesting
 Fixed typo in Fanbrush texture json and fixed inventory texture for Sky Fruit Pod
 Fixed crash when looking at the Ragr burning achievement in the achievement screen
 Fixed all Jacks having the highest harvest level
@@ -4515,9 +4514,24 @@ Fixed Bleeding Obsidian Orb not counting for the Wonder Orb achievement
 Fixed wrong textures being used for Ruby/Sapphire Ore
 Modified block models for the Conduit block to make them more unique looking
 Fixed Armor models not working, they apparently changed the slots used and broke isChild on modelbiped
+Added non-model texture for Dark armor
 Fixed enchanting armor properly based on their Lore, I broke this without realizing, derp
 Do proper rotation for models on sword-like items
 Added config option for disabling potion effect overlays and for allowing cripple to be inflicted when falling from a decent distance
+Updated rendering for armor models, paved the way for future semi-transparent armor
+Updating weapon models, these will be different from the previous models as I have to fully recreate them in json code (and it's much more restricted)
+Added weapon model for the Beastly Claws, there was always an intention to do this so I'm glad I finally got to it, aside from that I might do models
+for all of the weapons (cuz why not)
+Added non-model texture for Overlord armor
+Set it so that weapon models now change on the fly just like armor models if disabled
+Determined that I'll be unable to move armor models exactly like Vanilla due to the replaced model not being passed into the arguments, therefore preventing
+me from copying the already set fields from it, pity, but a future version should have it so there's that at least
+Added a keybinding for disabling models on the fly, will probably not keep it
+Modified Mercury Dagger to be above Iron Sword damage, so that it serves as an alternative to it instead of an "if I don't have enough Iron" choice,
+also reduced durability some to balance it more
+Added config option to have a random chance for a mob to spawn as a support mob, it then generates a random potion effect and amplifier and applies it
+to all nearby mobs that don't currently have that mob targetted, defaults to disabled
+Fixed minor bugs with a few blocks that would block the player's view when they walked into them
 
 TODO: Seperate overlay for Generator items (just for ease), do the same for mob statues
 TODO: Add textures for armor when armor models are disabled
