@@ -14,6 +14,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
@@ -26,9 +27,9 @@ public class TragicMusicTicker implements IUpdatePlayerListBox {
 	private ISound currentTrack;
 	private int buffer = 100;
 
-	public static TragicMusic collisionTrack = new TragicMusic(new ResourceLocation("tragicmc:music.dimension.bog"), 200, 800);
-	public static TragicMusic collisionCreative = new TragicMusic(new ResourceLocation("tragicmc:music.dimension.catacombs"), 1200, 3600);
-	public static TragicMusic synapseTrack = new TragicMusic(new ResourceLocation("tragicmc:music.dimension.sanctuary"), 200, 600);
+	public static TragicMusic collisionTrack = new TragicMusic(new ResourceLocation("tragicmc:music.dimension.bog"), 1600, 2800);
+	public static TragicMusic collisionCreative = new TragicMusic(new ResourceLocation("tragicmc:music.dimension.catacombs"), 200, 800);
+	public static TragicMusic synapseTrack = new TragicMusic(new ResourceLocation("tragicmc:music.dimension.sanctuary"), 1400, 2800);
 	public static TragicMusic synapseOverlord = new TragicMusic(new ResourceLocation("tragicmc:music.dimension.prime"), 0, 0);
 
 	public TragicMusicTicker(Minecraft mc)
@@ -66,30 +67,35 @@ public class TragicMusicTicker implements IUpdatePlayerListBox {
 				}
 			}
 
-			if (/*mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Deafening) ||*/ music == null) return;
+			if (/*mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Deafening) ||*/ music == null || mc.isSingleplayer()) return;
+			
+			if (this.currentTrack == null && /*(mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Nightmare) ||*/ this.buffer-- == 0/*)*/ && mc.gameSettings.getSoundLevel(SoundCategory.MUSIC) > 0F && mc.gameSettings.getSoundLevel(SoundCategory.MASTER) > 0F)
+			{
+				//if (music != synapseOverlord && mc.thePlayer != null && !mc.thePlayer.isPotionActive(TragicPotion.Nightmare)) return;
+				this.currentTrack = PositionedSoundRecord.create(music.loc);
+				this.mc.getSoundHandler().playSound(this.currentTrack);
+				this.buffer = Integer.MAX_VALUE;
+				TragicMC.logInfo("Playing track.");
+			}
 
 			if (this.currentTrack != null)
 			{					
 				if (this.currentTrack.getSoundLocation() != music.loc)
 				{
 					this.mc.getSoundHandler().stopSound(this.currentTrack);
-					this.buffer = MathHelper.getRandomIntegerInRange(this.rand, 0, music.min / 2);
+					this.buffer = 40;
+					TragicMC.logInfo("Changing tracks.");
 				}
-
+				
 				if (!this.mc.getSoundHandler().isSoundPlaying(this.currentTrack))
 				{
 					this.currentTrack = null;
-					this.buffer = Math.min(MathHelper.getRandomIntegerInRange(this.rand, music.min, music.max), this.buffer);
+					this.buffer = MathHelper.getRandomIntegerInRange(this.rand, music.min, music.max);
+					TragicMC.logInfo("Track has stopped playing.");
 				}
 			}
-
-			if (this.currentTrack == null && /*(mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Nightmare) ||*/ this.buffer-- <= 0/*)*/ && mc.gameSettings.getSoundLevel(SoundCategory.MUSIC) > 0F && mc.gameSettings.getSoundLevel(SoundCategory.MASTER) > 0F)
-			{
-				//if (music != synapseOverlord && mc.thePlayer != null && !mc.thePlayer.isPotionActive(TragicPotion.Nightmare)) return;
-				this.currentTrack = PositionedSoundRecord.create(music.loc);
-				this.mc.getSoundHandler().playSound(this.currentTrack);
-				this.buffer = Integer.MAX_VALUE;
-			}
+			
+			if (buffer != Integer.MAX_VALUE) TragicMC.logInfo("Buffer is " + buffer);
 		}
 	}
 

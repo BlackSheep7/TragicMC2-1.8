@@ -184,21 +184,20 @@ public abstract class TragicMob extends EntityMob
 							rand.nextDouble() * d + d2, rand.nextDouble() * d + d2, rand.nextDouble() * d + d2);
 				}
 			}
-			return;
-		}
-
-		if (this.isCorrupted())
-		{
-			TragicMC.logInfo("blah");
-			for (byte i = 0; i < 3; i++)
+			
+			if (this.isCorrupted())
 			{
-				this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB_AMBIENT,
-						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
-						this.posY + this.rand.nextDouble() * this.height,
-						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
-						0.2, 0.2, 0.2);
+				for (byte i = 0; i < 3; i++)
+				{
+					this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB_AMBIENT,
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							0.2, 0.2, 0.2);
+				}
 			}
-		}
+			return;
+		}		
 
 		if (this.isChanging() && this.ticksExisted > 1)
 		{

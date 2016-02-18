@@ -159,7 +159,7 @@ public class EntityWisp extends TragicMob {
 			if (biome instanceof BiomeGenCorrodedSteppe) s = EnumParticleTypes.SPELL_MOB_AMBIENT;
 			if (biome instanceof BiomeGenFrozenTundra) s = EnumParticleTypes.SNOW_SHOVEL;
 
-			for (int i = 0; i < 2 && this.getIdleTicks() == 0; i++)
+			for (byte i = 0; i < 2 && this.getIdleTicks() == 0; i++)
 			{
 				this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
@@ -172,7 +172,7 @@ public class EntityWisp extends TragicMob {
 				default:
 					if (this.ticksExisted % 10 == 0)
 					{
-						for (int i = 0; i < 5; i++)
+						for (byte i = 0; i < 5; i++)
 						{
 							this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + 0.115D + rand.nextDouble(),
 									this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), rand.nextFloat() * 0.114F - rand.nextFloat() * 0.114F,
@@ -184,7 +184,7 @@ public class EntityWisp extends TragicMob {
 					}
 					break;
 				case 1:
-					for (int i = 0; i < 3; i++)
+					for (byte i = 0; i < 3; i++)
 					{
 						this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.655D), this.posY + 0.115D + rand.nextDouble(),
 								this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.655D), rand.nextFloat() * 0.07F - rand.nextFloat() * 0.07F, 0.255F * this.rand.nextFloat(),
@@ -194,7 +194,7 @@ public class EntityWisp extends TragicMob {
 				case 2:
 					if (this.ticksExisted % 40 == 0)
 					{
-						for (int i = 0; i < 2; i++)
+						for (byte i = 0; i < 2; i++)
 						{
 							this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.455D), this.posY + 0.115D + rand.nextDouble(),
 									this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.455D), rand.nextFloat() * 0.114F - rand.nextFloat() * 0.114F, 0.155F * this.rand.nextFloat(),

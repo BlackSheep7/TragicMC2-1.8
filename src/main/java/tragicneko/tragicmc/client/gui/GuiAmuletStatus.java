@@ -40,7 +40,7 @@ public class GuiAmuletStatus extends Gui
 	@SubscribeEvent(priority=EventPriority.NORMAL)
 	public void onRenderOverlay(RenderGameOverlayEvent event)
 	{
-		if (event.isCancelable() || event.type != ElementType.PORTAL || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
+		if (event.isCancelable() || event.type != ElementType.HOTBAR || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
 		PropertyAmulets amu = PropertyAmulets.get(this.mc.thePlayer);
 		if (amu == null || amu.getSlotsOpen() <= 0) return;

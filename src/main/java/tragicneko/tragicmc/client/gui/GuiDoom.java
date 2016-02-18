@@ -49,7 +49,7 @@ public class GuiDoom extends Gui
 	@SubscribeEvent(priority=EventPriority.NORMAL)
 	public void onRenderOverlay(RenderGameOverlayEvent event)
 	{
-		if (event.isCancelable() || event.type != ElementType.PORTAL || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
+		if (event.isCancelable() || event.type != ElementType.HOTBAR || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
 		PropertyDoom props = PropertyDoom.get(this.mc.thePlayer);
 		if (props == null || props.getMaxDoom() == 0) return;

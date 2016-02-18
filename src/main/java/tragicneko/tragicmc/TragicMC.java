@@ -112,7 +112,6 @@ public class TragicMC
 	{
 		doPotionReflection();
 
-		config = null;
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		TragicConfig.load();
 

@@ -30,7 +30,7 @@ public class RenderTimeController extends RenderBoss {
 
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
 		{
-			GL11.glPushMatrix();
+			GlStateManager.pushMatrix();
 			float f2 = 1.8F;
 			EntityTimeController ctrl = (EntityTimeController) par1EntityLivingBase;
 			if (ctrl.getLeapTicks() > 0) f2 = 1.0F + MathHelper.cos(ctrl.ticksExisted * 0.4F) * 0.876F;
@@ -42,6 +42,7 @@ public class RenderTimeController extends RenderBoss {
             this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
             GlStateManager.disableBlend();
             GlStateManager.disableNormalize();
+            GlStateManager.popMatrix();
 		}
 		else
 		{

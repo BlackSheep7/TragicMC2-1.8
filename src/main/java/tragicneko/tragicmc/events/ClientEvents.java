@@ -51,6 +51,8 @@ public class ClientEvents extends Gui {
 		"mob.skeleton.hurt", "random.bow", "random.explode", "random.chestopen", "mob.wither.hurt", "mob.wither.idle", "random.door_open",
 		"game.hostile.hurt", "creeper.primed", "random.break", "random.wood_click", "mob.endermen.scream", "mob.endermen.stare",
 		"tragicmc:mob.psygote.cry", "tragicmc:mob.inkling.giggle", "tragicmc:mob.stin.teleport"};
+	
+	private static boolean RECREATE_MI = false;
 
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
@@ -148,9 +150,10 @@ public class ClientEvents extends Gui {
 			if (rand.nextInt(4) == 0) input.moveStrafe = rand.nextFloat() * 1.4F - rand.nextFloat() * 1.4F;
 			if (rand.nextInt(32) == 0) input.sneak = true;
 			player.movementInput = input;
+			RECREATE_MI = true;
 		}
 
-		if (player != null && !(player.movementInput instanceof MovementInputFromOptions) && TragicConfig.allowHacked && !player.isPotionActive(TragicPotion.Hacked)) player.movementInput = new MovementInputFromOptions(mc.gameSettings);
+		if (player != null && !(player.movementInput instanceof MovementInputFromOptions) && TragicConfig.allowHacked && !player.isPotionActive(TragicPotion.Hacked) && RECREATE_MI) player.movementInput = new MovementInputFromOptions(mc.gameSettings);
 
 		if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation))
 		{
@@ -259,7 +262,7 @@ public class ClientEvents extends Gui {
 			((BlockGenericLeaves) TragicBlocks.DarkLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 		}
 
-		if (event.type != ElementType.PORTAL || !TragicConfig.allowPotionEffectOverlays) return;
+		if (event.type != ElementType.HOTBAR || !TragicConfig.allowPotionEffectOverlays) return;
 
 		Minecraft mc = Minecraft.getMinecraft();
 		if (mc.thePlayer == null) return;

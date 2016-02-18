@@ -107,22 +107,22 @@ public class CustomSpikesWorldGen implements IWorldGen {
 						}
 						else if (spikeType == 3 && !flag2 && random.nextInt(4) == 0 && y1 >= 35 && spikeSize <= 1.41115648D && spikeSize >= 0.76663601D) //Type 3 has a chance to create a smaller spike near the top
 						{
-							generateChildSpike(world, random, spikeSize * 1.32977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), block, m);
+							generateChildSpike(world, random, spikeSize * 1.32977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), this.block, m);
 							flag2 = true;
 						}
 						else if (spikeType == 4 && random.nextInt(4) == 0 && y1 >= 35 && spikeSize >= 0.76663601D) //Type 4 creates a lot of smaller spikes going up the spike
 						{
-							generateChildSpike(world, random, spikeSize * 1.12977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), block, m);
+							generateChildSpike(world, random, spikeSize * 1.12977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), this.block, m);
 						}
 						else if (spikeType == 5 && random.nextInt(4) == 0) //Type 5 creates huge spikes at the base, and smaller ones near the top, making for a huge web of spikes (usually)
 						{
 							if (y1 <= 24)
 							{
-								generateChildSpike(world, random, spikeSize * 1.12977745D, Xcoord + random.nextInt(6) - random.nextInt(6), Ycoord + y1, Zcoord + random.nextInt(6) - random.nextInt(6), block, m);
+								generateChildSpike(world, random, spikeSize * 1.12977745D, Xcoord + random.nextInt(6) - random.nextInt(6), Ycoord + y1, Zcoord + random.nextInt(6) - random.nextInt(6), this.block, m);
 							}
 							else if (spikeSize >= 0.76663601D)
 							{
-								generateChildSpike(world, random, spikeSize * 1.13977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), block, m);
+								generateChildSpike(world, random, spikeSize * 1.13977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), this.block, m);
 							}
 						}
 					}
@@ -138,7 +138,7 @@ public class CustomSpikesWorldGen implements IWorldGen {
 
 				for (BlockPos coords : cands)
 				{
-					world.setBlockState(coords, block.getStateFromMeta(m), 2);
+					world.setBlockState(coords, this.block.getStateFromMeta(m), 2);
 				}
 			}
 		}
