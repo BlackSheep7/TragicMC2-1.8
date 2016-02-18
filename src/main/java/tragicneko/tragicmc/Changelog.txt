@@ -4532,6 +4532,12 @@ also reduced durability some to balance it more
 Added config option to have a random chance for a mob to spawn as a support mob, it then generates a random potion effect and amplifier and applies it
 to all nearby mobs that don't currently have that mob targetted, defaults to disabled
 Fixed minor bugs with a few blocks that would block the player's view when they walked into them
+Fixed generation bug with Vines and with Spikes
+Fixed GL bug with the Time Controller's rendering
+Fixed Doom and Amulet Status Gui disappearing when a portal or nausea effect was being rendered
+Fixed music sometimes playing multiple times when swapping between tracks rapidly in Singleplayer (disabled music in singleplayer)
+Made it so that the player's movement inputs are only reset once after being Hacked to reduce chance of screwing with other mods doing the same
+
 
 TODO: Seperate overlay for Generator items (just for ease), do the same for mob statues
 TODO: Add textures for armor when armor models are disabled
