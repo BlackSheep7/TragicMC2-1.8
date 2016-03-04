@@ -18,8 +18,6 @@
 
 package tragicneko.tragicmc;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Random;
 
@@ -481,11 +479,11 @@ public class TragicMC
 		try
 		{
 			Potion[] potionTypes;
-			Field f = ReflectionHelper.findField(Potion.class, "potionTypes", "field_76425_a");
+			java.lang.reflect.Field f = ReflectionHelper.findField(Potion.class, "potionTypes", "field_76425_a");
 
-			Field modfield = Field.class.getDeclaredField("modifiers");
+			java.lang.reflect.Field modfield = java.lang.reflect.Field.class.getDeclaredField("modifiers");
 			modfield.setAccessible(true);
-			modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
+			modfield.setInt(f, f.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
 			potionTypes = (Potion[])f.get(null);
 
 			if (potionTypes.length <= 128)

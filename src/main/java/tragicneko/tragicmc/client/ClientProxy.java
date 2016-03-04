@@ -465,16 +465,24 @@ public class ClientProxy extends CommonProxy {
 			registerArmorToBakery(TragicItems.OverlordBoots, "overlordBoots");
 
 			registerWeaponToBakery(TragicItems.BeastlyClaws, "beastlyClaws");
+			registerWeaponToBakery(TragicItems.NekoLauncher, "nekoLauncher");
 			registerWeaponToBakery(TragicItems.ReaperScythe, "reaperScythe");
 			registerWeaponToBakery(TragicItems.CelestialAegis, "celestialAegis");
 
+			registerWeaponToBakery(TragicItems.Titan, "titan");
 			registerWeaponToBakery(TragicItems.Butcher, "butcher");
+			registerWeaponToBakery(TragicItems.Thardus, "thardus");
 			registerWeaponToBakery(TragicItems.Paranoia, "paranoia");
 			registerWeaponToBakery(TragicItems.Splinter, "splinter");
+			registerWeaponToBakery(TragicItems.DragonFang, "dragonFang");
+			
+			registerWeaponToBakery(TragicItems.Sentinel, "sentinel");
 
 			registerItemToBakery(TragicItems.HuntersBow, getPrefixedArray(huntersBow));
 			registerItemToBakery(TragicItems.CelestialLongbow, getPrefixedArray(celestialLongbow));
 			registerItemToBakery(TragicItems.EverlastingLight, getPrefixedArray(everlastingLight));
+			
+			registerWeaponToBakery(TragicItems.IreNetParticleCannon, "ireParticleCannon");
 
 			if (TragicConfig.allowGeneratorItems) registerItemToBakery(TragicItems.Generator, getPrefixedArray(generator));
 			registerItemToBakery(TragicItems.MobStatue, getPrefixedArray(statue));
@@ -767,7 +775,12 @@ public class ClientProxy extends CommonProxy {
 				}
 			});
 			registerItemToMesher(TragicItems.GuiltyThorn, ZERO, "guiltyThorn");
-			registerItemToMesher(TragicItems.NekoLauncher, ZERO, "nekoLauncher");
+			registerItemWithCustomDefinition(TragicItems.NekoLauncher, new ItemMeshDefinition() {
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "nekoLauncher" : "nekoLauncherInventory"), "inventory");
+				}
+			});
 			registerItemWithCustomDefinition(TragicItems.ReaperScythe, new ItemMeshDefinition() {
 
 				@Override
@@ -813,32 +826,49 @@ public class ClientProxy extends CommonProxy {
 			});
 			registerItemToMesher(TragicItems.SilentHellraiser, ZERO, "silentHellraiser");
 
-			registerItemToMesher(TragicItems.Titan, ZERO, "titan");
+			registerItemWithCustomDefinition(TragicItems.Titan, new ItemMeshDefinition() {
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "titan" : "titanInventory"), "inventory");
+				}
+			});
 			registerItemWithCustomDefinition(TragicItems.Splinter, new ItemMeshDefinition() {
-
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
 					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "splinter" : "splinterInventory"), "inventory");
 				}
 			});
 			registerItemWithCustomDefinition(TragicItems.Butcher, new ItemMeshDefinition() {
-
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
 					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "butcher" : "butcherInventory"), "inventory");
 				}
 			});
-			registerItemToMesher(TragicItems.Thardus, ZERO, "thardus");
+			registerItemWithCustomDefinition(TragicItems.Thardus, new ItemMeshDefinition() {
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "thardus" : "thardusInventory"), "inventory");
+				}
+			});
 			registerItemWithCustomDefinition(TragicItems.Paranoia, new ItemMeshDefinition() {
-
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
 					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "paranoia" : "paranoiaInventory"), "inventory");
 				}
 			});
-			registerItemToMesher(TragicItems.DragonFang, ZERO, "dragonFang");
+			registerItemWithCustomDefinition(TragicItems.DragonFang, new ItemMeshDefinition() {
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "dragonFang" : "dragonFangInventory"), "inventory");
+				}
+			});
 
-			registerItemToMesher(TragicItems.Sentinel, ZERO, "sentinel");
+			registerItemWithCustomDefinition(TragicItems.Sentinel, new ItemMeshDefinition() {
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "sentinel" : "sentinelInventory"), "inventory");
+				}
+			});
 
 			registerItemToMesher(TragicItems.Scythe, ZERO, "scythe");
 			registerItemWithCustomDefinition(TragicItems.EverlastingLight, new ItemMeshDefinition() {
@@ -910,7 +940,12 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.ArchangelFeather, ZERO, "archangelFeather");
 			registerItemToMesher(TragicItems.WingsOfLiberation, ZERO, "wingsOfLiberation");
 			registerItemToMesher(TragicItems.IreNode, ZERO, "ireNode");
-			registerItemToMesher(TragicItems.IreNetParticleCannon, ZERO, "ireParticleCannon");
+			registerItemWithCustomDefinition(TragicItems.IreNetParticleCannon, new ItemMeshDefinition() {
+				@Override
+				public ModelResourceLocation getModelLocation(ItemStack stack) {
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "ireParticleCannon" : "ireParticleCannonInventory"), "inventory");
+				}
+			});
 			registerItemToMesher(TragicItems.CatalyticCompound, ZERO, "catalyticCompound");
 			registerItemToMesher(TragicItems.InterestingResin, ZERO, "interestingResin");
 			registerItemToMesher(TragicItems.Chitin, ZERO, "chitin");

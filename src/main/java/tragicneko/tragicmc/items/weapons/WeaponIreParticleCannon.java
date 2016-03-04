@@ -28,10 +28,10 @@ public class WeaponIreParticleCannon extends TragicWeapon {
 		double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 		double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
-		for (int i = 0; i < 5; i++)
+		for (byte i = 0; i < 4; i++)
 		{
 			EntityIreEnergy rocket = new EntityIreEnergy(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);
-			rocket.posY = par3EntityPlayer.posY + 0.55;
+			rocket.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight() - 0.45F;
 			rocket.posX += d4 * 0.215;
 			rocket.posZ += d6 * 0.215;
 			if (!par2World.isRemote) par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);

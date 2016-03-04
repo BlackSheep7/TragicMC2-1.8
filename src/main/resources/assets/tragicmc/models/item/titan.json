@@ -1,18 +1,287 @@
 {
-    "parent": "builtin/generated",
     "textures": {
-        "layer0": "tragicmc:items/Titan"
+        "white": "tragicmc:weapons/TitanWhite",
+        "yellow": "tragicmc:weapons/TitanYellow",
+        "gray": "tragicmc:weapons/TitanGray",
+        "black": "tragicmc:weapons/TitanBlack"
     },
     "display": {
         "thirdperson": {
-            "rotation": [ 0, 90, -35 ],
-            "translation": [ 0, 1.25, -3.5 ],
-            "scale": [ 0.85, 0.85, 0.85 ]
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 4.25, 2.475, -10.5 ],
+            "scale": [ 1.15, 1.15, 1.15 ]
         },
         "firstperson": {
-            "rotation": [ 0, -135, 25 ],
-            "translation": [ 0, 4, 2 ],
+            "rotation": [ 0, -135, 35 ],
+            "translation": [ 1, 18, -4 ],
             "scale": [ 1.7, 1.7, 1.7 ]
+        },
+        "gui": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, -2, 4 ],
+            "scale": [ 0.675, 0.675, 0.675 ]
         }
-    }
+    },
+    "elements": [
+        {
+            "from": [-2, -13, -1],
+            "to": [2, -11, 1],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 1, 3 ], "texture": "#black" },
+                "up":    { "uv": [ 0, 0, 1, 3 ], "texture": "#black" },
+                "north": { "uv": [ 0, 0, 3, 1 ], "texture": "#black" },
+                "south": { "uv": [ 0, 0, 3, 1 ], "texture": "#black" },
+                "west":  { "uv": [ 0, 0, 1, 1 ], "texture": "#black" },
+                "east":  { "uv": [ 0, 0, 1, 1 ], "texture": "#black" }
+            },
+            "__comment": "Sword handle knob"
+        },
+        {
+            "from": [-1.5, -11, -0.5],
+            "to": [1.5, -5, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 2 ], "texture": "#gray" },
+                "up":    { "uv": [ 0, 0, 0, 2 ], "texture": "#gray" },
+                "north": { "uv": [ 0, 0, 2, 5 ], "texture": "#gray" },
+                "south": { "uv": [ 0, 0, 2, 5 ], "texture": "#gray" },
+                "west":  { "uv": [ 0, 0, 0, 5 ], "texture": "#gray" },
+                "east":  { "uv": [ 0, 0, 0, 5 ], "texture": "#gray" }
+            },
+            "__comment": "Sword handle"
+        },
+        {
+            "from": [-3, -5, -2],
+            "to": [3, 0, 2],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 3, 5 ], "texture": "#white" },
+                "up":    { "uv": [ 0, 0, 3, 5 ], "texture": "#white" },
+                "north": { "uv": [ 0, 0, 5, 4 ], "texture": "#white" },
+                "south": { "uv": [ 0, 0, 5, 4 ], "texture": "#white" },
+                "west":  { "uv": [ 0, 0, 3, 4 ], "texture": "#white" },
+                "east":  { "uv": [ 0, 0, 3, 4 ], "texture": "#white" }
+            },
+            "__comment": "Sword crest"
+        },
+        {
+            "from": [-4.5, -6, -1],
+            "to": [4.5, 1, 1],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 1, 8 ], "texture": "#gray" },
+                "up":    { "uv": [ 0, 0, 1, 8 ], "texture": "#gray" },
+                "north": { "uv": [ 0, 0, 8, 6 ], "texture": "#gray" },
+                "south": { "uv": [ 0, 0, 8, 6 ], "texture": "#gray" },
+                "west":  { "uv": [ 0, 0, 1, 6 ], "texture": "#gray" },
+                "east":  { "uv": [ 0, 0, 1, 6 ], "texture": "#gray" }
+            },
+            "__comment": "Sword crest, thin bit"
+        },
+        {
+            "from": [-5.5, -4, -0.5],
+            "to": [-4.5, -1, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "up":    { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "north": { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "south": { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "west":  { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "east":  { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" }
+            },
+            "__comment": "Sword crest, left"
+        },
+        {
+            "from": [4.5, -4, -0.5],
+            "to": [5.5, -1, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "up":    { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "north": { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "south": { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "west":  { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "east":  { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" }
+            },
+            "__comment": "Sword crest, right"
+        },
+        {
+            "from": [-2.5, 1, -0.5],
+            "to": [2.5, 3, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 4 ], "texture": "#gray" },
+                "up":    { "uv": [ 0, 0, 0, 4 ], "texture": "#gray" },
+                "north": { "uv": [ 0, 0, 4, 1 ], "texture": "#gray" },
+                "south": { "uv": [ 0, 0, 4, 1 ], "texture": "#gray" },
+                "west":  { "uv": [ 0, 0, 0, 1 ], "texture": "#gray" },
+                "east":  { "uv": [ 0, 0, 0, 1 ], "texture": "#gray" }
+            },
+            "__comment": "Sword connector"
+        },
+        {
+            "from": [-1.5, -1, -1.5],
+            "to": [1.5, 2, 1.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" },
+                "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" },
+                "north": { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" },
+                "south": { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" },
+                "west":  { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" },
+                "east":  { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" }
+            },
+            "__comment": "Sword connector gem"
+        },
+        {
+            "from": [-3.5, 4, -2],
+            "to": [3.5, 11, 2],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 3, 6 ], "texture": "#white" },
+                "up":    { "uv": [ 0, 0, 3, 6 ], "texture": "#white" },
+                "north": { "uv": [ 0, 0, 6, 6 ], "texture": "#white" },
+                "south": { "uv": [ 0, 0, 6, 6 ], "texture": "#white" },
+                "west":  { "uv": [ 0, 0, 3, 6 ], "texture": "#white" },
+                "east":  { "uv": [ 0, 0, 3, 6 ], "texture": "#white" }
+            },
+            "__comment": "Sword crest, mid"
+        },
+        {
+            "from": [-5.5, 3, -1],
+            "to": [5.5, 12, 1],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 1, 10 ], "texture": "#gray" },
+                "up":    { "uv": [ 0, 0, 1, 10 ], "texture": "#gray" },
+                "north": { "uv": [ 0, 0, 10, 8 ], "texture": "#gray" },
+                "south": { "uv": [ 0, 0, 10, 8 ], "texture": "#gray" },
+                "west":  { "uv": [ 0, 0, 1, 8 ], "texture": "#gray" },
+                "east":  { "uv": [ 0, 0, 1, 8 ], "texture": "#gray" }
+            },
+            "__comment": "Sword crest, mid thin bit"
+        },
+        {
+            "from": [-6.5, 6, -0.5],
+            "to": [-5.5, 9, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "up":    { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "north": { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "south": { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "west":  { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "east":  { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" }
+            },
+            "__comment": "Sword crest, mid left"
+        },
+        {
+            "from": [5.5, 6, -0.5],
+            "to": [6.5, 9, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "up":    { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "north": { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "south": { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "west":  { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" },
+                "east":  { "uv": [ 0, 0, 0, 2 ], "texture": "#yellow" }
+            },
+            "__comment": "Sword crest, mid right"
+        },
+        {
+            "from": [-2.5, 12, -0.5],
+            "to": [2.5, 17, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 4 ], "texture": "#gray" },
+                "up":    { "uv": [ 0, 0, 0, 4 ], "texture": "#gray" },
+                "north": { "uv": [ 0, 0, 4, 4 ], "texture": "#gray" },
+                "south": { "uv": [ 0, 0, 4, 4 ], "texture": "#gray" },
+                "west":  { "uv": [ 0, 0, 0, 4 ], "texture": "#gray" },
+                "east":  { "uv": [ 0, 0, 0, 4 ], "texture": "#gray" }
+            },
+            "__comment": "Sword connector, mid"
+        },
+        {
+            "from": [-1.5, 10, -1.5],
+            "to": [1.5, 15, 1.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" },
+                "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" },
+                "north": { "uv": [ 0, 0, 2, 4 ], "texture": "#yellow" },
+                "south": { "uv": [ 0, 0, 2, 4 ], "texture": "#yellow" },
+                "west":  { "uv": [ 0, 0, 2, 4 ], "texture": "#yellow" },
+                "east":  { "uv": [ 0, 0, 2, 4 ], "texture": "#yellow" }
+            },
+            "__comment": "Sword connector gem, mid"
+        },
+        {
+            "from": [-3, 18, -2],
+            "to": [3, 23, 2],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 3, 5 ], "texture": "#white" },
+                "up":    { "uv": [ 0, 0, 3, 5 ], "texture": "#white" },
+                "north": { "uv": [ 0, 0, 5, 4 ], "texture": "#white" },
+                "south": { "uv": [ 0, 0, 5, 4 ], "texture": "#white" },
+                "west":  { "uv": [ 0, 0, 3, 4 ], "texture": "#white" },
+                "east":  { "uv": [ 0, 0, 3, 4 ], "texture": "#white" }
+            },
+            "__comment": "Sword crest, upper"
+        },
+        {
+            "from": [-4.5, 17, -1],
+            "to": [4.5, 24, 1],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 1, 8 ], "texture": "#gray" },
+                "up":    { "uv": [ 0, 0, 1, 8 ], "texture": "#gray" },
+                "north": { "uv": [ 0, 0, 8, 6 ], "texture": "#gray" },
+                "south": { "uv": [ 0, 0, 8, 6 ], "texture": "#gray" },
+                "west":  { "uv": [ 0, 0, 1, 6 ], "texture": "#gray" },
+                "east":  { "uv": [ 0, 0, 1, 6 ], "texture": "#gray" }
+            },
+            "__comment": "Sword crest, upper thin bit"
+        },
+        {
+            "from": [-5.5, 19, -0.5],
+            "to": [-4.5, 25, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "up":    { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "north": { "uv": [ 0, 0, 0, 5 ], "texture": "#yellow" },
+                "south": { "uv": [ 0, 0, 0, 5 ], "texture": "#yellow" },
+                "west":  { "uv": [ 0, 0, 0, 5 ], "texture": "#yellow" },
+                "east":  { "uv": [ 0, 0, 0, 5 ], "texture": "#yellow" }
+            },
+            "__comment": "Sword crest, upper left"
+        },
+        {
+            "from": [4.5, 19, -0.5],
+            "to": [5.5, 25, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "up":    { "uv": [ 0, 0, 0, 0 ], "texture": "#yellow" },
+                "north": { "uv": [ 0, 0, 0, 5 ], "texture": "#yellow" },
+                "south": { "uv": [ 0, 0, 0, 5 ], "texture": "#yellow" },
+                "west":  { "uv": [ 0, 0, 0, 5 ], "texture": "#yellow" },
+                "east":  { "uv": [ 0, 0, 0, 5 ], "texture": "#yellow" }
+            },
+            "__comment": "Sword crest, upper right"
+        },
+        {
+            "from": [-2.5, 24, -0.5],
+            "to": [2.5, 26, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 4 ], "texture": "#gray" },
+                "up":    { "uv": [ 0, 0, 0, 4 ], "texture": "#gray" },
+                "north": { "uv": [ 0, 0, 4, 1 ], "texture": "#gray" },
+                "south": { "uv": [ 0, 0, 4, 1 ], "texture": "#gray" },
+                "west":  { "uv": [ 0, 0, 0, 1 ], "texture": "#gray" },
+                "east":  { "uv": [ 0, 0, 0, 1 ], "texture": "#gray" }
+            },
+            "__comment": "Sword connector, upper"
+        },
+        {
+            "from": [-1.5, 22, -1.5],
+            "to": [1.5, 29, 1.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" },
+                "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#yellow" },
+                "north": { "uv": [ 0, 0, 2, 6 ], "texture": "#yellow" },
+                "south": { "uv": [ 0, 0, 2, 6 ], "texture": "#yellow" },
+                "west":  { "uv": [ 0, 0, 2, 6 ], "texture": "#yellow" },
+                "east":  { "uv": [ 0, 0, 2, 6 ], "texture": "#yellow" }
+            },
+            "__comment": "Sword connector gem, upper"
+        }
+    ]
 }

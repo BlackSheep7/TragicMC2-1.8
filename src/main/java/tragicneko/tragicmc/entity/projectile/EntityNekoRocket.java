@@ -98,7 +98,7 @@ public class EntityNekoRocket extends EntityProjectile {
 				for (int l = 0; l < 5; ++l) {
 					worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 				}
-				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
+				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.3F, 0.4F);
 			}
 			else
 			{
@@ -107,9 +107,9 @@ public class EntityNekoRocket extends EntityProjectile {
 		}
 		else
 		{
-			if (!this.worldObj.isRemote && this.ticksExisted % 15 == 1)
+			if (!this.worldObj.isRemote && this.ticksExisted % 5 == 1)
 			{
-				this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 0.6F, 1.0F);
+				this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 0.4F, 1.6F);
 			}
 		}
 	}
