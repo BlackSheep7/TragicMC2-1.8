@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 
 public class RenderProjectile extends Render
 {
@@ -33,6 +34,10 @@ public class RenderProjectile extends Render
         float f2 = 0.5F;
         GlStateManager.scale(f2 / 1.0F, f2 / 1.0F, f2 / 1.0F);
         TextureAtlasSprite textureatlassprite = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(item, meta);
+        if (meta == 0 && entity instanceof EntityThrowingRock && ((EntityThrowingRock) entity).isLavaRock())
+        {//special case for lava rock
+        	 textureatlassprite = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(item, 1);
+        }
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         float f3 = textureatlassprite.getMinU();
