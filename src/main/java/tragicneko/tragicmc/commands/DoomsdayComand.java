@@ -111,8 +111,7 @@ public class DoomsdayComand extends CommandBase {
 			return;
 		}
 
-		if (TragicConfig.allowCrucialMoments && mp.worldObj.rand.nextInt(100) <= TragicConfig.crucialMomentChance) {
-		}
+		var1.addChatMessage(new ChatComponentText(mp.getName() + " used " + doomsday.getLocalizedName() + " via a command!"));
 		DoomsdayEffect effect = new DoomsdayEffect(doomsday.getDoomId(), doom, true);
 		DoomsdayManager.registerDoomsdayEffect(mp.getUniqueID(), effect);
 	}
