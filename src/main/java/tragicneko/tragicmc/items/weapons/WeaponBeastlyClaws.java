@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -34,33 +35,30 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (canUseAbility(doom, TragicConfig.doomAbilityCost[0]) && TragicConfig.doomAbility[0])
+		if (canUseAbility(doom, TragicConfig.doomAbilityCost[0]) && TragicConfig.doomAbility[0] && !player.worldObj.isRemote)
 		{
 			if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && stack.hasTagCompound())
 			{
-				if (!stack.getTagCompound().hasKey("comboCooldown")) stack.getTagCompound().setInteger("comboCooldown", 0);
 				if (!stack.getTagCompound().hasKey("comboCount")) stack.getTagCompound().setInteger("comboCount", 0);
 
-				int cooldown = stack.getTagCompound().getInteger("comboCooldown");
+				int cooldown = getStackCooldown(stack);
 				int combo = stack.getTagCompound().getInteger("comboCount");
 				double damage = combo * 2.0;
+				TragicMC.logInfo("combo is " + combo);
+				TragicMC.logInfo("cooldown is " + cooldown);
 
 				if (cooldown > 0)
 				{
-					if (combo < 5)
-					{
-						stack.getTagCompound().setInteger("comboCount", combo + 1);
-						stack.getTagCompound().setDouble("comboDamage", damage + 2.0);
-					}
+					if (combo < 5) stack.getTagCompound().setInteger("comboCount", combo + 1);
 
-					if (cooldown > 5 && cooldown < 20) stack.getTagCompound().setInteger("comboCooldown", cooldown + 5);
+					if (cooldown > 0 && cooldown < 15) setStackCooldown(stack, cooldown + 10);
 					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[0]);
 
 				}
 				else
 				{
-					stack.getTagCompound().setInteger("comboCount", 0);
-					stack.getTagCompound().setInteger("comboCooldown", 20);
+					setStackCooldown(stack, 20);
+					stack.getTagCompound().setInteger("comboCount", 1);
 				}
 			}
 		}
@@ -75,13 +73,11 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 		if (world.isRemote) return;
 
 		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-		if (!stack.getTagCompound().hasKey("comboCooldown")) stack.getTagCompound().setInteger("comboCooldown", 0);
 		if (!stack.getTagCompound().hasKey("comboCount")) stack.getTagCompound().setInteger("comboCount", 0);
 
-		int cooldown = stack.getTagCompound().getInteger("comboCooldown");
+		int cooldown = getStackCooldown(stack);
 		int combo = stack.getTagCompound().getInteger("comboCount");
 
-		if (cooldown > 0) stack.getTagCompound().setInteger("comboCooldown", cooldown - 1);
 		if (cooldown == 0) stack.getTagCompound().setInteger("comboCount", 0);
 		double damage = combo * 2.0D;
 
