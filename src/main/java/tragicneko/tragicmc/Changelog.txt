@@ -4537,11 +4537,23 @@ Fixed GL bug with the Time Controller's rendering
 Fixed Doom and Amulet Status Gui disappearing when a portal or nausea effect was being rendered
 Fixed music sometimes playing multiple times when swapping between tracks rapidly in Singleplayer (disabled music in singleplayer)
 Made it so that the player's movement inputs are only reset once after being Hacked to reduce chance of screwing with other mods doing the same
+Added Dragon Fang item model
+Changed Thardus texture and added a new item model (it's old texture was good but difficult to make a 3D model off of)
+Added item model for Sentinel, updated Dragon Fang model (it looked too plain)
+Fixed datwatcher for Guardian's Call shield entities
+Fixed the Doom command using the wrong player string in chat confirmation
+Added chat confirmation for when the Doomsday command is used
+Modified Beastly Claws to use the built in cooldown timer instead of it's own (redundant)
+Added item models for the Titan, Neko Launcher and IreNet Particle Cannon
+Fixed projectile icon for Lava Rocks, special casing was required for this
+Added item model for Neko Launcher, slightly modified Neko Rocket's sounds when flying through the air
+Added item model for IreNet Particle Cannon, slightly modified Ire Energy sound volume and reduced amount of bursts the Cannon fires per use
+Adjusted projectile spawn height for the Neko Launcher and IreNet Particle Cannon
 
-
+TODO: Finish mob sounds for current release mobs
 TODO: Seperate overlay for Generator items (just for ease), do the same for mob statues
-TODO: Add textures for armor when armor models are disabled
-TODO: Optimize WorldGen and Entity code to better use BlockPos and IBlockStates
+TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
+TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
