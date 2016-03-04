@@ -23,6 +23,8 @@ public class EntityGuardianShield extends EntityProjectile {
 
 	private float maxHealth = 20.0F;
 	private float health = maxHealth;
+	
+	private static final int DW_OWNER = 5;
 
 	public EntityGuardianShield(World world) {
 		super(world);
@@ -38,18 +40,18 @@ public class EntityGuardianShield extends EntityProjectile {
 
 	@Override
 	protected void entityInit() {
-		this.dataWatcher.addObject(4, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_OWNER, Integer.valueOf(0));
 	}
 
 	private void setOwnerID(int i)
 	{
-		this.dataWatcher.updateObject(4, i);
+		this.dataWatcher.updateObject(DW_OWNER, i);
 		this.updateOwner();
 	}
 
 	public int getOwnerID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(4);
+		return this.dataWatcher.getWatchableObjectInt(DW_OWNER);
 	}
 
 	@Override
