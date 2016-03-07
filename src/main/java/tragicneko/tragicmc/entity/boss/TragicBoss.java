@@ -361,7 +361,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 			flag2 = true;
 		}
 
-		if (this.worldObj.isAreaLoaded(new BlockPos(i, j, k), 4) && flag2)
+		if (this.worldObj.isBlockLoaded(new BlockPos(i, j, k)) && flag2)
 		{
 			boolean flag1 = false;
 
