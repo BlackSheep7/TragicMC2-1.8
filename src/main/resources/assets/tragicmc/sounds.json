@@ -55,6 +55,56 @@
 		"sounds": [
 			"boss/aegar/shockwave"]
     },
+    "boss.claymation.line":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/claymation/line", "boss/claymation/line2",
+            "boss/claymation/line3", "boss/claymation/line4",
+            "boss/claymation/line5", "boss/claymation/line6",
+            "boss/claymation/line7", "boss/claymation/line8",
+            "boss/claymation/line9", "boss/claymation/line10"]
+    },
+    "boss.claymation.sop":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/claymation/sop", "boss/claymation/sop2",
+            "boss/claymation/sop3", "boss/claymation/sop4"]
+    },
+    "boss.claymation.step":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/claymation/step", "boss/claymation/step2",
+            "boss/claymation/step3"]
+    },
+    "boss.empariah.frost":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/empariah/frost"]
+    },
+    "boss.empariah.hurt":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/empariah/hurt", "boss/empariah/hurt2",
+            "boss/empariah/hurt3"]
+    },
+    "boss.empariah.living":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/empariah/living", "boss/empariah/living2",
+            "boss/empariah/living3", "boss/empariah/living4"]
+    },
+    "boss.empariah.roar":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/empariah/roar", "boss/empariah/roar2"]
+    },
 	"boss.enyvil.calling":
     {
 		"category": "hostile",
@@ -279,6 +329,18 @@
 		"category": "hostile",
 		"sounds": [
 			"boss/overlordcocoon/death"]
+    },
+    "boss.overlordcocoon.phasecomplete":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/overlordcocoon/phasecomplete"]
+    },
+    "boss.overlordcocoon.phasefail":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/overlordcocoon/phasefail"]
     },
 	"boss.overlordcocoon.wah":
     {
@@ -1067,5 +1129,11 @@
 		"category": "hostile",
 		"sounds": [
 			"random/change"]
+    },
+    "random.tinktink":
+    {
+        "category": "ambient",
+        "sounds": [
+            "random/tinktink"]
     }
 }

@@ -1730,4 +1730,40 @@ public class EntityClaymation extends TragicBoss {
 	protected String getTeleportSound() {
 		return this.getEntityForm() == 3 ? "tragicmc:mob.stin.teleport" : super.getTeleportSound();
 	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.allowMobSounds ? (this.getEntityForm() == 0 ? "tragicmc:boss.claymation.line" : "tragicmc:boss.claymation.sop") : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.claymation.sop" : super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.claymation.sop" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return 120;
+	}
 }

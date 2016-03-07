@@ -37,6 +37,7 @@ public class WeaponNekoLauncher extends TragicWeapon {
 		{
 			par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 			par2World.playSoundAtEntity(par3EntityPlayer, "tragicmc:random.rocketflying", 0.8F, 1.6F);
+			par2World.playSoundAtEntity(par3EntityPlayer, "tragicmc:random.tinktink", 1.8F, 1.0F);
 		}
 
 		par1ItemStack.damageItem(1, par3EntityPlayer);

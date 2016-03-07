@@ -210,6 +210,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 						if (e instanceof EntityLivingBase && ((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).removePotionEffect(TragicPotion.Divinity.id);
 					}
 				}
+				if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.phasecomplete", 1.8F, 1.0F);
 			}
 			else
 			{
@@ -263,6 +264,8 @@ public class EntityOverlordCocoon extends TragicBoss {
 							if (e instanceof EntityLivingBase && ((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).removePotionEffect(TragicPotion.Divinity.id);
 						}
 					}
+					
+					if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.phasefail", 1.8F, 1.0F);
 				}
 				
 				if (TragicConfig.allowMobSounds && this.getPhaseTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.0F);
@@ -400,14 +403,14 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			for (BlockPos coord: lst)
 			{
-				if (this.posY >= coord.getY() && this.worldObj.getBlockState(coord).getBlock().getBlockHardness(this.worldObj, coord) > 0F) this.worldObj.setBlockToAir(coord);
+				if (this.posY > coord.getY() + 1 && this.worldObj.getBlockState(coord).getBlock().getBlockHardness(this.worldObj, coord) > 0F) this.worldObj.setBlockToAir(coord);
 			}
 
-			lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);
+			lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);
 
 			for (BlockPos coords : lst)
 			{
-				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock())) this.worldObj.setBlockState(coords, !TragicConfig.allowNonMobBlocks ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState());
+				if (this.posY >= coords.getY() + 1 && (!EntityOverlordCore.ignoredBlocks.contains(this.worldObj.getBlockState(coords).getBlock()) && this.worldObj.getBlockState(coords).getBlock().getBlockHardness(this.worldObj, coords) > 0F || this.worldObj.getBlockState(coords).getBlock() == Blocks.air)) this.worldObj.setBlockState(coords, !TragicConfig.allowNonMobBlocks ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState());
 			}
 
 			this.spawnSeekers();
