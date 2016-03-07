@@ -4500,7 +4500,7 @@ Made Fragile Light work as originally intended, it "hides" when you collide with
 Removed mossy variant of Permafrost, modified Moss texture some, specifically so it'll "tile" better
 Finished adding json files for blocks
 
-3.47.2904++ <214> (January 28, 2016)
+3.47.2946 <214> (January 28, 2016)
 Initial playtesting of the fully ported mod to ensure of no major bugs
 Fixed improper imports for Arrays (again), stupid other package with the same damn class name
 Fixed typo in Fanbrush texture json and fixed inventory texture for Sky Fruit Pod
@@ -4549,6 +4549,18 @@ Fixed projectile icon for Lava Rocks, special casing was required for this
 Added item model for Neko Launcher, slightly modified Neko Rocket's sounds when flying through the air
 Added item model for IreNet Particle Cannon, slightly modified Ire Energy sound volume and reduced amount of bursts the Cannon fires per use
 Adjusted projectile spawn height for the Neko Launcher and IreNet Particle Cannon
+
+3.47.2946++ <215> (March 4, 2016)
+Added Claymation sounds
+Added Empariah sounds
+Added sounds for when you complete or fail a phase in the Overlord Cocoon's damage cycles
+Added sound for when a rocket is fired initially
+Fixed Overlord Cocoon's spawn platform being weird
+Adjusted Teleport methods to do a smaller initial area check
+
+TODO still for sounds:
+-Apis sounds: Mad bull sounds
+-Avris sounds: oohs and ahhs and snickers... mmm snickers
 
 TODO: Finish mob sounds for current release mobs
 TODO: Seperate overlay for Generator items (just for ease), do the same for mob statues
@@ -4647,11 +4659,3 @@ Pyris, Veneera & Luex
 
 Alpha:
 Admin
-
-TODO still:
-Finish recording sounds:
--Sound for when the Overlord Cocoon form is damaged enough or not during it's instance
--Apis sounds: Mad bull sounds
--Yeti sounds: Deep beastly sounds
--Claymation sounds: soppy, clay sounds
--Avris sounds: oohs and ahhs and snickers... mmm snickers
