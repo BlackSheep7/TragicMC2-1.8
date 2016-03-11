@@ -95,7 +95,7 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 			}
 			else
 			{
-				for (int l = 0; l < 11; l++)
+				for (byte l = 0; l < 11; l++)
 				{
 					double d0 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posX;
 					double d1 = rand.nextInt(3) + this.posY - 1;

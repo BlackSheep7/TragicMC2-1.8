@@ -41,7 +41,7 @@ public class EntityLargeRock extends EntityProjectile {
 		}
 
 		boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-		this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+		this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F + 3.5F, flag);
 
 		this.setDead();
 	}

@@ -553,6 +553,7 @@ public class EntityYeti extends TragicBoss {
 
 			if (TragicConfig.empariahDemeanor) this.incrementDemeanor();
 			if (this.getAttackTime() == 0 && !this.isCharging()) this.setAttackTime(10);
+			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.empariah.scratch", 1.8F, 1.9F);
 		}
 
 		return flag;
@@ -659,7 +660,7 @@ public class EntityYeti extends TragicBoss {
 	@Override
 	public float getSoundVolume()
 	{
-		return 1.0F;
+		return 0.6F;
 	}
 
 	@Override
