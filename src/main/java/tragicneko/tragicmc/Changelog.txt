@@ -4556,13 +4556,23 @@ Added Empariah sounds
 Added sounds for when you complete or fail a phase in the Overlord Cocoon's damage cycles
 Added sound for when a rocket is fired initially
 Fixed Overlord Cocoon's spawn platform being weird
-Adjusted Teleport methods to do a smaller initial area check
+Adjusted mob Teleport methods to do a smaller initial area check
+Added new attack sound for Empariah
+Increased consistency of damage across most projectiles that create explosions on impact
+Increased/improved homing capabilities of homing projectiles
+Increased explosion size of Neko Rockets
+Lowered radius at which cluster bombs would spread mini bombs, reduced amount of mini bombs that cluster bombs spread
+Added small random variance to mini bomb explosion times, decreased mini bomb explosion size
+Made it so that Tragic Nekos no longer fire rockets if they can't see their target
+Added new item for Tragic Nekos to drop, will be used to craft Neko Launchers and "records" for the new songs
+Added first small batch of "records", they will be crafted from the Neko's new drop
+TODO: Actually add the Neko Control Device's intended effects and make Nekos able to be "released"
+TODO: Add crafting recipes for "records" with the Control Device
 
 TODO still for sounds:
 -Apis sounds: Mad bull sounds
 -Avris sounds: oohs and ahhs and snickers... mmm snickers
 
-TODO: Finish mob sounds for current release mobs
 TODO: Seperate overlay for Generator items (just for ease), do the same for mob statues
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
