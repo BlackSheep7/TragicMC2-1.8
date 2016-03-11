@@ -129,8 +129,6 @@ public class LoreHelper {
 		return list;
 	}
 
-
-
 	public static void registerLoreJson(File config)
 	{
 		loadDefaultLores();

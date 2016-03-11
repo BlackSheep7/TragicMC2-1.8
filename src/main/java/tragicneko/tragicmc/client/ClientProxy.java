@@ -483,6 +483,16 @@ public class ClientProxy extends CommonProxy {
 			registerItemToBakery(TragicItems.EverlastingLight, getPrefixedArray(everlastingLight));
 			
 			registerWeaponToBakery(TragicItems.IreNetParticleCannon, "ireParticleCannon");
+			
+			registerItemToBakery(TragicItems.Starstruck, DOMAIN + "record");
+			registerItemToBakery(TragicItems.Faultless, DOMAIN + "record");
+			registerItemToBakery(TragicItems.Transmissions, DOMAIN + "record");
+			registerItemToBakery(TragicItems.Atrophy, DOMAIN + "record");
+			registerItemToBakery(TragicItems.Archaic, DOMAIN + "record");
+			registerItemToBakery(TragicItems.System, DOMAIN + "record");
+			registerItemToBakery(TragicItems.Mirrors, DOMAIN + "record");
+			registerItemToBakery(TragicItems.Untitled, DOMAIN + "record");
+			registerItemToBakery(TragicItems.Untitled2, DOMAIN + "record");
 
 			if (TragicConfig.allowGeneratorItems) registerItemToBakery(TragicItems.Generator, getPrefixedArray(generator));
 			registerItemToBakery(TragicItems.MobStatue, getPrefixedArray(statue));
@@ -951,6 +961,17 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.Chitin, ZERO, "chitin");
 			registerItemToMesher(TragicItems.SoulExcess, ZERO, "soulExcess");
 			registerItemToMesher(TragicItems.EtherealDistortion, ZERO, "etherealDistortion");
+			registerItemToMesher(TragicItems.NekoMindControlDevice, ZERO, "nekoMindControlDevice");
+			
+			registerItemToMesher(TragicItems.Starstruck, ZERO, "record");
+			registerItemToMesher(TragicItems.Faultless, ZERO, "record");
+			registerItemToMesher(TragicItems.Transmissions, ZERO, "record");
+			registerItemToMesher(TragicItems.Atrophy, ZERO, "record");
+			registerItemToMesher(TragicItems.Archaic, ZERO, "record");
+			registerItemToMesher(TragicItems.System, ZERO, "record");
+			registerItemToMesher(TragicItems.Mirrors, ZERO, "record");
+			registerItemToMesher(TragicItems.Untitled, ZERO, "record");
+			registerItemToMesher(TragicItems.Untitled2, ZERO, "record");
 
 			registerItemToMesher(TragicItems.ToxicAmalgation, ZERO, "toxicAmalgation");
 			registerItemToMesher(TragicItems.ParadoxicalFormula, ZERO, "paradoxicalFormula");

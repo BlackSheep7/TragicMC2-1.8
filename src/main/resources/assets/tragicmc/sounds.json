@@ -1,4 +1,58 @@
 {
+    "records.starstruck":
+    {
+        "category": "record",
+        "sounds": [{
+            "name": "record/starstruck", "stream": "true"}]
+    },
+    "records.faultless":
+    {
+        "category": "record",
+        "sounds": [{
+            "name": "record/faultless", "stream": "true"}]
+    },
+    "records.transmissions":
+    {
+        "category": "record",
+        "sounds": [{
+            "name": "record/transmissions", "stream": "true"}]
+    },
+    "records.atrophy":
+    {
+        "category": "record",
+        "sounds": [{
+            "name": "record/atrophy", "stream": "true"}]
+    },
+    "records.archaic":
+    {
+        "category": "record",
+        "sounds": [{
+            "name": "record/archaic", "stream": "true"}]
+    },
+    "records.system":
+    {
+        "category": "record",
+        "sounds": [{
+            "name": "record/system", "stream": "true"}]
+    },
+    "records.untitled":
+    {
+        "category": "record",
+        "sounds": [{
+            "name": "record/untitled", "stream": "true"}]
+    },
+    "records.mirrors":
+    {
+        "category": "record",
+        "sounds": [{
+            "name": "record/mirrors", "stream": "true"}]
+    },
+    "records.untitled2":
+    {
+        "category": "record",
+        "sounds": [{
+            "name": "record/untitled2", "stream": "true"}]
+    },
 	"boss.aegar.harshhurt":
     {
 		"category": "hostile",
@@ -85,12 +139,19 @@
         "sounds": [
             "boss/empariah/frost"]
     },
+    "boss.empariah.scratch":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/empariah/scratch", "boss/empariah/scratch2"]
+    },
     "boss.empariah.hurt":
     {
         "category": "hostile",
         "sounds": [
             "boss/empariah/hurt", "boss/empariah/hurt2",
-            "boss/empariah/hurt3"]
+            "boss/empariah/hurt3", "boss/empariah/hurt4",
+            "boss/empariah/hurt5"]
     },
     "boss.empariah.living":
     {

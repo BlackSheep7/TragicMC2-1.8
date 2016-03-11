@@ -39,6 +39,7 @@ import tragicneko.tragicmc.items.ItemDimensionalKey;
 import tragicneko.tragicmc.items.ItemDoomUpgrade;
 import tragicneko.tragicmc.items.ItemDoomsdayScroll;
 import tragicneko.tragicmc.items.ItemDyingObsidianOrb;
+import tragicneko.tragicmc.items.ItemFile;
 import tragicneko.tragicmc.items.ItemGenerator;
 import tragicneko.tragicmc.items.ItemGeneric;
 import tragicneko.tragicmc.items.ItemMobEgg;
@@ -239,7 +240,20 @@ public class TragicItems {
 	public static Item IreNode;
 	public static Item UnstableIsotope;
 	public static Item CorruptedEssence;
+	public static Item NekoMindControlDevice;
+	
+	//Records (Set and file numbers)
+	public static Item Starstruck; //S1F1
+	public static Item Faultless; //S1F2
+	public static Item Transmissions; //S1F3
+	public static Item Atrophy; //S2F1
+	public static Item Archaic; //S2F2
+	public static Item System; //S2F3
+	public static Item Mirrors; //S3F1
+	public static Item Untitled; //S3F2
+	public static Item Untitled2; //S3F3
 
+	//Sacrifice items
 	public static Item BloodSacrifice;
 	public static Item NourishmentSacrifice;
 	public static Item SoulSacrifice;
@@ -322,10 +336,6 @@ public class TragicItems {
 	private static final ArmorMaterial armorDark = EnumHelper.addArmorMaterial("DARK", "Dark", 18, new int[] {3, 7, 5, 3}, 6); //18
 	private static final ArmorMaterial armorLight = EnumHelper.addArmorMaterial("LIGHT", "Light", 26, new int[] {5, 7, 6, 4}, 18); //22
 	private static final ArmorMaterial armorOverlord = EnumHelper.addArmorMaterial("OVERLORD", "Overlord", 35, new int[] {5, 8, 7, 4}, 26); //24
-
-	public static final Item test = new TragicWeapon(toolAwakened, null).setAscensionLevel(5F).setUnlocalizedName("tragicmc.test").setCreativeTab(TragicMC.Survival); //Silent hellraiser upgrade
-	public static final Item test2 = new TragicWeapon(toolHarvester, null).setAscensionLevel(8F).setUnlocalizedName("tragicmc.test2").setCreativeTab(TragicMC.Survival); //Reaper scythe upgrade
-	public static final Item test3 = new TragicWeapon(toolCorruptThorn, null).setAscensionLevel(5F).setUnlocalizedName("tragicmc.test3").setCreativeTab(TragicMC.Survival); //Guilty thorn upgrade
 
 	public static void load()
 	{
@@ -712,6 +722,38 @@ public class TragicItems {
 
 		EtherealDistortion = (new ItemGeneric().setUnlocalizedName("tragicmc.etherealDistortion").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(EtherealDistortion, "etherealDistortion");
+		
+		NekoMindControlDevice = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoMindControlDevice").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(NekoMindControlDevice, "nekoMindControlDevice");
+		//Use for Neko Launcher, Sound Extrapolator, records
+		
+		//Records
+		Starstruck = (new ItemFile("starstruck", 0xCFB677));
+		GameRegistry.registerItem(Starstruck, "starstruck");
+		
+		Faultless = (new ItemFile("faultless", 0x373799));
+		GameRegistry.registerItem(Faultless, "faultless");
+		
+		Transmissions = (new ItemFile("transmissions", 0x23AB32));
+		GameRegistry.registerItem(Transmissions, "transmissions");
+		
+		Atrophy = (new ItemFile("atrophy", 0x77DCFF));
+		GameRegistry.registerItem(Atrophy, "atrophy");
+		
+		Archaic = (new ItemFile("archaic", 0x585858));
+		GameRegistry.registerItem(Archaic, "archaic");
+		
+		System = (new ItemFile("system", 0x000000));
+		GameRegistry.registerItem(System, "system");
+		
+		Mirrors = (new ItemFile("mirrors", 0xFFFFFF));
+		GameRegistry.registerItem(Mirrors, "mirrors");
+		
+		Untitled = (new ItemFile("untitled", 0x123456));
+		GameRegistry.registerItem(Untitled, "untitled");
+		
+		Untitled2 = (new ItemFile("untitled2", 0x345678));
+		GameRegistry.registerItem(Untitled2, "untitled2");
 
 		//Catalyst items
 		ToxicAmalgation = (new ItemGeneric() {
