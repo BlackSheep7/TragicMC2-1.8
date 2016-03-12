@@ -661,6 +661,7 @@ item.tragicmc.worldGen.pitGenerator.name=Pit Generator
 item.tragicmc.nekoNekoWand.name=Neko Neko Wand
 item.tragicmc.soundExtrapolator.name=Sound Extrapolator
 item.tragicmc.nekoMindControlDevice.name=Neko Mind Control Device
+item.tragicmc.recaptureSiphon.name=Recapture Siphon
 
 item.tragicmc.starstruck.name=S001F001 Starstruck
 item.record.starstruck.name=Set001 - File001 - Starstruck
@@ -1497,6 +1498,24 @@ achievement.tragicmc.ire.desc=Kill an Ire by using an IreNet Particle Cannon
 
 achievement.tragicmc.avris=Gimme yo loots!
 achievement.tragicmc.avris.desc=Kill an Avris before it escapes
+
+achievement.tragicmc.tragicNekoDevice=What's this?
+achievement.tragicmc.tragicNekoDevice.desc=Obtain a special drop from the Tragic Neko
+
+achievement.tragicmc.tragicNekoRelease=Good Samaritan
+achievement.tragicmc.tragicNekoRelease.desc=Release a Tragic Neko from it's torture, you good person, you!
+
+achievement.tragicmc.tragicNekoRecapture=This looks like a job for... Reverse Engineer!
+achievement.tragicmc.tragicNekoRecapture.desc=Use a Recapture Siphon to create a device to take you to the Neko Homeworld!
+
+achievement.tragicmc.tragicNekoFile=No files match that search query!
+achievement.tragicmc.tragicNekoFile.desc=Obtain a Music file by releasing a Neko
+
+achievement.tragicmc.tragicNekoEmitter=Healing Feelings
+achievement.tragicmc.tragicNekoEmitter.desc=Obtain an HF Emitter to free Nekos automatically as they approach you
+
+achievement.tragicmc.tragicNekoLauncher=Explosive Personality
+achievement.tragicmc.tragicNekoLauncher.desc=Obtain a Neko Launcher
 
 achievement.tragicmc.apis=Apis of mind
 achievement.tragicmc.apis.desc=Kill an Apis

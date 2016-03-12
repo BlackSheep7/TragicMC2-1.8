@@ -3,6 +3,8 @@ package tragicneko.tragicmc;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,9 +26,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-
-import org.apache.commons.lang3.ArrayUtils;
-
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.ItemAmuletRelease;
 import tragicneko.tragicmc.items.ItemBleedingObsidianOrb;
@@ -46,6 +45,7 @@ import tragicneko.tragicmc.items.ItemMobEgg;
 import tragicneko.tragicmc.items.ItemNekoWand;
 import tragicneko.tragicmc.items.ItemNourishmentSacrifice;
 import tragicneko.tragicmc.items.ItemProjectile;
+import tragicneko.tragicmc.items.ItemRecaptureSiphon;
 import tragicneko.tragicmc.items.ItemSoundExtrapolator;
 import tragicneko.tragicmc.items.ItemStatue;
 import tragicneko.tragicmc.items.ItemTalisman;
@@ -241,6 +241,7 @@ public class TragicItems {
 	public static Item UnstableIsotope;
 	public static Item CorruptedEssence;
 	public static Item NekoMindControlDevice;
+	public static Item RecaptureSiphon;
 	
 	//Records (Set and file numbers)
 	public static Item Starstruck; //S1F1
@@ -725,7 +726,9 @@ public class TragicItems {
 		
 		NekoMindControlDevice = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoMindControlDevice").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(NekoMindControlDevice, "nekoMindControlDevice");
-		//Use for Neko Launcher, Sound Extrapolator, records
+		
+		RecaptureSiphon = (new ItemRecaptureSiphon().setUnlocalizedName("tragicmc.recaptureSiphon").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(RecaptureSiphon, "recaptureSiphon");
 		
 		//Records
 		Starstruck = (new ItemFile("starstruck", 0xCFB677));
@@ -740,10 +743,10 @@ public class TragicItems {
 		Atrophy = (new ItemFile("atrophy", 0x77DCFF));
 		GameRegistry.registerItem(Atrophy, "atrophy");
 		
-		Archaic = (new ItemFile("archaic", 0x585858));
+		Archaic = (new ItemFile("archaic", 0xFFCDBA));
 		GameRegistry.registerItem(Archaic, "archaic");
 		
-		System = (new ItemFile("system", 0x000000));
+		System = (new ItemFile("system", 0x424242));
 		GameRegistry.registerItem(System, "system");
 		
 		Mirrors = (new ItemFile("mirrors", 0xFFFFFF));

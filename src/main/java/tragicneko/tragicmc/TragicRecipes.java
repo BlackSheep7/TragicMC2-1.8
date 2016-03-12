@@ -463,6 +463,14 @@ public class TragicRecipes {
 				'x', Blocks.obsidian,
 				'y', TragicItems.QuicksilverIngot
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.RecaptureSiphon, 1),
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicItems.ComplexCircuitry,
+				'y', TragicItems.NekoMindControlDevice
+				);
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.CelestialSteel, 1),
 				"celestialSteelDrops", "celestialSteelDrops", "celestialSteelDrops", TragicItems.CelestialDiamond
@@ -736,11 +744,12 @@ public class TragicRecipes {
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NekoLauncher, 1),
 				"zxy",
-				"zyz",
+				"zwz",
 				"yxz",
 				'z', TragicItems.InfallibleMetal,
 				'y', TragicItems.ComplexCircuitry,
-				'x', TragicItems.Shadowskin
+				'x', TragicItems.Shadowskin,
+				'w', TragicItems.RecaptureSiphon
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LightIngot, 1),

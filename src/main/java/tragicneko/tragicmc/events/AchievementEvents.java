@@ -25,6 +25,7 @@ import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.TragicMob;
+import tragicneko.tragicmc.items.ItemFile;
 import tragicneko.tragicmc.items.ItemTalisman;
 import tragicneko.tragicmc.items.amulet.ItemAmulet;
 import tragicneko.tragicmc.items.armor.ArmorOverlord;
@@ -113,6 +114,10 @@ public class AchievementEvents {
 						if (LoreHelper.getRarityFromStack(stack) >= 3) mp.triggerAchievement(TragicAchievements.loot2);
 					}
 				}
+				else if (stack != null && stack.getItem() instanceof ItemFile)
+				{
+					mp.triggerAchievement(TragicAchievements.tragicNekoFile);
+				}
 			}
 
 			boolean flag = true;
@@ -180,8 +185,10 @@ public class AchievementEvents {
 					if (doom.getCurrentDoom() == doom.getMaxDoom()) mp.triggerAchievement(TragicAchievements.doom);
 				}
 			}
-
-
+			if (inv.hasItem(TragicItems.NekoMindControlDevice))
+			{
+				mp.triggerAchievement(TragicAchievements.tragicNekoDevice);
+			}
 
 			if (mp.worldObj != null)
 			{

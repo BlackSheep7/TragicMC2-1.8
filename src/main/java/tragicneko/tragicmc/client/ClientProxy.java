@@ -962,6 +962,7 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.SoulExcess, ZERO, "soulExcess");
 			registerItemToMesher(TragicItems.EtherealDistortion, ZERO, "etherealDistortion");
 			registerItemToMesher(TragicItems.NekoMindControlDevice, ZERO, "nekoMindControlDevice");
+			registerItemToMesher(TragicItems.RecaptureSiphon, ZERO, "recaptureSiphon");
 			
 			registerItemToMesher(TragicItems.Starstruck, ZERO, "record");
 			registerItemToMesher(TragicItems.Faultless, ZERO, "record");
