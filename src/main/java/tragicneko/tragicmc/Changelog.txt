@@ -4566,8 +4566,12 @@ Added small random variance to mini bomb explosion times, decreased mini bomb ex
 Made it so that Tragic Nekos no longer fire rockets if they can't see their target
 Added new item for Tragic Nekos to drop, will be used to craft Neko Launchers and "records" for the new songs
 Added first small batch of "records", they will be crafted from the Neko's new drop
-TODO: Actually add the Neko Control Device's intended effects and make Nekos able to be "released"
-TODO: Add crafting recipes for "records" with the Control Device
+Neko Control Devices can be used to "release" a Tragic Neko, effectively making it passive to everything but unreleased Nekos
+Released Nekos now have a heart particle effect to differentiate them, they also give a confirmation message when released
+Added Recapture Siphon, allows you to release multiple Nekos in an area when used and can be used to craft other neko related items
+Added Neko specific achievements
+Nekos no longer drop cluster bombs when killed after being released
+Nekos now drop music files when released
 
 TODO still for sounds:
 -Apis sounds: Mad bull sounds
