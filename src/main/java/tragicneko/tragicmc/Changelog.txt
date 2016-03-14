@@ -4572,6 +4572,8 @@ Added Recapture Siphon, allows you to release multiple Nekos in an area when use
 Added Neko specific achievements
 Nekos no longer drop cluster bombs when killed after being released
 Nekos now drop music files when released
+Fixed mob infighting set to true instead of false in hardcore master preset in config
+Re-enable dimension music, if it's that much trouble it can be disabled multiple other ways, especially in single player
 
 TODO still for sounds:
 -Apis sounds: Mad bull sounds
