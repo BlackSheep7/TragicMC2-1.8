@@ -67,7 +67,7 @@ public class TragicMusicTicker implements IUpdatePlayerListBox {
 				}
 			}
 
-			if (/*mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Deafening) ||*/ music == null || mc.isSingleplayer()) return;
+			if (/*mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Deafening) ||*/ music == null) return;
 			
 			if (this.currentTrack == null && /*(mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Nightmare) ||*/ this.buffer-- == 0/*)*/ && mc.gameSettings.getSoundLevel(SoundCategory.MUSIC) > 0F && mc.gameSettings.getSoundLevel(SoundCategory.MASTER) > 0F)
 			{
