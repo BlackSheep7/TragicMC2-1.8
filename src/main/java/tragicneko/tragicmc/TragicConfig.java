@@ -4578,7 +4578,7 @@ public class TragicConfig {
 		mobAllow[20] = false; //erkel
 		
 		mobConfig[11] = true; //bosses deny flight
-		mobConfig[12] = true; //disallows mob infighting so that they focus on players more
+		mobConfig[12] = false; //disallows mob infighting so that they focus on players more
 
 		//TODO setup mob stat changes for hardcore mode
 		modifier[10] += 10.0; //dynamic health scaling increased by 10 for all mobs
