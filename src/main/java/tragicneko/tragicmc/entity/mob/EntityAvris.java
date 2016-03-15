@@ -214,4 +214,39 @@ public class EntityAvris extends TragicMob {
 
 		return flag;
 	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.avris.laugh" : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.avris.hurt" : super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.avris.death" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public boolean getIllumination() {
+		return true;
+	}
 }
