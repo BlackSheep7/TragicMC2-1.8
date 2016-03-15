@@ -1,6 +1,11 @@
 package tragicneko.tragicmc.events;
 
 import static tragicneko.tragicmc.TragicMC.rand;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.Gui;
@@ -17,11 +22,6 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
-
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
@@ -71,12 +71,6 @@ public class ClientEvents extends Gui {
 			if (ClientProxy.useSpecial.isPressed() && TragicConfig.allowDoomsdays)
 			{
 				TragicMC.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
-			}
-			
-			if (ClientProxy.disableModels.isPressed()) //TODO remember to determine if this will be kept
-			{
-				TragicConfig.allowWeaponModels = !TragicConfig.allowWeaponModels;
-				TragicConfig.allowArmorModels = !TragicConfig.allowArmorModels;
 			}
 		}
 	}

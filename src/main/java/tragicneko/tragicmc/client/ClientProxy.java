@@ -192,7 +192,6 @@ public class ClientProxy extends CommonProxy {
 
 	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
 	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);
-	public static KeyBinding disableModels = new KeyBinding("Disable Models Shortcut", Keyboard.KEY_M, TragicMC.MODNAME);
 
 	public static final ModelOverlordArmor[] modelsOverlord = new ModelOverlordArmor[] {new ModelOverlordArmor(0), new ModelOverlordArmor(1),
 		new ModelOverlordArmor(2), new ModelOverlordArmor(3)};
