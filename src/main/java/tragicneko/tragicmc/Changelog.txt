@@ -4550,7 +4550,7 @@ Added item model for Neko Launcher, slightly modified Neko Rocket's sounds when 
 Added item model for IreNet Particle Cannon, slightly modified Ire Energy sound volume and reduced amount of bursts the Cannon fires per use
 Adjusted projectile spawn height for the Neko Launcher and IreNet Particle Cannon
 
-3.47.2946++ <215> (March 4, 2016)
+3.47.2971 <215> (March 4, 2016)
 Added Claymation sounds
 Added Empariah sounds
 Added sounds for when you complete or fail a phase in the Overlord Cocoon's damage cycles
@@ -4576,6 +4576,8 @@ Fixed mob infighting set to true instead of false in hardcore master preset in c
 Re-enable dimension music, if it's that much trouble it can be disabled multiple other ways, especially in single player
 Added Apis and Avris sounds
 Added mob illumination to Avris
+Removed item models disable shortcut key
+Bump version number for release
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
