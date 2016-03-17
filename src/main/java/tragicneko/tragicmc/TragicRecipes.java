@@ -465,11 +465,20 @@ public class TragicRecipes {
 				);
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.RecaptureSiphon, 1),
-				"xxx",
+				" x ",
 				"xyx",
-				"xxx",
+				" x ",
 				'x', TragicItems.ComplexCircuitry,
 				'y', TragicItems.NekoMindControlDevice
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NekoInfluencer, 1),
+				"yxy",
+				"xzx",
+				"yxy",
+				'x', TragicItems.ComplexCircuitry,
+				'y', TragicItems.NekoMindControlDevice,
+				'z', TragicItems.RecaptureSiphon
 				);
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.CelestialSteel, 1),

@@ -189,6 +189,11 @@ public class AchievementEvents {
 			{
 				mp.triggerAchievement(TragicAchievements.tragicNekoDevice);
 			}
+			
+			if (inv.hasItem(TragicItems.NekoInfluencer))
+			{
+				mp.triggerAchievement(TragicAchievements.tragicNekoInfluence);
+			}
 
 			if (mp.worldObj != null)
 			{

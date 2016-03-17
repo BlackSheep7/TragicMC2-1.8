@@ -42,6 +42,7 @@ import tragicneko.tragicmc.items.ItemFile;
 import tragicneko.tragicmc.items.ItemGenerator;
 import tragicneko.tragicmc.items.ItemGeneric;
 import tragicneko.tragicmc.items.ItemMobEgg;
+import tragicneko.tragicmc.items.ItemNekoInfluencer;
 import tragicneko.tragicmc.items.ItemNekoWand;
 import tragicneko.tragicmc.items.ItemNourishmentSacrifice;
 import tragicneko.tragicmc.items.ItemProjectile;
@@ -133,7 +134,7 @@ public class TragicItems {
 	public static Item OverlordHelm, OverlordPlate, OverlordLegs, OverlordBoots;
 
 	public static Item CelestialAegis, CelestialLongbow, CelestialJack, CelestialDiamond, CelestialSteel;
-	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, WitheringAxe, FrozenLightning;
+	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, ReaperScythe, WitheringAxe, FrozenLightning;
 
 	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang, SilentHellraiser;
 
@@ -240,8 +241,13 @@ public class TragicItems {
 	public static Item IreNode;
 	public static Item UnstableIsotope;
 	public static Item CorruptedEssence;
+	
+	//Neko drops
+	public static Item NekoNekoWand;
+	public static Item NekoLauncher;
 	public static Item NekoMindControlDevice;
 	public static Item RecaptureSiphon;
+	public static Item NekoInfluencer;
 	
 	//Records (Set and file numbers)
 	public static Item Starstruck; //S1F1
@@ -285,7 +291,6 @@ public class TragicItems {
 	public static Item BowOfJustice;
 	public static Item SwordOfJustice;
 	public static Item Generator;
-	public static Item NekoNekoWand;
 	public static Item SoundExtrapolator;
 	public static Item WingsOfLiberation;
 	public static Item ParanormalBox; //while in your hands, you can fly through blocks & entities like a ghost, but you slowly lose health & hunger
@@ -729,6 +734,9 @@ public class TragicItems {
 		
 		RecaptureSiphon = (new ItemRecaptureSiphon().setUnlocalizedName("tragicmc.recaptureSiphon").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(RecaptureSiphon, "recaptureSiphon");
+		
+		NekoInfluencer = (new ItemNekoInfluencer().setUnlocalizedName("tragicmc.nekoInfluencer").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(NekoInfluencer, "nekoInfluencer");
 		
 		//Records
 		Starstruck = (new ItemFile("starstruck", 0xCFB677));

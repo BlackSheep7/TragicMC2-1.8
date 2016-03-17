@@ -662,6 +662,7 @@ item.tragicmc.nekoNekoWand.name=Neko Neko Wand
 item.tragicmc.soundExtrapolator.name=Sound Extrapolator
 item.tragicmc.nekoMindControlDevice.name=Neko Mind Control Device
 item.tragicmc.recaptureSiphon.name=Recapture Siphon
+item.tragicmc.nekoInfluencer.name=Neko Influencer
 
 item.tragicmc.starstruck.name=S001F001 Starstruck
 item.record.starstruck.name=Set001 - File001 - Starstruck
@@ -1505,14 +1506,11 @@ achievement.tragicmc.tragicNekoDevice.desc=Obtain a special drop from the Tragic
 achievement.tragicmc.tragicNekoRelease=Good Samaritan
 achievement.tragicmc.tragicNekoRelease.desc=Release a Tragic Neko from it's torture, you good person, you!
 
-achievement.tragicmc.tragicNekoRecapture=This looks like a job for... Reverse Engineer!
-achievement.tragicmc.tragicNekoRecapture.desc=Use a Recapture Siphon to create a device to take you to the Neko Homeworld!
+achievement.tragicmc.tragicNekoInfluence=This looks like a job for... Reverse Engineer!
+achievement.tragicmc.tragicNekoInfluence.desc=Use a Recapture Siphon to create a device that allows you to influence Nekos in new ways!
 
 achievement.tragicmc.tragicNekoFile=No files match that search query!
 achievement.tragicmc.tragicNekoFile.desc=Obtain a Music file by releasing a Neko
-
-achievement.tragicmc.tragicNekoEmitter=Healing Feelings
-achievement.tragicmc.tragicNekoEmitter.desc=Obtain an HF Emitter to free Nekos automatically as they approach you
 
 achievement.tragicmc.tragicNekoLauncher=Explosive Personality
 achievement.tragicmc.tragicNekoLauncher.desc=Obtain a Neko Launcher

@@ -1244,5 +1244,11 @@
         "category": "ambient",
         "sounds": [
             "random/tinktink"]
+    },
+    "random.siren":
+    {
+        "category": "ambient",
+        "sounds": [
+            "random/siren"]
     }
 }

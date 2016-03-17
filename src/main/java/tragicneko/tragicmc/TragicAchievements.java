@@ -125,7 +125,7 @@ public class TragicAchievements {
 	public static Achievement tragicNekoDevice = (Achievement) new Achievement("tragicmc.achievement.tragicNekoDevice", "tragicmc.tragicNekoDevice", -4 + offsetX, 10 + offsetZ, TragicItems.NekoMindControlDevice, null).func_180788_c().initIndependentStat();
 	public static Achievement tragicNekoRelease = (Achievement) new Achievement("tragicmc.achievement.tragicNekoRelease", "tragicmc.tragicNekoRelease", -2 + offsetX, 10 + offsetZ, TragicItems.RecaptureSiphon, tragicNekoDevice).func_180788_c().setSpecial();
 	public static Achievement tragicNekoFile = (Achievement) new Achievement("tragicmc.achievement.tragicNekoFile", "tragicmc.tragicNekoFile",-2 + offsetX, 8 + offsetZ, TragicItems.Starstruck, tragicNekoRelease).func_180788_c();
-	//public static Achievement tragicNekoRecapture = (Achievement) new Achievement("tragicmc.achievement.tragicNekoRecapture", "tragicmc.tragicNekoRecapture",-2 + offsetX, 12 + offsetZ, TragicItems.ComplexCircuitry, tragicNekoRelease).func_180788_c();
+	public static Achievement tragicNekoInfluence = (Achievement) new Achievement("tragicmc.achievement.tragicNekoInfluence", "tragicmc.tragicNekoInfluence",-2 + offsetX, 12 + offsetZ, TragicItems.NekoInfluencer, tragicNekoRelease).func_180788_c();
 	
 	//boss achievements
 	public static Achievement apis = (Achievement) new Achievement("tragicmc.achievement.apis", "tragicmc.apis", -12 + offsetX, 2 + offsetZ, TragicItems.PureLight, null).func_180788_c().initIndependentStat();
@@ -150,7 +150,7 @@ public class TragicAchievements {
 				tungsten, amulet, amuletEquip, amuletRelease, amuletMax, amuletSpecial, doom, doomsday, doomsdayCombo, doomCritical, doomCooldown, doomConsume, weapon, kill, killMiniBoss, killBoss,
 				enchant, reach, enchantArmor, fullSuit, haxEngage, jack, combustion, veteran, luminescence, talisman, talismanSpecial, talismanFull, goldenSushi, flight, disorientation, mobStatue, challengeScroll,
 				doomsdayScroll, mineXP, loot, loot2, systemCrash, divinity, useOrb, tragicNeko, pumpkinhead, norVox, psygote, sirv, ragr, kurayami, cantTouchThis, rewind, aegar, claymation2in1, skultarImmune,
-				minotaurSummon, seeker, harvester, lockdown, fusea, ire, avris, tragicNekoDevice, tragicNekoRelease, tragicNekoFile, apis, skultar, kitsunakuma, polaris, empariah, timeController, enyvil, claymation);
+				minotaurSummon, seeker, harvester, lockdown, fusea, ire, avris, tragicNekoDevice, tragicNekoRelease, tragicNekoFile, tragicNekoInfluence, apis, skultar, kitsunakuma, polaris, empariah, timeController, enyvil, claymation);
 		AchievementPage.registerAchievementPage(page);
 	}
 }

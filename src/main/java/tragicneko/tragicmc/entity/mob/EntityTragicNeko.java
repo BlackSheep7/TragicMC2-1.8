@@ -270,7 +270,7 @@ public class EntityTragicNeko extends TragicMob {
 			this.setAttackTarget(null);
 		}
 
-		if (this.isReleased() && this.getAttackTarget() != null && !(this.getAttackTarget() instanceof EntityTragicNeko))
+		if (this.isReleased() && this.getAttackTarget() != null && this.getAttackTarget() instanceof EntityPlayer)
 		{
 			this.setAttackTarget(null);
 		}

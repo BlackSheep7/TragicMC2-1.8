@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "tragicmc:blocks/FanBrush"
+        "layer0": "tragicmc:items/NekoInfluencer"
     },
     "display": {
         "thirdperson": {

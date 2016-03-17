@@ -16,7 +16,7 @@ public class ItemRecaptureSiphon extends Item {
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		par2List.add("When Right-Clicked, will release all Nekos near you!");
+		par2List.add("Right-click will release all Nekos near you!");
 		par2List.add("Requires 5 Doom to use.");
 	}
 
