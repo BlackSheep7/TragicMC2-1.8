@@ -4578,6 +4578,10 @@ Added Apis and Avris sounds
 Added mob illumination to Avris
 Removed item models disable shortcut key
 Bump version number for release
+Last second addition, added Neko Influencer for use on released Nekos that allows you to sorta "influence" them to attack certain mobs, acts
+like a combination of the Neko Neko Wand and the Recapture Siphon
+Also added an achievement, sound and recipe to go along with it
+Fixed Fanbrush texture (again), fixed descriptions of Neko items being too long to read easily
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
