@@ -140,7 +140,7 @@ public class EntityDarkCrystal extends Entity {
 
 			if (!this.worldObj.isRemote)
 			{
-				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+				boolean flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
 				this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 4.0F, flag);
 
 				float f = this.worldObj.getDifficulty().getDifficultyId() == 2 ? 50.0F : 25.0F;

@@ -98,7 +98,7 @@ public class EntityPumpkinhead extends TragicMob {
 		this.dataWatcher.updateObject(DW_HOME_COORD_X, pos.getX());
 		this.dataWatcher.updateObject(DW_HOME_COORD_Y, pos.getY());
 		this.dataWatcher.updateObject(DW_HOME_COORD_Z, pos.getZ());
-		this.func_175449_a(pos, 12);
+		this.setHomePosAndDistance(pos, 12);
 	}
 
 	public boolean hasHomePumpkin()
@@ -311,7 +311,7 @@ public class EntityPumpkinhead extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.isPumpkinNearby())
 		{
@@ -322,7 +322,7 @@ public class EntityPumpkinhead extends TragicMob {
 			this.setHomeCoordinates(getNearbyPumpkin());
 		}
 
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override

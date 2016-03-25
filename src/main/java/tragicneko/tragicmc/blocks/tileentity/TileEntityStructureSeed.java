@@ -2,13 +2,13 @@ package tragicneko.tragicmc.blocks.tileentity;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ITickable;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
-public class TileEntityStructureSeed extends TileEntity implements IUpdatePlayerListBox {
+public class TileEntityStructureSeed extends TileEntity implements ITickable {
 
 	@Override
 	public void update()

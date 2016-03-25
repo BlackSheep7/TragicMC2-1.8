@@ -103,7 +103,7 @@ public class WorldGenCustomSavannaTree extends WorldGenAbstractTree
 
                         if (block.isAir(worldIn, blockpos1) || block.isLeaves(worldIn, blockpos1))
                         {
-                            this.func_175903_a(worldIn, blockpos1, this.logState);
+                            this.setBlockAndNotifyAdequately(worldIn, blockpos1, this.logState);
                             k1 = i2;
                         }
                     }
@@ -159,7 +159,7 @@ public class WorldGenCustomSavannaTree extends WorldGenAbstractTree
 
                                 if (block.isAir(worldIn, blockpos2) || block.isLeaves(worldIn, blockpos2))
                                 {
-                                    this.func_175903_a(worldIn, blockpos2, this.logState);
+                                    this.setBlockAndNotifyAdequately(worldIn, blockpos2, this.logState);
                                     k1 = j2;
                                 }
                             }
@@ -215,7 +215,7 @@ public class WorldGenCustomSavannaTree extends WorldGenAbstractTree
 
         if (block.isAir(worldIn, p_175924_2_) || block.isLeaves(worldIn, p_175924_2_))
         {
-            this.func_175903_a(worldIn, p_175924_2_, this.leafState);
+            this.setBlockAndNotifyAdequately(worldIn, p_175924_2_, this.leafState);
         }
     }
 }

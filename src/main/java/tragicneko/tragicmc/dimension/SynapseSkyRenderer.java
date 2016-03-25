@@ -2,10 +2,12 @@ package tragicneko.tragicmc.dimension;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IRenderHandler;
 
@@ -17,58 +19,55 @@ public class SynapseSkyRenderer extends IRenderHandler {
 
 	@Override
 	public void render(float partialTicks, WorldClient world, Minecraft mc) {
-
-		GL11.glDisable(GL11.GL_FOG);
-		GL11.glDisable(GL11.GL_ALPHA_TEST);
-		GL11.glEnable(GL11.GL_BLEND);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		GlStateManager.disableFog();
+		GlStateManager.disableAlpha();
+		GlStateManager.enableBlend();
+		GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
 		RenderHelper.disableStandardItemLighting();
-		GL11.glDepthMask(false);
+		GlStateManager.depthMask(false);
 		mc.renderEngine.bindTexture(circuitTexture);
-		WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
+		Tessellator tess = Tessellator.getInstance();
+		WorldRenderer renderer = tess.getWorldRenderer();
 
-		for (int i = 0; i < 6; ++i)
+		for (byte i = 0; i < 6; ++i)
 		{
-			GL11.glPushMatrix();
+			GlStateManager.pushMatrix();
 
 			if (i == 1)
 			{
-				GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
+				GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0F);
 			}
-
-			if (i == 2)
+			else if (i == 2)
 			{
-				GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
+				GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0F);
 			}
-
-			if (i == 3)
+			else if (i == 3)
 			{
-				GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
+				GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0F);
 			}
-
-			if (i == 4)
+			else if (i == 4)
 			{
-				GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
+				GlStateManager.rotate(90.0F, 0.0F, 0.0F, 1F);
 			}
-
-			if (i == 5)
+			else if (i == 5)
 			{
-				GL11.glRotatef(-90.0F, 0.0F, 0.0F, 1.0F);
+				GlStateManager.rotate(-90.0F, 0.0F, 0.0F, 1F);
 			}
 
-			renderer.startDrawingQuads();
-			renderer.setColorOpaque_I(0x444444);
-			renderer.addVertexWithUV(-64.0D, -64.0D, -64.0D, 0.0D, 0.0D);
-			renderer.addVertexWithUV(-64.0D, -64.0D, 64.0D, 0.0D, 16.0D);
-			renderer.addVertexWithUV(64.0D, -64.0D, 64.0D, 16.0D, 16.0D);
-			renderer.addVertexWithUV(64.0D, -64.0D, -64.0D, 16.0D, 0.0D);
-			Tessellator.getInstance().draw();
-			GL11.glPopMatrix();
+			float f = 44.0F / 256.0F;
+			float f2 = 0.97F;
+			renderer.begin(7, DefaultVertexFormats.POSITION_TEX_NORMAL);
+			renderer.pos(-64.0D, -64.0D, -64.0D).tex(0.0D, 0.0D).color(f, f, f, f2).endVertex();
+			renderer.pos(-64.0D, -64.0D, 64.0D).tex(0.0D, 16.0D).color(f, f, f, f2).endVertex();
+			renderer.pos(64.0D, -64.0D, 64.0D).tex(16.0D, 16.0D).color(f, f, f, f2).endVertex();
+			renderer.pos(64.0D, -64.0D, -64.0D).tex(16.0D, 0.0D).color(f, f, f, f2).endVertex();
+			tess.draw();
+			GlStateManager.popMatrix();
 		}
 
-		GL11.glDepthMask(true);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GlStateManager.depthMask(true);
+		GlStateManager.enableTexture2D();
+		GlStateManager.enableAlpha();
 	}
 
 }

@@ -1196,7 +1196,7 @@ public class TragicEntities {
 			}
 		}
 		/*
-		if (TragicConfig.allowBlist) //TODO hid the blist, thorg, girsh and slang
+		if (TragicConfig.allowBlist)
 		{
 			EntityRegistry.registerModEntity(EntityBlist.class, "Blist", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityBlist.class, "TragicMC.Blist", id++, 0x000000, 0x000000);
@@ -1251,11 +1251,10 @@ public class TragicEntities {
 				}
 			}
 		}
-		//TODO this is the girsh, needs config stuff and yada yada
+		
 		EntityRegistry.registerModEntity(EntityGirsh.class, "Girsh", listid++, TragicMC.getInstance(), 80, 1, true);
 		TragicEntityList.addMapping(EntityGirsh.class, "TragicMC.Girsh", id++, 0x000000, 0x000000);
 		
-		//TODO this is the troll/slang, needs config stuff
 		EntityRegistry.registerModEntity(EntitySlang.class, "Slang", listid++, TragicMC.getInstance(), 80, 1, true);
 		TragicEntityList.addMapping(EntitySlang.class, "TragicMC.Slang", id++, 0x000000, 0x000000); */
 
@@ -1633,7 +1632,7 @@ public class TragicEntities {
 			}
 		}
 		/*
-		if (TragicConfig.allowAggro) //TODO hidden aggro, warden and slang leader
+		if (TragicConfig.allowAggro)
 		{
 			EntityRegistry.registerModEntity(EntityAggro.class, "Aggro", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityAggro.class, "TragicMC.Aggro", id++, 0x000000, 0x000000, EnumEggType.MINIBOSS);
@@ -1661,7 +1660,6 @@ public class TragicEntities {
 			}
 		}
 		
-		//TODO this is the Slang King, setup config stuff
 		EntityRegistry.registerModEntity(EntitySlangLeader.class, "SlangLeader", listid++, TragicMC.getInstance(), 80, 1, true);
 		TragicEntityList.addMapping(EntitySlangLeader.class, "TragicMC.SlangLeader", id++, 0x000000, 0x000000, EnumEggType.MINIBOSS);
 		
@@ -1676,7 +1674,7 @@ public class TragicEntities {
 		//Wither
 		TragicEntityList.addMapping(EntityWither.class, "TragicMC.Wither", id++, 0x1C1C1C, 0x252525, EnumEggType.BOSS);
 
-		if (TragicConfig.allowApis) //TODO finish Boss sounds
+		if (TragicConfig.allowApis)
 		{
 			EntityRegistry.registerModEntity(EntityApis.class, "Apis", listid++, TragicMC.getInstance(), 80, 1, true);
 

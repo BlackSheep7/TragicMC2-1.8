@@ -10,11 +10,11 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ITickable;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityAegar;
 import tragicneko.tragicmc.entity.boss.EntityApis;
@@ -27,7 +27,7 @@ import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 
-public class TileEntitySummonBlock extends TileEntity implements IUpdatePlayerListBox {
+public class TileEntitySummonBlock extends TileEntity implements ITickable {
 
 	private static final String[] taunts = new String[] {"The choice is made, the Traveller has come!", "They're here...", "Ready? ... FIGHT!", "Mortal Kombat!",
 		"Begin.", "Let's get ready to RUMBLE!", "Come now, make up and hug it out", "Come play with us, forever and ever and ever and ever...", "Oh no!", "Kissy kissy~",
@@ -132,7 +132,7 @@ public class TileEntitySummonBlock extends TileEntity implements IUpdatePlayerLi
 		if (boss == null) return;
 
 		boss.setLocationAndAngles(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), this.worldObj.rand.nextFloat(), this.worldObj.rand.nextFloat());
-		if (boss instanceof EntityLiving) ((EntityLiving) boss).func_180482_a(this.worldObj.getDifficultyForLocation(this.getPos()), null);
+		if (boss instanceof EntityLiving) ((EntityLiving) boss).onInitialSpawn(this.worldObj.getDifficultyForLocation(this.getPos()), null);
 		this.worldObj.setBlockToAir(this.getPos());
 		this.worldObj.removeTileEntity(this.getPos());
 		this.worldObj.spawnEntityInWorld(boss);

@@ -602,7 +602,7 @@ public class VanillaChangingEvents {
 			TragicMob mob = new EntityMinotaur(event.entity.worldObj);
 
 			mob.copyLocationAndAnglesFrom(event.entity);
-			mob.func_180482_a(event.entity.worldObj.getDifficultyForLocation(new BlockPos(event.entity.posX, event.entity.posY, event.entity.posZ)), (IEntityLivingData)null);
+			mob.onInitialSpawn(event.entity.worldObj.getDifficultyForLocation(new BlockPos(event.entity.posX, event.entity.posY, event.entity.posZ)), (IEntityLivingData)null);
 			event.entity.worldObj.removeEntity(event.entity);
 			event.entity.worldObj.spawnEntityInWorld(mob);
 			if (TragicConfig.allowInvulnerability) mob.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 80));

@@ -368,7 +368,7 @@ public class PotionEvents {
 			{
 				int amp = entity.getActivePotionEffect(TragicPotion.Malnourish).getAmplifier() * 2;
 				FoodStats food = ((EntityPlayerMP)entity).getFoodStats();
-				entity.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration");
+				entity.worldObj.getGameRules().getBoolean("naturalRegeneration");
 
 				if (amp > 10)
 				{

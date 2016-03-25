@@ -10,7 +10,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.client.ClientProxy;
+import tragicneko.tragicmc.proxy.ClientProxy;
 
 public class TragicWorldProvider extends WorldProvider
 {

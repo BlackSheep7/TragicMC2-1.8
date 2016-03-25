@@ -886,10 +886,10 @@ public class EntityOverlordCore extends TragicBoss {
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		this.setStartTransform();
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override
@@ -913,7 +913,7 @@ public class EntityOverlordCore extends TragicBoss {
 		{
 			int i;
 
-			if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+			if (!this.worldObj.isRemote && this.recentlyHit > 0)
 			{
 				i = this.getExperiencePoints(this.attackingPlayer);
 

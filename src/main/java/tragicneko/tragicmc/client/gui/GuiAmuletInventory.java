@@ -12,10 +12,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
+import tragicneko.tragicmc.proxy.ClientProxy;
 
 @SideOnly(Side.CLIENT)
 public class GuiAmuletInventory extends GuiContainer

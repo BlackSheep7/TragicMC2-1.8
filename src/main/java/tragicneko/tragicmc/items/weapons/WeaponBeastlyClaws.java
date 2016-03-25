@@ -44,8 +44,6 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 				int cooldown = getStackCooldown(stack);
 				int combo = stack.getTagCompound().getInteger("comboCount");
 				double damage = combo * 2.0;
-				TragicMC.logInfo("combo is " + combo);
-				TragicMC.logInfo("cooldown is " + cooldown);
 
 				if (cooldown > 0)
 				{

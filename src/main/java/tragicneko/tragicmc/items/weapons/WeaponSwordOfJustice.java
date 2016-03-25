@@ -66,7 +66,7 @@ public class WeaponSwordOfJustice extends ItemSword {
 	{
 		if (par2World.isRemote) return par1ItemStack;
 
-		if (par3EntityPlayer.capabilities.isCreativeMode && par3EntityPlayer.canUseCommand(2, ""))
+		if (par3EntityPlayer.capabilities.isCreativeMode && par3EntityPlayer.canCommandSenderUseCommand(2, ""))
 		{
 			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.getEntityBoundingBox().expand(128.0, 128.0, 128.0));
 			int count = 0;

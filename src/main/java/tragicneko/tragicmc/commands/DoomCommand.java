@@ -3,6 +3,7 @@ package tragicneko.tragicmc.commands;
 import java.util.List;
 
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -19,7 +20,7 @@ public class DoomCommand extends CommandBase {
 	}
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		return "doom";
 	}
 
@@ -29,7 +30,7 @@ public class DoomCommand extends CommandBase {
 	}
 
 	@Override
-	public void execute(ICommandSender var1, String[] var2) {
+	public void processCommand(ICommandSender var1, String[] var2) {
 		if (var2.length != 2)
 		{
 			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + this.getCommandUsage(var1)));
@@ -124,5 +125,4 @@ public class DoomCommand extends CommandBase {
 	{
 		return par2 == 0;
 	}
-
 }

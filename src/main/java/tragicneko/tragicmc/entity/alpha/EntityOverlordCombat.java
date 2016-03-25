@@ -739,11 +739,11 @@ public class EntityOverlordCombat extends TragicBoss {
 	public void addPotionEffect(PotionEffect pe) {}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		this.setTransforming();
 		this.playLivingSound();
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override

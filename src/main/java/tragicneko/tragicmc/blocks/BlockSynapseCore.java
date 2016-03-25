@@ -60,7 +60,7 @@ public class BlockSynapseCore extends Block {
 			boss.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() - 1.95D, pos.getZ() + 0.5D, 0.0F, 0.0F);
 			EntityPlayer player = boss.worldObj.getClosestPlayerToEntity(boss, 16.0D);
 			if (player != null) boss.setAttackTarget(player);
-			boss.func_180482_a(world.getDifficultyForLocation(pos), null);
+			boss.onInitialSpawn(world.getDifficultyForLocation(pos), null);
 			world.spawnEntityInWorld(boss);
 
 			for (int l = 0; l < 120; ++l)

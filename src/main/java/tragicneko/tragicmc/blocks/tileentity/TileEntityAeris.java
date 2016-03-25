@@ -6,16 +6,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ITickable;
 import net.minecraft.world.chunk.Chunk;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.items.ItemCorruptedEgg;
 import tragicneko.tragicmc.util.WorldHelper;
 
-public class TileEntityAeris extends TileEntity implements IUpdatePlayerListBox {
+public class TileEntityAeris extends TileEntity implements ITickable {
 
 	private int corruptedTicks;
 

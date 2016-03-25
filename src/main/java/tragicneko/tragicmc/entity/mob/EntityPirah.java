@@ -295,7 +295,7 @@ public class EntityPirah extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
@@ -303,7 +303,7 @@ public class EntityPirah extends TragicMob {
 			if (i == 7) i = (byte) rand.nextInt(8); //make the 7 id less common
 			this.setTextureID(i);
 		}
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override

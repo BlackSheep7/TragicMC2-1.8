@@ -398,12 +398,12 @@ public abstract class TragicMob extends EntityMob
 
 	public boolean getMobGriefing()
 	{
-		return this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+		return this.worldObj.getGameRules().getBoolean("mobGriefing");
 	}
 
 	public boolean getAllowLoot()
 	{
-		return this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot");
+		return this.worldObj.getGameRules().getBoolean("doMobLoot");
 	}
 
 	@Override
@@ -415,7 +415,7 @@ public abstract class TragicMob extends EntityMob
 		{
 			int i;
 
-			if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.getAllowLoot())
+			if (!this.worldObj.isRemote && this.recentlyHit > 0)
 			{
 				i = this.getExperiencePoints(this.attackingPlayer);
 
@@ -550,11 +550,11 @@ public abstract class TragicMob extends EntityMob
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.allowRandomSupportMob) this.setSupport(rand.nextInt(100) == 0);
 
-		if (!TragicConfig.allowGroupBuffs) return super.func_180482_a(ins, data);
+		if (!TragicConfig.allowGroupBuffs) return super.onInitialSpawn(ins, data);
 		if (data == null)
 		{
 			if (rand.nextInt(200) <= TragicConfig.groupBuffChance)
@@ -568,9 +568,9 @@ public abstract class TragicMob extends EntityMob
 		else if (data instanceof GroupBuff)
 		{
 			this.addPotionEffect(((GroupBuff) data).getReducedEffect());
-			return super.func_180482_a(ins, data);
+			return super.onInitialSpawn(ins, data);
 		}
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	private int getRandomPotionID() {

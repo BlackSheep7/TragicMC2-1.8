@@ -440,7 +440,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 	private boolean attemptToSummonClones()
 	{
-		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, getEntityBoundingBox().expand(32.0, 32.0, 32.0));
+		List<EntityDeathReaper> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 
 		if (list.size() >= 4 || this.getAttackTarget() == null || this.getCloneTime() <= 100) return false;
 
@@ -464,7 +464,7 @@ public class EntityDeathReaper extends TragicBoss {
 								!this.worldObj.isAnyLiquid(clone.getEntityBoundingBox()))
 						{
 							this.worldObj.spawnEntityInWorld(clone);
-							clone.func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos(this.posX + x1, this.posY + y1, this.posZ + z1)), null);
+							clone.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this.posX + x1, this.posY + y1, this.posZ + z1)), null);
 							if (entitylivingbase != null) clone.setAttackTarget(entitylivingbase);
 							return true;
 						}
@@ -582,10 +582,10 @@ public class EntityDeathReaper extends TragicBoss {
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote) this.isBomb = rand.nextBoolean();
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override

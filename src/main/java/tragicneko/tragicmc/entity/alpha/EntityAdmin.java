@@ -1,15 +1,21 @@
 package tragicneko.tragicmc.entity.alpha;
 
+import java.util.ArrayList;
+
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityAdmin extends TragicBoss {
-	
+
 	//Make sure that when it acquires a target that it tries to stay within ~40 blocks of it
 	//This will make sure it's easier to keep track of as well as ensure that you can do certain phases of it's AI without worrying about it's location
-	
+
 	//Stats
 	//Health: 6000
 	//Attack (normal hit): 16
@@ -20,23 +26,23 @@ public class EntityAdmin extends TragicBoss {
 	//knockback resistance: 0 (can be knocked away and towards things)
 	//Armor value: 24 (maximum value so that the strongest weapons are required)
 	//Follow Range: 64
-	
+
 	//Description of AI:
 	//Floats around near it's target and fires large slow moving projectiles that can pass through walls, these projectiles will also inflict the Hacked effect
 	//While invulnerable it only does this part of it's AI
 	//If "damaged" enough it'll become stunned for a long period of time, this is to allow you to escape it for a while to actually do stuff in the Dimension
-	
+
 	//When a spirit catcher is used on it, it becomes vulnerable
 	//It'll then teleport away (despawn) and drop an Administrator passcode
-	
+
 	//When you enter the Dimension it'll already be vulnerable
 	//While in this phase it'll spawn in control towers that shock you when you get near them randomly
 	//You must "mine" these towers, causing them to overload at which point they'll make the Admin vulnerable for a little while
 	//You continue this until it's health is lowered, it's health will only stay lowered if you do enough damage during a phase, otherwise you must redo it
 	//This will take it's health down to half when completed, each tower phase will take 1/6th of it's total health and it'll remove the towers during each
 	//of these
-	
-	//When you successfully overload and damage it 3 times, it'll become separated from it's body module (which will stay in place during this phase)
+
+	//When you successfully overload and damage it up to half of it's health, it'll become separated from it's body module (which will stay in place during this phase)
 	//It will gain an instakill beam that has a long charge rate, it'll become fixed on one point and fire the beam after a few seconds, instantly killing
 	//anything within it
 	//To damage it in this phase, you must use the towers it left behind to "shock" it with Directed Lightning, this will need to be done until it's dropped
@@ -44,49 +50,87 @@ public class EntityAdmin extends TragicBoss {
 	//it must be attacked normally at this time to prevent that
 	//also at certain phases it'll create a singularity which will alter your active effects and change your current health and hunger amounts, in other words,
 	//it'll basically hack your stats (won't affect inventory and current equipped items but the effects will actually occur
-	
+
 	//It'll then begin regenerating towers, if these towers are allowed to completely regenerate then it'll go back into it's first phase with fully powered
 	//towers, you must destroy the towers before they regenerate long enough for it to be cut off from their power, then it'll have to factory reset it's systems
 	//in order to continue living, which will clear it of all corruption
 	//While it's regenerating towers, it'll also fire slow moving homing projectiles which can be used to assist you in destroying the towers if used
 	//cleverly enough, these will go through walls though so you'll take damage if you use them to destroy the towers
-	
+
 	//New block, it'll have three states, one active and one inactive similarly to how I originally wanted to do the Digital Sea and one "broken"
 	//The broken block state will signify that part of the tower has been destroyed, there will also be core states
 	//core states will be in the middle of the tower, if an active block is not touching a core block it'll become inactive
-	
+
 	//Sounds will be referencing Windows notifications ("Your computer is about to restart to finish installing updates", "Powering down...", "Powering up.",
 	//"That command does not exist", "File not found in database, would you like to continue? Y/N?", "No files match search query", etc.)
 	//"That file is corrupted, would you like to attempt recovery?", "Memory allocation is inadequate for this operation.", "Doing this requires you to power off
 	//your computer", "System32 has been restored, that was close."
 	//Could have one set of male and one set of female-ish sounds (since I would be recording both), this could be determined on spawn if male or female voice
 	//Move to a "corrupt" set of the same sounds when in "ghost" form
+	//"Resuming system-wide clean-up algorithms... Stand by."
 
 	private ControlTower[] towers;
-	private byte state = 0; //0 is invincible, 1 is body module in tact, 2 is ghost form, 3 is powered off, 4 is restarted
-	//"Resuming system-wide clean-up algorithms... Stand by."
+	private EnumAdminState state = EnumAdminState.INVINCIBLE;
+	private boolean phaseChange = false;
+
+	public static final int TOWER_LIMIT = 8;
+
+	public static final int DW_TOWER_TIME = 23;
 
 	public EntityAdmin(World par1World) {
 		super(par1World);
-		this.towers = new ControlTower[8];
+		this.towers = new ControlTower[TOWER_LIMIT];
 	}
-	
+
 	private void updateTowers() {
-		for (ControlTower ct : towers) ct.update();
+		for (int i = 0; i < towers.length; i++)
+		{
+			ControlTower ct = towers[i];
+			if (ct != null) ct.update();
+		}
 	}
 
 	private void generateTowers() {
-		//uses a modified version of the structure gen to find flat areas to generate towers
-		//generates towers early in it's vulnerable stage
-		//does it three times, the third time overloads it and fluxes it into an etheric state
-		//towers[0] = new ControlTower(this, cand);
+		byte t = 0;
+
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 25.5, this.getPosition());
+		label: for (int i = 0; i < 128 && t < TOWER_LIMIT; i++)
+		{
+			BlockPos pos = list.get(rand.nextInt(list.size()));
+			IBlockState state = this.worldObj.getBlockState(pos);
+			if (Math.abs(pos.getY() - this.posY) > 10) continue;
+			if (state.getBlock().getBlockHardness(this.worldObj, pos) > 0F && World.doesBlockHaveSolidTopSurface(this.worldObj, pos) && this.worldObj.canBlockSeeSky(pos))
+			{
+				for (int j = 0; j < towers.length; j++) //to ensure it doesn't generate a tower too close to an existing one
+				{
+					ControlTower ct = towers[j];
+					if (ct != null)
+					{
+						if (ct.origin.distanceSqToCenter(pos.getX(), pos.getY(), pos.getZ()) < 8) continue label; //3d check so that things just aren't close to each other
+						double x = ct.origin.getX() - pos.getX();
+						double z = ct.origin.getZ() - pos.getZ();
+						double d0 = MathHelper.sqrt_double(x * x + z * z);
+						if (d0 < 8) continue label; //2d check to ensure that they aren't generated right on top of each other (literally)
+					}
+				}
+				towers[t++] = new ControlTower(this, pos);
+			}
+		}
 	}
 	
-	private void clearTowers() {
-		for (ControlTower ct : towers) ct.kill();
+	private void regenerateTowers() { //if this admin has nbt data for it's towers, it'll recreate them in it's control tower array rather than generate fresh ones
+		
+	}
+
+	private void deleteTowers() {
+		for (int i = 0; i < towers.length; i++)
+		{
+			ControlTower ct = towers[i];
+			if (ct != null) ct.kill();
+		}
 		towers = new ControlTower[8];
 	}
-	
+
 	@Override
 	public void setAir(int i){}
 
@@ -106,19 +150,31 @@ public class EntityAdmin extends TragicBoss {
 		return TragicEntities.Synapse;
 	}
 
-	protected static class ControlTower {
+	public enum EnumAdminState {
+		INVINCIBLE, //when in the wilds dimension and invincible
+		INITIAL, //when you first fight it in it's own dimension
+		OVERLOADED, //when you complete it's first phase and overload it
+		REGENERATING, //when you "defeat" it, forcing it to attempt to regenerate
+		RESET; //After you defeat it, it basically becomes an NPC
+
+		public static EnumAdminState getNextPhase(EnumAdminState state) {
+			return state == INVINCIBLE ? INITIAL : (state == INITIAL ? OVERLOADED : RESET );
+		}
+	}
+
+	public static class ControlTower {
 
 		private final World worldObj;
 		private final EntityAdmin admin;
 		private final byte sizeH = 16;
 		private final byte sizeW = 4;
 		private final byte sizeL = 4;
-		private byte state = 0; // 0 = inactive, 1 = active, 2 = overloaded
-		private final int[] origin;
+		private EnumTowerState state = EnumTowerState.INACTIVE; // 0 = inactive, 1 = active, 2 = overloaded
+		private final BlockPos origin;
 		private float activePer;
-		private static final float LIMIT = 56.735F;
+		private static final float LOAD_LIMIT = 56.735F;
 
-		protected ControlTower(EntityAdmin admin, int[] ori) {
+		protected ControlTower(EntityAdmin admin, BlockPos ori) {
 			this.admin = admin;
 			this.worldObj = admin.worldObj;
 			this.origin = ori;
@@ -126,27 +182,27 @@ public class EntityAdmin extends TragicBoss {
 		}
 
 		public boolean isOverloaded() {
-			return state == 2;
+			return state == EnumTowerState.OVERLOADED;
 		}
 
 		public boolean isActive() {
-			return state == 1;
+			return state != EnumTowerState.INACTIVE && state != EnumTowerState.REGENERATING;
 		}
 
 		public void update() {
 
-			if (this.state == 0 && this.shouldActivate())
+			if (this.state == EnumTowerState.INACTIVE && this.shouldActivate())
 			{
-				this.state = 1;
+				this.state = EnumTowerState.ACTIVE;
 			}
-			else if (this.state == 1)
+			else if (this.state == EnumTowerState.ACTIVE)
 			{
 				updateComposition();
 				updateState();
 				damageEntities();
 			}
 		}
-		
+
 		private boolean shouldActivate() {
 			return this.activePer == 100F && this.admin.ticksExisted > 0; //change to activate at a certain phase of it's ai
 		}
@@ -159,16 +215,23 @@ public class EntityAdmin extends TragicBoss {
 		}
 
 		private void updateState() {
-			if (this.activePer > LIMIT) this.state = 1;
-			else this.state = 2;
+			if (this.activePer > LOAD_LIMIT) this.state = EnumTowerState.ACTIVE;
+			else this.state = EnumTowerState.OVERLOADED;
 		}
 
 		private void kill() {
 			//delete all of the blocks that make up the tower, for when the Admin is killed
 		}
-		
+
 		private void damageEntities() {
 			//damages all nearby entities with directed lightning
+		}
+
+		public static enum EnumTowerState {
+			ACTIVE,
+			INACTIVE,
+			OVERLOADED,
+			REGENERATING;
 		}
 	}
 }

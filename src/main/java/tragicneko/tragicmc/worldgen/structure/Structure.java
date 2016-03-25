@@ -7,6 +7,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 
 public class Structure extends WorldGenerator {
@@ -107,7 +108,7 @@ public class Structure extends WorldGenerator {
 	 */
 	public boolean getRarity(final int compare)
 	{
-		return compare <= TragicConfig.structureRarity[this.structureId];
+		return TragicMC.rand.nextInt(compare) <= TragicConfig.structureRarity[this.structureId];
 	}
 
 	public int getHeight()

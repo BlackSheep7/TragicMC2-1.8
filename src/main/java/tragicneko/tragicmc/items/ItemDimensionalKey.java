@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
@@ -78,7 +79,7 @@ public class ItemDimensionalKey extends Item {
 
 				if (player.getItemInUseCount() > 0 && !((EntityPlayer)par3Entity).capabilities.isCreativeMode)
 				{
-					player.setInPortal();
+					player.setPortal(new BlockPos(par3Entity.posX, par3Entity.posY, par3Entity.posZ));
 				}
 			}
 		}

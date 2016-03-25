@@ -4583,6 +4583,34 @@ like a combination of the Neko Neko Wand and the Recapture Siphon
 Also added an achievement, sound and recipe to go along with it
 Fixed Fanbrush texture (again), fixed descriptions of Neko items being too long to read easily
 
+4.47.2992 <216> (March 17, 2016) [Porting to 1.8.9]
+Fixed some initial port errors (mostly dealing with renamed methods and interfaces)
+Added wrapper to entity render registrations for ease of changes like this in the future
+Updated block and item model registrations to use the non-deprecated method
+Entity renders are going to need to be updated for 1.9 but I'll deal with that in 1.9
+Fixed sky renderers for dimensions
+Removed debug code from music ticker (derp)
+Fixed structures not generating properly (derp derp derppppp)
+Made it so that Weapons don't do the reequip animation (lowering the itemstack in first person view) when things like cooldown are applied
+to them via nbt
+Armor models now use data from the player model to sync up their animations properly
+Moved proxies into their own package, the music ticker was rewritten as a sound event handler and moved into the events package
+Fixed gases no longer applying their effects due to changes in 1.8
+Added ability to give any item a Doomsday ability from a scroll, this is going to be configurable and will default to disabled, armor pieces
+will require the full set to have the Doomsday to use it and you won't be able to use an armor piece in your hand to activate it
+Fixed possible bug where if you have the Doomsday of an armor in your last slot, it'll let you use it still
+Fixed bug where a Claymation dying in it's normal form wouldn't properly do the death updates
+Fixed Quicksand being too difficult to get out of
+Fixed large trees generating with vanilla vines
+Fixed chests generating with "empty" Itemstacks sometimes
+Fixed some events being registered twice due to FML and Forge registrations being combined into one bus, removed deprecated method to
+register FML events
+Removed a lot of the TODOs to make it easier to see what I have to do
+Default the Ragr's explosive abilities to false, as it causes huge amounts of lag when there are multiple
+Bump for release prep
+
+4.47.2992++ <217> (March 24, 2016)
+
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
 
@@ -4620,6 +4648,7 @@ or killed
 Got the Wilds Dimension set up, there are some corrections I need to make still to prevent any Vanilla ones from creeping in but it is setup pretty well so far
 River rare variants need to be setup differently from the other rare variants but otherwise the rare biomes are working mostly how I want
 Still need to test the sub-biomes to make sure they are generating correctly
+Worked more on the Admin's tower stuff, should be fun when I actually get to finish it
 
 First Expansion:
 Working on new mob AI, pets and item systems while I finish the port to 1.8

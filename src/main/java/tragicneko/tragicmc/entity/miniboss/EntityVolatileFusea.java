@@ -76,7 +76,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 						this.volatype = 2;
 						break;
 					}
-					else if (block.isProvidingWeakPower(this.worldObj, coords, this.worldObj.getBlockState(coords), EnumFacing.UP) > 0 || block.isProvidingStrongPower(this.worldObj, coords, this.worldObj.getBlockState(coords), EnumFacing.UP) > 0)
+					else if (block.getStrongPower(this.worldObj, coords, this.worldObj.getBlockState(coords), EnumFacing.UP) > 0)
 					{
 						this.volatype = 3;
 						break;

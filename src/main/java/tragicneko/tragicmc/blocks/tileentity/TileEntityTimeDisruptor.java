@@ -2,12 +2,12 @@ package tragicneko.tragicmc.blocks.tileentity;
 
 import java.util.Random;
 
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ITickable;
 import net.minecraft.world.storage.WorldInfo;
 import tragicneko.tragicmc.TragicConfig;
 
-public class TileEntityTimeDisruptor extends TileEntity implements IUpdatePlayerListBox {
+public class TileEntityTimeDisruptor extends TileEntity implements ITickable {
 
 	@Override
 	public void update()

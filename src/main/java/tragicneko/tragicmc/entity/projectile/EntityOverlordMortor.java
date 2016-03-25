@@ -51,7 +51,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 10.0F);
 
-				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+				boolean flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
 				this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, rand.nextFloat() + 4.0F, flag);
 			}
 		}

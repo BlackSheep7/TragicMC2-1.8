@@ -180,4 +180,10 @@ public class TragicWeapon extends ItemSword {
 		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
 		return super.hitEntity(stack, entity, entity2);
 	}
+	
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
+    {
+		return oldStack == null || !(oldStack.getItem() instanceof TragicWeapon);
+    }
 }

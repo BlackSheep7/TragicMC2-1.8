@@ -70,7 +70,7 @@ public class EntityNekoMiniBomb extends EntityThrowable {
 			}
 			else
 			{
-				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+				boolean flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F + 1F, flag);
 
 				this.setDead();

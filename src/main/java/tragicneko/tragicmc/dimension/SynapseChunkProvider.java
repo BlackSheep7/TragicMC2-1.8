@@ -240,7 +240,7 @@ public class SynapseChunkProvider implements IChunkProvider
         ChunkPrimer chunkprimer = new ChunkPrimer();
         this.primeChunkNoise(x, z, chunkprimer);
         this.sortChunkNoise(x, z, chunkprimer);
-        this.netherCaveGenerator.func_175792_a(this, this.worldObj, x, z, chunkprimer);
+        this.netherCaveGenerator.generate(this, this.worldObj, x, z, chunkprimer);
 
         Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
         BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, x * 16, z * 16, 16, 16);
@@ -414,7 +414,7 @@ public class SynapseChunkProvider implements IChunkProvider
 	 }
 
 	 @Override
-	 public List func_177458_a(EnumCreatureType type, BlockPos pos) {
+	 public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType type, BlockPos pos) {
 		 BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
 		 return biomegenbase.getSpawnableList(type);
 	 }

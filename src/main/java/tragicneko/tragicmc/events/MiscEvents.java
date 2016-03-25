@@ -18,6 +18,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
@@ -58,13 +59,6 @@ public class MiscEvents {
 	public static AttributeModifier lightMod = new AttributeModifier(UUID.fromString("7611c3b7-5bb8-4597-849b-c75788f8cc9b"), "lightningRodAttackBuff", TragicConfig.modifier[20], 0);
 
 	private static boolean DO_FIRE_REFLECTION = true;
-
-	@SubscribeEvent
-	public void quicksandJumping(LivingJumpEvent event)
-	{
-		if (!TragicConfig.allowNonMobBlocks) return;
-		if (event.entityLiving instanceof EntityPlayer && event.entityLiving.worldObj.getBlockState(WorldHelper.getBlockPos(event.entityLiving)).getBlock() instanceof BlockQuicksand) event.entityLiving.motionY *= 0.625D;
-	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void whileHoldingSpecialWeapon(LivingHurtEvent event)
@@ -355,11 +349,11 @@ public class MiscEvents {
 			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
 			if (misc != null) misc.onUpdate();
 
-			if (TragicConfig.allowNonMobBlocks && !event.entityLiving.worldObj.isRemote && event.entityLiving.ticksExisted % 5 == 0) this.isBlockInBB(event.entityLiving.worldObj, event.entityLiving.getEntityBoundingBox());
+			if (TragicConfig.allowNonMobBlocks && !event.entityLiving.worldObj.isRemote && event.entityLiving.ticksExisted % 5 == 0) this.updateBlocksInBB(event.entityLiving.worldObj, event.entityLiving.getEntityBoundingBox(), event.entityLiving);
 		}
 	}
 
-	public boolean isBlockInBB(World world, AxisAlignedBB bb)
+	public boolean updateBlocksInBB(World world, AxisAlignedBB bb, EntityLivingBase entity)
 	{
 		int i = MathHelper.floor_double(bb.minX);
 		int j = MathHelper.floor_double(bb.maxX + 1.0D);
@@ -392,6 +386,31 @@ public class MiscEvents {
 								world.destroyBlock(pos, true);
 								return true;
 							}
+						}
+						
+						if (block == TragicBlocks.DarkGas)
+						{
+							entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 0));
+						}
+						
+						if (block == TragicBlocks.CorruptedGas && TragicConfig.allowCorruption)
+						{
+							entity.addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 120, 0));
+						}
+						
+						if (block == TragicBlocks.RadiatedGas || block == TragicBlocks.SepticGas)
+						{
+							entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120, 0));
+						}
+						
+						if (block == TragicBlocks.WitheringGas)
+						{
+							entity.addPotionEffect(new PotionEffect(Potion.wither.id, 120, 0));
+						}
+						
+						if (block == TragicBlocks.ExplosiveGas)
+						{
+							entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 120, 0));
 						}
 					}
 				}

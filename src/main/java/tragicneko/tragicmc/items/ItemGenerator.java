@@ -9,7 +9,13 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.BlockFalling;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.BlockOldLeaf;
+import net.minecraft.block.BlockOldLog;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +26,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -41,7 +48,6 @@ import tragicneko.tragicmc.worldgen.WorldGenCustomHugeJungleTree;
 import tragicneko.tragicmc.worldgen.WorldGenCustomLollipopTree;
 import tragicneko.tragicmc.worldgen.WorldGenCustomOakTree;
 import tragicneko.tragicmc.worldgen.WorldGenCustomSavannaTree;
-import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class ItemGenerator extends Item {
 
@@ -50,6 +56,9 @@ public class ItemGenerator extends Item {
 
 	private String[] textureNames = new String[] {"voidPitGenerator", "spikeGenerator", "starCrystalGenerator", "sphereGenerator", "sphereEraser", "liquidRemover", "treeGenerator",
 			"lightningSummoner", "explosionGenerator", "isleGenerator", "directedLightningSummoner", "pitGenerator"};
+	
+	private static final IBlockState jungleLog = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
+    private static final IBlockState jungleLeaves = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 
 	public ItemGenerator()
 	{
@@ -96,7 +105,7 @@ public class ItemGenerator extends Item {
 
 			for (String s : names)
 			{
-				Block block = (Block) Block.blockRegistry.getObject(s);
+				Block block = (Block) Block.blockRegistry.getObject(new ResourceLocation(s));
 				if (block != null) filter.add(block);
 			}
 
@@ -142,7 +151,7 @@ public class ItemGenerator extends Item {
 
 			for (String s : names)
 			{
-				Block block = (Block) Block.blockRegistry.getObject(s);
+				Block block = (Block) Block.blockRegistry.getObject(new ResourceLocation(s));
 				if (block != Blocks.air) filter.add(block);
 			}
 
@@ -183,7 +192,7 @@ public class ItemGenerator extends Item {
 
 			for (String s : names)
 			{
-				Block block = (Block) Block.blockRegistry.getObject(s);
+				Block block = (Block) Block.blockRegistry.getObject(new ResourceLocation(s));
 				if (block != Blocks.air) filter.add(block);
 			}
 
@@ -234,7 +243,7 @@ public class ItemGenerator extends Item {
 				object = new WorldGenCanopyTree(true);
 				break;
 			case 3:
-				object = new WorldGenMegaJungle(true, 10, 20, 3, 3);
+				object = new WorldGenMegaJungle(true, 10, 20, jungleLog, jungleLeaves);
 				break;
 			case 4:
 				object = new WorldGenMegaPineTree(false, random.nextBoolean());
@@ -243,7 +252,7 @@ public class ItemGenerator extends Item {
 				object = new WorldGenTaiga2(true);
 				break;
 			case 6:
-				object = new WorldGenTrees(true, 4 + random.nextInt(7), 3, 3, false);
+				object = new WorldGenTrees(true);
 				break;
 			case 7:
 				object = new WorldGenCustomLollipopTree(TragicBlocks.BleachedWood.getDefaultState(), TragicBlocks.BleachedLeaves.getDefaultState());
@@ -285,7 +294,7 @@ public class ItemGenerator extends Item {
 
 			for (String s : names)
 			{
-				Block block = (Block) Block.blockRegistry.getObject(s);
+				Block block = (Block) Block.blockRegistry.getObject(new ResourceLocation(s));
 				if (block != Blocks.air) filter.add(block);
 			}
 

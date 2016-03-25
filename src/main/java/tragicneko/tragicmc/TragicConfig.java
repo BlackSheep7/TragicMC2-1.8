@@ -76,7 +76,7 @@ public class TragicConfig {
 	private static boolean[] doomConfig = new boolean[24];
 	public static boolean allowDoomsdays, allowInfluenceDoomsdays, allowOverflowDoomsdays, allowCrisisDoomsdays, allowWorldShaperDoomsdays, allowCombinationDoomsdays;
 	public static boolean allowNonDoomsdayAbilities, shouldDoomLimitIncrease, allowConsumeRefill, allowDoomPainRecharge, allowNaturalRecharge, allowCrucialMoments, allowBacklash;
-	public static boolean allowCooldown, allowDoomKillRecharge, allowCooldownDefuse, allowPartnerDoomsdays;
+	public static boolean allowCooldown, allowDoomKillRecharge, allowCooldownDefuse, allowPartnerDoomsdays, allowDoomScrollImbue;
 	public static int maxDoomAmount, doomRechargeRate, doomConsumeRarity, cooldownDefuseRarity, consumeRefillAmount, defuseRefillAmount, backlashChance, crucialMomentChance;
 	public static int doomConsumeAmount, maxDoomStart, doomRechargeAmount, partnerDoomsdayDistance;
 
@@ -857,6 +857,10 @@ public class TragicConfig {
 		
 		prop = config.get(cat.getName(), "allowPartnerDoomsdays", false);
 		prop.comment = "Can two people activate a Doomsday combination while near each other? (This hasn't been tested and you should report your results from use)";
+		doomConfig[++m] = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "canCombineDoomsdayScrollsWithItems", false);
+		prop.comment = "Can you combine a Doomsday scroll with a non-TragicMC weapon or armor piece to imbue it with a Doomsday?";
 		doomConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "maxDoomAmount", 500);
@@ -2175,7 +2179,7 @@ public class TragicConfig {
 		mobAllow[++m] = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "thorgAllow", true);
-		mobAllow[++m] = prop.getBoolean(true); */ //TODO blist, thorg and pyragr allowance
+		mobAllow[++m] = prop.getBoolean(true); */
 
 		prop = config.get(cat.getName(), "jarraAllow", true);
 		miniBossAllow[m = 0] = prop.getBoolean(true);
@@ -2208,7 +2212,7 @@ public class TragicConfig {
 		miniBossAllow[++m] = prop.getBoolean(true);
 		/*
 		prop = config.get(cat.getName(), "aggroAllow", true);
-		miniBossAllow[++m] = prop.getBoolean(true); */ //TODO aggro allowance
+		miniBossAllow[++m] = prop.getBoolean(true); */
 
 		prop = config.get(cat.getName(), "apisAllow", true);
 		bossAllow[m = 0] = prop.getBoolean(true);
@@ -2265,7 +2269,7 @@ public class TragicConfig {
 		ragrStats = verifyStat(prop.getDoubleList());
 		/*
 		prop = config.get(cat.getName(), "pyragrStats", new double[] {75.0, 0.380, 8.0, 32.0, 1.0, 16});
-		pyragrStats = verifyStat(prop.getDoubleList()); //TODO hide new mobs from config unless they are going to be in next release
+		pyragrStats = verifyStat(prop.getDoubleList());
 		
 		prop = config.get(cat.getName(), "aggroStats", new double[] {135.0, 0.380, 14.0, 16.0, 2.0, 16});
 		aggroStats = verifyStat(prop.getDoubleList()); */
@@ -2382,7 +2386,7 @@ public class TragicConfig {
 		blistStats = verifyStat(prop.getDoubleList());
 		
 		prop = config.get(cat.getName(), "thorgStats", new double[] {17.0, 0.428, 4.0, 32.0, 0.0, 0});
-		thorgStats = verifyStat(prop.getDoubleList()); */ //TODO blist and thorg stats
+		thorgStats = verifyStat(prop.getDoubleList()); */
 
 		prop = config.get(cat.getName(), "aegarStats", new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24});
 		aegarStats = verifyStat(prop.getDoubleList());
@@ -2455,7 +2459,7 @@ public class TragicConfig {
 		pyragrSC = prop.getInt(25);
 		
 		prop = config.get(cat.getName(), "aggroSpawnChance", 5);
-		aggroSC = prop.getInt(5); */ //TODO pyragr and aggro spawn chance
+		aggroSC = prop.getInt(5); */
 
 		prop = config.get(cat.getName(), "pumpkinheadSpawnChance", 25);
 		pumpkinheadSC = clamp(prop.getInt(25), 1, 1000);
@@ -2560,7 +2564,7 @@ public class TragicConfig {
 		blistSC = prop.getInt(25);
 		
 		prop = config.get(cat.getName(), "thorgSpawnChance", 25);
-		thorgSC = prop.getInt(25); */ //TODO blist and thorg spawn chance
+		thorgSC = prop.getInt(25); */
 		
 		prop = config.get(cat.getName(), "aegarSpawnChance", 5);
 		aegarSC = clamp(prop.getInt(5), 1, 1000);
@@ -2611,7 +2615,7 @@ public class TragicConfig {
 		ragrGS = verifyGS(prop.getIntList());
 		/*
 		prop = config.get(cat.getName(), "pyragrGroupSize", new int[] {0, 1});
-		pyragrGS = verifyGS(prop.getIntList()); */ //TODO pyragr group size
+		pyragrGS = verifyGS(prop.getIntList()); */
 		
 		prop = config.get(cat.getName(), "pumpkinheadGroupSize", new int[] {2, 4});
 		pumpkinheadGS = verifyGS(prop.getIntList());
@@ -2698,7 +2702,7 @@ public class TragicConfig {
 		blistGS = verifyGS(prop.getIntList());
 		
 		prop = config.get(cat.getName(), "thorgGroupSize", new int[] {1, 3});
-		thorgGS = verifyGS(prop.getIntList()); */ //TODO blist and thorg group size
+		thorgGS = verifyGS(prop.getIntList()); */
 		
 		prop = config.get(cat.getName(), "jarraGroupSize", new int[] {0, 1});
 		jarraGS = verifyGS(prop.getIntList());
@@ -2734,7 +2738,7 @@ public class TragicConfig {
 		aegarGS = verifyGS(prop.getIntList());
 		/*
 		prop = config.get(cat.getName(), "aggroGroupSize", new int[] {0, 1});
-		aggroGS = verifyGS(prop.getIntList()); */ //TODO aggro group size
+		aggroGS = verifyGS(prop.getIntList()); */
 		
 		prop = config.get(cat.getName(), "jabbaSpawnOverride", false);
 		jabbaSOV = prop.getBoolean(false);
@@ -2955,7 +2959,7 @@ public class TragicConfig {
 		thorgSOV = prop.getBoolean(false);
 		
 		prop = config.get(cat.getName(), "thorgSpawnBiomes", new int[] {0});
-		thorgSpawns = prop.getIntList(); */ //TODO blist and thorg spawn overrides
+		thorgSpawns = prop.getIntList(); */
 		
 		prop = config.get(cat.getName(), "snowGolemSpawnOverride", false);
 		snowGolemSOV = prop.getBoolean(false);
@@ -3032,7 +3036,7 @@ public class TragicConfig {
 		aggroSOV = prop.getBoolean(false);
 		
 		prop = config.get(cat.getName(), "aggroSpawnBiomes", new int[] {0});
-		aggroSpawns = prop.getIntList(); */ //TODO aggro spawn overrides
+		aggroSpawns = prop.getIntList(); */
 		
 		prop = config.get(cat.getName(), "apisSpawnOverride", false);
 		apisSOV = prop.getBoolean(false);
@@ -3660,13 +3664,13 @@ public class TragicConfig {
 		prop.comment = "Should Inklings teleport?";
 		inklingTeleport = prop.getBoolean(true);
 		
-		prop = config.get(cat.getName(), "ragrExplosions", true);
+		prop = config.get(cat.getName(), "ragrExplosions", false);
 		prop.comment = "Should Ragrs create explosions when landing?";
-		ragrExplosions = prop.getBoolean(true);
+		ragrExplosions = prop.getBoolean(false);
 		
-		prop = config.get(cat.getName(), "ragrBlockCrushing", true);
+		prop = config.get(cat.getName(), "ragrBlockCrushing", false);
 		prop.comment = "Should Ragrs crush blocks when landing?";
-		ragrBlockCrushing = prop.getBoolean(true);
+		ragrBlockCrushing = prop.getBoolean(false);
 		
 		prop = config.get(cat.getName(), "pumpkinheadPumpkinSpawn", true);
 		prop.comment = "Should Pumpkinheads create a Home Pumpkin upon spawning?";
@@ -4045,7 +4049,7 @@ public class TragicConfig {
 		enyvilDestroyBlocks = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "enyvilRegeneration", true);
-		prop.comment = "Should Enyvil regenerate health naturally while it has a Dark Crystl?";
+		prop.comment = "Should Enyvil regenerate health naturally while it has a Dark Crystal?";
 		enyvilRegeneration = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "claymationTransformation", true);
@@ -4351,6 +4355,7 @@ public class TragicConfig {
 		allowDoomKillRecharge = doomConfig[++m];
 		allowCooldownDefuse = doomConfig[++m];
 		allowPartnerDoomsdays = doomConfig[++m];
+		allowDoomScrollImbue = doomConfig[++m];
 		
 		allowDecay = enchantAllow[m = 0];
 		allowSlay = enchantAllow[++m];

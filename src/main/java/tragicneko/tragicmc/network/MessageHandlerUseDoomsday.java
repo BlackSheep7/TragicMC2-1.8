@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.network;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
@@ -44,32 +45,38 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			{
 				doomsday = ((TragicTool)stack.getItem()).getDoomsday();
 			}
+			
+			if (!(stack.getItem() instanceof ItemArmor) && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.allowDoomScrollImbue) doomsday = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
 		}
 		else
 		{
 			boolean flag2 = false;
 			Doomsday[] doomsdays = new Doomsday[4];
 
-			for (int i = 0; i < 4; i++)
+			for (byte i = 0; i < 4; i++)
 			{
 				stack = player.getCurrentArmor(i);
-
+			
 				if (stack != null && stack.getItem() instanceof TragicArmor)
 				{
-					if (i == 0)
-					{
-						doomsday = ((TragicArmor)stack.getItem()).doomsday;
-					}
-
 					doomsdays[i] = ((TragicArmor)stack.getItem()).doomsday;
 				}
+				
+				if (stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.allowDoomScrollImbue)
+				{
+					doomsdays[i] = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
+					if (doomsdays[i] != null) TragicMC.logInfo("Identified armor piece with a Doomsday, it is " + doomsdays[i].getLocalizedName());
+				}
+				
+				if(doomsday == null && doomsdays[i] != null) doomsday = doomsdays[i];
 			}
 
-			for (int i = 0; i < 4; i++)
+			for (byte i = 0; i < 4; i++)
 			{
 				if (doomsdays[i] == null)
 				{
 					flag2 = false;
+					break;
 				}
 				else if (doomsdays[i] == doomsday)
 				{
@@ -78,6 +85,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 				else
 				{
 					flag2 = false;
+					break;
 				}
 			}
 

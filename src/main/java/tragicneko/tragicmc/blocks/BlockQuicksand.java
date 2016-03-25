@@ -68,7 +68,7 @@ public class BlockQuicksand extends BlockFalling
 		if (entity instanceof EntityBlaze || entity instanceof EntityGhast || entity instanceof EntityPlague || entity instanceof EntityHunter || entity instanceof EntityParasmite) return;
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
-		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.125;
+		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.725;
 		if (entity.motionY < 0.1) entity.motionY = -0.1;
 		entity.velocityChanged = true;
 		entity.fallDistance = 0.0F;

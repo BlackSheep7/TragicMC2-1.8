@@ -50,7 +50,7 @@ public class EntityPsygote extends TragicMob {
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
-		this.tasks.addTask(0, new EntityAIAvoidEntity(this, playerTarget, 8.0F, 1.6D, 2.2D));
+		this.tasks.addTask(0, new EntityAIAvoidEntity(this, EntityPlayer.class, playerTarget, 8.0F, 1.6D, 2.2D));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 	}

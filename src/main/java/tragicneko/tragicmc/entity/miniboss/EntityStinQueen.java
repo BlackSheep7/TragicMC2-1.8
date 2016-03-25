@@ -173,7 +173,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 								!this.worldObj.isAnyLiquid(baby.getEntityBoundingBox()))
 						{
 							this.worldObj.spawnEntityInWorld(baby);
-							baby.func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos((int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1)), null);
+							baby.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos((int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1)), null);
 							if (this.getAttackTarget() != null) baby.setAttackTarget(this.getAttackTarget());
 							return;
 						}

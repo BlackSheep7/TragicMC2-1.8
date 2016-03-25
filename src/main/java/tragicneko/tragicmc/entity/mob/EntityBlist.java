@@ -221,8 +221,8 @@ public class EntityBlist extends TragicMob {
 	}
 
 	@Override
-	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {
-		super.func_180433_a(par1, par2, block, pos);
+	public void updateFallState(double par1, boolean par2, Block block, BlockPos pos) {
+		super.updateFallState(par1, par2, block, pos);
 	}
 	
 	@Override

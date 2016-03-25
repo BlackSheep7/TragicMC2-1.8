@@ -68,7 +68,7 @@ public class EntityStatue extends Entity {
 		this.setDead();
 		this.setBeenAttacked();
 
-		if (!this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return true;
+		if (!this.worldObj.getGameRules().getBoolean("doMobLoot")) return true;
 
 		ItemStack stack = new ItemStack(TragicItems.MobStatue, 1, this.getMobID());
 		stack.setTagCompound(new NBTTagCompound());
@@ -246,7 +246,7 @@ public class EntityStatue extends Entity {
 				if (entity != null)
 				{
 					entity.copyLocationAndAnglesFrom(this);
-					((EntityLiving) entity).func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)), null);
+					((EntityLiving) entity).onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)), null);
 					this.worldObj.removeEntity(this);
 					this.worldObj.spawnEntityInWorld(entity);
 					if (!player.capabilities.isCreativeMode) item.stackSize--;

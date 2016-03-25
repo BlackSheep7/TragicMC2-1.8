@@ -146,7 +146,7 @@ public class EntityFusea extends TragicMob {
 	public void fall(float dist, float multi) {}
 
 	@Override
-	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
+	public void updateFallState(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)

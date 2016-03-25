@@ -47,7 +47,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.AchievementEvents;
 import tragicneko.tragicmc.events.AmuletEvents;
@@ -79,6 +78,7 @@ import tragicneko.tragicmc.network.MessageHandlerUseDoomsday;
 import tragicneko.tragicmc.network.MessageParticle;
 import tragicneko.tragicmc.network.MessageSound;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
+import tragicneko.tragicmc.proxy.CommonProxy;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
 
 @Mod(modid = TragicMC.MODID, name = TragicMC.MODNAME, version = TragicMC.VERSION, acceptedMinecraftVersions = TragicMC.ACCEPTED_VERSION, dependencies="required-after:Forge", updateJSON=TragicMC.VERSION_JSON)
@@ -86,14 +86,14 @@ public class TragicMC
 {
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
-	public static final String VERSION = "3.47.2971";
-	public static final String ACCEPTED_VERSION = "[1.8]";
+	public static final String VERSION = "4.47.2992";
+	public static final String ACCEPTED_VERSION = "[1.8.9]";
 	public static final String VERSION_JSON = "https://gist.githubusercontent.com/TragicNeko/d70456c2715e735920a1/raw/a7a25b91d3462b12e77c69e9166cd3b3fe7cdb1a/TragicMC2-Version.json";
 
 	@Instance(TragicMC.MODID)
 	private static TragicMC instance;
 
-	@SidedProxy(clientSide = "tragicneko.tragicmc.client.ClientProxy", serverSide = "tragicneko.tragicmc.client.CommonProxy")
+	@SidedProxy(clientSide = "tragicneko.tragicmc.proxy.ClientProxy", serverSide = "tragicneko.tragicmc.proxy.CommonProxy")
 	public static CommonProxy proxy;
 
 	public static SimpleNetworkWrapper net;
@@ -113,7 +113,7 @@ public class TragicMC
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		TragicConfig.load();
 
-		if (TragicConfig.allowIre) registerFMLEvent(new ServerTickEvents());
+		if (TragicConfig.allowIre) registerEvent(new ServerTickEvents());
 
 		if (TragicConfig.allowPotions)
 		{
@@ -162,7 +162,7 @@ public class TragicMC
 		if (TragicConfig.allowDoom)
 		{
 			registerEvent(new DoomEvents());
-			registerFMLEvent(new RespawnDoomEvents());
+			registerEvent(new RespawnDoomEvents());
 		}
 
 		if (TragicConfig.allowDimension)
@@ -218,7 +218,7 @@ public class TragicMC
 		if (TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks) registerEvent(new DropEvents());
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
-		if (TragicConfig.allowDoomsdays) registerFMLEvent(new DoomsdayManager());
+		if (TragicConfig.allowDoomsdays) registerEvent(new DoomsdayManager());
 		DoomsdayManager.clearRegistry();
 
 		if (TragicConfig.allowVanillaChanges) registerEvent(new VanillaChangingEvents());
@@ -271,7 +271,7 @@ public class TragicMC
 			TragicConfig.allowAchievements = false;
 		}
 		
-		proxy.preInitRenders(); //added for 1.8's tedious block/item rendering process
+		proxy.preInitRenders();
 	}
 
 	@EventHandler
@@ -538,13 +538,8 @@ public class TragicMC
 		return instance;
 	}
 
-	private static void registerEvent(Object o)
+	public static void registerEvent(Object o)
 	{
 		MinecraftForge.EVENT_BUS.register(o);
-	}
-
-	private static void registerFMLEvent(Object o)
-	{
-		FMLCommonHandler.instance().bus().register(o);
 	}
 }

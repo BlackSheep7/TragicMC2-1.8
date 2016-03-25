@@ -38,7 +38,7 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 		this.user = user;
 		if (!world.isRemote) this.setUserID(user);
 
-		if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doFireTick") && world.getDifficulty().getDifficultyId() >= 2 && world.isAreaLoaded(new BlockPos(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z)), 10))
+		if (!world.isRemote && world.getGameRules().getBoolean("doFireTick") && world.getDifficulty().getDifficultyId() >= 2 && world.isAreaLoaded(new BlockPos(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z)), 10))
 		{
 			int i = MathHelper.floor_double(x);
 			int j = MathHelper.floor_double(y);
@@ -89,7 +89,7 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 				this.lightningState = 1;
 				this.boltVertex = this.rand.nextLong();
 
-				if (!this.worldObj.isRemote && this.worldObj.getGameRules().getGameRuleBooleanValue("doFireTick") && this.worldObj.isAreaLoaded(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)), 10))
+				if (!this.worldObj.isRemote && this.worldObj.getGameRules().getBoolean("doFireTick") && this.worldObj.isAreaLoaded(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)), 10))
 				{
 					int i = MathHelper.floor_double(this.posX);
 					int j = MathHelper.floor_double(this.posY);

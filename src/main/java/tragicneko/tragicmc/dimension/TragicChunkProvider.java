@@ -190,8 +190,8 @@ public class TragicChunkProvider implements IChunkProvider
 		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 		this.func_180517_a(x, z, chunkprimer, this.biomesForGeneration);
 
-		this.caveGenerator.func_175792_a(this, this.worldObj, x, z, chunkprimer);
-		this.ravineGenerator.func_175792_a(this, this.worldObj, x, z, chunkprimer);
+		this.caveGenerator.generate(this, this.worldObj, x, z, chunkprimer);
+		this.ravineGenerator.generate(this, this.worldObj, x, z, chunkprimer);
 
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 		byte[] abyte = chunk.getBiomeArray();
@@ -406,7 +406,7 @@ public class TragicChunkProvider implements IChunkProvider
 	}
 
 	@Override
-	public List func_177458_a(EnumCreatureType par1EnumCreatureType, BlockPos pos) {
+	public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType par1EnumCreatureType, BlockPos pos) {
 		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
 		return biomegenbase.getSpawnableList(par1EnumCreatureType);
 	}

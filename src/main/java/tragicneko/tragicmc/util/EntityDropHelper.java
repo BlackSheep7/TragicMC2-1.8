@@ -187,7 +187,7 @@ public class EntityDropHelper {
 		addToDropList(EntityParasmite.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(15, TragicItems.BoneMarrow)},
 			{new EntityDrop(25, TragicItems.BoneMarrow), new EntityDrop(5, TragicItems.BloodSacrifice), new EntityDrop(5, TragicItems.NourishmentSacrifice)}});
 		
-		//addToDropList(EntityBlist.class, new EntityDrop[][] {{}, {}}); //TODO setup drops for the Blist
+		//addToDropList(EntityBlist.class, new EntityDrop[][] {{}, {}});
 
 		//Mini-Boss drops
 		addToDropList(EntityJarra.class, new EntityDrop[][] {{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicItems.Thorns), new EntityDrop(5, Items.magma_cream), new EntityDrop(15, TragicItems.InterestingResin)},
@@ -225,7 +225,7 @@ public class EntityDropHelper {
 		addToDropList(EntityVolatileFusea.class, new EntityDrop[][] {{new EntityDrop(15, Items.gunpowder), new EntityDrop(15, Items.redstone), new EntityDrop(25, TragicItems.UnstableIsotope)}, {new EntityDrop(5, Items.gunpowder), new EntityDrop(15, TragicItems.UnstableIsotope),
 			new EntityDrop(10, Items.redstone), new EntityDrop(3, Blocks.redstone_block), new EntityDrop(15, TragicItems.CatalyticCompound)}});
 		
-		//addToDropList(EntityAggro.class, new EntityDrop[][] {{new EntityDrop(5, Items.nether_wart)}, {new EntityDrop(15, TragicItems.FireOrb)}}); //TODO setup actual drops for the Aggro
+		//addToDropList(EntityAggro.class, new EntityDrop[][] {{new EntityDrop(5, Items.nether_wart)}, {new EntityDrop(15, TragicItems.FireOrb)}});
 
 		//Boss Drops
 		addToDropList(EntityApis.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.PureLight)}, {new EntityDrop(25, TragicItems.PureLight), new EntityDrop(20, TragicItems.Horn),

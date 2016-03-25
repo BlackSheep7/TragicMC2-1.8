@@ -29,7 +29,7 @@ import tragicneko.tragicmc.entity.miniboss.EntitySlangLeader;
 
 public class EntitySlang extends TragicMob {
 
-	protected final EntityAIBase runawayAI = new EntityAIAvoidEntity(this, playerTarget, 10.0F, 0.8D, 1.1D);
+	protected final EntityAIBase runawayAI = new EntityAIAvoidEntity(this, EntityPlayer.class, playerTarget, 10.0F, 0.8D, 1.1D);
 	protected final EntityAIBase targetAI = new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget);
 	protected final EntityAIBase moveAI = new EntityAIMoveTowardsTarget(this, 1.0D, 16.0F);
 	protected ItemStack stolenItem = null;
@@ -182,7 +182,7 @@ public class EntitySlang extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
@@ -199,7 +199,7 @@ public class EntitySlang extends TragicMob {
 				this.tasks.removeTask(runawayAI);
 			}
 		}
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override

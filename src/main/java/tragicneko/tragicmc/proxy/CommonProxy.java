@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.client;
+package tragicneko.tragicmc.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

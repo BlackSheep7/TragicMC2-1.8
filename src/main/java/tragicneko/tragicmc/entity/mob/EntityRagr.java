@@ -467,10 +467,10 @@ public class EntityRagr extends TragicMob {
     }
 	
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos((int) this.posX, 0, (int) this.posZ));
 		//this.setRagrType(biome.temperature > 0.5F ? (byte) 1 : 0);
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 }

@@ -89,7 +89,7 @@ public class WorldHelper {
 	 * @return
 	 */
 	public static boolean getMobGriefing(World world) {
-		return world.getGameRules().getGameRuleBooleanValue("mobGriefing");
+		return world.getGameRules().getBoolean("mobGriefing");
 	}
 
 	/**

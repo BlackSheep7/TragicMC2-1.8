@@ -52,8 +52,8 @@ public class EntityAvris extends TragicMob {
 		this.setSize(1.26F, 2.76F);
 		this.experienceValue = 3;
 		this.tasks.addTask(0, new EntityAIPanic(this, 1.2D));
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, playerTarget, 12.0F, 0.6D, 1.2D));
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, golemTarget, 12.0F, 0.8D, 1.4D));
+		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityPlayer.class, playerTarget, 12.0F, 0.6D, 1.2D));
+		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityGolem.class, golemTarget, 12.0F, 0.8D, 1.4D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.85D));
 		this.stepHeight = 1.0F;
@@ -181,7 +181,7 @@ public class EntityAvris extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
@@ -195,7 +195,7 @@ public class EntityAvris extends TragicMob {
 					mp.addChatMessage(new ChatComponentText("An Avris has appeared nearby!"));
 			}
 		}
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override

@@ -8,13 +8,13 @@ import java.util.UUID;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ITickable;
 
-public class TileEntitySoulChest extends TileEntityChest implements IUpdatePlayerListBox {
+public class TileEntitySoulChest extends TileEntityChest implements ITickable {
 
 	private int souls = 0;
 	public int requiredSouls = 30;

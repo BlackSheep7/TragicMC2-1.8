@@ -64,8 +64,7 @@ public class EntityAbomination extends TragicMob {
 			if (list.get(i) instanceof EntityAbomination)
 			{
 				mob = (EntityAbomination) list.get(i);
-				if (mob.getAttackTarget() == entity) mob.setCelebrationTicks(ticks + rand.nextInt(10) - rand.nextInt(10));
-
+				if (mob.getAttackTarget() == entity) mob.setCelebrationTicks(ticks + rand.nextInt(10));
 			}
 		}
 	}

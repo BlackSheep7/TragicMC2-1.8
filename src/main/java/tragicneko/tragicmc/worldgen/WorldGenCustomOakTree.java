@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
@@ -126,11 +127,11 @@ public class WorldGenCustomOakTree extends WorldGenAbstractTree
 
                                     if (block.isAir(worldIn, blockpos1) || block.isLeaves(worldIn, blockpos1) || block.getMaterial() == Material.vine)
                                     {
-                                        this.func_175903_a(worldIn, blockpos1, leafState);
+                                        this.setBlockAndNotifyAdequately(worldIn, blockpos1, leafState);
                                         
                                         if (this.trimState != null && (block.isAir(worldIn, blockpos1.up()) || block.isLeaves(worldIn, blockpos1.up())))
                                         {
-                                        	this.func_175903_a(worldIn, blockpos1.up(), this.trimState);
+                                        	this.setBlockAndNotifyAdequately(worldIn, blockpos1.up(), this.trimState);
                                         }
                                     }
                                 }
@@ -145,28 +146,28 @@ public class WorldGenCustomOakTree extends WorldGenAbstractTree
 
                         if (block2.isAir(worldIn, upN) || block2.isLeaves(worldIn, upN) || block2.getMaterial() == Material.vine)
                         {
-                            this.func_175903_a(worldIn, pos.up(l), logState);
+                            this.setBlockAndNotifyAdequately(worldIn, pos.up(l), logState);
 
                             if (this.growsVines && l > 0)
                             {
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(pos.add(-1, l, 0)))
                                 {
-                                    this.func_175903_a(worldIn, pos.add(-1, l, 0), vineState.getBlock().getStateFromMeta(BlockVine.EAST_FLAG));
+                                    this.setBlockAndNotifyAdequately(worldIn, pos.add(-1, l, 0), vineState.getBlock().getDefaultState().withProperty(BlockVine.EAST, Boolean.valueOf(true)));
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(pos.add(1, l, 0)))
                                 {
-                                    this.func_175903_a(worldIn, pos.add(1, l, 0), vineState.getBlock().getStateFromMeta(BlockVine.WEST_FLAG));
+                                    this.setBlockAndNotifyAdequately(worldIn, pos.add(1, l, 0), vineState.getBlock().getDefaultState().withProperty(BlockVine.WEST, Boolean.valueOf(true)));
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(pos.add(0, l, -1)))
                                 {
-                                    this.func_175903_a(worldIn, pos.add(0, l, -1), vineState.getBlock().getStateFromMeta(BlockVine.SOUTH_FLAG));
+                                    this.setBlockAndNotifyAdequately(worldIn, pos.add(0, l, -1), vineState.getBlock().getDefaultState().withProperty(BlockVine.SOUTH, Boolean.valueOf(true)));
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(pos.add(0, l, 1)))
                                 {
-                                    this.func_175903_a(worldIn, pos.add(0, l, 1), vineState.getBlock().getStateFromMeta(BlockVine.NORTH_FLAG));
+                                    this.setBlockAndNotifyAdequately(worldIn, pos.add(0, l, 1), vineState.getBlock().getDefaultState().withProperty(BlockVine.NORTH, Boolean.valueOf(true)));
                                 }
                             }
                         }
@@ -194,22 +195,22 @@ public class WorldGenCustomOakTree extends WorldGenAbstractTree
 
                                         if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos4).getBlock().isAir(worldIn, blockpos4))
                                         {
-                                            this.placeHangingVines(worldIn, blockpos4, BlockVine.EAST_FLAG);
+                                            this.placeHangingVines(worldIn, blockpos4, BlockVine.EAST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos1).getBlock().isAir(worldIn, blockpos1))
                                         {
-                                            this.placeHangingVines(worldIn, blockpos1, BlockVine.WEST_FLAG);
+                                            this.placeHangingVines(worldIn, blockpos1, BlockVine.WEST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos5).getBlock().isAir(worldIn, blockpos5))
                                         {
-                                            this.placeHangingVines(worldIn, blockpos5, BlockVine.SOUTH_FLAG);
+                                            this.placeHangingVines(worldIn, blockpos5, BlockVine.SOUTH);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos2).getBlock().isAir(worldIn, blockpos2))
                                         {
-                                            this.placeHangingVines(worldIn, blockpos2, BlockVine.NORTH_FLAG);
+                                            this.placeHangingVines(worldIn, blockpos2, BlockVine.NORTH);
                                         }
                                     }
                                 }
@@ -226,7 +227,7 @@ public class WorldGenCustomOakTree extends WorldGenAbstractTree
                                     {
                                         j1 = rand.nextInt(3);
                                         EnumFacing enumfacing = EnumFacing.getHorizontal(i1).getOpposite();
-                                        this.func_175905_a(worldIn, pos.add(enumfacing.getFrontOffsetX(), i - 5 + l, enumfacing.getFrontOffsetZ()), Blocks.cocoa, j1 << 2 | EnumFacing.getHorizontal(i1).getHorizontalIndex());
+                                        this.setBlockAndNotifyAdequately(worldIn, pos.add(enumfacing.getFrontOffsetX(), i - 5 + l, enumfacing.getFrontOffsetZ()), Blocks.cocoa.getStateFromMeta(j1 << 2 | EnumFacing.getHorizontal(i1).getHorizontalIndex()));
                                     }
                                 }
                             }
@@ -247,14 +248,14 @@ public class WorldGenCustomOakTree extends WorldGenAbstractTree
         }
     }
 
-    private void placeHangingVines(World worldIn, BlockPos pos, int meta)
+    private void placeHangingVines(World worldIn, BlockPos pos, PropertyBool bool)
     {
-        this.func_175903_a(worldIn, pos, vineState.getBlock().getStateFromMeta(meta));
+        this.setBlockAndNotifyAdequately(worldIn, pos, vineState.withProperty(bool, Boolean.valueOf(true)));
         int j = 4;
 
         for (pos = pos.down(); worldIn.getBlockState(pos).getBlock().isAir(worldIn, pos) && j > 0; --j)
         {
-            this.func_175903_a(worldIn, pos, vineState.getBlock().getStateFromMeta(meta));
+            this.setBlockAndNotifyAdequately(worldIn, pos, vineState.withProperty(bool, Boolean.valueOf(true)));
             pos = pos.down();
         }
     }

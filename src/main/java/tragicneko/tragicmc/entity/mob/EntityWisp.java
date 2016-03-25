@@ -1,6 +1,9 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.kindlingSpiritStats;
+
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -10,6 +13,7 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityGolem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -26,8 +30,6 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
-
-import com.google.common.base.Predicate;
 
 public class EntityWisp extends TragicMob {
 	
@@ -47,11 +49,11 @@ public class EntityWisp extends TragicMob {
 
 	public EntityWisp(World par1World) {
 		super(par1World);
-		this.setSize(0.36F, 1.36F);
+		this.setSize(0.36F, 1.36F);	
 		this.experienceValue = 3;
 		this.tasks.addTask(0, new EntityAIPanic(this, 1.0D));
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, playerTarget, 6.0F, 1.0D, 1.6D));
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, golemTarget, 6.0F, 1.0D, 1.6D));
+		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityPlayer.class, playerTarget, 6.0F, 1.0D, 1.6D));
+		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityGolem.class, golemTarget, 6.0F, 1.0D, 1.6D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.45D));
 		this.stepHeight = 1.0F;

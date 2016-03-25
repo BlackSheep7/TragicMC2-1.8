@@ -245,12 +245,12 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 	public boolean getMobGriefing()
 	{
-		return this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+		return this.worldObj.getGameRules().getBoolean("mobGriefing");
 	}
 
 	public boolean getAllowLoot()
 	{
-		return this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot");
+		return this.worldObj.getGameRules().getBoolean("doMobLoot");
 	}
 
 	public boolean isEntityInRange(Entity entity, float min, float max)

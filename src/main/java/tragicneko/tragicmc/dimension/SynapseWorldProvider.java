@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.client.ClientProxy;
+import tragicneko.tragicmc.proxy.ClientProxy;
 
 public class SynapseWorldProvider extends WorldProvider
 {

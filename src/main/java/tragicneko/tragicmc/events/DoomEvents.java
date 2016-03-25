@@ -4,17 +4,29 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
+import tragicneko.tragicmc.items.ItemDoomsdayScroll;
+import tragicneko.tragicmc.items.armor.TragicArmor;
+import tragicneko.tragicmc.items.weapons.TragicBow;
+import tragicneko.tragicmc.items.weapons.TragicTool;
+import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -117,5 +129,44 @@ public class DoomEvents {
 				properties.increaseDoom(TragicConfig.doomRechargeAmount);
 			}
 		}
+	}
+	
+	@SubscribeEvent
+	public void onAnvilUse(AnvilUpdateEvent event) {
+		if (TragicConfig.allowDoomScrollImbue && canApplyScroll(event.left) && event.right != null && event.right.getItem() instanceof ItemDoomsdayScroll)
+		{
+			event.output = ItemStack.copyItemStack(event.left);
+			NBTTagCompound tag = event.output.hasTagCompound() ? event.output.getTagCompound() : new NBTTagCompound();
+			Doomsday dday = Doomsday.getDoomsdayFromId(event.right.getItemDamage() + 1);
+			if (dday != null) tag.setInteger("doomsdayID", dday.getDoomId());
+			if (!event.output.hasTagCompound()) event.output.setTagCompound(tag);
+			event.cost += 15 + (dday != null && dday.getDoomsdayType() == EnumDoomType.COMBINATION ? 15 : 0);
+		}
+	}
+	
+	@SubscribeEvent
+	public void onTooltip(ItemTooltipEvent event)
+	{
+		if (TragicConfig.allowDoomScrollImbue && event.itemStack != null && event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("doomsdayID"))
+		{
+			Doomsday dday = Doomsday.getDoomsdayFromId(event.itemStack.getTagCompound().getInteger("doomsdayID"));
+			EnumChatFormatting format = dday.getDoomsdayType().getFormat();
+			event.toolTip.add(format + dday.getLocalizedType() + ": " + dday.getLocalizedName());
+			event.toolTip.add(EnumChatFormatting.GOLD + "Doom Cost: " + dday.getScaledDoomRequirement(event.entityPlayer.worldObj));
+			event.toolTip.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + dday.getScaledCooldown(event.entityPlayer.worldObj.getDifficulty()));
+			event.toolTip.add(""); //extra space
+			if (event.itemStack.getItem() instanceof ItemArmor)
+			{
+				event.toolTip.add(EnumChatFormatting.ITALIC + "This item is considered an armor piece");
+				event.toolTip.add(EnumChatFormatting.ITALIC + "you must wear a full set of the same");
+				event.toolTip.add(EnumChatFormatting.ITALIC + "Doomsday to use it.");
+				event.toolTip.add(""); //space at the end
+			}
+		}
+	}
+	
+	public static boolean canApplyScroll(ItemStack stack) {
+		if (stack == null || stack.getItem() instanceof ItemDoomsdayScroll || stack.getItem() instanceof TragicWeapon || stack.getItem() instanceof TragicTool || stack.getItem() instanceof TragicBow || stack.getItem() instanceof TragicArmor) return false;
+		return true;
 	}
 }

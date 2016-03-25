@@ -107,10 +107,10 @@ public class WorldGenCustomCanopyTree extends WorldGenAbstractTree
 
                         if (state.getBlock().isAir(worldIn, blockpos1) || state.getBlock().isLeaves(worldIn, blockpos1))
                         {
-                            this.func_175903_a(worldIn, blockpos1, this.logState);
-                            this.func_175903_a(worldIn, blockpos1.east(), this.logState);
-                            this.func_175903_a(worldIn, blockpos1.south(), this.logState);
-                            this.func_175903_a(worldIn, blockpos1.east().south(), this.logState);
+                            this.setBlockAndNotifyAdequately(worldIn, blockpos1, this.logState);
+                            this.setBlockAndNotifyAdequately(worldIn, blockpos1.east(), this.logState);
+                            this.setBlockAndNotifyAdequately(worldIn, blockpos1.south(), this.logState);
+                            this.setBlockAndNotifyAdequately(worldIn, blockpos1.east().south(), this.logState);
                             k1 = i2;
                         }
                     }
@@ -166,7 +166,7 @@ public class WorldGenCustomCanopyTree extends WorldGenAbstractTree
 
                                 for (l2 = 0; l2 < k2; ++l2)
                                 {
-                                    this.func_175905_a(worldIn, new BlockPos(pos.getX() + l1, k1 - l2 - 1, pos.getZ() + i2), Blocks.log2, BlockPlanks.EnumType.DARK_OAK.getMetadata() - 4);
+                                    this.setBlockAndNotifyAdequately(worldIn, new BlockPos(pos.getX() + l1, k1 - l2 - 1, pos.getZ() + i2), Blocks.log2.getStateFromMeta(BlockPlanks.EnumType.DARK_OAK.getMetadata() - 4));
                                 }
 
                                 int j2;
@@ -214,7 +214,7 @@ public class WorldGenCustomCanopyTree extends WorldGenAbstractTree
 
         if (state.getBlock().isAir(worldIn, pos))
         {
-            this.func_175903_a(worldIn, new BlockPos(p_150526_2_, p_150526_3_, p_150526_4_), this.leafState);
+            this.setBlockAndNotifyAdequately(worldIn, new BlockPos(p_150526_2_, p_150526_3_, p_150526_4_), this.leafState);
         }
     }
 
@@ -225,7 +225,7 @@ public class WorldGenCustomCanopyTree extends WorldGenAbstractTree
 /*//TODO fix vines generating on dark trees
 	private void generateVines(World world, BlockPos pos, int meta)
 	{
-		this.func_175903_a(world, pos, TragicBlocks.DarkVine.getStateFromMeta(meta));
+		this.setBlockAndNotifyAdequately(world, pos, TragicBlocks.DarkVine.getStateFromMeta(meta));
 		int i1 = 4;
 
 		while (true)
@@ -237,7 +237,7 @@ public class WorldGenCustomCanopyTree extends WorldGenAbstractTree
 				return;
 			}
 
-			this.func_175903_a(world, pos, TragicBlocks.DarkVine.getStateFromMeta(meta));
+			this.setBlockAndNotifyAdequately(world, pos, TragicBlocks.DarkVine.getStateFromMeta(meta));
 			--i1;
 		}
 	} */

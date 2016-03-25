@@ -42,7 +42,7 @@ public class EntityNekoRocket extends EntityProjectile {
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 		}
 
-		boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+		boolean flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
 		this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F + 2.5F, flag);
 
 		this.setDead();
@@ -56,7 +56,7 @@ public class EntityNekoRocket extends EntityProjectile {
 
 		if (this.ticksWithTarget > 70 || this.ticksInAir > 100 || this.target != null && this.getDistanceToEntity(this.target) <= 2.5)
 		{
-			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+			boolean flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
 
 			if (!this.worldObj.isRemote)
 			{
@@ -69,7 +69,7 @@ public class EntityNekoRocket extends EntityProjectile {
 
 		if (this.target == null && this.ticksInAir > 3)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
+			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
 			for (int i = 0; i < list.size(); i++)
 			{

@@ -47,7 +47,7 @@ public class BlockCircuit extends Block {
 	}
 
 	@Override
-	public int isProvidingWeakPower(IBlockAccess access, BlockPos pos, IBlockState state, EnumFacing facing)
+	public int getStrongPower(IBlockAccess access, BlockPos pos, IBlockState state, EnumFacing facing)
 	{
 		int meta = this.getMetaFromState(state);
 		return meta == 0 ? 12 : (meta == 1 ? 8 : (meta == 2 ? 4 : 0));

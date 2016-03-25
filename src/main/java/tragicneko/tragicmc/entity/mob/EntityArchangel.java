@@ -330,7 +330,7 @@ public class EntityArchangel extends TragicMob {
 	public void fall(float dist, float multi) {}
 
 	@Override
-	public void func_180433_a(double par1, boolean par2, Block block, BlockPos pos) {}
+	public void updateFallState(double par1, boolean par2, Block block, BlockPos pos) {}
 
 	@Override
 	public void moveEntityWithHeading(float strafe, float forward)
@@ -343,7 +343,7 @@ public class EntityArchangel extends TragicMob {
 			this.motionY *= 0.800000011920929D;
 			this.motionZ *= 0.800000011920929D;
 		}
-		else if (this.handleLavaMovement())
+		else if (this.isInLava())
 		{
 			this.moveFlying(strafe, forward, 0.02F);
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);

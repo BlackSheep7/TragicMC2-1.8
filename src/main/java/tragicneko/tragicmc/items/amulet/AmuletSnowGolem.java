@@ -24,7 +24,7 @@ public class AmuletSnowGolem extends ItemAmulet {
 		if (TragicConfig.amuSnowGolem)
 		{
 			double d = level * 16.0D + 16.0D;
-			List<EntityItem> list = world.getEntitiesWithinAABB(EntityMob.class, player.getEntityBoundingBox().expand(d, d, d));
+			List<EntityMob> list = world.getEntitiesWithinAABB(EntityMob.class, player.getEntityBoundingBox().expand(d, d, d));
 			if (list.size() > 0 && player.ticksExisted % 10 == 0 && !world.isRemote) this.damageAmulet(amu, slot, level);
 			Iterator ite = list.iterator();
 			EntityMob mob;

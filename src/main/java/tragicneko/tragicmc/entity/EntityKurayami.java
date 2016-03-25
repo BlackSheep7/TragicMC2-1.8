@@ -391,11 +391,11 @@ public class EntityKurayami extends EntityGolem {
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (this.owner == null) this.setOwner(this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 16.0));
 		this.setKurayamiLevel(1.0);
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override

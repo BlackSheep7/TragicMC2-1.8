@@ -204,14 +204,14 @@ public class EntityClaymation extends TragicBoss {
 	@Override
 	public void onLivingUpdate()
 	{
-		if (this.getActualHealth() > 0F) this.deathTime = 0;
+		if (this.getActualHealth() > 0F && this.getEntityForm() != 0) this.deathTime = 0;
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
 		{
 			if (rand.nextBoolean())
 			{
-				for (int i = 0; i < 2; i++)
+				for (byte i = 0; i < 2; i++)
 				{
 					this.worldObj.spawnParticle(EnumParticleTypes.DRIP_LAVA,
 							this.posX + (rand.nextDouble() - rand.nextDouble()) * 0.556,

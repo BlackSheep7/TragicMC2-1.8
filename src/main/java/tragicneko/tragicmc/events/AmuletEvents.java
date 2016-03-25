@@ -625,7 +625,7 @@ public class AmuletEvents {
 				}
 			}
 		}
-		else if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.allowAmuletDeathDrops && !event.entityLiving.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
+		else if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.allowAmuletDeathDrops && !event.entityLiving.worldObj.getGameRules().getBoolean("keepInventory"))
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
 			PropertyAmulets amu = PropertyAmulets.get(player);

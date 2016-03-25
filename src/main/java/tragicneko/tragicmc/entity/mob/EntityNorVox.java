@@ -397,7 +397,7 @@ public class EntityNorVox extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)
 		{
@@ -405,7 +405,7 @@ public class EntityNorVox extends TragicMob {
 			this.setNorVoxType(biome instanceof BiomeGenStarlitPrarie ? (byte) 1 : 0);
 			this.setTextureID((byte) rand.nextInt(8));
 		}
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override

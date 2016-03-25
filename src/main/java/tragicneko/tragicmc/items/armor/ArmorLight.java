@@ -62,9 +62,11 @@ public class ArmorLight extends TragicArmor {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
+	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot, net.minecraft.client.model.ModelBiped model)
 	{
-		return TragicConfig.allowArmorModels ? tragicneko.tragicmc.client.ClientProxy.modelsLight[4 - slot] : null;
+		net.minecraft.client.model.ModelBiped model2 = tragicneko.tragicmc.proxy.ClientProxy.modelsLight[4 - slot];
+		model2.setModelAttributes(model);
+		return TragicConfig.allowArmorModels ? model2 : null;
 	}
 
 	@Override

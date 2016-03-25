@@ -45,7 +45,7 @@ public class EntityNuke extends Entity {
 		this.setDead();
 		this.setBeenAttacked();
 
-		if (!this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return true;
+		if (!this.worldObj.getGameRules().getBoolean("doMobLoot")) return true;
 
 
 		//this.entityDropItem(new ItemStack(TragicItems.Nuke), 0.4F);

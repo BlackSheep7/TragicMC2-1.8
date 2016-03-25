@@ -10,7 +10,7 @@ import tragicneko.tragicmc.entity.mob.EntityRagr;
 public class RenderRagr extends RenderLiving {
 
 	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Ragr.png");
-	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Ragr.png"); //TODO rename to Pyragr
+	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Ragr.png"); //change to pyragr
 
 	public RenderRagr(RenderManager rm) {
 		super(rm, new ModelRagr(), 0.435F);

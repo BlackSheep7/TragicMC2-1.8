@@ -276,9 +276,9 @@ public abstract class EntityProjectile extends Entity
 		if (par1NBTTagCompound.hasKey("direction", 9))
 		{
 			NBTTagList nbttaglist = par1NBTTagCompound.getTagList("direction", 6);
-			this.motionX = nbttaglist.getDouble(0);
-			this.motionY = nbttaglist.getDouble(1);
-			this.motionZ = nbttaglist.getDouble(2);
+			this.motionX = nbttaglist.getDoubleAt(0);
+			this.motionY = nbttaglist.getDoubleAt(1);
+			this.motionZ = nbttaglist.getDoubleAt(2);
 		}
 		else
 		{

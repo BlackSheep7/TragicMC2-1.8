@@ -54,7 +54,7 @@ public class EntityErkel extends TragicMob {
 		this.setSize(0.56F, 1.06F);
 		this.experienceValue = 2;
 		this.tasks.addTask(0, new EntityAIPanic(this, 0.65D));
-		this.tasks.addTask(1, new EntityAIAvoidEntity(this, bossTarget, 12.0F, 0.4D, 0.6D));
+		this.tasks.addTask(1, new EntityAIAvoidEntity(this, TragicBoss.class, bossTarget, 12.0F, 0.4D, 0.6D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.45D));
 	}
@@ -144,7 +144,7 @@ public class EntityErkel extends TragicMob {
 	}
 
 	@Override
-	public IEntityLivingData func_180482_a(DifficultyInstance ins, IEntityLivingData data)
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(new BlockPos((int) this.posX, 0, (int) this.posZ));
 		byte b = 0;
@@ -174,7 +174,7 @@ public class EntityErkel extends TragicMob {
 		}
 
 		this.setTextureId(b);
-		return super.func_180482_a(ins, data);
+		return super.onInitialSpawn(ins, data);
 	}
 
 	private void setTextureId(byte b)

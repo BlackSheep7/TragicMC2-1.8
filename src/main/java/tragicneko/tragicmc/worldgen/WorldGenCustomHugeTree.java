@@ -113,7 +113,7 @@ public abstract class WorldGenCustomHugeTree extends WorldGenAbstractTree
 
                     if (state.getBlock().isAir(worldIn, blockpos1) || state.getBlock().isLeaves(worldIn, blockpos1))
                     {
-                        this.func_175903_a(worldIn, blockpos1, this.leafState);
+                        this.setBlockAndNotifyAdequately(worldIn, blockpos1, this.leafState);
                     }
                 }
             }
@@ -135,7 +135,7 @@ public abstract class WorldGenCustomHugeTree extends WorldGenAbstractTree
 
                     if (block.isAir(worldIn, blockpos1) || block.isLeaves(worldIn, blockpos1))
                     {
-                        this.func_175903_a(worldIn, blockpos1, this.leafState);
+                        this.setBlockAndNotifyAdequately(worldIn, blockpos1, this.leafState);
                     }
                 }
             }

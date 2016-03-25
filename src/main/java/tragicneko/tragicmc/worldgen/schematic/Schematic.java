@@ -134,7 +134,7 @@ public abstract class Schematic {
 	 */
 	public boolean applyChestContents(World world, Random rand, int x, int y, int z, ChestGenHooks hook)
 	{
-		if (y <= 0 || y >= 256) return false;
+		if (world.isRemote || y <= 0 || y >= 256) return false;
 
 		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(new BlockPos(x, y, z));
 		if (tileentity != null)

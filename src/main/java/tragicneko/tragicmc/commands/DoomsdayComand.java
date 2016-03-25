@@ -23,7 +23,7 @@ public class DoomsdayComand extends CommandBase {
 	}
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		return "doomsday";
 	}
 
@@ -33,7 +33,7 @@ public class DoomsdayComand extends CommandBase {
 	}
 
 	@Override
-	public void execute(ICommandSender var1, String[] var2) {
+	public void processCommand(ICommandSender var1, String[] var2) {
 		if (var2.length != 2)
 		{
 			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + this.getCommandUsage(var1)));

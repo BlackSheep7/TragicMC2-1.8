@@ -37,7 +37,7 @@ public class WorldGenCustomShrubs extends WorldGenTrees
         if (block1.canSustainPlant(worldIn, pos, net.minecraft.util.EnumFacing.UP, ((net.minecraft.block.BlockSapling)Blocks.sapling)))
         {
             pos = pos.up();
-            this.func_175903_a(worldIn, pos, this.logState);
+            this.setBlockAndNotifyAdequately(worldIn, pos, this.logState);
 
             for (int i = pos.getY(); i <= pos.getY() + 2; ++i)
             {
@@ -58,7 +58,7 @@ public class WorldGenCustomShrubs extends WorldGenTrees
 
                             if (worldIn.getBlockState(blockpos1).getBlock().canBeReplacedByLeaves(worldIn, blockpos1))
                             {
-                                this.func_175903_a(worldIn, blockpos1, this.leafState);
+                                this.setBlockAndNotifyAdequately(worldIn, blockpos1, this.leafState);
                             }
                         }
                     }
