@@ -1,58 +1,25 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
-# Folder config file
-Desktop.ini
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# gradle
+build
+.gradle
+gradle/*
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must ends with two \r.
-Icon
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-*.properties
-*.bin
-*.log
-eclipse/*
-*.index
-*.location
-*.prefs
+# other
+eclipse
+run
 gradlew
 gradlew.bat
-gradle/wrapper/gradle-wrapper.jar
-*.lock
-build.gradle
-bin/*
-*.db
-*.classpath
-.metadata/*
-build/*
-*.launch
-.project
-run/*
-/bin
