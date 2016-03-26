@@ -4609,7 +4609,15 @@ Removed a lot of the TODOs to make it easier to see what I have to do
 Default the Ragr's explosive abilities to false, as it causes huge amounts of lag when there are multiple
 Bump for release prep
 
-4.47.2992++ <217> (March 24, 2016)
+4.47.2998 <217> (March 24, 2016)
+Fixed mob teleporting not getting the proper light values
+Fixed Inkling not using the proper light values for burning
+Fixed multiple things that used the wrong block light value
+Set mobIllumination to default to false as it causes major lag if multiple mobs that have it are present (due to how 1.8 updates block light
+values)
+Fixed Reach checking at improper values for block collision (didn't take into account player eye height)
+Fixed multiple mob's bounding box values and fixed properly updating them on the server and client
+Modified the height at which Tragic Neko's drop their mini bombs upon death so that they actually damage an area around them
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
