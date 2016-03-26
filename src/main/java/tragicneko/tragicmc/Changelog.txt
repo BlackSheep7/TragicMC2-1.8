@@ -4618,6 +4618,7 @@ values)
 Fixed Reach checking at improper values for block collision (didn't take into account player eye height)
 Fixed multiple mob's bounding box values and fixed properly updating them on the server and client
 Modified the height at which Tragic Neko's drop their mini bombs upon death so that they actually damage an area around them
+Fixed Enchantments list not properly reflecting due to obfuscation
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
