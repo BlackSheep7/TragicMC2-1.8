@@ -54,6 +54,7 @@ public class EntityAbomination extends TragicMob {
 		super.onKillEntity(entity);
 
 		int ticks = (int) entity.getMaxHealth();
+		if (ticks < 40) ticks = 40;
 		this.setCelebrationTicks(ticks + rand.nextInt(10));
 
 		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(12.0, 12.0, 12.0));

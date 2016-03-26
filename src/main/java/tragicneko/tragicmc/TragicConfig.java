@@ -2038,9 +2038,9 @@ public class TragicConfig {
 		prop.comment = "Can mobs from the mod target other mob from the mod?";
 		mobConfig[++m] = prop.getBoolean(true);
 		
-		prop = config.get(cat.getName(), "allowMobIllumination", true);
+		prop = config.get(cat.getName(), "allowMobIllumination", false);
 		prop.comment = "Can mobs glow via a Luminescence block?";
-		mobConfig[++m] = prop.getBoolean(true);
+		mobConfig[++m] = prop.getBoolean(false);
 		
 		prop = config.get(cat.getName(), "allowRandomSupportMob", false);
 		prop.comment = "Can Support mobs sometimes spawn and continuously buff other nearby mobs?";

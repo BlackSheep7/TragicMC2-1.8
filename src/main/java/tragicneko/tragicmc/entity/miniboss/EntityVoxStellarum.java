@@ -85,7 +85,6 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	protected void setNorVoxType(byte b)
 	{
 		this.dataWatcher.updateObject(DW_NOR_VOX_TYPE, (byte) 0);
-		this.setSize(2.475F, 2.725F);
 	}
 
 	public int getSpinTicks()
@@ -142,8 +141,6 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 
 		if (this.worldObj.isRemote)
 		{
-			this.setSize(2.475F, 2.525F);
-
 			if (this.isSpinning())
 			{
 				this.worldObj.spawnParticle(EnumParticleTypes.CRIT,
@@ -384,5 +381,10 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	public int getDropAmount()
 	{
 		return 5;
+	}
+	
+	@Override
+	protected void updateSize() {
+		this.setSize(2.475F, 2.725F);
 	}
 }

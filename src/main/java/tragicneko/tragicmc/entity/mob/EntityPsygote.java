@@ -42,7 +42,7 @@ public class EntityPsygote extends TragicMob {
 
 	public EntityPsygote(World par1World) {
 		super(par1World);
-		this.setSize(0.52F, 1.45F);
+		this.setSize(0.72F, 1.45F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 10;
 		this.tasks.addTask(0, new EntityAISwimming(this));

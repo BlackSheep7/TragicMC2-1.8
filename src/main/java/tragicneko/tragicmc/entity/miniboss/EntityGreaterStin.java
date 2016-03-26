@@ -21,7 +21,6 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 
 	public EntityGreaterStin(World par1World) {
 		super(par1World);
-		this.setSize(1.15F, 3.45F);
 		this.experienceValue = 15;
 		this.stepHeight = 1.5F;
 	}
@@ -95,8 +94,6 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		if (this.isCharging() && this.getChargeTicks() > 170) this.motionX = this.motionZ = 0.0D;
 
 		super.onLivingUpdate();
-
-		if (!this.worldObj.isRemote) this.setSize(1.15F, 3.45F);
 
 		if (this.worldObj.isRemote && this.getChargeTicks() <= 170 && this.isCharging())
 		{
@@ -221,5 +218,10 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 	public int getDropAmount()
 	{
 		return 5;
+	}
+	
+	@Override
+	protected void updateSize() {
+		this.setSize(1.15F, 3.45F);
 	}
 }

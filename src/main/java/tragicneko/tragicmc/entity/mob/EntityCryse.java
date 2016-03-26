@@ -122,16 +122,6 @@ public class EntityCryse extends TragicMob {
 	protected void setCryseType(byte b)
 	{
 		this.dataWatcher.updateObject(DW_CRYSE_TYPE, b);
-
-		if (b == 0)
-		{
-			this.setSize(0.425F, 1.475F);
-		}
-		else
-		{
-			this.experienceValue = 6;
-			this.setSize(0.525F * 0.625F, 1.475F * 0.625F);
-		}
 	}
 
 	public byte getTextureID()
@@ -192,6 +182,19 @@ public class EntityCryse extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? cryseStats[3] : starCryseStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? cryseStats[4] : starCryseStats[4]);
 	}
+	
+	@Override
+	protected void updateSize() {
+		if (this.getCryseType() == 0)
+		{
+			this.setSize(0.425F, 1.375F);
+		}
+		else
+		{
+			this.experienceValue = 6;
+			this.setSize(0.525F * 0.625F, 1.375F * 0.625F);
+		}
+	}
 
 	@Override
 	public void onLivingUpdate()
@@ -200,14 +203,7 @@ public class EntityCryse extends TragicMob {
 
 		if (this.worldObj.isRemote)
 		{
-			if (this.getCryseType() == 0)
-			{
-				this.setSize(0.425F, 1.475F);
-			}
-			else
-			{
-				this.setSize(0.525F * 0.625F, 1.475F * 0.625F);
-			}
+			
 		}
 		else
 		{

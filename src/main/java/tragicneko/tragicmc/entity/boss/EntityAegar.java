@@ -65,7 +65,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 		this.aegarParts = new EntityPart[] {aegarBody = new EntityPart(this, "body", 1.0F, 1.0F), aegarCrystal = new EntityAegarCrystal(this),
 				aegarClaw = new EntityPart(this, "claw", 1.5F, 1.5F), aegarCannon = new EntityPart(this, "cannon", 1.5F, 1.5F),
 				aegarHead = new EntityPart(this, "head", 1.0F, 1.0F)};
-		this.setSize(1.385F * 1.545F, 2.325F * 1.545F);
+		this.setSize(1.385F * 1.545F, 2.425F * 1.545F);
 		this.stepHeight = 2.0F;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));

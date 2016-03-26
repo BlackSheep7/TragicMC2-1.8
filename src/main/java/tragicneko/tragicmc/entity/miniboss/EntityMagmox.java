@@ -14,13 +14,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 
 public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 
 	public EntityMagmox(World par1World) {
 		super(par1World);
-		this.setSize(0.625F * 1.625F, 1.965F * 1.625F);
 		this.experienceValue = 22;
 		this.isImmuneToFire = true;
 	}
@@ -68,8 +68,6 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 
 		if (this.worldObj.isRemote)
 		{
-			this.setSize(0.625F * 1.625F, 1.965F * 1.625F);
-
 			if (this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0)
 			{
 				this.worldObj.spawnParticle(EnumParticleTypes.FLAME,
@@ -108,7 +106,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.75F;
 
-		for (int i = 0; i < 3; i++)
+		for (byte i = 0; i < 3; i++)
 		{
 			EntitySmallFireball fireball = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 			fireball.posY = this.posY + (this.height * 2 / 3);
@@ -155,5 +153,10 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	public int getDropAmount()
 	{
 		return 5;
+	}
+	
+	@Override
+	protected void updateSize() {
+		this.setSize(0.625F * 1.625F, 1.965F * 1.625F);
 	}
 }

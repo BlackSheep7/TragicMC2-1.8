@@ -36,6 +36,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
@@ -114,17 +115,6 @@ public class EntityJabba extends TragicMob {
 	protected void setJabbaType(byte b)
 	{
 		this.dataWatcher.updateObject(DW_JABBA_TYPE, b);
-		this.isImmuneToFire = b == 0;
-		if (b == 1) this.experienceValue = 6;
-
-		if (b == 0)
-		{
-			this.setSize(0.825F, 0.725F);
-		}
-		else
-		{
-			this.setSize(0.825F * 0.825F, 0.725F * 0.825F);
-		}
 	}
 
 	public int getAttackTicks()
@@ -212,15 +202,6 @@ public class EntityJabba extends TragicMob {
 		if (this.worldObj.isRemote)
 		{
 			this.doParticleEffects();
-
-			if (this.getJabbaType() == 0)
-			{
-				this.setSize(0.825F, 0.725F);
-			}
-			else
-			{
-				this.setSize(0.825F * 0.825F, 0.725F * 0.825F);
-			}
 		}
 		else
 		{
@@ -287,7 +268,7 @@ public class EntityJabba extends TragicMob {
 
 		EnumParticleTypes s1 = this.getJabbaType() == 0 ? EnumParticleTypes.DRIP_LAVA : EnumParticleTypes.SLIME;
 
-		for (int k = 0; k < 3; ++k)
+		for (byte k = 0; k < 3; ++k)
 		{
 			this.worldObj.spawnParticle(s1,
 					this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 0.95D,
@@ -301,7 +282,7 @@ public class EntityJabba extends TragicMob {
 
 		EnumParticleTypes s = this.getJabbaType() == 0 ? EnumParticleTypes.FLAME : EnumParticleTypes.SLIME;
 
-		for (int l = 0; l < 3; ++l)
+		for (byte l = 0; l < 3; ++l)
 		{
 			this.worldObj.spawnParticle(s,
 					this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
@@ -323,7 +304,7 @@ public class EntityJabba extends TragicMob {
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(entity)) * 0.5F;
 
-		for (int i = 0; i < 5; ++i)
+		for (byte i = 0; i < 5; ++i)
 		{
 			EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 			entitysmallfireball.posY = this.posY + 0.5D;
@@ -489,5 +470,20 @@ public class EntityJabba extends TragicMob {
 	@Override
 	public boolean getIllumination() {
 		return true;
+	}
+	
+	@Override
+	protected void updateSize() {
+		if (this.getJabbaType() == 0)
+		{
+			this.setSize(1.425F, 0.625F);
+			this.isImmuneToFire = true;
+		}
+		else
+		{
+			this.setSize(1.425F * 0.825F, 0.625F * 0.825F);
+			this.isImmuneToFire = false;
+			this.experienceValue = 6;
+		}
 	}
 }

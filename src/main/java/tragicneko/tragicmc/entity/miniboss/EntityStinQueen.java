@@ -26,7 +26,6 @@ public class EntityStinQueen extends EntityGreaterStin {
 
 	public EntityStinQueen(World par1World) {
 		super(par1World);
-		this.setSize(1.755F, 3.15F);
 		this.stepHeight = 1.5F;
 		this.superiorForm = null;
 		this.experienceValue = 27;
@@ -86,8 +85,6 @@ public class EntityStinQueen extends EntityGreaterStin {
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
-
-		if (this.worldObj.isRemote) this.setSize(1.755F, 3.15F);
 
 		if (this.worldObj.isRemote) return;
 
@@ -231,5 +228,10 @@ public class EntityStinQueen extends EntityGreaterStin {
 	public float getSoundPitch()
 	{
 		return 1.9F;
+	}
+	
+	@Override
+	protected void updateSize() {
+		this.setSize(1.755F, 3.15F);
 	}
 }

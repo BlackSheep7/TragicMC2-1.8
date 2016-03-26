@@ -76,16 +76,6 @@ public class EntityTox extends TragicMob {
 	protected void setToxType(byte b)
 	{
 		this.dataWatcher.updateObject(DW_TOX_TYPE, b);
-
-		if (b == 0)
-		{
-			this.setSize(0.625F, 1.965F);
-		}
-		else
-		{
-			this.experienceValue = 6;
-			this.setSize(0.625F * 0.635F, 1.965F * 0.635F);
-		}
 	}
 
 	public int getFiringTicks()
@@ -189,8 +179,6 @@ public class EntityTox extends TragicMob {
 		{
 			if (this.getToxType() == 0)
 			{
-				this.setSize(0.625F, 1.965F);
-
 				if ((this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0) && !this.isImmuneToFire())
 				{
 					this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB_AMBIENT,
@@ -204,8 +192,6 @@ public class EntityTox extends TragicMob {
 			}
 			else
 			{
-				this.setSize(0.625F * 0.635F, 1.965F * 0.635F);
-
 				if (this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0)
 				{
 					this.worldObj.spawnParticle(EnumParticleTypes.SLIME,
@@ -380,4 +366,17 @@ public class EntityTox extends TragicMob {
     {
         return "TragicMC.Pox";
     }
+	
+	@Override
+	protected void updateSize() {
+		if (this.getToxType() == 0)
+		{
+			this.setSize(0.625F, 1.965F);
+		}
+		else
+		{
+			this.experienceValue = 6;
+			this.setSize(0.625F * 0.635F, 1.965F * 0.635F);
+		}
+	}
 }

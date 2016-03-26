@@ -340,19 +340,19 @@ public class EntityTragicNeko extends TragicMob {
 
 		if (this.deathTime == 20 && rand.nextInt(4) == 0 && !this.isProperDate() && TragicConfig.tragicNekoDeathBomb && !this.isReleased())
 		{
-			this.worldObj.playSoundAtEntity(this, "creeper.primed", 1.0F, 1.0F);
-			int x = rand.nextInt(10) == 0 ? 1 : rand.nextInt(3) + 2;
+			this.worldObj.playSoundAtEntity(this, "creeper.primed", 1.7F, 1.0F);
+			byte x = (byte) (rand.nextInt(2) + 2);
 
-			for (int i = 0; i < x; i++)
+			for (byte i = 0; i < x; i++)
 			{
 				EntityNekoClusterBomb bomb = new EntityNekoClusterBomb(this.worldObj);
 
 				bomb.posY = this.posY + 0.15;
 				bomb.posX = this.posX + rand.nextDouble() - rand.nextDouble();
 				bomb.posZ = this.posZ + rand.nextDouble() - rand.nextDouble();
-				bomb.motionY = rand.nextDouble() + 0.25;
-				bomb.motionZ = (rand.nextDouble() - rand.nextDouble()) * 0.125;
-				bomb.motionX = (rand.nextDouble() - rand.nextDouble()) * 0.125;
+				bomb.motionX = (rand.nextDouble() - rand.nextDouble()) * 0.25;
+				bomb.motionY = -0.325;
+				bomb.motionZ = (rand.nextDouble() - rand.nextDouble()) * 0.25;
 
 				this.worldObj.spawnEntityInWorld(bomb);
 			}

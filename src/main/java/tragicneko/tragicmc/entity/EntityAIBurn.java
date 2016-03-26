@@ -3,6 +3,7 @@ package tragicneko.tragicmc.entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 
 public class EntityAIBurn extends EntityAIBase {
 	
@@ -17,7 +18,7 @@ public class EntityAIBurn extends EntityAIBase {
 
 	@Override
 	public boolean shouldExecute() {
-		return this.theEntity.worldObj.getLight(new BlockPos((int) this.theEntity.posX, (int) this.theEntity.posY, (int) this.theEntity.posZ)) >= 8 && this.brightLightBurn || this.theEntity.worldObj.canBlockSeeSky(new BlockPos((int) this.theEntity.posX, (int) this.theEntity.posY, (int) this.theEntity.posZ)) && this.theEntity.worldObj.isDaytime();
+		return this.theEntity.worldObj.getLightFor(EnumSkyBlock.BLOCK, this.theEntity.getPosition().up()) >= 8 && this.brightLightBurn || this.theEntity.worldObj.canBlockSeeSky(this.theEntity.getPosition()) && this.theEntity.worldObj.isDaytime();
 	}
 
 	@Override

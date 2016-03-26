@@ -21,6 +21,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
@@ -153,14 +154,13 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (this.worldObj.getDifficulty() == EnumDifficulty.EASY && !TragicConfig.allowEasyBosses || this.posY <= -30 || this.posY > 280) this.setDead();
 
-		if (!this.worldObj.isRemote && this.getIllumination() && TragicConfig.allowMobIllumination)
+		if (!this.worldObj.isRemote && this.getIllumination() && TragicConfig.allowMobIllumination && this.ticksExisted % 4 == 0)
 		{
 			int w = MathHelper.floor_float(this.width);
 			int h = MathHelper.floor_float(this.height);
-			int x = (int) (rand.nextInt(w) - rand.nextInt(w));
-			int y = (int) (rand.nextInt(h) - rand.nextInt(h)) + ((int) this.height * 2 / 3);
-			int z = (int) (rand.nextInt(w) - rand.nextInt(w));
-			BlockPos pos = WorldHelper.getBlockPos(this).add(x, y, z);
+			if (w < 2) w = 2;
+			if (h < 2) h = 2;
+			final BlockPos pos = WorldHelper.getBlockPos(this).add(rand.nextInt(w) - rand.nextInt(w), rand.nextInt(h) - rand.nextInt(h) + this.height * 2 / 3, rand.nextInt(w) - rand.nextInt(w));
 			if (EntityOverlordCore.replaceableBlocks.contains(WorldHelper.getBlock(this.worldObj, pos))) this.worldObj.setBlockState(pos, TragicBlocks.Luminescence.getDefaultState());
 		}
 
@@ -356,7 +356,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		boolean flag2 = false;
 
-		if (this.worldObj.getLight(new BlockPos(i, j, k)) <= getTeleportLight())
+		if (this.worldObj.getLightFor(EnumSkyBlock.BLOCK, new BlockPos(i, j, k)) <= getTeleportLight())
 		{
 			flag2 = true;
 		}

@@ -59,7 +59,6 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	protected void setJabbaType(byte b)
 	{
 		this.dataWatcher.updateObject(DW_JABBA_TYPE, (byte) 1);
-		this.setSize(0.725F * 1.585F, 0.825F * 1.585F);
 	}
 
 	@Override
@@ -82,24 +81,15 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	@Override
 	public void onLivingUpdate()
 	{
-		if (!this.worldObj.isRemote && this.isPotionActive(Potion.poison.id))
-		{
-			this.removePotionEffect(Potion.poison.id);
-		}
-
+		if (!this.worldObj.isRemote && this.isPotionActive(Potion.poison.id)) this.removePotionEffect(Potion.poison.id);
 		super.onLivingUpdate();
-
-		if (this.worldObj.isRemote)
-		{
-			this.setSize(0.725F * 1.585F, 0.825F * 1.585F);
-		}
 	}
 
 	@Override
 	protected void doParticleEffects() {
 		if (this.getAngerTicks() == 0) return;
 
-		for (int l = 0; l < 3; ++l)
+		for (byte l = 0; l < 3; ++l)
 		{
 			this.worldObj.spawnParticle(EnumParticleTypes.SPELL_WITCH,
 					this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
@@ -166,5 +156,10 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	public int getDropAmount()
 	{
 		return 5;
+	}
+	
+	@Override
+	public void updateSize() {
+		this.setSize(1.425F * 1.585F, 0.625F * 1.585F);
 	}
 }

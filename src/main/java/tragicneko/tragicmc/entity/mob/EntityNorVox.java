@@ -28,6 +28,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fml.relauncher.Side;
@@ -137,16 +138,6 @@ public class EntityNorVox extends TragicMob {
 	protected void setNorVoxType(byte b)
 	{
 		this.dataWatcher.updateObject(DW_NOR_VOX_TYPE, b);
-
-		if (b == 0)
-		{
-			this.setSize(1.135F, 1.575F);
-		}
-		else
-		{
-			this.experienceValue = 12;
-			this.setSize(1.135F / 1.455F, 1.575F / 1.455F);
-		}
 	}
 
 	public boolean isFiring()
@@ -206,14 +197,7 @@ public class EntityNorVox extends TragicMob {
 
 		if (this.worldObj.isRemote)
 		{
-			if (this.getNorVoxType() == 0)
-			{
-				this.setSize(1.135F, 1.575F);
-			}
-			else
-			{
-				this.setSize(1.135F / 1.455F, 1.575F / 1.455F);
-			}
+			
 		}
 		else
 		{
@@ -347,7 +331,7 @@ public class EntityNorVox extends TragicMob {
 
 			if (spawnBiome == BiomeGenBase.jungle || spawnBiome == BiomeGenBase.jungleHills)
 			{
-				return this.worldObj.getLight(new BlockPos(x, i, z)) > this.rand.nextInt(7) ? false : super.getCanSpawnHere();
+				return this.worldObj.getLightFor(EnumSkyBlock.BLOCK, new BlockPos(x, i, z)) > this.rand.nextInt(7) ? false : super.getCanSpawnHere();
 			}
 			return false;
 		}
@@ -355,7 +339,7 @@ public class EntityNorVox extends TragicMob {
 		{
 			int j = MathHelper.floor_double(this.posX);
 			int k = MathHelper.floor_double(this.posZ);
-			int l = this.worldObj.getLight(new BlockPos(j, i, k));
+			int l = this.worldObj.getLightFor(EnumSkyBlock.BLOCK, new BlockPos(j, i, k));
 			byte b0 = 4;
 			Calendar calendar = this.worldObj.getCurrentDate();
 
@@ -466,4 +450,17 @@ public class EntityNorVox extends TragicMob {
     {
         return "TragicMC.StarVox";
     }
+	
+	@Override
+	protected void updateSize() {
+		if (this.getNorVoxType() == 0)
+		{
+			this.setSize(1.535F, 1.475F);
+		}
+		else
+		{
+			this.experienceValue = 12;
+			this.setSize(1.535F / 1.455F, 1.475F / 1.455F);
+		}
+	}
 }

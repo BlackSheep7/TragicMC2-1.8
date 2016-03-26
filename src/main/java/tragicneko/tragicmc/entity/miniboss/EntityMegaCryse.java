@@ -52,7 +52,6 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	protected void setCryseType(byte b)
 	{
 		this.dataWatcher.updateObject(DW_CRYSE_TYPE, (byte) 1);
-		this.setSize(1.435F, 3.075F);
 	}
 
 	public int getShields()
@@ -140,7 +139,6 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 
 		if (this.worldObj.isRemote)
 		{
-			this.setSize(1.435F, 3.075F);
 		}
 		else
 		{
@@ -239,5 +237,10 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	public int getDropAmount()
 	{
 		return 5;
+	}
+	
+	@Override
+	protected void updateSize() {
+		this.setSize(1.435F, 3.075F);
 	}
 }

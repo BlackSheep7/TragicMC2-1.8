@@ -76,12 +76,12 @@ public class MouseEvents {
 			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.25D)
 			{
 				Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
-				bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord, vec31.yCoord, vec31.zCoord).expand(box, box, box);
+				bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).expand(box, box, box).offset(vec31.xCoord, vec31.yCoord + player.getEyeHeight(), vec31.zCoord);
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, bb);
 
 				if (list.size() > 0 && d <= limit) break;
 
-				List<BlockPos> list2 = WorldHelper.getBlocksInSphericalRange(world, 1.00, vec31.xCoord, vec31.yCoord, vec31.zCoord);
+				List<BlockPos> list2 = WorldHelper.getBlocksInSphericalRange(world, 0.45, vec31.xCoord, vec31.yCoord + player.getEyeHeight(), vec31.zCoord);
 				Block block;
 				AxisAlignedBB bb2;
 
@@ -90,11 +90,11 @@ public class MouseEvents {
 					block = world.getBlockState(coords).getBlock();
 
 					bb2 = block.getCollisionBoundingBox(world, coords, world.getBlockState(coords));
-					if (bb2 != null && bb.intersectsWith(bb2)) break meow;
+					if (bb2 != null && bb2.isVecInside(vec31)) break meow;
 				}
 
 				for (Entity entity : list)
-				{
+				{					
 					if (entity instanceof IMultiPart)
 					{
 						TragicMC.net.sendToServer(new MessageAttack(((IMultiPart) entity).getDefaultPart()));
@@ -107,11 +107,10 @@ public class MouseEvents {
 						break meow;
 					}
 				}
-
 			}
 		}
 	}
-	
+
 	@SubscribeEvent(priority=EventPriority.HIGHEST)
 	public void onFrozenInput(MouseEvent event)
 	{
@@ -122,7 +121,7 @@ public class MouseEvents {
 		{
 			PropertyMisc misc = PropertyMisc.get(player);
 			if (misc == null) return;
-			
+
 			TragicMC.logInfo("Frozen input received.");
 
 			if (misc.isFrozen)
@@ -137,9 +136,9 @@ public class MouseEvents {
 				misc.isFrozen = true;
 				misc.frozenInputs = 30 + (20 * player.getActivePotionEffect(TragicPotion.Frozen).getAmplifier());
 			}
-			
+
 			TragicMC.logInfo("Frozen input left is " + misc.frozenInputs);
-			
+
 			if (event.isCancelable()) event.setCanceled(true);
 		} */
 	}

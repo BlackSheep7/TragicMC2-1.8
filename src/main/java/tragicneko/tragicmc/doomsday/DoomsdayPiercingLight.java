@@ -10,6 +10,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumSkyBlock;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -62,14 +63,14 @@ public class DoomsdayPiercingLight extends Doomsday {
 				EntityLivingBase entity = (EntityLivingBase) list.get(x);
 				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 
-				float f = entity.worldObj.getLight(WorldHelper.getBlockPos(entity));
+				int f = entity.worldObj.getLightFor(EnumSkyBlock.BLOCK, WorldHelper.getBlockPos(entity));
 
-				if (f <= 0.75F)
+				if (f <= 8)
 				{
-					if (f < 0.1F) f = 0.1F;
+					if (f < 1) f = 1;
 					entity.setFire(10 + rand.nextInt(16));
 					int j = crucMoment ? 40 : 20;
-					entity.attackEntityFrom(DamageSource.magic, (j / MathHelper.ceiling_float_int((f * 10)) + crisis));
+					entity.attackEntityFrom(DamageSource.magic, (j / f + crisis));
 				}
 			}
 		}

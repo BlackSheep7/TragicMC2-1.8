@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.inklingStats;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.Entity;
@@ -22,11 +23,11 @@ import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityAIBurn;
 
 public class EntityInkling extends TragicMob {
@@ -119,48 +120,20 @@ public class EntityInkling extends TragicMob {
 			this.setInvisible(true);
 		}
 
-		if (this.isBurning() && rand.nextInt(8) == 0 || this.worldObj.getLight(new BlockPos((int)this.posX, (int)this.posY + 1, (int)this.posZ)) >= 8)
+		if (this.isBurning() && rand.nextInt(32) == 0)
 		{
 			this.teleportRandomly();
 		}
 
-		if (this.worldObj.getLight(new BlockPos((int)this.posX, (int)this.posY + 1, (int)this.posZ)) >= 8)
+		if (this.worldObj.getLightFor(EnumSkyBlock.BLOCK, this.getPosition()) >= 8)
 		{
 			this.setVisibleTicks(20);
-
-			if (this.ticksExisted % 20 == 0)
-			{
-				int x = (int) this.posX;
-				int y = (int) this.posY;
-				int z = (int) this.posZ;
-
-				PathEntity path = null;
-
-				for (int y1 = -3; y1 < 4; y1++)
-				{
-					for (int z1 = -3; z1 < 4; z1++)
-					{
-						for (int x1 = -3; x1 < 4; x1++)
-						{
-							if (this.worldObj.getLight(new BlockPos(x + x1, y + y1, z + z1)) <= 6)
-							{
-								path = this.getNavigator().getPathToXYZ(x + x1, y + y1, z + z1);
-								break;
-							}
-						}
-					}
-				}
-
-				if (path != null)
-				{
-					this.getNavigator().setPath(path, 0.825D);
-					this.setAttackTarget(null);
-				}
-			}
+			if (this.getAttackTarget() != null) this.setAttackTarget(null);
+			if (TragicConfig.inklingTeleport && rand.nextBoolean()) this.teleportRandomly();
 		}
 
 		if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() != null
-				&& this.worldObj.getLight(new BlockPos((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY + 1, (int)this.getAttackTarget().posZ)) <= 8 &&
+				&& this.worldObj.getLightFor(EnumSkyBlock.BLOCK, new BlockPos((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY + 1, (int)this.getAttackTarget().posZ)) <= 8 &&
 				this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.inklingTeleport)
 		{
 			this.teleportToEntity(this.getAttackTarget());

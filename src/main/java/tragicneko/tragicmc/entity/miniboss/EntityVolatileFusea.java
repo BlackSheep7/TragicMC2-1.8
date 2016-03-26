@@ -26,7 +26,6 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 	public EntityVolatileFusea(World par1World) {
 		super(par1World);
 		this.experienceValue = 15;
-		this.setSize(1.5F * 1.585F, 1.5F * 1.585F);
 	}
 
 	@Override
@@ -182,5 +181,10 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 	public int getDropAmount()
 	{
 		return 5;
+	}
+	
+	@Override
+	protected void updateSize() {
+		this.setSize(1.5F * 1.585F, 1.5F * 1.585F);
 	}
 }

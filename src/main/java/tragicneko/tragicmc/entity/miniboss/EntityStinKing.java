@@ -17,7 +17,6 @@ public class EntityStinKing extends EntityGreaterStin {
 
 	public EntityStinKing(World par1World) {
 		super(par1World);
-		this.setSize(1.7835F, 5.15F);
 		this.stepHeight = 1.5F;
 		this.experienceValue = 27;
 		this.superiorForm = null;
@@ -69,7 +68,7 @@ public class EntityStinKing extends EntityGreaterStin {
 
 		if (this.worldObj.isRemote)
 		{
-			this.setSize(1.7835F, 5.15F);
+			
 		}
 		else
 		{
@@ -147,5 +146,10 @@ public class EntityStinKing extends EntityGreaterStin {
 	public String getDeathSound()
 	{
 		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.king" : null;
+	}
+	
+	@Override
+	protected void updateSize() {
+		this.setSize(1.7835F, 5.15F);
 	}
 }

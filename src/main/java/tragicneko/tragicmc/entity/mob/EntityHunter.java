@@ -65,7 +65,7 @@ public class EntityHunter extends TragicMob {
 
 		if (this.worldObj.isRemote)
 		{
-			for (int l = 0; l < 2; ++l)
+			for (byte l = 0; l < 2; ++l)
 			{
 				this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE,
 						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,

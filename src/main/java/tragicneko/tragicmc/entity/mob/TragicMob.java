@@ -3,6 +3,8 @@ package tragicneko.tragicmc.entity.mob;
 import java.util.Calendar;
 import java.util.List;
 
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -31,12 +33,12 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
@@ -53,8 +55,6 @@ import tragicneko.tragicmc.entity.projectile.EntityProjectile;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.base.Predicate;
 
 public abstract class TragicMob extends EntityMob
 {
@@ -140,7 +140,9 @@ public abstract class TragicMob extends EntityMob
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
-		{
+		{			
+			this.updateSize(); //might need to do this every tick to update the rendered hitbox to make sure they are correct
+			
 			if (this.isChanging())
 			{
 				this.spawnExplosionParticle();
@@ -299,16 +301,13 @@ public abstract class TragicMob extends EntityMob
 			this.setChanging(true);
 		}
 
-		if (this.getIllumination() && TragicConfig.allowMobIllumination)
+		if (this.getIllumination() && TragicConfig.allowMobIllumination && this.ticksExisted % 4 == 0)
 		{
 			int w = MathHelper.floor_float(this.width);
 			int h = MathHelper.floor_float(this.height);
 			if (w < 2) w = 2;
 			if (h < 2) h = 2;
-			int x = (int) (rand.nextInt(w) - rand.nextInt(w));
-			int y = (int) (rand.nextInt(h) - rand.nextInt(h)) + ((int) this.height * 2 / 3);
-			int z = (int) (rand.nextInt(w) - rand.nextInt(w));
-			BlockPos pos = WorldHelper.getBlockPos(this).add(x, y, z);
+			final BlockPos pos = WorldHelper.getBlockPos(this).add(rand.nextInt(w) - rand.nextInt(w), rand.nextInt(h) - rand.nextInt(h) + this.height * 2 / 3, rand.nextInt(w) - rand.nextInt(w));
 			if (EntityOverlordCore.replaceableBlocks.contains(WorldHelper.getBlock(this.worldObj, pos))) this.worldObj.setBlockState(pos, TragicBlocks.Luminescence.getDefaultState());
 		}
 	}
@@ -326,6 +325,7 @@ public abstract class TragicMob extends EntityMob
 			boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
 			boss.setChanging(false);
 			boss.playSound("tragicmc:random.change", 1.0F, 1.0F);
+			boss.updateSize();
 		}
 	}
 
@@ -383,6 +383,7 @@ public abstract class TragicMob extends EntityMob
 		if (tag.hasKey("support")) this.setSupport(tag.getByte("support") == 1);
 		if (tag.hasKey("supportID")) this.supportID = tag.getInteger("supportID");
 		if (tag.hasKey("supportAmp")) this.supportAmp = tag.getInteger("supportAmp");
+		this.updateSize();
 	}
 
 	@Override
@@ -552,10 +553,11 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
+		IEntityLivingData sData = super.onInitialSpawn(ins, data);
+		this.updateSize();
 		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.allowRandomSupportMob) this.setSupport(rand.nextInt(100) == 0);
-
-		if (!TragicConfig.allowGroupBuffs) return super.onInitialSpawn(ins, data);
-		if (data == null)
+		if (!TragicConfig.allowGroupBuffs) return sData;
+		if (sData == null)
 		{
 			if (rand.nextInt(200) <= TragicConfig.groupBuffChance)
 			{
@@ -568,9 +570,9 @@ public abstract class TragicMob extends EntityMob
 		else if (data instanceof GroupBuff)
 		{
 			this.addPotionEffect(((GroupBuff) data).getReducedEffect());
-			return super.onInitialSpawn(ins, data);
+			return sData;
 		}
-		return super.onInitialSpawn(ins, data);
+		return sData;
 	}
 
 	private int getRandomPotionID() {
@@ -777,7 +779,7 @@ public abstract class TragicMob extends EntityMob
 
 		boolean flag2 = false;
 
-		if (this.worldObj.getLight(new BlockPos(i, j, k)) <= getTeleportLight())
+		if (this.worldObj.getLightFor(EnumSkyBlock.BLOCK, new BlockPos(i, j, k)) <= getTeleportLight())
 		{
 			flag2 = true;
 		}
@@ -898,5 +900,13 @@ public abstract class TragicMob extends EntityMob
 		}
 
 		return false;
+	}
+	
+	/**
+	 * Utility method to update the entity's size (bounding box), called in {@link #onInitialSpawn(DifficultyInstance, IEntityLivingData)}
+	 * , {@link #readEntityFromNBT(NBTTagCompound)} and {@link #change()}, for entities that change size based on certain data flags
+	 */
+	protected void updateSize() {
+		
 	}
 }

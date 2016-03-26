@@ -34,6 +34,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -48,7 +49,6 @@ public class EntityStin extends TragicMob {
 
 	public EntityStin(World par1World) {
 		super(par1World);
-		this.setSize(0.65F, 0.65F);
 		this.stepHeight = 0.5F;
 		this.experienceValue = 5;
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
@@ -102,22 +102,20 @@ public class EntityStin extends TragicMob {
 
 	public boolean isAdult()
 	{
-		boolean flag = this.getAgeTicks() > 0;
-		if (!flag) this.experienceValue = 3;
-		return flag;
+		return this.getAgeTicks() > 0;
 	}
 
 	public void setChild()
 	{
 		this.setAgeTicks(-2400 - rand.nextInt(1000));
+		this.experienceValue = 3;
 	}
 
 	protected void growUp()
 	{
 		this.reapplyEntityAttributes();
 		this.heal(this.getMaxHealth());
-		this.setSize(0.87F, 2.65F);
-		this.stepHeight = 1.0F;
+		this.updateSize();
 		this.targetTasks.removeTask(targetPlayer);
 	}
 
@@ -202,24 +200,12 @@ public class EntityStin extends TragicMob {
 
 		if (this.worldObj.isRemote)
 		{
-			if (this.isAdult())
-			{
-				this.setSize(0.87F, 2.65F);
-				this.stepHeight = 1.0F;
-			}
-			else
-			{
-				this.setSize(0.65F, 0.65F);
-				this.stepHeight = 0.5F;
-			}
-
 			return;
 		}
 
 		if (this.getAgeTicks() <= 700) this.incrementAgeTicks();
 		if (this.getGallopTicks() > 0) this.decrementGallopTicks();
 		if (this.isAdult() && this.canClimb()) this.setCanClimb(false);
-		if (this.targetTasks.taskEntries.contains(targetPlayer) && this.isAdult() && this.isChangeAllowed()) this.targetTasks.removeTask(targetPlayer);
 		if (this.superiorForm == null && this.isAdult() && this.isChangeAllowed()) this.superiorForm = new EntityGreaterStin(this.worldObj);
 
 		if (!this.isAdult())
@@ -405,6 +391,7 @@ public class EntityStin extends TragicMob {
 		if (tag.hasKey("canClimb")) this.setCanClimb(tag.getBoolean("canClimb"));
 		if (tag.hasKey("climbDirection")) this.setClimbDirection(tag.getByte("climbDirection"));
 		if (tag.hasKey("gallopTicks")) this.setGallopTicks(tag.getInteger("gallopTicks"));
+		if (this.isAdult()) this.targetTasks.removeTask(targetPlayer);
 	}
 
 	@Override
@@ -488,5 +475,19 @@ public class EntityStin extends TragicMob {
 	@Override
 	protected EnumParticleTypes getTeleportParticle() {
 		return EnumParticleTypes.SMOKE_NORMAL;
+	}
+	
+	@Override
+	protected void updateSize() {
+		if (this.isAdult())
+		{
+			this.setSize(0.98F, 2.65F);
+			this.stepHeight = 1.0F;
+		}
+		else
+		{
+			this.setSize(0.65F, 0.65F);
+			this.stepHeight = 0.5F;
+		}
 	}
 }

@@ -4,8 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
@@ -33,7 +33,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 			{
 				int x = itemRand.nextInt(6) + 10;
 
-				if (entity.worldObj.getLight(WorldHelper.getBlockPos(entity)) <= 6)
+				if (entity.worldObj.getLightFor(EnumSkyBlock.BLOCK, WorldHelper.getBlockPos(entity)) <= 6)
 				{
 					entity.setFire(x);
 					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[2]);

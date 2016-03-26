@@ -12,13 +12,12 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class ItemEverlastingLight extends Item {
-
-	public static final String[] iconNames = new String[] {"3Quarter", "Half", "1Quarter"};
 
 	public ItemEverlastingLight()
 	{
@@ -39,7 +38,7 @@ public class ItemEverlastingLight extends Item {
 	public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5)
 	{
 		if (!world.isRemote && world.getWorldTime() % 60L == 0 && world.isDaytime()
-				&& world.getLight(WorldHelper.getBlockPos(entity)) > 0.6F)
+				&& world.getLightFor(EnumSkyBlock.BLOCK, WorldHelper.getBlockPos(entity)) > 6)
 		{
 			if (itemstack.getItemDamage() <= 249)
 			{
