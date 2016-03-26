@@ -87,7 +87,7 @@ public class TragicMC
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
 	public static final String VERSION = "4.47.2998";
-	public static final String ACCEPTED_VERSION = "[1.8,1.8.9]";
+	public static final String ACCEPTED_VERSION = "[1.8.9]";
 	public static final String VERSION_JSON = "https://gist.githubusercontent.com/TragicNeko/d70456c2715e735920a1/raw/a7a25b91d3462b12e77c69e9166cd3b3fe7cdb1a/TragicMC2-Version.json";
 
 	@Instance(TragicMC.MODID)
