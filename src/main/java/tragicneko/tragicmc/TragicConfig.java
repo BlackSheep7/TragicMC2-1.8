@@ -4770,14 +4770,14 @@ public class TragicConfig {
 		enchantList = null;
 		try
 		{
-			Field f = ReflectionHelper.findField(Enchantment.class, "enchantmentsList");
+			Field f = ReflectionHelper.findField(Enchantment.class, "enchantmentsList", "field_180311_a");
 			Field modfield = Field.class.getDeclaredField("modifiers");
 			modfield.setAccessible(true);
 			modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
 			enchantList = (Enchantment[]) f.get(null);
 		}
 		catch (Exception e) {
-			TragicMC.logError("Error while reflecting the Enchantment list array");
+			TragicMC.logError("Error while reflecting the Enchantment list array", e);
 			enchantList = Enchantment.enchantmentsBookList;
 			return;
 		}
