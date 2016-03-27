@@ -4609,7 +4609,7 @@ Removed a lot of the TODOs to make it easier to see what I have to do
 Default the Ragr's explosive abilities to false, as it causes huge amounts of lag when there are multiple
 Bump for release prep
 
-4.47.3000 <217> (March 24, 2016)
+4.47.3003 <217> (March 24, 2016)
 Fixed mob teleporting not getting the proper light values
 Fixed Inkling not using the proper light values for burning
 Fixed multiple things that used the wrong block light value
@@ -4620,6 +4620,10 @@ Fixed multiple mob's bounding box values and fixed properly updating them on the
 Modified the height at which Tragic Neko's drop their mini bombs upon death so that they actually damage an area around them
 Fixed Enchantments list not properly reflecting due to obfuscation
 Fixed Deathglow plant texture
+Actally fixed Quicksand
+Reduced sound volume of the Soul Chest taking a soul
+Reduced chance of Tragic Neko dropping mini bombs upon death
+Small fix to help prevent creative mode players from being corrupted
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
