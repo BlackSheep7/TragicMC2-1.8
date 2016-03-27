@@ -264,6 +264,7 @@ public class PotionEvents {
 						if (entity.getDistanceToEntity(target) <= 4.0D && entity.canEntityBeSeen(target))
 						{
 							if (!flag) flag = true;
+							if (entity instanceof EntityPlayer && ((EntityPlayer) entity).capabilities.isCreativeMode) continue;
 							if (rand.nextBoolean() && !((EntityLivingBase) target).isPotionActive(TragicPotion.Corruption.id)) ((EntityLivingBase) target).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, temp.getDuration() / 2, temp.getAmplifier()));
 						}
 					}
