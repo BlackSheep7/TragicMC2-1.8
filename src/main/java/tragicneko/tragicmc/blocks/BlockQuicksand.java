@@ -45,7 +45,7 @@ public class BlockQuicksand extends BlockFalling
 		this.setHarvestLevel("shovel", 3);
 		this.setStepSound(soundTypeSand);
 	}
-	
+
 	@Override
 	public int damageDropped(IBlockState state)
 	{
@@ -57,33 +57,6 @@ public class BlockQuicksand extends BlockFalling
 	{
 		for (byte i = 0; i < 4; i++)
 			par3.add(new ItemStack(par1, 1, i));
-	}
-
-	/**
-	 * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
-	 */
-	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
-	{
-		if (entity instanceof EntityBlaze || entity instanceof EntityGhast || entity instanceof EntityPlague || entity instanceof EntityHunter || entity instanceof EntityParasmite) return;
-		entity.motionX *= 0.0015;
-		entity.motionZ *= 0.0015;
-		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.725;
-		if (entity.motionY < 0.1) entity.motionY = -0.1;
-		entity.velocityChanged = true;
-		entity.fallDistance = 0.0F;
-		if (!(entity instanceof EntityFallingBlock)) entity.onGround = true;
-		if (world.getBlockState(pos).getValue(VARIANT) == EnumVariant.SLUDGE && entity instanceof EntityLivingBase && world.rand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60 + world.rand.nextInt(40)));
-	}
-
-	@Override
-	public void onFallenUpon(World world, BlockPos pos, Entity entity, float distance)
-	{
-		if (entity instanceof EntityBlaze || entity instanceof EntityGhast || entity instanceof EntityPlague || entity instanceof EntityHunter || entity instanceof EntityParasmite) return;
-		entity.motionX *= 0.0015;
-		entity.motionZ *= 0.0015;
-		entity.motionY = -0.5;
-		entity.fallDistance = 0.0F;
 	}
 
 	@Override
@@ -114,7 +87,6 @@ public class BlockQuicksand extends BlockFalling
 		return 3;
 	}
 
-
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
@@ -132,39 +104,39 @@ public class BlockQuicksand extends BlockFalling
 	{
 		return false;
 	}
-	
+
 	@Override
 	protected BlockState createBlockState()
 	{
 		return new BlockState(this, VARIANT);
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta)
-    {
+	{
 		return meta == 0 || meta >= EnumVariant.values().length ? this.getDefaultState() : this.getDefaultState().withProperty(VARIANT, EnumVariant.values()[meta]);
-    }
-	
+	}
+
 	@Override
 	public int getMetaFromState(IBlockState state)
-    {
+	{
 		Comparable comp = state.getValue(VARIANT);
 		return comp == EnumVariant.MUD ? 1 : (comp == EnumVariant.DRUDGE ? 2 : (comp == EnumVariant.SLUDGE ? 3 : 0));
-    }
-	
+	}
+
 	public enum EnumVariant implements IStringSerializable {
 		NORMAL("normal"),
 		MUD("mud"),
 		DRUDGE("drudge"),
 		SLUDGE("sludge");
-		
+
 		private final String name;
-		
+
 		private EnumVariant(String name)
 		{
 			this.name = name;
 		}
-		
+
 		@Override
 		public String toString() {
 			return this.name;

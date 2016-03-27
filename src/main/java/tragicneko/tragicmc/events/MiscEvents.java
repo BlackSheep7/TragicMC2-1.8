@@ -12,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -27,8 +28,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
@@ -44,12 +43,12 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.blocks.BlockFragileLight;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
+import tragicneko.tragicmc.blocks.BlockQuicksand.EnumVariant;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.properties.PropertyMisc;
-import tragicneko.tragicmc.util.WorldHelper;
 
 public class MiscEvents {
 
@@ -353,7 +352,7 @@ public class MiscEvents {
 		}
 	}
 
-	public boolean updateBlocksInBB(World world, AxisAlignedBB bb, EntityLivingBase entity)
+	public void updateBlocksInBB(World world, AxisAlignedBB bb, EntityLivingBase entity)
 	{
 		int i = MathHelper.floor_double(bb.minX);
 		int j = MathHelper.floor_double(bb.maxX + 1.0D);
@@ -361,6 +360,8 @@ public class MiscEvents {
 		int l = MathHelper.floor_double(bb.maxY + 1.0D);
 		int i1 = MathHelper.floor_double(bb.minZ);
 		int j1 = MathHelper.floor_double(bb.maxZ + 1.0D);
+
+		boolean quickFlag = false; //so that quicksand physics aren't done multiple times if the player is in a 2x2 of quicksand blocks
 
 		if (world.isAreaLoaded(new BlockPos(i, k, i1), new BlockPos(j, l, j1), true))
 		{
@@ -379,47 +380,60 @@ public class MiscEvents {
 							{
 								world.setBlockState(pos, TragicBlocks.FragileLight.getDefaultState().withProperty(BlockFragileLight.VISIBLE, false), 3);
 								world.scheduleUpdate(pos, TragicBlocks.FragileLight, 60);
-								return true;
 							}
 							else if (world.rand.nextInt(4) == 0)
 							{
 								world.destroyBlock(pos, true);
-								return true;
 							}
 						}
-						
+
 						if (block == TragicBlocks.DarkGas)
 						{
 							entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 0));
 						}
-						
+
 						if (block == TragicBlocks.CorruptedGas && TragicConfig.allowCorruption)
 						{
 							entity.addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 120, 0));
 						}
-						
+
 						if (block == TragicBlocks.RadiatedGas || block == TragicBlocks.SepticGas)
 						{
 							entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120, 0));
 						}
-						
+
 						if (block == TragicBlocks.WitheringGas)
 						{
 							entity.addPotionEffect(new PotionEffect(Potion.wither.id, 120, 0));
 						}
-						
+
 						if (block == TragicBlocks.ExplosiveGas)
 						{
 							entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 120, 0));
+						}
+
+						if (block instanceof BlockQuicksand)
+						{
+							if (!quickFlag)
+							{
+								if (Math.abs(entity.motionX) > 0.015) entity.motionX *= 0.015;
+								if (Math.abs(entity.motionZ) > 0.015) entity.motionZ *= 0.015;
+								if (Math.abs(entity.motionY) > 0.325) entity.motionY *= 1.615;
+								if (entity.motionY < 0) entity.motionY -= 0.0015;
+								entity.velocityChanged = true;
+								entity.fallDistance = 0.0F;
+								entity.onGround = true;
+								entity.setJumping(false);
+								quickFlag = true;
+							}
+							if (world.getBlockState(pos).getValue(BlockQuicksand.VARIANT) == EnumVariant.SLUDGE && entity instanceof EntityLivingBase && world.rand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60 + world.rand.nextInt(40)));
 						}
 					}
 				}
 			}
 		}
-
-		return false;
 	}
-/*
+	/*
 	@SubscribeEvent
 	public void onPlayerKill(LivingDeathEvent event)
 	{
