@@ -338,7 +338,7 @@ public class EntityTragicNeko extends TragicMob {
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.deathTime == 20 && rand.nextInt(4) == 0 && !this.isProperDate() && TragicConfig.tragicNekoDeathBomb && !this.isReleased())
+		if (this.deathTime == 20 && rand.nextInt(8) == 0 && !this.isProperDate() && TragicConfig.tragicNekoDeathBomb && !this.isReleased())
 		{
 			this.worldObj.playSoundAtEntity(this, "creeper.primed", 1.7F, 1.0F);
 			byte x = (byte) (rand.nextInt(2) + 2);
