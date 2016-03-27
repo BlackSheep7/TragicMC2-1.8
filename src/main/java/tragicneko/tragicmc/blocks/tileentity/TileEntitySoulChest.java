@@ -64,7 +64,7 @@ public class TileEntitySoulChest extends TileEntityChest implements ITickable {
 
 				if (this.addMobToDeathCounter(mob))
 				{
-					this.worldObj.playSoundEffect(mob.posX, mob.posY, mob.posZ, "tragicmc:random.soulbreath", 1.0F, 1.0F);
+					this.worldObj.playSoundEffect(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), "tragicmc:random.soulbreath", 0.4F, 1.0F);
 					this.souls++;
 				}
 			}
@@ -84,7 +84,7 @@ public class TileEntitySoulChest extends TileEntityChest implements ITickable {
 		if (this.deathCounter.contains(mob.getUniqueID())) return false;
 
 		this.deathCounter.add(mob.getUniqueID());
-		//this.worldObj.playSoundAtEntity(mob, "tragicmc:random.soulbreath", 0.6F, this.worldObj.rand.nextFloat() * 0.5F + 0.5F);
+		this.worldObj.playSoundAtEntity(mob, "tragicmc:random.soulbreath", 0.2F, this.worldObj.rand.nextFloat() * 0.5F + 0.5F);
 
 		return true;
 	}
