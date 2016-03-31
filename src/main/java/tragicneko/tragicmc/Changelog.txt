@@ -4625,10 +4625,28 @@ Reduced sound volume of the Soul Chest taking a soul
 Reduced chance of Tragic Neko dropping mini bombs upon death
 Small fix to help prevent creative mode players from being corrupted
 
+4.47.3003++ <218> (March 29, 2016)
+Split the TragicNeko class into a superclass for the new Nekos to be more easily identified (and coded)
+Updated EntityArchangel's flying code (mirroring changes in the Ghast's code), made it's move helper usable for other entities
+Modified Hunter's hitbox and rendering height
+Improved Flying move helper, added flying ability to the Jet Neko, a new Neko subtype that flies around with jet boots and two rockets
+Added chat confirmation for when a Doomsday completes it's effects
+Added new texture and slightly updated model for the Jet Neko
+Modified Neko related items to activate for the Neko superclass now
+Added null check for Doomsday scroll tooltips
+
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
 
-Expansion updates:
+Side expansion:
+Neko homeworld with new neko types:
+*Jet Neko - Exhilerated, excitement
+Science Neko - Intelligent
+Mecha Neko - War-like
+Saber Neko - Need to become better, faster, stronger
+Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
+
+Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
 Added the Aggro along with the basic principle for it's Mini-Boss AI, it shoots fireballs while it jumps around and will go into a tantrum randomly to attack
 it's target on foot, slamming the ground to create explosions and hurting targets with a high knockback hit that burns them
@@ -4664,7 +4682,7 @@ River rare variants need to be setup differently from the other rare variants bu
 Still need to test the sub-biomes to make sure they are generating correctly
 Worked more on the Admin's tower stuff, should be fun when I actually get to finish it
 
-First Expansion:
+First Main Expansion:
 Working on new mob AI, pets and item systems while I finish the port to 1.8
 Going to work on the pet leveling system now, which will use a hybrid version of the borderlands and call of duty systems, you level up the pet, every 5 levels
 you can unlock a new ability, which will unlock a new tier, you can then level them up enough to eventually unlock all of the abilities but you can only have
