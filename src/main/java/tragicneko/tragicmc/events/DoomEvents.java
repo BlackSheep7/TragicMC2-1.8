@@ -150,6 +150,7 @@ public class DoomEvents {
 		if (TragicConfig.allowDoomScrollImbue && event.itemStack != null && event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("doomsdayID"))
 		{
 			Doomsday dday = Doomsday.getDoomsdayFromId(event.itemStack.getTagCompound().getInteger("doomsdayID"));
+			if (dday == null) return;
 			EnumChatFormatting format = dday.getDoomsdayType().getFormat();
 			event.toolTip.add(format + dday.getLocalizedType() + ": " + dday.getLocalizedName());
 			event.toolTip.add(EnumChatFormatting.GOLD + "Doom Cost: " + dday.getScaledDoomRequirement(event.entityPlayer.worldObj));
