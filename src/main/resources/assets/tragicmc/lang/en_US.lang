@@ -1083,6 +1083,12 @@ entity.TragicMC.OverlordCocoon.name=The Overlord (Cocoon)
 entity.TragicMC.Kurayami.name=Kurayami
 entity.TragicMC.Avris.name=Avris
 
+entity.TragicMC.JetNeko.name=Jet Neko
+entity.TragicMC.ScienceNeko.name=Science Neko
+entity.TragicMC.MechaNeko.name=Mecha-Neko
+entity.TragicMC.SaberNeko.name=Saber Neko
+entity.TragicMC.ProfessorNekoid.name=Professor Nekoid
+
 entity.TragicMC.Pyragr.name=Pyragr
 entity.TragicMC.Aggro.name=Aggro
 entity.TragicMC.Blist.name=Blist
@@ -1146,6 +1152,7 @@ potion.divinity=Divinity
 potion.burned=Burned
 
 doomsday.confirmation=You have used
+doomsday.finish=You have finished using
 doomsday.backlash=Doomsday has backlashed...
 doomsday.crucial=Crucial Moment!
 doomsday.fail=You still have cooldown and cannot use a Doomsday yet!
