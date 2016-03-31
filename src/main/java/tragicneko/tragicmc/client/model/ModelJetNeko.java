@@ -3,16 +3,18 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.mob.EntityJetNeko;
 import tragicneko.tragicmc.entity.mob.EntityNeko;
 
-public class ModelTragicNeko extends ModelBiped
+public class ModelJetNeko extends ModelBiped
 {
 	private ModelRenderer leftEar;
 	private ModelRenderer rightEar;
 	private ModelRenderer tail;
 	private ModelRenderer rocketLauncher;
+	private ModelRenderer rocketLauncher2;
 
-	public ModelTragicNeko()
+	public ModelJetNeko()
 	{
 		textureWidth = 64;
 		textureHeight = 64;
@@ -66,18 +68,37 @@ public class ModelTragicNeko extends ModelBiped
 		bipedLeftArm = new ModelRenderer(this, 40, 16);
 		bipedLeftArm.addBox(0F, -2F, -2F, 2, 10, 2);
 		bipedLeftArm.setRotationPoint(3F, 2F, 0F);
-		bipedLeftArm.rotateAngleX = -0.4833219F;
-		bipedLeftArm.rotateAngleZ = 0.4461433F;
+		bipedLeftArm.rotateAngleX = -0.2974289F;
+		bipedLeftArm.rotateAngleZ = -0.4461433F;
+		rocketLauncher2 = new ModelRenderer(this, 24, 30);
+		rocketLauncher2.addBox(-2F, 6F, -7F, 5, 4, 15);
+		rocketLauncher2.rotateAngleX = 0.2974289F;
+		bipedLeftArm.addChild(rocketLauncher2);
+		ModelRenderer rocketLauncherBody2 = new ModelRenderer(this, 0, 44);
+		rocketLauncherBody2.addBox(-3F, 5F, -2F, 7, 6, 7);
+		rocketLauncher2.addChild(rocketLauncherBody2);
 
 		//Right Leg
 		bipedRightLeg = new ModelRenderer(this, 0, 16);
 		bipedRightLeg.addBox(-1.5F, 0F, -2F, 2, 12, 2);
 		bipedRightLeg.setRotationPoint(-1F, 12F, 0F);
+		ModelRenderer rightJet = new ModelRenderer(this, 36, 52);
+		rightJet.addBox(-2F, 8.5F, -1.5F, 3, 4, 3);
+		bipedRightLeg.addChild(rightJet);
+		ModelRenderer rightJetBit = new ModelRenderer(this, 36, 52);
+		rightJetBit.addBox(-2F, 12.5F, -1.5F, 2, 2, 2);
+		rightJet.addChild(rightJetBit);
 
 		//Left Leg
 		bipedLeftLeg = new ModelRenderer(this, 0, 16);
 		bipedLeftLeg.addBox(-1.5F, 0F, -2F, 2, 12, 2);
 		bipedLeftLeg.setRotationPoint(2F, 12F, 0F);
+		ModelRenderer leftJet = new ModelRenderer(this, 36, 52);
+		leftJet.addBox(-2F, 8.5F, -1.5F, 3, 4, 3);
+		bipedLeftLeg.addChild(leftJet);
+		ModelRenderer leftJetBit = new ModelRenderer(this, 36, 52);
+		leftJetBit.addBox(-2F, 12.5F, -1.5F, 2, 2, 2);
+		leftJet.addChild(leftJetBit);
 	}
 
 	@Override
@@ -87,6 +108,7 @@ public class ModelTragicNeko extends ModelBiped
 		if (entity instanceof EntityNeko)
 		{
 			rocketLauncher.showModel = !((EntityNeko) entity).isProperDate();
+			rocketLauncher2.showModel = !((EntityNeko) entity).isProperDate();
 		}
 		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
@@ -101,6 +123,12 @@ public class ModelTragicNeko extends ModelBiped
 		this.bipedRightLeg.rotateAngleX = 1.15F * this.simplifyAngle(f, 15.0F) * f1;
 
 		EntityNeko neko = (EntityNeko) entity;
+		
+		if (neko instanceof EntityJetNeko && ((EntityJetNeko) entity).getHoverTicks() > 0)
+		{
+			this.bipedLeftLeg.rotateAngleX = 0F;
+			this.bipedRightLeg.rotateAngleX = 0F;
+		}
 
 		this.tail.rotateAngleY = 0.275F * this.simplifyAngle(entity.ticksExisted, 15.0F);
 
@@ -128,8 +156,8 @@ public class ModelTragicNeko extends ModelBiped
 			}
 			else
 			{
-				bipedLeftArm.rotateAngleX = -0.4833219F;
-				bipedLeftArm.rotateAngleZ = 0.4461433F;
+				bipedLeftArm.rotateAngleX = -0.2974289F;
+				bipedLeftArm.rotateAngleZ = -0.4461433F;
 
 				if (neko.getAttackTime() > 0)
 				{

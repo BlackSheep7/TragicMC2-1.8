@@ -54,6 +54,7 @@ import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
+import tragicneko.tragicmc.entity.mob.EntityJetNeko;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
@@ -1195,6 +1196,10 @@ public class TragicEntities {
 				}
 			}
 		}
+		
+		//TODO add config stuff for Jet Neko
+		EntityRegistry.registerModEntity(EntityJetNeko.class, "JetNeko", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntityJetNeko.class, "TragicMC.JetNeko", id++, 0x000000, 0x000000);
 		/*
 		if (TragicConfig.allowBlist)
 		{

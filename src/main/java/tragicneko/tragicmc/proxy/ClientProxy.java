@@ -17,11 +17,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -40,6 +38,7 @@ import tragicneko.tragicmc.client.model.ModelHunter;
 import tragicneko.tragicmc.client.model.ModelInkling;
 import tragicneko.tragicmc.client.model.ModelIre;
 import tragicneko.tragicmc.client.model.ModelJarra;
+import tragicneko.tragicmc.client.model.ModelJetNeko;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelKurayami;
 import tragicneko.tragicmc.client.model.ModelLockbot;
@@ -139,6 +138,7 @@ import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
+import tragicneko.tragicmc.entity.mob.EntityJetNeko;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
@@ -301,7 +301,7 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityPsygote.class, new RenderMob(rm, new ModelPsygote(), 0.565F, "Psygote"));
 		registerRender(EntityNanoSwarm.class, new RenderMob(rm, new ModelNanoSwarm(), 0.215F, "NanoSwarm", 1.545F));
 		registerRender(EntityAegar.class, new RenderAegar(rm));
-		registerRender(EntityHunter.class, new RenderMob(rm, new ModelHunter(), 0.565F, "Hunter"));
+		registerRender(EntityHunter.class, new RenderMob(rm, new ModelHunter(), 0.565F, "Hunter", 1.4F));
 		registerRender(EntityHarvester.class, new RenderMob(rm, new ModelHarvester(), 0.785F, "Harvester", 1.555F));
 		registerRender(EntityLockbot.class, new RenderMob(rm, new ModelLockbot(), 0.335F, "Lockbot"));
 		registerRender(EntitySeeker.class, new RenderMob(rm, new ModelSeeker(), 0.475F, "Seeker"));
@@ -313,6 +313,7 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityParasmite.class, new RenderMob(rm, new ModelHunter(), 0.565F, "Parasmite", 1.355F));
 		registerRender(EntityKurayami.class, new RenderMob(rm, new ModelKurayami(), 0.645F, "Kurayami", 0.825F));
 		registerRender(EntityAvris.class, new RenderMob(rm, new ModelAvris(), 0.645F, "Avris"));
+		registerRender(EntityJetNeko.class, new RenderMob(rm, new ModelJetNeko(), 0.295F, "JetNeko"));
 
 		//Boss renders
 		registerRender(EntityApis.class, new RenderApis(rm));
