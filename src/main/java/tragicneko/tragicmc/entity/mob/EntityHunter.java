@@ -1,7 +1,9 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.hunterStats;
+
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,6 +17,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -22,7 +25,7 @@ public class EntityHunter extends TragicMob {
 
 	public EntityHunter(World par1World) {
 		super(par1World);
-		this.setSize(0.625F, 0.725F);
+		this.setSize(0.875F, 0.875F);
 		this.experienceValue = 5;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
@@ -105,6 +108,10 @@ public class EntityHunter extends TragicMob {
 			this.motionY *= 0.256D;
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
 		}
+		
+		this.velocityChanged = true;
+		
+		this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 	}
 
 	@Override
@@ -153,5 +160,10 @@ public class EntityHunter extends TragicMob {
 	public int getTalkInterval()
 	{
 		return 2;
+	}
+	
+	@Override
+	public boolean attackEntityAsMob(Entity entity) {
+		return super.attackEntityAsMob(entity);
 	}
 }

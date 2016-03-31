@@ -2,6 +2,7 @@ package tragicneko.tragicmc.client.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 
 public class ModelHunter extends ModelBase
@@ -59,7 +60,11 @@ public class ModelHunter extends ModelBase
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		
+		GlStateManager.pushMatrix();
+		GlStateManager.translate(0, 0.4, 0);
 		body.render(f5);
+		GlStateManager.popMatrix();
 	}
 
 	@Override
