@@ -15,7 +15,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityPart;
-import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
+import tragicneko.tragicmc.entity.mob.EntityNeko;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -50,7 +50,7 @@ public class ItemNekoInfluencer extends Item {
 
 		if (stack.getTagCompound().getInteger("entityID") == 0)
 		{
-			if (entity instanceof EntityTragicNeko && ((EntityTragicNeko) entity).isReleased())
+			if (entity instanceof EntityNeko && ((EntityNeko) entity).isReleased())
 			{
 				stack.getTagCompound().setInteger("entityID", entity.getEntityId());
 				player.addChatMessage(new ChatComponentText("Please choose a target for " + aqua + entity.getName() + reset + "."));
@@ -86,8 +86,8 @@ public class ItemNekoInfluencer extends Item {
 		if (TragicWeapon.canUseAbility(doom, 5))
 		{
 			double d0 = 128.0;
-			List<EntityTragicNeko> list = par2World.getEntitiesWithinAABB(EntityTragicNeko.class, par3EntityPlayer.getEntityBoundingBox().expand(d0, d0, d0));
-			for (EntityTragicNeko e : list)
+			List<EntityNeko> list = par2World.getEntitiesWithinAABB(EntityNeko.class, par3EntityPlayer.getEntityBoundingBox().expand(d0, d0, d0));
+			for (EntityNeko e : list)
 			{
 				if (!e.isReleased()) e.setAttackTarget(par3EntityPlayer);
 			}
@@ -106,8 +106,8 @@ public class ItemNekoInfluencer extends Item {
 		if (entity instanceof EntityPlayer)
 		{
 			double d0 = 16.0;
-			List<EntityTragicNeko> list = world.getEntitiesWithinAABB(EntityTragicNeko.class, entity.getEntityBoundingBox().expand(d0, d0, d0));
-			for (EntityTragicNeko e : list)
+			List<EntityNeko> list = world.getEntitiesWithinAABB(EntityNeko.class, entity.getEntityBoundingBox().expand(d0, d0, d0));
+			for (EntityNeko e : list)
 			{
 				if (!e.isReleased()) e.releaseNeko(((EntityPlayer) entity));
 			}

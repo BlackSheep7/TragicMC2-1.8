@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
+import tragicneko.tragicmc.entity.mob.EntityNeko;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -29,8 +29,8 @@ public class ItemRecaptureSiphon extends Item {
 		if (TragicWeapon.canUseAbility(doom, 5))
 		{
 			double d0 = 16.0;
-			List<EntityTragicNeko> list = par2World.getEntitiesWithinAABB(EntityTragicNeko.class, par3EntityPlayer.getEntityBoundingBox().expand(d0, d0, d0));
-			for (EntityTragicNeko e : list)
+			List<EntityNeko> list = par2World.getEntitiesWithinAABB(EntityNeko.class, par3EntityPlayer.getEntityBoundingBox().expand(d0, d0, d0));
+			for (EntityNeko e : list)
 			{
 				e.releaseNeko(par3EntityPlayer);
 			}
