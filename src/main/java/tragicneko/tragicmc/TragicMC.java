@@ -21,13 +21,14 @@ package tragicneko.tragicmc;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -41,19 +42,13 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry.Type;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.AchievementEvents;
 import tragicneko.tragicmc.events.AmuletEvents;
 import tragicneko.tragicmc.events.ChallengeItemEvents;
 import tragicneko.tragicmc.events.DoomEvents;
 import tragicneko.tragicmc.events.DropEvents;
-import tragicneko.tragicmc.events.DynamicHealthScaling;
 import tragicneko.tragicmc.events.EnchantmentEvents;
 import tragicneko.tragicmc.events.MiscEvents;
 import tragicneko.tragicmc.events.PotionEvents;
@@ -197,12 +192,7 @@ public class TragicMC
 		}
 
 		TragicEntities.load();
-
-		if (TragicConfig.allowMobs)
-		{
-			tragicneko.tragicmc.util.EntityDropHelper.fill();
-			registerEvent(new DynamicHealthScaling());
-		}
+		if (TragicConfig.allowMobs) tragicneko.tragicmc.util.EntityDropHelper.fill();
 
 		if (TragicConfig.allowChallengeScrolls && TragicConfig.allowNonMobItems) TragicItems.initializeChallengeItem();
 		if (TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks) registerEvent(new DropEvents());
