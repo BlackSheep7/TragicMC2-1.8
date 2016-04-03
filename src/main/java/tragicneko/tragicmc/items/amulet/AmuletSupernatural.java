@@ -28,7 +28,7 @@ public class AmuletSupernatural extends ItemAmulet {
 				if (rand.nextInt(j) > rand.nextInt(i))
 				{
 					Potion pot = Potion.potionTypes[0];
-					while (pot == null || !AmuletEvents.badPotions.contains(pot))
+					while (pot == null || !pot.isBadEffect())
 					{
 						pot = Potion.potionTypes[rand.nextInt(Potion.potionTypes.length)];
 					}
@@ -37,7 +37,7 @@ public class AmuletSupernatural extends ItemAmulet {
 				else
 				{
 					Potion pot = Potion.potionTypes[0];
-					while (pot == null || AmuletEvents.badPotions.contains(pot))
+					while (pot == null || pot.isBadEffect())
 					{
 						pot = Potion.potionTypes[rand.nextInt(Potion.potionTypes.length)];
 					}

@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.doomsday;
 
-import static tragicneko.tragicmc.events.AmuletEvents.badPotions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -19,7 +18,7 @@ public class DoomsdayGambler extends Doomsday {
 		while (potion == null)
 		{
 			potion = Potion.potionTypes[rand.nextInt(Potion.potionTypes.length)];
-			if (crucMoment && badPotions.contains(potion)) potion = null;
+			if (crucMoment && potion.isBadEffect()) potion = null;
 		}
 
 		int dur = rand.nextInt(1400);
@@ -35,7 +34,7 @@ public class DoomsdayGambler extends Doomsday {
 		while (potion == null)
 		{
 			potion = Potion.potionTypes[rand.nextInt(Potion.potionTypes.length)];
-			if (!badPotions.contains(potion)) potion = null;
+			if (!potion.isBadEffect()) potion = null;
 		}
 
 		int dur = rand.nextInt(1400);

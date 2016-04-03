@@ -15,8 +15,8 @@ public class TragicPotion extends Potion {
 
 	private ItemStack stackIcon;
 
-	public TragicPotion(int par1, ResourceLocation rl, boolean par2, int par3) {
-		super(par1, rl, par2, par3);
+	public TragicPotion(ResourceLocation rl, boolean par2, int par3) {
+		super(rl, par2, par3);
 	}
 
 	public void setIcon(ItemStack icon)
@@ -40,17 +40,17 @@ public class TragicPotion extends Potion {
 
 	public static void load()
 	{
-		if (TragicConfig.allowCorruption) Corruption = (new TragicPotion(TragicConfig.idCorruption, new ResourceLocation("corruption"), true, 0x000000).setPotionName("potion.corruption"));
-		if (TragicConfig.allowDisorientation) Disorientation = (new TragicPotion(TragicConfig.idDisorientation, new ResourceLocation("disorientation"), true, 0x521A55).setPotionName("potion.disorientation"));
-		if (TragicConfig.allowStun) Stun = (new TragicPotion(TragicConfig.idStun, new ResourceLocation("stun"), true, 0xC2DC7D).setPotionName("potion.stun").registerPotionAttributeModifier(SharedMonsterAttributes.movementSpeed, "d35fe2b0-2aca-4d5e-b3e3-3fe041dbaf15", -3.0D, 2));
-		if (TragicConfig.allowFear) Fear = (new TragicPotion(TragicConfig.idFear, new ResourceLocation("fear"), true, 0x4A4A5F).setPotionName("potion.fear"));
-		if (TragicConfig.allowCripple) Cripple = (new TragicPotion(TragicConfig.idCripple, new ResourceLocation("cripple"), true, 0x640000).setPotionName("potion.cripple").registerPotionAttributeModifier(SharedMonsterAttributes.maxHealth, "04df3109-9bca-4517-8855-8064742028e4", -2.0D, 0));
-		if (TragicConfig.allowMalnourish) Malnourish = (new TragicPotion(TragicConfig.idMalnourish, new ResourceLocation("malnourish"), true, 0x59701C).setPotionName("potion.malnourish"));
-		if (TragicConfig.allowSubmission) Submission = (new TragicPotion(TragicConfig.idSubmission, new ResourceLocation("submission"), true, 0xB152B7).setPotionName("potion.submission"));
-		if (TragicConfig.allowInhibit) Inhibit = (new TragicPotion(TragicConfig.idInhibit, new ResourceLocation("inhibit"), true, 0x232323).setPotionName("potion.inhibit"));
-		if (TragicConfig.allowLeadFoot) LeadFoot = (new TragicPotion(TragicConfig.idLeadFoot, new ResourceLocation("leadFoot"), true, 0x78AB76).setPotionName("potion.leadFoot"));
-		if (TragicConfig.allowHacked) Hacked = (new TragicPotion(TragicConfig.idHacked, new ResourceLocation("hacked"), true, 0xC6F6FF).setPotionName("potion.hacked"));
-		if (TragicConfig.allowBurned) Burned = (new TragicPotion(TragicConfig.idBurned, new ResourceLocation("burned"), true, 0xFF0000).setPotionName("potion.burned"));
+		if (TragicConfig.allowCorruption) Corruption = (new TragicPotion(new ResourceLocation("corruption"), true, 0x000000).setPotionName("potion.corruption"));
+		if (TragicConfig.allowDisorientation) Disorientation = (new TragicPotion(new ResourceLocation("disorientation"), true, 0x521A55).setPotionName("potion.disorientation"));
+		if (TragicConfig.allowStun) Stun = (new TragicPotion(new ResourceLocation("stun"), true, 0xC2DC7D).setPotionName("potion.stun").registerPotionAttributeModifier(SharedMonsterAttributes.movementSpeed, "d35fe2b0-2aca-4d5e-b3e3-3fe041dbaf15", -3.0D, 2));
+		if (TragicConfig.allowFear) Fear = (new TragicPotion(new ResourceLocation("fear"), true, 0x4A4A5F).setPotionName("potion.fear"));
+		if (TragicConfig.allowCripple) Cripple = (new TragicPotion(new ResourceLocation("cripple"), true, 0x640000).setPotionName("potion.cripple").registerPotionAttributeModifier(SharedMonsterAttributes.maxHealth, "04df3109-9bca-4517-8855-8064742028e4", -2.0D, 0));
+		if (TragicConfig.allowMalnourish) Malnourish = (new TragicPotion(new ResourceLocation("malnourish"), true, 0x59701C).setPotionName("potion.malnourish"));
+		if (TragicConfig.allowSubmission) Submission = (new TragicPotion(new ResourceLocation("submission"), true, 0xB152B7).setPotionName("potion.submission"));
+		if (TragicConfig.allowInhibit) Inhibit = (new TragicPotion(new ResourceLocation("inhibit"), true, 0x232323).setPotionName("potion.inhibit"));
+		if (TragicConfig.allowLeadFoot) LeadFoot = (new TragicPotion(new ResourceLocation("leadFoot"), true, 0x78AB76).setPotionName("potion.leadFoot"));
+		if (TragicConfig.allowHacked) Hacked = (new TragicPotion(new ResourceLocation("hacked"), true, 0xC6F6FF).setPotionName("potion.hacked"));
+		if (TragicConfig.allowBurned) Burned = (new TragicPotion(new ResourceLocation("burned"), true, 0xFF0000).setPotionName("potion.burned"));
 		//Deafening = new TragicPotion(TragicConfig.idHacked + 1, true, 0x000000).setPotionName("potion.deafening");
 		//Nightmare = new TragicPotion(TragicConfig.idHacked + 2, true, 0x000000).setPotionName("potion.nightmare");
 		//Exasperate = new TragicPotion(TragicConfig.idHacked + 3, true, 0x000000).setPotionName("potion.exasperate");
@@ -75,15 +75,15 @@ public class TragicPotion extends Potion {
 		}
 		}.setPotionName("potion.bleed"); */
 
-		if (TragicConfig.allowFlight) Flight = (new TragicPotion(TragicConfig.idFlight, new ResourceLocation("flight"), false, 0xFDDC69).setPotionName("potion.flight"));
-		if (TragicConfig.allowAquaSuperiority) AquaSuperiority = (new TragicPotion(TragicConfig.idAquaSuperiority, new ResourceLocation("aquaSuperiority"), true, 0x69B9FD).setPotionName("potion.aquaSuperiority"));
-		if (TragicConfig.allowImmunity) Immunity = (new TragicPotion(TragicConfig.idImmunity, new ResourceLocation("immunity"), false, 0xBABABA).setPotionName("potion.immunity"));
-		if (TragicConfig.allowResurrection) Resurrection = (new TragicPotion(TragicConfig.idResurrection, new ResourceLocation("resurrection"), false, 0x9DFD69).setPotionName("potion.resurrection"));
-		if (TragicConfig.allowHarmony) Harmony = (new TragicPotion(TragicConfig.idHarmony, new ResourceLocation("harmony"), false, 0xE67CED).setPotionName("potion.harmony").registerPotionAttributeModifier(SharedMonsterAttributes.followRange, "ac2b9b0e-2eb2-443f-8ca2-a045f36f9e73", -256.0, 2));
-		if (TragicConfig.allowInvulnerability) Invulnerability = (new TragicPotion(TragicConfig.idInvulnerability, new ResourceLocation("invulnerability"), false, 0xD5ECFF).setPotionName("potion.invulnerability").registerPotionAttributeModifier(SharedMonsterAttributes.movementSpeed, "43d74ab6-d058-40e4-9761-70b0b80b8743", -0.2D, 2));
-		if (TragicConfig.allowClarity) Clarity = (new TragicPotion(TragicConfig.idClarity, new ResourceLocation("clarity"), false, 0xFFFFFF).setPotionName("potion.clarity"));
-		if (TragicConfig.allowConvergence) Convergence = (new TragicPotion(TragicConfig.idConvergence, new ResourceLocation("convergence"), false, 0x9B2525).setPotionName("potion.convergence"));
-		if (TragicConfig.allowDivinity) Divinity = (new TragicPotion(TragicConfig.idDivinity, new ResourceLocation("divinity"), false, 0xFFFFFF).setPotionName("potion.divinity"));
+		if (TragicConfig.allowFlight) Flight = (new TragicPotion(new ResourceLocation("flight"), false, 0xFDDC69).setPotionName("potion.flight"));
+		if (TragicConfig.allowAquaSuperiority) AquaSuperiority = (new TragicPotion(new ResourceLocation("aquaSuperiority"), true, 0x69B9FD).setPotionName("potion.aquaSuperiority"));
+		if (TragicConfig.allowImmunity) Immunity = (new TragicPotion(new ResourceLocation("immunity"), false, 0xBABABA).setPotionName("potion.immunity"));
+		if (TragicConfig.allowResurrection) Resurrection = (new TragicPotion(new ResourceLocation("resurrection"), false, 0x9DFD69).setPotionName("potion.resurrection"));
+		if (TragicConfig.allowHarmony) Harmony = (new TragicPotion(new ResourceLocation("harmony"), false, 0xE67CED).setPotionName("potion.harmony").registerPotionAttributeModifier(SharedMonsterAttributes.followRange, "ac2b9b0e-2eb2-443f-8ca2-a045f36f9e73", -256.0, 2));
+		if (TragicConfig.allowInvulnerability) Invulnerability = (new TragicPotion(new ResourceLocation("invulnerability"), false, 0xD5ECFF).setPotionName("potion.invulnerability").registerPotionAttributeModifier(SharedMonsterAttributes.movementSpeed, "43d74ab6-d058-40e4-9761-70b0b80b8743", -0.2D, 2));
+		if (TragicConfig.allowClarity) Clarity = (new TragicPotion(new ResourceLocation("clarity"), false, 0xFFFFFF).setPotionName("potion.clarity"));
+		if (TragicConfig.allowConvergence) Convergence = (new TragicPotion(new ResourceLocation("convergence"), false, 0x9B2525).setPotionName("potion.convergence"));
+		if (TragicConfig.allowDivinity) Divinity = (new TragicPotion(new ResourceLocation("divinity"), false, 0xFFFFFF).setPotionName("potion.divinity"));
 	}
 
 	public static void setPotionIcons()

@@ -10,7 +10,6 @@ import static tragicneko.tragicmc.TragicConfig.ragrStats;
 import static tragicneko.tragicmc.TragicConfig.skultarStats;
 import static tragicneko.tragicmc.TragicConfig.stinKingStats;
 import static tragicneko.tragicmc.entity.mob.EntityRagr.crushableBlocks;
-import static tragicneko.tragicmc.events.AmuletEvents.badPotions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,12 +39,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
@@ -340,7 +337,7 @@ public class EntityClaymation extends TragicBoss {
 			{
 				Potion potion = Potion.potionTypes[i];
 
-				if (this.isPotionActive(potion) && badPotions.contains(potion) && a < effects.length)
+				if (this.isPotionActive(potion) && potion.isBadEffect() && a < effects.length)
 				{
 					temp = this.getActivePotionEffect(potion);
 					effects[a++] = new PotionEffect(potion.id, temp.getDuration() * 2, temp.getAmplifier() * 2);

@@ -42,7 +42,7 @@ public class AmuletChicken extends ItemAmulet {
 					{
 						Potion potion = Potion.potionTypes[i];
 
-						if (player.isPotionActive(potion) && AmuletEvents.badPotions.contains(potion))
+						if (player.isPotionActive(potion) && potion.isBadEffect())
 						{
 							player.removePotionEffect(i);
 						}

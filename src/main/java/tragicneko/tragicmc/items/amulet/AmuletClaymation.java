@@ -61,7 +61,7 @@ public class AmuletClaymation extends ItemAmulet {
 					{
 						Potion potion = Potion.potionTypes[i];
 
-						if (player.isPotionActive(potion) && AmuletEvents.badPotions.contains(potion) && a < effects.length)
+						if (player.isPotionActive(potion) && potion.isBadEffect() && a < effects.length)
 						{
 							temp = player.getActivePotionEffect(potion);
 							effects[a++] = new PotionEffect(potion.id, temp.getDuration() * level, temp.getAmplifier() * level);

@@ -57,11 +57,7 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
 public class AmuletEvents {
-
-	public static Set<Potion> badPotions = Sets.newHashSet(new Potion[] {Potion.blindness, Potion.confusion, Potion.digSlowdown, Potion.harm, Potion.hunger, Potion.moveSlowdown,
-			Potion.poison, Potion.weakness, Potion.wither, TragicPotion.Corruption, TragicPotion.Cripple, TragicPotion.Disorientation, TragicPotion.Fear,
-			TragicPotion.Inhibit, TragicPotion.Malnourish, TragicPotion.Stun, TragicPotion.Submission, TragicPotion.Hacked, TragicPotion.LeadFoot});
-
+	
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
 		if (event.entity instanceof EntityPlayer)

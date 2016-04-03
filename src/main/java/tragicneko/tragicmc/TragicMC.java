@@ -88,7 +88,7 @@ public class TragicMC
 	public static final String MODID = "TragicMC";
 	public static final String VERSION = "4.47.3003";
 	public static final String ACCEPTED_VERSION = "[1.8.9]";
-	public static final String VERSION_JSON = "https://gist.githubusercontent.com/TragicNeko/d70456c2715e735920a1/raw/a7a25b91d3462b12e77c69e9166cd3b3fe7cdb1a/TragicMC2-Version.json";
+	public static final String VERSION_JSON = "https://gist.githubusercontent.com/TragicNeko/d70456c2715e735920a1/raw/3955f95f493401775dd7c7d4ec7bf1e54127e264/TragicMC2-Version.json";
 
 	@Instance(TragicMC.MODID)
 	private static TragicMC instance;
@@ -108,8 +108,6 @@ public class TragicMC
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		doPotionReflection();
-
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		TragicConfig.load();
 
@@ -117,16 +115,8 @@ public class TragicMC
 
 		if (TragicConfig.allowPotions)
 		{
-			if (Potion.potionTypes.length >= 128)
-			{
-				TragicPotion.load();
-				registerEvent(new PotionEvents());
-			}
-			else
-			{
-				logError("The potionType array was not set to an adequate amount, as a result potion effects are disabled now to prevent any crashes.");
-				TragicConfig.disablePotions();
-			}
+			TragicPotion.load();
+			registerEvent(new PotionEvents());
 		}
 
 		if (TragicConfig.allowEnchantments) TragicEnchantments.load();
@@ -198,7 +188,7 @@ public class TragicMC
 			int id = TragicConfig.synapseID + 1;
 			if (DimensionManager.isDimensionRegistered(id)) id = DimensionManager.getNextFreeDimId();
 			int provId = id;
-			
+
 			DimensionManager.registerProviderType(provId, tragicneko.tragicmc.dimension.WildsWorldProvider.class, false);
 			DimensionManager.registerDimension(id, provId); */
 
@@ -270,7 +260,7 @@ public class TragicMC
 			logWarning("Achievements are enabled in config but are disabled due to certain blocks and items being disabled. This is to prevent game crashes from ocurring.");
 			TragicConfig.allowAchievements = false;
 		}
-		
+
 		proxy.preInitRenders();
 	}
 
@@ -471,36 +461,6 @@ public class TragicMC
 			{
 				mm.ignore();
 			}
-		}
-	}
-
-	public static void doPotionReflection()
-	{
-		try
-		{
-			Potion[] potionTypes;
-			java.lang.reflect.Field f = ReflectionHelper.findField(Potion.class, "potionTypes", "field_76425_a");
-
-			java.lang.reflect.Field modfield = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-			modfield.setAccessible(true);
-			modfield.setInt(f, f.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-			potionTypes = (Potion[])f.get(null);
-
-			if (potionTypes.length <= 128)
-			{
-				final Potion[] newPotionTypes = new Potion[256];
-				System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
-				f.set(null, newPotionTypes);
-			}
-			else
-			{
-				logWarning("potionTypes[]'s array length was " + Potion.potionTypes.length + ", so it is assumed that it was previously reflected to an adequate amount.");
-			}
-		}
-		catch (Exception e)
-		{
-			logError("There was an error during Potion array reflection, this may be due to obfuscation and could have unintended side effects.", e);
-			return;
 		}
 	}
 
