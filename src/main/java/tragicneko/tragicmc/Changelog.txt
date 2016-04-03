@@ -4625,7 +4625,7 @@ Reduced sound volume of the Soul Chest taking a soul
 Reduced chance of Tragic Neko dropping mini bombs upon death
 Small fix to help prevent creative mode players from being corrupted
 
-4.47.3003++ <218> (March 29, 2016)
+4.47.3017 <218> (March 29, 2016)
 Split the TragicNeko class into a superclass for the new Nekos to be more easily identified (and coded)
 Updated EntityArchangel's flying code (mirroring changes in the Ghast's code), made it's move helper usable for other entities
 Modified Hunter's hitbox and rendering height
@@ -4641,8 +4641,11 @@ Update the version json checker to use one built into github so that it'll have 
 Removed potion ids from the config
 Updated Entity client-side registrations to use the new IRenderFactory method
 
+4.47.3017++ <219> (April 3, 2016)
+
+
 Note to self:
-IExtendedProperties are to be changed, most likely in 1.9, again, fine for now since new methods don't exist yet
+IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
