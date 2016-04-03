@@ -30,6 +30,7 @@ import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingPackSizeEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -46,6 +47,9 @@ import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.blocks.BlockQuicksand.EnumVariant;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.properties.PropertyMisc;
@@ -337,6 +341,18 @@ public class MiscEvents {
 			{
 				misc.loadNBTData(new NBTTagCompound());
 			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onEntitySpawn(LivingPackSizeEvent event)
+	{
+		if (event.entityLiving instanceof TragicBoss || event.entityLiving instanceof TragicMiniBoss)
+		{
+			if (event.entityLiving instanceof TragicBoss && ((TragicBoss) event.entityLiving).isHalloween()) return;
+			if (event.entityLiving instanceof TragicMob && ((TragicMob) event.entityLiving).isHalloween()) return;
+			event.maxPackSize = 1;
+			event.setResult(Result.ALLOW);
 		}
 	}
 
