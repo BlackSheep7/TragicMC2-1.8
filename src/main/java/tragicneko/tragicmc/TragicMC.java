@@ -267,7 +267,7 @@ public class TragicMC
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		proxy.registerRenders();
+		proxy.initRenders();
 	}
 
 	@EventHandler

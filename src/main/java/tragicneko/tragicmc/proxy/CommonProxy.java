@@ -12,7 +12,7 @@ public class CommonProxy implements IGuiHandler {
 	
 	public static final int AMULET_GUI_ID = 0;
 
-	public void registerRenders(){}
+	public void initRenders(){}
 	
 	public void preInitRenders() {}
 

@@ -208,7 +208,7 @@ public class ClientProxy extends CommonProxy {
 	private static final int ZERO = 0;
 
 	@Override
-	public void registerRenders()
+	public void initRenders()
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 
