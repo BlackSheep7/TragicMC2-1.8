@@ -154,9 +154,7 @@ public class TragicConfig {
 	public static boolean[] potionAllow = new boolean[32];
 	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
 	public static boolean allowCorruption, allowDisorientation, allowStun, allowFear, allowMalnourish, allowCripple, allowSubmission, allowInhibit, allowLeadFoot, allowHacked, allowBurned;
-	public static int idFlight, idAquaSuperiority, idImmunity, idResurrection, idHarmony, idInvulnerability, idClarity, idConvergence, idDivinity;
-	public static int idCorruption, idDisorientation, idStun, idFear, idMalnourish, idCripple, idSubmission, idInhibit, idLeadFoot, idHacked, idBurned;
-
+	
 	private static boolean[] vanillaConfig = new boolean[24];
 	public static boolean allowVanillaMobBuffs, allowExtraMobEffects, allowAnimalRetribution, allowMobModdedArmor, allowRespawnPunishment, allowExtraExplosiveEffects;
 	public static boolean allowMobBlindnessDebuff, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowDrudgeGen, allowAnimalGolemCorruption;
@@ -3171,66 +3169,6 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "burnedAllow", true);
 		potionAllow[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "flightID", findPotionID(32));
-		idFlight = prop.getInt(findPotionID(32));
-
-		prop = config.get(cat.getName(), "aquaSuperiorityID", findPotionID(idFlight + 1));
-		idAquaSuperiority = prop.getInt(findPotionID(idFlight + 1));
-
-		prop = config.get(cat.getName(), "immunityID", findPotionID(idAquaSuperiority + 1));
-		idImmunity = prop.getInt(findPotionID(idAquaSuperiority + 1));
-
-		prop = config.get(cat.getName(), "resurrectionID", findPotionID(idImmunity + 1));
-		idResurrection = prop.getInt(findPotionID(idImmunity + 1));
-
-		prop = config.get(cat.getName(), "harmonyID", findPotionID(idResurrection + 1));
-		idHarmony = prop.getInt(findPotionID(idResurrection + 1));
-
-		prop = config.get(cat.getName(), "invulnernabilityID", findPotionID(idHarmony + 1));
-		idInvulnerability = prop.getInt(findPotionID(idHarmony + 1));
-
-		prop = config.get(cat.getName(), "clarityID", findPotionID(idInvulnerability + 1));
-		idClarity = prop.getInt(findPotionID(idInvulnerability + 1));
-
-		prop = config.get(cat.getName(), "convergenceID", findPotionID(idClarity + 1));
-		idConvergence = prop.getInt(findPotionID(idClarity + 1));
-
-		prop = config.get(cat.getName(), "divinityID", findPotionID(idConvergence + 1));
-		idDivinity = prop.getInt(findPotionID(idConvergence + 1));
-
-		prop = config.get(cat.getName(), "corruptionID", findPotionID(idDivinity + 1));
-		idCorruption = prop.getInt(findPotionID(idDivinity + 1));
-
-		prop = config.get(cat.getName(), "disorientationID", findPotionID(idCorruption + 1));
-		idDisorientation = prop.getInt(findPotionID(idCorruption + 1));
-
-		prop = config.get(cat.getName(), "stunID", findPotionID(idDisorientation + 1));
-		idStun = prop.getInt(findPotionID(idDisorientation + 1));
-
-		prop = config.get(cat.getName(), "fearID", findPotionID(idStun + 1));
-		idFear = prop.getInt(findPotionID(idStun + 1));
-
-		prop = config.get(cat.getName(), "malnourishID", findPotionID(idFear + 1));
-		idMalnourish = prop.getInt(findPotionID(idFear + 1));
-
-		prop = config.get(cat.getName(), "crippleID", findPotionID(idMalnourish + 1));
-		idCripple = prop.getInt(findPotionID(idMalnourish + 1));
-
-		prop = config.get(cat.getName(), "submissionID", findPotionID(idCripple + 1));
-		idSubmission = prop.getInt(findPotionID(idCripple + 1));
-
-		prop = config.get(cat.getName(), "inhibitID", findPotionID(idSubmission + 1));
-		idInhibit = prop.getInt(findPotionID(idSubmission + 1));
-
-		prop = config.get(cat.getName(), "leadFootID", findPotionID(idInhibit + 1));
-		idLeadFoot = prop.getInt(findPotionID(idInhibit + 1));
-
-		prop = config.get(cat.getName(), "hackedID", findPotionID(idLeadFoot + 1));
-		idHacked = prop.getInt(findPotionID(idLeadFoot + 1));
-
-		prop = config.get(cat.getName(), "burnedID", findPotionID(idHacked + 1));
-		idBurned = prop.getInt(findPotionID(idHacked + 1));
-
 		cat = config.getCategory(CAT_VANILLA);
 		cat.setComment("These toggle the various changes the mod does that explicitly affects Vanilla Minecraft. Ore rate and vein size only affects those ores generated in Vanilla Dimensions.");
 		cat.setRequiresMcRestart(true);
@@ -4678,13 +4616,6 @@ public class TragicConfig {
 		allowSurvivalTab = true;
 	}
 
-	public static void disablePotions()
-	{
-		allowPotions = false;
-		postProcessConfigs();
-		initializeRemainingVariables();
-	}
-
 	public static int clampPositive(int value) {
 		return value > 0 ? value : 0;
 	}
@@ -4760,10 +4691,6 @@ public class TragicConfig {
 	public static int findEnchantID(int start) {	
 		
 		return findOpenID(enchantList, start, true);
-	}
-
-	public static int findPotionID(int start) {
-		return findOpenID(Potion.potionTypes, start, false);
 	}
 	
 	private static void reflectEnchantmentList() {
