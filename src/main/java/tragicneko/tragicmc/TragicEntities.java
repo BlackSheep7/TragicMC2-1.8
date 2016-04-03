@@ -66,6 +66,7 @@ import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntityRanmas;
+import tragicneko.tragicmc.entity.mob.EntityScienceNeko;
 import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
@@ -1200,6 +1201,10 @@ public class TragicEntities {
 		//TODO add config stuff for Jet Neko
 		EntityRegistry.registerModEntity(EntityJetNeko.class, "JetNeko", listid++, TragicMC.getInstance(), 80, 1, true);
 		TragicEntityList.addMapping(EntityJetNeko.class, "TragicMC.JetNeko", id++, 0x000000, 0x000000);
+		
+		//TODO add config stuff for Science Neko
+		EntityRegistry.registerModEntity(EntityScienceNeko.class, "ScienceNeko", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntityScienceNeko.class, "TragicMC.ScienceNeko", id++, 0x000000, 0x000000);
 		/*
 		if (TragicConfig.allowBlist)
 		{

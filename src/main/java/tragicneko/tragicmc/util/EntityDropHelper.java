@@ -47,6 +47,7 @@ import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
+import tragicneko.tragicmc.entity.mob.EntityJetNeko;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
@@ -58,6 +59,7 @@ import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntityRanmas;
+import tragicneko.tragicmc.entity.mob.EntityScienceNeko;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTox;
@@ -182,10 +184,19 @@ public class EntityDropHelper {
 		addToDropList(EntityFusea.class, new EntityDrop[][] {{new EntityDrop(15, Items.gunpowder), new EntityDrop(5, Items.redstone)}, {new EntityDrop(15, Items.gunpowder), new EntityDrop(5, TragicItems.UnstableIsotope),
 			new EntityDrop(5, Items.redstone), new EntityDrop(15, TragicItems.CatalyticCompound)}});
 
-		addToDropList(EntityRanmas.class, new EntityDrop[][] {{new EntityDrop(25, TragicBlocks.Crystal), new EntityDrop(15, TragicItems.CatalyticCompound)}, {new EntityDrop(25, TragicBlocks.Crystal)}});
+		addToDropList(EntityRanmas.class, new EntityDrop[][] {{new EntityDrop(25, TragicBlocks.Crystal), new EntityDrop(15, TragicItems.CatalyticCompound)}, {new EntityDrop(25, TragicBlocks.Crystal), new EntityDrop(5, TragicItems.InfallibleMetal)}});
 
 		addToDropList(EntityParasmite.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(15, TragicItems.BoneMarrow)},
 			{new EntityDrop(25, TragicItems.BoneMarrow), new EntityDrop(5, TragicItems.BloodSacrifice), new EntityDrop(5, TragicItems.NourishmentSacrifice)}});
+		
+		addToDropList(EntityJetNeko.class, new EntityDrop[][] {{new EntityDrop(15, Items.iron_ingot), new EntityDrop(25, Items.gunpowder), new EntityDrop(5, Blocks.tnt)},
+			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
+			new EntityDrop(5, new ItemStack(TragicItems.Projectile, 1, 5)), new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
+		
+		addToDropList(EntityScienceNeko.class, new EntityDrop[][] {{new EntityDrop(15, Items.iron_ingot), new EntityDrop(25, Items.gunpowder), new EntityDrop(5, Blocks.tnt)},
+			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
+			new EntityDrop(5, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(3, TragicItems.ParadoxicalFormula), new EntityDrop(3, TragicItems.NauseatingConcoction), new EntityDrop(10, TragicItems.NekoMindControlDevice),
+			new EntityDrop(10, getScienceNekoPotions())}});
 		
 		//addToDropList(EntityBlist.class, new EntityDrop[][] {{}, {}});
 
@@ -340,6 +351,18 @@ public class EntityDropHelper {
 		stack[1] = new ItemStack(Items.potionitem, 1, 78);
 		stack[2] = new ItemStack(Items.potionitem, 1, 46);
 		stack[3] = new ItemStack(Items.potionitem, 1, 16478);
+		return stack;
+	}
+	
+	private static ItemStack[] getScienceNekoPotions()
+	{
+		ItemStack[] stack = new ItemStack[6];
+		stack[0] = new ItemStack(Items.potionitem, 1, 28);
+		stack[1] = new ItemStack(Items.potionitem, 1, 4);
+		stack[2] = new ItemStack(Items.potionitem, 1, 56);
+		stack[3] = new ItemStack(Items.potionitem, 1, 37);
+		stack[4] = new ItemStack(Items.potionitem, 1, 12);
+		stack[5] = new ItemStack(Items.potionitem, 1, 3);
 		return stack;
 	}
 
