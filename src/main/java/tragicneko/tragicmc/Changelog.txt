@@ -4642,7 +4642,9 @@ Removed potion ids from the config
 Updated Entity client-side registrations to use the new IRenderFactory method
 
 4.47.3017++ <219> (April 3, 2016)
-
+Added registration stuff for the Science Neko
+Made the Doomsday info in tooltips more minimal
+Removed Dynamic Health scaling, I don't feel like it was used very much and it was causing weird bugs with normal mob's health
 
 Note to self:
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
