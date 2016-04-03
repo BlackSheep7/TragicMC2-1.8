@@ -4638,6 +4638,11 @@ Started work on the Science Neko, it'll basically be like a witch with a ray gun
 Do away with potion reflection, change to new forge potion constructor method
 Remove unnecessary badpotions array from events and use the now client AND server sided one from vanilla
 Update the version json checker to use one built into github so that it'll have a persistent link
+Removed potion ids from the config
+Updated Entity client-side registrations to use the new IRenderFactory method
+
+Note to self:
+IExtendedProperties are to be changed, most likely in 1.9, again, fine for now since new methods don't exist yet
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
