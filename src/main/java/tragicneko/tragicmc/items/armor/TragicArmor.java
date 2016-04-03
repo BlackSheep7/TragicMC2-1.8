@@ -52,11 +52,13 @@ public class TragicArmor extends ItemArmor {
 
 		if (TragicConfig.allowDoomsdays && this.doomsday != null)
 		{
+			par2List.add(EnumChatFormatting.WHITE + "Doomsday:");
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
-			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
-			par2List.add(""); //extra space
+			par2List.add(EnumChatFormatting.ITALIC + "Cost/Cooldown: " + EnumChatFormatting.GOLD + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj) +
+					EnumChatFormatting.RESET + " / " + EnumChatFormatting.DARK_AQUA +
+					doomsday.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
+			par2List.add(""); //extra space in between
 		}
 	}
 

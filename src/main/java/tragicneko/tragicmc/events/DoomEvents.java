@@ -151,11 +151,13 @@ public class DoomEvents {
 		{
 			Doomsday dday = Doomsday.getDoomsdayFromId(event.itemStack.getTagCompound().getInteger("doomsdayID"));
 			if (dday == null) return;
+			event.toolTip.add(EnumChatFormatting.WHITE + "Doomsday:");
 			EnumChatFormatting format = dday.getDoomsdayType().getFormat();
 			event.toolTip.add(format + dday.getLocalizedType() + ": " + dday.getLocalizedName());
-			event.toolTip.add(EnumChatFormatting.GOLD + "Doom Cost: " + dday.getScaledDoomRequirement(event.entityPlayer.worldObj));
-			event.toolTip.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + dday.getScaledCooldown(event.entityPlayer.worldObj.getDifficulty()));
-			event.toolTip.add(""); //extra space
+			event.toolTip.add(EnumChatFormatting.ITALIC + "Cost/Cooldown: " + EnumChatFormatting.GOLD + dday.getScaledDoomRequirement(event.entityPlayer.worldObj) +
+					EnumChatFormatting.RESET + " / " + EnumChatFormatting.DARK_AQUA +
+					dday.getScaledCooldown(event.entityPlayer.worldObj.getDifficulty()));
+			event.toolTip.add(""); //extra space in between
 			if (event.itemStack.getItem() instanceof ItemArmor)
 			{
 				event.toolTip.add(EnumChatFormatting.ITALIC + "This item is considered an armor piece");

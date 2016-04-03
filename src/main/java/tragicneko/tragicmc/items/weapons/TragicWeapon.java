@@ -82,21 +82,25 @@ public class TragicWeapon extends ItemSword {
 		if (TragicConfig.allowDoomsdays && this.doomsday != null)
 		{
 			EnumChatFormatting format;
+			String d = this.doomsday2 != null ? "Doomsdays:" : "Doomsday:";
+			par2List.add(EnumChatFormatting.WHITE + d);
 
 			if (this.doomsday2 != null)
 			{
 				format = doomsday2.getDoomsdayType().getFormat();
 				par2List.add(format + doomsday2.getLocalizedType() + ": " + doomsday2.getLocalizedName());
-				par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday2.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-				par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday2.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
+				par2List.add(EnumChatFormatting.ITALIC + "Cost/Cooldown: " + EnumChatFormatting.GOLD + doomsday2.getScaledDoomRequirement(par2EntityPlayer.worldObj) +
+						EnumChatFormatting.RESET + " / " + EnumChatFormatting.DARK_AQUA +
+						doomsday2.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
 				par2List.add(""); //extra space in between
 			}
 
 			format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
-			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
-			par2List.add(""); //extra space
+			par2List.add(EnumChatFormatting.ITALIC + "Cost/Cooldown: " + EnumChatFormatting.GOLD + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj) +
+					EnumChatFormatting.RESET + " / " + EnumChatFormatting.DARK_AQUA +
+					doomsday.getScaledCooldown(par2EntityPlayer.worldObj.getDifficulty()));
+			par2List.add(""); //extra space in between
 		}
 		
 		if (this.ascensionLevel > 0F)
