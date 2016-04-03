@@ -67,6 +67,7 @@ import tragicneko.tragicmc.client.render.RenderStatue;
 import tragicneko.tragicmc.client.render.RenderTimeDisruption;
 import tragicneko.tragicmc.client.render.alpha.RenderOverlordCocoon;
 import tragicneko.tragicmc.client.render.alpha.RenderOverlordCombat;
+import tragicneko.tragicmc.client.render.alpha.RenderOverlordCore;
 import tragicneko.tragicmc.client.render.boss.RenderAegar;
 import tragicneko.tragicmc.client.render.boss.RenderApis;
 import tragicneko.tragicmc.client.render.boss.RenderClaymation;
@@ -410,7 +411,7 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityOverlordCombat.class, new IRenderFactory() {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderOverlordCombat(manager); }});
 		registerRender(EntityOverlordCore.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderOverlordCocoon(manager); }});
+			@Override public Render createRenderFor(RenderManager manager) { return new RenderOverlordCore(manager); }});
 
 		registerBlockToBakery(TragicBlocks.SummonBlock, getPrefixedArray(summonBlock));
 
