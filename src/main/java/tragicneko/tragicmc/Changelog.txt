@@ -4633,7 +4633,11 @@ Improved Flying move helper, added flying ability to the Jet Neko, a new Neko su
 Added chat confirmation for when a Doomsday completes it's effects
 Added new texture and slightly updated model for the Jet Neko
 Modified Neko related items to activate for the Neko superclass now
-Added null check for Doomsday scroll tooltips
+Added null check for Doomsday imbued item tooltips
+Started work on the Science Neko, it'll basically be like a witch with a ray gun in it's other hand
+Do away with potion reflection, change to new forge potion constructor method
+Remove unnecessary badpotions array from events and use the now client AND server sided one from vanilla
+Update the version json checker to use one built into github so that it'll have a persistent link
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
