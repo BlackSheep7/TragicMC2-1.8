@@ -9,6 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.entity.mob.EntityArchangel;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityAdmin extends TragicBoss {
@@ -37,8 +38,8 @@ public class EntityAdmin extends TragicBoss {
 
 	//When you enter the Dimension it'll already be vulnerable
 	//While in this phase it'll spawn in control towers that shock you when you get near them randomly
-	//You must "mine" these towers, causing them to overload at which point they'll make the Admin vulnerable for a little while
-	//You continue this until it's health is lowered, it's health will only stay lowered if you do enough damage during a phase, otherwise you must redo it
+	//You must "mine" these towers, causing them to overload at which point they'll damage the Admin
+	//These must be mined before a certain time limit, otherwise they will reset and regenerate it's health up to full
 	//This will take it's health down to half when completed, each tower phase will take 1/6th of it's total health and it'll remove the towers during each
 	//of these
 
@@ -46,15 +47,14 @@ public class EntityAdmin extends TragicBoss {
 	//It will gain an instakill beam that has a long charge rate, it'll become fixed on one point and fire the beam after a few seconds, instantly killing
 	//anything within it
 	//To damage it in this phase, you must use the towers it left behind to "shock" it with Directed Lightning, this will need to be done until it's dropped
-	//down to no health in which it goes into sleep mode, at certain phases in this pattern it'll go into recovery mode and attempt to regenerate health,
-	//it must be attacked normally at this time to prevent that
-	//also at certain phases it'll create a singularity which will alter your active effects and change your current health and hunger amounts, in other words,
+	//down to no health in which it goes into sleep mode
+	//at certain phases it'll create a singularity which will alter your active effects and change your current health and hunger amounts, in other words,
 	//it'll basically hack your stats (won't affect inventory and current equipped items but the effects will actually occur
 
 	//It'll then begin regenerating towers, if these towers are allowed to completely regenerate then it'll go back into it's first phase with fully powered
 	//towers, you must destroy the towers before they regenerate long enough for it to be cut off from their power, then it'll have to factory reset it's systems
 	//in order to continue living, which will clear it of all corruption
-	//While it's regenerating towers, it'll also fire slow moving homing projectiles which can be used to assist you in destroying the towers if used
+	//While it's regenerating towers, it'll also fire slow moving homing rockets which can be used to assist you in destroying the towers if used
 	//cleverly enough, these will go through walls though so you'll take damage if you use them to destroy the towers
 
 	//New block, it'll have three states, one active and one inactive similarly to how I originally wanted to do the Digital Sea and one "broken"
@@ -70,16 +70,121 @@ public class EntityAdmin extends TragicBoss {
 	//"Resuming system-wide clean-up algorithms... Stand by."
 
 	private ControlTower[] towers;
-	private EnumAdminState state = EnumAdminState.INVINCIBLE;
 	private boolean phaseChange = false;
 
 	public static final int TOWER_LIMIT = 8;
-
-	public static final int DW_TOWER_TIME = 23;
+	public int phaseTime = 1000;
+	public EntityGhostAdmin ghost = null; //the ghost admin to be used for updating the overloaded phase
+	
+	public static final int DW_PHASE = 20;
 
 	public EntityAdmin(World par1World) {
 		super(par1World);
+		this.setSize(3.5F, 6.0F);
 		this.towers = new ControlTower[TOWER_LIMIT];
+		this.moveHelper = new EntityArchangel.FlyingMoveHelper(this);
+	}
+	
+	protected void entityInit() {
+		super.entityInit();
+		this.dataWatcher.addObject(DW_PHASE, Integer.valueOf(0));
+	}
+	
+	private void setIntState(int i) {
+		this.dataWatcher.updateObject(DW_PHASE, i);
+	}
+	
+	public int getIntState() {
+		return this.dataWatcher.getWatchableObjectInt(DW_PHASE);
+	}
+	
+	private void setState(EnumAdminState state) {
+		this.setIntState(state.getIntValue());
+	}
+	
+	public EnumAdminState getState() {
+		return EnumAdminState.values()[this.getIntState()];
+	}
+	
+	@Override
+	public void onLivingUpdate() {
+		if (this.getState() == EnumAdminState.OVERLOADED) this.motionX = this.motionY = this.motionZ = 0D;
+		super.onLivingUpdate();
+		
+		if (this.worldObj.isRemote)
+		{
+			return;
+		}
+		
+		if (this.phaseTime > 0) this.phaseTime--;
+		else
+		{
+			if (this.phaseChange)
+			{
+				this.setState(EnumAdminState.getNextPhase(this.getState()));
+				this.initPhase();
+			}
+			else
+			{
+				this.resetPhase();
+			}
+		}
+		
+		this.updatePhase();
+	}
+	
+	public void initPhase() {
+		switch(this.getState())
+		{
+		case INITIAL:
+			break;
+		case INVINCIBLE:
+			break;
+		case OVERLOADED:
+			break;
+		case REGENERATING:
+			break;
+		case NPC:
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public void resetPhase() {
+		switch(this.getState())
+		{
+		case INITIAL:
+			break;
+		case INVINCIBLE:
+			break;
+		case OVERLOADED:
+			break;
+		case REGENERATING:
+			break;
+		case NPC:
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public void updatePhase() {
+		switch(this.getState())
+		{
+		case INITIAL:
+			break;
+		case INVINCIBLE:
+			break;
+		case OVERLOADED:
+			break;
+		case REGENERATING:
+			break;
+		case NPC:
+			break;
+		default:
+			break;
+		}
 	}
 
 	private void updateTowers() {
@@ -151,15 +256,19 @@ public class EntityAdmin extends TragicBoss {
 	}
 
 	public enum EnumAdminState {
-		INVINCIBLE, //when in the wilds dimension and invincible
-		INITIAL, //when you first fight it in it's own dimension
-		OVERLOADED, //when you complete it's first phase and overload it
-		REGENERATING, //when you "defeat" it, forcing it to attempt to regenerate
-		RESET; //After you defeat it, it basically becomes an NPC
+		INVINCIBLE(0), //when in the wilds dimension and invincible
+		INITIAL(1), //when you first fight it in it's own dimension
+		OVERLOADED(2), //when you complete it's first phase and overload it
+		REGENERATING(3), //when you "defeat" it, forcing it to attempt to regenerate
+		NPC(4); //After you defeat it, it basically becomes an NPC
 
 		public static EnumAdminState getNextPhase(EnumAdminState state) {
-			return state == INVINCIBLE ? INITIAL : (state == INITIAL ? OVERLOADED : RESET );
+			return state == INVINCIBLE ? INITIAL : (state == INITIAL ? OVERLOADED : NPC );
 		}
+		
+		private final int id;
+		private EnumAdminState(int i) { id = i; }
+		public int getIntValue() { return this.id; }
 	}
 
 	public static class ControlTower {
