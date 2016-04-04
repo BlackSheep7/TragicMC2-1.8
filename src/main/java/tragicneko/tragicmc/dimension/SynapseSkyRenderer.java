@@ -66,6 +66,7 @@ public class SynapseSkyRenderer extends IRenderHandler {
 		}
 
 		GlStateManager.depthMask(true);
+		GlStateManager.disableBlend();
 		GlStateManager.enableTexture2D();
 		GlStateManager.enableAlpha();
 	}
