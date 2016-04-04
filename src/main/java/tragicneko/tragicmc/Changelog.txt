@@ -4646,9 +4646,14 @@ Added registration stuff for the Science Neko
 Made the Doomsday info in tooltips more minimal
 Removed Dynamic Health scaling, I don't feel like it was used very much and it was causing weird bugs with normal mob's health
 Added Science Neko's texture and model, added some animations
+Improved XP drop rates across all mobs and bosses (they were pretty low for being so tough compared to vanilla)
+Added cooler death xp drop for Bosses (it drops XP for them up until they actually die)
+Fixed sky renderers again (blending issue, derp)
 
 Note to self:
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
+Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9, change Challenge to actually have subclasses instead of just
+a bunch of messy constructors
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
@@ -4656,7 +4661,7 @@ TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and 
 Side expansion:
 Neko homeworld with new neko types:
 *Jet Neko - Exhilerated, excitement
-Science Neko - Intelligent
+*Science Neko - Intelligent
 Mecha Neko - War-like
 Saber Neko - Need to become better, faster, stronger
 Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
@@ -4696,6 +4701,8 @@ Got the Wilds Dimension set up, there are some corrections I need to make still 
 River rare variants need to be setup differently from the other rare variants but otherwise the rare biomes are working mostly how I want
 Still need to test the sub-biomes to make sure they are generating correctly
 Worked more on the Admin's tower stuff, should be fun when I actually get to finish it
+Worked on the outline of the Admin's AI phases, worked out more of it's actual AI during each phase so all I need to do is create the projectiles
+and create each phase's AI updates
 
 First Main Expansion:
 Working on new mob AI, pets and item systems while I finish the port to 1.8
@@ -4703,8 +4710,6 @@ Going to work on the pet leveling system now, which will use a hybrid version of
 you can unlock a new ability, which will unlock a new tier, you can then level them up enough to eventually unlock all of the abilities but you can only have
 one active out of each tier
 
-Might add something like resource nodes, these would be blocks that give a certain resource and can be right-clicked to take it, after a long period of time
-they'll "regrow" the resource, these would not be moveable, this would be something exclusive to the Wilds
 The Wilds will have sub-biomes, these will generate independently from the surface biome, this will affect the entities that spawn underground as well as the
 type of blocks, structures and terrain that generates
 
