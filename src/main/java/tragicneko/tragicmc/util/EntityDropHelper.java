@@ -109,7 +109,7 @@ public class EntityDropHelper {
 			new EntityDrop(15, TragicItems.InterestingResin), new EntityDrop(5, TragicItems.SoulExcess)},
 			{new EntityDrop(15, Blocks.lit_pumpkin), new EntityDrop(15, TragicBlocks.Candle), new EntityDrop(5, TragicItems.DarkParticles), new EntityDrop(25, Blocks.torch)}});
 
-		addToDropList(EntityTragicNeko.class, new EntityDrop[][] {{new EntityDrop(15, Items.iron_ingot), new EntityDrop(25, Items.gunpowder), new EntityDrop(5, Blocks.tnt)},
+		addToDropList(EntityTragicNeko.class, new EntityDrop[][] {{new EntityDrop(25, Items.gunpowder), new EntityDrop(5, Blocks.tnt)},
 			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
 			new EntityDrop(5, new ItemStack(TragicItems.Projectile, 1, 5), new ItemStack(TragicItems.Projectile, 1, 6), new ItemStack(TragicItems.Projectile, 1, 7), new ItemStack(TragicItems.Projectile, 1, 8)),
 			new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
@@ -189,14 +189,14 @@ public class EntityDropHelper {
 		addToDropList(EntityParasmite.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(15, TragicItems.BoneMarrow)},
 			{new EntityDrop(25, TragicItems.BoneMarrow), new EntityDrop(5, TragicItems.BloodSacrifice), new EntityDrop(5, TragicItems.NourishmentSacrifice)}});
 		
-		addToDropList(EntityJetNeko.class, new EntityDrop[][] {{new EntityDrop(15, Items.iron_ingot), new EntityDrop(25, Items.gunpowder), new EntityDrop(5, Blocks.tnt)},
+		addToDropList(EntityJetNeko.class, new EntityDrop[][] {{new EntityDrop(15, Items.iron_ingot), new EntityDrop(25, Items.gunpowder)},
 			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
 			new EntityDrop(5, new ItemStack(TragicItems.Projectile, 1, 5)), new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
 		
-		addToDropList(EntityScienceNeko.class, new EntityDrop[][] {{new EntityDrop(15, Items.iron_ingot), new EntityDrop(25, Items.gunpowder), new EntityDrop(5, Blocks.tnt)},
+		addToDropList(EntityScienceNeko.class, new EntityDrop[][] {{new EntityDrop(25, Items.gunpowder), new EntityDrop(5, Blocks.tnt)},
 			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
 			new EntityDrop(5, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(3, TragicItems.ParadoxicalFormula), new EntityDrop(3, TragicItems.NauseatingConcoction), new EntityDrop(10, TragicItems.NekoMindControlDevice),
-			new EntityDrop(10, getScienceNekoPotions())}});
+			new EntityDrop(10, getScienceNekoPotions()), new EntityDrop(5, Items.spider_eye)}});
 		
 		//addToDropList(EntityBlist.class, new EntityDrop[][] {{}, {}});
 

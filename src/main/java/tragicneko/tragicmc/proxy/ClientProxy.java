@@ -46,6 +46,7 @@ import tragicneko.tragicmc.client.model.ModelNanoSwarm;
 import tragicneko.tragicmc.client.model.ModelPlague;
 import tragicneko.tragicmc.client.model.ModelPsygote;
 import tragicneko.tragicmc.client.model.ModelRanmas;
+import tragicneko.tragicmc.client.model.ModelScienceNeko;
 import tragicneko.tragicmc.client.model.ModelSeeker;
 import tragicneko.tragicmc.client.model.ModelSirv;
 import tragicneko.tragicmc.client.model.ModelStinKing;
@@ -387,7 +388,7 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityKurayami.class, new RenderFactoryMob(new ModelKurayami(), 0.645F, "Kurayami", 0.825F));
 		registerRender(EntityAvris.class, new RenderFactoryMob(new ModelAvris(), 0.645F, "Avris"));
 		registerRender(EntityJetNeko.class, new RenderFactoryMob(new ModelJetNeko(), 0.295F, "JetNeko"));
-		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.295F, "TragicNeko", 0.825F));
+		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.825F));
 
 		//Boss renders
 		registerRender(EntityApis.class, new IRenderFactory() {
