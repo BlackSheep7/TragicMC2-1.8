@@ -4645,6 +4645,7 @@ Updated Entity client-side registrations to use the new IRenderFactory method
 Added registration stuff for the Science Neko
 Made the Doomsday info in tooltips more minimal
 Removed Dynamic Health scaling, I don't feel like it was used very much and it was causing weird bugs with normal mob's health
+Added Science Neko's texture and model, added some animations
 
 Note to self:
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
