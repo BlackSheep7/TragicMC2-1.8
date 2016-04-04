@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -27,6 +28,7 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
@@ -37,10 +39,11 @@ import tragicneko.tragicmc.util.WorldHelper;
 public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 {
 	private boolean hasDamagedEntity = false; //for achievement can't touch this, kill a boss without being hurt by it
+	private int xpAmount = 0;
 
 	public TragicBoss(World par1World) {
 		super(par1World);
-		this.experienceValue = 100;
+		this.experienceValue = 1000;
 	}
 
 	@Override
@@ -477,5 +480,56 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		}
 
 		return false;
+	}
+
+	@Override
+	protected void onDeathUpdate()
+	{
+		++this.deathTime;
+
+		if (this.deathTime == 1)
+		{
+			if (!this.worldObj.isRemote && this.recentlyHit > 0)
+			{
+				this.xpAmount = this.getExperiencePoints(this.attackingPlayer);
+			}
+		}
+		else if (this.deathTime < 60)
+		{
+			if (!this.worldObj.isRemote && this.recentlyHit > 0 && this.xpAmount > 0)
+			{
+				int m = rand.nextInt(32) + 1;
+				if (m > this.xpAmount) m = this.xpAmount;
+				this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, m));
+				this.xpAmount -= m;
+			}
+
+			for (byte i = 0; i < 3; ++i)
+			{
+				double d0 = this.rand.nextGaussian() * 0.02D;
+				double d1 = this.rand.nextGaussian() * 0.02D;
+				double d2 = this.rand.nextGaussian() * 0.02D;
+				double d3 = 10.0D;
+				this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d0 * d3, this.posY + (double)(this.rand.nextFloat() * this.height) - d1 * d3, this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d2 * d3, d0, d1, d2, new int[0]);
+			}
+		}
+
+		if (this.deathTime == 60)
+		{
+			if (!this.worldObj.isRemote && this.recentlyHit > 0)
+			{
+				int i = this.xpAmount;
+
+				while (i > 0)
+				{
+					int j = EntityXPOrb.getXPSplit(i);
+					i -= j;
+					this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+				}
+			}
+
+			this.setDead();
+			this.spawnExplosionParticle();
+		}
 	}
 }
