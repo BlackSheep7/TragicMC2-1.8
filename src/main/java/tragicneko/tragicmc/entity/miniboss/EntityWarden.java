@@ -21,7 +21,7 @@ public class EntityWarden extends EntityLockbot implements TragicMiniBoss {
 		super(par1World);
 		this.setSize(1.425F, 1.825F);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 15;
+		this.experienceValue = 180;
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 	}
 

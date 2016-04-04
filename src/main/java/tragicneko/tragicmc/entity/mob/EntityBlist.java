@@ -57,7 +57,7 @@ public class EntityBlist extends TragicMob {
 	public EntityBlist(World par1World) {
 		super(par1World);
 		this.setSize(0.45F, 0.55F);
-		this.experienceValue = 10;
+		this.experienceValue = 100;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(4, new EntityAIWatchTarget(this, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));

@@ -26,7 +26,7 @@ public class EntityHunter extends TragicMob {
 	public EntityHunter(World par1World) {
 		super(par1World);
 		this.setSize(0.875F, 0.875F);
-		this.experienceValue = 5;
+		this.experienceValue = 50;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));

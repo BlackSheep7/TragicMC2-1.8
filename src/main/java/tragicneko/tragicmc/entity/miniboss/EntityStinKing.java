@@ -18,7 +18,7 @@ public class EntityStinKing extends EntityGreaterStin {
 	public EntityStinKing(World par1World) {
 		super(par1World);
 		this.stepHeight = 1.5F;
-		this.experienceValue = 27;
+		this.experienceValue = 270;
 		this.superiorForm = null;
 	}
 

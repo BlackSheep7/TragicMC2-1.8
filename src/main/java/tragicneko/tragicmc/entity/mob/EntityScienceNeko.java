@@ -22,7 +22,7 @@ public class EntityScienceNeko extends EntityNeko {
 	public EntityScienceNeko(World par1World) {
 		super(par1World);
 		this.setSize(0.675F * 0.825F, 1.955F * 0.825F);
-		this.experienceValue = 5;
+		this.experienceValue = 50;
 	}
 	
 	@Override

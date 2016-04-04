@@ -21,7 +21,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 
 	public EntityGreaterStin(World par1World) {
 		super(par1World);
-		this.experienceValue = 15;
+		this.experienceValue = 150;
 		this.stepHeight = 1.5F;
 	}
 

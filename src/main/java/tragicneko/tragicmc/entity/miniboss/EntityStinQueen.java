@@ -28,7 +28,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 		super(par1World);
 		this.stepHeight = 1.5F;
 		this.superiorForm = null;
-		this.experienceValue = 27;
+		this.experienceValue = 270;
 	}
 
 	@Override

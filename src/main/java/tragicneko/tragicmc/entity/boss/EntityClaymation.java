@@ -95,7 +95,7 @@ public class EntityClaymation extends TragicBoss {
 		this.isImmuneToFire = true;
 		this.stepHeight = 1.5F;
 		this.formTicks = 0;
-		this.experienceValue = 50;
+		this.experienceValue = 750;
 	}
 
 	@Override

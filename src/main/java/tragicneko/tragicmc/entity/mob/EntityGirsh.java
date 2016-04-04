@@ -21,7 +21,7 @@ public class EntityGirsh extends TragicMob {
 	public EntityGirsh(World par1World) {
 		super(par1World);
 		this.setSize(1.85F, 1.85F);
-		this.experienceValue = 5;
+		this.experienceValue = 50;
 	}
 
 	@Override

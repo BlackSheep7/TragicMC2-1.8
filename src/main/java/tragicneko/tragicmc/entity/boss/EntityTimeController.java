@@ -61,7 +61,7 @@ public class EntityTimeController extends TragicBoss {
 		super(par1World);
 		this.setSize(1.245F, 3.05F);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 70;
+		this.experienceValue = 1400;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));

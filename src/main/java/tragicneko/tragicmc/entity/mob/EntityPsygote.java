@@ -44,7 +44,7 @@ public class EntityPsygote extends TragicMob {
 		super(par1World);
 		this.setSize(0.72F, 1.45F);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 10;
+		this.experienceValue = 100;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));

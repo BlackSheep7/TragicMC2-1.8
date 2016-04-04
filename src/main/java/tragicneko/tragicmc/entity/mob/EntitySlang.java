@@ -40,7 +40,7 @@ public class EntitySlang extends TragicMob {
 		super(par1World);
 		this.setSize(0.775F, 2.05F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 3;
+		this.experienceValue = 30;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(5, new EntityAILookIdle(this));

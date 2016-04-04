@@ -53,7 +53,7 @@ public class EntityNorVox extends TragicMob {
 	public EntityNorVox(World par1World) {
 		super(par1World);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 10;
+		this.experienceValue = 100;
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));

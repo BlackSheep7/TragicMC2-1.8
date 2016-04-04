@@ -52,7 +52,7 @@ public class EntityErkel extends TragicMob {
 	public EntityErkel(World par1World) {
 		super(par1World);
 		this.setSize(0.56F, 1.06F);
-		this.experienceValue = 2;
+		this.experienceValue = 20;
 		this.tasks.addTask(0, new EntityAIPanic(this, 0.65D));
 		this.tasks.addTask(1, new EntityAIAvoidEntity(this, TragicBoss.class, bossTarget, 12.0F, 0.4D, 0.6D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));

@@ -104,7 +104,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, nonSpeciesTarget));
 		this.isImmuneToFire = true;
 		this.stepHeight = 2.5F;
-		this.experienceValue = 60;
+		this.experienceValue = 1200;
 	}
 
 	@Override

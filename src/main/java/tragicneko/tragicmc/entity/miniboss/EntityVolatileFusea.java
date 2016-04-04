@@ -25,7 +25,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 
 	public EntityVolatileFusea(World par1World) {
 		super(par1World);
-		this.experienceValue = 15;
+		this.experienceValue = 150;
 	}
 
 	@Override

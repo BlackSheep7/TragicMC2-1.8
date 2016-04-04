@@ -50,7 +50,7 @@ public class EntityAvris extends TragicMob {
 	public EntityAvris(World par1World) {
 		super(par1World);
 		this.setSize(1.26F, 2.76F);
-		this.experienceValue = 3;
+		this.experienceValue = 30;
 		this.tasks.addTask(0, new EntityAIPanic(this, 1.2D));
 		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityPlayer.class, playerTarget, 12.0F, 0.6D, 1.2D));
 		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityGolem.class, golemTarget, 12.0F, 0.8D, 1.4D));

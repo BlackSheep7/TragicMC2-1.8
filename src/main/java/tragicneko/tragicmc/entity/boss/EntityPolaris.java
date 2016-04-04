@@ -63,7 +63,7 @@ public class EntityPolaris extends TragicBoss {
 		super(par1World);
 		this.setSize(0.5F, 2.075F);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 50;
+		this.experienceValue = 600;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));

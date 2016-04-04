@@ -33,7 +33,7 @@ public class EntityGragul extends TragicMob {
 		super(par1World);
 		this.setSize(0.225F, 0.495F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 10;
+		this.experienceValue = 100;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));

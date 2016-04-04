@@ -43,7 +43,7 @@ public class EntityTox extends TragicMob {
 
 	public EntityTox(World par1World) {
 		super(par1World);
-		this.experienceValue = 5;
+		this.experienceValue = 60;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 0.05D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));

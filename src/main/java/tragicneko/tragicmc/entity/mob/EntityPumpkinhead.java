@@ -45,7 +45,7 @@ public class EntityPumpkinhead extends TragicMob {
 	public EntityPumpkinhead(World par1World) {
 		super(par1World);
 		this.setSize(0.675F, 2.215F);
-		this.experienceValue = 5;
+		this.experienceValue = 50;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIFleeSun(this, 1.2D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));

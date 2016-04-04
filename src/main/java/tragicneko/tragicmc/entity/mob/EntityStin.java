@@ -50,7 +50,7 @@ public class EntityStin extends TragicMob {
 	public EntityStin(World par1World) {
 		super(par1World);
 		this.stepHeight = 0.5F;
-		this.experienceValue = 5;
+		this.experienceValue = 40;
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.85D));

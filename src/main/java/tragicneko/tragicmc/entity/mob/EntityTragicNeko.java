@@ -49,7 +49,7 @@ public class EntityTragicNeko extends EntityNeko {
 	public EntityTragicNeko(World par1World) {
 		super(par1World);
 		this.setSize(0.475F, 1.955F);
-		this.experienceValue = 7;
+		this.experienceValue = 70;
 	}
 
 	@Override

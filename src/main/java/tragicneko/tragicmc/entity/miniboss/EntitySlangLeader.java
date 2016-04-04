@@ -23,7 +23,7 @@ public class EntitySlangLeader extends EntitySlang implements TragicMiniBoss {
 	public EntitySlangLeader(World par1World) {
 		super(par1World);
 		this.setSize(1.175F, 3.45F);
-		this.experienceValue = 10;
+		this.experienceValue = 100;
 	}
 	
 	@Override

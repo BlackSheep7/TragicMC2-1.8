@@ -32,7 +32,7 @@ public class EntityThorg extends TragicMob {
 		super(par1World);
 		this.setSize(1.175F, 2.15F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 5;
+		this.experienceValue = 50;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(5, new EntityAILookIdle(this));

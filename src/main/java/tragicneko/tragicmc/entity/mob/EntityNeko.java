@@ -41,7 +41,7 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 
-public class EntityNeko extends TragicMob {
+public abstract class EntityNeko extends TragicMob {
 
 	public static final int DW_FIRING_TICKS = 20;
 	public static final int DW_THROWING_TICKS = 21;
@@ -71,7 +71,6 @@ public class EntityNeko extends TragicMob {
 	public EntityNeko(World par1World) {
 		super(par1World);
 		this.setSize(0.475F, 1.955F);
-		this.experienceValue = 5;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		if (!this.isProperDate()) this.tasks.addTask(0, attackOnCollide);
 		this.tasks.addTask(7, new EntityAILookIdle(this));

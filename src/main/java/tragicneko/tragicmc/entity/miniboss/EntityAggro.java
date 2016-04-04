@@ -19,7 +19,7 @@ public class EntityAggro extends EntityRagr implements TragicMiniBoss {
 		super(par1World);
 		this.setSize(1.335F * 1.585F, 2.675F * 1.585F);
 		this.stepHeight = 1.5F;
-		this.experienceValue = 25;
+		this.experienceValue = 250;
 		this.isImmuneToFire = true;
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 	}

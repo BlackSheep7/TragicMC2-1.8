@@ -33,7 +33,7 @@ public class EntityHarvester extends TragicMob {
 		super(par1World);
 		this.setSize(0.925F, 1.525F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 5;
+		this.experienceValue = 50;
 	}
 
 	@Override

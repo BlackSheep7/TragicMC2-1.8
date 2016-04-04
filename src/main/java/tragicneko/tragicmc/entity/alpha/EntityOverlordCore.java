@@ -71,7 +71,7 @@ public class EntityOverlordCore extends TragicBoss {
 		this.targetY = 50.0;
 		this.noClip = true;
 		this.ignoreFrustumCheck = true;
-		this.experienceValue = 100;
+		this.experienceValue = 10000;
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class EntityWisp extends TragicMob {
 	public EntityWisp(World par1World) {
 		super(par1World);
 		this.setSize(0.36F, 1.36F);	
-		this.experienceValue = 3;
+		this.experienceValue = 30;
 		this.tasks.addTask(0, new EntityAIPanic(this, 1.0D));
 		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityPlayer.class, playerTarget, 6.0F, 1.0D, 1.6D));
 		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityGolem.class, golemTarget, 6.0F, 1.0D, 1.6D));

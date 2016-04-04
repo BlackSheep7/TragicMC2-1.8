@@ -56,7 +56,7 @@ public class EntityApis extends TragicBoss {
 		super(par1World);
 		this.setSize(1.385F, 3.325F);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 50;
+		this.experienceValue = 1000;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));

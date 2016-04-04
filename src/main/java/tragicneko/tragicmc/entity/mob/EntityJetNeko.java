@@ -29,7 +29,7 @@ public class EntityJetNeko extends EntityNeko {
 		super(par1World);
 		this.moveHelper = new EntityArchangel.FlyingMoveHelper(this);
 		this.setSize(0.675F, 1.955F);
-		this.experienceValue = 10;
+		this.experienceValue = 100;
 	}
 
 	@Override

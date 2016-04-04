@@ -38,7 +38,7 @@ public class EntityPlague extends TragicMob {
 		super(par1World);
 		this.setSize(0.625F, 0.725F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 3;
+		this.experienceValue = 0;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.8D));

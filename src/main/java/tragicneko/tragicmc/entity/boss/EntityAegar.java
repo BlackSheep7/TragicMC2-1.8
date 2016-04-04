@@ -75,7 +75,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, null));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true, false, null));
 		this.isImmuneToFire = true;
-		this.experienceValue = 36;
+		this.experienceValue = 500;
 	}
 
 	@Override
