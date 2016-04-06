@@ -70,6 +70,7 @@ public class Challenge {
 
 	public static final Challenge[] challengeList = new Challenge[249];
 
+	public static final Challenge nullChallenge = new Challenge(0, false, 0);
 	public static final Challenge zombieKills = new ChallengeEntity(1, false, 50, EntityZombie.class, false).setDifficulty(EnumDifficulty.EASY);
 	public static final Challenge collectWheat = new ChallengeItem(2, true, 48, new ItemStack(Items.wheat), false);
 	public static final Challenge stayAlive = new ChallengeLive(3, false, 1200);
@@ -203,7 +204,7 @@ public class Challenge {
 	public static final Challenge collectQuartz = new ChallengeItem(127, true, 64, new ItemStack(Blocks.quartz_block), false);
 	public static final Challenge findGuiltyThorn = new ChallengeItem(128, true, 1, new ItemStack(TragicItems.GuiltyThorn), false).setDifficulty(EnumDifficulty.EASY);
 	public static final Challenge chickenMassacre = new ChallengeEntity(129, true, 20, EntityChicken.class, false).setTimed(600).setDifficulty(EnumDifficulty.HARD);
-	public static final Challenge thisIsAmazing = new ChallengeEntity(129, true, 5, EntityCreature.class, false).setTimed(200).setDifficulty(EnumDifficulty.HARD);
+	public static final Challenge thisIsAmazing = new ChallengeEntity(130, true, 5, EntityCreature.class, false).setTimed(200).setDifficulty(EnumDifficulty.HARD);
 	
 	protected final int challengeID;
 	protected final boolean savesProgress;
@@ -234,7 +235,8 @@ public class Challenge {
 			"longTermKilling", "killPlayer", "findPlayer", "longTermKilling2", "longTermKilling3", "killAnimals", "findWolf", "collectRedstone", "killEnderDragon", "travelFar",
 			"travelFar2", "travelFar3", "travelFar4", "findScorchedWasteland", "findIreNetCannon", "findArchangel", "findRanmas", "findDarkForest", "killOverlordCore",
 			"findSynapse", "collectNanoBots", "findWingsOfLiberation", "killFusea", "findPermafrost", "netherBed", "darkAeris", "findAshenBadlands", "findHallowedHills",
-			"findPsygote", "killHarvesters", "collectConduit", "findQuicksand", "killHunters", "findSoulChest", "onABoat", "collectQuartz", "findGuiltyThorn", "chickenMassacre"
+			"findPsygote", "killHarvesters", "collectConduit", "findQuicksand", "killHunters", "findSoulChest", "onABoat", "collectQuartz", "findGuiltyThorn", "chickenMassacre",
+			"thisIsAmazing"
 	};
 
 	public Challenge(int id, boolean saveProgress, int requirement)
