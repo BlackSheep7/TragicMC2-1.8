@@ -4649,11 +4649,11 @@ Added Science Neko's texture and model, added some animations
 Improved XP drop rates across all mobs and bosses (they were pretty low for being so tough compared to vanilla)
 Added cooler death xp drop for Bosses (it drops XP for them up until they actually die)
 Fixed sky renderers again (blending issue, derp)
+Did major updates to Challenges to make it easier to add new ones and to make the whole thing way cleaner looking
 
-Note to self:
+Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
-Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9, change Challenge to actually have subclasses instead of just
-a bunch of messy constructors
+Convert Structure, EntityDropHelper, LoreHelper, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
