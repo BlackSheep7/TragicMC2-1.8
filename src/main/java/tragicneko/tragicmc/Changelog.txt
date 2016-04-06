@@ -4650,10 +4650,16 @@ Improved XP drop rates across all mobs and bosses (they were pretty low for bein
 Added cooler death xp drop for Bosses (it drops XP for them up until they actually die)
 Fixed sky renderers again (blending issue, derp)
 Did major updates to Challenges to make it easier to add new ones and to make the whole thing way cleaner looking
+Added provider, chunk manager, etc. for the Neko Homeworld, it'll use very simple biome generation and only have a few biomes, most of the
+content will be put via structures, there will be a lot of structures
+Fixed initialization error for Challenges due to an erroring ID
+Added second set of Structure Seeds to prep for the new structures to be added
+Hopefully fixed sporadic crash when killing something with the Sword of Justice
+Fixed crash when actually generating the structures in the second set of structure seeds
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
-Convert Structure, EntityDropHelper, LoreHelper, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
+Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
