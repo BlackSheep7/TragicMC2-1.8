@@ -1,12 +1,15 @@
 package tragicneko.tragicmc.blocks.tileentity;
 
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ITickable;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockStructureSeed;
+import tragicneko.tragicmc.blocks.BlockStructureSeed2;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class TileEntityStructureSeed extends TileEntity implements ITickable {
@@ -20,10 +23,11 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 	public void growStructure()
 	{
 		IBlockState state = this.worldObj.getBlockState(this.getPos());
-		int meta = state.getValue(BlockStructureSeed.STRUCTURE).intValue();
-		if (meta >= Structure.structureList.length) return;
+		Integer prop = state.getBlock() == TragicBlocks.StructureSeed ? state.getValue(BlockStructureSeed.STRUCTURE) : state.getValue(BlockStructureSeed2.STRUCTURE);
+		final int id = prop.intValue();
+		if (id >= Structure.structureList.length) return;
 
-		Structure structure = Structure.structureList[meta];
+		Structure structure = Structure.structureList[id];
 		if (structure == null)
 		{
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
