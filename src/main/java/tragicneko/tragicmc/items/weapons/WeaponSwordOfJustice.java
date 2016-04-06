@@ -30,7 +30,6 @@ public class WeaponSwordOfJustice extends ItemSword {
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
 	{
 		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
-		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote) entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entity2), Float.MAX_VALUE);
 		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote && !((EntityPlayer) entity2).capabilities.isCreativeMode) stack.stackSize--;
 		return true;
 	}
