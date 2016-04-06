@@ -421,6 +421,7 @@ public class ClientProxy extends CommonProxy {
 		if (TragicConfig.allowNonMobBlocks)
 		{
 			registerBlockToBakery(TragicBlocks.CompactOre, getPrefixedArray(compactOre));
+			registerBlockToBakery(TragicBlocks.StructureSeed2, DOMAIN + "structureSeed");
 			registerBlockToBakery(TragicBlocks.Quicksand, getPrefixedArray(quicksand));
 			registerBlockToBakery(TragicBlocks.DarkStone, getPrefixedArray(darkStone));
 			registerBlockToBakery(TragicBlocks.DarkCobblestone, getPrefixedArray(darkCobble));
@@ -592,6 +593,7 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.NetherBrickPressurePlate, ZERO, "netherBrickPressurePlate");
 
 			for (i = 0; i < 16; i++) registerBlockToMesher(TragicBlocks.StructureSeed, i, "structureSeed");
+			for (i = 0; i < 16; i++) registerBlockToMesher(TragicBlocks.StructureSeed2, i, "structureSeed");
 			for (i = 0; i < quicksand.length; i++) registerBlockToMesher(TragicBlocks.Quicksand, i, quicksand[i]);
 
 			for (i = 0; i < darkStone.length; i++) registerBlockToMesher(TragicBlocks.DarkStone, i, darkStone[i]);

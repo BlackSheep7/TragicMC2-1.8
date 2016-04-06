@@ -79,6 +79,7 @@ import tragicneko.tragicmc.blocks.BlockSteamVent;
 import tragicneko.tragicmc.blocks.BlockStorage;
 import tragicneko.tragicmc.blocks.BlockStringLight;
 import tragicneko.tragicmc.blocks.BlockStructureSeed;
+import tragicneko.tragicmc.blocks.BlockStructureSeed2;
 import tragicneko.tragicmc.blocks.BlockSummon;
 import tragicneko.tragicmc.blocks.BlockSynapseCore;
 import tragicneko.tragicmc.blocks.BlockTimeDisruptor;
@@ -92,6 +93,7 @@ import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkStone;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockOres;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStarCrystal;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStructureSeeds;
+import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStructureSeeds2;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockSummonBlocks;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicFlower;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicFlower2;
@@ -121,6 +123,7 @@ public class TragicBlocks {
 	public static Block SummonBlock;
 
 	public static Block StructureSeed;
+	public static Block StructureSeed2;
 
 	public static Block PotatoBlock;
 	public static Block CarrotBlock;
@@ -302,6 +305,9 @@ public class TragicBlocks {
 
 		StructureSeed = (new BlockStructureSeed());
 		GameRegistry.registerBlock(StructureSeed, ItemBlockStructureSeeds.class, "structureSeed");
+		
+		StructureSeed2 = (new BlockStructureSeed2());
+		GameRegistry.registerBlock(StructureSeed2, ItemBlockStructureSeeds2.class, "structureSeed2");
 
 		GameRegistry.registerTileEntity(TileEntityStructureSeed.class, "tragicmc.structureSeed");
 

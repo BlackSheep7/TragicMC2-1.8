@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "structure_id=16": {"model": "tragicmc:structureSeed"},
+        "structure_id=17": {"model": "tragicmc:structureSeed"},
+        "structure_id=18": {"model": "tragicmc:structureSeed"},
+        "structure_id=19": {"model": "tragicmc:structureSeed"},
+        "structure_id=20": {"model": "tragicmc:structureSeed"},
+        "structure_id=21": {"model": "tragicmc:structureSeed"},
+        "structure_id=22": {"model": "tragicmc:structureSeed"},
+        "structure_id=23": {"model": "tragicmc:structureSeed"},
+        "structure_id=24": {"model": "tragicmc:structureSeed"},
+        "structure_id=25": {"model": "tragicmc:structureSeed"},
+        "structure_id=26": {"model": "tragicmc:structureSeed"},
+        "structure_id=27": {"model": "tragicmc:structureSeed"},
+        "structure_id=28": {"model": "tragicmc:structureSeed"},
+        "structure_id=29": {"model": "tragicmc:structureSeed"},
+        "structure_id=30": {"model": "tragicmc:structureSeed"},
+        "structure_id=31": {"model": "tragicmc:structureSeed"}
+    }
+}

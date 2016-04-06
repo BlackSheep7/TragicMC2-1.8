@@ -6,6 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ITickable;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.blocks.BlockStructureSeed;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class TileEntityStructureSeed extends TileEntity implements ITickable {
@@ -19,7 +20,7 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 	public void growStructure()
 	{
 		IBlockState state = this.worldObj.getBlockState(this.getPos());
-		int meta = state.getBlock().getMetaFromState(state);
+		int meta = state.getValue(BlockStructureSeed.STRUCTURE).intValue();
 		if (meta >= Structure.structureList.length) return;
 
 		Structure structure = Structure.structureList[meta];
