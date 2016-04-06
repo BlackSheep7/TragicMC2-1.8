@@ -27,7 +27,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.items.ItemChallenge;
+import tragicneko.tragicmc.items.challenge.ItemChallenge;
 import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
 
 import com.google.common.base.Predicate;

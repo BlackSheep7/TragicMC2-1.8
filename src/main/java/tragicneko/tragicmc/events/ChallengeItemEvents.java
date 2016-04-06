@@ -1,25 +1,17 @@
 package tragicneko.tragicmc.events;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.items.Challenge;
-import tragicneko.tragicmc.items.ItemChallenge;
-import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.items.challenge.Challenge;
+import tragicneko.tragicmc.items.challenge.ItemChallenge;
 
 public class ChallengeItemEvents {
 
@@ -40,9 +32,9 @@ public class ChallengeItemEvents {
 				if (element != null && element.hasTagCompound() && element.getItem() instanceof ItemChallenge && element.getItemDamage() != 0 && element.getItemDamage() != 250)
 				{
 					stack = element;
-					if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
-					challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID"));
-					if (stack.getTagCompound().hasKey("challengeProgress") && challenge != null && !challenge.savesProgress) stack.getTagCompound().setInteger("challengeProgress", 0);
+					if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey(Challenge.CHALLENGE_ID)) continue;
+					challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger(Challenge.CHALLENGE_ID));
+					if (challenge != null) challenge.onLivingDeath(stack, player);
 				}
 			}
 		}
@@ -57,41 +49,9 @@ public class ChallengeItemEvents {
 				if (element != null && element.hasTagCompound() && element.getItem() instanceof ItemChallenge && element.getItemDamage() != 0 && element.getItemDamage() != 250)
 				{
 					stack = element;
-					if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
-					challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID"));
-					if (stack.getTagCompound().hasKey("challengeProgress") && challenge != null && !challenge.isItemChallenge && challenge.challengeClass != null)
-					{
-						Class cls = challenge.challengeClass;
-						Class cls2 = event.entityLiving.getClass();
-						boolean flag = cls == cls2;
-
-						for (Class cl : cls2.getInterfaces())
-						{
-							if (flag || cl == cls)
-							{
-								flag = true;
-								break;
-							}
-						}
-
-						while (!flag)
-						{
-							if (cls == cls2)
-							{
-								flag = true;
-								break;
-							}
-
-							if (cls2.getSuperclass() == null) break;
-							cls2 = cls2.getSuperclass();
-						}
-
-						if (flag)
-						{
-							int pow = stack.getTagCompound().getInteger("challengeProgress");
-							stack.getTagCompound().setInteger("challengeProgress", ++pow);
-						}
-					}
+					if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey(Challenge.CHALLENGE_ID)) continue;
+					challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger(Challenge.CHALLENGE_ID));
+					if (challenge != null) challenge.onLivingKill(stack, event.entityLiving, player);
 				}
 			}
 
@@ -105,131 +65,24 @@ public class ChallengeItemEvents {
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
-		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer) || event.entityLiving.ticksExisted % 10 != 0) return;
+		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer)) return;
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 		ItemStack[] inv = player.inventory.mainInventory;
-		ItemStack stack;
 		Challenge challenge = null;
 
-		for (ItemStack element : inv) {
-			if (element != null && element.hasTagCompound() && element.getItem() instanceof ItemChallenge && element.getItemDamage() != 0 && element.getItemDamage() != 250)
+		for (ItemStack stack : inv) {
+			if (stack != null && stack.getItem() instanceof ItemChallenge && stack.getItemDamage() != 0 && stack.getItemDamage() != 250)
 			{
-				stack = element;
-				if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
-				challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID"));
+				if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+				if (!stack.getTagCompound().hasKey(Challenge.CHALLENGE_ID)) stack.getTagCompound().setInteger(Challenge.CHALLENGE_ID, stack.getItemDamage());
+				if (!stack.getTagCompound().hasKey(Challenge.CHALLENGE_PROG)) stack.getTagCompound().setInteger(Challenge.CHALLENGE_PROG, 0);
+				challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger(Challenge.CHALLENGE_ID));
 
-				if (stack.getTagCompound().hasKey("challengeProgress") && challenge != null)
+				if (challenge != null)
 				{
-					if (challenge.isMobRush)
-					{
-						List<EntityMob> list = player.worldObj.getEntitiesWithinAABB(EntityMob.class, player.getEntityBoundingBox().expand(100.0, 100.0, 100.0));
-
-						for (int j = 0; j < list.size(); j++)
-						{
-							list.get(j).setAttackTarget(player);
-						}
-
-						Chunk chk = player.worldObj.getChunkFromBlockCoords(WorldHelper.getBlockPos(player));
-						chk.setInhabitedTime(chk.getInhabitedTime() + 10000L);
-					}
-					else if (challenge.isTargetChallenge && challenge.challengeClass != null)
-					{
-						List<Entity> list = player.worldObj.getEntitiesWithinAABB(challenge.challengeClass, player.getEntityBoundingBox().expand(6.0, 6.0, 6.0));
-
-						for (int j = 0; j < list.size(); j++)
-						{
-							Class cls = challenge.challengeClass;
-							Class cls2 = list.get(j).getClass();
-							boolean flag = cls == cls2;
-
-							for (Class cl : cls2.getInterfaces())
-							{
-								if (cl == cls)
-								{
-									flag = true;
-									break;
-								}
-							}
-
-							while (!flag)
-							{
-								if (cls == cls2)
-								{
-									flag = true;
-									break;
-								}
-
-								if (cls2.getSuperclass() == null) break;
-								cls2 = cls2.getSuperclass();
-							}
-
-							if (flag)
-							{
-								stack.getTagCompound().setInteger("challengeProgress", 1);
-								break;
-							}
-						}
-					}
-					else if (challenge.isBlockChallenge)
-					{
-						ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(player.worldObj, 1.5, player.posX, player.getEntityBoundingBox().minY - 1.5, player.posZ);
-						Block block;
-						for (BlockPos coords : list)
-						{
-							block = player.worldObj.getBlockState(coords).getBlock();
-							if (block == challenge.challengeBlock)
-							{
-								stack.getTagCompound().setInteger("challengeProgress", 1);
-								break;
-							}
-						}
-					}
-					else if (challenge.isLoreChallenge)
-					{
-						ItemStack loreStack;
-						int amt = 0;
-
-						for (ItemStack element2 : inv) {
-							if (element2 != null && element2.hasTagCompound() && element2.getTagCompound().hasKey("tragicLoreRarity"))
-							{
-								loreStack = element2;
-								if (loreStack.getTagCompound().getInteger("tragicLoreRarity") <= challenge.loreRarity) amt++;
-							}
-						}
-						stack.getTagCompound().setInteger("challengeProgress", amt);
-					}
-					else if (challenge.isArmorChallenge)
-					{
-						int amt = 0;
-						ItemStack[] armorInv = player.inventory.armorInventory;
-						ItemStack[] challengeArmor = challenge.challengeArmor;
-
-						for (ItemStack element2 : armorInv) {
-							if (element2 != null)
-							{
-								for (ItemStack element3 : challengeArmor) {
-									if (element3 != null && element2.getItem() == element3.getItem()) amt++;
-								}
-							}
-						}
-						stack.getTagCompound().setInteger("challengeProgress", amt);
-					}
-
-					if (challenge.isLocationBased)
-					{
-						boolean flag = false;
-						if (challenge.challengeBiome != null)
-						{
-							flag = player.worldObj.getBiomeGenForCoords(WorldHelper.getBlockPos(player)) == challenge.challengeBiome;
-						}
-						else
-						{
-							double x = Math.abs(player.posX);
-							double z = Math.abs(player.posZ);
-							flag = MathHelper.sqrt_double(x * x + z * z) >= challenge.challengeRange;
-						}
-						stack.getTagCompound().setBoolean("challengeLocation", flag);
-					}
+					if (challenge.isLocationBased() && !stack.getTagCompound().hasKey(Challenge.CHALLENGE_LOC)) stack.getTagCompound().setBoolean(Challenge.CHALLENGE_LOC, false);
+					if (challenge.getTimed() && !stack.getTagCompound().hasKey(Challenge.CHALLENGE_TIME)) stack.getTagCompound().setInteger(Challenge.CHALLENGE_TIME, challenge.getTimeLimit());
+					challenge.onLivingUpdate(stack, player);
 				}
 			}
 		}

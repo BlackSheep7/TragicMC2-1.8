@@ -1009,6 +1009,10 @@ challenge.collectQuartz.name=Collect Quartz blocks
 challenge.collectQuartz.desc=Collect a full stack of Quartz blocks
 challenge.findGuiltyThorn.name=Find a Guilty Thorn
 challenge.findGuiltyThorn.desc=Find a single Guilty Thorn weapon
+challenge.chickenMassacre.name=Chicken Massacre!
+challenge.chickenMassacre.desc=Kill chickens within the time limit
+challenge.thisIsAmazing.name=This is amazing!
+challenge.thisIsAmazing.desc=Kill multiple creatures in a short amount of time
 
 attribute.name.tragicmc.reach=Reach
 attribute.name.tragicmc.jumpHeight=Jump Height

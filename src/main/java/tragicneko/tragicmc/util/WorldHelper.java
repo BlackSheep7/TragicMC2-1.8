@@ -301,7 +301,7 @@ public class WorldHelper {
 	
 	public static BlockPos getBlockPos(Entity entity)
 	{
-		return new BlockPos(entity.posX, entity.posY, entity.posZ);
+		return entity.getPosition();
 	}
 	
 	public static Block getBlock(World world, BlockPos pos) {

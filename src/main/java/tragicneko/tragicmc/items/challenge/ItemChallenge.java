@@ -1,9 +1,8 @@
-package tragicneko.tragicmc.items;
+package tragicneko.tragicmc.items.challenge;
 
 import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -63,8 +62,8 @@ public class ItemChallenge extends Item {
 	{
 		if (stack.getItemDamage() == 0) return EnumRarity.COMMON;
 		if (stack.getItemDamage() == 250) return EnumRarity.EPIC;
-		if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID") || Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID")) == null) return EnumRarity.COMMON;
-		switch(Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID")).difficulty)
+		if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey(Challenge.CHALLENGE_ID) || Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID")) == null) return EnumRarity.COMMON;
+		switch(Challenge.getChallengeFromID(stack.getTagCompound().getInteger(Challenge.CHALLENGE_ID)).getDifficultyId())
 		{
 		case 3:
 			return EnumRarity.EPIC;
@@ -98,11 +97,11 @@ public class ItemChallenge extends Item {
 				{
 					challenge = Challenge.getChallengeFromID(itemRand.nextInt(Challenge.challengeList.length - 1) + 1);
 				}
-				stack.setItemDamage(challenge.challengeID);
+				stack.setItemDamage(challenge.getChallengeId());
 				if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-				stack.getTagCompound().setInteger("challengeID", challenge.challengeID);
+				stack.getTagCompound().setInteger(Challenge.CHALLENGE_ID, challenge.getChallengeId());
 				player.addChatMessage(new ChatComponentText("Challenge accepted!"));
-				if (player instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageSound("tragicmc:random.challengestart", 1.0F, 1.0F), (EntityPlayerMP) player);
+				if (player instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageSound("tragicmc:random.challengestart", 0.4F, 1.0F), (EntityPlayerMP) player);
 				if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.challengeScroll);
 			}
 			catch (Exception e)
@@ -114,8 +113,8 @@ public class ItemChallenge extends Item {
 		else if (stack.getItemDamage() == 250)
 		{
 			player.addChatMessage(new ChatComponentText("Challenge completed, have a reward!"));
-			Challenge challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID"));
-			int extra = itemRand.nextInt((challenge.difficulty + 1) * 2) + 1;
+			Challenge challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger(Challenge.CHALLENGE_ID));
+			final int extra = itemRand.nextInt((challenge.getDifficultyId() + 1) * 2) + 1;
 			ItemStack reward = null;
 
 			for (int i = 0; i < extra && i < 5; i++)
@@ -124,8 +123,8 @@ public class ItemChallenge extends Item {
 
 				try
 				{
-					reward = challenge.difficulty > 2 ? ((EntityDrop) WeightedRandom.getRandomItem(itemRand, Arrays.asList(rewards))).getStack():
-						(challenge.difficulty > 0 ? ((EntityDrop) WeightedRandom.getRandomItem(itemRand, Arrays.asList(cheapRewards))).getStack() :
+					reward = challenge.getDifficultyId() > 2 ? ((EntityDrop) WeightedRandom.getRandomItem(itemRand, Arrays.asList(rewards))).getStack():
+						(challenge.getDifficultyId() > 0 ? ((EntityDrop) WeightedRandom.getRandomItem(itemRand, Arrays.asList(cheapRewards))).getStack() :
 							((EntityDrop) WeightedRandom.getRandomItem(itemRand, Arrays.asList(badRewards))).getStack());
 					item.setEntityItemStack(reward.copy());
 					item.setPosition(player.posX + itemRand.nextDouble() - itemRand.nextDouble(), player.posY + 0.6D, player.posZ  + itemRand.nextDouble() - itemRand.nextDouble());
@@ -142,7 +141,7 @@ public class ItemChallenge extends Item {
 		}
 		else
 		{
-			if (stack.hasTagCompound()) player.addChatMessage(new ChatComponentText(Challenge.getNameFromID(stack.getTagCompound().getInteger("challengeID"))+ " is in progress!"));
+			if (stack.hasTagCompound()) player.addChatMessage(new ChatComponentText(Challenge.getNameFromID(stack.getTagCompound().getInteger(Challenge.CHALLENGE_ID))+ " is in progress!"));
 		}
 
 		return stack;
@@ -153,13 +152,13 @@ public class ItemChallenge extends Item {
 	{
 		if (stack.getItemDamage() == 250)
 		{
-			if (stack.hasTagCompound() && stack.getTagCompound().hasKey("challengeID"))
+			if (stack.hasTagCompound() && stack.getTagCompound().hasKey(Challenge.CHALLENGE_ID))
 			{
-				Challenge challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID"));
+				Challenge challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger(Challenge.CHALLENGE_ID));
 				if (challenge == null) return;
-				EnumChatFormatting format = challenge.difficulty == 1 ? EnumChatFormatting.AQUA : (challenge.difficulty == 2 ? EnumChatFormatting.BLUE : (challenge.difficulty == 3 ? EnumChatFormatting.GOLD : EnumChatFormatting.WHITE));
-				par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.challengeID));
-				String diff = challenge.difficulty == 0 ? "Easy" : (challenge.difficulty == 1 ? "Medium" : (challenge.difficulty == 2 ? "Hard" : "Harsh"));
+				EnumChatFormatting format = challenge.getDifficultyId() == 1 ? EnumChatFormatting.AQUA : (challenge.getDifficultyId() == 2 ? EnumChatFormatting.BLUE : (challenge.getDifficultyId() == 3 ? EnumChatFormatting.GOLD : EnumChatFormatting.WHITE));
+				par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.getChallengeId()));
+				String diff = challenge.getDifficultyId() == 0 ? "Easy" : (challenge.getDifficultyId() == 1 ? "Medium" : (challenge.getDifficultyId() == 2 ? "Hard" : "Harsh"));
 				par2List.add("Difficulty: " + format + diff);
 			}
 			par2List.add(EnumChatFormatting.GOLD + "Challenge complete!");
@@ -170,94 +169,26 @@ public class ItemChallenge extends Item {
 			par2List.add(EnumChatFormatting.WHITE + "An inactive Challenge Scroll.");
 			par2List.add(EnumChatFormatting.RESET + "Right-Click to start a Challenge!");
 		}
-		else if (stack.hasTagCompound() && stack.getTagCompound().hasKey("challengeID"))
+		else if (stack.hasTagCompound() && stack.getTagCompound().hasKey(Challenge.CHALLENGE_ID))
 		{
-			Challenge challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID"));
+			Challenge challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger(Challenge.CHALLENGE_ID));
 			if (challenge == null) return;
-			EnumChatFormatting format = challenge.difficulty == 1 ? EnumChatFormatting.AQUA : (challenge.difficulty == 2 ? EnumChatFormatting.BLUE : (challenge.difficulty == 3 ? EnumChatFormatting.GOLD : EnumChatFormatting.WHITE));
-			par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.challengeID));
-			String diff = challenge.difficulty == 0 ? "Easy" : (challenge.difficulty == 1 ? "Medium" : (challenge.difficulty == 2 ? "Hard" : "Harsh"));
+			EnumChatFormatting format = challenge.getDifficultyId() == 1 ? EnumChatFormatting.AQUA : (challenge.getDifficultyId() == 2 ? EnumChatFormatting.BLUE : (challenge.getDifficultyId() == 3 ? EnumChatFormatting.GOLD : EnumChatFormatting.WHITE));
+			par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.getChallengeId()));
+			String diff = challenge.getDifficultyId() == 0 ? "Easy" : (challenge.getDifficultyId() == 1 ? "Medium" : (challenge.getDifficultyId() == 2 ? "Hard" : "Harsh"));
 			par2List.add("Difficulty: " + format + diff);
-			LoreHelper.splitDesc(par2List, Challenge.getDesc(challenge.challengeID), 32, EnumChatFormatting.WHITE);
-			par2List.add("Progress: " + stack.getTagCompound().getInteger("challengeProgress") + "/ " + challenge.requirement);
-			if (challenge.isLocationBased && stack.getTagCompound().hasKey("challengeLocation")) par2List.add("Proper location: " + (stack.getTagCompound().getBoolean("challengeLocation") ? "Yes" : "No"));
+			LoreHelper.splitDesc(par2List, Challenge.getDesc(challenge.getChallengeId()), 32, EnumChatFormatting.WHITE);
+			par2List.add("Progress: " + stack.getTagCompound().getInteger(Challenge.CHALLENGE_PROG) + "/ " + challenge.getRequirement());
+			if (challenge.isLocationBased() && stack.getTagCompound().hasKey(Challenge.CHALLENGE_LOC)) par2List.add("Proper location: " + (stack.getTagCompound().getBoolean(Challenge.CHALLENGE_LOC) ? "Yes" : "No"));
+			if (challenge.isTimed && stack.getTagCompound().hasKey(Challenge.CHALLENGE_TIME)) par2List.add("Time remaining: " + (stack.getTagCompound().getInteger(Challenge.CHALLENGE_TIME)));
 		}
 	}
-
+	
 	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{
-		if (world.isRemote || stack.getItemDamage() == 0 || stack.getItemDamage() == 250 || entity == null) return;
-
-		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-		if (!stack.getTagCompound().hasKey("challengeID")) stack.getTagCompound().setInteger("challengeID", stack.getItemDamage());
-
-		Challenge challenge = Challenge.getChallengeFromID(stack.getTagCompound().getInteger("challengeID"));
-
-		if (entity instanceof EntityPlayer && challenge != null)
-		{
-			EntityPlayer player = (EntityPlayer) entity;
-			ItemStack[] inv = player.inventory.mainInventory;
-			ItemStack invStack;
-			int amt = 0;
-
-			if (challenge.isItemChallenge)
-			{
-				for (ItemStack element : inv) {
-					invStack = element;
-					if (invStack != null && challenge.challengeItem != null)
-					{
-						boolean flag2 = !challenge.ignoresMeta && invStack.getItemDamage() == challenge.challengeItem.getItemDamage() || challenge.ignoresMeta;
-						if (invStack.getItem() == challenge.challengeItem.getItem() && flag2)
-						{
-							amt += invStack.stackSize;
-						}
-					}
-				}
-
-				stack.getTagCompound().setInteger("challengeProgress", amt);
-			}
-			else
-			{
-				if (!stack.getTagCompound().hasKey("challengeProgress")) stack.getTagCompound().setInteger("challengeProgress", 0);
-
-				if (challenge.isTimed)
-				{
-					if (player.ticksExisted % 20 == 0)
-					{
-						int pow = stack.getTagCompound().getInteger("challengeProgress");
-
-						if (challenge.isMobRush && !player.worldObj.isDaytime() || !challenge.isMobRush)
-						{
-							stack.getTagCompound().setInteger("challengeProgress", ++pow);
-						}
-					}
-				}
-			}
-		}
-
-		if (stack.getTagCompound().hasKey("challengeProgress") && challenge != null && stack.getTagCompound().getInteger("challengeProgress") == 0 && challenge.isLocationBased &&
-				stack.getTagCompound().hasKey("challengeLocation") && stack.getTagCompound().getBoolean("challengeLocation"))
-		{
-			if (!challenge.isBlockChallenge && !challenge.isItemChallenge && !challenge.isMobRush && !challenge.isTimed)
-			{
-				stack.getTagCompound().setInteger("challengeProgress", 1);
-			}
-		}
-
-		if (stack.getTagCompound().hasKey("challengeProgress") && challenge != null && stack.getTagCompound().getInteger("challengeProgress") >= challenge.requirement)
-		{
-			if (challenge.isLocationBased)
-			{
-				if (stack.getTagCompound().hasKey("challengeLocation") && stack.getTagCompound().getBoolean("challengeLocation")) stack.setItemDamage(250);
-			}
-			else
-			{
-				stack.setItemDamage(250);
-				if (entity instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageSound("tragicmc:random.challengedone", 1.0F, 1.0F), (EntityPlayerMP) entity);
-			}
-		}
-	}
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
+    {
+		return oldStack == null || oldStack.getItemDamage() != newStack.getItemDamage();
+    }
 
 	public static ItemStack[] getSpawnEggsMiniBoss()
 	{
