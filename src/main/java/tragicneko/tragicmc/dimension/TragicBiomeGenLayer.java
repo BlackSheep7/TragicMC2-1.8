@@ -13,13 +13,7 @@ import tragicneko.tragicmc.TragicMC;
 
 public class TragicBiomeGenLayer extends GenLayer {
 
-	private ArrayList[] biomeList;
-
-	public TragicBiomeGenLayer(long seed, GenLayer genlayer)
-	{
-		this(seed);
-		this.parent = genlayer;
-	}
+	private ArrayList<BiomeEntry>[] biomeList;
 
 	public TragicBiomeGenLayer(long seed)
 	{
@@ -109,7 +103,7 @@ public class TragicBiomeGenLayer extends GenLayer {
 				try
 				{
 					List<BiomeEntry> biomes = biomeList[this.nextInt(biomeList.length)];
-					dest[dx + dz * width] = this.nextInt(1000) <= TragicConfig.crystalW ? TragicBiome.Crystal.biomeID : ((BiomeEntry)WeightedRandom.getRandomItem(biomes, this.nextInt(WeightedRandom.getTotalWeight(biomes)))).biome.biomeID;
+					dest[dx + dz * width] = this.nextInt(1000) <= TragicConfig.crystalW ? TragicBiome.Crystal.biomeID : WeightedRandom.getRandomItem(biomes, this.nextInt(WeightedRandom.getTotalWeight(biomes))).biome.biomeID;
 				}
 				catch (Exception e)
 				{
