@@ -17,10 +17,10 @@ import tragicneko.tragicmc.items.weapons.TragicTool;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
-public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoomsday, MessageSound> {
+public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoomsday, MessageUseDoomsday> {
 
 	@Override
-	public MessageSound onMessage(MessageUseDoomsday message, MessageContext ctx) {
+	public MessageUseDoomsday onMessage(MessageUseDoomsday message, MessageContext ctx) {
 		EntityPlayer player = MinecraftServer.getServer().isDedicatedServer() ? TragicMC.proxy.getPlayerFromMessageCtx(ctx) : ctx.getServerHandler().playerEntity;
 
 		if (player == null) return null;
@@ -111,7 +111,8 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 		}
 
 		String s = doomsday.activateDoomsday(doom) ? "tragicmc:random.doomsuccess" : "tragicmc:random.doomfailure";
-		return new MessageSound(s, 0.6F, 1.0F);
+		player.worldObj.playSoundAtEntity(player, s, 0.6F, 1.0F);
+		return null;
 	}
 
 }

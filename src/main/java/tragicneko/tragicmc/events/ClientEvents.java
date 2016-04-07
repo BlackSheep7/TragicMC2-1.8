@@ -65,12 +65,12 @@ public class ClientEvents extends Gui {
 
 				if (ClientProxy.openAmuletGui.isPressed() && TragicConfig.allowAmulets)
 				{
-					TragicMC.net.sendToServer(new MessageGui(ClientProxy.AMULET_GUI_ID));
+					TragicMC.proxy.net.sendToServer(new MessageGui(ClientProxy.AMULET_GUI_ID));
 				}
 
 				if (ClientProxy.useSpecial.isPressed() && TragicConfig.allowDoomsdays)
 				{
-					TragicMC.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
+					TragicMC.proxy.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
 				}
 			}
 		}

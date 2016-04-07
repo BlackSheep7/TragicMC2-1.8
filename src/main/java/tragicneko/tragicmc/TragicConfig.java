@@ -4,11 +4,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class TragicConfig {
@@ -182,9 +182,9 @@ public class TragicConfig {
 	
 	private static Enchantment[] enchantList;
 
-	public static void load()
+	public static void load(FMLPreInitializationEvent event)
 	{
-		Configuration config = TragicMC.getConfig();
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		
 		reflectEnchantmentList();
@@ -4707,6 +4707,68 @@ public class TragicConfig {
 			TragicMC.logError("Error while reflecting the Enchantment list array", e);
 			enchantList = Enchantment.enchantmentsBookList;
 			return;
+		}		
+	}
+	/*//Don't mind this, just testing out a possibility for the future due to the size of this config 
+	public static void readConfig() {
+		Configuration config = new Configuration();
+		ConfigCategory cat = config.getCategory(CAT_ACHIEVE);
+		Property prop;
+		String s = null;
+		
+		s = "meow";
+		prop = config.get(cat.getName(), s, 0);
+		registerObject(s, prop.getInt());
+		
+		s = "shouldMeow";
+		prop = config.get(cat.getName(), s, false);
+		registerObject(s, prop.getBoolean());
+		
+		s = "meowList";
+		prop = config.get(cat.getName(), s, new int[] {0});
+		registerObject(s, prop.getIntList());
+	}
+	
+	public static void registerMeows() {
+		int meows = TragicConfig.getObject("meow", intToken.thing);
+		boolean shouldMeow = TragicConfig.getObject("shouldMeow", boolToken.thing);
+		int[] meowList = TragicConfig.getObject("meowList", intArrayToken.thing);
+	}
+	
+	public static final TypeToken<Integer> intToken = new TypeToken<Integer>(0);
+	public static final TypeToken<Boolean> boolToken = new TypeToken<Boolean>(false);
+	public static final TypeToken<int[]> intArrayToken = new TypeToken<int[]>(new int[] {});
+	public static final HashMap<ResourceLocation, ConfigObject> objects = new HashMap<ResourceLocation, ConfigObject>();
+	
+	public static <T> void registerObject(String s, T thing) {
+		objects.put(new ResourceLocation(s), new ConfigObject<T>(thing));
+	}
+	
+	public static <T> void overrideObject(String s, T thing) {
+		objects.replace(new ResourceLocation(s), new ConfigObject<T>(thing));
+	}
+	
+	public static <T> T getObject(String s, T thing) {
+		ConfigObject<T> co = (ConfigObject<T>) objects.get(new ResourceLocation(s));
+		return (T) co.getThing();
+	}
+	
+	static class TypeToken<T> {
+		public T thing;
+		public TypeToken(T thing) {
+			this.thing = thing;
 		}
 	}
+	
+	public static class ConfigObject<T> {
+		private final T heldObject;
+		
+		public ConfigObject(T thing) {
+			this.heldObject = thing;
+		}
+		
+		public T getThing() {
+			return heldObject;
+		}
+	} */
 }

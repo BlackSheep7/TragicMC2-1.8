@@ -217,7 +217,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 			this.setMaxDoom(TragicConfig.maxDoomAmount);
 		}
 
-		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
+		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
 	}
 
 	/**
@@ -230,7 +230,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 		if (amount > this.getMaxDoom()) amount = this.getMaxDoom();
 
 		this.currentDoom = amount;
-		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
+		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
 	}
 
 	/**
@@ -241,7 +241,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	{
 		if (amount < 0) amount = 0;
 		this.maxDoom = amount;
-		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
+		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
 	}
 
 	/**
@@ -350,7 +350,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 				this.increaseDoom(6);
 			}
 
-			if (this.thePlayer instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP) this.thePlayer);
+			if (this.thePlayer instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP) this.thePlayer);
 		}
 	}
 

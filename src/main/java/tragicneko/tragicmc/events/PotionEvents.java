@@ -64,7 +64,7 @@ public class PotionEvents {
 	{
 		if (event.entity instanceof EntityPlayerMP)
 		{
-			TragicMC.net.sendTo(new MessageFlight(TragicConfig.allowFlight), (EntityPlayerMP) event.entity);
+			TragicMC.proxy.net.sendTo(new MessageFlight(TragicConfig.allowFlight), (EntityPlayerMP) event.entity);
 		}
 	}
 

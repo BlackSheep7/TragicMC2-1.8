@@ -20,7 +20,6 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.network.MessageSound;
 import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
 import tragicneko.tragicmc.util.LoreHelper;
 import tragicneko.tragicmc.util.TragicEntityList;
@@ -101,7 +100,7 @@ public class ItemChallenge extends Item {
 				if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
 				stack.getTagCompound().setInteger(Challenge.CHALLENGE_ID, challenge.getChallengeId());
 				player.addChatMessage(new ChatComponentText("Challenge accepted!"));
-				if (player instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageSound("tragicmc:random.challengestart", 0.4F, 1.0F), (EntityPlayerMP) player);
+				if (player instanceof EntityPlayerMP) player.worldObj.playSoundAtEntity(player, "tragicmc:random.challengestart", 0.4F, 1.0F);
 				if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.challengeScroll);
 			}
 			catch (Exception e)

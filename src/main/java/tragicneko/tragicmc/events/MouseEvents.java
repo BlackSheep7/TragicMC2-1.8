@@ -97,13 +97,13 @@ public class MouseEvents {
 				{					
 					if (entity instanceof IMultiPart)
 					{
-						TragicMC.net.sendToServer(new MessageAttack(((IMultiPart) entity).getDefaultPart()));
+						TragicMC.proxy.net.sendToServer(new MessageAttack(((IMultiPart) entity).getDefaultPart()));
 						break meow;
 					}
 
 					if (!(entity instanceof EntityItem) && !(entity instanceof EntityXPOrb) && !(entity instanceof EntityArrow) && entity != player)
 					{
-						TragicMC.net.sendToServer(new MessageAttack(entity));
+						TragicMC.proxy.net.sendToServer(new MessageAttack(entity));
 						break meow;
 					}
 				}

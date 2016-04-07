@@ -61,6 +61,6 @@ public class RespawnDoomEvents {
 		}
 
 		property.setCooldown(0);
-		TragicMC.net.sendTo(new MessageDoom(event.player), (EntityPlayerMP)event.player);
+		TragicMC.proxy.net.sendTo(new MessageDoom(event.player), (EntityPlayerMP)event.player);
 	}
 }

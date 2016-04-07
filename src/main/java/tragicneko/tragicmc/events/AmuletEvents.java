@@ -75,7 +75,7 @@ public class AmuletEvents {
 
 			if (event.entity instanceof EntityPlayerMP && amu != null)
 			{
-				TragicMC.net.sendTo(new MessageAmulet((EntityPlayerMP) event.entity), (EntityPlayerMP) event.entity);
+				TragicMC.proxy.net.sendTo(new MessageAmulet((EntityPlayerMP) event.entity), (EntityPlayerMP) event.entity);
 			}
 		}
 	}
@@ -139,7 +139,7 @@ public class AmuletEvents {
 			PropertyAmulets amu = PropertyAmulets.get(mp);
 
 			if (amu == null) return;
-			TragicMC.net.sendTo(new MessageAmulet((EntityPlayer)event.entityLiving), (EntityPlayerMP)event.entityLiving);
+			TragicMC.proxy.net.sendTo(new MessageAmulet((EntityPlayer)event.entityLiving), (EntityPlayerMP)event.entityLiving);
 
 			BaseAttributeMap map = mp.getAttributeMap();
 			Multimap mm;

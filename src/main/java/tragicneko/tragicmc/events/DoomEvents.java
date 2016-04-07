@@ -49,7 +49,7 @@ public class DoomEvents {
 
 			if (event.entity instanceof EntityPlayerMP && doom != null)
 			{
-				TragicMC.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
+				TragicMC.proxy.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
 			}
 		}
 	}
@@ -64,7 +64,7 @@ public class DoomEvents {
 			if (doom != null)
 			{
 				doom.onUpdate();
-				if (event.entityLiving instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
+				if (event.entityLiving instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
 			}
 		}
 	}
@@ -112,7 +112,7 @@ public class DoomEvents {
 		if (event.entityLiving instanceof EntityPlayerMP && !event.wasDeath)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
-			TragicMC.net.sendTo(new MessageDoom(player), player);
+			TragicMC.proxy.net.sendTo(new MessageDoom(player), player);
 		}
 	}
 

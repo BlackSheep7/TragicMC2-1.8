@@ -19,6 +19,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -193,7 +195,7 @@ import tragicneko.tragicmc.util.TragicEntityList.EnumEggType;
 
 public class ClientProxy extends CommonProxy {
 
-	public static final String DOMAIN = "tragicmc:";
+	public static final String DOMAIN = TragicMC.MODID.toLowerCase() + ":";
 
 	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
 	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);
@@ -211,24 +213,25 @@ public class ClientProxy extends CommonProxy {
 	private static final int ZERO = 0;
 
 	@Override
-	public void initRenders()
+	public void init(FMLInitializationEvent event)
 	{
+		super.init(event);
 		Minecraft mc = Minecraft.getMinecraft();
 
 		//Gui event registration
-		if (TragicConfig.showDoomGui) TragicMC.registerEvent(new GuiDoom(mc));
-		if (TragicConfig.showAmuletStatusGui) TragicMC.registerEvent(new GuiAmuletStatus(mc));
+		if (TragicConfig.showDoomGui) registerEvent(new GuiDoom(mc));
+		if (TragicConfig.showAmuletStatusGui) registerEvent(new GuiAmuletStatus(mc));
 
 		//Keybinding registrations
 		ClientRegistry.registerKeyBinding(useSpecial);
 		ClientRegistry.registerKeyBinding(openAmuletGui);
 
 		//Client-side event registration
-		TragicMC.registerEvent(new ClientEvents());
-		TragicMC.registerEvent(new MouseEvents(mc));
+		registerEvent(new ClientEvents());
+		registerEvent(new MouseEvents(mc));
 
 		//Music
-		TragicMC.registerEvent(new SoundsEvents(mc));
+		registerEvent(new SoundsEvents(mc));
 
 		//Tile Entity render registration (shouldn't be used too often)
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoulChest.class, new RenderSoulChest());
@@ -283,8 +286,8 @@ public class ClientProxy extends CommonProxy {
 			"overlordCocoon"};
 
 	@Override
-	public void preInitRenders() {
-
+	public void preInit(FMLPreInitializationEvent event) {
+		super.preInit(event);
 		//Projectile renders
 		final Item item = TragicItems.Projectile;
 		registerRender(EntityThrowingRock.class, new RenderFactoryProjectile(item, 0, 1F));
