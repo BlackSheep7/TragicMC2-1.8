@@ -3,6 +3,8 @@ package tragicneko.tragicmc.worldgen.structure;
 import java.util.Random;
 
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.RegistryNamespacedDefaultedByKey;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -13,10 +15,15 @@ import tragicneko.tragicmc.worldgen.schematic.Schematic;
 public class Structure extends WorldGenerator {
 
 	protected final Schematic schematic;
+	@Deprecated
 	public final int structureId;
+	@Deprecated
 	private final String structureName;
 	protected final int height;
+	
+	public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Structure> structureRegistry = new RegistryNamespacedDefaultedByKey<ResourceLocation, Structure>(new ResourceLocation("null"));
 
+	@Deprecated
 	public static Structure[] structureList = new Structure[24];
 	public static Structure apisTemple = new StructureApisTemple(0, "apisTemple");
 	public static Structure towerStructure = new StructureTower(1, "tower");

@@ -1168,7 +1168,7 @@ doomsday.noEntities=No entities in range to target!
 
 doomsday.influence.type=Influence
 doomsday.overflow.type=Overflow
-doomsday.worldShaper.type=World Shaper
+doomsday.worldshaper.type=Worldshaper
 doomsday.crisis.type=Crisis
 doomsday.ultimate.type=Ultimate
 doomsday.combination.type=Combination

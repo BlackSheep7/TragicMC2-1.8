@@ -1,12 +1,9 @@
 package tragicneko.tragicmc.items.challenge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.base.Predicate;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,8 +29,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.RegistryNamespacedDefaultedByKey;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -68,6 +65,9 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class Challenge {
 
+	public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Challenge> challengeRegistry = new RegistryNamespacedDefaultedByKey<ResourceLocation, Challenge>(new ResourceLocation("null"));
+	
+	@Deprecated
 	public static final Challenge[] challengeList = new Challenge[249];
 
 	public static final Challenge nullChallenge = new Challenge(0, false, 0);
@@ -206,11 +206,12 @@ public class Challenge {
 	public static final Challenge chickenMassacre = new ChallengeEntity(129, true, 20, EntityChicken.class, false).setTimed(600).setDifficulty(EnumDifficulty.HARD);
 	public static final Challenge thisIsAmazing = new ChallengeEntity(130, true, 5, EntityCreature.class, false).setTimed(200).setDifficulty(EnumDifficulty.HARD);
 	
+	@Deprecated
 	protected final int challengeID;
 	protected final boolean savesProgress;
 	protected final int requirement;
 
-	protected EnumDifficulty difficulty = EnumDifficulty.PEACEFUL;
+	protected EnumDifficulty difficulty = EnumDifficulty.PEACEFUL; //reuse vanilla world difficulty enum, to be changed to our own custom one though to make it string serializable
 	protected boolean isTimed = false;
 	protected int timeLimit = 0;
 	protected boolean isMobRush = false;
@@ -220,8 +221,10 @@ public class Challenge {
 	public static final String CHALLENGE_PROG = "challengeProgress";
 	public static final String CHALLENGE_LOC = "challengeLocation";
 	public static final String CHALLENGE_TIME = "challengeTime";
+	@Deprecated
 	public static final String CHALLENGE_ID = "challengeID";
 
+	@Deprecated
 	private static final String[] challengeNames = new String[] {"null", "zombieKills", "collectWheat", "stayAlive", "stayAlive3", "survive", "endermanKills", "bossKills",
 			"collectLeather", "stayAlive7", "witherKill", "findEmerald", "findDiamonds", "collectAsh", "miniBossKills", "stinKills", "tragicNekoKills", "collectGoldenApples",
 			"findWisp", "findApis", "findIronGolem", "findSnowBlock", "iceBucketChallenge", "findRecord11", "collectFish", "collectGunpowder", "collectRedSand", "bossKill",

@@ -7,7 +7,10 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.RegistryNamespacedDefaultedByKey;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -23,6 +26,9 @@ public abstract class Doomsday {
 
 	protected static final Random rand = new Random();
 
+	public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Doomsday> doomsdayRegistry = new RegistryNamespacedDefaultedByKey<ResourceLocation, Doomsday>(new ResourceLocation("null"));
+	
+	@Deprecated
 	public static final Doomsday[] doomsdayList = new Doomsday[96];
 
 	public static final Doomsday Decay = (new DoomsdayDecay(1));
@@ -96,6 +102,7 @@ public abstract class Doomsday {
 	public static final Doomsday Medic = new DoomsdayMedic(69);
 	public static final Doomsday Resurge = new DoomsdayResurge(70);
 
+	@Deprecated
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
@@ -105,8 +112,10 @@ public abstract class Doomsday {
 		"medic", "resurge"
 	};
 
+	@Deprecated
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();
 
+	@Deprecated
 	public final int doomID;
 	public final EnumDoomType doomsdayType;
 	public final int requiredDoom;
@@ -417,28 +426,7 @@ public abstract class Doomsday {
 	public String getUnlocalizedType()
 	{
 		EnumDoomType type = this.doomsdayType;
-		String s = null;
-
-		switch(type)
-		{
-		case INFLUENCE:
-			s = "influence";
-			break;
-		case OVERFLOW:
-			s = "overflow";
-			break;
-		case CRISIS:
-			s = "crisis";
-			break;
-		case WORLDSHAPER:
-			s = "worldShaper";
-			break;
-		case COMBINATION:
-			s = "combination";
-			break;
-		}
-
-		return "doomsday." + s + ".type";
+		return "doomsday." + type.getName() + ".type";
 	}
 
 
@@ -547,27 +535,30 @@ public abstract class Doomsday {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + StatCollector.translateToLocal("doomsday.noEntities")));
 	}
 
-	public enum EnumDoomType
+	public enum EnumDoomType implements IStringSerializable
 	{
-		INFLUENCE,
-		OVERFLOW(EnumChatFormatting.GREEN),
-		CRISIS(EnumChatFormatting.RED),
-		WORLDSHAPER(EnumChatFormatting.DARK_PURPLE),
-		COMBINATION(EnumChatFormatting.YELLOW);
+		INFLUENCE("influence"),
+		OVERFLOW("overflow", EnumChatFormatting.GREEN),
+		CRISIS("crisis", EnumChatFormatting.RED),
+		WORLDSHAPER("worldshaper", EnumChatFormatting.DARK_PURPLE),
+		COMBINATION("combination", EnumChatFormatting.YELLOW);
 
 		private final EnumChatFormatting format;
+		private final String name;
 
-		private EnumDoomType()
+		private EnumDoomType(String name)
 		{
-			this(EnumChatFormatting.AQUA);
+			this(name, EnumChatFormatting.AQUA);
 		}
 
-		private EnumDoomType(EnumChatFormatting format)
+		private EnumDoomType(String name, EnumChatFormatting format)
 		{
+			this.name = name;
 			this.format = format;
 		}
 
 		public EnumChatFormatting getFormat() { return this.format; }
+		@Override public String getName() { return this.name; }
 	}
 
 	public interface IExtendedDoomsday {
