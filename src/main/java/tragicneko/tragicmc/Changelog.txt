@@ -4656,10 +4656,13 @@ Fixed initialization error for Challenges due to an erroring ID
 Added second set of Structure Seeds to prep for the new structures to be added
 Hopefully fixed sporadic crash when killing something with the Sword of Justice
 Fixed crash when actually generating the structures in the second set of structure seeds
+Deprecated a lot of things in Structure, Doomsday and Challenge that will be obsolete when it's converted to a full registry
+Reworked the registration process of the mod, most of this is now done in the common proxy instead of the main mod object
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
-Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
+Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9, for now they can just use namespaced registries
+Rewrite the config (yet again), this time using generics to make the config class cleaner and remove the need to store hundreds of static variables
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
