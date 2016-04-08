@@ -4641,7 +4641,7 @@ Update the version json checker to use one built into github so that it'll have 
 Removed potion ids from the config
 Updated Entity client-side registrations to use the new IRenderFactory method
 
-4.47.3017++ <219> (April 3, 2016)
+4.47.3037 <219> (April 3, 2016)
 Added registration stuff for the Science Neko
 Made the Doomsday info in tooltips more minimal
 Removed Dynamic Health scaling, I don't feel like it was used very much and it was causing weird bugs with normal mob's health
@@ -4665,6 +4665,11 @@ checks done in this process to ensure it is set correctly
 Removed the Achievements category from the config file, it was never used and won't be used as it'd be too difficult to ensure of achievement continuity
 with disabled achievements holding off certain branches of Achievements as well as Achievements being intrinsically difficult to disable and enable on
 the fly
+Modified how Mobs get their Mini-Boss instances when they transform so that they aren't constantly checked and updated every tick
+Fixed derp that caused some mob configs to have the wrong value from the config
+
+4.47.3037++ <220> (April 8, 2016)
+Doing stuff!
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
