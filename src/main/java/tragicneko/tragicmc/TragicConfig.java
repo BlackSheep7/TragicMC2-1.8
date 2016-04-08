@@ -15,7 +15,6 @@ public class TragicConfig {
 
 	private static final String CAT_MASTER = "Master Configs";
 	private static final String CAT_BLANKET = "Blanket Configs";
-	private static final String CAT_ACHIEVE = "Achievements";
 	private static final String CAT_AMULET = "Amulets";
 	private static final String CAT_AMUEFFECT = "Amulet Effects";
 	private static final String CAT_DIMENSION = "Dimension";
@@ -254,10 +253,6 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowWorldGen", true);
 		prop.comment = "Is the mod able to execute any of it's non-Ore WorldGen?";
 		allowWorldGen = prop.getBoolean(true);
-
-		cat = config.getCategory(CAT_ACHIEVE);
-		cat.setComment("These allow you to toggle specific Achievements, whether they can be received or not.");
-		cat.setShowInGui(true);
 
 		cat = config.getCategory(CAT_AMULET);
 		cat.setComment("These allow you to toggle various aspects of Amulets.");
