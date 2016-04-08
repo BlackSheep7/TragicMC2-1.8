@@ -39,6 +39,7 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
@@ -58,7 +59,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public abstract class TragicMob extends EntityMob
 {
-	protected TragicMiniBoss superiorForm;
+	protected Class<? extends TragicMiniBoss> superiorForm;
 
 	public static final int DW_CHANGE_STATE = 16;
 	public static final int DW_CORRUPTION_TICKS = 17;
@@ -142,7 +143,7 @@ public abstract class TragicMob extends EntityMob
 		if (this.worldObj.isRemote)
 		{			
 			this.updateSize(); //might need to do this every tick to update the rendered hitbox to make sure they are correct
-			
+
 			if (this.isChanging())
 			{
 				this.spawnExplosionParticle();
@@ -186,7 +187,7 @@ public abstract class TragicMob extends EntityMob
 							rand.nextDouble() * d + d2, rand.nextDouble() * d + d2, rand.nextDouble() * d + d2);
 				}
 			}
-			
+
 			if (this.isCorrupted())
 			{
 				for (byte i = 0; i < 3; i++)
@@ -207,7 +208,7 @@ public abstract class TragicMob extends EntityMob
 			return;
 		}
 
-		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && this.isSupport() && this.ticksExisted % 30 == 0)
+		if (this.worldObj.getDifficulty() == EnumDifficulty.HARD && this.isSupport() && this.ticksExisted % 30 == 0)
 		{
 			if (this.supportID < 0)
 			{
@@ -256,7 +257,7 @@ public abstract class TragicMob extends EntityMob
 						{
 							if (entity instanceof TragicMob)
 							{
-								if (this.superiorForm != null && entity != this.superiorForm && entity.getClass() != this.getLesserForm())
+								if (this.superiorForm != null && entity.getClass() != this.superiorForm && entity.getClass() != this.getLesserForm())
 								{
 									result = entity;
 									break;
@@ -327,10 +328,23 @@ public abstract class TragicMob extends EntityMob
 			boss.playSound("tragicmc:random.change", 1.0F, 1.0F);
 			boss.updateSize();
 		}
+		else
+		{
+			this.setChanging(false); //if change isn't allowed either due to config option or the mob being of the wrong variant type, it won't stall the mob's AI
+		}
 	}
 
 	protected TragicMiniBoss getSuperiorForm() {
-		return this.superiorForm;
+
+		try
+		{
+			return (TragicMiniBoss) this.superiorForm.getConstructor(new Class[] {World.class}).newInstance(new Object[] {this.worldObj});
+		}
+		catch (Exception e)
+		{
+			TragicMC.logError("Error while trying to instantiate a superior form of a changeable entity for transformation", e);
+			return null; //this will cause a crash in the above method
+		}
 	}
 
 	/**
@@ -901,12 +915,12 @@ public abstract class TragicMob extends EntityMob
 
 		return false;
 	}
-	
+
 	/**
 	 * Utility method to update the entity's size (bounding box), called in {@link #onInitialSpawn(DifficultyInstance, IEntityLivingData)}
 	 * , {@link #readEntityFromNBT(NBTTagCompound)} and {@link #change()}, for entities that change size based on certain data flags
 	 */
 	protected void updateSize() {
-		
+
 	}
 }

@@ -23,6 +23,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		super(par1World);
 		this.experienceValue = 150;
 		this.stepHeight = 1.5F;
+		if (this.superiorForm == null) this.superiorForm = this.rand.nextBoolean() && TragicConfig.allowStinKing ? EntityStinKing.class : (TragicConfig.allowStinQueen ? EntityStinQueen.class : null);
 	}
 
 	@Override
@@ -105,8 +106,6 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		}
 
 		if (this.worldObj.isRemote) return;
-
-		if (this.superiorForm == null && this.isChangeAllowed()) this.superiorForm = this.rand.nextBoolean() && TragicConfig.allowStinKing ? new EntityStinKing(this.worldObj) : (TragicConfig.allowStinQueen ? new EntityStinQueen(this.worldObj) : null);
 
 		if (this.isCharging())
 		{
@@ -200,7 +199,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return this.superiorForm instanceof EntityStinKing ? TragicConfig.allowStinKing : TragicConfig.allowStinQueen;
+		return this.superiorForm == EntityStinKing.class ? TragicConfig.allowStinKing : TragicConfig.allowStinQueen;
 	}
 
 	@Override

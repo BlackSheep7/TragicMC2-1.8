@@ -36,8 +36,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 
@@ -61,6 +61,7 @@ public class EntityJabba extends TragicMob {
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
+		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = EntityJarra.class;
 	}
 
 	@Override
@@ -205,7 +206,6 @@ public class EntityJabba extends TragicMob {
 		}
 		else
 		{
-			if (this.superiorForm == null && this.getJabbaType() == 0) this.superiorForm = new EntityJarra(this.worldObj);
 			if (this.getAttackTarget() != null && this.getWormTicks() > 0) this.setWormTicks(0);
 			if (this.getWormTicks() > 0) this.decrementWormTicks();
 			if (this.getAttackTicks() > 0) this.decrementAttackTicks();
@@ -422,7 +422,7 @@ public class EntityJabba extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicConfig.allowJarra;
+		return this.getJabbaType() == 0 && TragicConfig.allowJarra;
 	}
 
 	@Override

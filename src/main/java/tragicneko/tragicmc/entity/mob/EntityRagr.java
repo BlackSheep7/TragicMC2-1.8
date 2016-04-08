@@ -6,6 +6,9 @@ import static tragicneko.tragicmc.TragicConfig.ragrStats;
 import java.util.ArrayList;
 import java.util.Set;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -43,10 +46,8 @@ import tragicneko.tragicmc.blocks.BlockGenericGrass;
 import tragicneko.tragicmc.blocks.BlockPermafrost;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.base.Predicate;
-import com.google.common.collect.Sets;
 
 public class EntityRagr extends TragicMob {
 	
@@ -81,6 +82,7 @@ public class EntityRagr extends TragicMob {
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true, false, null));
 		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true, false, nonSpeciesTarget));
+		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = EntityJarra.class;
 	}
 	
 	@Override
@@ -159,7 +161,6 @@ public class EntityRagr extends TragicMob {
 		super.onLivingUpdate();
 		if (this.worldObj.isRemote) return;
 		
-		if (this.superiorForm == null && this.getRagrType() == 1) this.superiorForm = new EntityJarra(this.worldObj);
 		if (this.getRagrType() == 1 && this.ticksExisted % 5 == 0 && this.worldObj.isRaining() && this.worldObj.canBlockSeeSky(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ))) this.attackEntityFrom(DamageSource.drown, 1.0F);
 		if (this.getRagrType() == 1 && this.isInsideOfMaterial(Material.water)) this.attackEntityFrom(DamageSource.drown, 1.0F);
 

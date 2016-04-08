@@ -2,6 +2,7 @@ package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.poxStats;
 import static tragicneko.tragicmc.TragicConfig.toxStats;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,6 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
@@ -50,6 +52,7 @@ public class EntityTox extends TragicMob {
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
+		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = EntityMagmox.class;
 	}
 
 	@Override
@@ -212,7 +215,6 @@ public class EntityTox extends TragicMob {
 				if (this.getAttackTarget() != null) this.setWiggleTime(0);
 			}
 
-			if (this.superiorForm == null && this.getToxType() == 0) this.superiorForm = new EntityMagmox(this.worldObj);
 			if (this.isFiring()) this.decrementFiringTicks();
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
 
@@ -316,7 +318,7 @@ public class EntityTox extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicConfig.allowMagmox;
+		return this.getToxType() == 0 && TragicConfig.allowMagmox;
 	}
 
 	@Override

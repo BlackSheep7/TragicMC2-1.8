@@ -37,6 +37,7 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 
@@ -60,6 +61,7 @@ public class EntityNorVox extends TragicMob {
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
+		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = EntityVoxStellarum.class;
 	}
 
 	@Override
@@ -201,7 +203,6 @@ public class EntityNorVox extends TragicMob {
 		}
 		else
 		{
-			if (this.superiorForm == null && this.getNorVoxType() == 1) this.superiorForm = new EntityVoxStellarum(this.worldObj);
 			if (this.isFiring()) this.decrementFiringTicks();
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
 			if (this.getNodTicks() > 0) this.decrementNodTicks();
@@ -394,7 +395,7 @@ public class EntityNorVox extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicConfig.allowVoxStellarum;
+		return this.getNorVoxType() == 1 && TragicConfig.allowVoxStellarum;
 	}
 
 	@Override

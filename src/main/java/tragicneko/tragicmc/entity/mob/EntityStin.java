@@ -26,7 +26,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -34,8 +33,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityStin extends TragicMob {
@@ -59,6 +58,7 @@ public class EntityStin extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true, false, null));
 		this.targetTasks.addTask(3, targetPlayer);
+		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = EntityGreaterStin.class;
 	}
 
 	@Override
@@ -206,7 +206,6 @@ public class EntityStin extends TragicMob {
 		if (this.getAgeTicks() <= 700) this.incrementAgeTicks();
 		if (this.getGallopTicks() > 0) this.decrementGallopTicks();
 		if (this.isAdult() && this.canClimb()) this.setCanClimb(false);
-		if (this.superiorForm == null && this.isAdult() && this.isChangeAllowed()) this.superiorForm = new EntityGreaterStin(this.worldObj);
 
 		if (!this.isAdult())
 		{

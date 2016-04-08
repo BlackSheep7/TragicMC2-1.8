@@ -42,6 +42,7 @@ public class EntityGragul extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
 		this.isImmuneToFire = true;
+		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = EntityKragul.class;
 	}
 
 	@Override
@@ -79,7 +80,6 @@ public class EntityGragul extends TragicMob {
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote) return;
-		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = new EntityKragul(this.worldObj);
 
 		if (this.getAttackTarget() != null && this.ticksExisted % 120 == 0)
 		{

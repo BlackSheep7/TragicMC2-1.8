@@ -26,6 +26,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntitySlangLeader;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 
 public class EntitySlang extends TragicMob {
 
@@ -46,6 +47,7 @@ public class EntitySlang extends TragicMob {
 		this.tasks.addTask(5, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.55D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
+		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = EntitySlangLeader.class;
 	}
 
 	@Override
@@ -87,7 +89,6 @@ public class EntitySlang extends TragicMob {
 	{
 		super.onLivingUpdate();
 		if (this.stolenItem != null && this.getAttackTarget() != null) this.setAttackTarget(null);
-		if (this.superiorForm == null) this.superiorForm = new EntitySlangLeader(this.worldObj);
 	}
 
 	@Override

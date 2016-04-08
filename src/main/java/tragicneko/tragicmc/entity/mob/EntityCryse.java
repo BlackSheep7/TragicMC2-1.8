@@ -2,6 +2,7 @@ package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.cryseStats;
 import static tragicneko.tragicmc.TragicConfig.starCryseStats;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,6 +33,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 
@@ -55,6 +57,7 @@ public class EntityCryse extends TragicMob {
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 48.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
+		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = EntityVoxStellarum.class;
 	}
 
 	@Override
@@ -210,7 +213,6 @@ public class EntityCryse extends TragicMob {
 			if (this.isSpinning()) this.decrementSpinTicks();
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
 			if (this.isFluttering()) this.decrementFlutterTicks();
-			if (this.superiorForm == null && this.getCryseType() == 1) this.superiorForm = new EntityVoxStellarum(this.worldObj);
 
 			if (this.ticksExisted % 120 == 0 && this.getAttackTarget() == null && rand.nextBoolean() && !this.isSpinning() && !this.isFluttering())
 			{
@@ -337,7 +339,7 @@ public class EntityCryse extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicConfig.allowMegaCryse;
+		return this.getCryseType() == 1 && TragicConfig.allowMegaCryse;
 	}
 
 	@Override

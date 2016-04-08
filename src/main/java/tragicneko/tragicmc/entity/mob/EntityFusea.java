@@ -54,6 +54,7 @@ public class EntityFusea extends TragicMob {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, nonSpeciesTarget));
 		this.explosionBuffer = 20;
 		this.experienceValue = 50;
+		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = EntityVolatileFusea.class;
 	}
 
 	@Override
@@ -104,7 +105,6 @@ public class EntityFusea extends TragicMob {
 			return;
 		}
 
-		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = new EntityVolatileFusea(this.worldObj);
 		if (this.explosionBuffer > 0) this.explosionBuffer--;
 		if (this.isBurning() && this.explosionBuffer > 0) this.explosionBuffer = 0;
 
@@ -123,7 +123,7 @@ public class EntityFusea extends TragicMob {
 			if (this.isCollided) this.motionY += rand.nextDouble() - rand.nextDouble();
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
 
-			if (this.superiorForm != null && this.getAttackTarget().getClass() == this.superiorForm.getClass()) this.setAttackTarget(null);
+			if (this.superiorForm != null && this.getAttackTarget().getClass() == this.superiorForm) this.setAttackTarget(null);
 		}
 		else
 		{
@@ -179,7 +179,7 @@ public class EntityFusea extends TragicMob {
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (!this.worldObj.isRemote && this.explosionBuffer == 0 && this.superiorForm != null && par1Entity.getClass() != this.superiorForm.getClass())
+		if (!this.worldObj.isRemote && this.explosionBuffer == 0 && this.superiorForm != null && par1Entity.getClass() != this.superiorForm)
 		{
 			if (!TragicConfig.fuseaExplosiveLayers) return super.attackEntityAsMob(par1Entity);
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
