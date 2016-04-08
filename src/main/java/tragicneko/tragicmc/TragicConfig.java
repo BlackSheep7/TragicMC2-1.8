@@ -4307,7 +4307,7 @@ public class TragicConfig {
 		allowBossOverworldSpawns = mobConfig[++m];
 		allowExtraBossLoot = mobConfig[++m];
 		allowMobTransformation = mobConfig[++m];
-		allowDynamicHealthScaling = false;
+		allowDynamicHealthScaling = false; ++m; //derp
 		allowNonDimensionMobSpawns = mobConfig[++m];
 		allowGroupBuffs = mobConfig[++m];
 		allowEasyBosses = mobConfig[++m];
