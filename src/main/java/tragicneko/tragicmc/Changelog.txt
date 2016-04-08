@@ -4658,6 +4658,13 @@ Hopefully fixed sporadic crash when killing something with the Sword of Justice
 Fixed crash when actually generating the structures in the second set of structure seeds
 Deprecated a lot of things in Structure, Doomsday and Challenge that will be obsolete when it's converted to a full registry
 Reworked the registration process of the mod, most of this is now done in the common proxy instead of the main mod object
+Did some planning for a new type of config for the mod, due to the sheer amount of things that are configurable, it'd be easier to use a map with
+a key than keeping all of the variables in the class as static pointers
+This new type of config uses type generics to infer type, it'd be a bit more difficult to get specific things from the config, but there's plenty of
+checks done in this process to ensure it is set correctly
+Removed the Achievements category from the config file, it was never used and won't be used as it'd be too difficult to ensure of achievement continuity
+with disabled achievements holding off certain branches of Achievements as well as Achievements being intrinsically difficult to disable and enable on
+the fly
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
