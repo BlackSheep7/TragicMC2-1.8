@@ -68,7 +68,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 					if (doomsdays[i] != null) TragicMC.logInfo("Identified armor piece with a Doomsday, it is " + doomsdays[i].getLocalizedName());
 				}
 				
-				if(doomsday == null && doomsdays[i] != null) doomsday = doomsdays[i];
+				if (doomsday == null && doomsdays[i] != null) doomsday = doomsdays[i];
 			}
 
 			for (byte i = 0; i < 4; i++)

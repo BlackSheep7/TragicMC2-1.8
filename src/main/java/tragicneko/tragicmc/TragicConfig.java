@@ -173,7 +173,7 @@ public class TragicConfig {
 	public static boolean allowPvP, allowDefaultLores, allowCorruptionTransfer;
 	public static int challengeScrollDropChance, mobStatueDropChance;
 
-	public static boolean allowAnimatedGui, allowArmorModels, allowWeaponModels, allowDivinityColorChange, showDoomGui, showAmuletStatusGui, allowDimensionalMusic, allowPotionEffectOverlays;
+	public static boolean allowAnimatedGui, allowArmorModels, allowWeaponModels, allowDivinityColorChange, showDoomGui, showAmuletStatusGui, allowDimensionalMusic, allowPotionEffectOverlays, showExtraDoomsdayInfoInGui;
 	public static int guiTransparency, guiTexture, guiX, guiY;
 
 	public static boolean[] griefConfig = new boolean[12];
@@ -3526,6 +3526,10 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowPotionEffectOverlays", true);
 		prop.comment = "Whether certain potion effects have an overlay rendered while they are active";
 		allowPotionEffectOverlays = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "showExtraDoomsdayInfoInGui", true);
+		prop.comment = "If you can activate a Doomsday, displays that Doomsday's information in the Gui";
+		showExtraDoomsdayInfoInGui = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "guiTransparency", 100);
 		guiTransparency = clamp(prop.getInt(100), 1, 100);

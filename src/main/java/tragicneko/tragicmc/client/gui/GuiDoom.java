@@ -1,28 +1,28 @@
 package tragicneko.tragicmc.client.gui;
 
-import java.awt.Color;
+import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.opengl.GL11;
-
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.armor.TragicArmor;
 import tragicneko.tragicmc.items.weapons.TragicBow;
 import tragicneko.tragicmc.items.weapons.TragicTool;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
+import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 @SideOnly(Side.CLIENT)
@@ -36,10 +36,8 @@ public class GuiDoom extends Gui
 	private static int difTick = 0;
 	private static boolean cdFlag = false;
 
-	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/doom_neko.png");
-	private static final ResourceLocation texturepath2 = new ResourceLocation("tragicmc:textures/gui/doom_pink.png");
-	private static final ResourceLocation texturepath3 = new ResourceLocation("tragicmc:textures/gui/doom_tentacle.png");
-	private static final ResourceLocation texturepath4 = new ResourceLocation("tragicmc:textures/gui/doom_pokemon.png");
+	private static final ResourceLocation newTexture = new ResourceLocation("tragicmc:textures/gui/new_doom_bar.png");
+	private static final ResourceLocation newTextureStatus = new ResourceLocation("tragicmc:textures/gui/new_amulet_status.png");
 
 	public GuiDoom(Minecraft mc) {
 		super();
@@ -47,218 +45,270 @@ public class GuiDoom extends Gui
 	}
 
 	@SubscribeEvent(priority=EventPriority.NORMAL)
-	public void onRenderOverlay(RenderGameOverlayEvent event)
+	public void onRenderNewOverlay(RenderGameOverlayEvent event)
 	{
 		if (event.isCancelable() || event.type != ElementType.HOTBAR || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
-		PropertyDoom props = PropertyDoom.get(this.mc.thePlayer);
-		if (props == null || props.getMaxDoom() == 0) return;
-		
-		int xPos = TragicConfig.guiX;
-		int yPos = TragicConfig.guiY;
-		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
+		int xPos = TragicConfig.guiX + 2;
+		int yPos = TragicConfig.guiY + 4;
+		this.mc.getTextureManager().bindTexture(newTexture);
 
 		GlStateManager.enableBlend();
 		GlStateManager.disableDepth();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GlStateManager.disableAlpha();
+
+		boolean shiftAmuStatus = false;
+		boolean isDoomDisplayed = true;
 		
 		float trans = ((float) TragicConfig.guiTransparency / 100.0F);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, trans);
 
-		drawTexturedModalRect(xPos, yPos, 0, 0, 56, 9);
-
-		if (TragicConfig.allowAnimatedGui)
+		PropertyDoom props = PropertyDoom.get(this.mc.thePlayer);
+		if (props != null && props.getMaxDoom() > 0)
 		{
-			width++;
-			if (width > 30) width = 0;
-		}
-		else
-		{
-			width = 0;
-		}
-
-		if (props.getCurrentCooldown() > 0)
-		{
-			cdFlag = true;
-			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 12, 49, 3);
-
-			String s = "Cooling Down... " + props.getCurrentCooldown() ;
-			yPos += 6;
-			Color color = new Color(0x27, 0xb8, 0xdc);
-
-			this.mc.fontRendererObj.drawString(s, xPos + 1, yPos, 0);
-			this.mc.fontRendererObj.drawString(s, xPos - 1, yPos, 0);
-			this.mc.fontRendererObj.drawString(s, xPos, yPos + 1, 0);
-			this.mc.fontRendererObj.drawString(s, xPos, yPos - 1, 0);
-			this.mc.fontRendererObj.drawString(s, xPos, yPos, color.getRGB());
-		}
-		else
-		{
-			if (cdFlag)
+			if (TragicConfig.allowAnimatedGui)
 			{
-				mc.thePlayer.playSound("tragicmc:random.cooldowndone", 1.0F, 1.0F);
-				cdFlag = false;
-			}
-
-			buffer++;
-			if (!TragicConfig.allowAnimatedGui) buffer = 0;
-			int manabarwidth = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 49);
-
-			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 9, manabarwidth, 3);
-			if (difTick == 0)
-			{
-				difference = props.getCurrentDoom() - prevDoom;
-				if (prevDoom != props.getMaxDoom() && props.getCurrentDoom() == props.getMaxDoom()) mc.thePlayer.playSound("tragicmc:random.doommaxed", 1.0F, 1.0F);
-			}
-
-			if (difference != 0)
-			{
-				difTick++;
-				if (difTick > 20) difTick = 0;
+				width++;
+				if (width > 30) width = 0;
 			}
 			else
 			{
-				difTick = 0;
+				width = 0;
 			}
 
-			prevDoom = props.getCurrentDoom();
-			String s = "Doom: " + props.getCurrentDoom() + "/" + props.getMaxDoom();
-			yPos += 6;
-			Color color = new Color(0x96, 0x30, 0x30);
-			boolean flag = false;
+			int color = 0x000000;
+			String s = null;
 
-			if (this.mc.thePlayer.getCurrentEquippedItem() != null)
+			if (props.getCurrentCooldown() > 0)
 			{
-				ItemStack stack = this.mc.thePlayer.getCurrentEquippedItem();
+				cdFlag = true;
 
-				if (stack.getItem() instanceof TragicBow)
+				GlStateManager.pushMatrix();
+				double scale = 0.265D;
+				GlStateManager.scale(scale, scale, scale);
+				drawTexturedModalRect(xPos + 28, yPos + 32, 0, 96, 200, 20); //the bar
+				drawTexturedModalRect(xPos, yPos, 0, 0, 240, 60); //the entire gui
+				//drawTexturedModalRect(xPos, yPos, 40, 160, 36, 36); //for coloring the circle in the top corner
+				GlStateManager.popMatrix();
+
+				s = "Cooling Down... " + props.getCurrentCooldown() ;
+				color = 0x27B8DC;
+			}
+			else
+			{
+				if (cdFlag)
 				{
-					if (((TragicBow)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
-					{
-						flag = true;
-					}
+					mc.thePlayer.playSound("tragicmc:random.cooldowndone", 1.0F, 1.0F);
+					cdFlag = false;
 				}
-				else if (stack.getItem() instanceof TragicWeapon)
+
+				buffer++;
+				if (!TragicConfig.allowAnimatedGui) buffer = 0;
+				final int barFill = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 200);
+				Doomsday doomsday = null;
+
+				GlStateManager.pushMatrix();
+				double scale = 0.265D;
+				GlStateManager.scale(scale, scale, scale);
+				drawTexturedModalRect(xPos + 28, yPos + 32, 0, 72, barFill, 20); //the bar
+				drawTexturedModalRect(xPos, yPos, 0, 0, 240, 60); //the entire gui
+				drawTexturedModalRect(xPos, yPos, 40, 160, 36, 36); //for coloring the circle in the top corner
+				GlStateManager.popMatrix();
+
+				if (difTick == 0)
 				{
-					TragicWeapon weapon = (TragicWeapon) stack.getItem();
-					if (weapon.getDoomsday() != null && weapon.getDoomsday().doesCurrentDoomMeetRequirement(props) || weapon.getSecondaryDoomsday() != null && weapon.getSecondaryDoomsday().doesCurrentDoomMeetRequirement(props) )
-					{
-						flag = true;
-					}
+					difference = props.getCurrentDoom() - prevDoom;
+					if (prevDoom != props.getMaxDoom() && props.getCurrentDoom() == props.getMaxDoom()) mc.thePlayer.playSound("tragicmc:random.doommaxed", 1.0F, 1.0F);
 				}
-				else if (stack.getItem() instanceof TragicTool)
+
+				if (difference != 0)
 				{
-					if (((TragicTool)stack.getItem()).getDoomsday() != null && ((TragicTool)stack.getItem()).getDoomsday().doesCurrentDoomMeetRequirement(props))
+					difTick++;
+					if (difTick > 20) difTick = 0;
+				}
+				else
+				{
+					difTick = 0;
+				}
+
+				prevDoom = props.getCurrentDoom();
+				s = "Doom: " + props.getCurrentDoom() + "/" + props.getMaxDoom();
+				color = 0xFF3636;
+				boolean flag = false;
+				boolean sneakFlag = false;
+
+				if (this.mc.thePlayer.getCurrentEquippedItem() != null)
+				{
+					ItemStack stack = this.mc.thePlayer.getCurrentEquippedItem();
+
+					if (stack.getItem() instanceof TragicBow)
 					{
-						flag = true;
+						if (((TragicBow)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
+						{
+							doomsday = ((TragicBow)stack.getItem()).doomsday;
+						}
 					}
+					else if (stack.getItem() instanceof TragicWeapon)
+					{
+						TragicWeapon weapon = (TragicWeapon) stack.getItem();
+						if (weapon.getDoomsday() != null && weapon.getDoomsday().doesCurrentDoomMeetRequirement(props) || weapon.getSecondaryDoomsday() != null && weapon.getSecondaryDoomsday().doesCurrentDoomMeetRequirement(props))
+						{
+							if (weapon.getDoomsday() != null && weapon.getDoomsday().doesCurrentDoomMeetRequirement(props)) doomsday = weapon.getDoomsday();
+
+							if (!mc.thePlayer.isSneaking())
+							{
+								if (weapon.getSecondaryDoomsday() != null && weapon.getSecondaryDoomsday().doesCurrentDoomMeetRequirement(props)) doomsday = weapon.getSecondaryDoomsday();
+							}
+							else
+							{
+								if (weapon.getSecondaryDoomsday() != null && doomsday != null) sneakFlag = true;
+							}
+						}
+					}
+					else if (stack.getItem() instanceof TragicTool)
+					{
+						if (((TragicTool)stack.getItem()).getDoomsday() != null && ((TragicTool)stack.getItem()).getDoomsday().doesCurrentDoomMeetRequirement(props))
+						{
+							doomsday = ((TragicTool)stack.getItem()).getDoomsday();
+						}
+					}
+
+					if (!(stack.getItem() instanceof ItemArmor) && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.allowDoomScrollImbue) doomsday = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
+					if (doomsday != null) flag = true;
+				}
+				else
+				{
+					flag = false;
+					boolean flag2 = false;
+					Doomsday[] doomsdays = new Doomsday[4];
+					ItemStack stack;
+					EntityPlayer player = mc.thePlayer;
+
+					for (byte i = 0; i < 4; i++)
+					{
+						stack = player.getCurrentArmor(i);
+
+						if (stack != null && stack.getItem() instanceof TragicArmor)
+						{
+							doomsdays[i] = ((TragicArmor)stack.getItem()).doomsday;
+						}
+
+						if (stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.allowDoomScrollImbue)
+						{
+							doomsdays[i] = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
+						}
+
+						if (doomsday == null && doomsdays[i] != null) doomsday = doomsdays[i];
+					}
+
+					for (byte i = 0; i < 4; i++)
+					{
+						if (doomsdays[i] == null)
+						{
+							flag2 = false;
+							break;
+						}
+						else if (doomsdays[i] == doomsday)
+						{
+							flag2 = true;
+						}
+						else
+						{
+							flag2 = false;
+							break;
+						}
+					}
+
+					if (flag2 && doomsday != null && doomsday.doesCurrentDoomMeetRequirement(props)) flag = true;
 				}
 
 				if (flag)
 				{
 					if (buffer > 10 && buffer <= 20)
 					{
-						color = new Color(0xff, 0xf3, 0x68);
+						color = 0xFFF368;
 					}
 					else
 					{
-						color = new Color(0xff, 0xb8, 0x68);
+						color = 0xFFB868;
+					}
+
+					if (TragicConfig.showExtraDoomsdayInfoInGui)
+					{
+						shiftAmuStatus = true;
+						GlStateManager.pushMatrix();
+						GlStateManager.scale(0.475, 0.475, 0.475);
+						EnumDifficulty dif = mc.theWorld.getDifficulty();
+						String s3 = "Current Doomsday: " + doomsday.getLocalizedName() + (mc.thePlayer.isSneaking() && sneakFlag ? " (Sneak)" : "");
+						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 30, 0xAAAAAA);
+						s3 = "Cost/Cooldown: " + doomsday.getScaledDoomRequirement(dif) + " / " + doomsday.getScaledCooldown(dif);
+						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 40, 0xAAAAAA);
+						GlStateManager.popMatrix();
 					}
 				}
-			}
-			else
-			{
-				flag = false;
-				boolean flag2 = false;
-				Doomsday[] doomsdays = new Doomsday[4];
-				ItemStack stack;
-				EntityPlayer player = mc.thePlayer;
-				Doomsday doomsday = null;
 
-				for (int i = 0; i < 4; i++)
+				if (buffer > 20) buffer = 0;
+
+				if (difference != 0 && difTick > 0)
 				{
-					stack = player.getCurrentArmor(i);
-
-					if (stack != null && stack.getItem() instanceof TragicArmor)
-					{
-						if (i == 0)
-						{
-							doomsday = ((TragicArmor)stack.getItem()).doomsday;
-						}
-
-						doomsdays[i] = ((TragicArmor)stack.getItem()).doomsday;
-					}
-				}
-
-				for (int i = 0; i < 4; i++)
-				{
-					if (doomsdays[i] == null)
-					{
-						flag2 = false;
-					}
-					else if (doomsdays[i] == doomsday)
-					{
-						flag2 = true;
-					}
-					else
-					{
-						flag2 = false;
-					}
-				}
-
-				if (flag2 && doomsday != null && doomsday.doesCurrentDoomMeetRequirement(props)) flag = true;
-
-				if (flag)
-				{
-					if (buffer >= 10 && buffer <= 20)
-					{
-						color = new Color(0xff, 0xf3, 0x68);
-					}
-					else
-					{
-						color = new Color(0xff, 0xb8, 0x68);
-					}
+					boolean flg = difference > 0;
+					String s2 = (flg ? "+" : "") + difference;
+					int y = yPos + (TragicConfig.allowAnimatedGui ? (difTick / 2) : 0);
+					this.mc.fontRendererObj.drawString(s2, xPos + 70, y, flg ? 0x00FF00 : 0xFF0000);
 				}
 			}
 
-			if (buffer > 20)
-			{
-				buffer = 0;
-			}
+			GlStateManager.pushMatrix();
+			GlStateManager.scale(0.875, 0.875, 0.875);
+			this.mc.fontRendererObj.drawString(s, xPos + 11, yPos - 3, color);
+			GlStateManager.popMatrix();
+		}
+		else
+		{
+			isDoomDisplayed = false;
+		}
 
-			this.mc.fontRendererObj.drawString(s, xPos + 1, yPos, 0);
-			this.mc.fontRendererObj.drawString(s, xPos - 1, yPos, 0);
-			this.mc.fontRendererObj.drawString(s, xPos, yPos + 1, 0);
-			this.mc.fontRendererObj.drawString(s, xPos, yPos - 1, 0);
-			this.mc.fontRendererObj.drawString(s, xPos, yPos, color.getRGB());
-
-			if (difference != 0 && difTick > 0)
-			{
-				boolean flg = difference > 0;
-				String s2 = (flg ? "+" : "") + difference;
-				int y = yPos - 2 + (TragicConfig.allowAnimatedGui ? (difTick / 2) : 0);
-				this.mc.fontRendererObj.drawString(s2, xPos + 64, y, flg ? 0x00FF00 : 0xFF0000);
-			}
+		PropertyAmulets amu = PropertyAmulets.get(this.mc.thePlayer);
+		if (amu != null && amu.getSlotsOpen() > 0 && TragicConfig.showAmuletStatusGui)
+		{
+			this.mc.getTextureManager().bindTexture(newTextureStatus);
+			int length = 40;
+			if (amu.getSlotsOpen() == 2) length = 120;
+			if (amu.getSlotsOpen() == 3) length = 200;
+			int yShift = 36;
+			if (shiftAmuStatus) yShift += 24;
+			if (!isDoomDisplayed) yShift = 2;
+			GlStateManager.pushMatrix();
+			double scale = 0.375D;
+			GlStateManager.scale(scale, scale, scale);
+			drawTexturedModalRect(xPos + 10, yPos + yShift, 0, 0, length, 60);
+			GlStateManager.popMatrix();
 		}
 
 		GlStateManager.enableAlpha();
 		GlStateManager.enableDepth();
 		GlStateManager.disableBlend();
-	}
 
-	public static ResourceLocation getTextureFromConfig()
-	{
-		switch(TragicConfig.guiTexture)
+		ItemStack stack;
+		int yShift = 16;
+		if (shiftAmuStatus) yShift += 10;
+		if (!isDoomDisplayed) yShift = 1;
+
+		for (byte i = 0; i < 3 && TragicConfig.showAmuletStatusGui; i++)
 		{
-		case 0:
-			return texturepath3;
-		case 1:
-			return texturepath2;
-		case 2:
-			return texturepath;
-		default:
-			return texturepath4;
+			stack = amu.inventory.getStackInSlot(i);
+			if (stack != null)
+			{
+				mc.getRenderItem().renderItemAndEffectIntoGUI(stack, xPos - 2 + (24 * i), yPos + yShift);
+				mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, xPos - 3 + (24 * i), yPos + yShift, "");
+				GlStateManager.disableLighting();
+			}
+			else if (amu.getSlotsOpen() < i + 1 && TragicConfig.amuletMaxSlots >= i + 1)
+			{
+				this.mc.getTextureManager().bindTexture(newTextureStatus);
+				drawTexturedModalRect(xPos - 6 + (24 * i), yPos + yShift - 1, 0, 64, 16, 16);
+			}
 		}
 	}
 }
