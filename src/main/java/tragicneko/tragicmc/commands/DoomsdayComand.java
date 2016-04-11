@@ -11,6 +11,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.DoomsdayEffect;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
@@ -110,8 +111,8 @@ public class DoomsdayComand extends CommandBase {
 			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "That particular Doomsday is disabled, enable in config."));
 			return;
 		}
-
-		var1.addChatMessage(new ChatComponentText(mp.getName() + " used " + doomsday.getLocalizedName() + " via a command!"));
+	
+		TragicMC.logInfo(mp.getName() + " used " + doomsday.getLocalizedName() + " via a command!");
 		DoomsdayEffect effect = new DoomsdayEffect(doomsday.getDoomId(), doom, true);
 		DoomsdayManager.registerDoomsdayEffect(mp.getUniqueID(), effect);
 	}

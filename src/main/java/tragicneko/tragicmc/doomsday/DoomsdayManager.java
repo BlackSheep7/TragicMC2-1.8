@@ -241,7 +241,7 @@ public class DoomsdayManager {
 							}
 						}
 						list.remove(effect);
-						effect.player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.finish") + " " + effect.dday.getLocalizedName() + "!"));
+						if (effect.dday instanceof IExtendedDoomsday) effect.player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.finish") + " " + effect.dday.getLocalizedName() + "!"));
 					}
 				}
 
