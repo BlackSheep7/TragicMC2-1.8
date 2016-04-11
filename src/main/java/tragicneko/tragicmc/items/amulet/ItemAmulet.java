@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -23,6 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.properties.PropertyAmulets;
+import tragicneko.tragicmc.proxy.ClientProxy;
 import tragicneko.tragicmc.util.AmuletHelper;
 
 public class ItemAmulet extends Item {
@@ -90,11 +93,15 @@ public class ItemAmulet extends Item {
 	{
 		byte i = stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getByte("amuletLevel") : getDefaultLevels(this.amuletType);
 		String specialName = StatCollector.translateToLocal(this.amuletName.toLowerCase() + i + ".special");
-		par2List.add(EnumChatFormatting.RED + specialName);
+		par2List.add(EnumChatFormatting.RED + "\"" + specialName + "\"");
 
 		String s = "Amulet Level: ";
 		String s1 = getFormatFromLevel(i) + s + (this.amuletType == EnumAmuletType.EPIC ? "Epic" : (this.amuletType == EnumAmuletType.CURSED ? "Cursed" : i));
 		if (s1 != null) par2List.add(s1);
+		
+		par2List.add("");
+		par2List.add("To equip this, either right-click with it in your hand");
+		par2List.add("or hit " + Keyboard.getKeyName(ClientProxy.openAmuletGui.getKeyCode()) + " to open the Amulet Gui");
 	}
 
 	public EnumChatFormatting getFormatFromLevel(final byte i)
@@ -161,7 +168,7 @@ public class ItemAmulet extends Item {
 				if (amu.getSlotsOpen() == 1 && (i == 1 || i == 2)) continue;
 				if (amu.getSlotsOpen() == 2 && i == 2) continue;
 				if (!world.isRemote) amu.inventory.setInventorySlotContents(i, stack.copy());
-				stack.stackSize = 0;
+				stack.stackSize--;
 				break;
 			}
 		}

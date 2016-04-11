@@ -309,4 +309,5 @@ public class ClientEvents extends Gui {
 				if (color >= rgb.length) color = 0;
 			}
 		}
+
 }

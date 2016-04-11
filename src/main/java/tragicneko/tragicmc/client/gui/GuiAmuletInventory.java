@@ -3,6 +3,7 @@ package tragicneko.tragicmc.client.gui;
 import java.io.IOException;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -56,8 +57,7 @@ public class GuiAmuletInventory extends GuiContainer
 	 */
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-
-		//fontRendererObj.drawString(s, xSize - fontRendererObj.getStringWidth(s) - 40, 46, 4210752);
+		fontRendererObj.drawString(this.inventory.getName(), xSize - fontRendererObj.getStringWidth(this.inventory.getName()) - 40, -12, 0xAAAAAA);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class GuiAmuletInventory extends GuiContainer
 	 */
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
-		mc.renderEngine.bindTexture(getTextureFromConfig());
+		mc.renderEngine.bindTexture(iconLocation);
 		drawTexturedModalRect(guiLeft + 16, guiTop - 2, 0, 0, xSize, ySize + 24);
 	}
 

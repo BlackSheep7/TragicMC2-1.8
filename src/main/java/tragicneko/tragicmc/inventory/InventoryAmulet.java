@@ -5,6 +5,7 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.items.amulet.ItemAmulet;
 
 public class InventoryAmulet extends InventoryBasic {
@@ -41,7 +42,7 @@ public class InventoryAmulet extends InventoryBasic {
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
-		return stack != null && stack.getItem() instanceof ItemAmulet;
+		return stack != null && stack.getItem() instanceof ItemAmulet && stack.stackSize > 0;
 	}
 
 	public void writeToNBT(NBTTagCompound compound)
@@ -75,7 +76,9 @@ public class InventoryAmulet extends InventoryBasic {
 			byte slot = item.getByte("Slot");
 			if (slot >= 0 && slot < getSizeInventory())
 			{
-				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+				ItemStack stack = ItemStack.loadItemStackFromNBT(item);
+				if (stack == null && slot < 3) TragicMC.logInfo("stack was null");
+				setInventorySlotContents(slot, stack != null && (stack.stackSize == 0 || stack.getItemDamage() > stack.getMaxDamage()) ? null : stack);
 			}
 		}
 	}
