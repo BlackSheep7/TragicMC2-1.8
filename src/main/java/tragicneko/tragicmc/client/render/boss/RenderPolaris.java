@@ -25,6 +25,6 @@ public class RenderPolaris extends RenderBoss {
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return texture;
+		return entity.worldObj.isDaytime() ? texture : empty;
 	}
 }

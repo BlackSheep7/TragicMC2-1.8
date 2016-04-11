@@ -1,13 +1,12 @@
 package tragicneko.tragicmc.client.render.boss;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import tragicneko.tragicmc.client.model.ModelApis;
 import tragicneko.tragicmc.client.model.ModelClaymation;
 import tragicneko.tragicmc.client.model.ModelCustomGolem;
@@ -60,7 +59,7 @@ public class RenderClaymation extends RenderBoss {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
-		return texture;
+		return empty;
 	}
 
 }

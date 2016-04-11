@@ -31,10 +31,11 @@ public class RenderLayerAnimatedTexture implements LayerRenderer {
             GlStateManager.translate(f18, f19, 0.0F);
             GlStateManager.matrixMode(5888);
             GlStateManager.enableBlend();
-            float f10 = 0.5F;
-            GlStateManager.color(f10, f10, f10, 1.0F);
+            float f10 = 1.0F;
+            if (entity.hurtTime > 0) GlStateManager.color(f10, 0.5F, 0.5F, 0.5F);
+            else GlStateManager.color(f10, f10, f10, f10);
             GlStateManager.disableLighting();
-            GlStateManager.blendFunc(1, 1);
+            GlStateManager.blendFunc(1, 0);
             this.renderer.getMainModel().render(entity, f2, f3, f5, f6, f7, f8);
             GlStateManager.matrixMode(5890);
             GlStateManager.loadIdentity();

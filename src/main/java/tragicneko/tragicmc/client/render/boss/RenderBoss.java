@@ -1,18 +1,19 @@
 package tragicneko.tragicmc.client.render.boss;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.BossStatus;
-
-import org.lwjgl.opengl.GL11;
-
+import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public abstract class RenderBoss extends RenderLiving {
 
+	protected static final ResourceLocation empty = new ResourceLocation("tragicmc:textures/blocks/Transparency.png");
 	protected float scale;
 
 	public RenderBoss(RenderManager rm, ModelBase model, float shadowSize, float scale) {
