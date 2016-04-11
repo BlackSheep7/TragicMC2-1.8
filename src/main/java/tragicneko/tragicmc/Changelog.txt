@@ -4668,13 +4668,40 @@ the fly
 Modified how Mobs get their Mini-Boss instances when they transform so that they aren't constantly checked and updated every tick
 Fixed derp that caused some mob configs to have the wrong value from the config
 
-4.47.3037++ <220> (April 8, 2016)
-Doing stuff!
+4.48.3037++ <220> (April 8, 2016) [Addition of Neko Homeworld and it's associated objects, working on adding structures and the rest of the mobs]
+Fixed projectiles having wonky vector paths when used via the projectile item
+Made it so that Doomsday finish confirmation only displays for extended doomsdays
+Made it so that Doomsday command use confirmation only displays to the server log
+Fixed rendering of entities that had an animated texture
+Added new item, Nekoid Strain, for crafting of higher level Neko-related recipes
+Added new item, Warp Drive, to go to the Neko Homeworld
+Added new biomes and blocks for the Neko Homeworld dimension
+Added registration of Neko Homeworld
+Added new achievements for the Neko expansion questline
+Added sky renderer for Neko Homeworld, added new texture for Neko Grass and the Homeworld's sky
+Fixed all sky renderers not having the proper alpha set for them (resulting in really glaring sky textures)
+Fixed Collision ores not all being able to be smelted to get their corresponding ore drop
+Added Nekite ore that can be smelted into Nekite, which will be used for high-level Neko recipes, can also be smelted into Infallible Metal for other
+recipes
+Added Nekite Plate blocks, an iron-like block set with high blast resistance and very resistant to mining, crafted by using Nekite
+Fixed my grass blocks not allowing my bush types and tall grass types to be placed on them
+Fixed Digital Sea generation in the Synapse
+Did some testing with using vanilla stats (like using an item, killing a mob, etc.) but it didn't really work out, so I'll probably retry it later
+Reduced overall generation height of the Neko biomes
+Modified what information entity eggs store
+Fixed broken itemstacks not being removed from the Amulet Inventory (they display in the status gui until they get updated though)
+Rewrote Doom and Amulet Status GUIs, they now look cleaner and display more information (which is configurable), however, their textures aren't able to be
+configured anymore
+Added name display for the Amulet gui, added tooltip for Amulets that say how to open the Gui for them (for people that don't want to check the Wiki)
+Added display that tells people how to use the currently activatable doomsday (is activatable even a word?), this is again for people who don't want to
+look at the Wiki
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9, for now they can just use namespaced registries
 Rewrite the config (yet again), this time using generics to make the config class cleaner and remove the need to store hundreds of static variables
+Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my own drophelper's things are put into a json file in the
+config directory so that they can be easily modified by others, just like I'm planning on doing with the lores and enchantments
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
