@@ -176,7 +176,7 @@ public class SynapseChunkProvider implements IChunkProvider
 
                 for (int k1 = 127; k1 >= 0; --k1)
                 {
-                    if (k1 < 106 - this.synapseRNG.nextInt(5) && k1 > 14 + this.synapseRNG.nextInt(5))
+                    if (k1 < 109 - this.synapseRNG.nextInt(5) && k1 > 21 + this.synapseRNG.nextInt(5))
                     {
                         IBlockState iblockstate2 = primer.getBlockState(l, k1, k);
 
@@ -227,7 +227,7 @@ public class SynapseChunkProvider implements IChunkProvider
                     }
                     else
                     {
-                        primer.setBlockState(l, k1, k, TragicConfig.allowDigitalSeaGen || synapseRNG.nextInt(16) != 0 ? TragicBlocks.DigitalSea.getDefaultState() : Blocks.air.getDefaultState());
+                        primer.setBlockState(l, k1, k, TragicConfig.allowDigitalSeaGen && synapseRNG.nextInt(6) != 0 && k1 > 8 ? TragicBlocks.DigitalSea.getDefaultState() : Blocks.air.getDefaultState());
                     }
                 }
             }
