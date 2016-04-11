@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.client.gui;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -24,6 +25,7 @@ import tragicneko.tragicmc.items.weapons.TragicTool;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.proxy.ClientProxy;
 
 @SideOnly(Side.CLIENT)
 public class GuiDoom extends Gui
@@ -244,6 +246,10 @@ public class GuiDoom extends Gui
 						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 30, 0xAAAAAA);
 						s3 = "Cost/Cooldown: " + doomsday.getScaledDoomRequirement(dif) + " / " + doomsday.getScaledCooldown(dif);
 						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 40, 0xAAAAAA);
+						
+						GlStateManager.scale(0.745, 0.745, 0.745);
+						String s4 = "Press " + Keyboard.getKeyName(ClientProxy.useSpecial.getKeyCode()) + " to activate!";
+						this.mc.fontRendererObj.drawString(s4, xPos + 48, yPos + 25, color);
 						GlStateManager.popMatrix();
 					}
 				}
