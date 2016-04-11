@@ -37,6 +37,7 @@ import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class ItemProjectile extends Item {
 
@@ -62,30 +63,14 @@ public class ItemProjectile extends Item {
 	{
 		if (world.isRemote) return stack;
 
-		int i = stack.getItemDamage();
+		final int i = stack.getItemDamage();
 
-		float f = 1.0F;
-		float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
-		float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * f;
-		double d0 = player.prevPosX + (player.posX - player.prevPosX) * f;
-		double d1 = player.prevPosY + (player.posY - player.prevPosY) * f + (player.worldObj.isRemote ? player.getEyeHeight() - player.getDefaultEyeHeight() : player.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
-		double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * f;
-		Vec3 vec3 = new Vec3(d0, d1, d2);
-		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
-		float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
-		float f5 = -MathHelper.cos(-f1 * 0.017453292F);
-		float f6 = MathHelper.sin(-f1 * 0.017453292F);
-		float f7 = f4 * f5;
-		float f8 = f3 * f5;
-		double d3 = 6.0D;
+		Vec3 vec = WorldHelper.getVecFromEntity(player);
+		if (vec == null) return stack;
 
-		Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
-		MovingObjectPosition mop = world.rayTraceBlocks(vec3, vec31, true, false, true);
-
-
-		double x = mop.hitVec.xCoord - player.posX;
-		double y = mop.hitVec.yCoord - player.posY;
-		double z = mop.hitVec.zCoord - player.posZ;
+		double x = vec.xCoord - player.posX;
+		double y = vec.yCoord - (player.posY + player.height / 2.0F);
+		double z = vec.zCoord - player.posZ;
 		float f9 = 0.12F * 6.0F * 0.9275F;
 
 		Entity entity = null;
