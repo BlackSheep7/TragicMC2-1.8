@@ -248,6 +248,8 @@ public class TragicItems {
 	public static Item NekoMindControlDevice;
 	public static Item RecaptureSiphon;
 	public static Item NekoInfluencer;
+	public static Item NekoidStrain; //Drops from Professor Nekoid, used to craft Nekoid's devices (as they require his biometric signature to use)
+	public static Item Nekite; //Neko Homeworld exclusive metal that they use for crafting armor, can be smelted into infallible metal
 	
 	//Records (Set and file numbers)
 	public static Item Starstruck; //S1F1
@@ -285,8 +287,8 @@ public class TragicItems {
 	public static Item DeathglowSeeds;
 	public static Item SkyFruitSeeds;
 
-	public static Item DimensionalKey, DimensionalKeyEnd, DimensionalKeyNether, DimensionalKeySynapse, DimensionalKeyWilds;
-	public static Item SynapseLink, SynapseCrystal;
+	public static Item DimensionalKey, DimensionalKeyEnd, DimensionalKeyNether, DimensionalKeySynapse, DimensionalKeyNekoHomeworld, DimensionalKeyWilds;
+	public static Item SynapseLink, SynapseCrystal, WarpDrive;
 
 	public static Item BowOfJustice;
 	public static Item SwordOfJustice;
@@ -737,6 +739,12 @@ public class TragicItems {
 		
 		NekoInfluencer = (new ItemNekoInfluencer().setUnlocalizedName("tragicmc.nekoInfluencer").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(NekoInfluencer, "nekoInfluencer");
+		
+		NekoidStrain = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoidStrain").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(NekoidStrain, "nekoidStrain");
+		
+		Nekite = (new ItemGeneric().setUnlocalizedName("tragicmc.nekite").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(Nekite, "nekite");
 		
 		//Records
 		Starstruck = (new ItemFile("starstruck", 0xCFB677));
@@ -1236,12 +1244,19 @@ public class TragicItems {
 
 			DimensionalKeySynapse = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
 			GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
+			
+			DimensionalKeyNekoHomeworld = (new ItemDimensionalKey(4).setUnlocalizedName("tragicmc.dimensionalKey.nekoHomeworld").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
+			GameRegistry.registerItem(DimensionalKeyNekoHomeworld, "dimensionalKeyNekoHomeworld");
+			
 			/*
-			DimensionalKeyWilds = (new ItemDimensionalKey(TragicConfig.synapseID + 1).setUnlocalizedName("tragicmc.dimensionalKey.wilds").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
+			DimensionalKeyWilds = (new ItemDimensionalKey(5).setUnlocalizedName("tragicmc.dimensionalKey.wilds").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
 			GameRegistry.registerItem(DimensionalKeyWilds, "dimensionalKeyWilds"); */
 
 			SynapseLink = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(SynapseLink, "synapseLink");
+			
+			WarpDrive = (new ItemDimensionalKey(4).setUnlocalizedName("tragicmc.warpDrive").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
+			GameRegistry.registerItem(WarpDrive, "warpDrive");
 		}
 
 		if (TragicConfig.allowDoomsdays)

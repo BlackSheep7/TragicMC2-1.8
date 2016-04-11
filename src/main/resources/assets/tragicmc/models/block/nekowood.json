@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "tragicmc:blocks/NekowoodLogTop",
+        "side": "tragicmc:blocks/NekowoodLogSide"
+    }
+}

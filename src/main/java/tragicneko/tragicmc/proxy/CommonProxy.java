@@ -1,15 +1,30 @@
 package tragicneko.tragicmc.proxy;
 
+import java.util.Set;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.common.collect.Sets;
+
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.stats.StatCrafting;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -67,10 +82,116 @@ public class CommonProxy implements IGuiHandler {
 
 	public static final int AMULET_GUI_ID = 0;
 
-	public void init(FMLInitializationEvent event){}
+	public void init(FMLInitializationEvent event){
+
+	}
+
+	public void postInit(FMLPostInitializationEvent event) {
+		/*//might try to implement this later on, for now it doesn't really work correctly
+		if (TragicConfig.allowNonMobBlocks && TragicConfig.allowNonMobItems)
+		{
+			TragicMC.logInfo("Recreating stats for blocks, items and mobs...");
+			try
+			{
+				recreateStatList();
+			}
+			catch (Exception e)
+			{
+				TragicMC.logError("Error caught while attempting to recreate stats", e);
+			}
+		} */
+	}
+
+	private static void recreateStatList() {
+		for (Block block : Block.blockRegistry)
+		{
+			Item item = Item.getItemFromBlock(block);
+
+			if (item != null)
+			{
+				int i = Block.getIdFromBlock(block);
+				String s = getResourceFor(item);
+
+				if (s != null && block.getEnableStats() && StatList.mineBlockStatArray[i] == null)
+				{
+					StatList.mineBlockStatArray[i] = (new StatCrafting("stat.mineBlock.", s, new ChatComponentTranslation("stat.mineBlock", new Object[] {(new ItemStack(block)).getChatComponent()}), item)).registerStat();
+					StatList.objectMineStats.add((StatCrafting)StatList.mineBlockStatArray[i]);
+				}
+			}
+		}
+
+		for (Item item : Item.itemRegistry)
+		{
+			if (item != null)
+			{
+				int i = Item.getIdFromItem(item);
+				String s = getResourceFor(item);
+
+				if (s != null && StatList.objectUseStats[i] == null)
+				{
+					StatList.objectUseStats[i] = (new StatCrafting("stat.useItem.", s, new ChatComponentTranslation("stat.useItem", new Object[] {(new ItemStack(item)).getChatComponent()}), item)).registerStat();
+
+					if (!(item instanceof ItemBlock))
+					{
+						StatList.itemStats.add((StatCrafting)StatList.objectUseStats[i]);
+					}
+				}
+			}
+		}
+
+		for (Item item : Item.itemRegistry)
+		{
+			if (item != null)
+			{
+				int i = Item.getIdFromItem(item);
+				String s = getResourceFor(item);
+
+				if (s != null && item.isDamageable() && StatList.objectBreakStats[i] == null)
+				{
+					StatList.objectBreakStats[i] = (new StatCrafting("stat.breakItem.", s, new ChatComponentTranslation("stat.breakItem", new Object[] {(new ItemStack(item)).getChatComponent()}), item)).registerStat();
+				}
+			}
+		}
+
+		Set<Item> set = Sets.<Item>newHashSet();
+
+		for (IRecipe irecipe : CraftingManager.getInstance().getRecipeList())
+		{
+			if (irecipe.getRecipeOutput() != null)
+			{
+				set.add(irecipe.getRecipeOutput().getItem());
+			}
+		}
+
+		for (ItemStack itemstack : FurnaceRecipes.instance().getSmeltingList().values())
+		{
+			set.add(itemstack.getItem());
+		}
+
+		for (Item item : set)
+		{
+			if (item != null)
+			{
+				int i = Item.getIdFromItem(item);
+				String s = getResourceFor(item);
+
+				if (s != null && StatList.objectCraftStats[i] == null)
+				{
+					StatList.objectCraftStats[i] = (new StatCrafting("stat.craftItem.", s, new ChatComponentTranslation("stat.craftItem", new Object[] {(new ItemStack(item)).getChatComponent()}), item)).registerStat();
+				}
+			}
+		}
+	}
+
+	private static String getResourceFor(Item p_180204_0_)
+	{
+		ResourceLocation resourcelocation = (ResourceLocation)Item.itemRegistry.getNameForObject(p_180204_0_);
+		return resourcelocation != null ? resourcelocation.toString().replace(':', '.') : null;
+	}
 
 	public void preInit(FMLPreInitializationEvent event) {
 		TragicConfig.load(event);
+		//TragicNewConfig.load(event); //parallel testing to be done after the rewrite is finished up
 
 		if (TragicConfig.allowPotions)
 		{
@@ -142,13 +263,14 @@ public class CommonProxy implements IGuiHandler {
 				DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
 				TragicMC.logInfo("Dimension (Synapse) was registered with an ID of " + TragicConfig.synapseID);
 			}
-			/* 
-			int id = TragicConfig.synapseID + 1;
-			if (DimensionManager.isDimensionRegistered(id)) id = DimensionManager.getNextFreeDimId();
-			int provId = id;
 
-			DimensionManager.registerProviderType(provId, tragicneko.tragicmc.dimension.WildsWorldProvider.class, false);
-			DimensionManager.registerDimension(id, provId); */
+			DimensionManager.registerProviderType(4, tragicneko.tragicmc.dimension.NekoHomeworldProvider.class, false);
+			DimensionManager.registerDimension(4, 4);
+			TragicMC.logInfo("Dimension (Neko Homeworld) was registered with an ID of " + 4);
+			/* 
+			DimensionManager.registerProviderType(5, tragicneko.tragicmc.dimension.WildsWorldProvider.class, false);
+			DimensionManager.registerDimension(5, 5);
+			TragicMC.logInfo("Dimension (The Wilds) was registered with an ID of " + 5); */
 
 			TragicBiome.load();
 			MinecraftForge.ORE_GEN_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
@@ -168,7 +290,7 @@ public class CommonProxy implements IGuiHandler {
 			TragicMC.logWarning("Challenge Scrolls are enabled in config but are disabled due to certain things being disabled. This is to prevent game crashes from ocurring.");
 			TragicConfig.allowChallengeScrolls = false;
 		}
-		
+
 		if (TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks) registerEvent(new DropEvents());
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(TragicMC.getInstance(), this);

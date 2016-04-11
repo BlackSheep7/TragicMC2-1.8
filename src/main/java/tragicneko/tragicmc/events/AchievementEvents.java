@@ -21,6 +21,9 @@ import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.dimension.NekoHomeworldProvider;
+import tragicneko.tragicmc.dimension.SynapseWorldProvider;
+import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
@@ -185,6 +188,7 @@ public class AchievementEvents {
 					if (doom.getCurrentDoom() == doom.getMaxDoom()) mp.triggerAchievement(TragicAchievements.doom);
 				}
 			}
+			
 			if (inv.hasItem(TragicItems.NekoMindControlDevice))
 			{
 				mp.triggerAchievement(TragicAchievements.tragicNekoDevice);
@@ -194,11 +198,22 @@ public class AchievementEvents {
 			{
 				mp.triggerAchievement(TragicAchievements.tragicNekoInfluence);
 			}
+			
+			if (inv.hasItem(TragicItems.WarpDrive))
+			{
+				mp.triggerAchievement(TragicAchievements.tragicNekoWarpDrive);
+			}
+			
+			if (inv.hasItem(TragicItems.NekoLauncher))
+			{
+				mp.triggerAchievement(TragicAchievements.tragicNekoLauncher);
+			}
 
 			if (mp.worldObj != null)
 			{
-				if (mp.worldObj.provider.getDimensionId() == TragicConfig.collisionID) mp.triggerAchievement(TragicAchievements.collision);
-				if (mp.worldObj.provider.getDimensionId() == TragicConfig.synapseID) mp.triggerAchievement(TragicAchievements.synapse);
+				if (mp.worldObj.provider instanceof TragicWorldProvider) mp.triggerAchievement(TragicAchievements.collision);
+				if (mp.worldObj.provider instanceof SynapseWorldProvider) mp.triggerAchievement(TragicAchievements.synapse);
+				if (mp.worldObj.provider instanceof NekoHomeworldProvider) mp.triggerAchievement(TragicAchievements.tragicNekoHomeworld);
 			}
 
 			if (TragicConfig.allowFlight && mp.isPotionActive(TragicPotion.Flight)) mp.triggerAchievement(TragicAchievements.flight);

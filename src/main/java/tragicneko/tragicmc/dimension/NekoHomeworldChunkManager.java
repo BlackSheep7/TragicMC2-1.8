@@ -44,9 +44,9 @@ public class NekoHomeworldChunkManager extends WorldChunkManager
 
 	public void addBiomes(List<BiomeGenBase> list)
 	{
-		list.add(TragicBiome.DecayingWasteland);
-		list.add(TragicBiome.AshenMountains);
-		list.add(TragicBiome.HallowedForest);
+		list.add(TragicBiome.NekoBarrens);
+		list.add(TragicBiome.NekoForest);
+		list.add(TragicBiome.NekoHeights);
 	}
 
 	public static GenLayer[] getGenLayers(long seed, WorldType worldType)

@@ -33,6 +33,7 @@ public class TragicSkyRenderer extends IRenderHandler {
 		for (byte i = 0; i < 6; ++i)
 		{
 			GlStateManager.pushMatrix();
+			GlStateManager.color(1.0F, 1.0F, 1.0F, 0.446F);
 
 			if (i == 1)
 			{

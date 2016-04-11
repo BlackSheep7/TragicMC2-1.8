@@ -22,6 +22,7 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenNekoBarrens;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
@@ -48,6 +49,9 @@ public class TragicBiome extends BiomeGenBase {
 	
 	//Synapse biomes
 	public static BiomeGenBase Synapse, SynapseDead, SynapseCorrupt;
+	
+	//Neko Homeworld biomes
+	public static BiomeGenBase NekoBarrens, NekoHeights, NekoForest;
 	
 	//Wilds biomes
 	public static BiomeGenBase WildPlains, IriseiPlains, SeraleisSerenade;
@@ -242,6 +246,12 @@ public class TragicBiome extends BiomeGenBase {
 		DarkForestHills = new BiomeGenDarkForest(TragicConfig.idDarkForestHills, (byte) 1).setBiomeName("tragicmc.darkForestHills");
 		DarkMarsh = new BiomeGenDarkForest(TragicConfig.idDarkMarsh, (byte) 2).setBiomeName("tragicmc.darkMarsh");
 		
+		//Neko-related biomes
+		NekoBarrens = new BiomeGenNekoBarrens(200, (byte) 0).setBiomeName("tragicmc.nekoBarrens");
+		NekoForest = new BiomeGenNekoBarrens(201, (byte) 1).setBiomeName("tragicmc.nekoForest");
+		NekoHeights = new BiomeGenNekoBarrens(202, (byte) 2).setBiomeName("tragicmc.nekoHeights");
+		
+		/*
 		//Wilds/Nerve Center biomes
 		WildPlains = new BiomeGenWilds(200, (byte) 0).setBiomeName("tragicmc.wildPlains");
 		IriseiPlains = new BiomeGenWilds(201, (byte) 1).setBiomeName("tragicmc.iriseiPlains");
@@ -343,6 +353,6 @@ public class TragicBiome extends BiomeGenBase {
 		DesolateDepths = new BiomeGenWilds(247, (byte) 2).setBiomeName("tragicmc.desolateDepths");
 		DesolateDepths.topBlock = Blocks.bedrock.getDefaultState();
 		
-		NerveCenter = new BiomeGenWilds(249, (byte) 0).setBiomeName("tragicmc.nerveCenter");
+		NerveCenter = new BiomeGenWilds(249, (byte) 0).setBiomeName("tragicmc.nerveCenter"); */
 	}
 }

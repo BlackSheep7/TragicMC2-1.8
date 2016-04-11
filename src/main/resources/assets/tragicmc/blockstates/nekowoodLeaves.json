@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "check_decay=true,decayable=true": { "model": "tragicmc:nekowoodLeaves" },
+        "check_decay=true,decayable=false": { "model": "tragicmc:nekowoodLeaves" },
+        "check_decay=false,decayable=true": { "model": "tragicmc:nekowoodLeaves" },
+        "check_decay=false,decayable=false": { "model": "tragicmc:nekowoodLeaves" }
+    }
+}

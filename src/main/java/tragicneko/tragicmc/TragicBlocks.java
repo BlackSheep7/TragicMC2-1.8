@@ -68,6 +68,7 @@ import tragicneko.tragicmc.blocks.BlockLightCobble;
 import tragicneko.tragicmc.blocks.BlockLuminescence;
 import tragicneko.tragicmc.blocks.BlockMoltenRock;
 import tragicneko.tragicmc.blocks.BlockMoss;
+import tragicneko.tragicmc.blocks.BlockNekitePlate;
 import tragicneko.tragicmc.blocks.BlockObsidianVariant;
 import tragicneko.tragicmc.blocks.BlockOverlordBarrier;
 import tragicneko.tragicmc.blocks.BlockPermafrost;
@@ -240,6 +241,14 @@ public class TragicBlocks {
 	public static Block Honeydrop;
 
 	public static Block Corsin;
+	
+	public static Block NekoGrass;
+	public static Block Nekowood;
+	public static Block NekowoodPlanks;
+	public static Block NekiteOre;
+	public static Block NekowoodLeaves;
+	public static Block NekoBush;
+	public static Block NekitePlate;
 
 	public static void load()
 	{
@@ -688,6 +697,27 @@ public class TragicBlocks {
 
 		Corsin = new BlockCorsin().setUnlocalizedName("tragicmc.corsin");
 		GameRegistry.registerBlock(Corsin, TragicItemBlock.class, "corsin", new Object[] {new String[] {"normal", "faded", "brick", "fadedBrick", "circle", "celled", "scarred", "crystal", "crystalWrap"}, "corsin"});
+		
+		NekoGrass = new BlockGenericGrass("Neko").setUnlocalizedName("tragicmc.nekoGrass");
+		GameRegistry.registerBlock(NekoGrass, ItemBlock.class, "nekoGrass");
+		
+		Nekowood = new BlockGenericLog(3).setUnlocalizedName("tragicmc.nekowood");
+		GameRegistry.registerBlock(Nekowood, ItemBlock.class, "nekowood");
+		
+		NekowoodLeaves = new BlockGenericLeaves().setUnlocalizedName("tragicmc.nekowoodLeaves");
+		GameRegistry.registerBlock(NekowoodLeaves, ItemBlock.class, "nekowoodLeaves");
+		
+		NekowoodPlanks = new BlockGenericPlanks().setUnlocalizedName("tragicmc.nekowoodPlanks");
+		GameRegistry.registerBlock(NekowoodPlanks, ItemBlock.class, "nekowoodPlanks");
+		
+		NekiteOre = new BlockGenericOre(3, true).setUnlocalizedName("tragicmc.nekiteOre");
+		GameRegistry.registerBlock(NekiteOre, ItemBlock.class, "nekiteOre");
+		
+		NekoBush = new BlockGenericBush().setUnlocalizedName("tragicmc.nekoBush");
+		GameRegistry.registerBlock(NekoBush, ItemBlock.class, "nekoBush");
+		
+		NekitePlate = new BlockNekitePlate().setUnlocalizedName("tragicmc.nekitePlate");
+		GameRegistry.registerBlock(NekitePlate, TragicItemBlock.class, "nekitePlate", new Object[] {new String[] {"compressed", "normal", "smooth", "cross", "marked", "grated"}, "nekitePlate"});
 
 		for (byte i = 0; i < 3; i++)
 		{
@@ -724,6 +754,8 @@ public class TragicBlocks {
 		OreDictionary.registerOre("plankWood", HallowedPlanks);
 		OreDictionary.registerOre("logWood", Darkwood);
 		OreDictionary.registerOre("plankWood", DarkwoodPlanks);
+		OreDictionary.registerOre("logWood", Nekowood);
+		OreDictionary.registerOre("plankWood", NekowoodPlanks);
 
 		java.util.Set<BiomeGenBase> set = FlowerWorldGen.allowedBiomes;
 		BiomeGenBase[] biomes = set.toArray(new BiomeGenBase[set.size()]);

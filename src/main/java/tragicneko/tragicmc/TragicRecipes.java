@@ -18,7 +18,12 @@ public class TragicRecipes {
 		GameRegistry.addSmelting(TragicItems.RedMercury, new ItemStack(TragicItems.Quicksilver), 1F);
 		GameRegistry.addSmelting(TragicBlocks.MercuryOre, new ItemStack(TragicItems.RedMercury), 2F);
 		GameRegistry.addSmelting(TragicBlocks.TungstenOre, new ItemStack(TragicItems.Tungsten), 3.5F);
+		GameRegistry.addSmelting(TragicBlocks.NekiteOre, new ItemStack(TragicItems.Nekite), 5F);
+		GameRegistry.addSmelting(TragicItems.Nekite, new ItemStack(TragicItems.InfallibleMetal), 10F);
 		GameRegistry.addSmelting(new ItemStack(TragicBlocks.TragicOres, 1, 0), new ItemStack(TragicItems.RedMercury), 2F);
+		GameRegistry.addSmelting(new ItemStack(TragicBlocks.TragicOres, 1, 1), new ItemStack(TragicItems.Tungsten), 2F);
+		GameRegistry.addSmelting(new ItemStack(TragicBlocks.TragicOres, 1, 7), new ItemStack(Items.gold_ingot), 2F);
+		GameRegistry.addSmelting(new ItemStack(TragicBlocks.TragicOres, 1, 8), new ItemStack(Items.iron_ingot), 2F);
 		GameRegistry.addSmelting(TragicBlocks.DarkCobblestone, new ItemStack(TragicBlocks.DarkStone, 1, 0), 1F);
 		GameRegistry.addSmelting(TragicBlocks.LightCobblestone, new ItemStack(TragicBlocks.LightStone, 1, 0), 1F);
 		GameRegistry.addSmelting(TragicBlocks.AshenWood, new ItemStack(Items.coal, 1, 1), 0.5F);
@@ -26,6 +31,7 @@ public class TragicRecipes {
 		GameRegistry.addSmelting(TragicBlocks.HallowedWood, new ItemStack(Items.coal, 1, 1), 0.5F);
 		GameRegistry.addSmelting(TragicBlocks.PaintedWood, new ItemStack(Items.coal, 1, 1), 0.5F);
 		GameRegistry.addSmelting(TragicBlocks.Darkwood, new ItemStack(Items.coal, 1, 1), 0.5F);
+		GameRegistry.addSmelting(TragicBlocks.Nekowood, new ItemStack(Items.coal, 1, 1), 0.5F);
 
 		//Crafting Recipes
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.QuicksilverIngot, 1),
@@ -472,13 +478,66 @@ public class TragicRecipes {
 				'y', TragicItems.NekoMindControlDevice
 				);
 		
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NekoInfluencer, 1),
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.WarpDrive, 1),
 				"yxy",
 				"xzx",
 				"yxy",
 				'x', TragicItems.ComplexCircuitry,
 				'y', TragicItems.NekoMindControlDevice,
 				'z', TragicItems.RecaptureSiphon
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NekoInfluencer, 1),
+				"yxy",
+				"xzx",
+				"yxy",
+				'x', TragicItems.ComplexCircuitry,
+				'y', TragicItems.RecaptureSiphon,
+				'z', TragicItems.NekoidStrain
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 8, 0),
+				"xxx",
+				"xxx",
+				"xxx",
+				'x', TragicItems.Nekite
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 2),
+				"xyx",
+				"yxy",
+				"xyx",
+				'x', TragicItems.Nekite,
+				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 0)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 1),
+				"xx",
+				"xx",
+				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 3),
+				"xy",
+				"yx",
+				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2),
+				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 0)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 8, 5),
+				"xyx",
+				"yxy",
+				"xyx",
+				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2),
+				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 0)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 8, 4),
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2),
+				'y', TragicItems.Nekite
 				);
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.CelestialSteel, 1),
@@ -756,9 +815,9 @@ public class TragicRecipes {
 				"zwz",
 				"yxz",
 				'z', TragicItems.InfallibleMetal,
-				'y', TragicItems.ComplexCircuitry,
+				'y', TragicItems.RecaptureSiphon,
 				'x', TragicItems.Shadowskin,
-				'w', TragicItems.RecaptureSiphon
+				'w', TragicItems.NekoidStrain
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LightIngot, 1),

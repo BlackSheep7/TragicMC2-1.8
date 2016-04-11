@@ -14,9 +14,9 @@ public class NekoHomeworldBiomeGenLayer extends GenLayer {
 
 	public NekoHomeworldBiomeGenLayer(long seed) {
 		super(seed);
-		biomeList.add(TragicBiome.DecayingWasteland); //barrens
-		biomeList.add(TragicBiome.HallowedForest); //forest
-		biomeList.add(TragicBiome.AshenMountains); //heights
+		biomeList.add(TragicBiome.NekoBarrens); //barrens
+		biomeList.add(TragicBiome.NekoForest); //forest
+		biomeList.add(TragicBiome.NekoHeights); //heights
 	}
 
 	@Override

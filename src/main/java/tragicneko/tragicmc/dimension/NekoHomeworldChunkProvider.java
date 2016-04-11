@@ -25,13 +25,10 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.worldgen.DimensionLayerWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionOreWorldGen;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen2;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionDungeon;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionLakes;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 
 public class NekoHomeworldChunkProvider implements IChunkProvider
 {
@@ -56,14 +53,11 @@ public class NekoHomeworldChunkProvider implements IChunkProvider
 	double[] field_147426_g;
 	int[][] field_73219_j = new int[32][32];
 
-	private final int dependency;
-
 	public NekoHomeworldChunkProvider(World par1World, long par2, boolean par4)
 	{
 		this.worldObj = par1World;
 		this.rand = new Random(par2);
 		int i = (MathHelper.ceiling_double_int((((par2 % 121L) + (par2 / 1452749627L) )/ 256)) % 256);
-		this.dependency = (Math.abs(i) % 128) + 32;
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.noiseGen2 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.noiseGen3 = new NoiseGeneratorOctaves(this.rand, 8);
@@ -343,22 +337,21 @@ public class NekoHomeworldChunkProvider implements IChunkProvider
 			i2 = l + this.rand.nextInt(16);
 			new WorldGenMinable(TragicBlocks.DeadDirt.getStateFromMeta(2), 8, BlockHelper.forBlock(DarkStone)).generate(this.worldObj, this.rand, new BlockPos(k1, l1, i2));
 		}
+		
+		for (i = 0; i < 4; i++)
+		{
+			k1 = k + this.rand.nextInt(16) + 8;
+			l1 = this.rand.nextInt(246) + 10;
+			i2 = l + this.rand.nextInt(16);
+			new WorldGenMinable(TragicBlocks.NekiteOre.getDefaultState(), 3, BlockHelper.forBlock(DarkStone)).generate(this.worldObj, this.rand, new BlockPos(k1, l1, i2));
+		}
 
-		if (this.rand.nextInt(4) == 0 && biomegenbase.getTempCategory() != BiomeGenBase.TempCategory.COLD)
+		if (this.rand.nextInt(4) == 0)
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
 			l1 = this.rand.nextInt(256);
 			i2 = l + this.rand.nextInt(16) + 8;
 			(new WorldGenDimensionLakes()).generate(this.worldObj, this.rand, new BlockPos(k1, l1, i2));
-		}
-
-		byte r = (byte) (biomegenbase instanceof BiomeGenScorchedWasteland ? 16 : 4);
-		if (this.rand.nextInt(r) == 0)
-		{
-			k1 = k + this.rand.nextInt(16) + 8;
-			l1 = this.rand.nextInt(this.rand.nextInt(248) + 8);
-			i2 = l + this.rand.nextInt(16) + 8;
-			if (this.rand.nextInt(10) == 0) (new WorldGenDimensionLakes()).generate(this.worldObj, this.rand, new BlockPos(k1, l1, i2));
 		}
 
 		for (k1 = 0; k1 < 32; ++k1)
@@ -369,7 +362,6 @@ public class NekoHomeworldChunkProvider implements IChunkProvider
 			(new WorldGenDimensionDungeon()).generate(this.worldObj, this.rand, new BlockPos(l1, i2, j2));
 		}
 
-		if (TragicConfig.allowDarkStoneVariantGen) (new DimensionLayerWorldGen()).generate(this.rand, x, z, this.worldObj);
 		biomegenbase.decorate(this.worldObj, this.rand, pos);
 		(new DimensionOreWorldGen()).generate(this.rand, x, z, this.worldObj);
 		(new FlowerWorldGen2()).generate(this.rand, x, z, this.worldObj);
@@ -427,10 +419,5 @@ public class NekoHomeworldChunkProvider implements IChunkProvider
 	@Override
 	public Chunk provideChunk(BlockPos blockPosIn) {
 		return this.provideChunk(blockPosIn.getX() >> 4, blockPosIn.getZ() >> 4);
-	}
-
-	public int getWorldDependency()
-	{
-		return this.dependency;
 	}
 }

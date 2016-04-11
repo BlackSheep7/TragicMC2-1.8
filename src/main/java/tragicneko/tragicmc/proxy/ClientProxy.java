@@ -27,7 +27,6 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySoulChest;
-import tragicneko.tragicmc.client.gui.GuiAmuletStatus;
 import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
 import tragicneko.tragicmc.client.model.ModelArchangel;
@@ -96,6 +95,7 @@ import tragicneko.tragicmc.client.render.mob.RenderRagr;
 import tragicneko.tragicmc.client.render.mob.RenderStin;
 import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
+import tragicneko.tragicmc.dimension.NekoHomeworldSkyRenderer;
 import tragicneko.tragicmc.dimension.SynapseSkyRenderer;
 import tragicneko.tragicmc.dimension.TragicSkyRenderer;
 import tragicneko.tragicmc.doomsday.Doomsday;
@@ -209,6 +209,7 @@ public class ClientProxy extends CommonProxy {
 
 	public static final IRenderHandler collisionSkyRenderer = new TragicSkyRenderer();
 	public static final IRenderHandler synapseSkyRenderer = new SynapseSkyRenderer();
+	public static final IRenderHandler nekoHWSkyRenderer = new NekoHomeworldSkyRenderer();
 
 	private static final int ZERO = 0;
 
@@ -219,8 +220,7 @@ public class ClientProxy extends CommonProxy {
 		Minecraft mc = Minecraft.getMinecraft();
 
 		//Gui event registration
-		if (TragicConfig.showDoomGui) registerEvent(new GuiDoom(mc));
-		if (TragicConfig.showAmuletStatusGui) registerEvent(new GuiAmuletStatus(mc));
+		if (TragicConfig.showDoomGui || TragicConfig.showAmuletStatusGui) registerEvent(new GuiDoom(mc));
 
 		//Keybinding registrations
 		ClientRegistry.registerKeyBinding(useSpecial);
@@ -261,13 +261,14 @@ public class ClientProxy extends CommonProxy {
 			"halon", "rizaphora", "blackSpot", "nannon", "barbedWire", "kern", "flahgrass"};
 	private static String[] colors = new String[] {"white", "orange", "magenta", "lightBlue", "yellow", "lime", "pink", "gray", "silver", "cyan", "purple", "blue", "brown",
 			"green", "red", "black"};
-	private static String[] erodedStone = new String[] {"erodedStone", "erodedStoneCarved", "erodedStoneScattered"};
-	private static String[] darkenedQuartz = new String[] {"darkenedQuartz", "darkenedQuartzChiseled", "darkenedQuartzPillared"};
-	private static String[] circuitBlock = new String[] {"circuitLive", "circuitDamaged", "circuitVeryDamaged", "circuitAged", "circuitDead"};
-	private static String[] aeris = new String[] {"aerisPure", "aerisCorrupting", "aerisCorrupt"};
-	private static String[] permafrost = new String[] {"permafrost", "permafrostCracked"};
-	private static String[] corsin = new String[] {"corsin", "corsinFaded", "corsinBrick", "corsinFadedBrick", "corsinCircle", "corsinCelled", "corsinScarred", "corsinCrystal", "corsinCrystalWrap"};
-
+	private static final String[] erodedStone = new String[] {"erodedStone", "erodedStoneCarved", "erodedStoneScattered"};
+	private static final String[] darkenedQuartz = new String[] {"darkenedQuartz", "darkenedQuartzChiseled", "darkenedQuartzPillared"};
+	private static final String[] circuitBlock = new String[] {"circuitLive", "circuitDamaged", "circuitVeryDamaged", "circuitAged", "circuitDead"};
+	private static final String[] aeris = new String[] {"aerisPure", "aerisCorrupting", "aerisCorrupt"};
+	private static final String[] permafrost = new String[] {"permafrost", "permafrostCracked"};
+	private static final String[] corsin = new String[] {"corsin", "corsinFaded", "corsinBrick", "corsinFadedBrick", "corsinCircle", "corsinCelled", "corsinScarred", "corsinCrystal", "corsinCrystalWrap"};
+	private static final String[] nekitePlate = new String[] {"nekitePlateCompressed", "nekitePlate", "nekitePlateSmooth", "nekitePlateCross", "nekitePlateMarked", "nekitePlateGrated"};
+	
 	private static final String[] spawnEggs = new String[] {"spawnEgg", "spawnEgg2", "spawnEgg3", "spawnEgg4", "spawnEgg5"};
 	private static final String[] huntersBow = new String[] {"huntersBow", "huntersBow1", "huntersBow2", "huntersBow3"};
 	private static final String[] celestialLongbow = new String[] {"celestialLongbow", "celestialLongbow1", "celestialLongbow2", "celestialLongbow3"};
@@ -460,6 +461,7 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToBakery(TragicBlocks.SepticGas, DOMAIN + "luminescence");
 
 			registerBlockToBakery(TragicBlocks.Corsin, getPrefixedArray(corsin));
+			registerBlockToBakery(TragicBlocks.NekitePlate, getPrefixedArray(nekitePlate));
 		}
 
 		registerItemToBakery(TragicItems.Projectile, getPrefixedArray(projectile));
@@ -688,6 +690,13 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.Deathglow, ZERO, "deathglowPlant");
 			registerBlockToMesher(TragicBlocks.Honeydrop, ZERO, "honeydropPlant");
 			for (i = 0; i < corsin.length; i++) registerBlockToMesher(TragicBlocks.Corsin, i, corsin[i]);
+			registerBlockToMesher(TragicBlocks.NekoGrass, ZERO, "nekoGrass");
+			registerBlockToMesher(TragicBlocks.Nekowood, ZERO, "nekowood");
+			registerBlockToMesher(TragicBlocks.NekowoodLeaves, ZERO, "nekowoodLeaves");
+			registerBlockToMesher(TragicBlocks.NekowoodPlanks, ZERO, "nekowoodPlanks");
+			registerBlockToMesher(TragicBlocks.NekiteOre, ZERO, "nekiteOre");
+			registerBlockToMesher(TragicBlocks.NekoBush, ZERO, "nekoBush");
+			for (i = 0; i < nekitePlate.length; i++) registerBlockToMesher(TragicBlocks.NekitePlate, i, nekitePlate[i]);
 		}
 
 		registerItemWithCustomDefinition(TragicItems.BowOfJustice, new ItemMeshDefinition() {
@@ -1003,6 +1012,8 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.NekoMindControlDevice, ZERO, "nekoMindControlDevice");
 			registerItemToMesher(TragicItems.RecaptureSiphon, ZERO, "recaptureSiphon");
 			registerItemToMesher(TragicItems.NekoInfluencer, ZERO, "nekoInfluencer");
+			registerItemToMesher(TragicItems.NekoidStrain, ZERO, "nekoidStrain");
+			registerItemToMesher(TragicItems.Nekite, ZERO, "nekite");
 
 			registerItemToMesher(TragicItems.Starstruck, ZERO, "record");
 			registerItemToMesher(TragicItems.Faultless, ZERO, "record");
@@ -1115,8 +1126,10 @@ public class ClientProxy extends CommonProxy {
 				registerItemToMesher(TragicItems.DimensionalKeyEnd, ZERO, "dimensionalKeyEnd");
 				registerItemToMesher(TragicItems.DimensionalKeyNether, ZERO, "dimensionalKeyNether");
 				registerItemToMesher(TragicItems.DimensionalKeySynapse, ZERO, "dimensionalKeySynapse");
+				registerItemToMesher(TragicItems.DimensionalKeyNekoHomeworld, ZERO, "dimensionalKeyNekoHomeworld");
 				//registerItemToMesher(TragicItems.DimensionalKeyWilds, ZERO, "dimensionalKeyWilds");
 				registerItemToMesher(TragicItems.SynapseLink, ZERO, "synapseLink");
+				registerItemToMesher(TragicItems.WarpDrive, ZERO, "warpDrive");
 			}
 
 			if (TragicConfig.allowDoomsdays)

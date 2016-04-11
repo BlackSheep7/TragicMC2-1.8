@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "variant=compressed": { "model": "tragicmc:nekitePlateCompressed" },
+        "variant=normal": { "model": "tragicmc:nekitePlate" },
+        "variant=smooth": { "model": "tragicmc:nekitePlateSmooth" },
+        "variant=cross": { "model": "tragicmc:nekitePlateCross" },
+        "variant=marked": { "model": "tragicmc:nekitePlateMarked" },
+	"variant=grated": { "model": "tragicmc:nekitePlateGrated" }
+    }
+}

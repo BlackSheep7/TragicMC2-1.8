@@ -16,7 +16,14 @@ public class NekoHomeworldProvider extends WorldProvider {
 
 	public NekoHomeworldProvider()
 	{
-		this.dimensionId = TragicConfig.synapseID + 1;
+		this.dimensionId = 4;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public IRenderHandler getSkyRenderer()
+	{
+		return ClientProxy.nekoHWSkyRenderer;
 	}
 
 	@Override
@@ -48,13 +55,13 @@ public class NekoHomeworldProvider extends WorldProvider {
 	@SideOnly(Side.CLIENT)
 	public boolean isSkyColored()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean canRespawnHere()
 	{
-		return TragicConfig.allowCollisionRespawn;
+		return true;
 	}
 
 	@Override

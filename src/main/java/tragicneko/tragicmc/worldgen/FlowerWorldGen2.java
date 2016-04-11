@@ -8,13 +8,13 @@ import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.blocks.BlockTragicFlower2;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenNekoBarrens;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
@@ -43,6 +43,7 @@ public class FlowerWorldGen2 implements IWorldGen {
 		else if (biome instanceof BiomeGenHallowedHills) meta = (byte) (random.nextBoolean() ? 4 : 9);
 		else if (biome instanceof BiomeGenFrozenTundra) meta = 5;
 		else if (biome instanceof BiomeGenScorchedWasteland) meta = (byte) (random.nextBoolean() ? 10 : (random.nextBoolean() ? 8 : 15));
+		else if (biome instanceof BiomeGenNekoBarrens) meta = 11;
 		else return;
 		
 		if (random.nextInt(50) == 0) meta = 11; //black spot is rare in the Collision

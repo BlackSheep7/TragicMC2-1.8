@@ -17,6 +17,7 @@ tile.tragicmc.mercuryOre.name=Red Mercury Ore
 tile.tragicmc.tungstenOre.name=Tungsten Ore
 tile.tragicmc.rubyOre.name=Ruby Ore
 tile.tragicmc.sapphireOre.name=Sapphire Ore
+tile.tragicmc.nekiteOre.name=Nekite Ore
 
 tile.tragicmc.storageBlock.ruby.name=Block of Ruby
 tile.tragicmc.storageBlock.sapphire.name=Block of Sapphire
@@ -338,6 +339,18 @@ tile.tragicmc.corsin.wavy.name=Wavy Corsin
 tile.tragicmc.corsin.crystal.name=Crystalized Corsin
 tile.tragicmc.corsin.crystalWrap.name=Crystalized Corsin (Wrapped)
 
+tile.tragicmc.nekoGrass.name=Neko Grass
+tile.tragicmc.nekowood.name=Nekowood
+tile.tragicmc.nekowoodLeaves.name=Nekowood Leaves
+tile.tragicmc.nekowoodPlanks.name=Nekowood Planks
+tile.tragicmc.nekoBush.name=Nekowood Bush
+tile.tragicmc.nekitePlate.compressed.name=Compressed Nekite
+tile.tragicmc.nekitePlate.normal.name=Nekite Plate
+tile.tragicmc.nekitePlate.smooth.name=Smooth Nekite Plate
+tile.tragicmc.nekitePlate.cross.name=Crossed Nekite Plate
+tile.tragicmc.nekitePlate.marked.name=Marked Nekite Plate
+tile.tragicmc.nekitePlate.grated.name=Grated Nekite Plate
+
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
 item.tragicmc.mercuryPlate.name=Red Mercury Chestplate
@@ -361,6 +374,8 @@ item.tragicmc.darkIngot.name=Dark Ingot
 
 item.tragicmc.ruby.name=Ruby
 item.tragicmc.sapphire.name=Sapphire
+
+item.tragicmc.nekite.name=Nekite
 
 item.tragicmc.skullHelmet.name=Bone Helmet
 item.tragicmc.skullPlate.name=Bone Chestplate
@@ -599,10 +614,12 @@ item.tragicmc.dimensionalKey.collision.name=Dimensional Key (The Collision)
 item.tragicmc.dimensionalKey.end.name=Dimensional Key (The End)
 item.tragicmc.dimensionalKey.nether.name=Dimensional Key (Nether)
 item.tragicmc.dimensionalKey.synapse.name=Dimensional Key (Synapse)
+item.tragicmc.dimensionalKey.nekoHomeworld.name=Dimensional Key (Neko Homeworld)
 item.tragicmc.dimensionalKey.wilds.name=Dimensional Key (The Wilds)
 
 item.tragicmc.synapseLink.name=Synapse Link
 item.tragicmc.synapseCrystal.name=Synapse Crystal
+item.tragicmc.warpDrive.name=Warp Drive
 
 item.tragicmc.mobStatue.apis.name=Apis Statue
 item.tragicmc.mobStatue.kitsune.name=Kitsunakuma Statue
@@ -663,6 +680,7 @@ item.tragicmc.soundExtrapolator.name=Sound Extrapolator
 item.tragicmc.nekoMindControlDevice.name=Neko Mind Control Device
 item.tragicmc.recaptureSiphon.name=Recapture Siphon
 item.tragicmc.nekoInfluencer.name=Neko Influencer
+item.tragicmc.nekoidStrain.name=Nekoid Strain
 
 item.tragicmc.starstruck.name=S001F001 Starstruck
 item.record.starstruck.name=Set001 - File001 - Starstruck
@@ -1516,6 +1534,12 @@ achievement.tragicmc.tragicNekoDevice.desc=Obtain a special drop from the Tragic
 
 achievement.tragicmc.tragicNekoRelease=Good Samaritan
 achievement.tragicmc.tragicNekoRelease.desc=Release a Tragic Neko from it's torture, you good person, you!
+
+achievement.tragicmc.tragicNekoWarpDrive=To infinity and beyond!
+achievement.tragicmc.tragicNekoWarpDrive.desc=Create a contraption that allows you to travel through space and time..
+
+achievement.tragicmc.tragicNekoHomeworld=Behind enemy lines...
+achievement.tragicmc.tragicNekoHomeworld.desc=Somehow end up inside of the Neko Homeworld and discover the source of their tragic fates!
 
 achievement.tragicmc.tragicNekoInfluence=This looks like a job for... Reverse Engineer!
 achievement.tragicmc.tragicNekoInfluence.desc=Use a Recapture Siphon to create a device that allows you to influence Nekos in new ways!
