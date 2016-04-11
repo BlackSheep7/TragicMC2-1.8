@@ -164,7 +164,7 @@ public class GuiDoom extends Gui
 							}
 							else
 							{
-								if (weapon.getSecondaryDoomsday() != null && doomsday != null) sneakFlag = true;
+								if (weapon.getSecondaryDoomsday() != null && weapon.getSecondaryDoomsday().doesCurrentDoomMeetRequirement(props) && doomsday != null) sneakFlag = true;
 							}
 						}
 					}
