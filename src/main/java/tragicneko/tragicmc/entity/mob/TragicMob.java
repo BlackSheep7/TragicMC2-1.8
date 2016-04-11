@@ -25,6 +25,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.stats.StatBase;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -55,6 +56,7 @@ import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.projectile.EntityProjectile;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.util.EntityDropHelper;
+import tragicneko.tragicmc.util.TragicEntityList;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public abstract class TragicMob extends EntityMob
@@ -529,10 +531,13 @@ public abstract class TragicMob extends EntityMob
 		{
 			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 
-			if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) 
+			if (TragicConfig.allowAchievements) 
 			{
 				player.triggerAchievement(TragicAchievements.kill);
 				if (this instanceof TragicMiniBoss) player.triggerAchievement(TragicAchievements.killMiniBoss);
+
+				//StatBase stat = ((TragicEntityList.EntityEggInfo) TragicEntityList.entityEggs.get(TragicEntityList.getEntityID(this))).killStat;
+				//player.triggerAchievement(stat);
 			}
 		}
 	}
@@ -546,11 +551,25 @@ public abstract class TragicMob extends EntityMob
 	public void onKillEntity(EntityLivingBase entity)
 	{
 		super.onKillEntity(entity);
+		/*
+		if (entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) entity;
+
+			if (TragicConfig.allowAchievements) 
+			{
+				StatBase stat = ((TragicEntityList.EntityEggInfo) TragicEntityList.entityEggs.get(TragicEntityList.getEntityID(this))).killedByStat;
+				player.triggerAchievement(stat);
+			}
+		} */
+		
 		if (this.worldObj.isRemote) return;
 		int i = (int) (entity.getMaxHealth() * 20);
 		if (entity instanceof EntityPlayer) i *= 20;
 		this.addPotionEffect(new PotionEffect(Potion.damageBoost.id, i, 2));
 		this.addPotionEffect(new PotionEffect(Potion.resistance.id, i, 2));
+
+		
 	}
 
 	public Class<? extends TragicMob> getLesserForm()

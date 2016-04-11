@@ -3,11 +3,14 @@ package tragicneko.tragicmc.items.weapons;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -73,4 +76,16 @@ public class TragicTool extends ItemTool {
 		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
 	}
 
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
+	{
+		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
+		return true;
+	}
+	
+	@Override
+	public boolean onBlockDestroyed(ItemStack stack, World worldIn, Block blockIn, BlockPos pos, EntityLivingBase playerIn)
+    {
+        return true;
+    }
 }

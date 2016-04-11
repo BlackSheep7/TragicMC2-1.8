@@ -236,7 +236,7 @@ public class ItemMobEgg extends Item
         while (iterator.hasNext())
         {
             TragicEntityList.EntityEggInfo entityegginfo = (TragicEntityList.EntityEggInfo)iterator.next();
-            subItems.add(new ItemStack(itemIn, 1, entityegginfo.spawnedID));
+            subItems.add(new ItemStack(itemIn, 1, TragicEntityList.getIDFromString(entityegginfo.name)));
         }
     }
 }

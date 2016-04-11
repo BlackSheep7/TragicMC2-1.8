@@ -40,7 +40,7 @@ public class BlockGenericGrass extends BlockGrass {
 	@Override
 	public boolean canSustainPlant(IBlockAccess world, BlockPos pos, EnumFacing facing, IPlantable plant)
 	{
-		return (plant instanceof BlockDeadBush || plant instanceof BlockSapling || plant instanceof BlockMushroom || plant instanceof BlockLog || plant instanceof BlockTallGrass || plant instanceof BlockTragicSapling) && facing == EnumFacing.UP;
+		return (plant instanceof BlockDeadBush || plant instanceof BlockSapling || plant instanceof BlockMushroom || plant instanceof BlockLog || plant instanceof BlockTallGrass || plant instanceof BlockTragicSapling || plant instanceof BlockGenericBush || plant instanceof BlockGenericTallGrass) && facing == EnumFacing.UP;
 	}
 
 	@Override

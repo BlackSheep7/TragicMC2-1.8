@@ -11,6 +11,7 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.stats.StatBase;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 
@@ -54,13 +55,13 @@ public class TragicEntityList
 	public static void addMapping(Class clazz, String name, int id, int eggColor, int eggColor2)
 	{
 		addMapping(clazz, name, id);
-		entityEggs.put(Integer.valueOf(id), new TragicEntityList.EntityEggInfo(id, eggColor, eggColor2, EnumEggType.NORMAL));
+		entityEggs.put(Integer.valueOf(id), new TragicEntityList.EntityEggInfo(name, eggColor, eggColor2, EnumEggType.NORMAL));
 	}
 
 	public static void addMapping(Class clazz, String name, int id, int eggColor, int eggColor2, EnumEggType eggType)
 	{
 		addMapping(clazz, name, id);
-		entityEggs.put(Integer.valueOf(id), new TragicEntityList.EntityEggInfo(id, eggColor, eggColor2, eggType));
+		entityEggs.put(Integer.valueOf(id), new TragicEntityList.EntityEggInfo(name, eggColor, eggColor2, eggType));
 	}
 
 	public static Entity createEntityByName(String name, World world)
@@ -228,18 +229,22 @@ public class TragicEntityList
 
 	public static class EntityEggInfo
 	{
-		public final int spawnedID;
+		public final String name;
 		public final int primaryColor;
 		public final int secondaryColor;
+		public final StatBase killStat;
+        public final StatBase killedByStat;
 
 		public final EnumEggType eggType;
 
-		public EntityEggInfo(int par1, int par2, int par3, EnumEggType eggType)
+		public EntityEggInfo(String name, int par2, int par3, EnumEggType eggType)
 		{
-			this.spawnedID = par1;
+			this.name = name;
 			this.primaryColor = par2;
 			this.secondaryColor = par3;
 			this.eggType = eggType;
+			this.killStat = (new StatBase("stat.killEntity." + name, new net.minecraft.util.ChatComponentTranslation("stat.entityKill",     new net.minecraft.util.ChatComponentTranslation("entity." + name + ".name")))).registerStat();
+            this.killedByStat = (new StatBase("stat.entityKilledBy." + name, new net.minecraft.util.ChatComponentTranslation("stat.entityKilledBy", new net.minecraft.util.ChatComponentTranslation("entity." + name + ".name")))).registerStat();
 		}
 	}
 
