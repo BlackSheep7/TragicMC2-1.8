@@ -4668,7 +4668,7 @@ the fly
 Modified how Mobs get their Mini-Boss instances when they transform so that they aren't constantly checked and updated every tick
 Fixed derp that caused some mob configs to have the wrong value from the config
 
-4.48.3037++ <220> (April 8, 2016) [Addition of Neko Homeworld and it's associated objects, working on adding structures and the rest of the mobs]
+4.48.3062 <220> (April 8, 2016) [Addition of Neko Homeworld and it's associated objects, working on adding structures and the rest of the mobs]
 Fixed projectiles having wonky vector paths when used via the projectile item
 Made it so that Doomsday finish confirmation only displays for extended doomsdays
 Made it so that Doomsday command use confirmation only displays to the server log
@@ -4693,15 +4693,23 @@ Fixed broken itemstacks not being removed from the Amulet Inventory (they displa
 Rewrote Doom and Amulet Status GUIs, they now look cleaner and display more information (which is configurable), however, their textures aren't able to be
 configured anymore
 Added name display for the Amulet gui, added tooltip for Amulets that say how to open the Gui for them (for people that don't want to check the Wiki)
-Added display that tells people how to use the currently activatable doomsday (is activatable even a word?), this is again for people who don't want to
-look at the Wiki
+Added display that tells people how to use the currently activatable doomsday, this is again for people who don't want to look at the Wiki
+Made default Enchantment IDs look from 128 up by default instead of 64, this gives a bit more room from the vanilla ones
+Mobs searching for a target no longer attempt to target Plagues
+
+4.49.3062++ <221> (April 11, 2016) [Restructure of config to a registry system, new modifiable master config files]
+Restructured config to work as a registry, this will take a lot of work to ensure of no errors but should pay off in the end
+Also added the ability to have multiple "configs", each set based on the master configs the mod has, but able to be edited by users if they so wish it
+Added configurability of Neko Homeworld properties (biome ids, dimension ids, etc.) to new config
+Old config will be removed and the new one will be used as soon as I have time to go through each config option in the entire mod and convert them to the
+new registry retrieval
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9, for now they can just use namespaced registries
-Rewrite the config (yet again), this time using generics to make the config class cleaner and remove the need to store hundreds of static variables
 Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my own drophelper's things are put into a json file in the
 config directory so that they can be easily modified by others, just like I'm planning on doing with the lores and enchantments
+Move Lores, Enchantment tiers to json files in the TragicMC2 folder in the config directory
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
@@ -4712,7 +4720,8 @@ Neko homeworld with new neko types:
 *Science Neko - Intelligent
 Mecha Neko - War-like
 Saber Neko - Need to become better, faster, stronger
-Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
+Professor Nekoid - The greatest, best, genius
+*Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
