@@ -183,7 +183,7 @@ public class TragicConfig {
 
 	public static void load(FMLPreInitializationEvent event)
 	{
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile(), true);
 		config.load();
 		
 		reflectEnchantmentList();
