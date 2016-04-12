@@ -291,7 +291,7 @@ public class TragicNewConfig {
 			return EnumConfigType.BAREBONES;
 		}
 		
-		return EnumConfigType.HARDCORE;
+		return EnumConfigType.NORMAL;
 	}
 	
 	public static enum EnumConfigType {
