@@ -25,7 +25,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.stats.StatBase;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -56,7 +55,6 @@ import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.projectile.EntityProjectile;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.util.EntityDropHelper;
-import tragicneko.tragicmc.util.TragicEntityList;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public abstract class TragicMob extends EntityMob
@@ -255,7 +253,7 @@ public abstract class TragicMob extends EntityMob
 
 					if (this.canEntityBeSeen(entity) && entity != this)
 					{
-						if (!(entity instanceof EntityWither) && !(entity instanceof EntityDragon) && !(entity instanceof TragicBoss) && entity.getClass() != this.getClass())
+						if (!(entity instanceof EntityWither) && !(entity instanceof EntityDragon) && !(entity instanceof TragicBoss) && entity.getClass() != this.getClass() && !(entity instanceof EntityPlague))
 						{
 							if (entity instanceof TragicMob)
 							{
