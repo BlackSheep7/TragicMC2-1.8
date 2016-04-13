@@ -145,6 +145,7 @@ public class EntityClaymation extends TragicBoss {
 		this.setFormAttributes();
 		this.setFormSize();
 		this.resetUtilityIntegers();
+		this.deathTime = 0;
 	}
 
 	private void setFormAttributes()
