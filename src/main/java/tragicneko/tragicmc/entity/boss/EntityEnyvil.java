@@ -542,10 +542,26 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			this.crystal.motionX = this.motionX;
 			this.crystal.motionZ = this.motionZ;
 
-			if (this.getDistanceToEntity(this.crystal) >= 18.0F)
+			if (this.getDistanceToEntity(this.crystal) >= 14.0F)
 			{
 				this.crystal.setPosition(this.posX + getIntegerInRange(4, 8), this.posY + Math.abs(getIntegerInRange(4, 8)), this.posZ + getIntegerInRange(4, 8));
 				this.crystal.playSound("mob.endermen.portal", 0.4F, 0.4F);
+			}
+			
+			float f = 128.0F;
+			List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.getEntityBoundingBox().expand(f, f, f));
+			Iterator iterator = list.iterator();
+
+			while (iterator.hasNext())
+			{
+				EntityDarkCrystal crystal1 = (EntityDarkCrystal)iterator.next();
+				if (crystal1.getOwnerID() != this.getEntityId()) continue;
+				float fw = crystal1.getDistanceToEntity(this);
+				if (fw >= 14.0F)
+				{
+					crystal1.setPosition(this.posX + getIntegerInRange(4, 8), this.posY + Math.abs(getIntegerInRange(4, 8)), this.posZ + getIntegerInRange(4, 8));
+					crystal1.playSound("mob.endermen.portal", 0.4F, 0.4F);
+				}
 			}
 		}
 		else
@@ -782,7 +798,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			return false;
 		}
 
-		if (!this.hasCrystal()) damage /= 2;
+		if (!this.hasCrystal()) damage *= 2;
 
 		if (entity == this.enyvilEye)
 		{
