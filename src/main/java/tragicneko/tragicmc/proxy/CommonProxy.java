@@ -43,6 +43,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.TragicRecipes;
 import tragicneko.tragicmc.client.gui.GuiAmuletInventory;
+import tragicneko.tragicmc.config.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.AchievementEvents;
 import tragicneko.tragicmc.events.AmuletEvents;
@@ -82,116 +83,13 @@ public class CommonProxy implements IGuiHandler {
 
 	public static final int AMULET_GUI_ID = 0;
 
-	public void init(FMLInitializationEvent event){
+	public void init(FMLInitializationEvent event){ }
 
-	}
-
-	public void postInit(FMLPostInitializationEvent event) {
-		/*//might try to implement this later on, for now it doesn't really work correctly
-		if (TragicConfig.allowNonMobBlocks && TragicConfig.allowNonMobItems)
-		{
-			TragicMC.logInfo("Recreating stats for blocks, items and mobs...");
-			try
-			{
-				recreateStatList();
-			}
-			catch (Exception e)
-			{
-				TragicMC.logError("Error caught while attempting to recreate stats", e);
-			}
-		} */
-	}
-
-	private static void recreateStatList() {
-		for (Block block : Block.blockRegistry)
-		{
-			Item item = Item.getItemFromBlock(block);
-
-			if (item != null)
-			{
-				int i = Block.getIdFromBlock(block);
-				String s = getResourceFor(item);
-
-				if (s != null && block.getEnableStats() && StatList.mineBlockStatArray[i] == null)
-				{
-					StatList.mineBlockStatArray[i] = (new StatCrafting("stat.mineBlock.", s, new ChatComponentTranslation("stat.mineBlock", new Object[] {(new ItemStack(block)).getChatComponent()}), item)).registerStat();
-					StatList.objectMineStats.add((StatCrafting)StatList.mineBlockStatArray[i]);
-				}
-			}
-		}
-
-		for (Item item : Item.itemRegistry)
-		{
-			if (item != null)
-			{
-				int i = Item.getIdFromItem(item);
-				String s = getResourceFor(item);
-
-				if (s != null && StatList.objectUseStats[i] == null)
-				{
-					StatList.objectUseStats[i] = (new StatCrafting("stat.useItem.", s, new ChatComponentTranslation("stat.useItem", new Object[] {(new ItemStack(item)).getChatComponent()}), item)).registerStat();
-
-					if (!(item instanceof ItemBlock))
-					{
-						StatList.itemStats.add((StatCrafting)StatList.objectUseStats[i]);
-					}
-				}
-			}
-		}
-
-		for (Item item : Item.itemRegistry)
-		{
-			if (item != null)
-			{
-				int i = Item.getIdFromItem(item);
-				String s = getResourceFor(item);
-
-				if (s != null && item.isDamageable() && StatList.objectBreakStats[i] == null)
-				{
-					StatList.objectBreakStats[i] = (new StatCrafting("stat.breakItem.", s, new ChatComponentTranslation("stat.breakItem", new Object[] {(new ItemStack(item)).getChatComponent()}), item)).registerStat();
-				}
-			}
-		}
-
-		Set<Item> set = Sets.<Item>newHashSet();
-
-		for (IRecipe irecipe : CraftingManager.getInstance().getRecipeList())
-		{
-			if (irecipe.getRecipeOutput() != null)
-			{
-				set.add(irecipe.getRecipeOutput().getItem());
-			}
-		}
-
-		for (ItemStack itemstack : FurnaceRecipes.instance().getSmeltingList().values())
-		{
-			set.add(itemstack.getItem());
-		}
-
-		for (Item item : set)
-		{
-			if (item != null)
-			{
-				int i = Item.getIdFromItem(item);
-				String s = getResourceFor(item);
-
-				if (s != null && StatList.objectCraftStats[i] == null)
-				{
-					StatList.objectCraftStats[i] = (new StatCrafting("stat.craftItem.", s, new ChatComponentTranslation("stat.craftItem", new Object[] {(new ItemStack(item)).getChatComponent()}), item)).registerStat();
-				}
-			}
-		}
-	}
-
-	private static String getResourceFor(Item p_180204_0_)
-	{
-		ResourceLocation resourcelocation = (ResourceLocation)Item.itemRegistry.getNameForObject(p_180204_0_);
-		return resourcelocation != null ? resourcelocation.toString().replace(':', '.') : null;
-	}
+	public void postInit(FMLPostInitializationEvent event) { }
 
 	public void preInit(FMLPreInitializationEvent event) {
 		TragicConfig.load(event);
-		//TragicNewConfig.load(event); //parallel testing to be done after the rewrite is finished up
+		//TragicNewConfig.doConfigProcess(event);
 
 		if (TragicConfig.allowPotions)
 		{
