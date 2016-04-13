@@ -116,8 +116,10 @@ public class TragicNewConfig {
 	protected static BiomeGenBase[] getIntsAsBiome(int[] array) {
 		BiomeGenBase[] biomes = new BiomeGenBase[array.length];
 		for (int i = 0; i < array.length; i++)
+		{
 			biomes[i] = BiomeGenBase.getBiome(array[i]);
-		
+			if (biomes[i] == BiomeGenBase.ocean) TragicMC.logWarning("Biome Array had ocean set, this may be a default value due to not finding a valid biome at the id of " + array[i]);
+		}
 		return biomes;
 	}
 
@@ -256,9 +258,9 @@ public class TragicNewConfig {
 		prop.comment = "Is lightweight mode enabled? This makes things somewhat easier than normal.";
 		registerObject(s, prop.getBoolean(false));
 
-		s = "barebonesMode";
+		s = "tragicmcMode";
 		prop = config.get(cat.getName(), s, false);
-		prop.comment = "Is barebones mode enabled? This takes things back to a much simpler time, stripping the mod down to just weapons and mobs.";
+		prop.comment = "Is TragicMC mode enabled? Strips features that TragicMC 2 added, basically making the mod play like the orginal mod.";
 		registerObject(s, prop.getBoolean(false));
 		
 		if (getBoolean("mobsOnlyMode"))
@@ -266,7 +268,7 @@ public class TragicNewConfig {
 			TragicMC.logInfo("mobsOnlyMode is enabled, using config file named \"TragicMC2/TragicMC-mobsonly.cfg.\"");
 			overrideObject("hardcoreMode", false);
 			overrideObject("lightweightMode", false);
-			overrideObject("barebonesMode", false);
+			overrideObject("tragicmcMode", false);
 			return EnumConfigType.MOBS_ONLY;
 		}
 
@@ -274,21 +276,21 @@ public class TragicNewConfig {
 		{
 			TragicMC.logInfo("hardcoreMode is enabled, using config file named \"TragicMC2/TragicMC-hardcore.cfg.\"");
 			overrideObject("lightweightMode", false);
-			overrideObject("barebonesMode", false);
+			overrideObject("tragicmcMode", false);
 			return EnumConfigType.HARDCORE;
 		}
 
 		if (getBoolean("lightweightMode"))
 		{
 			TragicMC.logInfo("lightweightMode is enabled, using config file named \"TragicMC2/TragicMC-lightweight.cfg.\"");
-			overrideObject("barebonesMode", false);
+			overrideObject("tragicmcMode", false);
 			return EnumConfigType.LIGHTWEIGHT;
 		}
 
-		if (getBoolean("barebonesMode"))
+		if (getBoolean("tragicmcMode"))
 		{
-			TragicMC.logInfo("barebonesMode is enabled, using config file named \"TragicMC2/TragicMC-barebones.cfg.\"");
-			return EnumConfigType.BAREBONES;
+			TragicMC.logInfo("tragicmcMode is enabled, using config file named \"TragicMC2/TragicMC-original.cfg.\"");
+			return EnumConfigType.TRAGICMC;
 		}
 		
 		return EnumConfigType.NORMAL;
@@ -299,7 +301,7 @@ public class TragicNewConfig {
 		MOBS_ONLY, //strips the mod down the the mobs and their essentials
 		HARDCORE, //makes things unforgiving and way harder
 		LIGHTWEIGHT, //makes things forgiving and way easier
-		BAREBONES, //strips features that the 2nd version introduced
+		TRAGICMC, //strips features that the 2nd version introduced
 		TRAGICMC2; //when the third version of the mod is done, this will be the current version's features only
 	}
 	
@@ -307,6 +309,8 @@ public class TragicNewConfig {
 		if (type == EnumConfigType.NORMAL) load(config);
 		else if (type == EnumConfigType.MOBS_ONLY) ConfigMobsOnly.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-mobsOnly.cfg"), true));
 		else if (type == EnumConfigType.HARDCORE) ConfigHardcore.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-hardcore.cfg"), true));
+		else if (type == EnumConfigType.LIGHTWEIGHT) ConfigHardcore.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-lightweight.cfg"), true));
+		else if (type == EnumConfigType.TRAGICMC) ConfigHardcore.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-original.cfg"), true));
 		return config;
 	}
 
@@ -5021,175 +5025,6 @@ public class TragicNewConfig {
 		registerObject("allowIsleGen", worldGenConfig[++m]);
 		registerObject("allowFlowerGen", worldGenConfig[++m]);
 	}
-/*
-	private static void setupMobsOnly()
-	{
-		//blanket configs
-		overrideObject("allowAchievements", false);
-		allowAmulets = false;
-		allowDimension = false;
-		allowDoom = false;
-		allowEnchantments = false;
-		allowPotions = false;
-		allowVanillaChanges = false;
-		allowWorldGen = false;
-
-		//internal mod options
-		allowNonMobItems = false;
-		allowNonMobBlocks = false;
-		allowNetwork = false;
-		allowRecipes = false;
-		allowSurvivalTab = false;
-	}
-
-	private static void setupHardcoreMode()
-	{
-		//blanket configs
-		allowAchievements = true;
-		allowAmulets = true;
-		allowDimension = true;
-		allowDoom = true;
-		allowEnchantments = true;
-		allowMobs = true;
-		allowPotions = true;
-		allowVanillaChanges = true;
-		allowWorldGen = true;
-
-		//internal mod options
-		allowNonMobItems = true;
-		allowNonMobBlocks = true;
-		allowNetwork = true;
-		allowRecipes = true;
-		allowSurvivalTab = true;
-
-		//hardcore-exclusive options
-		//disable epic amulets, only one active amulet allowed, cannot obtain amulets from chests
-		amuletMaxSlots = 1;
-		amuletOverallRarity = 0;
-		amuletEffects[13] = false; //time
-		amuletEffects[18] = false; //wither
-		amuletEffects[22] = false; //overlord
-		amuletEffects[29] = false; //enyvil
-
-		//simpified doom setup, disable easy mode things
-		maxDoomAmount = 10;
-		maxDoomStart = 5;
-		doomConsumeAmount = 1;
-		doomRechargeAmount = 1;
-		doomConfig[0] = true; //doomsdays
-		doomConfig[10] = false; //natural recharge
-		doomConfig[11] = false; //crucial moments
-		doomConfig[9] = false; //doom pain recharge
-		doomConfig[8] = false; //consume refill
-		doomConfig[15] = false; //cooldown defuse
-		for (byte b = 0; b < doomsdayCost.length; b++) doomsdayCost[b] = doomsdayCost[b] > 100 ? 3 : (doomsdayCost[b] > 50 ? 2 : 1); //basically 1 - 50 is simplified to 1, 51 - 100 is simplified to 2, everything higher is 3
-
-		//remove crutch potion effects
-		potionAllow[2] = false; //immunity
-		potionAllow[3] = false; //resurrection
-		potionAllow[4] = false; //harmony
-		potionAllow[6] = false; //clarity
-
-		//remove avris, erkel and wisps
-		mobAllow[33] = false; //avris
-		mobAllow[18] = false; //wisps
-		mobAllow[20] = false; //erkel
-
-		mobConfig[11] = true; //bosses deny flight
-		mobConfig[12] = false; //disallows mob infighting so that they focus on players more
-
-		//TODO setup mob stat changes for hardcore mode
-		modifier[10] += 10.0; //dynamic health scaling increased by 10 for all mobs
-
-		//do not respawn in either dimension
-		dimensionConfig[2] = false;
-		dimensionConfig[3] = false;
-	}
-
-	private static void setupLightweightMode()
-	{
-		//remove a lot of the risks, backlash, respawn punishment, simplify doom costs to use 5 to 25 with the max values set to the defaults
-		//mob stats are balanced more to fit in with vanilla mob amounts (20 health, 4 - 6 attack damage, etc.)
-		//bosses are balanced to fit in more with the vanilla bosses (200 health, 6 attack damage, etc.)
-		//less negative effects are enabled, plagues have their natural spawns disabled and mobs cannot transform into mini-bosses
-		doomConfig[12] = false; //backlash
-		doomConfig[13] = false; //cooldown
-		doomConfig[7] = false; //doom limit increases
-		doomConfig[15] = false; //cooldown defuse allow
-		vanillaConfig[0] = false; //vanilla mob buffs
-		vanillaConfig[1] = false; //extra mob effects
-		vanillaConfig[2] = false; //animal retribution
-		vanillaConfig[3] = false; //modded armor
-		vanillaConfig[4] = false; //respawn punishment
-		vanillaConfig[5] = false; //extra explosive effects
-		vanillaConfig[11] = false; //drudge gen
-		allowCorruptionTransfer = false;
-		allowPvP = false;
-		mobAllow[2] = false; //plague
-		potionAllow[9] = false; //corruption
-		potionAllow[10] = false; //disorientation
-		potionAllow[11] = false; //stun
-		potionAllow[14] = false; //cripple
-		potionAllow[15] = false; //submission
-		potionAllow[17] = false; //lead foot
-		potionAllow[18] = false; //hacked
-
-		maxDoomAmount = 1000;
-		maxDoomStart = 1000;
-		consumeRefillAmount = 1000;
-		doomConsumeAmount = 0;
-		doomRechargeAmount = 5;
-		doomRechargeRate = 10;
-		for (byte b = 0; b < doomsdayCost.length; b++) doomsdayCost[b] = getCostForLightweight(doomsdayCost[b]); //truncate each cost to the nearest 5
-		for (byte b = 0; b < doomAbilityCost.length; b++) doomAbilityCost[b] = 0; //right-click and special abilities for weapons don't cost anything
-
-		amuletConfig[2] = false; //require unlocking amulet slots
-		amuletConfig[5] = false; //death drops amulets
-		amuletMaxSlots = 3; //start with all 3 slots already open
-		amuletStartSlots = 3;
-
-		//enable respawn in either dimension
-		dimensionConfig[2] = true;
-		dimensionConfig[3] = true;
-
-		//TODO setup mob stat changes for lightweight mode
-	} */
-
-	/**
-	 * Basically rounds each value to go to the nearest multiplier of 5
-	 * @param cost
-	 * @return
-	 */
-	private static int getCostForLightweight(final int cost)
-	{
-		double penta = cost / 5;
-		final int p = (int) Math.round(penta);
-		return clamp(p * 5, 1, 1000);
-	}
-/*
-	private static void setupBarebonesMode()
-	{
-		//removes a lot of the newer stuff this version adds from the original one, doom, amulets, dimensions
-		//retains the simplicity of the original by only having mobs, weapons and other items available
-
-		//blanket configs
-		allowAchievements = true;
-		allowAmulets = false;
-		allowDimension = false;
-		allowDoom = false;
-		allowEnchantments = true;
-		allowMobs = true;
-		allowPotions = false;
-		allowVanillaChanges = false;
-		allowWorldGen = false;
-
-		//internal mod options
-		allowNonMobItems = true;
-		allowNonMobBlocks = true;
-		allowNetwork = true;
-		allowRecipes = true;
-		allowSurvivalTab = true;
-	} */
 
 	public static int clampPositive(int value) {
 		return value > 0 ? value : 0;
