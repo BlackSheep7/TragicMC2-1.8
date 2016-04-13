@@ -184,7 +184,7 @@ public class TragicWeapon extends ItemSword {
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
 	{
 		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
-		return true;
+		return super.hitEntity(stack, entity, entity2);
 	}
 	
 	@Override
