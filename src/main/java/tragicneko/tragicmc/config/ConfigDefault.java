@@ -3187,7 +3187,7 @@ public class ConfigDefault extends TragicNewConfig {
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "voxStellarumSpawnOverride";
-		prop = config.get(cat.getName(), "voxStellarumSpawnOverride", false);
+		prop = config.get(cat.getName(), s, false);
 		registerObject(s, prop.getBoolean(false));
 
 		s = "voxStellarumSpawnBiomes";

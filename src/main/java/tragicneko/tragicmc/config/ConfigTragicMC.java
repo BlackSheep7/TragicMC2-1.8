@@ -1,321 +1,16 @@
 package tragicneko.tragicmc.config;
 
-import java.io.File;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.HashMap;
-
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import scala.actors.threadpool.Arrays;
-import tragicneko.tragicmc.TragicMC;
 
-public class TragicNewConfig {
-
-	private static final int intToken = new ObjectHolder<Integer>(0).getThing();
-	private static final boolean boolToken = new ObjectHolder<Boolean>(false).getThing();
-	private static final double doubleToken = new ObjectHolder<Double>(0.0D).getThing();
-	private static final float floatToken = new ObjectHolder<Float>(0.0F).getThing();
-	private static final int[] intArrayToken = new ObjectHolder<int[]>(new int[] {}).getThing();
-	private static final double[] doubleArrayToken = new ObjectHolder<double[]>(new double[]{}).getThing();
-	private static final boolean[] boolArrayToken = new ObjectHolder<boolean[]>(new boolean[] {}).getThing();
-	private static final BiomeGenBase[] biomeArrayToken = new ObjectHolder<BiomeGenBase[]>(new BiomeGenBase[]{}).getThing();
-	private static final MobStat mobStatToken = new ObjectHolder<MobStat>(new MobStat(new double[]{}, 0)).getThing();
-
-	private static final HashMap<ResourceLocation, ObjectHolder> configRegistry = new HashMap<ResourceLocation, ObjectHolder>();
-
-	protected static <T> void registerObject(String s, T thing) {
-		if (configRegistry.containsKey(new ResourceLocation(s)))
-		{
-			TragicMC.logError("Attempted to override a key of value (" + s + ") during registrations!");
-			return;
-		}
-		configRegistry.put(new ResourceLocation(s), new ObjectHolder<T>(thing));
-	}
-
-	public static <T> void overrideObject(String s, T thing) {
-		if (getObject(s, thing) == null)
-		{
-			TragicMC.logError("Error when attempting to override a key (" + s + "), key doesn't exist in mapping or the type of the object was incorrect.");
-			return;
-		}
-		configRegistry.replace(new ResourceLocation(s), new ObjectHolder<T>(thing));
-	}
-	
-	public static boolean getBoolean(String s) {
-		return getObject(s, boolToken);
-	}
-	
-	public static boolean[] getBooleanArray(String s ) {
-		return getObject(s, boolArrayToken);
-	}
-	
-	public static int getInt(String s) {
-		return getObject(s, intToken);
-	}
-	
-	public static int[] getIntArray(String s) {
-		return getObject(s, intArrayToken);
-	}
-	
-	public static double getDouble(String s) {
-		return getObject(s, doubleToken);
-	}
-	
-	public static double[] getDoubleArray(String s) {
-		return getObject(s, doubleArrayToken);
-	}
-	
-	public static float getFloat(String s) {
-		return getObject(s, floatToken);
-	}
-	
-	public static MobStat getMobStat(String s) {
-		return getObject(s, mobStatToken);
-	}
-	
-	public static BiomeGenBase[] getBiomeArray(String s) {
-		return getObject(s, biomeArrayToken);
-	}
-	
-	public static Object getObject(String s) { //non-generic method of just getting a raw value from the map with a key, assumed that this will be casted after retrieval not during
-		return configRegistry.get(new ResourceLocation(s));
-	}
-
-	public static <T> T getObject(String s, T thing) {
-		try
-		{
-			ObjectHolder<T> co = (ObjectHolder<T>) configRegistry.get(new ResourceLocation(s));
-			return (T) co.getThing();
-		}
-		catch (ClassCastException e)
-		{
-			TragicMC.logError("Object of key (" + s + ") expected a cast of " + thing + " but was registered in the map as " + configRegistry.get(new ResourceLocation(s)).getThing(), e);
-			return null;
-		}
-		catch (NullPointerException e)
-		{
-			if (configRegistry.containsKey(new ResourceLocation(s)))
-			{
-				TragicMC.logError("Object of key (" + s + ") was expecting a value already saved, but the value returned null", e);
-			}
-			else
-			{
-				TragicMC.logError("Object of key (" + s + ") was not previously registered into the map, thus returning a null result.", e);
-			}
-			return null;
-		}
-	}
-	
-	protected static BiomeGenBase[] getIntsAsBiome(int[] array) {
-		BiomeGenBase[] biomes = new BiomeGenBase[array.length];
-		for (int i = 0; i < array.length; i++)
-		{
-			biomes[i] = BiomeGenBase.getBiome(array[i]);
-			if (biomes[i] == BiomeGenBase.ocean) TragicMC.logWarning("Biome Array had ocean set, this may be a default value due to not finding a valid biome at the id of " + array[i]);
-		}
-		return biomes;
-	}
-
-	public static class ObjectHolder<T> {
-		private final T heldObject;
-
-		public ObjectHolder(T thing) {
-			if (thing == null) throw new IllegalArgumentException("Cannot hold a null object type!");
-			this.heldObject = thing;
-		}
-
-		public T getThing() {
-			return heldObject;
-		}
-	}
-	
-	public static class MobStat {
-		
-		private static final int ARRAY_LENGTH = 5;
-		private final double[] attrStats;
-		private final int armorValue;
-		public MobStat(double[] stats, int armor) {
-			this.attrStats = stats;
-			this.armorValue = armor;
-		}
-		
-		public MobStat(double[] stats) {
-			this(Arrays.copyOf(stats, ARRAY_LENGTH), (int) stats[ARRAY_LENGTH]);
-		}
-		
-		public double[] getStats() {
-			return this.attrStats;
-		}
-		
-		public int getArmorValue() {
-			return this.armorValue;
-		}
-		
-		public static MobStat verifyMobStat(MobStat stat) {
-			final double[] dray = stat.getStats();
-			if (dray.length != ARRAY_LENGTH) throw new IllegalArgumentException("Array length for mob stats wasn't the proper length!");
-			
-			for (int i = 0; i < ARRAY_LENGTH; i++)
-				if (Double.isNaN(dray[i])) throw new IllegalArgumentException("Array contained a value that wasn't a double!");
-			
-			if (Double.isNaN(stat.getArmorValue())) throw new IllegalArgumentException("Armor value contained something that was not valid!");
-			return stat;
-		}
-	}
-
-	//category names
-	protected static final String CAT_MASTER = "Master Configs";
-	protected static final String CAT_BLANKET = "Blanket Configs";
-	protected static final String CAT_AMULET = "Amulets";
-	protected static final String CAT_AMUEFFECT = "Amulet Effects";
-	protected static final String CAT_DIMENSION = "Dimension";
-	protected static final String CAT_BIOME = "Dimension Biomes";
-	protected static final String CAT_DOOM = "Doom";
-	protected static final String CAT_DOOMSDAYS = "Doomsdays";
-	protected static final String CAT_WEAPON = "Weapons";
-	protected static final String CAT_ENCHANT = "Enchantments";
-	protected static final String CAT_MOBS = "Mobs";
-	protected static final String CAT_MOBSTATS = "Mob Stats";
-	protected static final String CAT_MOBSPAWNS = "Mob Spawns";
-	protected static final String CAT_POTION = "Potions";
-	protected static final String CAT_VANILLA = "Vanilla Changes";
-	protected static final String CAT_WORLDGEN = "WorldGen";
-	protected static final String CAT_MISC = "Miscellaneous";
-	protected static final String CAT_MODIFIERS = "Attribute Modifiers";
-	protected static final String CAT_CREATIVE = "Creative Item Options";
-	protected static final String CAT_CLIENT = "Client-side Only Options";
-	protected static final String CAT_STRUCTURE = "Structures";
-	protected static final String CAT_GRIEF = "Griefing Options";
-	protected static final String CAT_PETS = "Pets";
-	protected static final String CAT_MOBAI = "Mob AI";
-
-	//array hypervisors
-	protected static boolean[] amuletConfig = new boolean[16];
-	protected static boolean[] amuletEffects = new boolean[48];
-	protected static boolean[] dimensionConfig = new boolean[16];
-	protected static boolean[] doomConfig = new boolean[24];
-	public static boolean[] doomsdayAllow = new boolean[96];
-	public static int[] doomsdayCooldown = new int[96];
-	public static int[] doomsdayCost = new int[96];
-	public static boolean[] doomAbility = new boolean[48];
-	public static int[] doomAbilityCost = new int[48];
-	protected static boolean[] enchantAllow = new boolean[32];
-	protected static boolean[] mobConfig = new boolean[16];
-	protected static boolean[] mobAllow = new boolean[64];
-	protected static boolean[] miniBossAllow = new boolean[32];
-	protected static boolean[] bossAllow = new boolean[24];
-	protected static boolean[] potionAllow = new boolean[32];
-	protected static boolean[] vanillaConfig = new boolean[24];
-	protected static boolean[] worldGenConfig = new boolean[16];
-	public static boolean[] structureAllow = new boolean[32];
-	public static int[] structureRarity = new int[32];
-	public static boolean[] griefConfig = new boolean[12];
-	public static double[] modifier = new double[32];
-
-	protected static Enchantment[] enchantList;
-	
-	public static void doConfigProcess(FMLPreInitializationEvent event) {
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile(), true);
-		config.load();
-		
-		reflectEnchantmentList();
-		EnumConfigType type = TragicNewConfig.getMasterSettings(config);
-		TragicNewConfig.loadViaType(config, type);
-		
-		if (config.hasChanged()) config.save();
-		
-		postProcessConfigs();
-		registerArrayedVariables();
-	}
-	
-	public static EnumConfigType getMasterSettings(Configuration config) {		
-		ConfigCategory cat;
-		Property prop;
-		String s;
-		
-		cat = config.getCategory(CAT_MASTER);
-		cat.setComment("These override all other mod options. If multiple are enabled then the first one that is read is used and the others are disabled.");
-
-		s = "mobsOnlyMode";
-		prop = config.get(cat.getName(), s, false);
-		prop.comment = "Is mobs only mode enabled? This strips the mod down to just the mobs and a few items/blocks related to them.";
-		registerObject(s, prop.getBoolean(false));
-
-		s = "hardcoreMode";
-		prop = config.get(cat.getName(), s, false);
-		prop.comment = "Is hardcode mode enabled? This makes things a bit more difficult than normal.";
-		registerObject(s, prop.getBoolean(false));
-
-		s = "lightweightMode";
-		prop = config.get(cat.getName(), "lightweightMode", false);
-		prop.comment = "Is lightweight mode enabled? This makes things somewhat easier than normal.";
-		registerObject(s, prop.getBoolean(false));
-
-		s = "tragicmcMode";
-		prop = config.get(cat.getName(), s, false);
-		prop.comment = "Is TragicMC mode enabled? Strips features that TragicMC 2 added, basically making the mod play like the orginal mod.";
-		registerObject(s, prop.getBoolean(false));
-		
-		if (getBoolean("mobsOnlyMode"))
-		{
-			TragicMC.logInfo("mobsOnlyMode is enabled, using config file named \"TragicMC2/TragicMC-mobsonly.cfg.\"");
-			overrideObject("hardcoreMode", false);
-			overrideObject("lightweightMode", false);
-			overrideObject("tragicmcMode", false);
-			return EnumConfigType.MOBS_ONLY;
-		}
-
-		if (getBoolean("hardcoreMode"))
-		{
-			TragicMC.logInfo("hardcoreMode is enabled, using config file named \"TragicMC2/TragicMC-hardcore.cfg.\"");
-			overrideObject("lightweightMode", false);
-			overrideObject("tragicmcMode", false);
-			return EnumConfigType.HARDCORE;
-		}
-
-		if (getBoolean("lightweightMode"))
-		{
-			TragicMC.logInfo("lightweightMode is enabled, using config file named \"TragicMC2/TragicMC-lightweight.cfg.\"");
-			overrideObject("tragicmcMode", false);
-			return EnumConfigType.LIGHTWEIGHT;
-		}
-
-		if (getBoolean("tragicmcMode"))
-		{
-			TragicMC.logInfo("tragicmcMode is enabled, using config file named \"TragicMC2/TragicMC-original.cfg.\"");
-			return EnumConfigType.TRAGICMC;
-		}
-		
-		return EnumConfigType.NORMAL;
-	}
-	
-	public static enum EnumConfigType {
-		NORMAL, //load as normal from the normal config
-		MOBS_ONLY, //strips the mod down the the mobs and their essentials
-		HARDCORE, //makes things unforgiving and way harder
-		LIGHTWEIGHT, //makes things forgiving and way easier
-		TRAGICMC, //strips features that the 2nd version introduced
-		TRAGICMC2; //when the third version of the mod is done, this will be the current version's features only
-	}
-	
-	public static Configuration loadViaType(Configuration config, EnumConfigType type) {		
-		if (type == EnumConfigType.NORMAL) load(config);
-		else if (type == EnumConfigType.MOBS_ONLY) ConfigMobsOnly.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-mobsOnly.cfg"), true));
-		else if (type == EnumConfigType.HARDCORE) ConfigHardcore.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-hardcore.cfg"), true));
-		else if (type == EnumConfigType.LIGHTWEIGHT) ConfigHardcore.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-lightweight.cfg"), true));
-		else if (type == EnumConfigType.TRAGICMC) ConfigHardcore.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-original.cfg"), true));
-		return config;
-	}
+public class ConfigTragicMC extends TragicNewConfig {
 
 	public static void load(Configuration config)
 	{
+		config.load();
+
 		ConfigCategory cat; //The category currently being loaded from the config
 		Property prop; //The value currently being parsed
 		byte m; //a byte mapping to make it easier for my array hypervisors to work
@@ -331,24 +26,24 @@ public class TragicNewConfig {
 		cat.setComment("These disable all options beneath them if set to false.");
 
 		s = "allowAchievements";
-		prop = config.get(cat.getName(), s, true);
+		prop = config.get(cat.getName(), s, false);
 		prop.comment = "Are Achievements and Achievement options allowed?";
-		registerObject(s, prop.getBoolean(true));
+		registerObject(s, prop.getBoolean(false));
 
 		s = "allowAmulets";
-		prop = config.get(cat.getName(), s, true);
+		prop = config.get(cat.getName(), s, false);
 		prop.comment = "Are Amulets, Amulet Modifiers, Amulet Guis and Amulet recipes allowed?";
-		registerObject(s, prop.getBoolean(true));
+		registerObject(s, prop.getBoolean(false));
 
 		s = "allowDimensions";
-		prop = config.get(cat.getName(), s, true);
+		prop = config.get(cat.getName(), s, false);
 		prop.comment = "Are the mod-exclusive Dimensions and Biomes allowed?";
-		registerObject(s, prop.getBoolean(true));
+		registerObject(s, prop.getBoolean(false));
 
 		s = "allowDoom";
-		prop = config.get(cat.getName(), s, true);
+		prop = config.get(cat.getName(), s, false);
 		prop.comment = "Are Doom, Doomsdays and non-Doomsday Weapon/Armor abilities allowed?";
-		registerObject(s, prop.getBoolean(true));
+		registerObject(s, prop.getBoolean(false));
 
 		s = "allowEnchantments";
 		prop = config.get(cat.getName(), s, true);
@@ -366,14 +61,14 @@ public class TragicNewConfig {
 		registerObject(s, prop.getBoolean(true));
 
 		s = "allowVanillaChanges";
-		prop = config.get(cat.getName(), s, true);
+		prop = config.get(cat.getName(), s, false);
 		prop.comment = "Are changes to Vanilla like increasing Vanilla mob health and giving extra abilities to Vanilla mobs allowed?";
-		registerObject(s, prop.getBoolean(true));
+		registerObject(s, prop.getBoolean(false));
 
 		s = "allowWorldGen";
-		prop = config.get(cat.getName(), s, true);
+		prop = config.get(cat.getName(), s, false);
 		prop.comment = "Is the mod able to execute any of it's non-Ore WorldGen?";
-		registerObject(s, prop.getBoolean(true));
+		registerObject(s, prop.getBoolean(false));
 
 		cat = config.getCategory(CAT_AMULET);
 		cat.setComment("These allow you to toggle various aspects of Amulets.");
@@ -3236,11 +2931,11 @@ public class TragicNewConfig {
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "tragicNekoSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "tragicNekoSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.plains.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "toxSpawnOverride";
@@ -3284,11 +2979,13 @@ public class TragicNewConfig {
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "stinSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "stinSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "kindlingSpiritSpawnOverride";
@@ -3311,27 +3008,32 @@ public class TragicNewConfig {
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "erkelSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "erkelSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.roofedForest.biomeID, BiomeGenBase.forest.biomeID, BiomeGenBase.forestHills.biomeID,
+				BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleHills.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "sirvSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "sirvSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "psygoteSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "psygoteSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "lockbotSpawnOverride";
@@ -3375,43 +3077,63 @@ public class TragicNewConfig {
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "archangelSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "archangelSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.beach.biomeID, BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID,
+				BiomeGenBase.coldBeach.biomeID, BiomeGenBase.coldTaiga.biomeID, BiomeGenBase.coldTaigaHills.biomeID, BiomeGenBase.deepOcean.biomeID, BiomeGenBase.desert.biomeID, 
+				BiomeGenBase.desertHills.biomeID, BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.forest.biomeID,
+				BiomeGenBase.forestHills.biomeID, BiomeGenBase.frozenOcean.biomeID, BiomeGenBase.frozenRiver.biomeID, BiomeGenBase.iceMountains.biomeID, BiomeGenBase.icePlains.biomeID,
+				BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleEdge.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.mesa.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID,
+				BiomeGenBase.ocean.biomeID, BiomeGenBase.plains.biomeID, BiomeGenBase.river.biomeID, BiomeGenBase.roofedForest.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID,
+				BiomeGenBase.stoneBeach.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "ireSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "ireSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.beach.biomeID, BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID,
+				BiomeGenBase.coldBeach.biomeID, BiomeGenBase.coldTaiga.biomeID, BiomeGenBase.coldTaigaHills.biomeID, BiomeGenBase.deepOcean.biomeID, BiomeGenBase.desert.biomeID, 
+				BiomeGenBase.desertHills.biomeID, BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.forest.biomeID,
+				BiomeGenBase.forestHills.biomeID, BiomeGenBase.frozenOcean.biomeID, BiomeGenBase.frozenRiver.biomeID, BiomeGenBase.iceMountains.biomeID, BiomeGenBase.icePlains.biomeID,
+				BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleEdge.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.mesa.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID,
+				BiomeGenBase.ocean.biomeID, BiomeGenBase.plains.biomeID, BiomeGenBase.river.biomeID, BiomeGenBase.roofedForest.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID,
+				BiomeGenBase.stoneBeach.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "fuseaSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "fuseaSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "ranmasSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "ranmasSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "parasmiteSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "parasmiteSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "avrisSpawnOverride";
@@ -3468,27 +3190,33 @@ public class TragicNewConfig {
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "greaterStinSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "greaterStinSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "stinKingSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "stinKingSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "stinQueenSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "stinQueenSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "voxStellarumSpawnOverride";
@@ -3500,19 +3228,29 @@ public class TragicNewConfig {
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "volatileFuseaSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "volatileFuseaSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+				BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+				BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "aegarSpawnOverride";
-		prop = config.get(cat.getName(), s, false);
-		registerObject(s, prop.getBoolean(false));
+		prop = config.get(cat.getName(), s, true);
+		registerObject(s, prop.getBoolean(true));
 
 		s = "aegarSpawnBiomes";
-		prop = config.get(cat.getName(), s, new int[] {0});
+		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.beach.biomeID, BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID,
+				BiomeGenBase.coldBeach.biomeID, BiomeGenBase.coldTaiga.biomeID, BiomeGenBase.coldTaigaHills.biomeID, BiomeGenBase.deepOcean.biomeID, BiomeGenBase.desert.biomeID,
+				BiomeGenBase.desertHills.biomeID, BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.forest.biomeID,
+				BiomeGenBase.forestHills.biomeID, BiomeGenBase.frozenOcean.biomeID, BiomeGenBase.frozenRiver.biomeID, BiomeGenBase.hell.biomeID, BiomeGenBase.iceMountains.biomeID,
+				BiomeGenBase.icePlains.biomeID, BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleEdge.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.megaTaiga.biomeID,
+				BiomeGenBase.megaTaigaHills.biomeID, BiomeGenBase.mesa.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.mushroomIsland.biomeID,
+				BiomeGenBase.mushroomIslandShore.biomeID, BiomeGenBase.ocean.biomeID, BiomeGenBase.plains.biomeID, BiomeGenBase.river.biomeID, BiomeGenBase.roofedForest.biomeID,
+				BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID, BiomeGenBase.sky.biomeID, BiomeGenBase.stoneBeach.biomeID, BiomeGenBase.swampland.biomeID,
+				BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 		
 		s = "apisSpawnOverride";
@@ -4737,386 +4475,7 @@ public class TragicNewConfig {
 		prop = config.get(cat.getName(), "overlordArmorHealthBuff", 5.0);
 		prop.comment = "The Health buff you gain from wearing any of the Overlord Armor set.";
 		modifier[++m] = prop.getDouble(5.0);
+
+		if (config.hasChanged()) config.save();
 	}
-
-	private static void postProcessConfigs()
-	{
-		byte b;
-
-		if (!getBoolean("allowAmulets"))
-		{
-			for (b = 0; b < amuletConfig.length; b++) amuletConfig[b] = false;
-			for (b = 0; b < amuletEffects.length; b++) amuletEffects[b] = false;
-		}
-
-		if (!getBoolean("allowDimensions"))
-		{
-			for (b = 0; b < dimensionConfig.length; b++) dimensionConfig[b] = false;
-		}
-
-		if (!getBoolean("allowDoom"))
-		{
-			for (b = 0; b < doomConfig.length; b++) doomConfig[b] = false;
-		}
-
-		if (!doomConfig[0]) //doomsdays
-		{
-			for (b = 0; b < doomsdayAllow.length; b++) doomsdayAllow[b] = false;
-		}
-
-		if (!doomConfig[6]) //non-Doomsday abilities
-		{
-			for (b = 0; b < doomAbility.length; b++) doomAbility[b] = false;
-		}
-
-		if (!getBoolean("allowMobs"))
-		{
-			for (b = 0; b < mobConfig.length; b++) mobConfig[b] = false;
-		}
-
-		if (!mobConfig[0]) //mobs
-		{
-			for (b = 0; b < mobAllow.length; b++) mobAllow[b] = false;
-		}
-
-		if (!mobConfig[1]) //mini-bosses
-		{
-			for (b = 0; b < miniBossAllow.length; b++) miniBossAllow[b] = false;
-		}
-
-		if (!mobConfig[2]) //bosses
-		{
-			for (b = 0; b < bossAllow.length; b++) bossAllow[b] = false;
-		}
-
-		if (!getBoolean("allowPotions"))
-		{
-			for (b = 0; b < potionAllow.length; b++) potionAllow[b] = false;
-		}
-
-		if (!getBoolean("allowVanillaChanges"))
-		{
-			for (b = 0; b < vanillaConfig.length; b++) vanillaConfig[b] = false;
-		}
-
-		if (!getBoolean("allowWorldGen"))
-		{
-			for (b = 0; b < worldGenConfig.length; b++) worldGenConfig[b] = false;
-		}
-
-		if (!worldGenConfig[5]) //structures
-		{
-			for (b = 0; b < structureAllow.length; b++) structureAllow[b] = false;
-		}
-	}
-
-	private static void registerArrayedVariables()
-	{
-		byte m;
-		registerObject("allowAmuletLeveling", amuletConfig[m = 0]);
-		registerObject("allowAmuletCrafting", amuletConfig[++m]);
-		registerObject("requireAmuletSlotUnlock", amuletConfig[++m]);
-		registerObject("allowAmuletBossKillCharge", amuletConfig[++m]);
-		registerObject("allowAmuletModifiers", amuletConfig[++m]);
-		registerObject("allowAmuletDeathDrops", amuletConfig[++m]);
-
-		registerObject("amuPeace", amuletEffects[m = 0]);
-		registerObject("amuYeti", amuletEffects[++m]);
-		registerObject("amuClaymation", amuletEffects[++m]);
-		registerObject("amuChicken", amuletEffects[++m]);
-		registerObject("amuBlacksmith", amuletEffects[++m]);
-		registerObject("amuCreeper", amuletEffects[++m]);
-		registerObject("amuZombie", amuletEffects[++m]);
-		registerObject("amuSkeleton", amuletEffects[++m]);
-		registerObject("amuIce", amuletEffects[++m]);
-		registerObject("amuSnowGolem", amuletEffects[++m]);
-		registerObject("amuIronGolem", amuletEffects[++m]);
-		registerObject("amuSpider", amuletEffects[++m]);
-		registerObject("amuStin", amuletEffects[++m]);
-		registerObject("amuSupernatural", amuletEffects[++m]);
-		registerObject("amuFusea", amuletEffects[++m]);
-		registerObject("amuLuck", amuletEffects[++m]);
-		registerObject("amuKitsune", amuletEffects[++m]);
-		registerObject("amuMartyr", amuletEffects[++m]);
-		registerObject("amuPiercing", amuletEffects[++m]);
-		registerObject("amuApis", amuletEffects[++m]);
-		registerObject("amuSunken", amuletEffects[++m]);
-		registerObject("amuEnderman", amuletEffects[++m]);
-		registerObject("amuPolaris", amuletEffects[++m]);
-		registerObject("amuLightning", amuletEffects[++m]);
-		registerObject("amuConsumption", amuletEffects[++m]);
-		registerObject("amuUndead", amuletEffects[++m]);
-		registerObject("amuEnderDragon", amuletEffects[++m]);
-		registerObject("amuTime", amuletEffects[++m]);
-		registerObject("amuWither", amuletEffects[++m]);
-		registerObject("amuOverlord", amuletEffects[++m]);
-		registerObject("amuEnyvil", amuletEffects[++m]);
-
-		registerObject("allowSynapse", dimensionConfig[m = 0]);
-		registerObject("allowCollision", dimensionConfig[++m]);
-		registerObject("allowCollisionRespawn", dimensionConfig[++m]);
-		registerObject("allowSynapseRespawn", dimensionConfig[++m]);
-		registerObject("keepCollisionLoaded", dimensionConfig[++m]);
-		registerObject("keepSynapseLoaded", dimensionConfig[++m]);
-		registerObject("allowSynapseVariants", dimensionConfig[++m]);
-
-		registerObject("allowDoomsdays", doomConfig[m = 0]);
-		registerObject("allowInfluenceDoomsdays", doomConfig[++m]);
-		registerObject("allowOverflowDoomsdays", doomConfig[++m]);
-		registerObject("allowCrisisDoomsdays", doomConfig[++m]);
-		registerObject("allowWorldShaperDoomsdays", doomConfig[++m]);
-		registerObject("allowCombinationDoomsdays", doomConfig[++m]);
-		registerObject("allowNonDoomsdayAbilities", doomConfig[++m]);
-		registerObject("shouldDoomLimitIncrease", doomConfig[++m]);
-		registerObject("allowConsumeRefill", doomConfig[++m]);
-		registerObject("allowDoomPainRecharge", doomConfig[++m]);
-		registerObject("allowNaturalRecharge", doomConfig[++m]);
-		registerObject("allowCrucialMoments", doomConfig[++m]);
-		registerObject("allowBacklash", doomConfig[++m]);
-		registerObject("allowCooldown", doomConfig[++m]);
-		registerObject("allowDoomKillRecharge", doomConfig[++m]);
-		registerObject("allowCooldownDefuse", doomConfig[++m]);
-		registerObject("allowPartnerDoomsdays", doomConfig[++m]);
-		registerObject("allowDoomScrollImbue", doomConfig[++m]);
-
-		registerObject("allowDecay", enchantAllow[m = 0]);
-		registerObject("allowSlay", enchantAllow[++m]);
-		registerObject("allowAbsolve", enchantAllow[++m]);
-		registerObject("allowVampirism", enchantAllow[++m]);
-		registerObject("allowLeech", enchantAllow[++m]);
-		registerObject("allowConsume", enchantAllow[++m]);
-		registerObject("allowDistract", enchantAllow[++m]);
-		registerObject("allowMultiply", enchantAllow[++m]);
-		registerObject("allowCombustion", enchantAllow[++m]);
-		registerObject("allowRuneBreak", enchantAllow[++m]);
-		registerObject("allowReach", enchantAllow[++m]);
-		registerObject("allowUnbreakable", enchantAllow[++m]);
-		registerObject("allowRust", enchantAllow[++m]);
-		registerObject("allowVeteran", enchantAllow[++m]);
-		registerObject("allowDeathTouch", enchantAllow[++m]);
-		registerObject("allowIgnition", enchantAllow[++m]);
-		registerObject("allowToxicity", enchantAllow[++m]);
-		registerObject("allowParalysis", enchantAllow[++m]);
-		registerObject("allowElasticity", enchantAllow[++m]);
-		registerObject("allowAgility", enchantAllow[++m]);
-		registerObject("allowRuneWalker", enchantAllow[++m]);
-		registerObject("allowLuminescence", enchantAllow[++m]);
-
-		registerObject("allowNormalMobs", mobConfig[m = 0]);
-		registerObject("allowMiniBosses", mobConfig[++m]);
-		registerObject("allowBosses", mobConfig[++m]);
-		registerObject("allowBossOverworldSpawns", mobConfig[++m]);
-		registerObject("allowExtraBossLoot", mobConfig[++m]);
-		registerObject("allowMobTransformation", mobConfig[++m]);
-		registerObject("allowNonDimensionMobSpawns", mobConfig[++m]);
-		registerObject("allowGroupBuffs", mobConfig[++m]);
-		registerObject("allowEasyBosses", mobConfig[++m]);
-		registerObject("allowMobSounds", mobConfig[++m]);
-		registerObject("bossesDenyFlight", mobConfig[++m]);
-		registerObject("allowMobInfighting", mobConfig[++m]);
-		registerObject("allowMobIllumination", mobConfig[++m]);
-		registerObject("allowRandomSupportMob", mobConfig[++m]);
-
-		registerObject("allowJabba", mobAllow[m = 0]);
-		registerObject("allowJanna", mobAllow[++m]);
-		registerObject("allowPlague", mobAllow[++m]);
-		registerObject("allowGragul", mobAllow[++m]);
-		registerObject("allowMinotaur", mobAllow[++m]);
-		registerObject("allowInkling", mobAllow[++m]);
-		registerObject("allowRagr", mobAllow[++m]);
-		registerObject("allowPumpkinhead", mobAllow[++m]);
-		registerObject("allowTragicNeko", mobAllow[++m]);
-		registerObject("allowTox", mobAllow[++m]);
-		registerObject("allowPox", mobAllow[++m]);
-		registerObject("allowCryse", mobAllow[++m]);
-		registerObject("allowStarCryse", mobAllow[++m]);
-		registerObject("allowNorVox", mobAllow[++m]);
-		registerObject("allowStarVox", mobAllow[++m]);
-		registerObject("allowPirah", mobAllow[++m]);
-		registerObject("allowStin", mobAllow[++m]);
-		registerObject("allowStinBaby", mobAllow[++m]);
-		registerObject("allowKindlingSpirit", mobAllow[++m]);
-		registerObject("allowAbomination", mobAllow[++m]);
-		registerObject("allowErkel", mobAllow[++m]);
-		registerObject("allowSirv", mobAllow[++m]);
-		registerObject("allowPsygote", mobAllow[++m]);
-		registerObject("allowLockbot", mobAllow[++m]);
-		registerObject("allowNanoSwarm", mobAllow[++m]);
-		registerObject("allowSnowGolem", mobAllow[++m]);
-		registerObject("allowHunter", mobAllow[++m]);
-		registerObject("allowHarvester", mobAllow[++m]);
-		registerObject("allowSeeker", mobAllow[++m]);
-		registerObject("allowArchangel", mobAllow[++m]);
-		registerObject("allowIre", mobAllow[++m]);
-		registerObject("allowFusea", mobAllow[++m]);
-		registerObject("allowRanmas", mobAllow[++m]);
-		registerObject("allowAvris", mobAllow[++m]);
-
-		registerObject("allowJarra", miniBossAllow[m = 0]);
-		registerObject("allowKragul", miniBossAllow[++m]);
-		registerObject("allowMagmox", miniBossAllow[++m]);
-		registerObject("allowMegaCryse", miniBossAllow[++m]);
-		registerObject("allowVoxStellarum", miniBossAllow[++m]);
-		registerObject("allowGreaterStin", miniBossAllow[++m]);
-		registerObject("allowStinKing", miniBossAllow[++m]);
-		registerObject("allowStinQueen", miniBossAllow[++m]);
-		registerObject("allowAegar", miniBossAllow[++m]);
-		registerObject("allowVolatileFusea", miniBossAllow[++m]);
-
-		registerObject("allowApis", bossAllow[m = 0]);
-		registerObject("allowSkultar", bossAllow[++m]);
-		registerObject("allowKitsunakuma", bossAllow[++m]);
-		registerObject("allowEmpariah", bossAllow[++m]);
-		registerObject("allowTimeController", bossAllow[++m]);
-		registerObject("allowPolaris", bossAllow[++m]);
-		registerObject("allowEnyvil", bossAllow[++m]);
-		registerObject("allowClaymation", bossAllow[++m]);
-		registerObject("allowOverlord", bossAllow[++m]);
-
-		registerObject("allowFlight", potionAllow[m = 0]);
-		registerObject("allowAquaSuperiority", potionAllow[++m]);
-		registerObject("allowImmunity", potionAllow[++m]);
-		registerObject("allowResurrection", potionAllow[++m]);
-		registerObject("allowHarmony", potionAllow[++m]);
-		registerObject("allowInvulnerability", potionAllow[++m]);
-		registerObject("allowClarity", potionAllow[++m]);
-		registerObject("allowConvergence", potionAllow[++m]);
-		registerObject("allowDivinity", potionAllow[++m]);
-		registerObject("allowCorruption", potionAllow[++m]);
-		registerObject("allowDisorientation", potionAllow[++m]);
-		registerObject("allowStun", potionAllow[++m]);
-		registerObject("allowFear", potionAllow[++m]);
-		registerObject("allowMalnourish", potionAllow[++m]);
-		registerObject("allowCripple", potionAllow[++m]);
-		registerObject("allowSubmission", potionAllow[++m]);
-		registerObject("allowInhibit", potionAllow[++m]);
-		registerObject("allowLeadFoot", potionAllow[++m]);
-		registerObject("allowHacked", potionAllow[++m]);
-		registerObject("allowBurned", potionAllow[++m]);
-
-		registerObject("allowVanillaMobBuffs", vanillaConfig[m = 0]);
-		registerObject("allowExtraMobEffects", vanillaConfig[++m]);
-		registerObject("allowAnimalRetribution", vanillaConfig[++m]);
-		registerObject("allowMobModdedArmor", vanillaConfig[++m]);
-		registerObject("allowRespawnPunishment", vanillaConfig[++m]);
-		registerObject("allowExtraExplosiveEffects", vanillaConfig[++m]);
-		registerObject("allowMobBlindnessDebuff", vanillaConfig[++m]);
-		registerObject("allowExtraOverworldFlowers", vanillaConfig[++m]);
-		registerObject("allowOverworldSilverfishGen", vanillaConfig[++m]);
-		registerObject("allowNetherOreGen", vanillaConfig[++m]);
-		registerObject("allowOverworldOreGen", vanillaConfig[++m]);
-		registerObject("allowDrudgeGen", vanillaConfig[++m]);
-		registerObject("allowAnimalGolemCorruption", vanillaConfig[++m]);
-		registerObject("allowCowMinotaurCreation", vanillaConfig[++m]);
-		registerObject("allowIronGolemHitCooldown", vanillaConfig[++m]);
-		registerObject("allowNauseaRandomMiss", vanillaConfig[++m]);
-		registerObject("allowBlindnessReachDebuff", vanillaConfig[++m]);
-		registerObject("allowCripplingFall", vanillaConfig[++m]);
-
-		registerObject("allowVoidPitGen", worldGenConfig[m = 0]);
-		registerObject("allowSpikeGen", worldGenConfig[++m]);
-		registerObject("allowScatteredSurfaceGen", worldGenConfig[++m]);
-		registerObject("allowStringLightGen", worldGenConfig[++m]);
-		registerObject("allowDarkStoneVariantGen", worldGenConfig[++m]);
-		registerObject("allowStructureGen", worldGenConfig[++m]);
-		registerObject("allowInvertedSpikeGen", worldGenConfig[++m]);
-		registerObject("allowDigitalSeaGen", worldGenConfig[++m]);
-		registerObject("allowFruitGen", worldGenConfig[++m]);
-		registerObject("allowIsleGen", worldGenConfig[++m]);
-		registerObject("allowFlowerGen", worldGenConfig[++m]);
-	}
-
-	public static int clampPositive(int value) {
-		return value > 0 ? value : 0;
-	}
-
-	public static int clamp(final int value, final int min, final int max) {
-		return net.minecraft.util.MathHelper.clamp_int(value, min, max);
-	}
-
-	protected static int[] verifyGS(final int[] array) {
-		return verify(array, 2);
-	}
-
-	protected static double[] verifyStat(final double[] array) {
-		return verify(array, 6);
-	}
-
-	private static double[] verify(final double[] array, final int amt)
-	{
-		if (amt != array.length)
-		{
-			throw new IllegalArgumentException("Invalid array length, required length was " + amt + ", array length was " + array.length);
-		}
-
-		for (int i = 0; i < amt; i++)
-		{
-			if (Double.isNaN(array[i]))
-			{
-				throw new IllegalArgumentException("Value of " + array[i] + " was invalid.");
-			}
-		}
-		return array;
-	}
-
-	private static int[] verify(final int[] array, final int amt)
-	{
-		if (amt != array.length)
-		{
-			throw new IllegalArgumentException("Invalid array length, required length was " + amt + ", array length was " + array.length);
-		}
-		return array;
-	}
-
-	private static int findOpenID(final Object[] array, int start, final boolean loop)
-	{
-		final int l = array.length;
-
-		if (start < l && array[start] == null) return start;
-		else if (start >= l || start < 0) start = 0;
-
-		boolean once = !loop;
-
-		for (int i = 0; i < l; i++)
-		{
-			if (!once && start + i >= l) //only check through the entire array once
-			{
-				start = i = 0;
-				once = true;
-			}
-			else if (once && start + i >= l) break;
-
-			if (array[start + i] != null) continue;
-			return start + i;
-		}
-
-		TragicMC.logWarning("No valid values were found for starting id of " + start + ", default to 0, may result in a crash.");
-		return 0;
-	}
-
-	public static int findBiomeID(int start) {
-		return findOpenID(BiomeGenBase.getBiomeGenArray(), start, true);
-	}
-
-	public static int findEnchantID(int start) {	
-
-		return findOpenID(enchantList, start, true);
-	}
-
-	private static void reflectEnchantmentList() {
-		enchantList = null;
-		try
-		{
-			Field f = ReflectionHelper.findField(Enchantment.class, "enchantmentsList", "field_180311_a");
-			Field modfield = Field.class.getDeclaredField("modifiers");
-			modfield.setAccessible(true);
-			modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
-			enchantList = (Enchantment[]) f.get(null);
-		}
-		catch (Exception e) {
-			TragicMC.logError("Error while reflecting the Enchantment list array", e);
-			enchantList = Enchantment.enchantmentsBookList;
-			return;
-		}		
-	} 
 }
