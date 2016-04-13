@@ -4,6 +4,8 @@ import static tragicneko.tragicmc.TragicConfig.kurayamiStats;
 
 import java.util.UUID;
 
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -46,6 +48,17 @@ public class EntityKurayami extends EntityGolem {
 	public int armorValue;
 	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", TragicConfig.modifier[1], 0);
 	private int timeToLive;
+	
+	public static final Predicate mobTarget = new Predicate() {
+		@Override
+		public boolean apply(Object input) {
+			return canApply((Entity) input);
+		}
+
+		public boolean canApply(Entity entity) {
+			return entity instanceof IMob;
+		}
+	};
 
 	public EntityKurayami(World world) {
 		super(world);
@@ -57,7 +70,7 @@ public class EntityKurayami extends EntityGolem {
 		this.tasks.addTask(8, new EntityAIWatchTarget(this, 32.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, IMob.class, 0, true, false, null));
+		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, mobTarget));
 		this.isImmuneToFire = true;
 		this.timeToLive = 1800;
 	}
