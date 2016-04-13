@@ -81,21 +81,21 @@ public class ConfigLightweight extends TragicNewConfig {
 		prop.comment = "Can amulets be crafted via raw materials?";
 		amuletConfig[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "requireAmuletSlotUnlock", true);
+		prop = config.get(cat.getName(), "requireAmuletSlotUnlock", false);
 		prop.comment = "Do you need to use an Amulet Release to unlock a new Amulet slot?";
-		amuletConfig[++m] = prop.getBoolean(true);
+		amuletConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowAmuletBossKillCharge", true);
+		prop = config.get(cat.getName(), "allowAmuletBossKillCharge", false);
 		prop.comment = "Will your Amulets repair some durability after killing a Boss?";
-		amuletConfig[++m] = prop.getBoolean(true);
+		amuletConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowAmuletModifiers", true);
+		prop = config.get(cat.getName(), "allowAmuletModifiers", false);
 		prop.comment = "Will Amulets have random modifiers that affect their user while equipped?";
-		amuletConfig[++m] = prop.getBoolean(true);
+		amuletConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowAmuletDeathDrops", true);
+		prop = config.get(cat.getName(), "allowAmuletDeathDrops", false);
 		prop.comment = "Do Amulets drop off of you on death?";
-		amuletConfig[++m] = prop.getBoolean(true);
+		amuletConfig[++m] = prop.getBoolean(false);
 
 		s = "amuletMaxSlots";
 		prop = config.get(cat.getName(), s, 3);
@@ -128,9 +128,9 @@ public class ConfigLightweight extends TragicNewConfig {
 		registerObject(s, clamp(prop.getInt(89), 1, 100));
 
 		s = "amuletStartSlots";
-		prop = config.get(cat.getName(), s, 1);
+		prop = config.get(cat.getName(), s, 3);
 		prop.comment = "The amount of slots you have unlocked at the start.";
-		registerObject(s, clamp(prop.getInt(1), 0, 3));
+		registerObject(s, clamp(prop.getInt(3), 0, 3));
 
 		cat = config.getCategory(CAT_AMUEFFECT);
 		cat.setComment("Disable or enable certain Amulet Effects.");
@@ -770,9 +770,9 @@ public class ConfigLightweight extends TragicNewConfig {
 		prop.comment = "Can non-Doomsday Weapon and Armor abilities be used?";
 		doomConfig[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "allowDoomIncrease", true);
+		prop = config.get(cat.getName(), "allowDoomIncrease", false);
 		prop.comment = "Can the maximum Doom amount be increased by a Doom Consume?";
-		doomConfig[++m] = prop.getBoolean(true);
+		doomConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "allowConsumeRefill", true);
 		prop.comment = "Should Doom Consumes refill your Doom when used?";
@@ -790,21 +790,21 @@ public class ConfigLightweight extends TragicNewConfig {
 		prop.comment = "Can Doomsdays have a chance to have extra effectiveness?";
 		doomConfig[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "allowBacklash", true);
+		prop = config.get(cat.getName(), "allowBacklash", false);
 		prop.comment = "Can Doomsdays have a chance to fail?";
-		doomConfig[++m] = prop.getBoolean(true);
+		doomConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowCooldown", true);
+		prop = config.get(cat.getName(), "allowCooldown", false);
 		prop.comment = "Should Doomsdays inflict Global cooldown after use?";
-		doomConfig[++m] = prop.getBoolean(true);
+		doomConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "allowDoomKillCharge", true);
 		prop.comment = "Should killing enemies recharge your Doom?";
 		doomConfig[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "allowCooldownDefuse", true);
+		prop = config.get(cat.getName(), "allowCooldownDefuse", false);
 		prop.comment = "Can Cooldown Defuses be used to remove your Global cooldown?";
-		doomConfig[++m] = prop.getBoolean(true);
+		doomConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "allowPartnerDoomsdays", false);
 		prop.comment = "Can two people activate a Doomsday combination while near each other? (This hasn't been tested and you should report your results from use)";
@@ -815,14 +815,14 @@ public class ConfigLightweight extends TragicNewConfig {
 		doomConfig[++m] = prop.getBoolean(false);
 
 		s = "maxDoomAmount";
-		prop = config.get(cat.getName(), s, 500);
+		prop = config.get(cat.getName(), s, 1000);
 		prop.comment = "The highest Doom amount you can have.";
-		registerObject(s, clampPositive(prop.getInt(500)));
+		registerObject(s, clampPositive(prop.getInt(1000)));
 
 		s = "doomRechargeRate";
-		prop = config.get(cat.getName(), s, 1);
+		prop = config.get(cat.getName(), s, 10);
 		prop.comment = "The speed at which you naturally recharge Doom. Maxes out at 20, which would be one recharge per tick essentially.";
-		registerObject(s, clamp(prop.getInt(1), 1, 20));
+		registerObject(s, clamp(prop.getInt(10), 1, 20));
 
 		s = "doomConsumeRarity";
 		prop = config.get(cat.getName(), s, 3);
@@ -835,9 +835,9 @@ public class ConfigLightweight extends TragicNewConfig {
 		registerObject(s, clamp(prop.getInt(5), 1, 250));
 
 		s = "doomConsumeRefillAmount";
-		prop = config.get(cat.getName(), s, 50);
+		prop = config.get(cat.getName(), s, 100);
 		prop.comment = "The percentage of Doom that you'll refill upon use of a Doom Consume.";
-		registerObject(s, clamp(prop.getInt(50), 1, 100));
+		registerObject(s, clamp(prop.getInt(100), 1, 100));
 
 		s = "cooldownDefuseRefillAmount";
 		prop = config.get(cat.getName(), "cooldownDefuseRefillAmount", 30);
@@ -855,19 +855,19 @@ public class ConfigLightweight extends TragicNewConfig {
 		registerObject(s, clamp(prop.getInt(5), 1, 100));
 
 		s = "doomConsumeIncreaseAmount";
-		prop = config.get(cat.getName(), s, 100);
+		prop = config.get(cat.getName(), s, 0);
 		prop.comment = "The amount of Max Doom you gain per Doom Consume use.";
-		registerObject(s, clampPositive(prop.getInt(100)));
+		registerObject(s, clampPositive(prop.getInt(0)));
 
 		s = "maxDoomStartAmount";
-		prop = config.get(cat.getName(), s, 100);
+		prop = config.get(cat.getName(), s, 1000);
 		prop.comment = "The default amount of Max Doom that you start with.";
-		registerObject(s, clampPositive(prop.getInt(100)));
+		registerObject(s, clampPositive(prop.getInt(1000)));
 
 		s = "doomRechargeAmount";
-		prop = config.get(cat.getName(), s, 1);
+		prop = config.get(cat.getName(), s, 5);
 		prop.comment = "The amount you recharge per recharge tick, also used by the Doom kill charge.";
-		registerObject(s, clampPositive(prop.getInt(1)));
+		registerObject(s, clampPositive(prop.getInt(5)));
 
 		s = "partnerDoomsdayDistance";
 		prop = config.get(cat.getName(), s, 12);
@@ -2083,8 +2083,8 @@ public class ConfigLightweight extends TragicNewConfig {
 		prop = config.get(cat.getName(), "jannaAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "plagueAllow", true);
-		mobAllow[++m] = prop.getBoolean(true);
+		prop = config.get(cat.getName(), "plagueAllow", false);
+		mobAllow[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "gragulAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
@@ -3325,14 +3325,14 @@ public class ConfigLightweight extends TragicNewConfig {
 		prop = config.get(cat.getName(), "divinityAllow", true);
 		potionAllow[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "corruptionAllow", true);
-		potionAllow[++m] = prop.getBoolean(true);
+		prop = config.get(cat.getName(), "corruptionAllow", false);
+		potionAllow[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "disorientationAllow", true);
-		potionAllow[++m] = prop.getBoolean(true);
+		prop = config.get(cat.getName(), "disorientationAllow", false);
+		potionAllow[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "stunAllow", true);
-		potionAllow[++m] = prop.getBoolean(true);
+		prop = config.get(cat.getName(), "stunAllow", false);
+		potionAllow[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "fearAllow", true);
 		potionAllow[++m] = prop.getBoolean(true);
@@ -3340,17 +3340,17 @@ public class ConfigLightweight extends TragicNewConfig {
 		prop = config.get(cat.getName(), "malnourishAllow", true);
 		potionAllow[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "crippleAllow", true);
-		potionAllow[++m] = prop.getBoolean(true);
+		prop = config.get(cat.getName(), "crippleAllow", false);
+		potionAllow[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "submissionAllow", true);
-		potionAllow[++m] = prop.getBoolean(true);
+		prop = config.get(cat.getName(), "submissionAllow", false);
+		potionAllow[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "inhibitAllow", true);
-		potionAllow[++m] = prop.getBoolean(true);
+		prop = config.get(cat.getName(), "inhibitAllow", false);
+		potionAllow[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "leadFootAllow", true);
-		potionAllow[++m] = prop.getBoolean(true);
+		prop = config.get(cat.getName(), "leadFootAllow", false);
+		potionAllow[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "hackedAllow", true);
 		potionAllow[++m] = prop.getBoolean(true);
@@ -3361,29 +3361,29 @@ public class ConfigLightweight extends TragicNewConfig {
 		cat = config.getCategory(CAT_VANILLA);
 		cat.setComment("These toggle the various changes the mod does that explicitly affects Vanilla Minecraft. Ore rate and vein size only affects those ores generated in Vanilla Dimensions.");
 
-		prop = config.get(cat.getName(), "allowMobBuffs", true);
+		prop = config.get(cat.getName(), "allowMobBuffs", false);
 		prop.comment = "Will various Vanilla Mobs gain a Health, Attack Damage, Knockback Resistance or Speed buff?";
-		vanillaConfig[m = 0] = prop.getBoolean(true);
+		vanillaConfig[m = 0] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowExtraMobEffects", true);
+		prop = config.get(cat.getName(), "allowExtraMobEffects", false);
 		prop.comment = "Will some mobs gain Potion Effect debuffs and other abilities along with their normal attacks?";
-		vanillaConfig[++m] = prop.getBoolean(true);
+		vanillaConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowAnimalRetribution", true);
+		prop = config.get(cat.getName(), "allowAnimalRetribution", false);
 		prop.comment = "Can slaying animals sometimes trigger a Lightning strike?";
-		vanillaConfig[++m] = prop.getBoolean(true);
+		vanillaConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowMobModdedArmor", true);
+		prop = config.get(cat.getName(), "allowMobModdedArmor", false);
 		prop.comment = "Can Vanilla mobs sometimes spawn in with Armor from the mod?";
-		vanillaConfig[++m] = prop.getBoolean(true);
+		vanillaConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowRespawnPunishment", true);
+		prop = config.get(cat.getName(), "allowRespawnPunishment", false);
 		prop.comment = "Will you get inflicted with negative effects upon respawning after a death?";
-		vanillaConfig[++m] = prop.getBoolean(true);
+		vanillaConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowExtraExplosiveEffects", true);
+		prop = config.get(cat.getName(), "allowExtraExplosiveEffects", false);
 		prop.comment = "Do explosions inflict extra negative effects on you when hit?";
-		vanillaConfig[++m] = prop.getBoolean(true);
+		vanillaConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "allowMobBlindnessDebuff", true);
 		prop.comment = "Does Blindness reduce the follow range of mobs?";
@@ -3405,13 +3405,13 @@ public class ConfigLightweight extends TragicNewConfig {
 		prop.comment = "Can mod-exclusive ores generate in the Overworld?";
 		vanillaConfig[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "allowDrudgeGen", true);
+		prop = config.get(cat.getName(), "allowDrudgeGen", false);
 		prop.comment = "Can Drudge generate in the Nether?";
-		vanillaConfig[++m] = prop.getBoolean(true);
+		vanillaConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "allowAnimalAndGolemCorruption", true);
+		prop = config.get(cat.getName(), "allowAnimalAndGolemCorruption", false);
 		prop.comment = "Can Animals and Golems become Corrupted?";
-		vanillaConfig[++m] = prop.getBoolean(true);
+		vanillaConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "allowCowMinotaurCreation", true);
 		prop.comment = "Will striking a Cow with Lightning turn it into a Minotaur?";
@@ -3684,9 +3684,9 @@ public class ConfigLightweight extends TragicNewConfig {
 		registerObject(s, prop.getBoolean(true));
 
 		s = "allowPvP";
-		prop = config.get(cat.getName(), s, true);
+		prop = config.get(cat.getName(), s, false);
 		prop.comment = "Should Doomsdays and Weapons be able to be used against other players?";
-		registerObject(s, prop.getBoolean(true));
+		registerObject(s, prop.getBoolean(false));
 
 		s = "allowDefaultLores";
 		prop = config.get(cat.getName(), s, true);
@@ -3694,9 +3694,9 @@ public class ConfigLightweight extends TragicNewConfig {
 		registerObject(s, prop.getBoolean(true));
 
 		s = "allowCorruptionTransfer";
-		prop = config.get(cat.getName(), s, true);
+		prop = config.get(cat.getName(), s, false);
 		prop.comment = "Should Corruption transfer between entities?";
-		registerObject(s, prop.getBoolean(true));
+		registerObject(s, prop.getBoolean(false));
 
 		s = "challengeScrollDropChance";
 		prop = config.get(cat.getName(), s, 5);
