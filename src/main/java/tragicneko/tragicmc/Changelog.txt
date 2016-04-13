@@ -4703,6 +4703,7 @@ Also added the ability to have multiple "configs", each set based on the master 
 Added configurability of Neko Homeworld properties (biome ids, dimension ids, etc.) to new config
 Old config will be removed and the new one will be used as soon as I have time to go through each config option in the entire mod and convert them to the
 new registry retrieval
+Fixed Kurayami AI not using a predicate properly
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
