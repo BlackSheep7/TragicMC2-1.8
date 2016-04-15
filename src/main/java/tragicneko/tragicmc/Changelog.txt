@@ -4704,6 +4704,32 @@ Added configurability of Neko Homeworld properties (biome ids, dimension ids, et
 Old config will be removed and the new one will be used as soon as I have time to go through each config option in the entire mod and convert them to the
 new registry retrieval
 Fixed Kurayami AI not using a predicate properly
+Fixed Claymation doing it's drops multiple times
+Fixed Enyvil's crystals sometimes being many, many, blocks away from it, resulting in them being impossible to find while fighting it
+Fixed Enyvil taking half damage when it has no crystals instead of taking double damage
+Fixed weapon durability not being used properly when attacking something (related to previous stat attempts)
+Removed old config and refactored new one, did a manual refactor of all config settings across the mod for the new registry system (took sooooo long)
+Made it so that if a mob can transform into a mini-boss when they kill a mob with equal or more health while corrupted, they immediately transform
+into their mini-boss form
+Added a new debug mode to randomize config settings (almost) completely, this is an internal option and probably won't see the light of day to end users
+(although I could add a config that randomizes all the options and if they like them they can keep it or delete the config to get a refreshed randomized
+one
+Fixed multiple small mob bugs, mostly relating to config settings not being checked for doing certain things
+Fixed Sirv not properly telling nearby Sirv about their attacker
+Fixed Vox Stellarum not properly attacking things near them nor activating their spin attack properly, added extended range to it's spin attack, fixed it's
+healing ability not rendering properly
+Fixed gas blocks applying their effects way too often and spawning too many particles
+Fixed Fear causing way too many pathing updates per tick
+Fixed Enyvil spawning too many Dark Energy entities during it's spray attack
+Fixed drop helper sometimes putting null Doomsday scrolls into the drops
+Modify enchantment list in config to use a recreated list from the getter method
+Reduced Amulet Modifier possible amounts
+Fixed crash from when a Dimensional Key couldn't identify a Dimension's name
+Fixed backlashed Doomsdays still doing their effects when in Creative Mode, they should never do their effects after they backlash
+Adjusted Pulse to apply more velocity to entities
+Fixed crash while checking for reach
+Enabled Doomsday Scroll combining with items for Lightweight mode
+
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
