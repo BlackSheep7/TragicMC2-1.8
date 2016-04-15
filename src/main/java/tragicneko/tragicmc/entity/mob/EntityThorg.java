@@ -1,11 +1,9 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.thorgStats;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -52,17 +50,17 @@ public class EntityThorg extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(thorgStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(thorgStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(thorgStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(thorgStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(thorgStats[4]);
+		//this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(thorgStats[0]);
+		//this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(thorgStats[1]);
+		//this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(thorgStats[2]);
+		//this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(thorgStats[3]);
+		//this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(thorgStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) thorgStats[5];
+		return 0; //(int) thorgStats[5];
 	}
 
 	@Override
@@ -81,7 +79,7 @@ public class EntityThorg extends TragicMob {
 	public void onLivingUpdate()
 	{
 		if (this.isPotionActive(Potion.poison)) this.removePotionEffect(Potion.poison.id);
-		if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) this.removePotionEffect(TragicPotion.Stun.id);
+		if (TragicConfig.getBoolean("allowStun") && this.isPotionActive(TragicPotion.Stun)) this.removePotionEffect(TragicPotion.Stun.id);
 		
 		super.onLivingUpdate();
 

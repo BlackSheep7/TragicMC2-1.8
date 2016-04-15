@@ -26,44 +26,44 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 			byte i;
 			Predicate pred = BlockHelper.forBlock(Blocks.stone);
 
-			for (i = 0; i < TragicConfig.mercuryOreRate; i++)
+			for (i = 0; i < TragicConfig.getInt("mercuryOreGenRate"); i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(48) + 5;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.MercuryOre.getStateFromMeta(0), TragicConfig.mercuryOreVeinSize, pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				new WorldGenMinable(TragicBlocks.MercuryOre.getStateFromMeta(0), TragicConfig.getInt("mercuryOreVeinSize"), pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 
-			for (i = 0; i < TragicConfig.tungstenOreRate; i++)
+			for (i = 0; i < TragicConfig.getInt("tungstenOreGenRate"); i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(24) + 5;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.TungstenOre.getStateFromMeta(0), TragicConfig.tungstenOreVeinSize, pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				new WorldGenMinable(TragicBlocks.TungstenOre.getStateFromMeta(0), TragicConfig.getInt("tungstenOreVeinSize"), pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 
-			for (i = 0; i < TragicConfig.silverfishRate && TragicConfig.allowOverworldSilverfishGen; i++)
+			for (i = 0; i < TragicConfig.getInt("silverfishStoneGenRate") && TragicConfig.getBoolean("allowOverworldSilverfishGen"); i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(6);
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(Blocks.monster_egg.getStateFromMeta(0), TragicConfig.silverfishVeinSize, pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				new WorldGenMinable(Blocks.monster_egg.getStateFromMeta(0), TragicConfig.getInt("silverfishStoneVeinSize"), pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(16) + 5;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(Blocks.monster_egg.getStateFromMeta(0), TragicConfig.silverfishVeinSize, pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				new WorldGenMinable(Blocks.monster_egg.getStateFromMeta(0), TragicConfig.getInt("silverfishStoneVeinSize"), pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 
 			if (random.nextInt(4) != 0) return;
 
-			for (i = 0; i < 16 && TragicConfig.allowDimension; i++)
+			for (i = 0; i < 16 && TragicConfig.getBoolean("allowDimensions"); i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
 				Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();
 				if (Ycoord < 100) continue;
-				if (world.getBlockState(new BlockPos(Xcoord, Ycoord, Zcoord)).getBlock().isReplaceable(world, new BlockPos(Xcoord, Ycoord, Zcoord)) && world.getBlockState(new BlockPos(Xcoord, Ycoord - 1, Zcoord)).getBlock().isOpaqueCube() && random.nextInt(200) <= TragicConfig.aerisRarity)
+				if (world.getBlockState(new BlockPos(Xcoord, Ycoord, Zcoord)).getBlock().isReplaceable(world, new BlockPos(Xcoord, Ycoord, Zcoord)) && world.getBlockState(new BlockPos(Xcoord, Ycoord - 1, Zcoord)).getBlock().isOpaqueCube() && random.nextInt(200) <= TragicConfig.getInt("aerisRarity"))
 				{
 					world.setBlockState(new BlockPos(Xcoord, Ycoord, Zcoord), TragicBlocks.Aeris.getStateFromMeta(0), 2);
 					break;

@@ -21,7 +21,7 @@ public class AmuletSnowGolem extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuSnowGolem)
+		if (TragicConfig.getBoolean("amuSnowGolem"))
 		{
 			double d = level * 16.0D + 16.0D;
 			List<EntityMob> list = world.getEntitiesWithinAABB(EntityMob.class, player.getEntityBoundingBox().expand(d, d, d));

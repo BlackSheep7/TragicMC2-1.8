@@ -30,10 +30,10 @@ public class DoomsdayTimeCollapse extends Doomsday implements IExtendedDoomsday 
 			for (int i = 0; i < list.size(); i ++)
 			{
 				Entity entity = list.get(i);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 				entity.motionX = entity.motionY = entity.motionZ = 0;
 				entity.velocityChanged = false;
-				if (crucMoment && TragicConfig.allowStun && entity instanceof EntityLivingBase) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 0));
+				if (crucMoment && TragicConfig.getBoolean("allowStun") && entity instanceof EntityLivingBase) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 0));
 			}
 		}
 		else

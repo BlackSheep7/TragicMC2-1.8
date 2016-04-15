@@ -68,20 +68,4 @@ public class GuiAmuletInventory extends GuiContainer
 		mc.renderEngine.bindTexture(iconLocation);
 		drawTexturedModalRect(guiLeft + 16, guiTop - 2, 0, 0, xSize, ySize + 24);
 	}
-
-	public static ResourceLocation getTextureFromConfig()
-	{
-		switch(TragicConfig.guiTexture)
-		{
-		case 0:
-			return iconLocation;
-		case 1:
-			return iconLocation2;
-		case 2:
-			return iconLocation3;
-		default:
-			return iconLocation4;
-		}
-	}
-
 }

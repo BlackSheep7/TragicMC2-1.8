@@ -49,7 +49,7 @@ public class SchematicLightSpire extends Schematic {
 				int xr = x + rand.nextInt(3) - rand.nextInt(3);
 				int zr = z + rand.nextInt(3) - rand.nextInt(3);
 				this.setBlock(world, xr, y + y1, zr, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, xr, y + y1, zr, TragicConfig.allowArchangel ? "TragicMC.Archangel" : "Ghast");
+				this.setSpawnerMob(world, xr, y + y1, zr, TragicConfig.getBoolean("allowArchangel") ? "TragicMC.Archangel" : "Ghast");
 			}
 		}
 

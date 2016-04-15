@@ -30,7 +30,7 @@ public class BlockRadiatedGas extends BlockGas {
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
-		for (byte i = 0; i < 10; i++)
+		for (byte i = 0; i < 5; i++)
 		{
 			world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 					0.4F, 1.0F, 0.4F);

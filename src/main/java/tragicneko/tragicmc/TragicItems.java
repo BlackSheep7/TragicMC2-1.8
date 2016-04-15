@@ -347,9 +347,9 @@ public class TragicItems {
 
 	public static void load()
 	{
-		if (!TragicConfig.allowNonMobItems)
+		if (!TragicConfig.getBoolean("allowNonMobItems"))
 		{
-			if (TragicConfig.allowMobs)
+			if (TragicConfig.getBoolean("allowMobs"))
 			{
 				SpawnEgg = (new ItemMobEgg());
 				GameRegistry.registerItem(SpawnEgg, "spawnEgg");
@@ -695,7 +695,7 @@ public class TragicItems {
 			@Override
 			public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5)
 			{
-				if (par5 && entity instanceof EntityPlayer && TragicConfig.allowFlight)
+				if (par5 && entity instanceof EntityPlayer && TragicConfig.getBoolean("allowFlight"))
 				{
 					if (itemstack.getItemDamage() < itemstack.getMaxDamage() && itemstack.stackSize > 0)
 					{
@@ -954,7 +954,7 @@ public class TragicItems {
 					{
 						world.rainingStrength = 1.0F;
 						stack.damageItem(5, (EntityPlayer) entity);
-						if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+						if (entity instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
 					}
 				}
 			}
@@ -972,14 +972,14 @@ public class TragicItems {
 				{
 					stack.damageItem(5, (EntityPlayer) entity);
 					world.thunderingStrength = 0.0F;
-					if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+					if (entity instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
 				}
 
 				if (world.isRaining() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0) 
 				{
 					stack.damageItem(5, (EntityPlayer) entity);
 					world.rainingStrength = 0.0F;
-					if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+					if (entity instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
 				}
 			}
 		}).setUnlocalizedName("tragicmc.sunnyDayTalisman");
@@ -996,7 +996,7 @@ public class TragicItems {
 				{
 					world.thunderingStrength = 1.0F;
 					stack.damageItem(5, (EntityPlayer) entity);
-					if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayer) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+					if (entity instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayer) entity).triggerAchievement(TragicAchievements.talismanSpecial);
 				}
 			}
 		}).setUnlocalizedName("tragicmc.thunderstormTalisman");
@@ -1007,12 +1007,12 @@ public class TragicItems {
 			@Override
 			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 			{
-				if (world.isRemote || !(entity instanceof EntityPlayer) || !TragicConfig.allowItemTimeAltering) return;
+				if (world.isRemote || !(entity instanceof EntityPlayer) || !TragicConfig.getBoolean("allowItemTimeAltering")) return;
 				if (stack.getItemDamage() >= stack.getMaxDamage() || stack.stackSize <= 0) return;
 				int a = flag ? -5 : 5;
 				world.setWorldTime(world.getWorldTime() + a);
 				stack.damageItem(1, (EntityPlayer) entity);
-				if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayer) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+				if (entity instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayer) entity).triggerAchievement(TragicAchievements.talismanSpecial);
 			}
 		}.setUnlocalizedName("tragicmc.timeManipulatorTalisman"));
 		GameRegistry.registerItem(TimeManipulatorTalisman, "timeManipulatorTalisman");
@@ -1028,7 +1028,7 @@ public class TragicItems {
 				if (!world.isDaytime() && !world.isRaining() && !world.isThundering() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					if (player.ticksExisted % 200 == 0) stack.damageItem(1, player);
-					if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.talismanSpecial);
+					if (player instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) player.triggerAchievement(TragicAchievements.talismanSpecial);
 				}
 			}
 		}.setUnlocalizedName("tragicmc.moonlightTalisman"));
@@ -1045,7 +1045,7 @@ public class TragicItems {
 				if (world.isDaytime() && !world.isRaining() && !world.isThundering() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					if (player.ticksExisted % 200 == 0) stack.damageItem(1, player);
-					if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.talismanSpecial);
+					if (player instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) player.triggerAchievement(TragicAchievements.talismanSpecial);
 				}
 			}
 		}.setUnlocalizedName("tragicmc.synthesisTalisman"));
@@ -1062,7 +1062,7 @@ public class TragicItems {
 				if ((world.isRaining() || player.isInsideOfMaterial(Material.water)) && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					if (player.ticksExisted % 200 == 0) stack.damageItem(1, player);
-					if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.talismanSpecial);
+					if (player instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) player.triggerAchievement(TragicAchievements.talismanSpecial);
 				}
 			}
 		}.setUnlocalizedName("tragicmc.hydrationTalisman"));
@@ -1079,7 +1079,7 @@ public class TragicItems {
 				if (world.isThundering() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					if (player.ticksExisted % 200 == 0) stack.damageItem(1, player);
-					if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.talismanSpecial);
+					if (player instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) player.triggerAchievement(TragicAchievements.talismanSpecial);
 				}
 
 				player.inventory.markDirty();
@@ -1088,7 +1088,7 @@ public class TragicItems {
 		GameRegistry.registerItem(LightningRodTalisman, "lightningRodTalisman");
 
 		//Amulet Registrations
-		if (TragicConfig.allowAmulets)
+		if (TragicConfig.getBoolean("allowAmulets"))
 		{
 			KitsuneAmulet = (new AmuletKitsune());
 			GameRegistry.registerItem(KitsuneAmulet, "kitsuneAmulet");
@@ -1160,7 +1160,7 @@ public class TragicItems {
 				@Override
 				public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 				{
-					if (TragicConfig.amuOverlord && TragicConfig.allowHacked)
+					if (TragicConfig.getBoolean("amuOverlord") && TragicConfig.getBoolean("allowHacked"))
 					{
 						if (player.isPotionActive(TragicPotion.Hacked)) player.removePotionEffect(TragicPotion.Hacked.id);
 					}
@@ -1213,7 +1213,7 @@ public class TragicItems {
 		toolCelesJack.setRepairItem(new ItemStack(CelestialSteel));
 
 		//Special item registrations
-		if (TragicConfig.allowDoom)
+		if (TragicConfig.getBoolean("allowDoom"))
 		{
 			DoomConsume = (new ItemDoomUpgrade().setUnlocalizedName("tragicmc.doomConsume").setMaxStackSize(1).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(DoomConsume, "doomConsume");
@@ -1231,9 +1231,9 @@ public class TragicItems {
 		MobStatue = (new ItemStatue());
 		GameRegistry.registerItem(MobStatue, "mobStatue");
 
-		if (TragicConfig.allowDimension)
+		if (TragicConfig.getBoolean("allowDimensions"))
 		{
-			DimensionalKey = (new ItemDimensionalKey(TragicConfig.collisionID).setUnlocalizedName("tragicmc.dimensionalKey.collision"));
+			DimensionalKey = (new ItemDimensionalKey(TragicConfig.getInt("collisionID")).setUnlocalizedName("tragicmc.dimensionalKey.collision"));
 			GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
 
 			DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
@@ -1242,24 +1242,24 @@ public class TragicItems {
 			DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
 			GameRegistry.registerItem(DimensionalKeyNether, "dimensionalKeyNether");
 
-			DimensionalKeySynapse = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
+			DimensionalKeySynapse = (new ItemDimensionalKey(TragicConfig.getInt("synapseID")).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
 			GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
 			
-			DimensionalKeyNekoHomeworld = (new ItemDimensionalKey(4).setUnlocalizedName("tragicmc.dimensionalKey.nekoHomeworld").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
+			DimensionalKeyNekoHomeworld = (new ItemDimensionalKey(TragicConfig.getInt("nekoHomeworldID")).setUnlocalizedName("tragicmc.dimensionalKey.nekoHomeworld").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
 			GameRegistry.registerItem(DimensionalKeyNekoHomeworld, "dimensionalKeyNekoHomeworld");
 			
 			/*
 			DimensionalKeyWilds = (new ItemDimensionalKey(5).setUnlocalizedName("tragicmc.dimensionalKey.wilds").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
 			GameRegistry.registerItem(DimensionalKeyWilds, "dimensionalKeyWilds"); */
 
-			SynapseLink = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
+			SynapseLink = (new ItemDimensionalKey(TragicConfig.getInt("synapseID")).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(SynapseLink, "synapseLink");
 			
-			WarpDrive = (new ItemDimensionalKey(4).setUnlocalizedName("tragicmc.warpDrive").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
+			WarpDrive = (new ItemDimensionalKey(TragicConfig.getInt("nekoHomeworldID")).setUnlocalizedName("tragicmc.warpDrive").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(WarpDrive, "warpDrive");
 		}
 
-		if (TragicConfig.allowDoomsdays)
+		if (TragicConfig.getBoolean("allowDoomsdays"))
 		{
 			DoomsdayScroll = (new ItemDoomsdayScroll());
 			GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
@@ -1272,7 +1272,7 @@ public class TragicItems {
 		SwordOfJustice = (new WeaponSwordOfJustice(toolJustice).setUnlocalizedName("tragicmc.swordOfJustice"));
 		GameRegistry.registerItem(SwordOfJustice, "swordOfJustice");
 
-		if (TragicConfig.allowGeneratorItems)
+		if (TragicConfig.getBoolean("allowGeneratorItems"))
 		{
 			Generator = (new ItemGenerator());
 			GameRegistry.registerItem(Generator, "generator");
@@ -1284,7 +1284,7 @@ public class TragicItems {
 		SoundExtrapolator = (new ItemSoundExtrapolator().setUnlocalizedName("tragicmc.soundExtrapolator"));
 		GameRegistry.registerItem(SoundExtrapolator, "soundExtrapolator");
 
-		if (TragicConfig.allowMobs)
+		if (TragicConfig.getBoolean("allowMobs"))
 		{
 			SpawnEgg = (new ItemMobEgg());
 			GameRegistry.registerItem(SpawnEgg, "spawnEgg");
@@ -1300,7 +1300,7 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(SapphireCharm), 1, 2, 5),
 				new WeightedRandomChestContent(new ItemStack(EmeraldCharm), 1, 2, 5),
 				new WeightedRandomChestContent(new ItemStack(DiamondCharm), 1, 2, 5),
-				new WeightedRandomChestContent(new ItemStack(CooldownDefuse), 1, 3, TragicConfig.cooldownDefuseRarity),
+				new WeightedRandomChestContent(new ItemStack(CooldownDefuse), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")),
 				new WeightedRandomChestContent(new ItemStack(Items.diamond, 1), 1, 3, 20),
 				new WeightedRandomChestContent(new ItemStack(Blocks.diamond_block, 1), 1, 2, 5),
 				new WeightedRandomChestContent(new ItemStack(Items.gold_ingot, 1), 1, 3, 40),
@@ -1313,8 +1313,8 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 1), 1, 2, 10),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 2), 1, 2, 10),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 3), 1, 2, 35),
-				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
 				new WeightedRandomChestContent(new ItemStack(ObsidianOrb, 1), 1, 3, 3),
 				new WeightedRandomChestContent(new ItemStack(AwakeningStone, 1), 1, 2, 1),
 				new WeightedRandomChestContent(new ItemStack(HuntersBow, 1), 1, 2, 15),
@@ -1339,37 +1339,37 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Items.cooked_beef, 3), 2, 5, 65),
 				new WeightedRandomChestContent(new ItemStack(Items.cooked_porkchop, 3), 2, 5, 65),
 				new WeightedRandomChestContent(new ItemStack(Items.saddle, 1), 1, 3, 60),
-				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(ApisAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(MartyrAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(BlacksmithAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(CreeperAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(ZombieAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(SkeletonAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 1, 2, TragicConfig.amuletReleaseRarity),
+				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(ApisAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(MartyrAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(BlacksmithAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(CreeperAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(ZombieAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(SkeletonAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 1, 2, TragicConfig.getInt("amuletReleaseRarity")),
 				new WeightedRandomChestContent(new ItemStack(Items.lead), 1, 2, 5),
 				new WeightedRandomChestContent(new ItemStack(Items.saddle), 1, 3, 5),
-				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
 				new WeightedRandomChestContent(new ItemStack(GuiltyThorn, 1), 1, 1, 15),
 				new WeightedRandomChestContent(new ItemStack(GravitySpike, 1), 1, 1, 15),
 				new WeightedRandomChestContent(new ItemStack(FrozenLightning, 1), 1, 1, 15),
 				new WeightedRandomChestContent(new ItemStack(Talisman), 1, 2, 5),
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 1, 2, 5),
 				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 1, 2, 5),
-				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 1, 1, TragicConfig.amuletOverallRarity)
+				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 1, 1, TragicConfig.getInt("amuletOverallRarity"))
 		};
 
 		WeightedRandomChestContent[] scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
@@ -1386,7 +1386,7 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(SapphireCharm), 1, 2, 10),
 				new WeightedRandomChestContent(new ItemStack(EmeraldCharm), 1, 2, 10),
 				new WeightedRandomChestContent(new ItemStack(DiamondCharm), 1, 2, 10),
-				new WeightedRandomChestContent(new ItemStack(CooldownDefuse), 1, 3, TragicConfig.cooldownDefuseRarity),
+				new WeightedRandomChestContent(new ItemStack(CooldownDefuse), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")),
 				new WeightedRandomChestContent(new ItemStack(Items.diamond, 1), 1, 3, 25),
 				new WeightedRandomChestContent(new ItemStack(Blocks.diamond_block, 1), 1, 3, 10),
 				new WeightedRandomChestContent(new ItemStack(Ruby, 1), 1, 4, 18),
@@ -1397,40 +1397,40 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 1), 1, 2, 30),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 2), 1, 2, 30),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 3), 1, 2, 50),
-				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
 				new WeightedRandomChestContent(new ItemStack(ObsidianOrb, 1), 1, 3, 10),
 				new WeightedRandomChestContent(new ItemStack(AwakeningStone, 1), 1, 2, 5),
 				new WeightedRandomChestContent(new ItemStack(Items.golden_apple, 1), 1, 2, 35),
 				new WeightedRandomChestContent(new ItemStack(Items.golden_apple, 1, 1), 1, 2, 15),
-				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(ApisAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(MartyrAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(ApisAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(MartyrAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
 				new WeightedRandomChestContent(new ItemStack(GoldenSushi, 1), 1, 3, 5),
-				new WeightedRandomChestContent(new ItemStack(BlacksmithAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(CreeperAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(ZombieAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(SkeletonAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 1, 2, TragicConfig.amuletReleaseRarity),
+				new WeightedRandomChestContent(new ItemStack(BlacksmithAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(CreeperAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(ZombieAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(SkeletonAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 1, 2, TragicConfig.getInt("amuletReleaseRarity")),
 				new WeightedRandomChestContent(new ItemStack(Items.lead), 1, 2, 15),
 				new WeightedRandomChestContent(new ItemStack(Items.saddle), 1, 3, 15),
-				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
 				new WeightedRandomChestContent(new ItemStack(Talisman), 1, 2, 10),
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 1, 2, 10),
 				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 1, 2, 10),
-				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity),
-				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 1, 2, TragicConfig.amuletOverallRarity)
+				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity")),
+				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 1, 2, TragicConfig.getInt("amuletOverallRarity"))
 		};
 
 		scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
@@ -1456,9 +1456,9 @@ public class TragicItems {
 		};
 
 		WeightedRandomChestContent[] awesomeChestContent = new WeightedRandomChestContent[] {
-				new WeightedRandomChestContent(new ItemStack(TragicItems.DoomConsume), 1, 2, TragicConfig.doomConsumeRarity),
-				new WeightedRandomChestContent(new ItemStack(TragicItems.CooldownDefuse), 1, 3, TragicConfig.cooldownDefuseRarity),
-				new WeightedRandomChestContent(new ItemStack(TragicItems.AmuletRelease, 1), 1, 2, TragicConfig.amuletReleaseRarity),
+				new WeightedRandomChestContent(new ItemStack(TragicItems.DoomConsume), 1, 1, TragicConfig.getInt("doomConsumeRarity")),
+				new WeightedRandomChestContent(new ItemStack(TragicItems.CooldownDefuse), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")),
+				new WeightedRandomChestContent(new ItemStack(TragicItems.AmuletRelease, 1), 1, 2, TragicConfig.getInt("amuletReleaseRarity")),
 				new WeightedRandomChestContent(new ItemStack(AwakeningStone, 1), 1, 3, 35),
 				new WeightedRandomChestContent(new ItemStack(GoldenSushi, 1), 1, 4, 45),
 				new WeightedRandomChestContent(new ItemStack(Items.diamond), 1, 4, 50),
@@ -1497,15 +1497,15 @@ public class TragicItems {
 		LameChestHook = (new ChestGenHooks("TragicMC.LameChest", Arrays.asList(lameChestContent), 3, 6));
 		AwesomeChestHook = (new ChestGenHooks("TragicMC.AwesomeChest", Arrays.asList(awesomeChestContent), 6, 10));
 
-		if (TragicConfig.allowCooldownDefuse)
+		if (TragicConfig.getBoolean("allowCooldownDefuse"))
 		{
-			ChestGenHooks.addItem(ChestGenHooks.BONUS_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.cooldownDefuseRarity));
-			ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.cooldownDefuseRarity));
-			ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.cooldownDefuseRarity));
-			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.cooldownDefuseRarity));
-			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.cooldownDefuseRarity));
-			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.cooldownDefuseRarity));
-			ChestGenHooks.addItem(ChestGenHooks.VILLAGE_BLACKSMITH, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.cooldownDefuseRarity));
+			ChestGenHooks.addItem(ChestGenHooks.BONUS_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")));
+			ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")));
+			ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")));
+			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")));
+			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")));
+			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")));
+			ChestGenHooks.addItem(ChestGenHooks.VILLAGE_BLACKSMITH, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicConfig.getInt("cooldownDefuseRarity")));
 		}
 
 		OreDictionary.registerOre("gemRuby", Ruby);

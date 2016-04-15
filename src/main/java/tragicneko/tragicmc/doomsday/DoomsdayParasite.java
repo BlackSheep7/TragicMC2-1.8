@@ -30,7 +30,7 @@ public class DoomsdayParasite extends Doomsday implements IExtendedDoomsday {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					EntityLivingBase entity = (EntityLivingBase) list.get(i);
-					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 					entity.attackEntityFrom(DamageSource.magic, crucMoment ? 5.0F : 1.0F);
 					player.heal(crucMoment ? 5.0F : 1.0F);
 				}

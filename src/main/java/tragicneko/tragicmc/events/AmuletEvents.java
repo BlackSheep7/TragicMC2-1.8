@@ -73,7 +73,7 @@ public class AmuletEvents {
 				amu.loadNBTData(new NBTTagCompound());
 			}
 
-			if (event.entity instanceof EntityPlayerMP && amu != null)
+			if (event.entity instanceof EntityPlayerMP && amu != null && TragicConfig.getBoolean("allowNetwork"))
 			{
 				TragicMC.proxy.net.sendTo(new MessageAmulet((EntityPlayerMP) event.entity), (EntityPlayerMP) event.entity);
 			}
@@ -83,7 +83,7 @@ public class AmuletEvents {
 	@SubscribeEvent
 	public void onLivingDeathEvent(PlayerEvent.Clone event)
 	{
-		if (!event.entity.worldObj.isRemote && TragicConfig.allowAmulets) {
+		if (!event.entity.worldObj.isRemote && TragicConfig.getBoolean("allowAmulets")) {
 			if (PropertyAmulets.get(event.original) != null)
 			{
 				NBTTagCompound tag = new NBTTagCompound();
@@ -139,7 +139,7 @@ public class AmuletEvents {
 			PropertyAmulets amu = PropertyAmulets.get(mp);
 
 			if (amu == null) return;
-			TragicMC.proxy.net.sendTo(new MessageAmulet((EntityPlayer)event.entityLiving), (EntityPlayerMP)event.entityLiving);
+			if (TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendTo(new MessageAmulet((EntityPlayer)event.entityLiving), (EntityPlayerMP)event.entityLiving);
 
 			BaseAttributeMap map = mp.getAttributeMap();
 			Multimap mm;
@@ -231,7 +231,7 @@ public class AmuletEvents {
 				levels[i] = AmuletHelper.getAmuletLevel(amu.getActiveAmuletItemStack(i));
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuMartyr; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuMartyr"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.MartyrAmulet)
 				{
@@ -241,7 +241,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuZombie; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuZombie"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.ZombieAmulet)
 				{
@@ -251,7 +251,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuKitsune; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuKitsune"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.KitsuneAmulet)
 				{
@@ -270,7 +270,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuApis; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuApis"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.ApisAmulet)
 				{
@@ -284,7 +284,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuSunken  && !event.source.isDamageAbsolute(); i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuSunken")  && !event.source.isDamageAbsolute(); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.SunkenAmulet)
 				{
@@ -293,7 +293,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuPiercing && event.source.isMagicDamage(); i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuPiercing") && event.source.isMagicDamage(); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.PiercingAmulet)
 				{
@@ -302,7 +302,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuIce && !event.source.isDamageAbsolute(); i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuTime") && !event.source.isDamageAbsolute(); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.TimeAmulet)
 				{
@@ -319,7 +319,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuWither; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuWither"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.WitherAmulet)
 				{
@@ -332,7 +332,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuPolaris && !event.source.isDamageAbsolute(); i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuPolaris") && !event.source.isDamageAbsolute(); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.PolarisAmulet)
 				{
@@ -348,7 +348,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuOverlord && !event.source.isDamageAbsolute() && event.entityLiving.worldObj.provider.getDimensionId() == TragicConfig.synapseID; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuOverlord") && !event.source.isDamageAbsolute() && event.entityLiving.worldObj.provider.getDimensionId() == TragicConfig.getInt("synapseID"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.OverlordAmulet)
 				{
@@ -357,7 +357,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuEnderDragon && event.source == DamageSource.inWall; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuEnderDragon") && event.source == DamageSource.inWall; i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.EnderDragonAmulet)
 				{
@@ -371,7 +371,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuFusea; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuFusea"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.FuseaAmulet)
 				{
@@ -403,7 +403,7 @@ public class AmuletEvents {
 				levels[i] = AmuletHelper.getAmuletLevel(amu.getActiveAmuletItemStack(i));
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuPiercing; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuPiercing"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.PiercingAmulet && !event.source.isUnblockable())
 				{
@@ -413,7 +413,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuStin; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuStin"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.StinAmulet)
 				{
@@ -457,7 +457,7 @@ public class AmuletEvents {
 
 			float fall = event.distance / 2;
 
-			for (i = 0; i < 3 && TragicConfig.amuYeti; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuYeti"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.YetiAmulet)
 				{
@@ -479,7 +479,7 @@ public class AmuletEvents {
 						{
 							if (list.get(i) instanceof EntityLivingBase)
 							{
-								if (TragicConfig.allowSubmission) ((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120 + rand.nextInt(320), rand.nextInt(4)));
+								if (TragicConfig.getBoolean("allowSubmission")) ((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120 + rand.nextInt(320), rand.nextInt(4)));
 								((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(Potion.weakness.id, 120 + rand.nextInt(320), rand.nextInt(4)));
 							}
 						}
@@ -488,7 +488,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuIronGolem; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuIronGolem"); i++)
 			{
 				if (amulets[i] != null && amulets[i] == TragicItems.IronGolemAmulet && levels[i] >= 3)
 				{
@@ -502,7 +502,7 @@ public class AmuletEvents {
 	@SubscribeEvent
 	public void onSkeletonAmuletUse(ArrowLooseEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.amuSkeleton)
+		if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.getBoolean("amuSkeleton"))
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.entityLiving;
 			PropertyAmulets amu = PropertyAmulets.get(mp);
@@ -534,7 +534,7 @@ public class AmuletEvents {
 	@SubscribeEvent
 	public void onEndermanAmuletUse(BreakEvent event)
 	{
-		if (TragicConfig.amuEnderman && event.getPlayer() != null && event.getPlayer().getEquipmentInSlot(0) == null && event.getPlayer() instanceof EntityPlayerMP)
+		if (TragicConfig.getBoolean("amuEnderman") && event.getPlayer() != null && event.getPlayer().getEquipmentInSlot(0) == null && event.getPlayer() instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.getPlayer();
 			PropertyAmulets amu = PropertyAmulets.get(mp);
@@ -559,6 +559,7 @@ public class AmuletEvents {
 					EntityItem item = new EntityItem(mp.worldObj, event.pos.getX(), event.pos.getY(), event.pos.getZ(), new ItemStack(event.state.getBlock(), 1, event.state.getBlock().getMetaFromState(event.state)));
 					mp.worldObj.spawnEntityInWorld(item);
 					if (event.isCancelable()) event.setCanceled(true);
+					TragicMC.logInfo("meow");
 					break;
 				}
 			}
@@ -570,7 +571,7 @@ public class AmuletEvents {
 	{
 		if (event.entityLiving.worldObj.isRemote) return;
 
-		if (event.source.getEntity() instanceof EntityPlayerMP && (event.entityLiving instanceof TragicBoss || event.entityLiving instanceof IBossDisplayData) && TragicConfig.allowAmuletBossKillCharge)
+		if (event.source.getEntity() instanceof EntityPlayerMP && (event.entityLiving instanceof TragicBoss || event.entityLiving instanceof IBossDisplayData) && TragicConfig.getBoolean("allowAmuletBossKillCharge"))
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
 			PropertyAmulets amu = PropertyAmulets.get(player);
@@ -595,7 +596,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuLuck; i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuLuck"); i++)
 			{
 				if (amulets[i] != null && ((ItemAmulet) amulets[i].getItem()) == TragicItems.LuckAmulet)
 				{
@@ -621,7 +622,7 @@ public class AmuletEvents {
 				}
 			}
 		}
-		else if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.allowAmuletDeathDrops && !event.entityLiving.worldObj.getGameRules().getBoolean("keepInventory"))
+		else if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAmuletDeathDrops") && !event.entityLiving.worldObj.getGameRules().getBoolean("keepInventory"))
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
 			PropertyAmulets amu = PropertyAmulets.get(player);
@@ -632,7 +633,7 @@ public class AmuletEvents {
 			inv.markDirty();
 		}
 
-		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving && TragicConfig.allowAmuletModifiers)
+		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving && TragicConfig.getBoolean("allowAmuletModifiers"))
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.source.getEntity();
 			IAttributeInstance ins = mp.getEntityAttribute(AmuletModifier.luck);
@@ -661,7 +662,7 @@ public class AmuletEvents {
 	@SubscribeEvent
 	public void onLightningAmuletUse(EntityStruckByLightningEvent event)
 	{
-		if (event.entity instanceof EntityPlayerMP && TragicConfig.amuLightning)
+		if (event.entity instanceof EntityPlayerMP && TragicConfig.getBoolean("amuLightning"))
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.entity;
 			PropertyAmulets amu = PropertyAmulets.get(mp);

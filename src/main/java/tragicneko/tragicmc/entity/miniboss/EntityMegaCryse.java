@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.megaCryseStats;
-
 import java.util.UUID;
 
 import net.minecraft.block.Block;
@@ -125,6 +123,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] megaCryseStats = TragicConfig.getMobStat("megaCryseStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(megaCryseStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(megaCryseStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(megaCryseStats[2]);
@@ -163,7 +162,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
 		}
 
-		if (this.getShields() > 0 && par2 >= 1.0F && !flag && TragicConfig.megaCryseShields)
+		if (this.getShields() > 0 && par2 >= 1.0F && !flag && TragicConfig.getBoolean("megaCryseShields"))
 		{
 			if (this.getShields() == 4)
 			{
@@ -189,7 +188,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) megaCryseStats[5];
+		return TragicConfig.getMobStat("megaCryseStats").getArmorValue();
 	}
 
 	@Override

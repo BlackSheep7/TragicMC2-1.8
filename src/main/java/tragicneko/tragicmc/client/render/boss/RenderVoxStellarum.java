@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.client.model.ModelVoxStellarum;
+import tragicneko.tragicmc.client.render.layer.RenderLayerShield;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 
 public class RenderVoxStellarum extends RenderLiving {
@@ -21,6 +22,18 @@ public class RenderVoxStellarum extends RenderLiving {
 
 	public RenderVoxStellarum(RenderManager rm) {
 		super(rm, new ModelVoxStellarum(), 0.75F * scale);
+		this.addLayer(new RenderLayerShield(this, new ModelVoxStellarum()) {
+
+			@Override
+			public boolean shouldShieldRender(EntityLivingBase entity) {
+				return entity instanceof EntityVoxStellarum && ((EntityVoxStellarum) entity).isHealing();
+			}
+
+			@Override
+			public ResourceLocation getShieldTexture(EntityLivingBase entity) {
+				return texture;
+			}
+		});
 	}
 
 	@Override

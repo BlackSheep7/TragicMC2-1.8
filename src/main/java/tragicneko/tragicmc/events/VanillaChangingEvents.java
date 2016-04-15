@@ -76,7 +76,7 @@ public class VanillaChangingEvents {
 			}
 		}
 
-		if (event.entityLiving instanceof EntityEnderman && TragicConfig.allowVanillaMobBuffs)
+		if (event.entityLiving instanceof EntityEnderman && TragicConfig.getBoolean("allowVanillaMobBuffs"))
 		{
 			if (event.entityLiving.ticksExisted % 120 == 0 && event.entityLiving.getHealth() < event.entityLiving.getMaxHealth())
 			{
@@ -88,7 +88,7 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event)
 	{
-		if (event.entityLiving.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.allowAnimalRetribution && rand.nextInt(16) == 0)
+		if (event.entityLiving.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.getBoolean("allowAnimalRetribution") && rand.nextInt(16) == 0)
 		{
 			if (event.entityLiving instanceof EntityPig && !event.entityLiving.worldObj.isRemote)
 			{
@@ -172,7 +172,7 @@ public class VanillaChangingEvents {
 			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
 			if (misc == null) return;
 
-			if (TragicConfig.allowVanillaMobBuffs && !misc.hasBeenBuffed())
+			if (TragicConfig.getBoolean("allowVanillaMobBuffs") && !misc.hasBeenBuffed())
 			{
 				misc.setBuffed(); //prevents the mob from getting it's health regenerated on each reload
 
@@ -209,7 +209,7 @@ public class VanillaChangingEvents {
 				}
 			}
 
-			if (TragicConfig.allowMobModdedArmor && !misc.hasBeenGeared())
+			if (TragicConfig.getBoolean("allowMobModdedArmor") && !misc.hasBeenGeared() && TragicConfig.getBoolean("allowNonMobItems"))
 			{				
 				misc.setGeared(); //prevents the mob from being regeared on further reloads
 
@@ -403,7 +403,7 @@ public class VanillaChangingEvents {
 			if (event.source == DamageSource.magic && event.isCancelable()) event.setCanceled(true);
 		}
 
-		if (event.source.getEntity() instanceof EntityIronGolem && TragicConfig.allowIronGolemHitCooldown) //added cooldown on iron golem hits
+		if (event.source.getEntity() instanceof EntityIronGolem && TragicConfig.getBoolean("allowIronGolemHitCooldown")) //added cooldown on iron golem hits
 		{
 			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.source.getEntity());
 			if (misc != null)
@@ -417,7 +417,7 @@ public class VanillaChangingEvents {
 		}
 
 		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase && !event.source.isMagicDamage()
-				&& event.source.isExplosion() && !event.source.isProjectile() && rand.nextInt(4) == 0 && TragicConfig.allowExtraExplosiveEffects)
+				&& event.source.isExplosion() && !event.source.isProjectile() && rand.nextInt(4) == 0 && TragicConfig.getBoolean("allowExtraExplosiveEffects"))
 		{
 			if (event.entityLiving instanceof EntityPlayer && !((EntityPlayer)event.entityLiving).capabilities.isCreativeMode)
 			{
@@ -427,12 +427,12 @@ public class VanillaChangingEvents {
 				}
 				else
 				{
-					if (TragicConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(80) + 60));
+					if (TragicConfig.getBoolean("allowDisorientation")) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(80) + 60));
 				}
 			}
 		}
 
-		if (event.entityLiving.worldObj.getDifficulty() == EnumDifficulty.HARD && event.source.getEntity() != null && TragicConfig.allowExtraMobEffects)
+		if (event.entityLiving.worldObj.getDifficulty() == EnumDifficulty.HARD && event.source.getEntity() != null && TragicConfig.getBoolean("allowExtraMobEffects"))
 		{
 			if (event.source.getEntity() instanceof EntityLivingBase && event.source.getEntity().isBurning() && !event.source.isMagicDamage()
 					&& !event.source.isExplosion() && !event.source.isProjectile() && rand.nextInt(4) == 0)
@@ -442,7 +442,7 @@ public class VanillaChangingEvents {
 
 			if (event.source.getEntity() instanceof EntityZombie)
 			{
-				if (((EntityZombie)event.source.getEntity()).isChild() && rand.nextInt(4) == 0 && TragicConfig.allowMalnourish)
+				if (((EntityZombie)event.source.getEntity()).isChild() && rand.nextInt(4) == 0 && TragicConfig.getBoolean("allowMalnourish"))
 				{
 					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, rand.nextInt(160) + 40, rand.nextInt(4)));
 				}
@@ -456,7 +456,7 @@ public class VanillaChangingEvents {
 				{
 					PropertyDoom property = PropertyDoom.get((EntityPlayer) event.entityLiving);
 
-					if (property != null && TragicConfig.allowDoom)
+					if (property != null && TragicConfig.getBoolean("allowDoom"))
 					{
 						property.increaseDoom(-(2 + rand.nextInt(4)));
 
@@ -474,15 +474,15 @@ public class VanillaChangingEvents {
 			if (event.source.getEntity() instanceof EntityMagmaCube)
 			{
 				if (rand.nextInt(8) == 0) event.entityLiving.setFire(rand.nextInt(12));
-				if (rand.nextInt(16) == 0 && TragicConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(160) + 40, rand.nextInt(4)));
-				if (rand.nextInt(32) == 0 && TragicConfig.allowCripple) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, rand.nextInt(160) + 40, rand.nextInt(4)));
-				if (rand.nextInt(64) == 0 && TragicConfig.allowStun) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(20) + 40, rand.nextInt(4)));
+				if (rand.nextInt(16) == 0 && TragicConfig.getBoolean("allowSubmission")) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(160) + 40, rand.nextInt(4)));
+				if (rand.nextInt(32) == 0 && TragicConfig.getBoolean("allowCripple")) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, rand.nextInt(160) + 40, rand.nextInt(4)));
+				if (rand.nextInt(64) == 0 && TragicConfig.getBoolean("allowStun")) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(20) + 40, rand.nextInt(4)));
 			}
 
 			if (event.source.getEntity() instanceof EntityPigZombie)
 			{
 				if (rand.nextInt(4) == 0) event.entityLiving.addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(160) + 40, rand.nextInt(4)));
-				if (rand.nextInt(8) == 0 && TragicConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(60) + 40, rand.nextInt(6)));
+				if (rand.nextInt(8) == 0 && TragicConfig.getBoolean("allowSubmission")) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(60) + 40, rand.nextInt(6)));
 			}
 
 			if (event.source.getEntity() instanceof EntitySkeleton)
@@ -493,7 +493,7 @@ public class VanillaChangingEvents {
 					{
 						event.entityLiving.addPotionEffect(new PotionEffect(Potion.poison.id, rand.nextInt(160) + 40, rand.nextInt(4)));
 					}
-					else if (rand.nextInt(16) == 0 && TragicConfig.allowSubmission)
+					else if (rand.nextInt(16) == 0 && TragicConfig.getBoolean("allowSubmission"))
 					{
 						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
@@ -508,7 +508,7 @@ public class VanillaChangingEvents {
 						event.entityLiving.addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
-					else if (rand.nextInt(32) == 0 && TragicConfig.allowStun)
+					else if (rand.nextInt(32) == 0 && TragicConfig.getBoolean("allowStun"))
 					{
 						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(40) + 20, rand.nextInt(4)));
 					}
@@ -523,7 +523,7 @@ public class VanillaChangingEvents {
 
 				if (event.source.getEntity() instanceof EntitySilverfish)
 				{
-					if (rand.nextInt(4) == 0 && TragicConfig.allowStun)
+					if (rand.nextInt(4) == 0 && TragicConfig.getBoolean("allowStun"))
 					{
 						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(40) + 20, rand.nextInt(4)));
 					}
@@ -531,17 +531,17 @@ public class VanillaChangingEvents {
 
 				if (event.source.getEntity() instanceof EntityEnderman)
 				{
-					if (rand.nextInt(16) == 0 && TragicConfig.allowSubmission)
+					if (rand.nextInt(16) == 0 && TragicConfig.getBoolean("allowSubmission"))
 					{
 						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
-					if (rand.nextInt(16) == 0 && TragicConfig.allowDisorientation)
+					if (rand.nextInt(16) == 0 && TragicConfig.getBoolean("allowDisorientation"))
 					{
 						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
-					if (rand.nextInt(32) == 0 && TragicConfig.allowCripple)
+					if (rand.nextInt(32) == 0 && TragicConfig.getBoolean("allowCripple"))
 					{
 						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, rand.nextInt(160) + 40, rand.nextInt(4)));
 					}
@@ -561,7 +561,7 @@ public class VanillaChangingEvents {
 
 			if (event.source.getEntity() instanceof EntityBlaze)
 			{
-				if (rand.nextInt(8) == 0 && TragicConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(80) + 40, rand.nextInt(4)));
+				if (rand.nextInt(8) == 0 && TragicConfig.getBoolean("allowDisorientation")) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(80) + 40, rand.nextInt(4)));
 			}
 		}
 
@@ -570,12 +570,12 @@ public class VanillaChangingEvents {
 			if (event.entityLiving.isBurning()) event.entityLiving.extinguish();
 		}
 
-		if (event.entityLiving instanceof EntityCreature && TragicConfig.allowMobBlindnessDebuff)
+		if (event.entityLiving instanceof EntityCreature && TragicConfig.getBoolean("allowMobBlindnessDebuff"))
 		{
 			event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).removeModifier(mobBlindnessDebuff);
 
 			if (event.entityLiving.isPotionActive(Potion.blindness.id)|| event.entityLiving.isPotionActive(Potion.confusion.id)
-					|| TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation.id))
+					|| TragicConfig.getBoolean("allowDisorientation") && event.entityLiving.isPotionActive(TragicPotion.Disorientation.id))
 			{
 				event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(mobBlindnessDebuff);
 			}
@@ -597,7 +597,7 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onThunderstruck(EntityStruckByLightningEvent event)
 	{
-		if (event.entity instanceof EntityCow && TragicConfig.allowMinotaur && TragicConfig.allowCowMinotaurCreation)
+		if (event.entity instanceof EntityCow && TragicConfig.getBoolean("allowMinotaur") && TragicConfig.getBoolean("allowCowMinotaurCreation") && !event.entity.worldObj.isRemote)
 		{
 			TragicMob mob = new EntityMinotaur(event.entity.worldObj);
 
@@ -605,11 +605,11 @@ public class VanillaChangingEvents {
 			mob.onInitialSpawn(event.entity.worldObj.getDifficultyForLocation(new BlockPos(event.entity.posX, event.entity.posY, event.entity.posZ)), (IEntityLivingData)null);
 			event.entity.worldObj.removeEntity(event.entity);
 			event.entity.worldObj.spawnEntityInWorld(mob);
-			if (TragicConfig.allowInvulnerability) mob.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 80));
+			if (TragicConfig.getBoolean("allowInvulnerability")) mob.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 80));
 
 			List<EntityPlayerMP> list = mob.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, mob.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
-			if (!list.isEmpty() && TragicConfig.allowAchievements)
+			if (!list.isEmpty() && TragicConfig.getBoolean("allowAchievements"))
 			{
 				for (EntityPlayerMP mp : list)
 				{
@@ -627,7 +627,7 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onFall(LivingHurtEvent event)
 	{
-		if (event.source == DamageSource.fall && TragicConfig.allowCripple && TragicConfig.allowCripplingFall && !event.entityLiving.worldObj.isRemote && event.ammount > 1.5F)
+		if (event.source == DamageSource.fall && TragicConfig.getBoolean("allowCripple") && TragicConfig.getBoolean("allowCripplingFall") && !event.entityLiving.worldObj.isRemote && event.ammount > 1.5F)
 		{
 			event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 1500, 0));
 		}

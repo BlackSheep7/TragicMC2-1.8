@@ -17,7 +17,7 @@ public class AmuletCreeper extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuCreeper && player.ticksExisted % 60 == 0)
+		if (TragicConfig.getBoolean("amuCreeper") && player.ticksExisted % 60 == 0)
 		{
 			player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 600, level));
 			if (player.isPotionActive(Potion.digSpeed) && rand.nextBoolean() && !world.isRemote) amu.damageStackInSlot(slot, 4 - level);

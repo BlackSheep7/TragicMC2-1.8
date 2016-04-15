@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.cryseStats;
-import static tragicneko.tragicmc.TragicConfig.starCryseStats;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -178,12 +175,12 @@ public class EntityCryse extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		boolean flag = this.getCryseType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? cryseStats[0] : starCryseStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? cryseStats[1] : starCryseStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag? cryseStats[2] : starCryseStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? cryseStats[3] : starCryseStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? cryseStats[4] : starCryseStats[4]);
+		double[] stats = TragicConfig.getMobStat(this.getCryseType() == 0 ? "cryseStats" : "starCryseStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(stats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(stats[4]);
 	}
 	
 	@Override
@@ -255,9 +252,9 @@ public class EntityCryse extends TragicMob {
 
 		if (result) this.setAttackTime(10);
 
-		if (result && par1DamageSource.getEntity() != null && this.rand.nextInt(4) == 0 && TragicConfig.cryseReflection)
+		if (result && par1DamageSource.getEntity() != null && this.rand.nextInt(4) == 0 && TragicConfig.getBoolean("cryseReflection"))
 		{
-			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.cryse.deflect", 1.0F, 1.9F);
+			if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.cryse.deflect", 1.0F, 1.9F);
 			par1DamageSource.getEntity().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), par2 / 4);
 		}
 
@@ -301,7 +298,7 @@ public class EntityCryse extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) (this.getCryseType() == 0 ? cryseStats[5] : starCryseStats[5]);
+		return TragicConfig.getMobStat(this.getCryseType() == 0 ? "cryseStats" : "starCryseStats").getArmorValue();
 	}
 
 	@Override
@@ -339,25 +336,25 @@ public class EntityCryse extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return this.getCryseType() == 1 && TragicConfig.allowMegaCryse;
+		return this.getCryseType() == 1 && TragicConfig.getBoolean("allowMegaCryse");
 	}
 
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.cryse.glass" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.cryse.glass" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.cryse.hit" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.cryse.hit" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.cryse.break" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.cryse.break" : null;
 	}
 
 	@Override

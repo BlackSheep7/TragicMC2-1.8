@@ -30,11 +30,11 @@ public class DoomsdayFear extends Doomsday {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					EntityLivingBase entity = (EntityLivingBase) list.get(i);
-					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 
 					entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 300));
-					if (TragicConfig.allowFear) entity.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 300, crucMoment ? 1 + rand.nextInt(3) : 0));
-					if (crucMoment && TragicConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 5));
+					if (TragicConfig.getBoolean("allowFear")) entity.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 300, crucMoment ? 1 + rand.nextInt(3) : 0));
+					if (crucMoment && TragicConfig.getBoolean("allowSubmission")) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 5));
 				}
 			}
 		}
@@ -47,7 +47,7 @@ public class DoomsdayFear extends Doomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(Potion.blindness.id, 120));
-		if (TragicConfig.allowFear) player.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 120, 1));
+		if (TragicConfig.getBoolean("allowFear")) player.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 120, 1));
 	}
 
 	@Override

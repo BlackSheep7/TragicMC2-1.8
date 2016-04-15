@@ -26,10 +26,10 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 
 	public BiomeGenStarlitPrarie(int par1, byte par2) {
 		super(par1, par2);
-		if (TragicConfig.allowStarCryse) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicConfig.starCryseSC, TragicConfig.starCryseGS[0], TragicConfig.starCryseGS[1]));
-		if (TragicConfig.allowStarVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.starVoxSC, TragicConfig.starVoxGS[0], TragicConfig.starVoxGS[1]));
-		if (TragicConfig.allowVoxStellarum) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityVoxStellarum.class, TragicConfig.voxStellarumSC, TragicConfig.voxStellarumGS[0], TragicConfig.voxStellarumGS[1]));
-		if (TragicConfig.allowPolaris) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityPolaris.class, TragicConfig.polarisSC, 0, 0));
+		if (TragicConfig.getBoolean("allowStarCryse")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicConfig.getInt("starCryseSpawnChance"), TragicConfig.getIntArray("starCryseGroupSize")[0], TragicConfig.getIntArray("starCryseGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowStarVox")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.getInt("starVoxSpawnChance"), TragicConfig.getIntArray("starVoxGroupSize")[0], TragicConfig.getIntArray("starVoxGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowVoxStellarum")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityVoxStellarum.class, TragicConfig.getInt("voxStellarumSpawnChance"), TragicConfig.getIntArray("voxStellarumGroupSize")[0], TragicConfig.getIntArray("voxStellarumGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowPolaris")) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityPolaris.class, TragicConfig.getInt("polarisSpawnChance"), 0, 0));
 		this.enableSnow = false;
 		this.temperature = 1.0F;
 		this.rainfall = 0.6F;

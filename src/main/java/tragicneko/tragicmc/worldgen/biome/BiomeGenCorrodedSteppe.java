@@ -46,9 +46,9 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.fillerBlock = TragicBlocks.DarkCobblestone.getDefaultState();
 		this.topBlock = TragicBlocks.DarkCobblestone.getDefaultState();
-		if (TragicConfig.allowJarra) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJarra.class, TragicConfig.jarraSC, TragicConfig.jarraGS[0], TragicConfig.jarraGS[1]));
-		if (TragicConfig.allowTox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.toxSC, TragicConfig.toxGS[0], TragicConfig.toxGS[1]));
-		if (TragicConfig.allowFusea) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityFusea.class, TragicConfig.fuseaSC, TragicConfig.fuseaGS[0], TragicConfig.fuseaGS[1]));
+		if (TragicConfig.getBoolean("allowJarra")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJarra.class, TragicConfig.getInt("jarraSpawnChance"), TragicConfig.getIntArray("jarraGroupSize")[0], TragicConfig.getIntArray("jarraGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowTox")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.getInt("toxSpawnChance"), TragicConfig.getIntArray("toxGroupSize")[0], TragicConfig.getIntArray("toxGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowFusea")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityFusea.class, TragicConfig.getInt("fuseaSpawnChance"), TragicConfig.getIntArray("fuseaGroupSize")[0], TragicConfig.getIntArray("fuseaGroupSize")[1]));
 		this.sludgeGen = new SurfaceWorldGen(3.0D, 1.5D, true, (byte) 10, TragicBlocks.Quicksand, (byte) 3, TragicBlocks.DarkCobblestone, true, true);
 		this.toxicCobbleGen = new RuggedTerrainWorldGen(TragicBlocks.DarkCobblestone, (byte) 2, TragicBlocks.DarkCobblestone, (byte) 6, 4.0D, 3.0D, false, (byte) 8);
 		this.gasGen = new SurfaceWorldGen2((byte) (variant == 0 || variant == 4 ? 14 : (variant >= 3 ? 7 : 2)), TragicBlocks.RadiatedGas, (byte) 0, (byte) 4, (byte) 8);
@@ -106,7 +106,7 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 			boolean flag2 = rand.nextBoolean();
 			new PitWorldGen(flag2 ? TragicBlocks.Quicksand : TragicBlocks.RadiatedGas, (byte) (flag2 ? 3 : 0), (byte) 12, (byte) 6, 4.0D, 3.0D).generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 		}
-		if (TragicConfig.allowVoidPitGen && variant == 4 && rand.nextInt(200) >= 5) this.voidPitGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (TragicConfig.getBoolean("allowVoidPitGen") && variant == 4 && rand.nextInt(200) >= 5) this.voidPitGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 		if (rand.nextInt(8) == 0) this.deathglowGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 	}
 

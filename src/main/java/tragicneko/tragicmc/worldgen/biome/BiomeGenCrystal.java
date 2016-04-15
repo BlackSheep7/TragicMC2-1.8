@@ -21,7 +21,7 @@ public class BiomeGenCrystal extends TragicBiome {
 		this.spawnableMonsterList.clear();
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
-		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityRanmas.class, TragicConfig.ranmasSC, TragicConfig.ranmasGS[0], TragicConfig.ranmasGS[1]));
+		if (TragicConfig.getBoolean("allowRanmas")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityRanmas.class, TragicConfig.getInt("ranmasSpawnChance"), TragicConfig.getIntArray("ranmasGroupSize")[0], TragicConfig.getIntArray("ranmasGroupSize")[1]));
 		this.enableRain = false;
 		this.enableSnow = false;
 		this.rainfall = 0F;

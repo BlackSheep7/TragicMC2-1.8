@@ -60,14 +60,14 @@ public class BlockTimeDisruptor extends BlockContainer {
 		if (flag)
 		{
 			TragicBoss boss = null;
-			if (block == Blocks.quartz_block && TragicConfig.allowTimeController) boss = new EntityTimeController(world);
-			else if (block == TragicBlocks.DarkenedQuartz && TragicConfig.allowEnyvil) boss = new EntityEnyvil(world);
-			else if (block == Blocks.hardened_clay && TragicConfig.allowClaymation) boss = new EntityClaymation(world);
-			else if (block == Blocks.sandstone && TragicConfig.allowApis) boss = new EntityApis(world);
-			else if (block == Blocks.ice && TragicConfig.allowEmpariah) boss = new EntityYeti(world);
-			else if (block == TragicBlocks.StarCrystal && TragicConfig.allowPolaris) boss = new EntityPolaris(world);
-			else if (block == TragicBlocks.BoneBlock && TragicConfig.allowSkultar) boss = new EntityDeathReaper(world);
-			else if (block == Blocks.nether_brick && TragicConfig.allowKitsunakuma) boss = new EntityKitsune(world);
+			if (block == Blocks.quartz_block && TragicConfig.getBoolean("allowTimeController")) boss = new EntityTimeController(world);
+			else if (block == TragicBlocks.DarkenedQuartz && TragicConfig.getBoolean("allowEnyvil")) boss = new EntityEnyvil(world);
+			else if (block == Blocks.hardened_clay && TragicConfig.getBoolean("allowClaymation")) boss = new EntityClaymation(world);
+			else if (block == Blocks.sandstone && TragicConfig.getBoolean("allowApis")) boss = new EntityApis(world);
+			else if (block == Blocks.ice && TragicConfig.getBoolean("allowEmpariah")) boss = new EntityYeti(world);
+			else if (block == TragicBlocks.StarCrystal && TragicConfig.getBoolean("allowPolaris")) boss = new EntityPolaris(world);
+			else if (block == TragicBlocks.BoneBlock && TragicConfig.getBoolean("allowSkultar")) boss = new EntityDeathReaper(world);
+			else if (block == Blocks.nether_brick && TragicConfig.getBoolean("allowKitsunakuma")) boss = new EntityKitsune(world);
 
 			if (boss == null) return;
 

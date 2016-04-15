@@ -39,7 +39,7 @@ public class ItemCryingObsidianOrb extends Item {
 			par3EntityPlayer.setSpawnChunk(newCC, true, dim);
 			par3EntityPlayer.addChatMessage(new ChatComponentText("Spawn set to " + x + ", " + y + ", " + z + " for dimension with id of " + par2World.provider.getDimensionId()));
 			
-			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
+			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
 			par1ItemStack.stackSize--;
 		}
 		return par1ItemStack;

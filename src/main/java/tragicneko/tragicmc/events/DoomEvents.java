@@ -47,7 +47,7 @@ public class DoomEvents {
 				doom.loadNBTData(new NBTTagCompound());
 			}
 
-			if (event.entity instanceof EntityPlayerMP && doom != null)
+			if (event.entity instanceof EntityPlayerMP && doom != null && TragicConfig.getBoolean("allowNetwork"))
 			{
 				TragicMC.proxy.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
 			}
@@ -64,7 +64,7 @@ public class DoomEvents {
 			if (doom != null)
 			{
 				doom.onUpdate();
-				if (event.entityLiving instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
+				if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
 			}
 		}
 	}
@@ -72,7 +72,7 @@ public class DoomEvents {
 	@SubscribeEvent
 	public void onLivingDeathEvent(PlayerEvent.Clone event)
 	{
-		if (!event.entity.worldObj.isRemote && TragicConfig.allowDoom) {
+		if (!event.entity.worldObj.isRemote && TragicConfig.getBoolean("allowDoom")) {
 			if (PropertyDoom.get(event.original) != null)
 			{
 				NBTTagCompound tag = new NBTTagCompound();
@@ -85,23 +85,25 @@ public class DoomEvents {
 	@SubscribeEvent(priority=EventPriority.LOWEST)
 	public void onAttack(LivingHurtEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer && TragicConfig.allowDoomPainRecharge)
+		if (event.entityLiving instanceof EntityPlayer && TragicConfig.getBoolean("allowDoomPainRecharge"))
 		{
 			if (!event.entityLiving.worldObj.isRemote)
 			{
 				PropertyDoom properties = PropertyDoom.get((EntityPlayer)event.entityLiving);
-				properties.applyDoomPainRecharge(event.ammount);
+				if (properties != null)
+					properties.applyDoomPainRecharge(event.ammount);
 			}
 		}
 
-		if (event.entityLiving instanceof EntityMob && TragicConfig.allowDoomPainRecharge)
+		if (event.entityLiving instanceof EntityMob && TragicConfig.getBoolean("allowDoomPainRecharge"))
 		{
 			if (event.source.getEntity() instanceof EntityLivingBase && event.source.getEntity() instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
 				PropertyDoom properties = PropertyDoom.get(player);
-				properties.applyDoomPainRecharge(event.ammount);
+				if (properties != null)
+					properties.applyDoomPainRecharge(event.ammount);
 			}
 		}
 	}
@@ -112,28 +114,28 @@ public class DoomEvents {
 		if (event.entityLiving instanceof EntityPlayerMP && !event.wasDeath)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
-			TragicMC.proxy.net.sendTo(new MessageDoom(player), player);
+			if (TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendTo(new MessageDoom(player), player);
 		}
 	}
 
 	@SubscribeEvent
 	public void onDeath(LivingDeathEvent event)
 	{
-		if (event.entityLiving instanceof EntityMob && TragicConfig.allowDoomKillRecharge)
+		if (event.entityLiving instanceof EntityMob && TragicConfig.getBoolean("allowDoomKillRecharge"))
 		{
 			if (event.source.getEntity() instanceof EntityLivingBase && event.source.getEntity() instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
 				PropertyDoom properties = PropertyDoom.get(player);
-				properties.increaseDoom(TragicConfig.doomRechargeAmount);
+				properties.increaseDoom(TragicConfig.getInt("doomRechargeAmount"));
 			}
 		}
 	}
 	
 	@SubscribeEvent
 	public void onAnvilUse(AnvilUpdateEvent event) {
-		if (TragicConfig.allowDoomScrollImbue && canApplyScroll(event.left) && event.right != null && event.right.getItem() instanceof ItemDoomsdayScroll)
+		if (TragicConfig.getBoolean("allowDoomScrollImbue") && canApplyScroll(event.left) && event.right != null && event.right.getItem() instanceof ItemDoomsdayScroll)
 		{
 			event.output = ItemStack.copyItemStack(event.left);
 			NBTTagCompound tag = event.output.hasTagCompound() ? event.output.getTagCompound() : new NBTTagCompound();
@@ -147,7 +149,7 @@ public class DoomEvents {
 	@SubscribeEvent
 	public void onTooltip(ItemTooltipEvent event)
 	{
-		if (TragicConfig.allowDoomScrollImbue && event.itemStack != null && event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("doomsdayID"))
+		if (TragicConfig.getBoolean("allowDoomScrollImbue") && event.itemStack != null && event.itemStack.hasTagCompound() && event.itemStack.getTagCompound().hasKey("doomsdayID"))
 		{
 			Doomsday dday = Doomsday.getDoomsdayFromId(event.itemStack.getTagCompound().getInteger("doomsdayID"));
 			if (dday == null) return;

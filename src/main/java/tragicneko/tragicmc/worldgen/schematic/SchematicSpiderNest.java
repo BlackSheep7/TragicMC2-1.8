@@ -43,7 +43,7 @@ public class SchematicSpiderNest extends Schematic {
 							if (rand.nextInt(6) == 0)
 							{
 								this.setBlock(world, x + x1, y + y1, z + z1, Blocks.mob_spawner, 0, 2);
-								this.setSpawnerMob(world, x + x1, y + y1, z + z1, TragicConfig.allowStin ? "TragicMC.Stin" : "Spider");
+								this.setSpawnerMob(world, x + x1, y + y1, z + z1, TragicConfig.getBoolean("allowStin") ? "TragicMC.Stin" : "Spider");
 							}
 							else if (rand.nextInt(16) == 0)
 							{

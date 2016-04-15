@@ -17,7 +17,7 @@ public class WildsWorldProvider extends WorldProvider
 {
 	public WildsWorldProvider()
 	{
-		this.dimensionId = TragicConfig.collisionID;
+		this.dimensionId = 5;
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class WildsWorldProvider extends WorldProvider
 	@Override
 	public boolean canRespawnHere()
 	{
-		return TragicConfig.allowCollisionRespawn;
+		return true;
 	}
 
 	@Override

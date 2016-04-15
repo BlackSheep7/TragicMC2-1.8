@@ -28,7 +28,7 @@ public class DoomsdayKurayami extends Doomsday {
 		kurayami.setKurayamiLevel(d0);
 		player.worldObj.spawnEntityInWorld(kurayami);
 
-		if (TragicConfig.allowAchievements && TragicConfig.allowKitsunakuma)
+		if (TragicConfig.getBoolean("allowAchievements") && TragicConfig.getBoolean("allowKitsunakuma"))
 		{
 			List<EntityKitsune> list = player.worldObj.getEntitiesWithinAABB(EntityKitsune.class, player.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 			if (!list.isEmpty())

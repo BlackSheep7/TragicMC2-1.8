@@ -40,10 +40,10 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		this.minHeight = heights[variant][1];
 		this.fillerBlock = TragicBlocks.IcedDirt.getDefaultState();
 		this.topBlock = TragicBlocks.Permafrost.getDefaultState();
-		if (TragicConfig.allowCryse) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicConfig.cryseSC, TragicConfig.cryseGS[0], TragicConfig.cryseGS[1]));
-		if (TragicConfig.allowRagr) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityRagr.class, TragicConfig.ragrSC, TragicConfig.ragrGS[0], TragicConfig.ragrGS[1]));
-		if (TragicConfig.allowAbomination) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityAbomination.class, TragicConfig.abominationSC, TragicConfig.abominationGS[0], TragicConfig.abominationGS[1]));
-		if (TragicConfig.allowEmpariah) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityYeti.class, TragicConfig.empariahSC, 0, 0));
+		if (TragicConfig.getBoolean("allowCryse")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicConfig.getInt("cryseSpawnChance"), TragicConfig.getIntArray("cryseGroupSize")[0], TragicConfig.getIntArray("cryseGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowRagr")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityRagr.class, TragicConfig.getInt("ragrSpawnChance"), TragicConfig.getIntArray("ragrGroupSize")[0], TragicConfig.getIntArray("ragrGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowAbomination")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityAbomination.class, TragicConfig.getInt("abominationSpawnChance"), TragicConfig.getIntArray("abominationGroupSize")[0], TragicConfig.getIntArray("abominationGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowEmpariah")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityYeti.class, TragicConfig.getInt("empariahSpawnChance"), 0, 0));
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.theBiomeDecorator.grassPerChunk = variant == 1 ? 12 : (variant == 2 ? 6 : 2);

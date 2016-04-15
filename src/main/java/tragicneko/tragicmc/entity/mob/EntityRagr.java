@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.pyragrStats;
-import static tragicneko.tragicmc.TragicConfig.ragrStats;
-
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -147,12 +144,12 @@ public class EntityRagr extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		boolean flag = this.getRagrType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? ragrStats[0] : pyragrStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? ragrStats[1] : pyragrStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? ragrStats[2] : pyragrStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? ragrStats[3] : pyragrStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? ragrStats[4] : pyragrStats[4]);
+		double[] stats = TragicConfig.getMobStat(this.getRagrType() == 0 ? "ragrStats" : "pyragrStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(stats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(stats[4]);
 	}
 
 	@Override
@@ -207,7 +204,7 @@ public class EntityRagr extends TragicMob {
 	@Override
 	protected void jump()
 	{
-		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.ragr.jump", this.getSoundVolume(), 0.8F);
+		if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:mob.ragr.jump", this.getSoundVolume(), 0.8F);
 		this.motionY = this.getAngerTicks() > 600 ? rand.nextDouble() * 1.055 + 0.455 : 0.545;
 		if (this.isPotionActive(Potion.jump))this.motionY += (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F;
 
@@ -226,7 +223,7 @@ public class EntityRagr extends TragicMob {
 	{
 		if (this.worldObj.isRemote) return;
 
-		boolean flag = this.getMobGriefing() && TragicConfig.ragrExplosions;
+		boolean flag = this.getMobGriefing() && TragicConfig.getBoolean("ragrExplosions");
 
 		if (dist >= 8.0F)
 		{
@@ -241,7 +238,7 @@ public class EntityRagr extends TragicMob {
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F, flag);
 		}
 
-		if (!flag || !TragicConfig.ragrBlockCrushing) return;
+		if (!flag || !TragicConfig.getBoolean("ragrBlockCrushing")) return;
 
 		int x = (int) this.posX;
 		int y = (int) this.posY;
@@ -276,7 +273,7 @@ public class EntityRagr extends TragicMob {
 			{
 				this.worldObj.setBlockState(coords, Blocks.gravel.getDefaultState());
 			}
-			else if (TragicConfig.allowNonMobBlocks) //if mobsOnly mode is enabled all of these blocks will be null
+			else if (TragicConfig.getBoolean("allowNonMobBlocks")) //if mobsOnly mode is enabled all of these blocks will be null
 			{
 				if (block instanceof BlockGenericGrass)
 				{
@@ -310,8 +307,8 @@ public class EntityRagr extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.isBurning() ? 0 : (int) ragrStats[5];
-		//return this.isBurning() && this.getRagrType() == 0 ? 0 : (this.getRagrType() == 0 ? (int) ragrStats[5] : (int) pyragrStats[5]);
+		final boolean flag = this.isBurning() && this.getRagrType() == 0;
+		return flag ? 0 : TragicConfig.getMobStat(this.getRagrType() == 0 ? "ragrStats" : "pyragrStats").getArmorValue();
 	}
 
 	@Override
@@ -365,7 +362,7 @@ public class EntityRagr extends TragicMob {
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(200)));
 					break;
 				case 2:
-					if (TragicConfig.allowSubmission)
+					if (TragicConfig.getBoolean("allowSubmission"))
 					{
 						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
 					}
@@ -391,7 +388,7 @@ public class EntityRagr extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return this.getRagrType() == 1 && TragicConfig.allowAggro;
+		return this.getRagrType() == 1; // && TragicConfig.getBoolean("allowAggro");
 	}
 
 	@Override
@@ -403,13 +400,13 @@ public class EntityRagr extends TragicMob {
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.ragr.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.ragr.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.ragr.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.ragr.death" : null;
 	}
 
 	@Override
@@ -440,7 +437,7 @@ public class EntityRagr extends TragicMob {
 	public void onDeath(DamageSource src) {
 		super.onDeath(src);
 		
-		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements && this.isBurning() && this.getRagrType() == 0)
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements") && this.isBurning() && this.getRagrType() == 0)
 		{
 			((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.ragr);
 		}

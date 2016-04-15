@@ -1,8 +1,8 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.ireStats;
-
 import java.util.List;
+
+import com.google.common.base.Predicate;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -25,8 +25,6 @@ import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.projectile.EntityIreEnergy;
-
-import com.google.common.base.Predicate;
 
 public class EntityIre extends TragicMob {
 	
@@ -59,6 +57,7 @@ public class EntityIre extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] ireStats = TragicConfig.getMobStat("ireStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(ireStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(ireStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(ireStats[2]);
@@ -69,7 +68,7 @@ public class EntityIre extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) ireStats[5];
+		return TragicConfig.getMobStat("ireStats").getArmorValue();
 	}
 
 	@Override
@@ -175,7 +174,7 @@ public class EntityIre extends TragicMob {
 			{
 				if (this.canEntityBeSeen(this.getAttackTarget()))
 				{
-					if (TragicConfig.ireEnergyBurst)
+					if (TragicConfig.getBoolean("ireEnergyBurst"))
 					{
 						double d0 = this.getAttackTarget().posX - this.posX;
 						double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -193,7 +192,7 @@ public class EntityIre extends TragicMob {
 					if (this.getHealth() < this.getMaxHealth()) this.heal(ireNetSize);
 				}
 
-				if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.ire.active", 0.8F, 0.5F + rand.nextFloat());
+				if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.ire.active", 0.8F, 0.5F + rand.nextFloat());
 			}
 
 			if (this.getDistanceToEntity(this.getAttackTarget()) >= 16.0D || this.getAttackTarget().isDead || this.getAttackTarget().getHealth() <= 0F || this.worldObj.getEntityByID(this.getTargetId()) == null)
@@ -231,19 +230,19 @@ public class EntityIre extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.ire.tone" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.ire.tone" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.ire.hit" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.ire.hit" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.ire.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.ire.death" : null;
 	}
 
 	@Override
@@ -275,7 +274,7 @@ public class EntityIre extends TragicMob {
 	{
 		super.onDeath(src);
 
-		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements"))
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) src.getEntity();
 			if (src.getSourceOfDamage() instanceof EntityIreEnergy && mp.getCurrentEquippedItem() != null)

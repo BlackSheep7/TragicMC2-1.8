@@ -22,8 +22,8 @@ public class BiomeGenPaintedForest extends TragicBiome {
 
 	public BiomeGenPaintedForest(int par1, byte par2) {
 		super(par1, par2);
-		if (TragicConfig.allowPox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.poxSC, TragicConfig.poxGS[0], TragicConfig.poxGS[1]));
-		if (TragicConfig.allowJanna) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.jannaSC, TragicConfig.jannaGS[0], TragicConfig.jannaGS[1]));
+		if (TragicConfig.getBoolean("allowPox")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.getInt("poxSpawnChance"), TragicConfig.getIntArray("poxGroupSize")[0], TragicConfig.getIntArray("poxGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowJanna")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.getInt("jannaSpawnChance"), TragicConfig.getIntArray("jannaGroupSize")[0], TragicConfig.getIntArray("jannaGroupSize")[1]));
 		this.fillerBlock = TragicBlocks.DeadDirt.getDefaultState();
 		this.topBlock = TragicBlocks.BrushedGrass.getDefaultState();
 		this.temperature = 1.2F;

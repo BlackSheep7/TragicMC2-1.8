@@ -22,7 +22,7 @@ public class VoidPitWorldGen implements IWorldGen {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
-		if (!TragicConfig.allowVoidPitGen) return;
+		if (!TragicConfig.getBoolean("allowVoidPitGen")) return;
 		
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Ycoord = random.nextInt(35) + 60;

@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.magmoxStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -14,7 +13,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 
 public class EntityMagmox extends EntityTox implements TragicMiniBoss {
@@ -54,6 +52,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] magmoxStats = TragicConfig.getMobStat("magmoxStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(magmoxStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(magmoxStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(magmoxStats[2]);
@@ -82,7 +81,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 		else
 		{
 			if (this.getFiringTicks() >= 20 && this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()) &&
-					this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F && TragicConfig.magmoxLargeFireballs)
+					this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F && TragicConfig.getBoolean("magmoxLargeFireballs"))
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -130,7 +129,8 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.isFiring() ? MathHelper.floor_double(magmoxStats[5] * 0.4) : (int) magmoxStats[5];
+		final int i = TragicConfig.getMobStat("magmoxStats").getArmorValue();
+		return this.isFiring() ? MathHelper.floor_double(i * 0.4) : i;
 	}
 
 	@Override

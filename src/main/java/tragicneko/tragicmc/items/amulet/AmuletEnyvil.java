@@ -21,7 +21,7 @@ public class AmuletEnyvil extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuEnyvil)
+		if (TragicConfig.getBoolean("amuEnyvil"))
 		{
 			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
@@ -29,7 +29,7 @@ public class AmuletEnyvil extends ItemAmulet {
 			{
 				if (e instanceof EntityLivingBase)
 				{
-					((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicConfig.allowFear ? TragicPotion.Fear.id : Potion.blindness.id, 120, 0));
+					((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicConfig.getBoolean("allowFear") ? TragicPotion.Fear.id : Potion.blindness.id, 120, 0));
 				}
 			}
 		}

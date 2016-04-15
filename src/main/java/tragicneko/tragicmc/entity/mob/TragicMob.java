@@ -90,7 +90,7 @@ public abstract class TragicMob extends EntityMob
 
 	protected boolean canChange()
 	{
-		return this.superiorForm != null && TragicConfig.allowMobTransformation;
+		return this.superiorForm != null && TragicConfig.getBoolean("allowMobTransformation");
 	}
 
 	@Override
@@ -231,9 +231,9 @@ public abstract class TragicMob extends EntityMob
 		}
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
-		if (this.getAttackTarget() != null && !TragicConfig.allowMobInfighting && (this.getAttackTarget() instanceof TragicMob || this.getAttackTarget() instanceof TragicBoss)) this.setAttackTarget(null);
+		if (this.getAttackTarget() != null && !TragicConfig.getBoolean("allowMobInfighting") && (this.getAttackTarget() instanceof TragicMob || this.getAttackTarget() instanceof TragicBoss)) this.setAttackTarget(null);
 
-		if (this.getAttackTarget() == null && this.canCorrupt() && TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption.id))
+		if (this.getAttackTarget() == null && this.canCorrupt() && TragicConfig.getBoolean("allowCorruption") && this.isPotionActive(TragicPotion.Corruption.id))
 		{
 			EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity(this, 16.0D);
 
@@ -243,7 +243,7 @@ public abstract class TragicMob extends EntityMob
 			{
 				result = entityplayer;
 			}
-			else if (TragicConfig.allowMobInfighting)
+			else if (TragicConfig.getBoolean("allowMobInfighting"))
 			{
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
@@ -281,7 +281,7 @@ public abstract class TragicMob extends EntityMob
 			}
 		}
 
-		if (TragicConfig.allowCorruption)
+		if (TragicConfig.getBoolean("allowCorruption"))
 		{
 			if (this.isPotionActive(TragicPotion.Corruption))
 			{
@@ -292,17 +292,17 @@ public abstract class TragicMob extends EntityMob
 				this.setCorruptionTicks(this.getCorruptionTicks() - 1);
 			}
 
-			if (this.canChange() && this.getCorruptionTicks() >= 400 && this.rand.nextInt(200) <= TragicConfig.mobTransformationChance && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
+			if (this.canChange() && this.getCorruptionTicks() >= 400 && this.rand.nextInt(200) <= TragicConfig.getInt("mobTransformationChance") && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
 			{
 				this.setChanging(true);
 			}
 		}
-		else if (this.canChange() && this.ticksExisted >= 6000 && this.ticksExisted % 20 == 0 && this.rand.nextInt(100) <= TragicConfig.mobTransformationChance)
+		else if (this.canChange() && this.ticksExisted >= 6000 && this.ticksExisted % 20 == 0 && this.rand.nextInt(100) <= TragicConfig.getInt("mobTransformationChance"))
 		{
 			this.setChanging(true);
 		}
 
-		if (this.getIllumination() && TragicConfig.allowMobIllumination && this.ticksExisted % 4 == 0)
+		if (this.getIllumination() && TragicConfig.getBoolean("allowMobIllumination") && this.ticksExisted % 4 == 0)
 		{
 			int w = MathHelper.floor_float(this.width);
 			int h = MathHelper.floor_float(this.height);
@@ -361,11 +361,11 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (this.worldObj.isRemote || TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false;
+		if (this.worldObj.isRemote || TragicConfig.getBoolean("allowStun") && this.isPotionActive(TragicPotion.Stun)) return false;
 
 		Boolean result = super.attackEntityAsMob(par1Entity);
 
-		if (result && TragicConfig.allowCorruption && this.canCorrupt() && rand.nextInt(4) == 0 && this.isPotionActive(TragicPotion.Corruption))
+		if (result && TragicConfig.getBoolean("allowCorruption") && this.canCorrupt() && rand.nextInt(4) == 0 && this.isPotionActive(TragicPotion.Corruption))
 		{
 			if (par1Entity instanceof TragicMob && ((TragicMob)par1Entity).canCorrupt())
 			{
@@ -459,14 +459,14 @@ public abstract class TragicMob extends EntityMob
 
 			for (int i = 0; i < x; i++)
 			{
-				if (rand.nextInt(100) <= TragicConfig.commonDropRate + (x * 4))
+				if (rand.nextInt(100) <= TragicConfig.getInt("commonMobDropChance") + (x * 4))
 				{
 					ItemStack drop = this.isMobVariant() ? EntityDropHelper.getDropFromVariant(this.getClass(), true) : EntityDropHelper.getDropFromEntity(this.getClass(), true);
 					if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
 					drops++;
 				}
 
-				if (flag && rand.nextInt(100) <= TragicConfig.rareDropRate + x)
+				if (flag && rand.nextInt(100) <= TragicConfig.getInt("rareMobDropChance") + x)
 				{
 					ItemStack drop = this.isMobVariant() ? EntityDropHelper.getDropFromVariant(this.getClass(), false) : EntityDropHelper.getDropFromEntity(this.getClass(), false);
 					if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
@@ -476,7 +476,7 @@ public abstract class TragicMob extends EntityMob
 				if (drops > x * 2.5) break;
 			}
 
-			if (!TragicConfig.allowMobStatueDrops) return;
+			if (!TragicConfig.getBoolean("allowMobStatueDrops")) return;
 
 			int id = 0;
 
@@ -513,7 +513,7 @@ public abstract class TragicMob extends EntityMob
 				id = 13;
 			}
 
-			if (id != 0 && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && flag)
+			if (id != 0 && rand.nextInt(100) <= TragicConfig.getInt("mobStatueDropChance") && flag)
 			{
 				this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, id)));
 			}
@@ -529,7 +529,7 @@ public abstract class TragicMob extends EntityMob
 		{
 			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 
-			if (TragicConfig.allowAchievements) 
+			if (TragicConfig.getBoolean("allowAchievements")) 
 			{
 				player.triggerAchievement(TragicAchievements.kill);
 				if (this instanceof TragicMiniBoss) player.triggerAchievement(TragicAchievements.killMiniBoss);
@@ -560,14 +560,14 @@ public abstract class TragicMob extends EntityMob
 				player.triggerAchievement(stat);
 			}
 		} */
-		
+
 		if (this.worldObj.isRemote) return;
 		int i = (int) (entity.getMaxHealth() * 20);
 		if (entity instanceof EntityPlayer) i *= 20;
 		this.addPotionEffect(new PotionEffect(Potion.damageBoost.id, i, 2));
 		this.addPotionEffect(new PotionEffect(Potion.resistance.id, i, 2));
-
 		
+		if (entity.getMaxHealth() >= this.getMaxHealth() && this.canChange() && this.isCorrupted()) this.setChanging(true);
 	}
 
 	public Class<? extends TragicMob> getLesserForm()
@@ -586,11 +586,11 @@ public abstract class TragicMob extends EntityMob
 	{
 		IEntityLivingData sData = super.onInitialSpawn(ins, data);
 		this.updateSize();
-		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.allowRandomSupportMob) this.setSupport(rand.nextInt(100) == 0);
-		if (!TragicConfig.allowGroupBuffs) return sData;
+		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.getBoolean("allowRandomSupportMob")) this.setSupport(rand.nextInt(100) == 0);
+		if (!TragicConfig.getBoolean("allowGroupBuffs")) return sData;
 		if (sData == null)
 		{
-			if (rand.nextInt(200) <= TragicConfig.groupBuffChance)
+			if (rand.nextInt(200) <= TragicConfig.getInt("groupBuffChance"))
 			{
 				int id = this.getRandomPotionID();
 				PotionEffect effect = new PotionEffect(id, 99999, rand.nextInt(2));
@@ -632,16 +632,16 @@ public abstract class TragicMob extends EntityMob
 			id = Potion.jump.id;
 			break;
 		case 7:
-			id = TragicConfig.allowImmunity ? TragicPotion.Immunity.id : Potion.digSpeed.id;
+			id = TragicConfig.getBoolean("allowImmunity") ? TragicPotion.Immunity.id : Potion.digSpeed.id;
 			break;
 		case 8:
-			id = TragicConfig.allowClarity ? TragicPotion.Clarity.id : Potion.resistance.id;
+			id = TragicConfig.getBoolean("allowClarity") ? TragicPotion.Clarity.id : Potion.resistance.id;
 			break;
 		case 9:
-			id = TragicConfig.allowResurrection ? TragicPotion.Resurrection.id : Potion.digSpeed.id;
+			id = TragicConfig.getBoolean("allowResurrection") ? TragicPotion.Resurrection.id : Potion.digSpeed.id;
 			break;
 		case 10:
-			id = TragicConfig.allowAquaSuperiority ? TragicPotion.AquaSuperiority.id : Potion.jump.id;
+			id = TragicConfig.getBoolean("allowAquaSuperiority") ? TragicPotion.AquaSuperiority.id : Potion.jump.id;
 			break;
 		}
 

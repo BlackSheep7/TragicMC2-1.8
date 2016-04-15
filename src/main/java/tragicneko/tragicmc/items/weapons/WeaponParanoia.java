@@ -28,8 +28,8 @@ public class WeaponParanoia extends EpicWeapon {
 
 		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicConfig.doomAbilityCost[21]) && getStackCooldown(stack) == 0 && TragicConfig.doomAbility[21])
 		{
-			if (TragicConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 240, itemRand.nextInt(2)));
-			if (TragicConfig.allowSubmission && itemRand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 320, itemRand.nextInt(4)));
+			if (TragicConfig.getBoolean("allowFear")) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 240, itemRand.nextInt(2)));
+			if (TragicConfig.getBoolean("allowSubmission") && itemRand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 320, itemRand.nextInt(4)));
 
 			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[21]);
 			setStackCooldown(stack, 5);

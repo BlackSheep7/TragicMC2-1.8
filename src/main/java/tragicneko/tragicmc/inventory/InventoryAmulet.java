@@ -77,7 +77,6 @@ public class InventoryAmulet extends InventoryBasic {
 			if (slot >= 0 && slot < getSizeInventory())
 			{
 				ItemStack stack = ItemStack.loadItemStackFromNBT(item);
-				if (stack == null && slot < 3) TragicMC.logInfo("stack was null");
 				setInventorySlotContents(slot, stack != null && (stack.stackSize == 0 || stack.getItemDamage() > stack.getMaxDamage()) ? null : stack);
 			}
 		}

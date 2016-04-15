@@ -155,7 +155,7 @@ public class SchematicCubeMaze extends Schematic {
 					else
 					{
 						this.setBlock(world, x + x0, y + y1 + 4, z + z0, Blocks.mob_spawner, 0, 2);
-						this.setSpawnerMob(world, x + x0, y + y1 + 4, z + z0, TragicConfig.allowInkling ? "TragicMC.Inkling" : "Enderman");
+						this.setSpawnerMob(world, x + x0, y + y1 + 4, z + z0, TragicConfig.getBoolean("allowInkling") ? "TragicMC.Inkling" : "Enderman");
 					}
 					trap++;
 				}

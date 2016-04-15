@@ -122,7 +122,7 @@ public class BlockGas extends Block {
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
-		for (int i = 0; i < 10; i++)
+		for (byte i = 0; i < 5; i++)
 		{
 			world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 					0.0F, 0.0F, 0.0F);

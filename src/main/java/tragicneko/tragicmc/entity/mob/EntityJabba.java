@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.jabbaStats;
-import static tragicneko.tragicmc.TragicConfig.jannaStats;
-
 import java.util.UUID;
 
 import net.minecraft.block.Block;
@@ -179,18 +176,18 @@ public class EntityJabba extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		boolean flag = this.getJabbaType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? jabbaStats[0] : jannaStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? jabbaStats[1] : jannaStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? jabbaStats[2] : jannaStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? jabbaStats[3] : jannaStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? jabbaStats[4] : jannaStats[4]);
+		double[] stats = TragicConfig.getMobStat(this.getJabbaType() == 0 ? "jabbaStats" : "jannaStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(stats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(stats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) (this.getJabbaType() == 0 ? jabbaStats[5] : jannaStats[5]);
+		return TragicConfig.getMobStat(this.getJabbaType() == 0 ? "jabbaStats" : "jannaStats").getArmorValue();
 	}
 
 	@Override
@@ -210,7 +207,7 @@ public class EntityJabba extends TragicMob {
 			if (this.getWormTicks() > 0) this.decrementWormTicks();
 			if (this.getAttackTicks() > 0) this.decrementAttackTicks();
 
-			if (this.getJabbaType() == 0 && TragicConfig.jabbaAnger)
+			if (this.getJabbaType() == 0 && TragicConfig.getBoolean("jabbaAnger"))
 			{
 				if (this.getAttackTarget() != null)
 				{
@@ -240,7 +237,7 @@ public class EntityJabba extends TragicMob {
 			{
 				EntityPlayer player = this.worldObj.getClosestPlayerToEntity(this, 10.0);
 
-				if (player != null && TragicConfig.allowDoom && this.canEntityBeSeen(player))
+				if (player != null && TragicConfig.getBoolean("allowDoom") && this.canEntityBeSeen(player))
 				{
 					PropertyDoom doom = PropertyDoom.get(player);
 					int i = this.worldObj.getDifficulty().getDifficultyId();
@@ -296,7 +293,7 @@ public class EntityJabba extends TragicMob {
 
 	protected void spawnProjectiles()
 	{
-		if (!TragicConfig.jabbaProjectiles) return;
+		if (!TragicConfig.getBoolean("jabbaProjectiles")) return;
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
 		double d1 = entity.getEntityBoundingBox().minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
@@ -422,31 +419,31 @@ public class EntityJabba extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return this.getJabbaType() == 0 && TragicConfig.allowJarra;
+		return this.getJabbaType() == 0 && TragicConfig.getBoolean("allowJarra");
 	}
 
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.jabba.squish" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jabba.squish" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.jabba.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jabba.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.jabba.hurt" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jabba.hurt" : null;
 	}
 
 	@Override
 	protected void playStepSound(BlockPos pos, Block block)
 	{
-		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
 	}
 
 	@Override

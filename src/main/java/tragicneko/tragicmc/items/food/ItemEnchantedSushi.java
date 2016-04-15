@@ -18,7 +18,7 @@ public class ItemEnchantedSushi extends ItemFood {
 
 	public ItemEnchantedSushi(int p_i45340_1_, boolean p_i45340_2_) {
 		super(p_i45340_1_, p_i45340_2_);
-		if (TragicConfig.allowImmunity) this.setPotionEffect(TragicPotion.Immunity.id, 120, 0, 1.0F);
+		if (TragicConfig.getBoolean("allowImmunity")) this.setPotionEffect(TragicPotion.Immunity.id, 120, 0, 1.0F);
 		this.setAlwaysEdible();
 	}
 
@@ -49,9 +49,9 @@ public class ItemEnchantedSushi extends ItemFood {
 		player.addPotionEffect(new PotionEffect(Potion.saturation.id, 2400, 1));
 		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2400, 2));
 		player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 2400, 0));
-		if (TragicConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 2400, 1));
-		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 60));
-		if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.goldenSushi);
+		if (TragicConfig.getBoolean("allowClarity")) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 2400, 1));
+		if (TragicConfig.getBoolean("allowInvulnerability")) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 60));
+		if (TragicConfig.getBoolean("allowAchievements") && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.goldenSushi);
 
 		return super.onItemUseFinish(stack, world, player);
 	}

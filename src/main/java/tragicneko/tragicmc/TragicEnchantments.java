@@ -22,28 +22,28 @@ public class TragicEnchantments {
 
 	public static void load()
 	{
-		if (TragicConfig.allowDecay) Decay = (new EnchantmentDamageBoost(TragicConfig.idDecay, new ResourceLocation("decay"), TragicConfig.wDecay, 0));
-		if (TragicConfig.allowAbsolve) Absolve = (new EnchantmentDamageBoost(TragicConfig.idAbsolve, new ResourceLocation("absolve"), TragicConfig.wAbsolve, 1));
-		if (TragicConfig.allowSlay) Slay = (new EnchantmentDamageBoost(TragicConfig.idSlay, new ResourceLocation("slay"), TragicConfig.wSlay, 2));
-		if (TragicConfig.allowVampirism) Vampirism = (new EnchantmentWeaponExtra(TragicConfig.idVampirism, new ResourceLocation("vampirism"), TragicConfig.wVampirism, 0));
-		if (TragicConfig.allowLeech) Leech = (new EnchantmentWeaponExtra(TragicConfig.idLeech, new ResourceLocation("leech"), TragicConfig.wLeech, 1));
-		if (TragicConfig.allowConsume) Consume = (new EnchantmentWeaponExtra(TragicConfig.idConsume, new ResourceLocation("consume"), TragicConfig.wConsume, 2));
-		if (TragicConfig.allowDistract) Distract = (new EnchantmentWeaponExtra(TragicConfig.idDistract, new ResourceLocation("distract"), TragicConfig.wDistract, 3));
-		if (TragicConfig.allowCombustion) Combustion = (new EnchantmentCombustion(TragicConfig.idCombustion, new ResourceLocation("combustion"), TragicConfig.wCombustion, EnumEnchantmentType.DIGGER));
-		if (TragicConfig.allowMultiply) Multiply = (new EnchantmentMultiply(TragicConfig.idMultiply, new ResourceLocation("multiply"), TragicConfig.wMultiply, EnumEnchantmentType.BOW));
-		if (TragicConfig.allowRuneBreak) RuneBreak = (new EnchantmentDamageBoost(TragicConfig.idRuneBreak, new ResourceLocation("rune_break"), TragicConfig.wRuneBreak, 3));
-		if (TragicConfig.allowReach) Reach = (new EnchantmentRange(TragicConfig.idReach, new ResourceLocation("reach"), TragicConfig.wReach, EnumEnchantmentType.WEAPON));
-		if (TragicConfig.allowUnbreakable) Unbreakable = (new EnchantmentUnbreakable(TragicConfig.idUnbreakable, new ResourceLocation("unbreakable"), TragicConfig.wUnbreakable, EnumEnchantmentType.BREAKABLE));
-		if (TragicConfig.allowRust) Rust = (new EnchantmentWeaponExtra(TragicConfig.idRust, new ResourceLocation("rust"), TragicConfig.wRust, 4));
-		if (TragicConfig.allowVeteran) Veteran = (new EnchantmentVeteran(TragicConfig.idVeteran, new ResourceLocation("veteran"), TragicConfig.wVeteran, EnumEnchantmentType.DIGGER));
+		if (TragicConfig.getBoolean("allowDecay")) Decay = (new EnchantmentDamageBoost(TragicConfig.getInt("decayID"), new ResourceLocation("decay"), TragicConfig.getInt("decayWeight"), 0));
+		if (TragicConfig.getBoolean("allowAbsolve")) Absolve = (new EnchantmentDamageBoost(TragicConfig.getInt("absolveID"), new ResourceLocation("absolve"), TragicConfig.getInt("absolveWeight"), 1));
+		if (TragicConfig.getBoolean("allowSlay")) Slay = (new EnchantmentDamageBoost(TragicConfig.getInt("slayID"), new ResourceLocation("slay"), TragicConfig.getInt("slayWeight"), 2));
+		if (TragicConfig.getBoolean("allowVampirism")) Vampirism = (new EnchantmentWeaponExtra(TragicConfig.getInt("vampirismID"), new ResourceLocation("vampirism"), TragicConfig.getInt("vampirismWeight"), 0));
+		if (TragicConfig.getBoolean("allowLeech")) Leech = (new EnchantmentWeaponExtra(TragicConfig.getInt("leechID"), new ResourceLocation("leech"), TragicConfig.getInt("leechWeight"), 1));
+		if (TragicConfig.getBoolean("allowConsume")) Consume = (new EnchantmentWeaponExtra(TragicConfig.getInt("consumeID"), new ResourceLocation("consume"), TragicConfig.getInt("consumeWeight"), 2));
+		if (TragicConfig.getBoolean("allowDistract")) Distract = (new EnchantmentWeaponExtra(TragicConfig.getInt("distractID"), new ResourceLocation("distract"), TragicConfig.getInt("distractWeight"), 3));
+		if (TragicConfig.getBoolean("allowCombustion")) Combustion = (new EnchantmentCombustion(TragicConfig.getInt("combustionID"), new ResourceLocation("combustion"), TragicConfig.getInt("combustionWeight"), EnumEnchantmentType.DIGGER));
+		if (TragicConfig.getBoolean("allowMultiply")) Multiply = (new EnchantmentMultiply(TragicConfig.getInt("multiplyID"), new ResourceLocation("multiply"), TragicConfig.getInt("multiplyWeight"), EnumEnchantmentType.BOW));
+		if (TragicConfig.getBoolean("allowRuneBreak")) RuneBreak = (new EnchantmentDamageBoost(TragicConfig.getInt("runeBreakID"), new ResourceLocation("runeBreak"), TragicConfig.getInt("runeBreakWeight"), 3));
+		if (TragicConfig.getBoolean("allowReach")) Reach = (new EnchantmentRange(TragicConfig.getInt("reachID"), new ResourceLocation("reach"), TragicConfig.getInt("reachWeight"), EnumEnchantmentType.WEAPON));
+		if (TragicConfig.getBoolean("allowUnbreakable")) Unbreakable = (new EnchantmentUnbreakable(TragicConfig.getInt("unbreakableID"), new ResourceLocation("unbreakable"), TragicConfig.getInt("unbreakableWeight"), EnumEnchantmentType.BREAKABLE));
+		if (TragicConfig.getBoolean("allowRust")) Rust = (new EnchantmentWeaponExtra(TragicConfig.getInt("rustID"), new ResourceLocation("rust"), TragicConfig.getInt("rustWeight"), 4));
+		if (TragicConfig.getBoolean("allowVeteran")) Veteran = (new EnchantmentVeteran(TragicConfig.getInt("veteranID"), new ResourceLocation("veteran"), TragicConfig.getInt("veteranWeight"), EnumEnchantmentType.DIGGER));
 
-		if (TragicConfig.allowIgnition)Ignition = (new EnchantmentArmorExtra(TragicConfig.idIgnition, new ResourceLocation("ignition"), TragicConfig.wIgnition, 0));
-		if (TragicConfig.allowParalysis)Paralysis = (new EnchantmentArmorExtra(TragicConfig.idParalysis, new ResourceLocation("paralysis"), TragicConfig.wParalysis, 1));
-		if (TragicConfig.allowToxicity)Toxicity = (new EnchantmentArmorExtra(TragicConfig.idToxicity, new ResourceLocation("toxicity"), TragicConfig.wToxicity, 2));
-		if (TragicConfig.allowElasticity)Elasticity = (new EnchantmentArmorExtra(TragicConfig.idElasticity, new ResourceLocation("elasticity"), TragicConfig.wElasticity, 3));
-		if (TragicConfig.allowDeathTouch)DeathTouch = (new EnchantmentArmorExtra(TragicConfig.idDeathTouch, new ResourceLocation("death_touch"), TragicConfig.wDeathTouch, 4));
-		if (TragicConfig.allowAgility) Agility = (new EnchantmentAgility(TragicConfig.idAgility, new ResourceLocation("agility"), TragicConfig.wAgility, EnumEnchantmentType.ARMOR));
-		if (TragicConfig.allowRuneWalker) RuneWalker = (new EnchantmentRuneWalker(TragicConfig.idRuneWalker, new ResourceLocation("rune_walker"), TragicConfig.wRuneWalker, EnumEnchantmentType.ARMOR));
-		if (TragicConfig.allowLuminescence) Luminescence = (new EnchantmentLuminescence(TragicConfig.idLuminescence, new ResourceLocation("luminescence"), TragicConfig.wLuminescence, EnumEnchantmentType.ALL));
+		if (TragicConfig.getBoolean("allowIgnition"))Ignition = (new EnchantmentArmorExtra(TragicConfig.getInt("ignitionID"), new ResourceLocation("ignition"), TragicConfig.getInt("ignitionWeight"), 0));
+		if (TragicConfig.getBoolean("allowParalysis"))Paralysis = (new EnchantmentArmorExtra(TragicConfig.getInt("paralysisID"), new ResourceLocation("paralysis"), TragicConfig.getInt("paralysisWeight"), 1));
+		if (TragicConfig.getBoolean("allowToxicity"))Toxicity = (new EnchantmentArmorExtra(TragicConfig.getInt("toxicityID"), new ResourceLocation("toxicity"), TragicConfig.getInt("toxicityWeight"), 2));
+		if (TragicConfig.getBoolean("allowElasticity"))Elasticity = (new EnchantmentArmorExtra(TragicConfig.getInt("elasticityID"), new ResourceLocation("elasticity"), TragicConfig.getInt("elasticityWeight"), 3));
+		if (TragicConfig.getBoolean("allowDeathTouch"))DeathTouch = (new EnchantmentArmorExtra(TragicConfig.getInt("deathTouchID"), new ResourceLocation("deathTouch"), TragicConfig.getInt("deathTouchWeight"), 4));
+		if (TragicConfig.getBoolean("allowAgility")) Agility = (new EnchantmentAgility(TragicConfig.getInt("agilityID"), new ResourceLocation("agility"), TragicConfig.getInt("agilityWeight"), EnumEnchantmentType.ARMOR));
+		if (TragicConfig.getBoolean("allowRuneWalker")) RuneWalker = (new EnchantmentRuneWalker(TragicConfig.getInt("runeWalkerID"), new ResourceLocation("runeWalker"), TragicConfig.getInt("runeWalkerID"), EnumEnchantmentType.ARMOR));
+		if (TragicConfig.getBoolean("allowLuminescence")) Luminescence = (new EnchantmentLuminescence(TragicConfig.getInt("luminescenceID"), new ResourceLocation("luminescence"), TragicConfig.getInt("luminescenceID"), EnumEnchantmentType.ALL));
 	}
 }

@@ -16,7 +16,7 @@ public class IsleWorldGen implements IWorldGen {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
-		if (!TragicConfig.allowIsleGen) return;
+		if (!TragicConfig.getBoolean("allowIsleGen")) return;
 		
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);

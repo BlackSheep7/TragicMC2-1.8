@@ -33,7 +33,7 @@ public class ItemBloodSacrifice extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicConfig.allowDoom)
+		if (!par2World.isRemote && TragicConfig.getBoolean("allowDoom"))
 		{
 			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
 			float amount = par3EntityPlayer.getHealth() - 1.0F;
@@ -55,8 +55,8 @@ public class ItemBloodSacrifice extends Item {
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Health sacrificed!"));
-				if (TragicConfig.allowInhibit) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 600, 0));
-				if (TragicConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
+				if (TragicConfig.getBoolean("allowInhibit")) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 600, 0));
+				if (TragicConfig.getBoolean("allowConvergence")) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
 			}
 		}
 

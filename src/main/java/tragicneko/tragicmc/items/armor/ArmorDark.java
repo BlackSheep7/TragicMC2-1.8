@@ -48,8 +48,8 @@ public class ArmorDark extends TragicArmor {
 
 			if (flag1 && flag2 && flag3 && flag4)
 			{
-				if (TragicConfig.allowImmunity && player.ticksExisted % 60 == 0) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600));
-				if (TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear)) player.removePotionEffect(TragicPotion.Fear.id);
+				if (TragicConfig.getBoolean("allowImmunity") && player.ticksExisted % 60 == 0) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600));
+				if (TragicConfig.getBoolean("allowFear") && player.isPotionActive(TragicPotion.Fear)) player.removePotionEffect(TragicPotion.Fear.id);
 			}
 		}
 	}
@@ -60,12 +60,12 @@ public class ArmorDark extends TragicArmor {
 	{
 		net.minecraft.client.model.ModelBiped model2 = tragicneko.tragicmc.proxy.ClientProxy.modelsDark[4 - slot];
 		model2.setModelAttributes(model);
-		return TragicConfig.allowArmorModels ? model2 : null;
+		return TragicConfig.getBoolean("allowArmorModels") ? model2 : null;
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return TragicConfig.allowArmorModels ? texture : (slot == 2 ? "tragicmc:textures/armor/Dark2.png" : "tragicmc:textures/armor/Dark1.png");
+		return TragicConfig.getBoolean("allowArmorModels") ? texture : (slot == 2 ? "tragicmc:textures/armor/Dark2.png" : "tragicmc:textures/armor/Dark1.png");
 	}
 }

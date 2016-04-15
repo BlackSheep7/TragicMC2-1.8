@@ -186,55 +186,55 @@ public class EntityStatue extends Entity {
 				switch(id)
 				{
 				case 0:
-					if (TragicConfig.allowApis) entity = new EntityApis(this.worldObj);
+					if (TragicConfig.getBoolean("allowApis")) entity = new EntityApis(this.worldObj);
 					break;
 				case 1:
-					if (TragicConfig.allowKitsunakuma) entity = new EntityKitsune(this.worldObj);
+					if (TragicConfig.getBoolean("allowKitsunakuma")) entity = new EntityKitsune(this.worldObj);
 					break;
 				case 2:
-					if (TragicConfig.allowSkultar) entity = new EntityDeathReaper(this.worldObj);
+					if (TragicConfig.getBoolean("allowSkultar")) entity = new EntityDeathReaper(this.worldObj);
 					break;
 				case 3:
-					if (TragicConfig.allowTimeController) entity = new EntityTimeController(this.worldObj);
+					if (TragicConfig.getBoolean("allowTimeController")) entity = new EntityTimeController(this.worldObj);
 					break;
 				case 4:
-					if (TragicConfig.allowEmpariah) entity = new EntityYeti(this.worldObj);
+					if (TragicConfig.getBoolean("allowEmpariah")) entity = new EntityYeti(this.worldObj);
 					break;
 				case 5:
-					if (TragicConfig.allowPolaris) entity = new EntityPolaris(this.worldObj);
+					if (TragicConfig.getBoolean("allowPolaris")) entity = new EntityPolaris(this.worldObj);
 					break;
 				case 6:
-					if (TragicConfig.allowJarra) entity = new EntityJarra(this.worldObj);
+					if (TragicConfig.getBoolean("allowJarra")) entity = new EntityJarra(this.worldObj);
 					break;
 				case 7:
-					if (TragicConfig.allowKragul) entity = new EntityKragul(this.worldObj);
+					if (TragicConfig.getBoolean("allowKragul")) entity = new EntityKragul(this.worldObj);
 					break;
 				case 8:
-					if (TragicConfig.allowMagmox) entity = new EntityMagmox(this.worldObj);
+					if (TragicConfig.getBoolean("allowMagmox")) entity = new EntityMagmox(this.worldObj);
 					break;
 				case 9:
-					if (TragicConfig.allowMegaCryse) entity = new EntityMegaCryse(this.worldObj);
+					if (TragicConfig.getBoolean("allowMegaCryse")) entity = new EntityMegaCryse(this.worldObj);
 					break;
 				case 10:
-					if (TragicConfig.allowStinKing) entity = new EntityStinKing(this.worldObj);
+					if (TragicConfig.getBoolean("allowStinKing")) entity = new EntityStinKing(this.worldObj);
 					break;
 				case 11:
-					if (TragicConfig.allowStinQueen) entity = new EntityStinQueen(this.worldObj);
+					if (TragicConfig.getBoolean("allowStinQueen")) entity = new EntityStinQueen(this.worldObj);
 					break;
 				case 12:
-					if (TragicConfig.allowGreaterStin) entity = new EntityGreaterStin(this.worldObj);
+					if (TragicConfig.getBoolean("allowGreaterStin")) entity = new EntityGreaterStin(this.worldObj);
 					break;
 				case 13:
-					if (TragicConfig.allowVoxStellarum) entity = new EntityVoxStellarum(this.worldObj);
+					if (TragicConfig.getBoolean("allowVoxStellarum")) entity = new EntityVoxStellarum(this.worldObj);
 					break;
 				case 14:
-					if (TragicConfig.allowEnyvil) entity = new EntityEnyvil(this.worldObj);
+					if (TragicConfig.getBoolean("allowEnyvil")) entity = new EntityEnyvil(this.worldObj);
 					break;
 				case 15:
-					if (TragicConfig.allowClaymation) entity = new EntityClaymation(this.worldObj);
+					if (TragicConfig.getBoolean("allowClaymation")) entity = new EntityClaymation(this.worldObj);
 					break;
 				case 16:
-					if (TragicConfig.allowAegar) entity = new EntityAegar(this.worldObj);
+					if (TragicConfig.getBoolean("allowAegar")) entity = new EntityAegar(this.worldObj);
 					break;
 				case 17:
 				case 18:

@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.poxStats;
-import static tragicneko.tragicmc.TragicConfig.toxStats;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -157,12 +154,12 @@ public class EntityTox extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		boolean flag = this.getToxType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? toxStats[0] : poxStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? toxStats[1] : poxStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? toxStats[2] : poxStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? toxStats[3] : poxStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? toxStats[4] : poxStats[4]);
+		double[] stats = TragicConfig.getMobStat(this.getToxType() == 0 ? "toxStats" : "poxStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(stats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(stats[4]);
 	}
 
 	@Override
@@ -286,7 +283,8 @@ public class EntityTox extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.isFiring() ? 0 : (this.getToxType() == 0 ? (int) toxStats[5] : (int) poxStats[5]);
+		
+		return this.isFiring() ? 0 : TragicConfig.getMobStat(this.getToxType() == 0 ? "toxStats" : "poxStats").getArmorValue();
 	}
 
 	@Override
@@ -318,25 +316,25 @@ public class EntityTox extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return this.getToxType() == 0 && TragicConfig.allowMagmox;
+		return this.getToxType() == 0 && TragicConfig.getBoolean("allowMagmox");
 	}
 
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.tox.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.tox.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.hurt" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.tox.hurt" : null;
 	}
 
 	@Override

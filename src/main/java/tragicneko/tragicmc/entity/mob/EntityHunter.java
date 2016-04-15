@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.hunterStats;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,7 +15,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -37,6 +34,7 @@ public class EntityHunter extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] hunterStats = TragicConfig.getMobStat("hunterStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(hunterStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(hunterStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(hunterStats[2]);
@@ -47,7 +45,7 @@ public class EntityHunter extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) hunterStats[5];
+		return TragicConfig.getMobStat("hunterStats").getArmorValue();
 	}
 
 	@Override
@@ -123,7 +121,7 @@ public class EntityHunter extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.hunter.noise" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.hunter.noise" : null;
 	}
 
 	@Override
@@ -135,7 +133,7 @@ public class EntityHunter extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.hunter.noise" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.hunter.noise" : null;
 	}
 
 	@Override

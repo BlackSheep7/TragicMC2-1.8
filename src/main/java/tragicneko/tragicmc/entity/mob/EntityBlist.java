@@ -1,8 +1,8 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.blistStats;
-
 import java.util.ArrayList;
+
+import com.google.common.base.Predicate;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -21,8 +21,6 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.base.Predicate;
 
 public class EntityBlist extends TragicMob {
 
@@ -74,17 +72,17 @@ public class EntityBlist extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(blistStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(blistStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(blistStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(blistStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(blistStats[4]);
+		//this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(blistStats[0]);
+		//this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(blistStats[1]);
+		//this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(blistStats[2]);
+		//this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(blistStats[3]);
+		//this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(blistStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) blistStats[5];
+		return 0; //(int) blistStats[5];
 	}
 
 	@Override

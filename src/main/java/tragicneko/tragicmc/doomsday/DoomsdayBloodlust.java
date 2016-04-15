@@ -33,7 +33,7 @@ public class DoomsdayBloodlust extends Doomsday {
 		{
 			a = 1;
 			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 160 * a, 0));
-			if (TragicConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 160 * a, a));
+			if (TragicConfig.getBoolean("allowDisorientation")) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 160 * a, a));
 		}
 	}
 
@@ -47,7 +47,7 @@ public class DoomsdayBloodlust extends Doomsday {
 		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 60, 0));
 
 		player.addPotionEffect(new PotionEffect(Potion.confusion.id, 640, 0));
-		if (TragicConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 640, 1));
+		if (TragicConfig.getBoolean("allowDisorientation")) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 640, 1));
 	}
 
 

@@ -18,7 +18,7 @@ public class AmuletSupernatural extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (player.ticksExisted % 400 == 0 && TragicConfig.amuSupernatural && !world.isRemote)
+		if (player.ticksExisted % 400 == 0 && TragicConfig.getBoolean("amuSupernatural") && !world.isRemote)
 		{
 			int i = level * 25;
 			int j = 100 - i;

@@ -15,7 +15,7 @@ public class AmuletLuck extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuLuck && player.ticksExisted % 300 == 0 && rand.nextInt(level * 2) != 0)
+		if (TragicConfig.getBoolean("amuLuck") && player.ticksExisted % 300 == 0 && rand.nextInt(level * 2) != 0)
 		{
 			if (!world.isRemote)
 			{

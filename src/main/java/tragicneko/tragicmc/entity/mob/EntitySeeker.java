@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.seekerStats;
-
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -52,6 +50,7 @@ public class EntitySeeker extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] seekerStats = TragicConfig.getMobStat("seekerStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(seekerStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(seekerStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(seekerStats[2]);
@@ -62,7 +61,7 @@ public class EntitySeeker extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) seekerStats[5];
+		return TragicConfig.getMobStat("seekerStats").getArmorValue();
 	}
 
 	@Override
@@ -214,7 +213,7 @@ public class EntitySeeker extends TragicMob {
 		if (this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.getKillTicks() > 0)
 		{
 			float f = this.getKillTicks() / 300.0F;
-			if (TragicConfig.allowMobSounds)
+			if (TragicConfig.getBoolean("allowMobSounds"))
 			{
 				this.playSound("tragicmc:mob.seeker.tone", f, f * 1.9F);
 				this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:mob.seeker.tone", f, f * 1.9F);
@@ -340,7 +339,7 @@ public class EntitySeeker extends TragicMob {
 	{
 		super.onDeath(src);
 		
-		if (!this.hasDamagedEntity && src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
+		if (!this.hasDamagedEntity && src.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements"))
 		{
 			((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.seeker);
 		}

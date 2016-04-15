@@ -56,7 +56,7 @@ public class ArmorOverlord extends TragicArmor {
 
 		if (flag1 && flag2 && flag3 && flag4)
 		{
-			if (TragicConfig.allowCripple && player.isPotionActive(TragicPotion.Cripple)) player.removePotionEffect(TragicPotion.Cripple.id);
+			if (TragicConfig.getBoolean("allowCripple") && player.isPotionActive(TragicPotion.Cripple)) player.removePotionEffect(TragicPotion.Cripple.id);
 			if (player.isPotionActive(Potion.weakness)) player.removePotionEffect(Potion.weakness.id);
 		}
 	}
@@ -67,12 +67,12 @@ public class ArmorOverlord extends TragicArmor {
 	{
 		net.minecraft.client.model.ModelBiped model2 = tragicneko.tragicmc.proxy.ClientProxy.modelsOverlord[4 - slot];
 		model2.setModelAttributes(model);
-		return TragicConfig.allowArmorModels ? model2 : null;
+		return TragicConfig.getBoolean("allowArmorModels") ? model2 : null;
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return TragicConfig.allowArmorModels ? texture : (slot == 2 ? "tragicmc:textures/armor/Overlord2.png" : "tragicmc:textures/armor/Overlord1.png");
+		return TragicConfig.getBoolean("allowArmorModels") ? texture : (slot == 2 ? "tragicmc:textures/armor/Overlord2.png" : "tragicmc:textures/armor/Overlord1.png");
 	}
 }

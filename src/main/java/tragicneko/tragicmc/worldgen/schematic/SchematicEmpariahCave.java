@@ -70,7 +70,7 @@ public class SchematicEmpariahCave extends Schematic {
 		this.applyChestContents(world, rand, x, y - 31, z, TragicItems.BossStructureHook);
 		this.setBlock(world, x, y - 30, z, TragicBlocks.SummonBlock, 6, 2);
 
-		if (TragicConfig.allowAbomination)
+		if (TragicConfig.getBoolean("allowAbomination"))
 		{
 			this.setBlock(world, x + 5, y - 31, z, Blocks.mob_spawner, 0, 2);
 			this.setSpawnerMob(world, x + 5, y - 31, z, "TragicMC.Abomination");

@@ -29,7 +29,7 @@ public class DoomsdayLightShove extends Doomsday {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					EntityLivingBase entity = (EntityLivingBase) list.get(i);
-					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 
 					entity.applyEntityCollision(player);
 					if (crucMoment)

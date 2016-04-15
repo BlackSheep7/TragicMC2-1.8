@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.voxStellarumStats;
-
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import net.minecraft.block.Block;
@@ -9,7 +9,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -25,6 +27,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
+import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	
@@ -35,12 +38,14 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		super(par1World);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 220;
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] voxStellarumStats = TragicConfig.getMobStat("voxStellarumStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(voxStellarumStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(voxStellarumStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(voxStellarumStats[2]);
@@ -137,6 +142,8 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	@Override
 	public void onLivingUpdate()
 	{
+		if (this.isSpinning()) this.motionY = -0.1;
+		
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
@@ -151,6 +158,15 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 						this.rand.nextDouble() * 0.1D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D);
 			}
+			
+			if (this.isHealing())
+			{
+				for (byte i = 0; i < 8; i++)
+				{
+					this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, this.posX + (rand.nextDouble() - rand.nextDouble()) * this.width * 2.5, this.posY + rand.nextDouble() * this.height,
+							this.posZ + (rand.nextDouble() - rand.nextDouble()) * this.width * 2.5, rand.nextFloat() * 2.25F, rand.nextFloat() * 2.25F, rand.nextFloat() * 2.25F);
+				}
+			}
 		}
 		else
 		{
@@ -160,7 +176,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				if (this.isFiring()) this.setFiringTicks(0);
 			}
 			if (this.isHealing()) this.decrementHealingTicks();
-			if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun.id) || this.getAttackTarget() == null) this.setSpinTicks(0);
+			if (TragicConfig.getBoolean("allowStun") && this.isPotionActive(TragicPotion.Stun.id) || this.getAttackTarget() == null) this.setSpinTicks(0);
 
 
 			double modifier = (Math.sin((2.115D / (Math.PI * 2)) * (this.getSpinTicks() / 100.0D) - 0.125D)) * 0.235D;
@@ -178,12 +194,12 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				this.setSprinting(false);
 			}
 
-			if (this.getHealth() <= this.getMaxHealth() / 2 && !this.isFiring() && !this.isSpinning() && !this.isHealing() && this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && TragicConfig.voxStellarumHealing)
+			if (this.getHealth() <= this.getMaxHealth() / 2 && !this.isFiring() && !this.isSpinning() && !this.isHealing() && this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && TragicConfig.getBoolean("voxStellarumHealing"))
 			{
 				this.setHealTicks(500);
 			}
 
-			if (!this.isHealing() && this.getFiringTicks() <= 40 && !this.isSpinning() && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && this.getAttackTarget() != null && TragicConfig.voxStellarumSpinAttack) this.setSpinTicks(1000);
+			if (!this.isHealing() && !this.isFiring() && !this.isSpinning() && this.ticksExisted % 20 == 0 && rand.nextInt(16) == 0 && this.getAttackTarget() != null && TragicConfig.getBoolean("voxStellarumSpinAttack")) this.setSpinTicks(1000);
 
 			if (this.isHealing() && this.getHealTicks() >= 100)
 			{
@@ -194,6 +210,10 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				if (this.ticksExisted % 4 == 0) this.heal(1.0F);
 
 				if (this.getHealth() >= this.getMaxHealth()) this.setHealTicks(0);
+				if (this.getHealth() >= this.getMaxHealth() || this.getHealTicks() == 100)
+				{
+					this.playSound("tragicmc:random.beep", 1.4F, 0.2F);
+				}
 			}
 
 			if (this.isSpinning() && this.getAttackTarget() != null && this.ticksExisted % 2 == 0)
@@ -213,6 +233,20 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				if (this.motionY >= 0.25D) this.motionY = -0.15D;
 
 				if (this.getHealth() <= this.getMaxHealth() / 3 && this.ticksExisted % 10 == 0) this.shootProjectiles();
+				
+				double dm = 2.0D;
+				List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(dm, dm, dm));
+				Iterator iterator = list.iterator();
+
+				while (iterator.hasNext())
+				{
+					EntityLivingBase entity2 = (EntityLivingBase) iterator.next();
+
+					if (this.canEntityBeSeen(entity2) && entity2 != this)
+					{
+						entity2.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
+					}
+				}
 			}
 		}
 	}
@@ -220,7 +254,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	@Override
 	protected void shootProjectiles()
 	{
-		if (!TragicConfig.norVoxProjectiles) return;
+		if (!TragicConfig.getBoolean("norVoxProjectiles")) return;
 		double d0 = this.getAttackTarget().posX - this.posX;
 		double d1 = this.getAttackTarget().posY - this.posY;
 		double d2 = this.getAttackTarget().posZ - this.posZ;
@@ -272,8 +306,8 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 			{
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(60) + 120));
 
-				par1Entity.motionX *= 2.75D;
-				par1Entity.motionZ *= 2.75D;
+				par1Entity.motionX += this.motionX;
+				par1Entity.motionZ += this.motionZ;
 				par1Entity.motionY += 0.35D;
 			}
 		}
@@ -284,23 +318,12 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	public void collideWithEntity(Entity entity)
 	{
 		super.collideWithEntity(entity);
-		if (this.worldObj.isRemote) return;
-		if (entity instanceof EntityLivingBase && this.isSpinning() && this.getSpinTicks() >= 100 && this.getSpinTicks() <= 800 && this.ticksExisted % 4 == 0)
-		{
-			entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
-			entity.motionX *= 2.25F;
-			entity.motionY *= 2.25F;
-			entity.motionZ *= 2.25F;
-			this.motionX *= -2.25F;
-			this.motionY *= 1.25F;
-			this.motionZ *= -2.25F;
-		}
 	}
 
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) voxStellarumStats[5];
+		return TragicConfig.getMobStat("voxStellarumStats").getArmorValue();
 	}
 
 	@Override

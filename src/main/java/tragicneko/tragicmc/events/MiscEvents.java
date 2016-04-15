@@ -68,7 +68,7 @@ public class MiscEvents {
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void whileHoldingSpecialWeapon(LivingHurtEvent event)
 	{
-		if (!TragicConfig.allowNonDoomsdayAbilities) return;
+		if (!TragicConfig.getBoolean("allowNonDoomsdayAbilities")) return;
 
 		if (event.entityLiving instanceof EntityPlayer)
 		{
@@ -153,7 +153,7 @@ public class MiscEvents {
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onLightningHurt(EntityStruckByLightningEvent event)
 	{
-		if (event.entity instanceof EntityPlayerMP && TragicConfig.allowNonDoomsdayAbilities)
+		if (event.entity instanceof EntityPlayerMP && TragicConfig.getBoolean("allowNonDoomsdayAbilities"))
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.entity;
 			PropertyDoom doom = PropertyDoom.get(mp);
@@ -173,7 +173,7 @@ public class MiscEvents {
 	@SubscribeEvent
 	public void onMagicAttack(LivingAttackEvent event)
 	{
-		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayerMP && TragicConfig.allowNonMobItems)
+		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowNonMobItems"))
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
 			ItemStack stack = player.getEquipmentInSlot(0);
@@ -188,7 +188,7 @@ public class MiscEvents {
 	@SubscribeEvent
 	public void carrotAndPotatoBlockCreation(BonemealEvent event)
 	{
-		if (!TragicConfig.allowNonMobBlocks) return;
+		if (!TragicConfig.getBoolean("allowNonMobBlocks")) return;
 		if (event.block.getBlock() == Blocks.carrots)
 		{
 			int meta = ((Integer) event.world.getBlockState(event.pos).getValue(BlockCarrot.AGE)).intValue();
@@ -236,7 +236,7 @@ public class MiscEvents {
 
 		if (event.entityLiving instanceof EntityPlayer)
 		{
-			if (TragicConfig.allowBurned)
+			if (TragicConfig.getBoolean("allowBurned"))
 			{
 				if (event.entityLiving.isBurning())
 				{
@@ -267,7 +267,7 @@ public class MiscEvents {
 
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			int i = 0;
-			if (!TragicConfig.allowNonMobItems) return;
+			if (!TragicConfig.getBoolean("allowNonMobItems")) return;
 
 			for (byte a = 1; a < 5; a++)
 			{
@@ -345,7 +345,7 @@ public class MiscEvents {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onEntitySpawn(LivingPackSizeEvent event)
 	{
@@ -356,14 +356,14 @@ public class MiscEvents {
 			event.maxPackSize = 1;
 			event.setResult(Result.ALLOW);
 		}
-		
+
 		if (event.entityLiving instanceof EntityNeko && event.entityLiving.worldObj.provider instanceof NekoHomeworldProvider)
 		{
 			event.maxPackSize = 1;
 			event.setResult(Result.ALLOW);
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onEntitySpawnCheck(LivingSpawnEvent.CheckSpawn event) {
 		if (event.entityLiving instanceof EntityNeko && event.entityLiving.worldObj.provider instanceof NekoHomeworldProvider && TragicMC.rand.nextBoolean())
@@ -380,7 +380,7 @@ public class MiscEvents {
 			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
 			if (misc != null) misc.onUpdate();
 
-			if (TragicConfig.allowNonMobBlocks && !event.entityLiving.worldObj.isRemote && event.entityLiving.ticksExisted % 5 == 0) this.updateBlocksInBB(event.entityLiving.worldObj, event.entityLiving.getEntityBoundingBox(), event.entityLiving);
+			if (TragicConfig.getBoolean("allowNonMobBlocks") && !event.entityLiving.worldObj.isRemote && event.entityLiving.ticksExisted % 5 == 0) this.updateBlocksInBB(event.entityLiving.worldObj, event.entityLiving.getEntityBoundingBox(), event.entityLiving);
 		}
 	}
 
@@ -419,29 +419,32 @@ public class MiscEvents {
 							}
 						}
 
-						if (block == TragicBlocks.DarkGas)
+						if (entity.ticksExisted % 10 == 0)
 						{
-							entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 0));
-						}
+							if (block == TragicBlocks.DarkGas)
+							{
+								entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 0));
+							}
 
-						if (block == TragicBlocks.CorruptedGas && TragicConfig.allowCorruption)
-						{
-							entity.addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 120, 0));
-						}
+							if (block == TragicBlocks.CorruptedGas && TragicConfig.getBoolean("allowCorruption"))
+							{
+								entity.addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 120, 0));
+							}
 
-						if (block == TragicBlocks.RadiatedGas || block == TragicBlocks.SepticGas)
-						{
-							entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120, 0));
-						}
+							if (block == TragicBlocks.RadiatedGas || block == TragicBlocks.SepticGas)
+							{
+								entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120, 0));
+							}
 
-						if (block == TragicBlocks.WitheringGas)
-						{
-							entity.addPotionEffect(new PotionEffect(Potion.wither.id, 120, 0));
-						}
+							if (block == TragicBlocks.WitheringGas)
+							{
+								entity.addPotionEffect(new PotionEffect(Potion.wither.id, 120, 0));
+							}
 
-						if (block == TragicBlocks.ExplosiveGas)
-						{
-							entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 120, 0));
+							if (block == TragicBlocks.ExplosiveGas)
+							{
+								entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 120, 0));
+							}
 						}
 
 						if (block instanceof BlockQuicksand)

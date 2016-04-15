@@ -41,7 +41,7 @@ public class SoundsEvents {
 				WorldProvider prov = mc.theWorld.provider;
 				ResourceLocation rl = null;
 
-				if (TragicConfig.allowDimensionalMusic && rl == null)
+				if (TragicConfig.getBoolean("allowDimensionalMusic") && rl == null)
 				{
 					if (prov instanceof TragicWorldProvider) // && mc.thePlayer != null && !mc.thePlayer.isPotionActive(TragicPotion.Nightmare))
 					{

@@ -22,7 +22,7 @@ public class StructureCelestialTemple extends StructureBoss {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.collisionID;
+		return dim == TragicConfig.getInt("collisionID");
 	}
 
 	@Override

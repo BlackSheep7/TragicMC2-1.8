@@ -8,7 +8,7 @@ public class ItemSkyFruit extends ItemFood {
 
 	public ItemSkyFruit(int p_i45340_1_, boolean p_i45340_2_) {
 		super(p_i45340_1_, p_i45340_2_);
-		if (TragicConfig.allowFlight) this.setPotionEffect(TragicPotion.Flight.id, 120, 0, 1.0F);
+		if (TragicConfig.getBoolean("allowFlight")) this.setPotionEffect(TragicPotion.Flight.id, 120, 0, 1.0F);
 		this.setAlwaysEdible();
 	}
 }

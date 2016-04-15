@@ -153,7 +153,7 @@ public class ItemAmulet extends Item {
 
 		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
 		if (!stack.getTagCompound().hasKey("amuletLevel")) stack.getTagCompound().setByte("amuletLevel", getDefaultLevels(this.amuletType));
-		if (TragicConfig.allowAmuletModifiers && !stack.getTagCompound().hasKey("AttributeModifiers", 9)) applyModifiersToItemStack(stack);
+		if (TragicConfig.getBoolean("allowAmuletModifiers") && !stack.getTagCompound().hasKey("AttributeModifiers", 9)) applyModifiersToItemStack(stack);
 	}
 
 	@Override
@@ -185,7 +185,7 @@ public class ItemAmulet extends Item {
 		if (stack == null || !(stack.getItem() instanceof ItemAmulet)) return;
 		ItemAmulet amulet = (ItemAmulet) stack.getItem();
 
-		if (itemRand.nextInt(100) <= TragicConfig.amuletModChance || amulet.amuletType == EnumAmuletType.CURSED)
+		if (itemRand.nextInt(100) <= TragicConfig.getInt("amuletModChance") || amulet.amuletType == EnumAmuletType.CURSED)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			return;
@@ -200,7 +200,7 @@ public class ItemAmulet extends Item {
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
 
-		if (itemRand.nextInt(100) <= TragicConfig.amuletModChance2)
+		if (itemRand.nextInt(100) <= TragicConfig.getInt("amuletModChance2"))
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			return;
@@ -215,7 +215,7 @@ public class ItemAmulet extends Item {
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
 
-		if (itemRand.nextInt(100) <= TragicConfig.amuletModChance3)
+		if (itemRand.nextInt(100) <= TragicConfig.getInt("amuletModChance3"))
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			return;

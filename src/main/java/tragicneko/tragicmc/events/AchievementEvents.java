@@ -91,7 +91,7 @@ public class AchievementEvents {
 				{
 					mp.triggerAchievement(TragicAchievements.weapon);
 
-					if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
+					if (TragicConfig.getBoolean("allowRandomWeaponLore") && LoreHelper.getRarityFromStack(stack) > 0)
 					{
 						mp.triggerAchievement(TragicAchievements.loot);
 						if (LoreHelper.getRarityFromStack(stack) >= 3) mp.triggerAchievement(TragicAchievements.loot2);
@@ -111,7 +111,7 @@ public class AchievementEvents {
 				}	
 				else if (stack != null && (stack.getItem() instanceof TragicTool || stack.getItem() instanceof TragicBow))
 				{
-					if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
+					if (TragicConfig.getBoolean("allowRandomWeaponLore") && LoreHelper.getRarityFromStack(stack) > 0)
 					{
 						mp.triggerAchievement(TragicAchievements.loot);
 						if (LoreHelper.getRarityFromStack(stack) >= 3) mp.triggerAchievement(TragicAchievements.loot2);
@@ -133,7 +133,7 @@ public class AchievementEvents {
 
 				if (stack != null && stack.getItem() instanceof TragicArmor)
 				{
-					if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
+					if (TragicConfig.getBoolean("allowRandomWeaponLore") && LoreHelper.getRarityFromStack(stack) > 0)
 					{
 						mp.triggerAchievement(TragicAchievements.loot);
 						if (LoreHelper.getRarityFromStack(stack) >= 3) mp.triggerAchievement(TragicAchievements.loot2);
@@ -144,7 +144,7 @@ public class AchievementEvents {
 			if (flag) mp.triggerAchievement(TragicAchievements.fullSuit);
 			if (ovFlag) mp.triggerAchievement(TragicAchievements.haxEngage);
 
-			if (TragicConfig.allowAmulets)
+			if (TragicConfig.getBoolean("allowAmulets"))
 			{
 				PropertyAmulets amu = PropertyAmulets.get(mp);
 				if (amu != null)
@@ -180,7 +180,7 @@ public class AchievementEvents {
 				}
 			}
 
-			if (TragicConfig.allowDoom)
+			if (TragicConfig.getBoolean("allowDoom"))
 			{
 				PropertyDoom doom = PropertyDoom.get(mp);
 				if (doom != null)
@@ -216,8 +216,8 @@ public class AchievementEvents {
 				if (mp.worldObj.provider instanceof NekoHomeworldProvider) mp.triggerAchievement(TragicAchievements.tragicNekoHomeworld);
 			}
 
-			if (TragicConfig.allowFlight && mp.isPotionActive(TragicPotion.Flight)) mp.triggerAchievement(TragicAchievements.flight);
-			if (TragicConfig.allowDisorientation && mp.isPotionActive(TragicPotion.Disorientation)) mp.triggerAchievement(TragicAchievements.disorientation);
+			if (TragicConfig.getBoolean("allowFlight") && mp.isPotionActive(TragicPotion.Flight)) mp.triggerAchievement(TragicAchievements.flight);
+			if (TragicConfig.getBoolean("allowDisorientation") && mp.isPotionActive(TragicPotion.Disorientation)) mp.triggerAchievement(TragicAchievements.disorientation);
 		}
 	}
 
@@ -251,17 +251,17 @@ public class AchievementEvents {
 			if (mp.getCurrentEquippedItem() != null)
 			{
 				ItemStack stack = mp.getCurrentEquippedItem();
-				if (TragicConfig.allowLuminescence && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Luminescence.effectId, stack) > 0 && !mp.worldObj.canBlockSeeSky(new BlockPos((int) mp.posX, (int) mp.posY, (int) mp.posZ)))
+				if (TragicConfig.getBoolean("allowLuminescence") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Luminescence.effectId, stack) > 0 && !mp.worldObj.canBlockSeeSky(new BlockPos((int) mp.posX, (int) mp.posY, (int) mp.posZ)))
 				{
 					mp.triggerAchievement(TragicAchievements.luminescence);
 				}
 
-				if (TragicConfig.allowVeteran && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, stack) > 0)
+				if (TragicConfig.getBoolean("allowVeteran") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, stack) > 0)
 				{
 					mp.triggerAchievement(TragicAchievements.veteran);
 				}
 
-				if (TragicConfig.allowCombustion && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Combustion.effectId, stack) > 0)
+				if (TragicConfig.getBoolean("allowCombustion") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Combustion.effectId, stack) > 0)
 				{
 					mp.triggerAchievement(TragicAchievements.combustion);
 				}
@@ -275,22 +275,22 @@ public class AchievementEvents {
 		if (event.source.getEntity() instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.source.getEntity();
-			if (TragicConfig.allowReach && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, mp.getCurrentEquippedItem()) > 0 && mp.getDistanceToEntity(event.entityLiving) > 4.0F)
+			if (TragicConfig.getBoolean("allowReach") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, mp.getCurrentEquippedItem()) > 0 && mp.getDistanceToEntity(event.entityLiving) > 4.0F)
 			{
 				mp.triggerAchievement(TragicAchievements.reach);
 			}
 
-			if (TragicConfig.allowAbsolve && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Absolve.effectId, mp.getCurrentEquippedItem()) > 0 && TragicConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotion.Corruption))
+			if (TragicConfig.getBoolean("allowAbsolve") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Absolve.effectId, mp.getCurrentEquippedItem()) > 0 && TragicConfig.getBoolean("allowCorruption") && event.entityLiving.isPotionActive(TragicPotion.Corruption))
 			{
 				mp.triggerAchievement(TragicAchievements.enchant);
 			}
 
-			if (TragicConfig.allowSlay && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Slay.effectId, mp.getCurrentEquippedItem()) > 0 && event.entityLiving.getCreatureAttribute() == TragicEntities.Beast)
+			if (TragicConfig.getBoolean("allowSlay") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Slay.effectId, mp.getCurrentEquippedItem()) > 0 && event.entityLiving.getCreatureAttribute() == TragicEntities.Beast)
 			{
 				mp.triggerAchievement(TragicAchievements.enchant);
 			}
 
-			if (TragicConfig.allowDecay && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Decay.effectId, mp.getCurrentEquippedItem()) > 0 && event.entityLiving.getCreatureAttribute() == TragicEntities.Natural)
+			if (TragicConfig.getBoolean("allowDecay") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Decay.effectId, mp.getCurrentEquippedItem()) > 0 && event.entityLiving.getCreatureAttribute() == TragicEntities.Natural)
 			{
 				mp.triggerAchievement(TragicAchievements.enchant);
 			}
@@ -304,10 +304,10 @@ public class AchievementEvents {
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.source.getEntity();
 
-			if (TragicConfig.allowHacked && mp.isPotionActive(TragicPotion.Hacked)) mp.triggerAchievement(TragicAchievements.systemCrash);
-			if (TragicConfig.allowDivinity && mp.isPotionActive(TragicPotion.Divinity) && event.entityLiving instanceof TragicMob) mp.triggerAchievement(TragicAchievements.divinity);
+			if (TragicConfig.getBoolean("allowHacked") && mp.isPotionActive(TragicPotion.Hacked)) mp.triggerAchievement(TragicAchievements.systemCrash);
+			if (TragicConfig.getBoolean("allowDivinity") && mp.isPotionActive(TragicPotion.Divinity) && event.entityLiving instanceof TragicMob) mp.triggerAchievement(TragicAchievements.divinity);
 			
-			if (TragicConfig.allowAchievements && mp.riddenByEntity instanceof EntityLock && !(event.entityLiving instanceof EntityLockbot)) mp.triggerAchievement(TragicAchievements.lockdown);
+			if (TragicConfig.getBoolean("allowAchievements") && mp.riddenByEntity instanceof EntityLock && !(event.entityLiving instanceof EntityLockbot)) mp.triggerAchievement(TragicAchievements.lockdown);
 		}
 	}
 
@@ -318,7 +318,7 @@ public class AchievementEvents {
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.player;
 
-			if (TragicConfig.allowPumpkinhead && (event.state.getBlock() == Blocks.pumpkin || event.state.getBlock() == Blocks.lit_pumpkin))
+			if (TragicConfig.getBoolean("allowPumpkinhead") && (event.state.getBlock() == Blocks.pumpkin || event.state.getBlock() == Blocks.lit_pumpkin))
 			{
 				List<EntityPumpkinhead> list = mp.worldObj.getEntitiesWithinAABB(EntityPumpkinhead.class, mp.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 				

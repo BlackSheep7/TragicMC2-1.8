@@ -23,7 +23,7 @@ public class AmuletPeace extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuPeace && player.ticksExisted % 60 == 0)
+		if (TragicConfig.getBoolean("amuPeace") && player.ticksExisted % 60 == 0)
 		{
 			double d0 = 8.0 + (level * 4.0);
 			int chance;

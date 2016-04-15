@@ -1,10 +1,10 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicConfig.enyvilStats;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.common.base.Predicate;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -45,8 +45,6 @@ import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.base.Predicate;
 
 public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	
@@ -259,7 +257,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	private boolean hasCrystal()
 	{
-		return this.crystal != null && !this.crystal.isDead || !TragicConfig.enyvilDarkCrystals;
+		return this.crystal != null && !this.crystal.isDead || !TragicConfig.getBoolean("enyvilDarkCrystals");
 	}
 
 	public int getSlamTicks()
@@ -303,6 +301,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] enyvilStats = TragicConfig.getMobStat("enyvilStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(enyvilStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(enyvilStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(enyvilStats[2]);
@@ -313,7 +312,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) enyvilStats[5];
+		return TragicConfig.getMobStat("enyvilStats").getArmorValue();
 	}
 
 	@Override
@@ -334,14 +333,14 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			}
 		}
 		
-		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.enyvil);
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.enyvil);
 	}
 	
 	@Override
 	protected void dropFewItems(boolean flag, int l)
 	{
 		super.dropFewItems(flag, l);
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 14)));
+		if (!this.worldObj.isRemote && TragicConfig.getBoolean("allowMobStatueDrops") && rand.nextInt(100) <= TragicConfig.getInt("mobStatueDropChance") && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 14)));
 	}
 
 	@Override
@@ -419,7 +418,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		this.decrementValues();
 		
-		if (TragicConfig.enyvilDarkCrystals) this.updateCrystal();
+		if (TragicConfig.getBoolean("enyvilDarkCrystals")) this.updateCrystal();
 		this.updateTargetInfo();
 
 		if (this.getAttackTarget() == null)
@@ -436,39 +435,39 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			double d7 = this.getAttackTarget().posZ - this.posZ;
 			this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(d5, d7)) * 180.0F / (float)Math.PI;
 			
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 20.0F) && rand.nextInt(48) == 0 && TragicConfig.enyvilDarkLightning) this.setLightningTicks(100);
-			if (this.getLightningTicks() > 0 && this.getLightningTicks() % 20 == 0 && TragicConfig.enyvilDarkLightning) this.useDarkLightning();
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 20.0F) && rand.nextInt(48) == 0 && TragicConfig.getBoolean("enyvilDarkLightning")) this.setLightningTicks(100);
+			if (this.getLightningTicks() > 0 && this.getLightningTicks() % 20 == 0 && TragicConfig.getBoolean("enyvilDarkLightning")) this.useDarkLightning();
 
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 5.0F, 16.0F) && rand.nextInt(96) == 0 && TragicConfig.enyvilDarkEnergySpray)
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 5.0F, 16.0F) && rand.nextInt(96) == 0 && TragicConfig.getBoolean("enyvilDarkEnergySpray"))
 			{
 				this.setDarkEnergyTicks(160);
-				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.spray", 1.8F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.enyvil.spray", 1.8F, 1.0F);
 			}
-			if (this.getDarkEnergyTicks() > 0 && TragicConfig.enyvilDarkEnergySpray) this.useDarkEnergySpray();
+			if (this.getDarkEnergyTicks() > 0 && this.getDarkEnergyTicks() % 5 == 0 && TragicConfig.getBoolean("enyvilDarkEnergySpray")) this.useDarkEnergySpray();
 
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 12.0F, 28.0F) && rand.nextInt(128) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.enyvilTractorBeam)
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 12.0F, 28.0F) && rand.nextInt(128) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.getBoolean("enyvilTractorBeam"))
 			{
 				this.setTractorBeamTicks(200);
-				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.come", 1.8F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.enyvil.come", 1.8F, 1.0F);
 			}
 
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 8.0F, 24.0F) && rand.nextInt(64) == 0 && !this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.enyvilCrystalLaser) this.setLaserTicks(200);
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 8.0F, 24.0F) && rand.nextInt(64) == 0 && !this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.getBoolean("enyvilCrystalLaser")) this.setLaserTicks(200);
 
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 18.0F) && rand.nextInt(256) == 0 && TragicConfig.enyvilThunderstorm)
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 18.0F) && rand.nextInt(256) == 0 && TragicConfig.getBoolean("enyvilThunderstorm"))
 			{
 				this.setThunderstormTicks(120);
-				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.calling", 1.8F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.enyvil.calling", 1.8F, 1.0F);
 			}
-			if (this.getThunderstormTicks() > 0 && this.getThunderstormTicks() % 10 == 0 && TragicConfig.enyvilThunderstorm) this.createThunderstorm();
+			if (this.getThunderstormTicks() > 0 && this.getThunderstormTicks() % 10 == 0 && TragicConfig.getBoolean("enyvilThunderstorm")) this.createThunderstorm();
 
-			if (this.canUseNewAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && rand.nextInt(32) == 0 && this.onGround && TragicConfig.enyvilSlam)
+			if (this.canUseNewAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && rand.nextInt(32) == 0 && this.onGround && TragicConfig.getBoolean("enyvilSlam"))
 			{
 				this.setSlamTicks(40);
-				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.slam", 1.8F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.enyvil.slam", 1.8F, 1.0F);
 			}
-			if (this.getSlamTicks() == 4 && TragicConfig.enyvilSlam) this.useSlam();
+			if (this.getSlamTicks() == 4 && TragicConfig.getBoolean("enyvilSlam")) this.useSlam();
 
-			if (this.ticksExisted % 60 == 0 && rand.nextInt(4) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 20.0F && TragicConfig.enyvilThunderstorm)
+			if (this.ticksExisted % 60 == 0 && rand.nextInt(4) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 20.0F && TragicConfig.getBoolean("enyvilThunderstorm"))
 			{
 				for (int meow = 0; meow < 4 + rand.nextInt(3); meow++)
 				{
@@ -481,7 +480,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			}
 		}
 
-		if (this.isCollidedHorizontally && this.getMobGriefing() && TragicConfig.enyvilDestroyBlocks) this.destroyBlocks();
+		if (this.isCollidedHorizontally && this.getMobGriefing() && TragicConfig.getBoolean("enyvilDestroyBlocks")) this.destroyBlocks();
 	}
 
 	private void destroyBlocks() {
@@ -538,7 +537,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		if (this.hasCrystal())
 		{
-			if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.enyvilRegeneration) this.heal(1.0F);
+			if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.getBoolean("enyvilRegeneration")) this.heal(1.0F);
 			this.crystal.motionX = this.motionX;
 			this.crystal.motionZ = this.motionZ;
 
@@ -548,7 +547,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 				this.crystal.playSound("mob.endermen.portal", 0.4F, 0.4F);
 			}
 			
-			float f = 128.0F;
+			float f = 64.0F;
 			List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.getEntityBoundingBox().expand(f, f, f));
 			Iterator iterator = list.iterator();
 
@@ -556,8 +555,8 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			{
 				EntityDarkCrystal crystal1 = (EntityDarkCrystal)iterator.next();
 				if (crystal1.getOwnerID() != this.getEntityId()) continue;
-				float fw = crystal1.getDistanceToEntity(this);
-				if (fw >= 14.0F)
+				float fw = this.getDistanceToEntity(crystal1);
+				if (fw >= 20.0F)
 				{
 					crystal1.setPosition(this.posX + getIntegerInRange(4, 8), this.posY + Math.abs(getIntegerInRange(4, 8)), this.posZ + getIntegerInRange(4, 8));
 					crystal1.playSound("mob.endermen.portal", 0.4F, 0.4F);
@@ -593,12 +592,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	}
 
 	public void createNewCrystals() {
-		if (this.crystalBuffer > 0 || !TragicConfig.enyvilDarkCrystals) return;
+		if (this.crystalBuffer > 0 || !TragicConfig.getBoolean("enyvilDarkCrystals")) return;
 
 		List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.getEntityBoundingBox().expand(64.0D, 64.0D, 64.0D));
 		if (list.size() >= 5) return;
 
-		if (!this.worldObj.isRemote && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.summon", 0.6F, 1.0F);
+		if (!this.worldObj.isRemote && TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.enyvil.summon", 0.6F, 1.0F);
 
 		int amt = rand.nextInt(this.worldObj.getDifficulty().getDifficultyId() + 1) + 2;
 		for (int i = 0; i < amt; i++)
@@ -649,7 +648,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		EntityLivingBase entity = this.worldObj.isRemote ? this.getClientSideTarget() : this.getAttackTarget();
 		if (entity != null && !this.canEntityBeSeen(entity)) return;
 
-		if (!this.worldObj.isRemote && this.getTractorBeamTicks() % 10 == 0 && TragicConfig.allowMobSounds)
+		if (!this.worldObj.isRemote && this.getTractorBeamTicks() % 10 == 0 && TragicConfig.getBoolean("allowMobSounds"))
 		{
 			this.playSound("tragicmc:boss.enyvil.tractor", 0.6F, 1.0F);
 			this.getAttackTarget().playSound("tragicmc:boss.enyvil.tractor", 0.6F, 1.0F);
@@ -724,7 +723,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		{
 			if (!this.worldObj.isRemote && crystal.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
 			{
-				if (!this.worldObj.isRemote && TragicConfig.allowMobSounds) crystal.playSound("tragicmc:boss.enyvil.laser", 1.0F, 1.0F);
+				if (!this.worldObj.isRemote && TragicConfig.getBoolean("allowMobSounds")) crystal.playSound("tragicmc:boss.enyvil.laser", 1.0F, 1.0F);
 				this.getAttackTarget().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), 2.5F * rand.nextFloat() + 1.0F);
 				this.getAttackTarget().setFire(4);
 			}
@@ -745,14 +744,15 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	private void createThunderstorm()
 	{
-		for (int i = 0; i < 3 + rand.nextInt(3); i++)
+		final boolean flag = TragicConfig.getBoolean("enyvilLightningExplosions");
+		for (byte i = 0; i < 3 + rand.nextInt(3); i++)
 		{
 			double d0 = this.posX + this.getIntegerInRange(4, 16) + rand.nextDouble();
 			double d1 = this.posZ + this.getIntegerInRange(4, 16) + rand.nextDouble();
 			double d2 = this.posY - WorldHelper.getDistanceToGround(this);
 
 			this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, d0, d2, d1));
-			if (TragicConfig.enyvilLightningExplosions) this.worldObj.createExplosion(this, d0, d2, d1, rand.nextFloat() * 2.0F + 0.5F, this.getMobGriefing());
+			if (flag) this.worldObj.createExplosion(this, d0, d2, d1, rand.nextFloat() * 2.0F + 0.5F, this.getMobGriefing());
 		}
 	}
 
@@ -794,7 +794,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		if (source == DamageSource.inWall)
 		{
-			if (this.getMobGriefing() && TragicConfig.enyvilDestroyBlocks) this.destroyBlocks();
+			if (this.getMobGriefing() && TragicConfig.getBoolean("enyvilDestroyBlocks")) this.destroyBlocks();
 			return false;
 		}
 
@@ -848,7 +848,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			{
 				float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
 				entity.attackEntityFrom(DamageSource.causeMobDamage(this), f / 2.0F);
-				if (TragicConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), 1));
+				if (TragicConfig.getBoolean("allowFear")) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), 1));
 
 				entity.motionX *= 3.225D;
 				entity.motionZ *= 3.225D;
@@ -876,7 +876,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 				par1Entity.motionX *= 2;
 				par1Entity.motionZ *= 2;
 				this.setTractorBeamTicks(0);
-				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.laugh", 1.6F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.enyvil.laugh", 1.6F, 1.0F);
 			}
 		}
 
@@ -920,19 +920,19 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.enyvil.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.enyvil.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? (this.getHurtTime() > 0 ? "tragicmc:boss.enyvil.realhurt" : "tragicmc:boss.enyvil.hurt") : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.getHurtTime() > 0 ? "tragicmc:boss.enyvil.realhurt" : "tragicmc:boss.enyvil.hurt") : super.getHurtSound();
 	}
 
 	@Override
-	public String getDeathSound()
+	public String getDeathSound()	
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.enyvil.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.enyvil.death" : null;
 	}
 
 	@Override

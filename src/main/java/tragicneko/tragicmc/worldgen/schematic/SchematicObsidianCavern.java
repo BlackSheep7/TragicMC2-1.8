@@ -942,36 +942,36 @@ public class SchematicObsidianCavern extends Schematic {
 
 	public String getRandomEntityNameForSpawner(int i)
 	{
-		String s = TragicConfig.allowPlague ? "TragicMC.Plague" : "Blaze";
+		String s = TragicConfig.getBoolean("allowPlague") ? "TragicMC.Plague" : "Blaze";
 
 		switch(i)
 		{
 		case 0:
-			s = TragicConfig.allowMinotaur ? "TragicMC.Minotaur" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.getBoolean("allowMinotaur") ? "TragicMC.Minotaur" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 1:
-			s = TragicConfig.allowInkling ? "TragicMC.Inkling" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.getBoolean("allowInkling") ? "TragicMC.Inkling" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 2:
-			s = TragicConfig.allowJabba ? "TragicMC.Jabba" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.getBoolean("allowJabba") ? "TragicMC.Jabba" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 3:
-			s = TragicConfig.allowNorVox ? "TragicMC.NorVox" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.getBoolean("allowNorVox") ? "TragicMC.NorVox" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 4:
-			s = TragicConfig.allowRagr ? "TragicMC.Ragr" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.getBoolean("allowRagr") ? "TragicMC.Ragr" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 5:
-			s = TragicConfig.allowTox ? "TragicMC.Tox" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.getBoolean("allowTox") ? "TragicMC.Tox" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 6:
-			s = TragicConfig.allowGragul ? "TragicMC.Gragul" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.getBoolean("allowGragul") ? "TragicMC.Gragul" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 7:
-			s = TragicConfig.allowJarra ? "TragicMC.Jarra" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.getBoolean("allowJarra") ? "TragicMC.Jarra" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 8:
-			s = TragicConfig.allowKragul ? "TragicMC.Kragul" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.getBoolean("allowKragul") ? "TragicMC.Kragul" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		default:
 			break;
@@ -1011,17 +1011,17 @@ public class SchematicObsidianCavern extends Schematic {
 
 	public String getRandomBossNameForSpawner(int i)
 	{
-		String s = TragicConfig.allowApis ? "TragicMC.Apis" : "Enderman";
+		String s = TragicConfig.getBoolean("allowApis") ? "TragicMC.Apis" : "Enderman";
 		switch(i)
 		{
 		case 0:
-			s = TragicConfig.allowEmpariah ? "TragicMC.Yeti" : "Enderman";
+			s = TragicConfig.getBoolean("allowEmpariah") ? "TragicMC.Yeti" : "Enderman";
 			break;
 		case 1:
-			s = TragicConfig.allowKitsunakuma ? "TragicMC.Kitsune" : "Enderman";
+			s = TragicConfig.getBoolean("allowKitsunakuma") ? "TragicMC.Kitsune" : "Enderman";
 			break;
 		case 2:
-			s = TragicConfig.allowPolaris ? "TragicMC.Polaris" : "Enderman";
+			s = TragicConfig.getBoolean("allowPolaris") ? "TragicMC.Polaris" : "Enderman";
 			break;
 		default:
 			break;

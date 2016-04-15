@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicConfig.skultarStats;
-
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -22,7 +20,6 @@ import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityWitherSkull;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -191,6 +188,7 @@ public class EntityDeathReaper extends TragicBoss {
 	{
 		super.applyEntityAttributes();
 		boolean flag = this.getReaperType() == 0;
+		double[] skultarStats = TragicConfig.getMobStat("skultarStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(skultarStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? skultarStats[1] : skultarStats[1] * 0.875);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? skultarStats[2] : skultarStats[2] / 2);
@@ -204,7 +202,7 @@ public class EntityDeathReaper extends TragicBoss {
 		if (this.getReaperType() == 1) return;
 		super.onDeath(src);
 		
-		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.skultar);
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.skultar);
 		
 		List<EntityDeathReaper> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, this.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 		for (EntityDeathReaper reaper : list)
@@ -217,7 +215,7 @@ public class EntityDeathReaper extends TragicBoss {
 	protected void dropFewItems(boolean flag, int l)
 	{
 		super.dropFewItems(flag, l);
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 2)));
+		if (!this.worldObj.isRemote && TragicConfig.getBoolean("allowMobStatueDrops") && rand.nextInt(100) <= TragicConfig.getInt("mobStatueDropChance") && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 2)));
 	}
 
 	@Override
@@ -225,6 +223,7 @@ public class EntityDeathReaper extends TragicBoss {
 	{
 		if (this.isPotionActive(Potion.wither.id)) this.removePotionEffect(Potion.wither.id);
 		if (this.isPotionActive(Potion.weakness.id)) this.removePotionEffect(Potion.weakness.id);
+		if (this.isPotionActive(Potion.blindness.id)) this.removePotionEffect(Potion.blindness.id);
 
 		if (this.getAttackTime() > 0) this.motionX = this.motionZ = 0.0D;
 		if (this.getAttackTime() > 0) this.motionY = -0.1D;
@@ -270,7 +269,7 @@ public class EntityDeathReaper extends TragicBoss {
 				if (this.getReaperType() == 0) this.isBomb = false;
 			}
 
-			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth() && this.getReaperType() == 0 && TragicConfig.skultarRegeneration) this.heal(6.0F);
+			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth() && this.getReaperType() == 0 && TragicConfig.getBoolean("skultarRegeneration")) this.heal(6.0F);
 
 			if (this.ticksExisted >= 600 && this.getReaperType() == 1) this.setDead();
 
@@ -282,7 +281,7 @@ public class EntityDeathReaper extends TragicBoss {
 			}
 			else
 			{
-				if (this.getAttackTarget() instanceof EntityPlayerMP && TragicConfig.allowAchievements && TragicConfig.allowImmunity && TragicConfig.allowClarity)
+				if (this.getAttackTarget() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements") && TragicConfig.getBoolean("allowImmunity") && TragicConfig.getBoolean("allowClarity"))
 				{
 					if (this.getAttackTarget().isPotionActive(TragicPotion.Immunity) && this.getAttackTarget().isPotionActive(TragicPotion.Clarity))
 					{
@@ -308,22 +307,22 @@ public class EntityDeathReaper extends TragicBoss {
 						entity.addPotionEffect(new PotionEffect(Potion.wither.id, 300 + rand.nextInt(320), 0));
 					}
 
-					if (rand.nextInt(128) == 0 && TragicConfig.allowInhibit)
+					if (rand.nextInt(128) == 0 && TragicConfig.getBoolean("allowInhibit"))
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 300 + rand.nextInt(320), 0));
 					}
 
-					if (rand.nextInt(72) == 0 && TragicConfig.allowCripple)
+					if (rand.nextInt(72) == 0 && TragicConfig.getBoolean("allowCripple"))
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 					}
 
-					if (rand.nextInt(72) == 0 && TragicConfig.allowDisorientation)
+					if (rand.nextInt(72) == 0 && TragicConfig.getBoolean("allowDisorientation"))
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 					}
 
-					if (rand.nextInt(72) == 0 && TragicConfig.allowMalnourish)
+					if (rand.nextInt(72) == 0 && TragicConfig.getBoolean("allowMalnourish"))
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 					}
@@ -366,7 +365,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 				int x = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 2;
 
-				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getAttackTime() == 0 && TragicConfig.skultarProjectiles)
+				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getAttackTime() == 0 && TragicConfig.getBoolean("skultarProjectiles"))
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -385,12 +384,12 @@ public class EntityDeathReaper extends TragicBoss {
 						this.worldObj.spawnEntityInWorld(skull);
 					}
 
-					if (rand.nextInt(4) == 0 && TragicConfig.skultarDemeanor) this.incrementDemeanor();
+					if (rand.nextInt(4) == 0 && TragicConfig.getBoolean("skultarDemeanor")) this.incrementDemeanor();
 				}
 
 				if (this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F && this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 0 && this.isBeingAggressive() && rand.nextInt(32) == 0) this.setAttackTime(20);
 
-				if (this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 1 && TragicConfig.skultarWitheringGas)
+				if (this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 1 && TragicConfig.getBoolean("skultarWitheringGas"))
 				{
 					List<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX, this.posY, this.posZ);
 					for (BlockPos coords : list)
@@ -403,7 +402,7 @@ public class EntityDeathReaper extends TragicBoss {
 			}
 			
 			int i = this.getDemeanor() > 0 ? 8 : 16;
-			if (this.ticksExisted % i == 0 && !this.isDead && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.heartbeat", 0.8F, 1.0F);
+			if (this.ticksExisted % i == 0 && !this.isDead && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.heartbeat", 0.8F, 1.0F);
 		}
 	}
 
@@ -426,7 +425,7 @@ public class EntityDeathReaper extends TragicBoss {
 		{
 			this.setHitTime(0);
 
-			if (this.getCloneTime() > 100 && this.getHealth() <= this.getMaxHealth() / 2 && rand.nextInt(4) == 0 && par1DamageSource.getEntity() != null && TragicConfig.skultarClone)
+			if (this.getCloneTime() > 100 && this.getHealth() <= this.getMaxHealth() / 2 && rand.nextInt(4) == 0 && par1DamageSource.getEntity() != null && TragicConfig.getBoolean("skultarClone"))
 			{
 				int potato = this.getHealth() <= this.getMaxHealth() / 4 ? 2 : 1;
 
@@ -502,13 +501,13 @@ public class EntityDeathReaper extends TragicBoss {
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, rand.nextInt(200) + 320));
 					break;
 				case 4:
-					if (TragicConfig.allowDisorientation) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
+					if (TragicConfig.getBoolean("allowDisorientation")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
 					break;
 				case 5:
-					if (TragicConfig.allowFear) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, rand.nextInt(200) + 320));
+					if (TragicConfig.getBoolean("allowFear")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, rand.nextInt(200) + 320));
 					break;
 				default:
-					if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
+					if (TragicConfig.getBoolean("allowSubmission")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
 					break;
 				}
 			}
@@ -519,7 +518,7 @@ public class EntityDeathReaper extends TragicBoss {
 			par1Entity.motionY += 0.3D;
 
 			if (this.getAttackTime() == 0) this.setAttackTime(10);
-			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.slice", 0.8F, 0.8F + rand.nextFloat() * 0.4F);
+			if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.slice", 0.8F, 0.8F + rand.nextFloat() * 0.4F);
 		}
 
 		return result;
@@ -528,7 +527,8 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.getReaperType() == 1 ? MathHelper.floor_double(skultarStats[5] / 4) : (this.isBeingAggressive() ? (int) skultarStats[5] : MathHelper.floor_double(skultarStats[5] / 3));
+		final int i = TragicConfig.getMobStat("skultarStats").getArmorValue();
+		return this.getReaperType() == 1 ? MathHelper.floor_double(i / 4) : (this.isBeingAggressive() ? i : MathHelper.floor_double(i / 3));
 	}
 
 	@Override
@@ -565,7 +565,7 @@ public class EntityDeathReaper extends TragicBoss {
 			hitType = "normal";
 		}
 
-		if (hitType == null || !TragicConfig.skultarDemeanor)
+		if (hitType == null || !TragicConfig.getBoolean("skultarDemeanor"))
 		{
 			return;
 		}
@@ -620,13 +620,13 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds && rand.nextBoolean() ? "tragicmc:boss.skultar.laugh" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") && rand.nextBoolean() ? "tragicmc:boss.skultar.laugh" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.skultar.laugh" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.skultar.laugh" : null;
 	}
 
 	@Override

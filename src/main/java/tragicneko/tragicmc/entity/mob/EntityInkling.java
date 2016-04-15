@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.inklingStats;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.Entity;
@@ -19,7 +17,6 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -27,7 +24,6 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityAIBurn;
 
 public class EntityInkling extends TragicMob {
@@ -84,6 +80,7 @@ public class EntityInkling extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] inklingStats = TragicConfig.getMobStat("inklingStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(inklingStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(inklingStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(inklingStats[2]);
@@ -111,7 +108,7 @@ public class EntityInkling extends TragicMob {
 
 		if (this.isBurning()) this.setVisibleTicks(20);
 
-		if (this.getVisibleTicks() > 0 || !TragicConfig.inklingInvisibility)
+		if (this.getVisibleTicks() > 0 || !TragicConfig.getBoolean("inklingInvisibility"))
 		{
 			this.decrementVisibleTicks();
 			this.setInvisible(false);
@@ -130,17 +127,17 @@ public class EntityInkling extends TragicMob {
 		{
 			this.setVisibleTicks(20);
 			if (this.getAttackTarget() != null) this.setAttackTarget(null);
-			if (TragicConfig.inklingTeleport && rand.nextBoolean()) this.teleportRandomly();
+			if (TragicConfig.getBoolean("inklingTeleport") && rand.nextBoolean()) this.teleportRandomly();
 		}
 
 		if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() != null
 				&& this.worldObj.getLightFor(EnumSkyBlock.BLOCK, new BlockPos((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY + 1, (int)this.getAttackTarget().posZ)) <= 8 &&
-				this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.inklingTeleport)
+				this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.getBoolean("inklingTeleport"))
 		{
 			this.teleportToEntity(this.getAttackTarget());
 		}
 
-		if (this.ticksExisted % 60 == 0 && this.getMobGriefing() && rand.nextBoolean() && TragicConfig.inklingTorchBreaking)
+		if (this.ticksExisted % 60 == 0 && this.getMobGriefing() && rand.nextBoolean() && TragicConfig.getBoolean("inklingTorchBreaking"))
 		{
 			int x = (int) this.posX;
 			int y = (int) this.posY;
@@ -174,7 +171,7 @@ public class EntityInkling extends TragicMob {
 	{
 		if (this.worldObj.isRemote) return false;
 
-		if (par1DamageSource.isFireDamage() && rand.nextInt(4) == 0 && TragicConfig.inklingTeleport) this.teleportRandomly();
+		if (par1DamageSource.isFireDamage() && rand.nextInt(4) == 0 && TragicConfig.getBoolean("inklingTeleport")) this.teleportRandomly();
 		this.setVisibleTicks(10 + rand.nextInt(10));
 
 		return super.attackEntityFrom(par1DamageSource, par2);
@@ -187,7 +184,7 @@ public class EntityInkling extends TragicMob {
 		if (result)
 		{
 			this.setVisibleTicks(10 + rand.nextInt(10));
-			if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.inkling.hey", this.getSoundVolume(), this.getSoundPitch());
+			if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:mob.inkling.hey", this.getSoundVolume(), this.getSoundPitch());
 		}
 
 		return result;
@@ -196,8 +193,7 @@ public class EntityInkling extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		if (this.isBurning()) return 0;
-		return (int) inklingStats[5];
+		return this.isBurning() ? 0 : TragicConfig.getMobStat("inklingStats").getArmorValue();
 	}
 
 	@Override
@@ -221,7 +217,7 @@ public class EntityInkling extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? (this.isInvisible() ? "tragicmc:mob.inkling.giggle" : "tragicmc:mob.inkling.hey") : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.isInvisible() ? "tragicmc:mob.inkling.giggle" : "tragicmc:mob.inkling.hey") : null;
 	}
 
 	@Override
@@ -233,7 +229,7 @@ public class EntityInkling extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? (this.getEntityId() % 7 == 0 || this.getEntityId() % 3 == 0 ? "tragicmc:mob.inkling.death" : "tragicmc:mob.inkling.hurt") : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.getEntityId() % 7 == 0 || this.getEntityId() % 3 == 0 ? "tragicmc:mob.inkling.death" : "tragicmc:mob.inkling.hurt") : super.getHurtSound();
 	}
 
 	@Override

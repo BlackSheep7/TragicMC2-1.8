@@ -1,7 +1,6 @@
 
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.stinKingStats;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -26,6 +25,7 @@ public class EntityStinKing extends EntityGreaterStin {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] stinKingStats = TragicConfig.getMobStat("stinKingStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stinKingStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stinKingStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stinKingStats[2]);
@@ -80,13 +80,13 @@ public class EntityStinKing extends EntityGreaterStin {
 				if (this.getAttackTarget() == null) this.setFiringTicks(0);
 			}
 
-			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && rand.nextInt(256) == 0 && TragicConfig.allowFear)
+			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && rand.nextInt(256) == 0 && TragicConfig.getBoolean("allowFear"))
 			{
 				this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), rand.nextInt(4)));
 			}
 
 			if (this.getAttackTarget() != null && !this.isCharging() && !this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) >= 6.0F &&
-					rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0 && TragicConfig.stinKingMortors)
+					rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0 && TragicConfig.getBoolean("stinKingMortors"))
 			{
 				this.setFiringTicks(80);
 			}
@@ -99,7 +99,7 @@ public class EntityStinKing extends EntityGreaterStin {
 	}
 
 	private void doMortorFire() {
-		if (!TragicConfig.stinKingMortors) return;
+		if (!TragicConfig.getBoolean("stinKingMortors")) return;
 		double d0 = this.getAttackTarget().posX - this.posX + rand.nextInt(5) - rand.nextInt(5);
 		double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 		double d2 = this.getAttackTarget().posZ - this.posZ + rand.nextInt(5) - rand.nextInt(5);
@@ -116,7 +116,7 @@ public class EntityStinKing extends EntityGreaterStin {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) stinKingStats[5];
+		return TragicConfig.getMobStat("stinKingStats").getArmorValue();
 	}
 
 	@Override
@@ -139,13 +139,13 @@ public class EntityStinKing extends EntityGreaterStin {
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.king" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.stin.king" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.king" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.stin.king" : null;
 	}
 	
 	@Override

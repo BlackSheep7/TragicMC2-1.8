@@ -1,10 +1,10 @@
 package tragicneko.tragicmc.entity.alpha;
 
-import static tragicneko.tragicmc.TragicConfig.overlordCoreStats;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -37,8 +37,6 @@ import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
 import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.collect.Sets;
 
 public class EntityOverlordCore extends TragicBoss {
 	
@@ -105,6 +103,7 @@ public class EntityOverlordCore extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] overlordCoreStats = TragicConfig.getMobStat("overlordCoreStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(overlordCoreStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(overlordCoreStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(overlordCoreStats[2]);
@@ -115,7 +114,7 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) overlordCoreStats[5];
+		return TragicConfig.getMobStat("overlordCoreStats").getArmorValue();
 	}
 
 	@Override
@@ -422,14 +421,14 @@ public class EntityOverlordCore extends TragicBoss {
 			this.setNearTarget(false);
 			this.setDropTicks(0);
 
-			if (this.getTransformationTicks() == 199 && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcore.appearance", 1.0F, 1.0F);
+			if (this.getTransformationTicks() == 199 && TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.overlordcore.appearance", 1.0F, 1.0F);
 
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(16.0, 12.0, 16.0));
 			for (Entity e : list) this.applyEntityCollision(e);
 			return;
 		}
 		if (this.getVulnerableTicks() > 0 && this.target != null) this.forceNewTarget = true;
-		if (this.getVulnerableTicks() % 20 == 0 && this.getVulnerableTicks() > 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.8F);
+		if (this.getVulnerableTicks() % 20 == 0 && this.getVulnerableTicks() > 0 && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.8F);
 
 		if (this.target != null)
 		{
@@ -549,7 +548,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 			if (this.getHoverTicks() == 0) this.hoverBuffer = 200;
 			this.aggregate = 0;
-			if (this.ticksExisted % 20 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcore.vulnerable", 1.8F, 1.0F);
+			if (this.ticksExisted % 20 == 0 && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcore.vulnerable", 1.8F, 1.0F);
 		}
 
 		if (this.getDropTicks() > 0)
@@ -562,7 +561,7 @@ public class EntityOverlordCore extends TragicBoss {
 			{
 				if (this.getDropTicks() % 10 == 0)
 				{
-					this.ridingEntity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) overlordCoreStats[2] / 2);
+					this.ridingEntity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue() / 2);
 					this.heal(1.0F);
 				}
 
@@ -589,7 +588,7 @@ public class EntityOverlordCore extends TragicBoss {
 		if (this.getVulnerableTicks() > 0)
 		{
 			this.decrementVulnerableTicks();
-			if (this.getVulnerableTicks() % 10 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.5F);
+			if (this.getVulnerableTicks() % 10 == 0 && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.5F);
 		}
 
 		if (this.getHurtTicks() > 0) this.decrementHurtTicks();
@@ -614,7 +613,7 @@ public class EntityOverlordCore extends TragicBoss {
 		this.motionY *= 0.98D;
 		this.motionZ *= 0.98D;
 		
-		if (TragicConfig.allowMobSounds && this.ticksExisted % 20 == 0) this.playSound("tragicmc:boss.overlordcore.heartbeat", 0.3F, 1.0F);
+		if (TragicConfig.getBoolean("allowMobSounds") && this.ticksExisted % 20 == 0) this.playSound("tragicmc:boss.overlordcore.heartbeat", 0.3F, 1.0F);
 	}
 
 	private boolean destroyBlocksInAABB(AxisAlignedBB bb)
@@ -789,9 +788,9 @@ public class EntityOverlordCore extends TragicBoss {
 		if (src.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote)
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
-			boolean flag = TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity);
+			boolean flag = TragicConfig.getBoolean("allowDivinity") && entity.isPotionActive(TragicPotion.Divinity);
 
-			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse ||
+			if (flag || !TragicConfig.getBoolean("allowDivinity") && entity.getCreatureAttribute() != TragicEntities.Synapse || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse ||
 					entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())
 			{
 				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 16)
@@ -818,14 +817,14 @@ public class EntityOverlordCore extends TragicBoss {
 				if (flag && this.getVulnerableTicks() == 0)
 				{
 					this.setVulnerableTicks(120 + rand.nextInt(40));
-					if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcore.expose", 1.0F, 1.0F);
+					if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.overlordcore.expose", 1.0F, 1.0F);
 				}
 				if (this.getHurtTicks() == 0) this.setHurtTicks(40);
 				if (this.ridingEntity != null) this.mountEntity(null);
 
 				return super.attackEntityFrom(src, dmg);
 			}
-			else if (TragicConfig.allowMobSounds)
+			else if (TragicConfig.getBoolean("allowMobSounds"))
 			{
 				this.playSound("tragicmc:boss.overlordcore.negate", 1.0F, 1.0F);
 			}
@@ -853,7 +852,7 @@ public class EntityOverlordCore extends TragicBoss {
 			{
 				if (replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock()))
 				{
-					this.worldObj.setBlockState(coords, !TragicConfig.allowNonMobBlocks ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState(), 2);
+					this.worldObj.setBlockState(coords, !TragicConfig.getBoolean("allowNonMobBlocks") ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState(), 2);
 				}
 			}
 		}
@@ -876,7 +875,7 @@ public class EntityOverlordCore extends TragicBoss {
 	{
 		super.dropFewItems(flag, l);
 		
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 17)));
+		if (!this.worldObj.isRemote && TragicConfig.getBoolean("allowMobStatueDrops") && rand.nextInt(100) <= TragicConfig.getInt("mobStatueDropChance")) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 17)));
 		if (!this.worldObj.isRemote && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.Sentinel)));
 	}
 
@@ -986,7 +985,7 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcore.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.overlordcore.death" : null;
 	}
 
 	@Override

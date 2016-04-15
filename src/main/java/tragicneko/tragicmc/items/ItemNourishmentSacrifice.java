@@ -33,7 +33,7 @@ public class ItemNourishmentSacrifice extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicConfig.allowDoom)
+		if (!par2World.isRemote && TragicConfig.getBoolean("allowDoom"))
 		{
 			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
 			float amount = par3EntityPlayer.getFoodStats().getFoodLevel() - 1;
@@ -51,8 +51,8 @@ public class ItemNourishmentSacrifice extends Item {
 				}
 
 				par3EntityPlayer.getFoodStats().addStats(-par3EntityPlayer.getFoodStats().getFoodLevel() + 1, 0.0F);
-				if (TragicConfig.allowMalnourish) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, 600, 0));
-				if (TragicConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
+				if (TragicConfig.getBoolean("allowMalnourish")) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, 600, 0));
+				if (TragicConfig.getBoolean("allowConvergence")) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
 
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 

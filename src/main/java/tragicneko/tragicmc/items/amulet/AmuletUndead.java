@@ -19,7 +19,7 @@ public class AmuletUndead extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuUndead && !world.isRemote)
+		if (TragicConfig.getBoolean("amuUndead") && !world.isRemote)
 		{
 			boolean flag = false;
 			
@@ -45,7 +45,7 @@ public class AmuletUndead extends ItemAmulet {
 				flag = true;
 			}
 
-			if (TragicConfig.allowCripple && player.isPotionActive(TragicPotion.Cripple))
+			if (TragicConfig.getBoolean("allowCripple") && player.isPotionActive(TragicPotion.Cripple))
 			{
 				PotionEffect effect = player.getActivePotionEffect(TragicPotion.Cripple);
 				player.removePotionEffect(TragicPotion.Cripple.id);

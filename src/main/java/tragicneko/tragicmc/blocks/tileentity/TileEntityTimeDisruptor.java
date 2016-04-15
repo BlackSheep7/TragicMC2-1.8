@@ -12,7 +12,7 @@ public class TileEntityTimeDisruptor extends TileEntity implements ITickable {
 	@Override
 	public void update()
 	{
-		if (this.blockType != null && this.worldObj.isBlockIndirectlyGettingPowered(this.getPos()) > 0 && TragicConfig.allowItemTimeAltering)
+		if (this.blockType != null && this.worldObj.isBlockIndirectlyGettingPowered(this.getPos()) > 0 && TragicConfig.getBoolean("allowItemTimeAltering"))
 		{
 			WorldInfo info = this.worldObj.getWorldInfo();
 			Random rand = this.worldObj.rand;

@@ -1,48 +1,9 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.tragicNekoStats;
-
-import java.util.Calendar;
-import java.util.UUID;
-
-import com.google.common.base.Predicate;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.item.EntityFireworkRocket;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
-import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
-import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
-import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 
 public class EntityTragicNeko extends EntityNeko {
 
@@ -56,6 +17,7 @@ public class EntityTragicNeko extends EntityNeko {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] tragicNekoStats = TragicConfig.getMobStat("tragicNekoStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(tragicNekoStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(tragicNekoStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(tragicNekoStats[2]);
@@ -66,7 +28,7 @@ public class EntityTragicNeko extends EntityNeko {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) tragicNekoStats[5];
+		return TragicConfig.getMobStat("tragicNekoStats").getArmorValue();
 	}
 
 	@Override
@@ -82,7 +44,7 @@ public class EntityTragicNeko extends EntityNeko {
 
 			if (this.getFiringTicks() == 40 && this.canEntityBeSeen(this.getAttackTarget()))
 			{
-				if (TragicConfig.tragicNekoRockets) this.doMissleAttack();
+				if (TragicConfig.getBoolean("tragicNekoRockets")) this.doMissleAttack();
 			}
 			else if (this.hasFired() && rand.nextInt(8) == 0 && this.getFiringTicks() % 40 == 0 && this.getAttackTime() == 0)
 			{
@@ -105,7 +67,7 @@ public class EntityTragicNeko extends EntityNeko {
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.deathTime == 20 && rand.nextInt(8) == 0 && !this.isProperDate() && TragicConfig.tragicNekoDeathBomb && !this.isReleased())
+		if (this.deathTime == 20 && rand.nextInt(8) == 0 && !this.isProperDate() && TragicConfig.getBoolean("tragicNekoDeathBomb") && !this.isReleased())
 		{
 			this.worldObj.playSoundAtEntity(this, "creeper.primed", 1.7F, 1.0F);
 			byte x = (byte) (rand.nextInt(2) + 2);
@@ -129,19 +91,19 @@ public class EntityTragicNeko extends EntityNeko {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.tragicneko.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.tragicneko.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds && rand.nextInt(6) == 0 ? "tragicmc:mob.tragicneko.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(6) == 0 ? "tragicmc:mob.tragicneko.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.tragicneko.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.tragicneko.death" : null;
 	}
 
 	@Override

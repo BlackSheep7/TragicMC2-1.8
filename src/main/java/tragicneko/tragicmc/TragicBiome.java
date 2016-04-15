@@ -84,12 +84,12 @@ public class TragicBiome extends BiomeGenBase {
 		this.theBiomeDecorator.grassPerChunk = -999;
 		this.maxHeight = 0F;
 		this.minHeight = 0F;
-		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, TragicConfig.plagueGS[0], TragicConfig.plagueGS[1]));
-		if (TragicConfig.allowTragicNeko) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicConfig.tragicNekoSC, TragicConfig.tragicNekoGS[0], TragicConfig.tragicNekoGS[1]));
-		if (TragicConfig.allowTimeController) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicConfig.timeControllerSC, 0, 0));
-		if (TragicConfig.allowErkel) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityErkel.class, TragicConfig.erkelSC, TragicConfig.erkelGS[0], TragicConfig.erkelGS[1]));
-		if (TragicConfig.allowKindlingSpirit) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.kindlingSpiritSC, TragicConfig.kindlingSpiritGS[0], TragicConfig.kindlingSpiritGS[1]));
-		if (TragicConfig.allowAvris) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityAvris.class, TragicConfig.avrisSC, TragicConfig.avrisGS[0], TragicConfig.avrisGS[1])); 
+		if (TragicConfig.getBoolean("allowPlague")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.getInt("plagueSpawnChance"), TragicConfig.getIntArray("plagueGroupSize")[0], TragicConfig.getIntArray("plagueGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowTragicNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicConfig.getInt("tragicNekoSpawnChance"), TragicConfig.getIntArray("tragicNekoGroupSize")[0], TragicConfig.getIntArray("tragicNekoGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowTimeController")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicConfig.getInt("timeControllerSpawnChance"), 0, 0));
+		if (TragicConfig.getBoolean("allowErkel")) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityErkel.class, TragicConfig.getInt("erkelSpawnChance"), TragicConfig.getIntArray("erkelGroupSize")[0], TragicConfig.getIntArray("erkelGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowKindlingSpirit")) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.getInt("kindlingSpiritSpawnChance"), TragicConfig.getIntArray("kindlingSpiritGroupSize")[0], TragicConfig.getIntArray("kindlingSpiritGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowAvris")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityAvris.class, TragicConfig.getInt("avrisSpawnChance"), TragicConfig.getIntArray("avrisGroupSize")[0], TragicConfig.getIntArray("avrisGroupSize")[1])); 
 	}
 
 	@Override
@@ -192,64 +192,64 @@ public class TragicBiome extends BiomeGenBase {
 	public static void load()
 	{
 		//Collision/Synapse biomes
-		DecayingHills = new BiomeGenDecayingWasteland(TragicConfig.idDecayingHills, (byte) 0).setBiomeName("tragicmc.decayingHills");
-		DecayingValley = new BiomeGenDecayingWasteland(TragicConfig.idDecayingValley, (byte) 1).setBiomeName("tragicmc.decayingValley");
-		DecayingWasteland = new BiomeGenDecayingWasteland(TragicConfig.idDecayingWasteland, (byte) 2).setBiomeName("tragicmc.decayingWasteland");
-		DecayingMountains = new BiomeGenDecayingWasteland(TragicConfig.idDecayingMountains, (byte) 3).setBiomeName("tragicmc.decayingMountains");
+		DecayingHills = new BiomeGenDecayingWasteland(TragicConfig.getInt("decayingHillsID"), (byte) 0).setBiomeName("tragicmc.decayingHills");
+		DecayingValley = new BiomeGenDecayingWasteland(TragicConfig.getInt("decayingValleyID"), (byte) 1).setBiomeName("tragicmc.decayingValley");
+		DecayingWasteland = new BiomeGenDecayingWasteland(TragicConfig.getInt("decayingWastelandID"), (byte) 2).setBiomeName("tragicmc.decayingWasteland");
+		DecayingMountains = new BiomeGenDecayingWasteland(TragicConfig.getInt("decayingMountainsID"), (byte) 3).setBiomeName("tragicmc.decayingMountains");
 
-		PaintedForest = new BiomeGenPaintedForest(TragicConfig.idPaintedForest, (byte) 0).setBiomeName("tragicmc.paintedForest");
-		PaintedPlains = new BiomeGenPaintedForest(TragicConfig.idPaintedPlains, (byte) 1).setBiomeName("tragicmc.paintedPlains");
-		PaintedHills = new BiomeGenPaintedForest(TragicConfig.idPaintedHills, (byte) 2).setBiomeName("tragicmc.paintedHills");
-		PaintedClearing = new BiomeGenPaintedForest(TragicConfig.idPaintedClearing, (byte) 3).setBiomeName("tragicmc.paintedClearing");
+		PaintedForest = new BiomeGenPaintedForest(TragicConfig.getInt("paintedForestID"), (byte) 0).setBiomeName("tragicmc.paintedForest");
+		PaintedPlains = new BiomeGenPaintedForest(TragicConfig.getInt("paintedPlainsID"), (byte) 1).setBiomeName("tragicmc.paintedPlains");
+		PaintedHills = new BiomeGenPaintedForest(TragicConfig.getInt("paintedHillsID"), (byte) 2).setBiomeName("tragicmc.paintedHills");
+		PaintedClearing = new BiomeGenPaintedForest(TragicConfig.getInt("paintedClearingID"), (byte) 3).setBiomeName("tragicmc.paintedClearing");
 
-		AshenMountains = new BiomeGenAshenHills(TragicConfig.idAshenMountains, (byte) 0).setBiomeName("tragicmc.ashenMountains");
-		AshenHills = new BiomeGenAshenHills(TragicConfig.idAshenHills, (byte) 1).setBiomeName("tragicmc.ashenHills");
-		AshenBadlands = new BiomeGenAshenHills(TragicConfig.idAshenBadlands, (byte) 2).setBiomeName("tragicmc.ashenBadlands");
+		AshenMountains = new BiomeGenAshenHills(TragicConfig.getInt("ashenMountainsID"), (byte) 0).setBiomeName("tragicmc.ashenMountains");
+		AshenHills = new BiomeGenAshenHills(TragicConfig.getInt("ashenHillsID"), (byte) 1).setBiomeName("tragicmc.ashenHills");
+		AshenBadlands = new BiomeGenAshenHills(TragicConfig.getInt("ashenBadlandsID"), (byte) 2).setBiomeName("tragicmc.ashenBadlands");
 
-		StarlitPrarie = new BiomeGenStarlitPrarie(TragicConfig.idStarlitPrarie, (byte) 0).setBiomeName("tragicmc.starlitPrarie");
-		StarlitPlateaus = new BiomeGenStarlitPrarie(TragicConfig.idStarlitPlateaus, (byte) 1).setBiomeName("tragicmc.starlitPlateaus");
-		StarlitCliffs = new BiomeGenStarlitPrarie(TragicConfig.idStarlitCliffs, (byte) 2).setBiomeName("tragicmc.starlitCliffs");
-		StarlitLowlands = new BiomeGenStarlitPrarie(TragicConfig.idStarlitLowlands, (byte) 3).setBiomeName("tragicmc.starlitLowlands");
+		StarlitPrarie = new BiomeGenStarlitPrarie(TragicConfig.getInt("starlitPrarieID"), (byte) 0).setBiomeName("tragicmc.starlitPrarie");
+		StarlitPlateaus = new BiomeGenStarlitPrarie(TragicConfig.getInt("starlitPlateausID"), (byte) 1).setBiomeName("tragicmc.starlitPlateaus");
+		StarlitCliffs = new BiomeGenStarlitPrarie(TragicConfig.getInt("starlitCliffsID"), (byte) 2).setBiomeName("tragicmc.starlitCliffs");
+		StarlitLowlands = new BiomeGenStarlitPrarie(TragicConfig.getInt("starlitLowlandsID"), (byte) 3).setBiomeName("tragicmc.starlitLowlands");
 
-		TaintedSpikes = new BiomeGenTaintedSpikes(TragicConfig.idTaintedSpikes, (byte) 0).setBiomeName("tragicmc.taintedSpikes");
-		TaintedLowlands = new BiomeGenTaintedSpikes(TragicConfig.idTaintedLowlands, (byte) 1).setBiomeName("tragicmc.taintedLowlands");
-		TaintedRises = new BiomeGenTaintedSpikes(TragicConfig.idTaintedRises, (byte) 2).setBiomeName("tragicmc.taintedRises");
-		TaintedScarlands = new BiomeGenTaintedSpikes(TragicConfig.idTaintedScarlands, (byte) 3).setBiomeName("tragicmc.taintedScarlands");
-		TaintedIsles = new BiomeGenTaintedSpikes(TragicConfig.idTaintedIsles, (byte) 4).setBiomeName("tragicmc.taintedIsles");
+		TaintedSpikes = new BiomeGenTaintedSpikes(TragicConfig.getInt("taintedSpikesID"), (byte) 0).setBiomeName("tragicmc.taintedSpikes");
+		TaintedLowlands = new BiomeGenTaintedSpikes(TragicConfig.getInt("taintedLowlandsID"), (byte) 1).setBiomeName("tragicmc.taintedLowlands");
+		TaintedRises = new BiomeGenTaintedSpikes(TragicConfig.getInt("taintedRisesID"), (byte) 2).setBiomeName("tragicmc.taintedRises");
+		TaintedScarlands = new BiomeGenTaintedSpikes(TragicConfig.getInt("taintedScarlandsID"), (byte) 3).setBiomeName("tragicmc.taintedScarlands");
+		TaintedIsles = new BiomeGenTaintedSpikes(TragicConfig.getInt("taintedIslesID"), (byte) 4).setBiomeName("tragicmc.taintedIsles");
 
-		Synapse = new BiomeGenSynapse(TragicConfig.idSynapse).setBiomeName("tragicmc.synapse");
-		SynapseDead = new BiomeGenSynapse(TragicConfig.idSynapseDead).setBiomeName("tragicmc.synapseDead");
-		SynapseCorrupt = new BiomeGenSynapse(TragicConfig.idSynapseCorrupt).setBiomeName("tragicmc.synapseCorrupt");
+		Synapse = new BiomeGenSynapse(TragicConfig.getInt("synapseBiomeID")).setBiomeName("tragicmc.synapse");
+		SynapseDead = new BiomeGenSynapse(TragicConfig.getInt("synapseDeadID")).setBiomeName("tragicmc.synapseDead");
+		SynapseCorrupt = new BiomeGenSynapse(TragicConfig.getInt("synapseCorruptID")).setBiomeName("tragicmc.synapseCorrupt");
 
-		HallowedHills = new BiomeGenHallowedHills(TragicConfig.idHallowedHills, (byte) 0).setBiomeName("tragicmc.hallowedHills");
-		HallowedForest = new BiomeGenHallowedHills(TragicConfig.idHallowedForest, (byte) 1).setBiomeName("tragicmc.hallowedForest");
-		HallowedPrarie = new BiomeGenHallowedHills(TragicConfig.idHallowedPrarie, (byte) 2).setBiomeName("tragicmc.hallowedPrarie");
-		HallowedCliffs = new BiomeGenHallowedHills(TragicConfig.idHallowedCliffs, (byte) 3).setBiomeName("tragicmc.hallowedCliffs");
+		HallowedHills = new BiomeGenHallowedHills(TragicConfig.getInt("hallowedHillsID"), (byte) 0).setBiomeName("tragicmc.hallowedHills");
+		HallowedForest = new BiomeGenHallowedHills(TragicConfig.getInt("hallowedForestID"), (byte) 1).setBiomeName("tragicmc.hallowedForest");
+		HallowedPrarie = new BiomeGenHallowedHills(TragicConfig.getInt("hallowedPrarieID"), (byte) 2).setBiomeName("tragicmc.hallowedPrarie");
+		HallowedCliffs = new BiomeGenHallowedHills(TragicConfig.getInt("hallowedCliffsID"), (byte) 3).setBiomeName("tragicmc.hallowedCliffs");
 
-		ScorchedWastelands = new BiomeGenScorchedWasteland(TragicConfig.idScorchedWastelands, (byte) 0).setBiomeName("tragicmc.scorchedWastelands");
-		ScorchedValley = new BiomeGenScorchedWasteland(TragicConfig.idScorchedValley, (byte) 1).setBiomeName("tragicmc.scorchedValley");
-		ScorchedScarlands = new BiomeGenScorchedWasteland(TragicConfig.idScorchedScarlands, (byte) 2).setBiomeName("tragicmc.scorchedScarlands");
+		ScorchedWastelands = new BiomeGenScorchedWasteland(TragicConfig.getInt("scorchedWastelandsID"), (byte) 0).setBiomeName("tragicmc.scorchedWastelands");
+		ScorchedValley = new BiomeGenScorchedWasteland(TragicConfig.getInt("scorchedValleyID"), (byte) 1).setBiomeName("tragicmc.scorchedValley");
+		ScorchedScarlands = new BiomeGenScorchedWasteland(TragicConfig.getInt("scorchedScarlandsID"), (byte) 2).setBiomeName("tragicmc.scorchedScarlands");
 
-		CorrodedSteppe = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedSteppe, (byte) 0).setBiomeName("tragicmc.corrodedSteppe");
-		CorrodedHeights = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedHeights, (byte) 1).setBiomeName("tragicmc.corrodedHeights");
-		CorrodedVeld = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedVeld, (byte) 2).setBiomeName("tragicmc.corrodedVeld");
-		CorrodedRunoff = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedRunoff, (byte) 3).setBiomeName("tragicmc.corrodedRunoff");
-		CorrodedFallout = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedFallout, (byte) 4).setBiomeName("tragicmc.corrodedFallout");
+		CorrodedSteppe = new BiomeGenCorrodedSteppe(TragicConfig.getInt("corrodedSteppeID"), (byte) 0).setBiomeName("tragicmc.corrodedSteppe");
+		CorrodedHeights = new BiomeGenCorrodedSteppe(TragicConfig.getInt("corrodedHeightsID"), (byte) 1).setBiomeName("tragicmc.corrodedHeights");
+		CorrodedVeld = new BiomeGenCorrodedSteppe(TragicConfig.getInt("corrodedVeldID"), (byte) 2).setBiomeName("tragicmc.corrodedVeld");
+		CorrodedRunoff = new BiomeGenCorrodedSteppe(TragicConfig.getInt("corrodedRunoffID"), (byte) 3).setBiomeName("tragicmc.corrodedRunoff");
+		CorrodedFallout = new BiomeGenCorrodedSteppe(TragicConfig.getInt("corrodedFalloutID"), (byte) 4).setBiomeName("tragicmc.corrodedFallout");
 
-		FrozenTundra = new BiomeGenFrozenTundra(TragicConfig.idFrozenTundra, (byte) 0).setBiomeName("tragicmc.frozenTundra");
-		FrozenHills = new BiomeGenFrozenTundra(TragicConfig.idFrozenHills, (byte) 1).setBiomeName("tragicmc.frozenHills");
-		FrozenDepths = new BiomeGenFrozenTundra(TragicConfig.idFrozenDepths, (byte) 2).setBiomeName("tragicmc.frozenDepths");
+		FrozenTundra = new BiomeGenFrozenTundra(TragicConfig.getInt("frozenTundraID"), (byte) 0).setBiomeName("tragicmc.frozenTundra");
+		FrozenHills = new BiomeGenFrozenTundra(TragicConfig.getInt("frozenHillsID"), (byte) 1).setBiomeName("tragicmc.frozenHills");
+		FrozenDepths = new BiomeGenFrozenTundra(TragicConfig.getInt("frozenDepthsID"), (byte) 2).setBiomeName("tragicmc.frozenDepths");
 
-		Crystal = new BiomeGenCrystal(TragicConfig.idCrystal).setBiomeName("tragicmc.crystal");
+		Crystal = new BiomeGenCrystal(TragicConfig.getInt("crystalID")).setBiomeName("tragicmc.crystal");
 
-		DarkForest = new BiomeGenDarkForest(TragicConfig.idDarkForest, (byte) 0).setBiomeName("tragicmc.darkForest");
-		DarkForestHills = new BiomeGenDarkForest(TragicConfig.idDarkForestHills, (byte) 1).setBiomeName("tragicmc.darkForestHills");
-		DarkMarsh = new BiomeGenDarkForest(TragicConfig.idDarkMarsh, (byte) 2).setBiomeName("tragicmc.darkMarsh");
+		DarkForest = new BiomeGenDarkForest(TragicConfig.getInt("darkForestID"), (byte) 0).setBiomeName("tragicmc.darkForest");
+		DarkForestHills = new BiomeGenDarkForest(TragicConfig.getInt("darkForestHillsID"), (byte) 1).setBiomeName("tragicmc.darkForestHills");
+		DarkMarsh = new BiomeGenDarkForest(TragicConfig.getInt("darkMarshID"), (byte) 2).setBiomeName("tragicmc.darkMarsh");
 		
 		//Neko-related biomes
-		NekoBarrens = new BiomeGenNekoBarrens(200, (byte) 0).setBiomeName("tragicmc.nekoBarrens");
-		NekoForest = new BiomeGenNekoBarrens(201, (byte) 1).setBiomeName("tragicmc.nekoForest");
-		NekoHeights = new BiomeGenNekoBarrens(202, (byte) 2).setBiomeName("tragicmc.nekoHeights");
+		NekoBarrens = new BiomeGenNekoBarrens(TragicConfig.getInt("nekoBarrensID"), (byte) 0).setBiomeName("tragicmc.nekoBarrens");
+		NekoForest = new BiomeGenNekoBarrens(TragicConfig.getInt("nekoForestID"), (byte) 1).setBiomeName("tragicmc.nekoForest");
+		NekoHeights = new BiomeGenNekoBarrens(TragicConfig.getInt("nekoHeightsID"), (byte) 2).setBiomeName("tragicmc.nekoHeights");
 		
 		/*
 		//Wilds/Nerve Center biomes

@@ -189,7 +189,7 @@ public abstract class Doomsday {
 			TragicMC.logError("A doomsday was activated with null doom? This error shouldn't be possible and should be reported.");
 			return false;
 		}
-		else if (!TragicConfig.allowDoom)
+		else if (!TragicConfig.getBoolean("allowDoom"))
 		{
 			TragicMC.logError("You have Doom disabled... this shouldn't have been called, report this");
 			return false;
@@ -215,8 +215,8 @@ public abstract class Doomsday {
 			return false;
 		}
 
-		else if (TragicConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotion.Stun) || TragicConfig.allowHarmony &&
-				doom.getPlayer().isPotionActive(TragicPotion.Harmony) || TragicConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotion.Fear))
+		else if (TragicConfig.getBoolean("allowStun") && doom.getPlayer().isPotionActive(TragicPotion.Stun) || TragicConfig.getBoolean("allowHarmony") &&
+				doom.getPlayer().isPotionActive(TragicPotion.Harmony) || TragicConfig.getBoolean("allowFear") && doom.getPlayer().isPotionActive(TragicPotion.Fear))
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.fail4")));
 			return false;
@@ -235,9 +235,9 @@ public abstract class Doomsday {
 	 */
 	public boolean doDoomsday(PropertyDoom doom, EntityPlayer player)
 	{
-		int backlash = this.getScaledBacklash(TragicConfig.backlashChance, player, this.doomsdayType);
+		int backlash = this.getScaledBacklash(TragicConfig.getInt("backlashChance"), player, this.doomsdayType);
 
-		if (rand.nextInt(100) <= backlash && TragicConfig.allowBacklash)
+		if (rand.nextInt(100) <= backlash && TragicConfig.getBoolean("allowBacklash"))
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + StatCollector.translateToLocal("doomsday.backlash")));
 
@@ -246,7 +246,7 @@ public abstract class Doomsday {
 				doom.increaseCooldown(this.getScaledCooldown(player.worldObj.getDifficulty()) / 3);
 				int cost = this.getScaledDoomRequirement(doom) / 3;
 
-				if (TragicConfig.amuConsumption)
+				if (TragicConfig.getBoolean("amuConsumption"))
 				{
 					EntityPlayer mp = doom.getPlayer();
 					PropertyAmulets amu = PropertyAmulets.get(mp);
@@ -265,13 +265,14 @@ public abstract class Doomsday {
 
 				doom.increaseDoom(-cost);
 				this.doBacklashEffect(doom, player);
-				return false;
 			}
+			
+			return false;
 		}
 
 		DoomsdayEffect effect = new DoomsdayEffect(this.doomID, doom);
 		DoomsdayManager.registerDoomsdayEffect(player.getUniqueID(), effect);
-		if (TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.doomsday);
+		if (TragicConfig.getBoolean("allowAchievements")) player.triggerAchievement(TragicAchievements.doomsday);
 		return true;
 	}
 
@@ -313,7 +314,7 @@ public abstract class Doomsday {
 	{
 		int cost = -this.getScaledDoomRequirement(doom);
 
-		if (TragicConfig.amuConsumption)
+		if (TragicConfig.getBoolean("amuConsumption"))
 		{
 			EntityPlayer mp = doom.getPlayer();
 			PropertyAmulets amu = PropertyAmulets.get(mp);

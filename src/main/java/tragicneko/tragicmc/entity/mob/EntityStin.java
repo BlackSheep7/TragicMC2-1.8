@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.stinBabyStats;
-import static tragicneko.tragicmc.TragicConfig.stinStats;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -183,11 +180,12 @@ public class EntityStin extends TragicMob {
 
 	protected void reapplyEntityAttributes()
 	{
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? stinStats[1] : stinBabyStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? stinStats[2] : stinBabyStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.isAdult() ? stinStats[3] : stinBabyStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? stinStats[4] : stinBabyStats[4]);
+		double[] stats = TragicConfig.getMobStat(this.isAdult() ? "stinStats" : "stinBabyStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(stats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(stats[4]);
 	}
 
 	@Override
@@ -268,7 +266,7 @@ public class EntityStin extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) (this.isAdult() ? stinStats[5] : stinBabyStats[5]);
+		return TragicConfig.getMobStat(this.isAdult() ? "stinStats" : "stinBabyStats").getArmorValue();
 	}
 
 	@Override
@@ -285,7 +283,7 @@ public class EntityStin extends TragicMob {
 
 		boolean flag = super.attackEntityFrom(par1DamageSource, par2);
 
-		if (flag && TragicConfig.stinTeleport)
+		if (flag && TragicConfig.getBoolean("stinTeleport"))
 		{
 			if (this.getGallopTicks() == 0) this.setGallopTicks(15);
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(8.0, 8.0, 8.0));
@@ -408,32 +406,32 @@ public class EntityStin extends TragicMob {
 	{
 		if (!this.worldObj.isRemote)
 		{
-			if (TragicConfig.allowStinBaby && rand.nextInt(6) == 0) this.setChild();
+			if (TragicConfig.getBoolean("allowStinBaby") && rand.nextInt(6) == 0) this.setChild();
 		}
 		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicConfig.allowGreaterStin && this.getAgeTicks() >= 600;
+		return TragicConfig.getBoolean("allowGreaterStin") && this.getAgeTicks() >= 600;
 	}
 
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.stin.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.stin.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.hurt" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.stin.hurt" : null;
 	}
 
 	@Override
@@ -451,7 +449,7 @@ public class EntityStin extends TragicMob {
 	@Override
 	protected void playStepSound(BlockPos pos, Block block)
 	{
-		this.playSound(this.isAdult() && TragicConfig.allowMobSounds ? "tragicmc:mob.stin.step" : "mob.spider.step", 0.45F, this.isAdult() ? 1.9F : 0.2F);
+		this.playSound(this.isAdult() && TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.stin.step" : "mob.spider.step", 0.45F, this.isAdult() ? 1.9F : 0.2F);
 	}
 
 	@Override
@@ -468,7 +466,7 @@ public class EntityStin extends TragicMob {
 	
 	@Override
 	protected String getTeleportSound() {
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.telelport" : super.getTeleportSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.stin.teleport" : super.getTeleportSound();
 	}
 	
 	@Override

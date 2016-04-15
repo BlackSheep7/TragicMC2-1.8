@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.gragulStats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -61,6 +60,7 @@ public class EntityGragul extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] gragulStats = TragicConfig.getMobStat("gragulStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(gragulStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(gragulStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(gragulStats[2]);
@@ -71,7 +71,7 @@ public class EntityGragul extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) gragulStats[5];
+		return TragicConfig.getMobStat("gragulStats").getArmorValue();
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class EntityGragul extends TragicMob {
 
 		if (this.getAttackTarget() != null && this.ticksExisted % 120 == 0)
 		{
-			if (this.getAttackTarget() instanceof EntityPlayer && TragicConfig.allowInhibit && this.canEntityBeSeen(this.getAttackTarget()))
+			if (this.getAttackTarget() instanceof EntityPlayer && TragicConfig.getBoolean("allowInhibit") && this.canEntityBeSeen(this.getAttackTarget()))
 			{
 				((EntityPlayer) this.getAttackTarget()).addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 200));
 			}
@@ -95,7 +95,7 @@ public class EntityGragul extends TragicMob {
 	{
 		if (this.worldObj.isRemote) return false;
 
-		boolean flag = false;
+		boolean flag = par1DamageSource.canHarmInCreative();
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
 		{
@@ -107,7 +107,7 @@ public class EntityGragul extends TragicMob {
 
 		if (par1DamageSource.isProjectile() || par1DamageSource.isFireDamage()) return false;
 
-		if (TragicConfig.gragulDamageReduction)
+		if (TragicConfig.getBoolean("gragulDamageReduction"))
 		{
 			int dif = this.worldObj.getDifficulty().getDifficultyId();
 
@@ -147,13 +147,13 @@ public class EntityGragul extends TragicMob {
 		if (par1Entity instanceof EntityLivingBase || par1Entity instanceof EntityPlayer)
 		{
 			float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
-			boolean result = par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), TragicConfig.gragulPercentageDamage ? Math.max(((EntityLivingBase) par1Entity).getMaxHealth() / 10F, 0.5F) : f);
+			boolean result = par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), TragicConfig.getBoolean("gragulPercentageDamage") ? Math.max(((EntityLivingBase) par1Entity).getMaxHealth() / 10F, 0.5F) : f);
 
 			if (result)
 			{
 				if (this.worldObj.getDifficulty() == EnumDifficulty.HARD)
 				{
-					if (rand.nextInt(4) == 0 && TragicConfig.allowLeadFoot) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
+					if (rand.nextInt(4) == 0 && TragicConfig.getBoolean("allowLeadFoot")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
 
 				}
 			}
@@ -168,7 +168,7 @@ public class EntityGragul extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicConfig.allowKragul;
+		return TragicConfig.getBoolean("allowKragul");
 	}
 
 	@Override
@@ -180,19 +180,19 @@ public class EntityGragul extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.gragul.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.gragul.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.gragul.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.gragul.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.gragul.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.gragul.death" : null;
 	}
 
 	@Override

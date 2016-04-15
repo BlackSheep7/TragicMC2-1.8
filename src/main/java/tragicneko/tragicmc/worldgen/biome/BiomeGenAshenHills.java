@@ -31,10 +31,10 @@ public class BiomeGenAshenHills extends TragicBiome {
 	public BiomeGenAshenHills(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
-		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, TragicConfig.inklingGS[0], TragicConfig.inklingGS[1]));
-		if (TragicConfig.allowGragul) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityGragul.class, TragicConfig.gragulSC, TragicConfig.gragulGS[0], TragicConfig.gragulGS[1]));
-		if (TragicConfig.allowKragul) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKragul.class, TragicConfig.kragulSC, TragicConfig.kragulGS[0], TragicConfig.kragulGS[1]));
-		if (TragicConfig.allowNorVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.norVoxSC, TragicConfig.norVoxGS[0], TragicConfig.norVoxGS[1]));
+		if (TragicConfig.getBoolean("allowInkling")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.getInt("inklingSpawnChance"), TragicConfig.getIntArray("inklingGroupSize")[0], TragicConfig.getIntArray("inklingGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowGragul")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityGragul.class, TragicConfig.getInt("gragulSpawnChance"), TragicConfig.getIntArray("gragulGroupSize")[0], TragicConfig.getIntArray("gragulGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowKragul")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKragul.class, TragicConfig.getInt("kragulSpawnChance"), TragicConfig.getIntArray("kragulGroupSize")[0], TragicConfig.getIntArray("kragulGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowNorVox")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.getInt("norVoxSpawnChance"), TragicConfig.getIntArray("norVoxGroupSize")[0], TragicConfig.getIntArray("norVoxGroupSize")[1]));
 		this.enableRain = false;
 		this.enableSnow = false;
 		this.temperature = 1.6F;

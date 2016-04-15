@@ -23,7 +23,7 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 	public PropertyAmulets(EntityPlayer player)
 	{
 		this.thePlayer = player;
-		this.slotsOpen = (byte) TragicConfig.amuletStartSlots;
+		this.slotsOpen = (byte) TragicConfig.getInt("amuletStartSlots");
 		this.inventory = new InventoryAmulet(player);
 	}
 
@@ -53,7 +53,7 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 		inventory.readFromNBT(comp);
 		this.slotsOpen = comp.getByte("slotsOpen");
 
-		if (this.slotsOpen < TragicConfig.amuletStartSlots) this.slotsOpen = (byte) TragicConfig.amuletStartSlots;
+		if (this.slotsOpen < TragicConfig.getInt("amuletStartSlots")) this.slotsOpen = (byte) TragicConfig.getInt("amuletStartSlots");
 	}
 
 	@Override

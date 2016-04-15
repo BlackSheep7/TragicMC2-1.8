@@ -30,13 +30,13 @@ public class DoomsdayFreeze extends Doomsday {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					EntityLivingBase entity = (EntityLivingBase) list.get(i);
-					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 					entity.motionX = 0;
 					entity.motionY = 0;
 					entity.motionZ = 0;
 					entity.velocityChanged = false;
 					entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, rand.nextInt(120) + 120));
-					if (crucMoment && TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(240) + 120, rand.nextInt(6)));
+					if (crucMoment && TragicConfig.getBoolean("allowStun")) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(240) + 120, rand.nextInt(6)));
 				}
 			}
 		}

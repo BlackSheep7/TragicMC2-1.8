@@ -11814,33 +11814,33 @@ public class SchematicCorruptedSpire extends Schematic {
 
 	public String getRandomEntityNameForSpawner(byte b)
 	{
-		String s = TragicConfig.allowTragicNeko ? "TragicMC.TragicNeko" : "Skeleton";
+		String s = TragicConfig.getBoolean("allowTragicNeko") ? "TragicMC.TragicNeko" : "Skeleton";
 
 		switch(b)
 		{
 		case 0:
-			s = TragicConfig.allowMinotaur ? "TragicMC.Minotaur" : this.getRandomVanillaEntityNameForSpawner(b);
+			s = TragicConfig.getBoolean("allowMinotaur") ? "TragicMC.Minotaur" : this.getRandomVanillaEntityNameForSpawner(b);
 			break;
 		case 1:
-			s = TragicConfig.allowInkling ? "TragicMC.Inkling" : this.getRandomVanillaEntityNameForSpawner(b);
+			s = TragicConfig.getBoolean("allowInkling") ? "TragicMC.Inkling" : this.getRandomVanillaEntityNameForSpawner(b);
 			break;
 		case 2:
-			s = TragicConfig.allowJabba ? "TragicMC.Jabba" : this.getRandomVanillaEntityNameForSpawner(b);
+			s = TragicConfig.getBoolean("allowJabba") ? "TragicMC.Jabba" : this.getRandomVanillaEntityNameForSpawner(b);
 			break;
 		case 3:
-			s = TragicConfig.allowNorVox ? "TragicMC.NorVox" : this.getRandomVanillaEntityNameForSpawner(b);
+			s = TragicConfig.getBoolean("allowNorVox") ? "TragicMC.NorVox" : this.getRandomVanillaEntityNameForSpawner(b);
 			break;
 		case 4:
-			s = TragicConfig.allowRagr ? "TragicMC.Ragr" : this.getRandomVanillaEntityNameForSpawner(b);
+			s = TragicConfig.getBoolean("allowRagr") ? "TragicMC.Ragr" : this.getRandomVanillaEntityNameForSpawner(b);
 			break;
 		case 5:
-			s = TragicConfig.allowTox ? "TragicMC.Tox" : this.getRandomVanillaEntityNameForSpawner(b);
+			s = TragicConfig.getBoolean("allowTox") ? "TragicMC.Tox" : this.getRandomVanillaEntityNameForSpawner(b);
 			break;
 		case 6:
-			s = TragicConfig.allowGragul ? "TragicMC.Gragul" : this.getRandomVanillaEntityNameForSpawner(b);
+			s = TragicConfig.getBoolean("allowGragul") ? "TragicMC.Gragul" : this.getRandomVanillaEntityNameForSpawner(b);
 			break;
 		case 7:
-			s = TragicConfig.allowCryse ? "TragicMC.Cryse" : this.getRandomVanillaEntityNameForSpawner(b);
+			s = TragicConfig.getBoolean("allowCryse") ? "TragicMC.Cryse" : this.getRandomVanillaEntityNameForSpawner(b);
 			break;
 		default:
 			break;
@@ -11880,20 +11880,20 @@ public class SchematicCorruptedSpire extends Schematic {
 
 	public String getRandomBossNameForSpawner(byte b)
 	{
-		String s = TragicConfig.allowVoxStellarum ? "TragicMC.VoxStellarum" : "WitherBoss";
+		String s = TragicConfig.getBoolean("allowVoxStellarum") ? "TragicMC.VoxStellarum" : "WitherBoss";
 		switch(b)
 		{
 		case 0:
-			s = TragicConfig.allowJarra ? "TragicMC.Jarra" : "WitherBoss";
+			s = TragicConfig.getBoolean("allowJarra") ? "TragicMC.Jarra" : "WitherBoss";
 			break;
 		case 1:
-			s = TragicConfig.allowMegaCryse ? "TragicMC.MegaCryse" : "WitherBoss";
+			s = TragicConfig.getBoolean("allowMegaCryse") ? "TragicMC.MegaCryse" : "WitherBoss";
 			break;
 		case 2:
-			s = TragicConfig.allowKragul ? "TragicMC.Kragul" : "WitherBoss";
+			s = TragicConfig.getBoolean("allowKragul") ? "TragicMC.Kragul" : "WitherBoss";
 			break;
 		case 4:
-			s = TragicConfig.allowStinQueen ? "TragicMC.StinQueen" : "WitherBoss";
+			s = TragicConfig.getBoolean("allowStinQueen") ? "TragicMC.StinQueen" : "WitherBoss";
 			break;
 		default:
 			break;

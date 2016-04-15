@@ -52,7 +52,7 @@ public class DoomsdayRealityAlter extends Doomsday {
 					}
 				}
 			}
-			if (list2.get(i) instanceof EntityMob && TragicConfig.allowStun) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60));
+			if (list2.get(i) instanceof EntityMob && TragicConfig.getBoolean("allowStun")) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60));
 		}
 
 		Block block;
@@ -137,7 +137,7 @@ public class DoomsdayRealityAlter extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		if (TragicConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120, 0));
+		if (TragicConfig.getBoolean("allowDisorientation")) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120, 0));
 	}
 
 	@Override

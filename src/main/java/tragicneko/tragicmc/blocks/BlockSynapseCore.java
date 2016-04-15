@@ -38,7 +38,7 @@ public class BlockSynapseCore extends Block {
 
 		if (flag)
 		{
-			if (world.provider.getDimensionId() != TragicConfig.synapseID && !world.isRemote)
+			if (world.provider.getDimensionId() != TragicConfig.getInt("synapseID") && !world.isRemote)
 			{
 				List<EntityPlayerMP> list = world.getEntitiesWithinAABB(EntityPlayerMP.class, new AxisAlignedBB(0, 0, 0, 0, 0, 0).expand(4.0, 4.0, 4.0).offset(pos.getX(), pos.getY(), pos.getZ()));
 				for (EntityPlayerMP mp : list)

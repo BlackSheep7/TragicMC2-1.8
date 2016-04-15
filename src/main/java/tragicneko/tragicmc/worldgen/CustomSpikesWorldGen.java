@@ -45,7 +45,7 @@ public class CustomSpikesWorldGen implements IWorldGen {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world)
 	{
-		if (!TragicConfig.allowSpikeGen || random.nextInt(4) == 0) return;
+		if (!TragicConfig.getBoolean("allowSpikeGen") || random.nextInt(4) == 0) return;
 
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);

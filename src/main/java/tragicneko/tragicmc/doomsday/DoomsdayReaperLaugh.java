@@ -18,7 +18,7 @@ public class DoomsdayReaperLaugh extends Doomsday implements IExtendedDoomsday {
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		super.doInitialEffects(effect, doom, player, crucMoment);
-		if (TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 300, 0));
+		if (TragicConfig.getBoolean("allowImmunity")) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 300, 0));
 	}
 
 	@Override

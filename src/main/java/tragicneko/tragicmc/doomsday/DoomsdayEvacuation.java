@@ -45,7 +45,7 @@ public class DoomsdayEvacuation extends Doomsday {
 							{
 								EntityPlayerMP mp = (EntityPlayerMP) entity;
 
-								if (mp.capabilities.isCreativeMode || !TragicConfig.allowPvP) break label0;
+								if (mp.capabilities.isCreativeMode || !TragicConfig.getBoolean("allowPvP")) break label0;
 
 								if (mp.playerNetServerHandler.getNetworkManager().isChannelOpen() && player.worldObj == mp.worldObj)
 								{

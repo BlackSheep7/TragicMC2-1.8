@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.kindlingSpiritStats;
-
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.Block;
@@ -132,6 +130,7 @@ public class EntityWisp extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] kindlingSpiritStats = TragicConfig.getMobStat("kindlingSpiritStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kindlingSpiritStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(kindlingSpiritStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(kindlingSpiritStats[2]);
@@ -142,7 +141,7 @@ public class EntityWisp extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) kindlingSpiritStats[5];
+		return TragicConfig.getMobStat("kindlingSpiritStats").getArmorValue();
 	}
 
 	@Override
@@ -241,19 +240,19 @@ public class EntityWisp extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.wisp.joy" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.wisp.joy" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.wisp.fear" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.wisp.fear" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.wisp.release" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.wisp.release" : null;
 	}
 
 	@Override

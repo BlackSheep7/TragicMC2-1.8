@@ -25,8 +25,8 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 	public BiomeGenDecayingWasteland(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
-		if (TragicConfig.allowSirv) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicConfig.sirvSC, TragicConfig.sirvGS[0], TragicConfig.sirvGS[1]));
-		if (TragicConfig.allowSkultar) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityDeathReaper.class, TragicConfig.skultarSC, 0, 0));
+		if (TragicConfig.getBoolean("allowSirv")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicConfig.getInt("sirvSpawnChance"), TragicConfig.getIntArray("sirvGroupSize")[0], TragicConfig.getIntArray("sirvGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowSkultar")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityDeathReaper.class, TragicConfig.getInt("skultarSpawnChance"), 0, 0));
 		this.enableRain = false;
 		this.enableSnow = false;
 		this.temperature = 0.6F;
@@ -59,6 +59,6 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 		super.decorate(world, rand, pos);
 		new CustomSpikesWorldGen((byte) (variant == 3 ? 6 : 2), TragicBlocks.BoneBlock, (byte) rand.nextInt(2), 0.8977735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 		this.mixedDirtGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
-		if (TragicConfig.allowVoidPitGen && rand.nextInt(200) >= 5 && rand.nextInt(6) == 0) this.voidPitGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
+		if (TragicConfig.getBoolean("allowVoidPitGen") && rand.nextInt(200) >= 5 && rand.nextInt(6) == 0) this.voidPitGen.generate(rand, pos.getX() / 16, pos.getZ() / 16, world);
 	}
 }

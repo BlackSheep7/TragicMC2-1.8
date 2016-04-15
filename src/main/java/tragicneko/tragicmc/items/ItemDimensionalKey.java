@@ -15,6 +15,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -45,7 +46,8 @@ public class ItemDimensionalKey extends Item {
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		String s = DimensionManager.getProvider(this.targetDimension).getDimensionName();
+		WorldProvider prov = DimensionManager.getProvider(this.targetDimension);
+		String s = prov != null ?  prov.getDimensionName() : "a Dimension";
 		par2List.add(EnumChatFormatting.DARK_RED + "Teleports you to " + s + "!");
 		par2List.add("Hold down right-click for a couple");
 		par2List.add("seconds then let go to use.");
@@ -99,7 +101,8 @@ public class ItemDimensionalKey extends Item {
 	{
 		int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 
-		if (!TragicConfig.allowDimension && (this.targetDimension == TragicConfig.collisionID || this.targetDimension == TragicConfig.synapseID))
+		if (!TragicConfig.getBoolean("allowDimensions") && (this.targetDimension == TragicConfig.getInt("collisionID") || this.targetDimension == TragicConfig.getInt("synapseID") ||
+				this.targetDimension == TragicConfig.getInt("nekoHomeworldID")))
 		{
 			par3EntityPlayer.addChatMessage(new ChatComponentText("TragicMC Dimensions are disabled, enable in config."));
 			return;

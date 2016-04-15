@@ -21,62 +21,62 @@ public class TragicBiomeGenLayer extends GenLayer {
 		biomeList = new ArrayList[10];
 
 		ArrayList<BiomeEntry> decayingBiomes = new ArrayList<BiomeEntry>();
-		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingWasteland, TragicConfig.decayingWastelandW));
-		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingHills, TragicConfig.decayingHillsW));
-		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingMountains, TragicConfig.decayingMountainsW));
-		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingValley, TragicConfig.decayingValleyW));
+		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingWasteland, TragicConfig.getInt("decayingWastelandWeight")));
+		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingHills, TragicConfig.getInt("decayingHillsWeight")));
+		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingMountains, TragicConfig.getInt("decayingMountainsWeight")));
+		decayingBiomes.add(new BiomeEntry(TragicBiome.DecayingValley, TragicConfig.getInt("decayingValleyWeight")));
 
 		ArrayList<BiomeEntry> paintedBiomes = new ArrayList<BiomeEntry>();
-		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedForest, TragicConfig.paintedForestW));
-		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedHills, TragicConfig.paintedHillsW));
-		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedPlains, TragicConfig.paintedPlainsW));
-		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedClearing, TragicConfig.paintedClearingW));
+		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedForest, TragicConfig.getInt("paintedForestWeight")));
+		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedHills, TragicConfig.getInt("paintedHillsWeight")));
+		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedPlains, TragicConfig.getInt("paintedPlainsWeight")));
+		paintedBiomes.add(new BiomeEntry(TragicBiome.PaintedClearing, TragicConfig.getInt("paintedClearingWeight")));
 
 		ArrayList<BiomeEntry> ashenBiomes = new ArrayList<BiomeEntry>();
-		ashenBiomes.add(new BiomeEntry(TragicBiome.AshenBadlands, TragicConfig.ashenBadlandsW));
-		ashenBiomes.add(new BiomeEntry(TragicBiome.AshenHills, TragicConfig.ashenHillsW));
-		ashenBiomes.add(new BiomeEntry(TragicBiome.AshenMountains, TragicConfig.ashenMountainsW));
+		ashenBiomes.add(new BiomeEntry(TragicBiome.AshenBadlands, TragicConfig.getInt("ashenBadlandsWeight")));
+		ashenBiomes.add(new BiomeEntry(TragicBiome.AshenHills, TragicConfig.getInt("ashenHillsWeight")));
+		ashenBiomes.add(new BiomeEntry(TragicBiome.AshenMountains, TragicConfig.getInt("ashenMountainsWeight")));
 
 		ArrayList<BiomeEntry> starlitBiomes = new ArrayList<BiomeEntry>();
-		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitPrarie, TragicConfig.starlitPrarieW));
-		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitPlateaus, TragicConfig.starlitPlateausW));
-		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitLowlands, TragicConfig.starlitLowlandsW));
-		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitCliffs, TragicConfig.starlitCliffsW));
+		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitPrarie, TragicConfig.getInt("starlitPrarieWeight")));
+		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitPlateaus, TragicConfig.getInt("starlitPlateausWeight")));
+		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitLowlands, TragicConfig.getInt("starlitLowlandsWeight")));
+		starlitBiomes.add(new BiomeEntry(TragicBiome.StarlitCliffs, TragicConfig.getInt("starlitCliffsWeight")));
 
 		ArrayList<BiomeEntry> taintedBiomes = new ArrayList<BiomeEntry>();
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedLowlands, TragicConfig.taintedLowlandsW));
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedSpikes, TragicConfig.taintedSpikesW));
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedIsles, TragicConfig.taintedIslesW));
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedRises, TragicConfig.taintedRisesW));
-		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedScarlands, TragicConfig.taintedScarlandsW));
+		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedLowlands, TragicConfig.getInt("taintedLowlandsWeight")));
+		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedSpikes, TragicConfig.getInt("taintedSpikesWeight")));
+		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedIsles, TragicConfig.getInt("taintedIslesWeight")));
+		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedRises, TragicConfig.getInt("taintedRisesWeight")));
+		taintedBiomes.add(new BiomeEntry(TragicBiome.TaintedScarlands, TragicConfig.getInt("taintedScarlandsWeight")));
 
 		ArrayList<BiomeEntry> hallowedBiomes = new ArrayList<BiomeEntry>();
-		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedHills, TragicConfig.hallowedHillsW));
-		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedForest, TragicConfig.hallowedForestW));
-		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedPrarie, TragicConfig.hallowedPrarieW));
-		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedCliffs, TragicConfig.hallowedCliffsW));
+		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedHills, TragicConfig.getInt("hallowedHillsWeight")));
+		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedForest, TragicConfig.getInt("hallowedForestWeight")));
+		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedPrarie, TragicConfig.getInt("hallowedPrarieWeight")));
+		hallowedBiomes.add(new BiomeEntry(TragicBiome.HallowedCliffs, TragicConfig.getInt("hallowedCliffsWeight")));
 
 		ArrayList<BiomeEntry> scorchedBiomes = new ArrayList<BiomeEntry>();
-		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedWastelands, TragicConfig.scorchedWastelandsW));
-		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedValley, TragicConfig.scorchedValleyW));
-		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedScarlands, TragicConfig.scorchedScarlandsW));
+		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedWastelands, TragicConfig.getInt("scorchedWastelandsWeight")));
+		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedValley, TragicConfig.getInt("scorchedValleyWeight")));
+		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedScarlands, TragicConfig.getInt("scorchedScarlandsWeight")));
 
 		ArrayList<BiomeEntry> corrodedBiomes = new ArrayList<BiomeEntry>();
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedSteppe, TragicConfig.corrodedSteppeW));
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedHeights, TragicConfig.corrodedHeightsW));
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedVeld, TragicConfig.corrodedVeldW));
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedRunoff, TragicConfig.corrodedRunoffW));
-		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedFallout, TragicConfig.corrodedFalloutW));
+		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedSteppe, TragicConfig.getInt("corrodedSteppeWeight")));
+		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedHeights, TragicConfig.getInt("corrodedHeightsWeight")));
+		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedVeld, TragicConfig.getInt("corrodedVeldWeight")));
+		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedRunoff, TragicConfig.getInt("corrodedRunoffWeight")));
+		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedFallout, TragicConfig.getInt("corrodedFalloutWeight")));
 
 		ArrayList<BiomeEntry> frozenBiomes = new ArrayList<BiomeEntry>();
-		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenTundra, TragicConfig.frozenTundraW));
-		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenHills, TragicConfig.frozenHillsW));
-		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenDepths, TragicConfig.frozenDepthsW));
+		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenTundra, TragicConfig.getInt("frozenTundraWeight")));
+		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenHills, TragicConfig.getInt("frozenHillsWeight")));
+		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenDepths, TragicConfig.getInt("frozenDepthsWeight")));
 
 		ArrayList<BiomeEntry> darkForestBiomes = new ArrayList<BiomeEntry>();
-		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkForest, TragicConfig.darkForestW));
-		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkForestHills, TragicConfig.darkForestHillsW));
-		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkMarsh, TragicConfig.darkMarshW));
+		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkForest, TragicConfig.getInt("darkForestWeight")));
+		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkForestHills, TragicConfig.getInt("darkForestHillsWeight")));
+		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkMarsh, TragicConfig.getInt("darkMarshWeight")));
 
 		biomeList[0] = decayingBiomes;
 		biomeList[1] = paintedBiomes;
@@ -103,7 +103,7 @@ public class TragicBiomeGenLayer extends GenLayer {
 				try
 				{
 					List<BiomeEntry> biomes = biomeList[this.nextInt(biomeList.length)];
-					dest[dx + dz * width] = this.nextInt(1000) <= TragicConfig.crystalW ? TragicBiome.Crystal.biomeID : WeightedRandom.getRandomItem(biomes, this.nextInt(WeightedRandom.getTotalWeight(biomes))).biome.biomeID;
+					dest[dx + dz * width] = this.nextInt(1000) <= TragicConfig.getInt("crystalWeight") ? TragicBiome.Crystal.biomeID : WeightedRandom.getRandomItem(biomes, this.nextInt(WeightedRandom.getTotalWeight(biomes))).biome.biomeID;
 				}
 				catch (Exception e)
 				{

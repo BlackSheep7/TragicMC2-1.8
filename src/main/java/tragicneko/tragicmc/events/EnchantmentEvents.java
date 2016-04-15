@@ -4,6 +4,8 @@ import static tragicneko.tragicmc.TragicMC.rand;
 
 import java.util.Set;
 
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -33,12 +35,11 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.collect.Sets;
 
 public class EnchantmentEvents {
 
@@ -47,7 +48,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onLuminescence(LivingUpdateEvent event)
 	{
-		if (!event.entityLiving.worldObj.isRemote && TragicConfig.allowLuminescence && event.entityLiving.ticksExisted % 4 == 0)
+		if (!event.entityLiving.worldObj.isRemote && TragicConfig.getBoolean("allowLuminescence") && event.entityLiving.ticksExisted % 4 == 0)
 		{
 			boolean flag = false;
 
@@ -71,19 +72,20 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onCombustion(HarvestDropsEvent event)
 	{
-		if (event.harvester != null && !event.isSilkTouching)
+		if (event.harvester != null && !event.isSilkTouching && !event.world.isRemote)
 		{
 			if (event.harvester.getEquipmentInSlot(0) != null)
 			{
 				ItemStack tool = event.harvester.getEquipmentInSlot(0);
 
-				if (tool.getItem() instanceof ItemTool && TragicConfig.allowCombustion && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Combustion.effectId, tool) > 0)
+				if (tool.getItem() instanceof ItemTool && TragicConfig.getBoolean("allowCombustion") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Combustion.effectId, tool) > 0)
 				{
 					if (tool.getItem().getDigSpeed(tool, event.state) > 1.0F)
 					{
-						int z = EnchantmentHelper.getFortuneModifier(event.harvester);
-						ItemStack result = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(event.state.getBlock(), 1, event.state.getBlock().getMetaFromState(event.state)));
-
+						final int z = EnchantmentHelper.getFortuneModifier(event.harvester);
+						ItemStack input = new ItemStack(event.state.getBlock().getItem(event.world, event.pos), 1, event.state.getBlock().damageDropped(event.state));
+						ItemStack result = FurnaceRecipes.instance().getSmeltingList().get(input);						
+						
 						if (result != null)
 						{
 							result.stackSize = z > 0 ? rand.nextInt(z) + 1 : 1;
@@ -106,15 +108,15 @@ public class EnchantmentEvents {
 			if (event.getPlayer().getEquipmentInSlot(0) != null)
 			{
 				ItemStack tool = event.getPlayer().getEquipmentInSlot(0);
-				int i = TragicConfig.allowVeteran ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool) * 2 + 1 : 1;
+				int i = TragicConfig.getBoolean("allowVeteran") ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool) * 2 + 1 : 1;
 
-				if (tool.getItemDamage() >= tool.getMaxDamage() - i && TragicConfig.allowUnbreakable && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, tool) > 0)
+				if (tool.getItemDamage() >= tool.getMaxDamage() - i && TragicConfig.getBoolean("allowUnbreakable") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, tool) > 0)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
 					return;
 				}
 
-				if (tool.getItem() instanceof ItemTool && canMineWithTool(event.world, tool, event.pos) && TragicConfig.allowVeteran && !event.world.isRemote)
+				if (tool.getItem() instanceof ItemTool && canMineWithTool(event.world, tool, event.pos) && TragicConfig.getBoolean("allowVeteran") && !event.world.isRemote)
 				{
 					int e = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool);
 					if (e < 1) return;
@@ -215,7 +217,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void multiplyArrow(ArrowLooseEvent event)
 	{
-		if (TragicConfig.allowMultiply)
+		if (TragicConfig.getBoolean("allowMultiply"))
 		{
 			EntityPlayer player = event.entityPlayer;
 			World world = player.worldObj;
@@ -285,7 +287,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void withAgility(LivingHurtEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer && TragicConfig.allowAgility && !event.source.isMagicDamage())
+		if (event.entityLiving instanceof EntityPlayer && TragicConfig.getBoolean("allowAgility") && !event.source.isMagicDamage())
 		{
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			if (!event.source.canHarmInCreative())
@@ -317,7 +319,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onExtraWeaponEnchantUse(LivingHurtEvent event)
 	{
-		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && TragicConfig.allowEnchantments)
+		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && TragicConfig.getBoolean("allowEnchantments"))
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
@@ -325,7 +327,7 @@ public class EnchantmentEvents {
 			{
 				float f = event.ammount / 10;
 
-				if (TragicConfig.allowVampirism)
+				if (TragicConfig.getBoolean("allowVampirism"))
 				{
 					int vamp = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Vampirism.effectId, player.getCurrentEquippedItem());
 
@@ -333,7 +335,7 @@ public class EnchantmentEvents {
 					{
 						player.heal(f * vamp);
 
-						if (TragicConfig.allowCripple)
+						if (TragicConfig.getBoolean("allowCripple"))
 						{
 							event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 60 * vamp, vamp * 2));
 						}
@@ -345,7 +347,7 @@ public class EnchantmentEvents {
 					}
 				}
 
-				if (TragicConfig.allowLeech)
+				if (TragicConfig.getBoolean("allowLeech"))
 				{
 					int leech = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Leech.effectId, player.getCurrentEquippedItem());
 
@@ -371,7 +373,7 @@ public class EnchantmentEvents {
 					}
 				}
 
-				if (TragicConfig.allowConsume)
+				if (TragicConfig.getBoolean("allowConsume"))
 				{
 					int consume = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Consume.effectId, player.getCurrentEquippedItem());
 
@@ -379,7 +381,7 @@ public class EnchantmentEvents {
 					{
 						PropertyDoom property1 = PropertyDoom.get(player);
 
-						if (property1 != null && TragicConfig.allowDoom)
+						if (property1 != null && TragicConfig.getBoolean("allowDoom"))
 						{
 							property1.increaseDoom(consume);
 							if (event.entityLiving instanceof EntityPlayer)
@@ -397,7 +399,7 @@ public class EnchantmentEvents {
 					}
 				}
 
-				if (TragicConfig.allowRuneBreak)
+				if (TragicConfig.getBoolean("allowRuneBreak"))
 				{
 					int runeBreak = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.RuneBreak.effectId, player.getCurrentEquippedItem());
 
@@ -424,7 +426,7 @@ public class EnchantmentEvents {
 			{
 				ItemStack stack = player.getCurrentEquippedItem();
 
-				if (stack.getItemDamage() >= stack.getMaxDamage() - 1 && TragicConfig.allowUnbreakable && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, stack) > 0)
+				if (stack.getItemDamage() >= stack.getMaxDamage() - 1 && TragicConfig.getBoolean("allowUnbreakable") && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, stack) > 0)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
 				}

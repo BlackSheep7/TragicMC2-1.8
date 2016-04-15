@@ -32,7 +32,7 @@ public class StructureApisTemple extends StructureBoss {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == 0 || dim == TragicConfig.collisionID;
+		return dim == 0 || dim == TragicConfig.getInt("collisionID");
 	}
 
 	@Override

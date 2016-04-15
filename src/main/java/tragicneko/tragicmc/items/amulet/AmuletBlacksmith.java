@@ -17,7 +17,7 @@ public class AmuletBlacksmith extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuBlacksmith)
+		if (TragicConfig.getBoolean("amuBlacksmith"))
 		{
 			boolean flag = false;
 

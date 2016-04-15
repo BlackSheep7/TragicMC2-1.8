@@ -13,7 +13,7 @@ public class ServerTickEvents {
 	{
 		if (event.phase == Phase.START)
 		{
-			if (TragicConfig.allowIre)
+			if (TragicConfig.getBoolean("allowIre"))
 			{
 				EntityIre.ireTick++;
 				if (EntityIre.ireTick >= 40)

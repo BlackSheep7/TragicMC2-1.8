@@ -33,7 +33,7 @@ public class DoomsdaySkullCrusher extends Doomsday {
 			if (list.get(x) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) list.get(x);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 
 				entity.applyEntityCollision(player);
 				entity.motionX *= 1.25D * d0;
@@ -41,7 +41,7 @@ public class DoomsdaySkullCrusher extends Doomsday {
 				entity.motionY += 0.4D + (d0 * 0.25D);
 
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, 600, 4));
-				if (TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120));
+				if (TragicConfig.getBoolean("allowStun")) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120));
 			}
 		}
 	}

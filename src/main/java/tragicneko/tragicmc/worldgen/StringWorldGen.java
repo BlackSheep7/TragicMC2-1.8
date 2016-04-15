@@ -25,7 +25,7 @@ public class StringWorldGen implements IWorldGen {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
-		if (!TragicConfig.allowStringLightGen) return;
+		if (!TragicConfig.getBoolean("allowStringLightGen")) return;
 		
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);

@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityJetNeko;
 import tragicneko.tragicmc.entity.mob.EntityScienceNeko;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
@@ -35,7 +36,7 @@ public class BiomeGenNekoBarrens extends TragicBiome {
 		this.spawnableMonsterList.clear();
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableCreatureList.clear();
-		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, 25, 0, 1));
+		if (TragicConfig.getBoolean("allowTragicNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicConfig.getInt("tragicNekoSpawnChance"), TragicConfig.getIntArray("tragicNekoGroupSize")[0], TragicConfig.getIntArray("tragicNekoGroupSize")[1]));
 		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJetNeko.class, 3, 0, 0));
 		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityScienceNeko.class, 15, 0, 1));
 		this.fillerBlock = TragicBlocks.DeadDirt.getDefaultState();

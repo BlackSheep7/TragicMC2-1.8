@@ -39,7 +39,7 @@ public class TragicArmor extends ItemArmor {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
+		if (TragicConfig.getBoolean("allowRandomWeaponLore") && LoreHelper.getRarityFromStack(stack) >= 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
 
@@ -50,7 +50,7 @@ public class TragicArmor extends ItemArmor {
 			}
 		}
 
-		if (TragicConfig.allowDoomsdays && this.doomsday != null)
+		if (TragicConfig.getBoolean("allowDoomsdays") && this.doomsday != null)
 		{
 			par2List.add(EnumChatFormatting.WHITE + "Doomsday:");
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
@@ -67,7 +67,7 @@ public class TragicArmor extends ItemArmor {
 	{
 		if (stack == null || stack.getItem() == null) return;
 		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-		if (!TragicConfig.allowRandomWeaponLore) return;
+		if (!TragicConfig.getBoolean("allowRandomWeaponLore")) return;
 
 		LoreEntry entry = LoreHelper.getLoreEntry(stack.getItem().getClass());
 		if (entry == null) return;

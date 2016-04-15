@@ -35,11 +35,11 @@ public class ItemAmuletRelease extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (TragicConfig.requireAmuletSlotUnlock)
+		if (TragicConfig.getBoolean("requireAmuletSlotUnlock"))
 		{
 			PropertyAmulets amulets = PropertyAmulets.get(par3EntityPlayer);
 
-			if (amulets.getSlotsOpen() < TragicConfig.amuletMaxSlots)
+			if (amulets.getSlotsOpen() < TragicConfig.getInt("amuletMaxSlots"))
 			{
 				if (!par2World.isRemote)
 				{
@@ -51,7 +51,7 @@ public class ItemAmuletRelease extends Item {
 					par3EntityPlayer.playSound("tragicmc:random.amuletrelease", 1.0F, 1.0F);
 				}
 				
-				if (TragicConfig.allowAchievements && par3EntityPlayer instanceof EntityPlayerMP) par3EntityPlayer.triggerAchievement(TragicAchievements.amuletRelease);
+				if (TragicConfig.getBoolean("allowAchievements") && par3EntityPlayer instanceof EntityPlayerMP) par3EntityPlayer.triggerAchievement(TragicAchievements.amuletRelease);
 			}
 			else
 			{

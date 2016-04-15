@@ -37,9 +37,9 @@ public class BiomeGenHallowedHills extends TragicBiome {
 		this.theBiomeDecorator.flowersPerChunk = variant == 0 || variant == 3 ? 1 : (variant == 2 ? 12 : 4);
 		this.fillerBlock = TragicBlocks.DeadDirt.getDefaultState();
 		this.topBlock = TragicBlocks.HallowedGrass.getDefaultState();
-		if (TragicConfig.allowApis) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityApis.class, TragicConfig.apisSC, 0, 0));
-		if (TragicConfig.allowArchangel) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityArchangel.class, TragicConfig.archangelSC, TragicConfig.archangelGS[0], TragicConfig.archangelGS[1]));
-		if (TragicConfig.allowIre) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityIre.class, TragicConfig.ireSC, TragicConfig.ireGS[0], TragicConfig.ireGS[1]));
+		if (TragicConfig.getBoolean("allowApis")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityApis.class, TragicConfig.getInt("apisSpawnChance"), 0, 0));
+		if (TragicConfig.getBoolean("allowArchangel")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityArchangel.class, TragicConfig.getInt("archangelSpawnChance"), TragicConfig.getIntArray("archangelGroupSize")[0], TragicConfig.getIntArray("archangelGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowIre")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityIre.class, TragicConfig.getInt("ireSpawnChance"), TragicConfig.getIntArray("ireGroupSize")[0], TragicConfig.getIntArray("ireGroupSize")[1]));
 		this.stringGen = new StringWorldGen(TragicBlocks.StringLight, (byte) 0, (byte) 12);
 		this.lightGen = new SurfaceWorldGen2((byte) 6, TragicBlocks.Light, (byte) 0, (byte) 4, (byte) 4);
 		this.fragileGen = new SurfaceWorldGen2((byte) 2, TragicBlocks.FragileLight, (byte) 0, (byte) 4, (byte) 4);

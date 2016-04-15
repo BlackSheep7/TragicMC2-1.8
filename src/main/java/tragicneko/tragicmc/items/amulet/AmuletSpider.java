@@ -22,7 +22,7 @@ public class AmuletSpider extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuSpider)
+		if (TragicConfig.getBoolean("amuSpider"))
 		{
 			double d0 = level == 1 ? 0.03 : (level == 2 ? 0.5 : 0.11);
 			if (player.isCollidedHorizontally)
@@ -52,7 +52,7 @@ public class AmuletSpider extends ItemAmulet {
 				}
 			}
 
-			if (level >= 3 && player.ticksExisted % 20 == 0 && TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 100, 0));
+			if (level >= 3 && player.ticksExisted % 20 == 0 && TragicConfig.getBoolean("allowImmunity")) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 100, 0));
 		}
 	}
 }

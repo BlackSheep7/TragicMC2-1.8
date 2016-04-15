@@ -47,7 +47,7 @@ public class EntityScienceNeko extends EntityNeko {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(45.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.26);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0);
 	}
@@ -90,7 +90,7 @@ public class EntityScienceNeko extends EntityNeko {
 
 			if (this.getFiringTicks() == 40 && this.canEntityBeSeen(this.getAttackTarget()) && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0 && this.getDistanceToEntity(this.getAttackTarget()) >= 4.0)
 			{
-				if (TragicConfig.tragicNekoRockets) this.doMissleAttack();
+				if (TragicConfig.getBoolean("tragicNekoRockets")) this.doMissleAttack();
 			}
 			else if (this.hasFired() && this.getFiringTicks() % 40 == 0 && this.getAttackTime() == 0 && rand.nextBoolean() && this.getDistanceToEntity(this.getAttackTarget()) >= 5.0 && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0)
 			{
@@ -109,12 +109,12 @@ public class EntityScienceNeko extends EntityNeko {
 	
 	@Override
 	protected void doMissleAttack() {
-		if (TragicConfig.allowMobSounds) 
+		if (TragicConfig.getBoolean("allowMobSounds")) 
 		{
 			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
 			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
 		}
-		this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), 3.0F);
+		this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 	}
 	
 	@Override

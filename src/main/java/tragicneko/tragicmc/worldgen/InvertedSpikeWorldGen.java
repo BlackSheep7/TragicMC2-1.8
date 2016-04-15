@@ -29,7 +29,7 @@ public class InvertedSpikeWorldGen implements IWorldGen {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
-		if (!TragicConfig.allowInvertedSpikeGen) return;
+		if (!TragicConfig.getBoolean("allowInvertedSpikeGen")) return;
 		
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);

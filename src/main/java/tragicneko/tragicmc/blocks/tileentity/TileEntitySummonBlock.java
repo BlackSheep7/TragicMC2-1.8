@@ -78,7 +78,7 @@ public class TileEntitySummonBlock extends TileEntity implements ITickable {
 		int meta = state.getBlock().getMetaFromState(state);
 		EntityLivingBase boss = null;
 
-		if (meta == 2 && TragicConfig.allowApis)
+		if (meta == 2 && TragicConfig.getBoolean("allowApis"))
 		{
 			boss = new EntityApis(this.worldObj);
 		}
@@ -90,40 +90,40 @@ public class TileEntitySummonBlock extends TileEntity implements ITickable {
 		{
 			boss = new EntityDragon(this.worldObj);
 		}
-		else if (meta == 3 && TragicConfig.allowSkultar)
+		else if (meta == 3 && TragicConfig.getBoolean("allowSkultar"))
 		{
 			boss = new EntityDeathReaper(this.worldObj);
 		}
-		else if (meta == 4 && TragicConfig.allowKitsunakuma)
+		else if (meta == 4 && TragicConfig.getBoolean("allowKitsunakuma"))
 		{
 			boss = new EntityKitsune(this.worldObj);
 		}
-		else if (meta == 5 && TragicConfig.allowPolaris)
+		else if (meta == 5 && TragicConfig.getBoolean("allowPolaris"))
 		{
 			boss = new EntityPolaris(this.worldObj);
 		}
-		else if (meta == 6 && TragicConfig.allowEmpariah)
+		else if (meta == 6 && TragicConfig.getBoolean("allowEmpariah"))
 		{
 			boss = new EntityYeti(this.worldObj);
 		}
-		else if (meta == 7 && TragicConfig.allowTimeController)
+		else if (meta == 7 && TragicConfig.getBoolean("allowTimeController"))
 		{
 			boss = new EntityTimeController(this.worldObj);
 		}
-		else if (meta == 8 && TragicConfig.allowEnyvil)
+		else if (meta == 8 && TragicConfig.getBoolean("allowEnyvil"))
 		{
 			boss =  new EntityEnyvil(this.worldObj);
 		}
-		else if (meta == 9 && TragicConfig.allowClaymation)
+		else if (meta == 9 && TragicConfig.getBoolean("allowClaymation"))
 		{
 			boss = new EntityClaymation(this.worldObj);
 		}
-		else if (meta == 10 && TragicConfig.allowAegar)
+		else if (meta == 10 && TragicConfig.getBoolean("allowAegar"))
 		{
 			boss = new EntityAegar(this.worldObj);
 		}
 
-		if (boss instanceof TragicBoss && this.worldObj.getDifficulty().getDifficultyId() < 2 && !TragicConfig.allowEasyBosses && player != null)
+		if (boss instanceof TragicBoss && this.worldObj.getDifficulty().getDifficultyId() < 2 && !TragicConfig.getBoolean("allowEasyBosses") && player != null)
 		{
 			player.addChatMessage(new ChatComponentText("Difficulty needs to be raised to spawn this boss."));
 			return;

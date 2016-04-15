@@ -26,9 +26,9 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 
 	public BiomeGenTaintedSpikes(int par1, byte par2) {
 		super(par1, par2);
-		if (TragicConfig.allowPsygote) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPsygote.class, TragicConfig.psygoteSC, TragicConfig.psygoteGS[0], TragicConfig.psygoteGS[1]));
-		if (TragicConfig.allowStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicConfig.stinSC, TragicConfig.stinGS[0], TragicConfig.stinGS[1]));
-		if (TragicConfig.allowGreaterStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicConfig.greaterStinSC, TragicConfig.greaterStinGS[0], TragicConfig.greaterStinGS[1]));
+		if (TragicConfig.getBoolean("allowPsygote")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPsygote.class, TragicConfig.getInt("psygoteSpawnChance"), TragicConfig.getIntArray("psygoteGroupSize")[0], TragicConfig.getIntArray("psygoteGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowStin")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicConfig.getInt("stinSpawnChance"), TragicConfig.getIntArray("stinGroupSize")[0], TragicConfig.getIntArray("stinGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowGreaterStin")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicConfig.getInt("greaterStinSpawnChance"), TragicConfig.getIntArray("greaterStinGroupSize")[0], TragicConfig.getIntArray("greaterStinGroupSize")[1]));
 		this.enableSnow = false;
 		this.temperature = 1.8F;
 		this.rainfall = 2.0F;

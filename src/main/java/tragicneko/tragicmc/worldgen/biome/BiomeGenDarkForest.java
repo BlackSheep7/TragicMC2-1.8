@@ -30,10 +30,10 @@ public class BiomeGenDarkForest extends TragicBiome {
 	public BiomeGenDarkForest(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableMonsterList.clear();
-		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, TragicConfig.plagueGS[0], TragicConfig.plagueGS[1]));
-		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, TragicConfig.inklingGS[0], TragicConfig.inklingGS[1]));
-		if (TragicConfig.allowParasmite) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityParasmite.class, TragicConfig.parasmiteSC, TragicConfig.parasmiteGS[0], TragicConfig.parasmiteGS[1]));
-		if (TragicConfig.allowEnyvil) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnyvil.class, TragicConfig.enyvilSC, 0, 0));
+		if (TragicConfig.getBoolean("allowPlague")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.getInt("plagueSpawnChance"), TragicConfig.getIntArray("plagueGroupSize")[0], TragicConfig.getIntArray("plagueGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowInkling")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.getInt("inklingSpawnChance"), TragicConfig.getIntArray("inklingGroupSize")[0], TragicConfig.getIntArray("inklingGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowParasmite")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityParasmite.class, TragicConfig.getInt("parasmiteSpawnChance"), TragicConfig.getIntArray("parasmiteGroupSize")[0], TragicConfig.getIntArray("parasmiteGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowEnyvil")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnyvil.class, TragicConfig.getInt("enyvilSpawnChance"), 0, 0));
 		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnderman.class, 15, 2, 4));
 		this.fillerBlock = TragicBlocks.DeadDirt.getDefaultState();
 		this.topBlock = TragicBlocks.DarkGrass.getDefaultState();

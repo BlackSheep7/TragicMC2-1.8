@@ -44,7 +44,7 @@ public class SchematicHackerNet extends Schematic {
 				int yr = y + rand.nextInt(14) - rand.nextInt(14);
 				int zr = z + rand.nextInt(14) - rand.nextInt(14);
 				this.setBlock(world, xr, yr, zr, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, xr, yr, zr, TragicConfig.allowHunter ? "TragicMC.Hunter" : "Ghast");
+				this.setSpawnerMob(world, xr, yr, zr, TragicConfig.getBoolean("allowHunter") ? "TragicMC.Hunter" : "Ghast");
 			}
 		}
 		

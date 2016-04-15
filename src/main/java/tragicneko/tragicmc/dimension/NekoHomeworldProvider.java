@@ -16,7 +16,7 @@ public class NekoHomeworldProvider extends WorldProvider {
 
 	public NekoHomeworldProvider()
 	{
-		this.dimensionId = 4;
+		this.dimensionId = TragicConfig.getInt("nekoHomeworldID");
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -61,7 +61,7 @@ public class NekoHomeworldProvider extends WorldProvider {
 	@Override
 	public boolean canRespawnHere()
 	{
-		return true;
+		return TragicConfig.getBoolean("allowNekoHomeworldRespawn");
 	}
 
 	@Override

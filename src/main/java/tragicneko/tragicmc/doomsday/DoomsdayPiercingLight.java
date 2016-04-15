@@ -27,7 +27,7 @@ public class DoomsdayPiercingLight extends Doomsday {
 		float crisis = this.getCrisis(player);
 		List<Entity> list = new ArrayList();
 
-		if (player.worldObj.getLight(WorldHelper.getBlockPos(player)) <= 0.75F)
+		if (player.worldObj.getLightFor(EnumSkyBlock.BLOCK, player.getPosition()) < 8)
 		{
 			double d0 = 16.0;
 
@@ -61,7 +61,7 @@ public class DoomsdayPiercingLight extends Doomsday {
 			if (list.get(x) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) list.get(x);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 
 				int f = entity.worldObj.getLightFor(EnumSkyBlock.BLOCK, WorldHelper.getBlockPos(entity));
 

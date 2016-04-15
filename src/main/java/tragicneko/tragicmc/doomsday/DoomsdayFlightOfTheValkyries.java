@@ -23,7 +23,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
 
-		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 200, 0));
+		if (TragicConfig.getBoolean("allowInvulnerability")) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 200, 0));
 		doom.fillDoom();
 	}
 
@@ -44,7 +44,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					entity = (EntityLivingBase) list.get(i);
-					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 
 					entity.motionX = rand.nextDouble() - rand.nextDouble();
 					entity.motionY = 0.75 - rand.nextDouble();

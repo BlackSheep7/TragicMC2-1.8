@@ -1,8 +1,6 @@
 
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.stinQueenStats;
-
 import java.util.ArrayList;
 
 import net.minecraft.entity.Entity;
@@ -35,6 +33,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] stinQueenStats = TragicConfig.getMobStat("stinQueenStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stinQueenStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stinQueenStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stinQueenStats[2]);
@@ -45,7 +44,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) stinQueenStats[5];
+		return TragicConfig.getMobStat("stinQueenStats").getArmorValue();
 	}
 
 	@Override
@@ -88,7 +87,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 
 		if (this.worldObj.isRemote) return;
 
-		if (TragicConfig.allowStinBaby && TragicConfig.stinQueenBabies)
+		if (TragicConfig.getBoolean("allowStinBaby") && TragicConfig.getBoolean("stinQueenBabies"))
 		{
 			int la = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 8;
 
@@ -118,7 +117,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 		}
 
 		if (this.getAttackTarget() != null && !this.isCharging() && !this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F &&
-				rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0 && TragicConfig.stinQueenWebBombs)
+				rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0 && TragicConfig.getBoolean("stinQueenWebBombs"))
 		{
 			this.setFiringTicks(50);
 		}
@@ -130,7 +129,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 	}
 
 	private void doMortorFire() {
-		if (!TragicConfig.stinQueenWebBombs) return;
+		if (!TragicConfig.getBoolean("stinQueenWebBombs")) return;
 		double d0 = this.getAttackTarget().posX - this.posX + rand.nextInt(5) - rand.nextInt(5);
 		double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 		double d2 = this.getAttackTarget().posZ - this.posZ + rand.nextInt(5) - rand.nextInt(5);
@@ -146,7 +145,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 
 	public void spawnBabies()
 	{
-		if (!TragicConfig.allowStinBaby || !TragicConfig.stinQueenBabies) return;
+		if (!TragicConfig.getBoolean("allowStinBaby") || !TragicConfig.getBoolean("stinQueenBabies")) return;
 		EntityStin baby = new EntityStin(this.worldObj);
 		baby.setChild();
 		baby.copyLocationAndAnglesFrom(this);
@@ -186,7 +185,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 	{
 		super.teleportEnemyAway(entity, flag);
 
-		if (!TragicConfig.stinQueenWebs) return flag;
+		if (!TragicConfig.getBoolean("stinQueenWebBombs")) return flag;
 		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.5D, entity.posX, entity.posY, entity.posZ);
 		BlockPos coords;
 
@@ -208,7 +207,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 
 		if (flag && rand.nextInt(8) == 0 && par1Entity instanceof EntityLivingBase)
 		{
-			if (TragicConfig.allowStun) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 0));
+			if (TragicConfig.getBoolean("allowStun")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 0));
 		}
 
 		return flag;

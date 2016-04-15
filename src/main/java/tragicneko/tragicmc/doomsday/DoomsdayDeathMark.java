@@ -35,7 +35,7 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 			if (list.get(i) instanceof EntityMob)
 			{
 				EntityMob e = (EntityMob) list.get(i);
-				e.addPotionEffect(new PotionEffect(TragicConfig.allowSubmission ? TragicPotion.Submission.id : Potion.weakness.id, 600, 10));
+				e.addPotionEffect(new PotionEffect(TragicConfig.getBoolean("allowSubmission") ? TragicPotion.Submission.id : Potion.weakness.id, 600, 10));
 				effect.utilityEntity = e;
 				break;
 			}
@@ -58,7 +58,7 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 				if (list.get(i) instanceof EntityMob)
 				{
 					EntityMob e = (EntityMob) list.get(i);
-					e.addPotionEffect(new PotionEffect(TragicConfig.allowSubmission ? TragicPotion.Submission.id : Potion.weakness.id, 600, 10));
+					e.addPotionEffect(new PotionEffect(TragicConfig.getBoolean("allowSubmission") ? TragicPotion.Submission.id : Potion.weakness.id, 600, 10));
 					effect.utilityEntity = e;
 					break;
 				}
@@ -78,7 +78,7 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		player.addPotionEffect(new PotionEffect(TragicConfig.allowSubmission ? TragicPotion.Submission.id : Potion.weakness.id, 200, 10));
+		player.addPotionEffect(new PotionEffect(TragicConfig.getBoolean("allowSubmission") ? TragicPotion.Submission.id : Potion.weakness.id, 200, 10));
 	}
 
 	@Override

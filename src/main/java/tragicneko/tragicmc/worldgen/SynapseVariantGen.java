@@ -56,7 +56,7 @@ public class SynapseVariantGen implements IWorldGen {
 		}
 
 		byte[] ary = new byte[256];
-		byte toFill = (byte) (flag ? TragicConfig.idSynapseCorrupt : TragicConfig.idSynapseDead);
+		final byte toFill = (byte) (flag ? TragicConfig.getInt("synapseCorruptID") : TragicConfig.getInt("synapseDeadID"));
 		Arrays.fill(ary, toFill);
 		chk.setBiomeArray(ary);
 	}

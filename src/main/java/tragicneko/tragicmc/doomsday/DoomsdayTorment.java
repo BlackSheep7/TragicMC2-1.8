@@ -28,12 +28,12 @@ public class DoomsdayTorment extends Doomsday {
 			if (list.get(i) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) list.get(i);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 				int f = crucMoment ? 2000 : 200;
 
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, f, 2 + rand.nextInt(2)));
-				if (TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, f, 2 + rand.nextInt(2)));
-				if (TragicConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, f, 2 + rand.nextInt(2)));
+				if (TragicConfig.getBoolean("allowStun")) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, f, 2 + rand.nextInt(2)));
+				if (TragicConfig.getBoolean("allowSubmission")) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, f, 2 + rand.nextInt(2)));
 			}
 		}
 	}
@@ -41,8 +41,8 @@ public class DoomsdayTorment extends Doomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(Potion.wither.id, 200, 2 + rand.nextInt(2)));
-		if (TragicConfig.allowStun) player.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 200, 2 + rand.nextInt(2)));
-		if (TragicConfig.allowSubmission) player.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 200, 2 + rand.nextInt(2)));
+		if (TragicConfig.getBoolean("allowStun")) player.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 200, 2 + rand.nextInt(2)));
+		if (TragicConfig.getBoolean("allowSubmission")) player.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 200, 2 + rand.nextInt(2)));
 	}
 
 	@Override

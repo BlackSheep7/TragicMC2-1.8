@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicConfig.polarisStats;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +68,7 @@ public class EntityPolaris extends TragicBoss {
 		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(8, new EntityAIWatchTarget(this, 48.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.75D, 32.0F));
-		if (TragicConfig.polarisFearGolems) this.tasks.addTask(1, fearGolems);
+		if (TragicConfig.getBoolean("polarisFearGolems")) this.tasks.addTask(1, fearGolems);
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, null));
 	}
@@ -104,6 +102,7 @@ public class EntityPolaris extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] polarisStats = TragicConfig.getMobStat("polarisStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(polarisStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(polarisStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(polarisStats[2]);
@@ -115,14 +114,14 @@ public class EntityPolaris extends TragicBoss {
 	public void onDeath(DamageSource src)
 	{
 		super.onDeath(src);
-		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.polaris);
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.polaris);
 	}
 
 	@Override
 	protected void dropFewItems(boolean flag, int l)
 	{
 		super.dropFewItems(flag, l);
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 5)));
+		if (!this.worldObj.isRemote && TragicConfig.getBoolean("allowMobStatueDrops") && rand.nextInt(100) <= TragicConfig.getInt("mobStatueDropChance") && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 5)));
 	}
 
 	@Override
@@ -196,13 +195,13 @@ public class EntityPolaris extends TragicBoss {
 		if (this.isClone() && this.tasks.taskEntries.contains(fearGolems)) this.tasks.taskEntries.remove(fearGolems);
 		if (this.isInWater()) this.teleportRandomly();
 
-		if (this.ticksExisted % 240 == 0 && TragicConfig.polarisRegeneration) this.heal(3.0F);
+		if (this.ticksExisted % 240 == 0 && TragicConfig.getBoolean("polarisRegeneration")) this.heal(3.0F);
 
 		if (this.getAttackTarget() != null && !this.isClone())
 		{
-			if (TragicConfig.polarisNighttimeSet) this.worldObj.getWorldInfo().setWorldTime(18000);
+			if (TragicConfig.getBoolean("polarisNighttimeSet")) this.worldObj.getWorldInfo().setWorldTime(18000);
 
-			if (this.isEntityInRange(this.getAttackTarget(), 3.0F, 16.0F) && TragicConfig.polarisInvisibility)
+			if (this.isEntityInRange(this.getAttackTarget(), 3.0F, 16.0F) && TragicConfig.getBoolean("polarisInvisibility"))
 			{
 				this.setInvisible(true);
 			}
@@ -211,8 +210,8 @@ public class EntityPolaris extends TragicBoss {
 				this.setInvisible(false);
 			}
 
-			if (this.getDistanceToEntity(this.getAttackTarget()) > 16.0F && rand.nextInt(48) == 0 && TragicConfig.polarisTeleport) this.teleportToEntity(this.getAttackTarget());
-			if (this.ticksExisted % 10 == 0 && rand.nextInt(4) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F && TragicConfig.polarisTeleport) this.teleportRandomly();
+			if (this.getDistanceToEntity(this.getAttackTarget()) > 16.0F && rand.nextInt(48) == 0 && TragicConfig.getBoolean("polarisTeleport")) this.teleportToEntity(this.getAttackTarget());
+			if (this.ticksExisted % 10 == 0 && rand.nextInt(4) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F && TragicConfig.getBoolean("polarisTeleport")) this.teleportRandomly();
 		}
 		else
 		{
@@ -238,7 +237,7 @@ public class EntityPolaris extends TragicBoss {
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase)
 		{
-			if (this.getHealth() - par2 > 0.0F && TragicConfig.polarisTeleport) this.teleportRandomly();
+			if (this.getHealth() - par2 > 0.0F && TragicConfig.getBoolean("polarisTeleport")) this.teleportRandomly();
 
 			if (par1DamageSource.getEntity() instanceof EntityPlayer && !par1DamageSource.isProjectile())
 			{
@@ -270,7 +269,7 @@ public class EntityPolaris extends TragicBoss {
 		if (flag)
 		{
 			if (rand.nextBoolean() && par1Entity instanceof EntityLivingBase) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 30));
-			if (TragicConfig.polarisTeleport) this.teleportRandomly();
+			if (TragicConfig.getBoolean("polarisTeleport")) this.teleportRandomly();
 
 			ArrayList<EntityPolaris> list = (ArrayList<EntityPolaris>) this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
 			for (int i = 0; i < list.size(); i++)
@@ -290,7 +289,7 @@ public class EntityPolaris extends TragicBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.worldObj.isDaytime() ? 0 : (int) polarisStats[5];
+		return this.worldObj.isDaytime() ? 0 : TragicConfig.getMobStat("polarisStats").getArmorValue();
 	}
 
 	@Override
@@ -299,7 +298,7 @@ public class EntityPolaris extends TragicBoss {
 	@Override
 	protected void onTeleport(double d3, double d4, double d5)
 	{
-		if (rand.nextBoolean() && this.getHealth() <= this.getMaxHealth() / 2 && TragicConfig.polarisAfterImage)
+		if (rand.nextBoolean() && this.getHealth() <= this.getMaxHealth() / 2 && TragicConfig.getBoolean("polarisAfterImage"))
 		{
 			List<EntityPolaris> list = this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
 			for (int mow = 0; mow < list.size(); mow++)
@@ -348,19 +347,19 @@ public class EntityPolaris extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.sonar" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.polaris.sonar" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.ding" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.polaris.ding" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.polaris.death" : null;
 	}
 
 	@Override
@@ -383,7 +382,7 @@ public class EntityPolaris extends TragicBoss {
 	
 	@Override
 	protected String getTeleportSound() {
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.clone" : super.getTeleportSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.polaris.clone" : super.getTeleportSound();
 	}
 	
 	@Override

@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.goldenPirahStats;
-import static tragicneko.tragicmc.TragicConfig.pirahStats;
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,8 +23,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
-
-import com.google.common.base.Predicate;
 
 public class EntityPirah extends TragicMob {
 	
@@ -86,12 +84,13 @@ public class EntityPirah extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		boolean flag = this.getTextureID() == 7 && TragicConfig.pirahGolden;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? goldenPirahStats[0] : pirahStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? goldenPirahStats[1] : pirahStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? goldenPirahStats[2] : pirahStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? goldenPirahStats[3] : pirahStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? goldenPirahStats[4] : pirahStats[4]);
+		boolean flag = this.getTextureID() == 7 && TragicConfig.getBoolean("pirahGolden");
+		double[] stats = TragicConfig.getMobStat(flag ? "goldenPirahStats" : "pirahStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(stats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(stats[4]);
 	}
 
 	@Override
@@ -127,25 +126,7 @@ public class EntityPirah extends TragicMob {
 	protected void setTextureID(byte b)
 	{
 		this.dataWatcher.updateObject(DW_TEXTURE_ID, b);
-		
-		float height = 0.515F;
-		float width = 0.325F;
-
-		if (b == 7 && TragicConfig.pirahGolden)
-		{
-			height *= 1.5F;
-			width *= 1.5F;
-			this.experienceValue = 12;
-		}
-
-		if (b == 0)
-		{
-			this.setSize(width, height);
-		}
-		else
-		{
-			this.setSize(width * 1.225F, height * 1.225F);
-		}
+		if (b == 7 && TragicConfig.getBoolean("pirahGolden")) this.experienceValue = 12;
 	}
 
 	public byte getTextureID()
@@ -174,17 +155,7 @@ public class EntityPirah extends TragicMob {
 				//spawn splash particles
 			}
 
-			float w = 0.325F;
-			float h = 0.515F;
-
-			if (this.getTextureID() == 7 && TragicConfig.pirahGolden)
-			{
-				w *= 1.5F;
-				h *= 1.5F;
-				//spawn special particles
-			}
 			
-			this.setSize(w, h);
 			
 		}
 		else
@@ -255,7 +226,8 @@ public class EntityPirah extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) (this.getTextureID() == 7 && TragicConfig.pirahGolden ? goldenPirahStats[5] : pirahStats[5]);
+		final boolean flag = this.getTextureID() == 7 && TragicConfig.getBoolean("pirahGolden");
+		return TragicConfig.getMobStat(flag ? "goldenPirahStats" : "pirahStats").getArmorValue();
 	}
 
 	protected Material getMaterial() {
@@ -316,4 +288,18 @@ public class EntityPirah extends TragicMob {
     {
         return "TragicMC.GoldenPirah";
     }
+	
+	@Override
+	protected void updateSize() {
+		float w = 0.325F;
+		float h = 0.515F;
+
+		if (this.getTextureID() == 7 && TragicConfig.getBoolean("pirahGolden"))
+		{
+			w *= 1.5F;
+			h *= 1.5F;
+		}
+		
+		this.setSize(w, h);
+	}
 }

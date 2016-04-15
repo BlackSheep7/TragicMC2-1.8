@@ -57,7 +57,7 @@ public class ItemBleedingObsidianOrb extends Item {
 				}
 			}
 
-			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
+			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
 			par1ItemStack.stackSize--;
 		}
 		return par1ItemStack;

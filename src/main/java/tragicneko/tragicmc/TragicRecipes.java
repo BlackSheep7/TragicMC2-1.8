@@ -1261,7 +1261,7 @@ public class TragicRecipes {
 				);
 
 		//Amulets
-		if (TragicConfig.allowAmuletCrafting)
+		if (TragicConfig.getBoolean("allowAmuletCrafting"))
 		{
 			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ChickenAmulet, 1),
 					"xyx",
@@ -1479,7 +1479,7 @@ public class TragicRecipes {
 					'z', TragicItems.AwakeningStone
 					);
 
-			if (TragicConfig.allowDoom)
+			if (TragicConfig.getBoolean("allowDoom"))
 			{
 				GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ConsumptionAmulet, 1),
 						"xyx",
@@ -2129,7 +2129,7 @@ public class TragicRecipes {
 		}
 
 		//Amulet level-up recipes
-		if (TragicConfig.allowAmuletLeveling)
+		if (TragicConfig.getBoolean("allowAmuletLeveling"))
 		{
 			RecipeSorter.register("tragicmc:amuletleveling", RecipeAmulets.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
 

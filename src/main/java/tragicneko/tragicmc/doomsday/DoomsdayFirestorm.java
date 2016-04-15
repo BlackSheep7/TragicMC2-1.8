@@ -26,7 +26,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
 
-		if (TragicConfig.allowFlight)
+		if (TragicConfig.getBoolean("allowFlight"))
 		{
 			player.addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 6000, 0));
 		}
@@ -46,7 +46,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					entity = (EntityLivingBase) list.get(i);
-					if (TragicConfig.allowStun && crucMoment)
+					if (TragicConfig.getBoolean("allowStun") && crucMoment)
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 1));
 					}

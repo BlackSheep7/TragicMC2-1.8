@@ -23,7 +23,7 @@ public class AmuletClaymation extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level) 
 	{
-		if (TragicConfig.amuClaymation && player.ticksExisted % 60 == 0)
+		if (TragicConfig.getBoolean("amuClaymation") && player.ticksExisted % 60 == 0)
 		{
 			double d0 = 4.0 + (level * 4.0);
 			int chance;

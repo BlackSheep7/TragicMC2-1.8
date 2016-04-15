@@ -31,10 +31,10 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 	public BiomeGenScorchedWasteland(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableCreatureList.clear();
-		if (TragicConfig.allowKindlingSpirit) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.kindlingSpiritSC, TragicConfig.kindlingSpiritGS[0], TragicConfig.kindlingSpiritGS[1]));
-		if (TragicConfig.allowJabba) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.jabbaSC, TragicConfig.jabbaGS[0], TragicConfig.jabbaGS[1]));
-		if (TragicConfig.allowMagmox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityMagmox.class, TragicConfig.magmoxSC, TragicConfig.magmoxGS[0], TragicConfig.magmoxGS[1]));
-		if (TragicConfig.allowKitsunakuma) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKitsune.class, TragicConfig.kitsunakumaSC, 0, 0));
+		if (TragicConfig.getBoolean("allowKindlingSpirit")) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.getInt("kindlingSpiritSpawnChance"), TragicConfig.getIntArray("kindlingSpiritGroupSize")[0], TragicConfig.getIntArray("kindlingSpiritGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowJabba")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.getInt("jabbaSpawnChance"), TragicConfig.getIntArray("jabbaGroupSize")[0], TragicConfig.getIntArray("jabbaGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowMagmox")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityMagmox.class, TragicConfig.getInt("magmoxSpawnChance"), TragicConfig.getIntArray("magmoxGroupSize")[0], TragicConfig.getIntArray("magmoxGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowKitsunakuma")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKitsune.class, TragicConfig.getInt("kitsunakumaSpawnChance"), 0, 0));
 		this.enableSnow = false;
 		this.enableRain = false;
 		this.temperature = 2.0F;

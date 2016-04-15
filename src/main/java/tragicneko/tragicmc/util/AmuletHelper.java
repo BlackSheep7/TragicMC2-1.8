@@ -187,12 +187,12 @@ public class AmuletHelper {
 
 		if (attr == SharedMonsterAttributes.attackDamage)
 		{
-			d0 = 0.25 + rand.nextInt(20) * 0.25;
+			d0 = 0.25 + rand.nextInt(20) * 0.125;
 			uuid = uuids[5];
 		}
 		else if (attr == SharedMonsterAttributes.knockbackResistance)
 		{
-			d0 = 0.2 + rand.nextInt(20) * 0.2;
+			d0 = 0.2 + rand.nextInt(20) * 0.1;
 			uuid = uuids[4];
 		}
 		else if (attr == SharedMonsterAttributes.maxHealth)
@@ -202,7 +202,7 @@ public class AmuletHelper {
 		}
 		else if (attr == SharedMonsterAttributes.movementSpeed)
 		{
-			d0 = 0.02 + rand.nextInt(20) * 0.02;
+			d0 = 0.02 + rand.nextInt(20) * 0.01;
 			uuid = uuids[7];
 		}
 		else if (attr == AmuletModifier.reach)
@@ -212,7 +212,7 @@ public class AmuletHelper {
 		}
 		else if (attr == AmuletModifier.jumpHeight)
 		{
-			d0 = 0.25 + rand.nextInt(10) * 0.25;
+			d0 = 0.25 + rand.nextInt(10) * 0.125;
 			uuid = uuids[0];
 		}
 		else if (attr == AmuletModifier.resistance)

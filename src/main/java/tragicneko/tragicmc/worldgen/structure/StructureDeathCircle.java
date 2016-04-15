@@ -26,7 +26,7 @@ public class StructureDeathCircle extends StructureBoss {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == -1 || dim == TragicConfig.collisionID;
+		return dim == -1 || dim == TragicConfig.getInt("collisionID");
 	}
 
 	@Override

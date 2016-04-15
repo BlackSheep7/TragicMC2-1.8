@@ -41,7 +41,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 				}
 			}
 
-			if (entity instanceof EntityLivingBase && TragicConfig.allowCorruption && ((EntityLivingBase) entity).isPotionActive(TragicPotion.Corruption))
+			if (entity instanceof EntityLivingBase && TragicConfig.getBoolean("allowCorruption") && ((EntityLivingBase) entity).isPotionActive(TragicPotion.Corruption))
 			{
 				((EntityLivingBase) entity).removePotionEffect(TragicPotion.Corruption.id);
 			}

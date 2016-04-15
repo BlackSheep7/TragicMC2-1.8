@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.kragulStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -43,6 +42,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] kragulStats = TragicConfig.getMobStat("kragulStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kragulStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(kragulStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(kragulStats[2]);
@@ -53,7 +53,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) kragulStats[5];
+		return TragicConfig.getMobStat("kragulStats").getArmorValue();
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 		++this.timeSinceFiring;
 
 		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F && rand.nextInt(16) == 0
-				&& this.canEntityBeSeen(this.getAttackTarget()) && this.timeSinceFiring >= 60 && TragicConfig.kragulSpiritCasts)
+				&& this.canEntityBeSeen(this.getAttackTarget()) && this.timeSinceFiring >= 60 && TragicConfig.getBoolean("kragulSpiritCasts"))
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
 			double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -109,7 +109,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 				}
 				else if (rand.nextInt(16) == 0)
 				{
-					if (TragicConfig.allowStun) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120));
+					if (TragicConfig.getBoolean("allowStun")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120));
 				}
 			}
 		}

@@ -26,7 +26,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 		if (player == null) return null;
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (doom == null || !TragicConfig.allowDoom || !TragicConfig.allowDoomsdays) return null;
+		if (doom == null || !TragicConfig.getBoolean("allowDoom") || !TragicConfig.getBoolean("allowDoomsdays")) return null;
 
 		ItemStack stack = message.stack;
 		Doomsday doomsday = null;
@@ -46,7 +46,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 				doomsday = ((TragicTool)stack.getItem()).getDoomsday();
 			}
 			
-			if (!(stack.getItem() instanceof ItemArmor) && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.allowDoomScrollImbue) doomsday = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
+			if (!(stack.getItem() instanceof ItemArmor) && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.getBoolean("allowDoomScrollImbue")) doomsday = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
 		}
 		else
 		{
@@ -62,7 +62,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 					doomsdays[i] = ((TragicArmor)stack.getItem()).doomsday;
 				}
 				
-				if (stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.allowDoomScrollImbue)
+				if (stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.getBoolean("allowDoomScrollImbue"))
 				{
 					doomsdays[i] = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
 					if (doomsdays[i] != null) TragicMC.logInfo("Identified armor piece with a Doomsday, it is " + doomsdays[i].getLocalizedName());
@@ -94,11 +94,11 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 
 		if (doomsday == null) return null;
 
-		if (doomsday.getDoomsdayType() == EnumDoomType.INFLUENCE && !TragicConfig.allowInfluenceDoomsdays ||
-				doomsday.getDoomsdayType() == EnumDoomType.CRISIS && !TragicConfig.allowCrisisDoomsdays ||
-				doomsday.getDoomsdayType() == EnumDoomType.OVERFLOW && !TragicConfig.allowOverflowDoomsdays ||
-				doomsday.getDoomsdayType() == EnumDoomType.WORLDSHAPER && !TragicConfig.allowWorldShaperDoomsdays ||
-				doomsday.getDoomsdayType() == EnumDoomType.COMBINATION && !TragicConfig.allowCombinationDoomsdays)
+		if (doomsday.getDoomsdayType() == EnumDoomType.INFLUENCE && !TragicConfig.getBoolean("allowInfluenceDoomsdays") ||
+				doomsday.getDoomsdayType() == EnumDoomType.CRISIS && !TragicConfig.getBoolean("allowCrisisDoomsdays") ||
+				doomsday.getDoomsdayType() == EnumDoomType.OVERFLOW && !TragicConfig.getBoolean("allowOverflowDoomsdays") ||
+				doomsday.getDoomsdayType() == EnumDoomType.WORLDSHAPER && !TragicConfig.getBoolean("allowWorldShaperDoomsdays") ||
+				doomsday.getDoomsdayType() == EnumDoomType.COMBINATION && !TragicConfig.getBoolean("allowCombinationDoomsdays"))
 		{
 			player.addChatComponentMessage(new ChatComponentText("The Doomsday of that type is disabled, enable in config."));
 			return null;

@@ -34,7 +34,7 @@ public class EntityLargeRock extends EntityProjectile {
 		{
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 12.0F);
 
-			if (this.rand.nextInt(4) == 0 && mop.entityHit instanceof EntityLivingBase && TragicConfig.allowStun)
+			if (this.rand.nextInt(4) == 0 && mop.entityHit instanceof EntityLivingBase && TragicConfig.getBoolean("allowStun"))
 			{
 				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 0));
 			}

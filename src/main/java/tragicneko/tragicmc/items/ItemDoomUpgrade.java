@@ -35,26 +35,26 @@ public class ItemDoomUpgrade extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && !TragicConfig.allowDoom) return par1ItemStack;
+		if (!par2World.isRemote && !TragicConfig.getBoolean("allowDoom")) return par1ItemStack;
 
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 		if (doom == null) return par1ItemStack;
 
-		if (TragicConfig.shouldDoomLimitIncrease && doom.getMaxDoom() + TragicConfig.doomConsumeAmount <= TragicConfig.maxDoomAmount)
+		if (TragicConfig.getBoolean("shouldDoomLimitIncrease") && doom.getMaxDoom() + TragicConfig.getInt("doomConsumeIncreaseAmount") <= TragicConfig.getInt("maxDoomAmount"))
 		{
 			if (!par2World.isRemote)
 			{
 				doom.increaseConsumptionLevel();
 
-				if (TragicConfig.allowConsumeRefill)
+				if (TragicConfig.getBoolean("allowConsumeRefill"))
 				{
-					if (TragicConfig.consumeRefillAmount >= 100)
+					if (TragicConfig.getInt("doomConsumeRefillAmount") >= 100)
 					{
 						doom.fillDoom();
 					}
 					else
 					{
-						double refill = doom.getMaxDoom() * TragicConfig.consumeRefillAmount / 100;
+						double refill = doom.getMaxDoom() * TragicConfig.getInt("doomConsumeRefillAmount") / 100;
 
 						if (doom.getCurrentDoom() + refill < doom.getMaxDoom())
 						{
@@ -67,7 +67,7 @@ public class ItemDoomUpgrade extends Item {
 					}
 				}
 
-				if (TragicConfig.allowAchievements && par3EntityPlayer instanceof EntityPlayerMP) par3EntityPlayer.triggerAchievement(TragicAchievements.doomConsume); 
+				if (TragicConfig.getBoolean("allowAchievements") && par3EntityPlayer instanceof EntityPlayerMP) par3EntityPlayer.triggerAchievement(TragicAchievements.doomConsume); 
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Doom max limit increased!"));
 			}
@@ -81,15 +81,15 @@ public class ItemDoomUpgrade extends Item {
 		{
 			if (!par2World.isRemote)
 			{
-				if (TragicConfig.allowConsumeRefill)
+				if (TragicConfig.getBoolean("allowConsumeRefill"))
 				{
-					if (TragicConfig.consumeRefillAmount >= 100)
+					if (TragicConfig.getInt("doomConsumeRefillAmount") >= 100)
 					{
 						doom.fillDoom();
 					}
 					else
 					{
-						double refill = doom.getMaxDoom() * TragicConfig.consumeRefillAmount / 100;
+						double refill = doom.getMaxDoom() * TragicConfig.getInt("doomConsumeRefillAmount") / 100;
 
 						if (doom.getCurrentDoom() + refill < doom.getMaxDoom())
 						{

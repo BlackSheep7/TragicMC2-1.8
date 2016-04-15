@@ -47,7 +47,7 @@ public class TragicTool extends ItemTool {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
+		if (TragicConfig.getBoolean("allowRandomWeaponLore") && LoreHelper.getRarityFromStack(stack) >= 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
 
@@ -58,7 +58,7 @@ public class TragicTool extends ItemTool {
 			}
 		}
 
-		if (TragicConfig.allowDoomsdays && this.doomsday != null)
+		if (TragicConfig.getBoolean("allowDoomsdays") && this.doomsday != null)
 		{
 			par2List.add(EnumChatFormatting.WHITE + "Doomsday:");
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
@@ -79,7 +79,7 @@ public class TragicTool extends ItemTool {
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
 	{
-		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
+		if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) return false;
 		return super.hitEntity(stack, entity, entity2);
 	}
 	

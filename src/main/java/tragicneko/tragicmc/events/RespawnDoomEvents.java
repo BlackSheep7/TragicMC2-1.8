@@ -22,14 +22,14 @@ public class RespawnDoomEvents {
 		PropertyDoom property = PropertyDoom.get(event.player);
 		if (property == null) return;
 
-		if (TragicConfig.allowRespawnPunishment && !event.player.capabilities.isCreativeMode)
+		if (TragicConfig.getBoolean("allowRespawnPunishment") && !event.player.capabilities.isCreativeMode)
 		{
 			if (event.player.worldObj.getDifficulty() == EnumDifficulty.HARD)
 			{
 				property.emptyDoom();
 				event.player.addPotionEffect(new PotionEffect(Potion.weakness.id, 1800, 1));
 
-				if (TragicConfig.allowCripple)
+				if (TragicConfig.getBoolean("allowCripple"))
 				{
 					event.player.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 1800, 5));
 					event.player.setHealth(event.player.getMaxHealth());
@@ -41,7 +41,7 @@ public class RespawnDoomEvents {
 				property.increaseDoom(-(property.getCurrentDoom() / 2));
 				event.player.addPotionEffect(new PotionEffect(Potion.weakness.id, 1200));
 
-				if (TragicConfig.allowCripple)
+				if (TragicConfig.getBoolean("allowCripple"))
 				{
 					event.player.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 1200, 3));
 					event.player.setHealth(event.player.getMaxHealth());
@@ -52,7 +52,7 @@ public class RespawnDoomEvents {
 			{
 				property.increaseDoom(-(property.getCurrentDoom() / 4));
 
-				if (TragicConfig.allowCripple)
+				if (TragicConfig.getBoolean("allowCripple"))
 				{
 					event.player.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 600, 1));
 					event.player.setHealth(event.player.getMaxHealth());
@@ -61,6 +61,6 @@ public class RespawnDoomEvents {
 		}
 
 		property.setCooldown(0);
-		TragicMC.proxy.net.sendTo(new MessageDoom(event.player), (EntityPlayerMP)event.player);
+		if (TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendTo(new MessageDoom(event.player), (EntityPlayerMP)event.player);
 	}
 }

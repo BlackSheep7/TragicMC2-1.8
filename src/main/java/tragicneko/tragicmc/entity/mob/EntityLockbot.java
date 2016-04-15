@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.lockbotStats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -35,6 +34,7 @@ public class EntityLockbot extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] lockbotStats = TragicConfig.getMobStat("lockbotStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(lockbotStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(lockbotStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(lockbotStats[2]);
@@ -45,7 +45,7 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) lockbotStats[5];
+		return TragicConfig.getMobStat("lockbotStats").getArmorValue();
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class EntityLockbot extends TragicMob {
 			this.prevTarget = this.getAttackTarget();
 		}
 
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= this.getLockdownDistance() && this.getAttackTarget().riddenByEntity == null && TragicConfig.lockbotLockdown)
+		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= this.getLockdownDistance() && this.getAttackTarget().riddenByEntity == null && TragicConfig.getBoolean("lockbotLockdown"))
 		{
 			EntityLock lock = new EntityLock(this.worldObj, this, this.getAttackTarget());
 			lock.setPosition(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ);
@@ -100,7 +100,7 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.lockbot.hum" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.lockbot.hum" : null;
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.lockbot.hum" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.lockbot.hum" : null;
 	}
 
 	@Override

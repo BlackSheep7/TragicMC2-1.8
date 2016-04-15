@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.norVoxStats;
-import static tragicneko.tragicmc.TragicConfig.starVoxStats;
-
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -183,12 +180,12 @@ public class EntityNorVox extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		boolean flag = this.getNorVoxType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? norVoxStats[0] : starVoxStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? norVoxStats[1] : starVoxStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? norVoxStats[2] : starVoxStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? norVoxStats[3] : starVoxStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? norVoxStats[4] : starVoxStats[4]);
+		double[] stats = TragicConfig.getMobStat(this.getNorVoxType() == 0 ? "norVoxStats" : "starVoxStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(stats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(stats[4]);
 	}
 
 	@Override
@@ -207,7 +204,7 @@ public class EntityNorVox extends TragicMob {
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
 			if (this.getNodTicks() > 0) this.decrementNodTicks();
 			if (this.getAttackTarget() == null) this.setFiringTicks(0);
-			if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun))
+			if (TragicConfig.getBoolean("allowStun") && this.isPotionActive(TragicPotion.Stun))
 			{
 				if (this.isFiring()) this.setFiringTicks(0);
 				if (this.getAttackTime() == 0) this.setAttackTime(10);
@@ -216,15 +213,15 @@ public class EntityNorVox extends TragicMob {
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 			if (this.getFiringTicks() >= 60) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(64) == 0 && !this.isFiring())
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 2.0F && rand.nextInt(64) == 0 && !this.isFiring())
 			{
-				boolean flag = !TragicConfig.allowStun ? true : (this.isPotionActive(TragicPotion.Stun.id) ? false : true);
+				boolean flag = !TragicConfig.getBoolean("allowStun") ? true : (this.isPotionActive(TragicPotion.Stun.id) ? false : true);
 				if (flag) this.setFiringTicks(120);
 			}
 
 			if (this.getFiringTicks() >= 60 && this.ticksExisted % 20 == 0 && this.getAttackTarget() != null) this.shootProjectiles();
 
-			if (this.ticksExisted % 120 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.norVoxRegeneration) this.heal(6.0F);
+			if (this.ticksExisted % 120 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.getBoolean("norVoxRegeneration")) this.heal(6.0F);
 
 			if (!this.isFiring() && this.getAttackTarget() == null && this.ticksExisted % 60 == 0 && rand.nextInt(4) == 0) this.setNodTicks(20);
 		}
@@ -234,7 +231,7 @@ public class EntityNorVox extends TragicMob {
 
 	protected void shootProjectiles()
 	{
-		if (!TragicConfig.norVoxProjectiles) return;
+		if (!TragicConfig.getBoolean("norVoxProjectiles")) return;
 		
 		if (this.getNorVoxType() == 0)
 		{
@@ -286,8 +283,8 @@ public class EntityNorVox extends TragicMob {
 			if (this.isFiring() && par1DamageSource.getEntity() != null && rand.nextInt(4) == 0 && this.getFiringTicks() >= 40)
 			{
 				this.setFiringTicks(0);
-				if (TragicConfig.allowStun) this.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 + rand.nextInt(40)));
-				if (TragicConfig.allowAchievements && par1DamageSource.getEntity() instanceof EntityPlayerMP) ((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.norVox);
+				if (TragicConfig.getBoolean("allowStun")) this.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 + rand.nextInt(40)));
+				if (TragicConfig.getBoolean("allowAchievements") && par1DamageSource.getEntity() instanceof EntityPlayerMP) ((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.norVox);
 			}
 		}
 
@@ -301,7 +298,7 @@ public class EntityNorVox extends TragicMob {
 
 		if (flag && par1Entity instanceof EntityLivingBase && rand.nextInt(8) == 0)
 		{
-			if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(120) + 60, rand.nextInt(2)));
+			if (TragicConfig.getBoolean("allowSubmission")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(120) + 60, rand.nextInt(2)));
 		}
 		return flag;
 	}
@@ -309,7 +306,7 @@ public class EntityNorVox extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) (this.getNorVoxType() == 0 ? norVoxStats[5] : starVoxStats[5]);
+		return TragicConfig.getMobStat(this.getNorVoxType() == 0 ? "norVoxStats" : "starVoxStats").getArmorValue();
 	}
 
 	@Override
@@ -395,25 +392,25 @@ public class EntityNorVox extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return this.getNorVoxType() == 1 && TragicConfig.allowVoxStellarum;
+		return this.getNorVoxType() == 1 && TragicConfig.getBoolean("allowVoxStellarum");
 	}
 
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? (this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.scrape" : "tragicmc:mob.cryse.glass") : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.scrape" : "tragicmc:mob.cryse.glass") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? ( this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.hit") : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? ( this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.hit") : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ?  (this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.break") : null;
+		return TragicConfig.getBoolean("allowMobSounds") ?  (this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.break") : null;
 	}
 
 	@Override
@@ -437,7 +434,7 @@ public class EntityNorVox extends TragicMob {
 	@Override
 	protected void playStepSound(BlockPos pos, Block block)
 	{
-		if (this.getNorVoxType() == 0 && TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
+		if (this.getNorVoxType() == 0 && TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
 	}
 	
 	@Override

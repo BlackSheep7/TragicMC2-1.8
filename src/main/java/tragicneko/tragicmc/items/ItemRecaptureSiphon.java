@@ -24,7 +24,7 @@ public class ItemRecaptureSiphon extends Item {
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
-		if (doom == null || !TragicConfig.allowDoom || !TragicConfig.allowNonDoomsdayAbilities) return par1ItemStack;
+		if (doom == null || !TragicConfig.getBoolean("allowDoom") || !TragicConfig.getBoolean("allowNonDoomsdayAbilities")) return par1ItemStack;
 
 		if (TragicWeapon.canUseAbility(doom, 5))
 		{

@@ -252,7 +252,7 @@ public class TragicBlocks {
 
 	public static void load()
 	{
-		if (!TragicConfig.allowNonMobBlocks)
+		if (!TragicConfig.getBoolean("allowNonMobBlocks"))
 		{
 			SummonBlock = (new BlockSummon());
 			GameRegistry.registerBlock(SummonBlock, ItemBlockSummonBlocks.class, "summonBlock");
@@ -262,7 +262,7 @@ public class TragicBlocks {
 			Luminescence = (new BlockLuminescence().setUnlocalizedName("tragicmc.luminescence"));
 			GameRegistry.registerBlock(Luminescence, ItemBlock.class, "luminescence");
 
-			if (TragicConfig.allowOverlord)
+			if (TragicConfig.getBoolean("allowOverlord"))
 			{
 				OverlordBarrier = (new BlockOverlordBarrier());
 				GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
@@ -454,7 +454,7 @@ public class TragicBlocks {
 		SynapseCore = (new BlockSynapseCore().setUnlocalizedName("tragicmc.synapseCore").setHardness(20.0F).setResistance(45.0F).setStepSound(Block.soundTypeMetal));
 		GameRegistry.registerBlock(SynapseCore, ItemBlock.class, "synapseCore");
 
-		if (TragicConfig.allowOverlord)
+		if (TragicConfig.getBoolean("allowOverlord"))
 		{
 			OverlordBarrier = (new BlockOverlordBarrier());
 			GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
@@ -469,7 +469,7 @@ public class TragicBlocks {
 			{
 				if (!world.isRemote && entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse)
 				{
-					if (TragicConfig.allowCorruption) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 200, 0));
+					if (TragicConfig.getBoolean("allowCorruption")) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 200, 0));
 					entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob((EntityLivingBase) entity), 1.0F);
 				}
 			}
@@ -478,7 +478,7 @@ public class TragicBlocks {
 			@SideOnly(Side.CLIENT)
 			public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 			{
-				for (byte i = 0; i < 10; i++)
+				for (byte i = 0; i < 5; i++)
 				{
 					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.0F, 0.0F, 0.0F);
@@ -638,7 +638,7 @@ public class TragicBlocks {
 			@SideOnly(Side.CLIENT)
 			public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 			{
-				for (byte i = 0; i < 10; i++)
+				for (byte i = 0; i < 5; i++)
 				{
 					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.0F, 0.0F, 0.0F);
@@ -661,7 +661,7 @@ public class TragicBlocks {
 			{
 				if (!world.isRemote && entity instanceof EntityLivingBase)
 				{
-					boolean flag = TragicConfig.allowImmunity && ((EntityLivingBase) entity).isPotionActive(TragicPotion.Immunity);
+					boolean flag = TragicConfig.getBoolean("allowImmunity") && ((EntityLivingBase) entity).isPotionActive(TragicPotion.Immunity);
 
 					if (!flag)
 					{
@@ -675,7 +675,7 @@ public class TragicBlocks {
 			@SideOnly(Side.CLIENT)
 			public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
 			{
-				for (byte i = 0; i < 10; i++)
+				for (byte i = 0; i < 5; i++)
 				{
 					world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + rand.nextDouble() - rand.nextDouble(), pos.getY() + (rand.nextDouble() * 0.725), pos.getZ() + rand.nextDouble() - rand.nextDouble(),
 							0.4F, 1.0F, 0.4F);

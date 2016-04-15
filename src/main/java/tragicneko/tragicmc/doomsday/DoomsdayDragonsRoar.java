@@ -19,7 +19,7 @@ public class DoomsdayDragonsRoar extends Doomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		if (TragicConfig.allowFlight)
+		if (TragicConfig.getBoolean("allowFlight"))
 		{
 			player.addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 6000, 0));
 		}
@@ -38,9 +38,9 @@ public class DoomsdayDragonsRoar extends Doomsday {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					entity = (EntityLivingBase) list.get(i);
-					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
-					if (TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 1));
-					else if (TragicConfig.allowFear) entity.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 120, 1));
+					if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
+					if (TragicConfig.getBoolean("allowStun")) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 1));
+					else if (TragicConfig.getBoolean("allowFear")) entity.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 120, 1));
 					else entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 120, 10));
 				}
 			}

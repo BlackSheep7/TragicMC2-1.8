@@ -18,7 +18,7 @@ public class SynapseWorldProvider extends WorldProvider
 {
 	public SynapseWorldProvider()
 	{
-		this.dimensionId = TragicConfig.synapseID;
+		this.dimensionId = TragicConfig.getInt("synapseID");
 		this.hasNoSky = true;
 	}
 
@@ -96,7 +96,7 @@ public class SynapseWorldProvider extends WorldProvider
 	@Override
 	public boolean canRespawnHere()
 	{
-		return TragicConfig.allowSynapseRespawn;
+		return TragicConfig.getBoolean("allowSynapseRespawn");
 	}
 
 	@Override

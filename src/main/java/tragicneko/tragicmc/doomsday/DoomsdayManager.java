@@ -162,7 +162,7 @@ public class DoomsdayManager {
 						break;
 					}
 
-					if (TragicConfig.allowCombinationDoomsdays)
+					if (TragicConfig.getBoolean("allowCombinationDoomsdays"))
 					{
 						if (flag && temp != null && temp.dday.getCombination() == effect.dday)
 						{
@@ -184,7 +184,7 @@ public class DoomsdayManager {
 								break;
 							}
 							
-							if (TragicConfig.allowAchievements) effect.player.triggerAchievement(TragicAchievements.doomsdayCombo);
+							if (TragicConfig.getBoolean("allowAchievements")) effect.player.triggerAchievement(TragicAchievements.doomsdayCombo);
 							break;
 						}
 
@@ -194,7 +194,7 @@ public class DoomsdayManager {
 							temp = effect;
 						}
 						
-						if (!(effect.dday instanceof IExtendedDoomsday)&& TragicConfig.allowPartnerDoomsdays)
+						if (!(effect.dday instanceof IExtendedDoomsday)&& TragicConfig.getBoolean("allowPartnerDoomsdays"))
 						{
 							Iterator<UUID> it = playerMap.keySet().iterator();
 							
@@ -207,7 +207,7 @@ public class DoomsdayManager {
 								for (int j = 0; j < effs.size(); j++)
 								{
 									eff = effs.get(j);
-									if (eff.dday instanceof IExtendedDoomsday && eff.dday.getCombination() == effect.dday && effect.doom.getPlayer().getDistanceToEntity(eff.doom.getPlayer()) <= TragicConfig.partnerDoomsdayDistance)
+									if (eff.dday instanceof IExtendedDoomsday && eff.dday.getCombination() == effect.dday && effect.doom.getPlayer().getDistanceToEntity(eff.doom.getPlayer()) <= TragicConfig.getInt("partnerDoomsdayDistance"))
 									{
 										list.clear();
 										reason = "Partner activated a Combination.";

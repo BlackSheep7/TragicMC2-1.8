@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.greaterStinStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -23,7 +22,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		super(par1World);
 		this.experienceValue = 150;
 		this.stepHeight = 1.5F;
-		if (this.superiorForm == null) this.superiorForm = this.rand.nextBoolean() && TragicConfig.allowStinKing ? EntityStinKing.class : (TragicConfig.allowStinQueen ? EntityStinQueen.class : null);
+		if (this.superiorForm == null) this.superiorForm = this.rand.nextBoolean() && TragicConfig.getBoolean("allowStinKing") ? EntityStinKing.class : (TragicConfig.getBoolean("allowStinQueen") ? EntityStinQueen.class : null);
 	}
 
 	@Override
@@ -36,6 +35,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] greaterStinStats = TragicConfig.getMobStat("greaterStinStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(greaterStinStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(greaterStinStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(greaterStinStats[2]);
@@ -74,7 +74,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) greaterStinStats[5];
+		return TragicConfig.getMobStat("greaterStinStats").getArmorValue();
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		}
 
 		if (this.getAttackTarget() != null && !this.isCharging() && !this.isGalloping() && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F &&
-				this.ticksExisted % 10 == 0 && rand.nextInt(12) == 0 && this.getAttackTarget().onGround && this.onGround && this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && TragicConfig.greaterStinCharge)
+				this.ticksExisted % 10 == 0 && rand.nextInt(12) == 0 && this.getAttackTarget().onGround && this.onGround && this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && TragicConfig.getBoolean("greaterStinCharge"))
 		{
 			this.setChargeTicks(200);
 		}
@@ -173,7 +173,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 			if (rand.nextBoolean() && par1Entity instanceof EntityLivingBase)
 			{
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 300, 0));
-				if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 1 + rand.nextInt(3)));
+				if (TragicConfig.getBoolean("allowSubmission")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 1 + rand.nextInt(3)));
 			}
 
 			par1Entity.motionY += 1.222543D;
@@ -199,7 +199,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return this.superiorForm == EntityStinKing.class ? TragicConfig.allowStinKing : TragicConfig.allowStinQueen;
+		return this.superiorForm == EntityStinKing.class ? TragicConfig.getBoolean("allowStinKing") : TragicConfig.getBoolean("allowStinQueen");
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.pumpkinheadStats;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -138,6 +136,7 @@ public class EntityPumpkinhead extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] pumpkinheadStats = TragicConfig.getMobStat("pumpkinheadStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(pumpkinheadStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(pumpkinheadStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(pumpkinheadStats[2]);
@@ -206,7 +205,7 @@ public class EntityPumpkinhead extends TragicMob {
 			this.resetModValue();
 		}
 
-		if (TragicConfig.pumpkinheadHaste)
+		if (TragicConfig.getBoolean("pumpkinheadHaste"))
 		{
 			AttributeModifier mod = new AttributeModifier(UUID.fromString("2042ddcd-b29a-474f-acda-00ec1a2b4a2e"), "pumpkinheadHaste", this.getModValue(), 0);
 			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(mod);
@@ -218,7 +217,7 @@ public class EntityPumpkinhead extends TragicMob {
 			}
 		}
 
-		if (this.getHealth() <= this.getMaxHealth() / 4 && this.hasHomePumpkin() && rand.nextInt(4) == 0 && this.ticksExisted % 10 == 0 && TragicConfig.pumpkinheadPumpkinbombs)
+		if (this.getHealth() <= this.getMaxHealth() / 4 && this.hasHomePumpkin() && rand.nextInt(4) == 0 && this.ticksExisted % 10 == 0 && TragicConfig.getBoolean("pumpkinheadPumpkinbombs"))
 		{
 			for (byte x = 0; x < 6; x++)
 			{
@@ -234,7 +233,8 @@ public class EntityPumpkinhead extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.hasHomePumpkin() ? (int) pumpkinheadStats[5] : MathHelper.floor_double(pumpkinheadStats[5] / 3);
+		final int i = TragicConfig.getMobStat("pumpkinheadStats").getArmorValue();
+		return this.hasHomePumpkin() ? i : MathHelper.floor_double(i / 3);
 	}
 
 	public boolean isPumpkinNearby()
@@ -266,7 +266,7 @@ public class EntityPumpkinhead extends TragicMob {
 
 	public void createHomePumpkin()
 	{
-		if (!TragicConfig.pumpkinheadPumpkinSpawn) return;
+		if (!TragicConfig.getBoolean("pumpkinheadPumpkinSpawn")) return;
 		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
 		BlockPos coords;
 		Block block;
@@ -356,19 +356,19 @@ public class EntityPumpkinhead extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? (this.isAngry() ? "tragicmc:mob.pumpkinhead.angry" : "tragicmc:mob.pumpkinhead.living") : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.isAngry() ? "tragicmc:mob.pumpkinhead.angry" : "tragicmc:mob.pumpkinhead.living") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.pumpkinhead.hiss" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.pumpkinhead.hiss" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.pumpkinhead.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.pumpkinhead.death" : null;
 	}
 
 	@Override

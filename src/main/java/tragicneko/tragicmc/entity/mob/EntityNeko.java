@@ -211,7 +211,7 @@ public abstract class EntityNeko extends TragicMob {
 		this.setReleased(true);
 		this.updateNekoTasks();
 
-		if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.tragicNekoRelease);
+		if (TragicConfig.getBoolean("allowAchievements") && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.tragicNekoRelease);
 	}
 
 	@Override
@@ -313,13 +313,13 @@ public abstract class EntityNeko extends TragicMob {
 		{
 		case 1:
 		case 4:
-			if (TragicConfig.tragicNekoStickyBombs) theProjectile = new EntityNekoStickyBomb(this.worldObj, this);
+			if (TragicConfig.getBoolean("tragicNekoStickyBombs")) theProjectile = new EntityNekoStickyBomb(this.worldObj, this);
 			break;
 		case 2:
-			if (TragicConfig.tragicNekoClusterBombs) theProjectile = new EntityNekoClusterBomb(this.worldObj, this);
+			if (TragicConfig.getBoolean("tragicNekoClusterBomb")) theProjectile = new EntityNekoClusterBomb(this.worldObj, this);
 			break;
 		default:
-			if (TragicConfig.tragicNekoClusterBombs) theProjectile = new EntityNekoMiniBomb(this.worldObj, this);
+			if (TragicConfig.getBoolean("tragicNekoClusterBomb")) theProjectile = new EntityNekoMiniBomb(this.worldObj, this);
 			break;
 		}
 
@@ -346,7 +346,7 @@ public abstract class EntityNeko extends TragicMob {
 
 	public boolean isProperDate()
 	{
-		if (!TragicConfig.tragicNekoCelebration) return false;
+		if (!TragicConfig.getBoolean("tragicNekoCelebration")) return false;
 		Calendar calendar = this.worldObj.getCurrentDate();
 
 		if ((calendar.get(2) + 1 == 8 && calendar.get(5) > 29) || (calendar.get(2) + 1 == 9 || calendar.get(5) < 3))
@@ -519,7 +519,7 @@ public abstract class EntityNeko extends TragicMob {
 					player.addChatComponentMessage(new ChatComponentText("Thanks for celebrating my birthday with me~!"));
 				}
 
-				if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.tragicNeko);
+				if (TragicConfig.getBoolean("allowAchievements") && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.tragicNeko);
 				if (!player.capabilities.isCreativeMode) player.getCurrentEquippedItem().stackSize--;
 				return true;
 			}

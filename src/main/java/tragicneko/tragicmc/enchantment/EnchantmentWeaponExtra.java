@@ -78,22 +78,22 @@ public class EnchantmentWeaponExtra extends Enchantment {
 					par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.blindness.id, 120 * par1, par1));
 					break;
 				case 3:
-					if (TragicConfig.allowDisorientation) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
+					if (TragicConfig.getBoolean("allowDisorientation")) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
 					break;
 				case 4:
 					par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.confusion.id, 120 * par1, par1));
 				case 5:
-					if (TragicConfig.allowDisorientation) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
+					if (TragicConfig.getBoolean("allowDisorientation")) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
 					break;
 				case 6:
 					par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.blindness.id, 120 * par1, par1));
 				case 7:
-					if (TragicConfig.allowDisorientation) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
+					if (TragicConfig.getBoolean("allowDisorientation")) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
 				case 8:
 					par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.confusion.id, 120 * par1, par1));
 					break;
 				case 9:
-					if (TragicConfig.allowStun) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120 * par1, par1));
+					if (TragicConfig.getBoolean("allowStun")) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120 * par1, par1));
 					break;
 				}
 			}

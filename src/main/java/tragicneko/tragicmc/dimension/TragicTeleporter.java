@@ -36,7 +36,7 @@ public class TragicTeleporter extends Teleporter {
 			byte b0 = 1;
 			byte b1 = 0;
 
-			boolean endFlag = this.worldServerInstance.provider.getDimensionId() == 1 || this.worldServerInstance.provider.getDimensionId() == TragicConfig.synapseID;
+			boolean endFlag = this.worldServerInstance.provider.getDimensionId() == 1 || this.worldServerInstance.provider.getDimensionId() == TragicConfig.getInt("synapseID");
 
 			if (endFlag)
 			{
@@ -60,7 +60,7 @@ public class TragicTeleporter extends Teleporter {
 			Block spawnBlock = this.worldServerInstance.getBlockState(new BlockPos(i, j - 1, k)).getBlock();
 			boolean lavaFlag = spawnBlock.getMaterial() == Material.lava || spawnBlock.getMaterial() == Material.lava;
 
-			if (worldServerInstance.provider.getDimensionId() == TragicConfig.collisionID || lavaFlag || worldServerInstance.provider.getDimensionId() == TragicConfig.synapseID)
+			if (worldServerInstance.provider.getDimensionId() == TragicConfig.getInt("collisionID") || lavaFlag || worldServerInstance.provider.getDimensionId() == TragicConfig.getInt("synapseID"))
 			{
 				for (int l = -2; l <= 2; ++l)
 				{

@@ -33,11 +33,11 @@ public class DoomsdayHarmonizer extends Doomsday {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					EntityLivingBase entity = (EntityLivingBase) list.get(i);
-					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 
 					int dur = crucMoment ? 600 : 300;
 
-					if (TragicConfig.allowHarmony)
+					if (TragicConfig.getBoolean("allowHarmony"))
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, dur));
 					}
@@ -63,7 +63,7 @@ public class DoomsdayHarmonizer extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		if (TragicConfig.allowHarmony)
+		if (TragicConfig.getBoolean("allowHarmony"))
 		{
 			player.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 240));
 		}

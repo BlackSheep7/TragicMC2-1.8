@@ -18,7 +18,7 @@ public class StructureMemoryCache extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.synapseID;
+		return dim == TragicConfig.getInt("synapseID");
 	}
 
 	@Override

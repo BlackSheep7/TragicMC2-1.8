@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.ranmasStats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -47,6 +46,7 @@ public class EntityRanmas extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] ranmasStats = TragicConfig.getMobStat("ranmasStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(ranmasStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(ranmasStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(ranmasStats[2]);
@@ -57,7 +57,7 @@ public class EntityRanmas extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) ranmasStats[5];
+		return TragicConfig.getMobStat("ranmasStats").getArmorValue();
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public class EntityRanmas extends TragicMob {
 		if (this.worldObj.isRemote) return;
 
 		if (this.chargeBuffer > 0) --this.chargeBuffer;
-		if (this.getChargeTicks() > 0 && TragicConfig.ranmasCharge)
+		if (this.getChargeTicks() > 0 && TragicConfig.getBoolean("ranmasCharge"))
 		{
 			this.setChargeTicks(this.getChargeTicks() - 1);
 			this.chargeBuffer = 40 + (int) (60 * (this.getHealth() / this.getMaxHealth()));
@@ -119,7 +119,7 @@ public class EntityRanmas extends TragicMob {
 				this.motions = new double[] {0, 0, 0};
 
 				float f = MathHelper.sqrt_double(x * x + z * z + y * y) * 5.0F;
-				if (f >= 2.0F && TragicConfig.ranmasImpactExplosions)
+				if (f >= 2.0F && TragicConfig.getBoolean("ranmasImpactExplosions"))
 				{
 					if (f > 5.0F) f = 5.0F;
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (f / 2) * rand.nextFloat() + (f / 2), this.getMobGriefing());
@@ -143,7 +143,7 @@ public class EntityRanmas extends TragicMob {
 				this.motions = new double[] {d0, d1, d2};
 				this.setChargeTicks(15);
 			}
-			else if (this.ticksExisted % 10 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.2F, 0.2F);
+			else if (this.ticksExisted % 10 == 0 && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.2F, 0.2F);
 		}
 	}
 
@@ -159,7 +159,7 @@ public class EntityRanmas extends TragicMob {
 			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
 		}
 
-		if (flag) return super.attackEntityFrom(src, dmg);
+		if (flag || src.canHarmInCreative()) return super.attackEntityFrom(src, dmg);
 
 		return super.attackEntityFrom(src.setDamageBypassesArmor(), Math.min(1.0F, dmg));
 	}

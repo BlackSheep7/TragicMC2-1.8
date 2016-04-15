@@ -24,7 +24,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
-		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 600, 0));
+		if (TragicConfig.getBoolean("allowInvulnerability")) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 600, 0));
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					entity = (EntityLivingBase) list.get(i);
-					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 					entity.applyEntityCollision(player);
 
 					entity.motionX *= 1.8;
@@ -54,7 +54,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 					player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, f * rand.nextFloat(), false);
 					player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX, entity.posY, entity.posZ, player));
 
-					if (TragicConfig.allowStun)entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 1));
+					if (TragicConfig.getBoolean("allowStun")) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 1));
 				}
 			}
 		}

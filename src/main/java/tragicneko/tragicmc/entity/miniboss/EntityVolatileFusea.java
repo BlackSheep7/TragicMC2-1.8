@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.volatileFuseaStats;
-
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
@@ -32,6 +30,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] volatileFuseaStats = TragicConfig.getMobStat("volatileFuseaStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(volatileFuseaStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(volatileFuseaStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(volatileFuseaStats[2]);
@@ -42,7 +41,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) volatileFuseaStats[5];
+		return TragicConfig.getMobStat("volatileFuseaStats").getArmorValue();
 	}
 
 	@Override
@@ -61,7 +60,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 
 		if (!this.worldObj.isRemote && this.ticksExisted % 5 == 0)
 		{
-			if (TragicConfig.volatileFuseaElementalChange)
+			if (TragicConfig.getBoolean("volatileFuseaElementalChange"))
 			{
 				ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 5.25, this.posX, this.posY, this.posZ);
 				Block block;

@@ -51,8 +51,8 @@ public class GuiDoom extends Gui
 	{
 		if (event.isCancelable() || event.type != ElementType.HOTBAR || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
-		int xPos = TragicConfig.guiX + 2;
-		int yPos = TragicConfig.guiY + 4;
+		int xPos = TragicConfig.getInt("guiX") + 2;
+		int yPos = TragicConfig.getInt("guiY") + 4;
 		this.mc.getTextureManager().bindTexture(newTexture);
 
 		GlStateManager.enableBlend();
@@ -63,13 +63,13 @@ public class GuiDoom extends Gui
 		boolean shiftAmuStatus = false;
 		boolean isDoomDisplayed = true;
 		
-		float trans = ((float) TragicConfig.guiTransparency / 100.0F);
+		final float trans = ((float) TragicConfig.getInt("guiTransparency") / 100.0F);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, trans);
 
 		PropertyDoom props = PropertyDoom.get(this.mc.thePlayer);
 		if (props != null && props.getMaxDoom() > 0)
 		{
-			if (TragicConfig.allowAnimatedGui)
+			if (TragicConfig.getBoolean("allowAnimatedGui"))
 			{
 				width++;
 				if (width > 30) width = 0;
@@ -106,7 +106,7 @@ public class GuiDoom extends Gui
 				}
 
 				buffer++;
-				if (!TragicConfig.allowAnimatedGui) buffer = 0;
+				if (!TragicConfig.getBoolean("allowAnimatedGui")) buffer = 0;
 				final int barFill = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 200);
 				Doomsday doomsday = null;
 
@@ -176,7 +176,7 @@ public class GuiDoom extends Gui
 						}
 					}
 
-					if (!(stack.getItem() instanceof ItemArmor) && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.allowDoomScrollImbue) doomsday = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
+					if (!(stack.getItem() instanceof ItemArmor) && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.getBoolean("allowDoomScrollImbue")) doomsday = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
 					if (doomsday != null) flag = true;
 				}
 				else
@@ -196,7 +196,7 @@ public class GuiDoom extends Gui
 							doomsdays[i] = ((TragicArmor)stack.getItem()).doomsday;
 						}
 
-						if (stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.allowDoomScrollImbue)
+						if (stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("doomsdayID") && TragicConfig.getBoolean("allowDoomScrollImbue"))
 						{
 							doomsdays[i] = Doomsday.getDoomsdayFromId(stack.getTagCompound().getInteger("doomsdayID"));
 						}
@@ -236,7 +236,7 @@ public class GuiDoom extends Gui
 						color = 0xFFB868;
 					}
 
-					if (TragicConfig.showExtraDoomsdayInfoInGui)
+					if (TragicConfig.getBoolean("allowExtraDoomsdayInfoInGui"))
 					{
 						shiftAmuStatus = true;
 						GlStateManager.pushMatrix();
@@ -260,7 +260,7 @@ public class GuiDoom extends Gui
 				{
 					boolean flg = difference > 0;
 					String s2 = (flg ? "+" : "") + difference;
-					int y = yPos + (TragicConfig.allowAnimatedGui ? (difTick / 2) : 0);
+					int y = yPos + (TragicConfig.getBoolean("allowAnimatedGui") ? (difTick / 2) : 0);
 					this.mc.fontRendererObj.drawString(s2, xPos + 70, y, flg ? 0x00FF00 : 0xFF0000);
 				}
 			}
@@ -276,7 +276,7 @@ public class GuiDoom extends Gui
 		}
 
 		PropertyAmulets amu = PropertyAmulets.get(this.mc.thePlayer);
-		if (amu != null && amu.getSlotsOpen() > 0 && TragicConfig.showAmuletStatusGui)
+		if (amu != null && amu.getSlotsOpen() > 0 && TragicConfig.getBoolean("showAmuletStatusGui"))
 		{
 			this.mc.getTextureManager().bindTexture(newTextureStatus);
 			int length = 40;
@@ -301,7 +301,7 @@ public class GuiDoom extends Gui
 		if (shiftAmuStatus) yShift += 10;
 		if (!isDoomDisplayed) yShift = 1;
 
-		for (byte i = 0; i < 3 && TragicConfig.showAmuletStatusGui; i++)
+		for (byte i = 0; i < 3 && TragicConfig.getBoolean("showAmuletStatusGui") && amu != null; i++)
 		{
 			stack = amu.inventory.getStackInSlot(i);
 			if (stack != null)
@@ -310,10 +310,13 @@ public class GuiDoom extends Gui
 				mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, xPos - 3 + (24 * i), yPos + yShift, "");
 				GlStateManager.disableLighting();
 			}
-			else if (amu.getSlotsOpen() < i + 1 && TragicConfig.amuletMaxSlots >= i + 1)
+			else if (amu.getSlotsOpen() < i + 1 && TragicConfig.getInt("amuletMaxSlots") >= i + 1)
 			{
 				this.mc.getTextureManager().bindTexture(newTextureStatus);
+				GlStateManager.pushMatrix();
+				GlStateManager.color(1F, 1F, 1F, trans);
 				drawTexturedModalRect(xPos - 6 + (24 * i), yPos + yShift - 1, 0, 64, 16, 16);
+				GlStateManager.popMatrix();
 			}
 		}
 	}

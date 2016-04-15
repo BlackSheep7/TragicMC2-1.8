@@ -17,7 +17,7 @@ public class AmuletKitsune extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuKitsune && player.ticksExisted % 60 == 0)
+		if (TragicConfig.getBoolean("amuKitsune") && player.ticksExisted % 60 == 0)
 		{
 			if (player.isBurning()) player.extinguish();
 			player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 600, 0));

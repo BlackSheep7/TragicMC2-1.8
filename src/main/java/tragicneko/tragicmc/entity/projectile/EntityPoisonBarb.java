@@ -43,7 +43,7 @@ public class EntityPoisonBarb extends EntityProjectile {
 					mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.0F);
 					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 100 + rand.nextInt(100), 0));
 
-					if (rand.nextInt(16) == 0 && TragicConfig.allowStun)
+					if (rand.nextInt(16) == 0 && TragicConfig.getBoolean("allowStun"))
 					{
 						((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 20 + rand.nextInt(40), rand.nextInt(2)));
 					}

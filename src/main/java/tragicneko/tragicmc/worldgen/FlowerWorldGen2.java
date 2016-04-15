@@ -24,7 +24,7 @@ public class FlowerWorldGen2 implements IWorldGen {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world) {
 		
-		if (!TragicConfig.allowFlowerGen) return;
+		if (!TragicConfig.getBoolean("allowFlowerGen")) return;
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(new BlockPos(Xcoord, 0, Zcoord)).getY();

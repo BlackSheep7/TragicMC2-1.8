@@ -76,7 +76,7 @@ public class EntityDimensionalAnomaly extends Entity {
 
 		if (this.ticksExisted % 10 == 0 && this.ticksExisted + 10 < this.getTimeToLive()) this.worldObj.playSoundAtEntity(this, "tragicmc:random.truncatedbeep", 0.2F, 1.8F);
 
-		if (TragicConfig.allowDivinity && this.ticksExisted % 5 == 0)
+		if (TragicConfig.getBoolean("allowDivinity") && this.ticksExisted % 5 == 0)
 		{
 			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0, 1.0, 1.0));
 			for (EntityLivingBase e : list)

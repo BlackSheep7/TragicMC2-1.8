@@ -19,10 +19,10 @@ public class BiomeGenSynapse extends TragicBiome {
 		this.spawnableCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
-		if (TragicConfig.allowNanoSwarm) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNanoSwarm.class, TragicConfig.nanoSwarmSC, TragicConfig.nanoSwarmGS[0], TragicConfig.nanoSwarmGS[1]));
-		if (TragicConfig.allowHunter) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHunter.class, TragicConfig.hunterSC, TragicConfig.hunterGS[0], TragicConfig.hunterGS[1]));
-		if (TragicConfig.allowLockbot) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityLockbot.class, TragicConfig.lockbotSC, TragicConfig.lockbotGS[0], TragicConfig.lockbotGS[1]));
-		if (TragicConfig.allowHarvester) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHarvester.class, TragicConfig.harvesterSC, TragicConfig.harvesterGS[0], TragicConfig.harvesterGS[1]));
+		if (TragicConfig.getBoolean("allowNanoSwarm")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNanoSwarm.class, TragicConfig.getInt("nanoSwarmSpawnChance"), TragicConfig.getIntArray("nanoSwarmGroupSize")[0], TragicConfig.getIntArray("nanoSwarmGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowHunter")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHunter.class, TragicConfig.getInt("hunterSpawnChance"), TragicConfig.getIntArray("hunterGroupSize")[0], TragicConfig.getIntArray("hunterGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowLockbot")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityLockbot.class, TragicConfig.getInt("lockbotSpawnChance"), TragicConfig.getIntArray("lockbotGroupSize")[0], TragicConfig.getIntArray("lockbotGroupSize")[1]));
+		if (TragicConfig.getBoolean("allowHarvester")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHarvester.class, TragicConfig.getInt("harvesterSpawnChance"), TragicConfig.getIntArray("harvesterGroupSize")[0], TragicConfig.getIntArray("harvesterGroupSize")[1]));
 		this.fillerBlock = TragicBlocks.CircuitBlock.getDefaultState();
 		this.topBlock = TragicBlocks.CircuitBlock.getDefaultState();
 	}

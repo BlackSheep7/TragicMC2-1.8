@@ -64,7 +64,7 @@ public class MouseEvents {
 			float f7 = f4 * f5;
 			float f8 = f3 * f5;
 			double limit = player.capabilities.isCreativeMode ? 2.5D : 1.5D;
-			double enchantLimit = limit + (TragicConfig.allowReach ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, stack) : 0);
+			double enchantLimit = limit + (TragicConfig.getBoolean("allowReach") && stack != null ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, stack) : 0);
 
 			IAttributeInstance ins = player.getEntityAttribute(AmuletModifier.reach);
 			double d3 = ins == null ? 0.0 : ins.getAttributeValue();
@@ -97,13 +97,13 @@ public class MouseEvents {
 				{					
 					if (entity instanceof IMultiPart)
 					{
-						TragicMC.proxy.net.sendToServer(new MessageAttack(((IMultiPart) entity).getDefaultPart()));
+						if (TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendToServer(new MessageAttack(((IMultiPart) entity).getDefaultPart()));
 						break meow;
 					}
 
 					if (!(entity instanceof EntityItem) && !(entity instanceof EntityXPOrb) && !(entity instanceof EntityArrow) && entity != player)
 					{
-						TragicMC.proxy.net.sendToServer(new MessageAttack(entity));
+						if (TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendToServer(new MessageAttack(entity));
 						break meow;
 					}
 				}

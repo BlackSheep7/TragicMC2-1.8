@@ -54,7 +54,7 @@ public class ArmorLight extends TragicArmor {
 				if (player.ticksExisted % 60 == 0)
 				{
 					player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 600));
-					if (TragicConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 600));
+					if (TragicConfig.getBoolean("allowClarity")) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 600));
 				}
 			}
 		}
@@ -66,12 +66,12 @@ public class ArmorLight extends TragicArmor {
 	{
 		net.minecraft.client.model.ModelBiped model2 = tragicneko.tragicmc.proxy.ClientProxy.modelsLight[4 - slot];
 		model2.setModelAttributes(model);
-		return TragicConfig.allowArmorModels ? model2 : null;
+		return TragicConfig.getBoolean("allowArmorModels") ? model2 : null;
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return TragicConfig.allowArmorModels ? texture : (slot == 2 ? "tragicmc:textures/armor/Light2.png" : "tragicmc:textures/armor/Light1.png");
+		return TragicConfig.getBoolean("allowArmorModels") ? texture : (slot == 2 ? "tragicmc:textures/armor/Light2.png" : "tragicmc:textures/armor/Light1.png");
 	}
 }

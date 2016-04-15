@@ -17,7 +17,7 @@ public class AmuletSunken extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuSunken && player.ticksExisted % 60 == 0 && TragicConfig.allowAquaSuperiority && player.isInWater())
+		if (TragicConfig.getBoolean("amuSunken") && player.ticksExisted % 60 == 0 && TragicConfig.getBoolean("allowAquaSuperiority") && player.isInWater())
 		{
 			player.addPotionEffect(new PotionEffect(TragicPotion.AquaSuperiority.id, 200, level));
 			if (player.isPotionActive(TragicPotion.AquaSuperiority) && rand.nextBoolean() && !world.isRemote) this.damageAmulet(amu, slot, level);

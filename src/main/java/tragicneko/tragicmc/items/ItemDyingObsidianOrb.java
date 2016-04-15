@@ -48,7 +48,7 @@ public class ItemDyingObsidianOrb extends Item {
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc2.getX() + ", " + par2World.getTopSolidOrLiquidBlock(cc2).getY() + ", " + cc2.getZ()));
 			}
 
-			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
+			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
 			par1ItemStack.stackSize--;
 		}
 		return par1ItemStack;

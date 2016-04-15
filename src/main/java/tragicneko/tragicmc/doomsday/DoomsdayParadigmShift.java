@@ -54,7 +54,7 @@ public class DoomsdayParadigmShift extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		if (TragicConfig.allowCooldown) doom.increaseCooldown(200);
+		if (TragicConfig.getBoolean("allowCooldown")) doom.increaseCooldown(200);
 	}
 
 }

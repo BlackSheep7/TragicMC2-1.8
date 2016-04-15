@@ -162,6 +162,7 @@ public class SynapseChunkProvider implements IChunkProvider
         this.slowsandNoise = this.slowsandGravelNoiseGen.generateNoiseOctaves(this.slowsandNoise, x * 16, z * 16, 0, 16, 16, 1, d0, d0, 1.0D);
         this.gravelNoise = this.slowsandGravelNoiseGen.generateNoiseOctaves(this.gravelNoise, x * 16, 109, z * 16, 16, 1, 16, d0, 1.0D, d0);
         this.netherrackExclusivityNoise = this.netherrackExculsivityNoiseGen.generateNoiseOctaves(this.netherrackExclusivityNoise, x * 16, z * 16, 0, 16, 16, 1, d0 * 2.0D, d0 * 2.0D, d0 * 2.0D);
+        final boolean digitalSea = TragicConfig.getBoolean("allowDigitalSeaGen");
 
         for (int k = 0; k < 16; ++k)
         {
@@ -227,7 +228,7 @@ public class SynapseChunkProvider implements IChunkProvider
                     }
                     else
                     {
-                        primer.setBlockState(l, k1, k, TragicConfig.allowDigitalSeaGen && synapseRNG.nextInt(6) != 0 && k1 > 8 ? TragicBlocks.DigitalSea.getDefaultState() : Blocks.air.getDefaultState());
+                        primer.setBlockState(l, k1, k, digitalSea && synapseRNG.nextInt(6) != 0 && k1 > 8 ? TragicBlocks.DigitalSea.getDefaultState() : Blocks.air.getDefaultState());
                     }
                 }
             }
@@ -364,7 +365,7 @@ public class SynapseChunkProvider implements IChunkProvider
 		 
 		 this.circuitGen.generate(this.synapseRNG, x, z, this.worldObj);
 		 
-		 if (TragicConfig.allowSynapseVariants && this.synapseRNG.nextInt(TragicConfig.synapseVariantChance) == 0) this.circuitVarGen.generate(this.synapseRNG, x, z, this.worldObj);
+		 if (TragicConfig.getBoolean("allowSynapseVariants") && this.synapseRNG.nextInt(TragicConfig.getInt("synapseVariantChance")) == 0) this.circuitVarGen.generate(this.synapseRNG, x, z, this.worldObj);
 
 		 for (i = 0; i < 4; i++)
 		 {

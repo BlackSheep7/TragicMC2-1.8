@@ -17,7 +17,7 @@ public class AmuletIronGolem extends ItemAmulet {
 	@Override
 	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
 	{
-		if (TragicConfig.amuIronGolem && player.ticksExisted % 20 == 0)
+		if (TragicConfig.getBoolean("amuIronGolem") && player.ticksExisted % 20 == 0)
 		{
 			player.addPotionEffect(new PotionEffect(Potion.resistance.id, 600, level));
 			if (player.isPotionActive(Potion.resistance) && rand.nextBoolean() && !world.isRemote) this.damageAmulet(amu, slot, level);

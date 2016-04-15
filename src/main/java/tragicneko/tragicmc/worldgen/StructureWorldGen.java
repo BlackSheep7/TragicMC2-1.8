@@ -17,8 +17,9 @@ public class StructureWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if (world.isRemote || !world.getWorldInfo().isMapFeaturesEnabled() || random.nextInt(500) > TragicConfig.structureOverallRarity ||
-				(world.provider.getDimensionId() == TragicConfig.collisionID || world.provider.getDimensionId() == TragicConfig.synapseID) && !TragicConfig.allowDimension) return;
+		if (world.isRemote || !world.getWorldInfo().isMapFeaturesEnabled() || random.nextInt(500) > TragicConfig.getInt("structureOverallRarity") ||
+				(world.provider.getDimensionId() == TragicConfig.getInt("collisionID") || world.provider.getDimensionId() == TragicConfig.getInt("synapseID") ||
+				world.provider.getDimensionId() == TragicConfig.getInt("nekoHomeworldID")) && !TragicConfig.getBoolean("allowDimensions")) return;
 
 		int x = (chunkX * 16) + random.nextInt(16);
 		int y = random.nextInt(118) + random.nextInt(118) + 10;

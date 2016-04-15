@@ -40,10 +40,10 @@ import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.TragicRecipes;
 import tragicneko.tragicmc.client.gui.GuiAmuletInventory;
-import tragicneko.tragicmc.config.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.AchievementEvents;
 import tragicneko.tragicmc.events.AmuletEvents;
@@ -88,19 +88,21 @@ public class CommonProxy implements IGuiHandler {
 	public void postInit(FMLPostInitializationEvent event) { }
 
 	public void preInit(FMLPreInitializationEvent event) {
-		TragicConfig.load(event);
-		//TragicNewConfig.doConfigProcess(event);
+		TragicConfig.doConfigProcess(event);
 
-		if (TragicConfig.allowPotions)
+		if (TragicConfig.getBoolean("allowPotions"))
 		{
 			TragicPotion.load();
 			registerEvent(new PotionEvents());
 		}
 
-		if (TragicConfig.allowEnchantments) TragicEnchantments.load();
-		if (TragicConfig.allowEnchantments) registerEvent(new EnchantmentEvents());
+		if (TragicConfig.getBoolean("allowEnchantments")) 
+		{
+			TragicEnchantments.load();
+			registerEvent(new EnchantmentEvents());
+		}
 
-		if (TragicConfig.allowSurvivalTab)
+		if (TragicConfig.getBoolean("allowSurvivalTab"))
 		{
 			TragicMC.Survival = (new CreativeTabs("tragicMCSurvival") {
 				@Override
@@ -119,52 +121,61 @@ public class CommonProxy implements IGuiHandler {
 
 		TragicBlocks.load();
 		TragicItems.load();
-		if (TragicConfig.allowRandomWeaponLore && TragicConfig.allowNonMobItems) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
-		if (TragicConfig.allowPotions && TragicConfig.allowNonMobBlocks && TragicConfig.allowNonMobItems) TragicPotion.setPotionIcons();
-		if (TragicConfig.allowRecipes) TragicRecipes.load();
-		if (TragicConfig.allowAmulets) registerEvent(new AmuletEvents());
+		if (TragicConfig.getBoolean("allowRandomWeaponLore") && TragicConfig.getBoolean("allowNonMobItems")) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
+		if (TragicConfig.getBoolean("allowPotions") && TragicConfig.getBoolean("allowNonMobBlocks") && TragicConfig.getBoolean("allowNonMobItems")) TragicPotion.setPotionIcons();
+		if (TragicConfig.getBoolean("allowRecipes")) TragicRecipes.load();
+		if (TragicConfig.getBoolean("allowAmulets")) registerEvent(new AmuletEvents());
 
 		registerEvent(new MiscEvents());
 
-		if (TragicConfig.allowDoom)
+		if (TragicConfig.getBoolean("allowDoom"))
 		{
 			registerEvent(new DoomEvents());
 			registerEvent(new RespawnDoomEvents());
 		}
 
-		if (TragicConfig.allowDimension)
+		if (TragicConfig.getBoolean("allowDimensions"))
 		{
-			if (TragicConfig.allowCollision)
+			if (TragicConfig.getBoolean("allowCollision"))
 			{
-				if (DimensionManager.isDimensionRegistered(TragicConfig.collisionID))
+				if (DimensionManager.isDimensionRegistered(TragicConfig.getInt("collisionID")))
 				{
-					int id = DimensionManager.getNextFreeDimId();
-					TragicConfig.collisionID = id;
-					TragicConfig.collisionProviderID = id;
+					final int id = DimensionManager.getNextFreeDimId();
+					TragicConfig.overrideObject("collisionID", id);
+					TragicConfig.overrideObject("collisionProviderID", id);
 				}
 
-				DimensionManager.registerProviderType(TragicConfig.collisionProviderID, tragicneko.tragicmc.dimension.TragicWorldProvider.class, TragicConfig.keepCollisionLoaded);
-				DimensionManager.registerDimension(TragicConfig.collisionID, TragicConfig.collisionProviderID);
-				TragicMC.logInfo("Dimension (The Collision) was registered with an ID of " + TragicConfig.collisionID);
+				DimensionManager.registerProviderType(TragicConfig.getInt("collisionProviderID"), tragicneko.tragicmc.dimension.TragicWorldProvider.class, TragicConfig.getBoolean("keepCollisionLoaded"));
+				DimensionManager.registerDimension(TragicConfig.getInt("collisionID"), TragicConfig.getInt("collisionProviderID"));
+				TragicMC.logInfo("Dimension (The Collision) was registered with an ID of " + TragicConfig.getInt("collisionID"));
 			}
 
-			if (TragicConfig.allowSynapse)
+			if (TragicConfig.getBoolean("allowSynapse"))
 			{
-				if (DimensionManager.isDimensionRegistered(TragicConfig.synapseID))
+				if (DimensionManager.isDimensionRegistered(TragicConfig.getInt("synapseID")))
 				{
-					int id = DimensionManager.getNextFreeDimId();
-					TragicConfig.synapseID = id;
-					TragicConfig.synapseProviderID = id;
+					final int id = DimensionManager.getNextFreeDimId();
+					TragicConfig.overrideObject("synapseID", id);
+					TragicConfig.overrideObject("synapseProviderID", id);
 				}
 
-				DimensionManager.registerProviderType(TragicConfig.synapseProviderID, tragicneko.tragicmc.dimension.SynapseWorldProvider.class, TragicConfig.keepSynapseLoaded);
-				DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
-				TragicMC.logInfo("Dimension (Synapse) was registered with an ID of " + TragicConfig.synapseID);
+				DimensionManager.registerProviderType(TragicConfig.getInt("synapseProviderID"), tragicneko.tragicmc.dimension.SynapseWorldProvider.class, TragicConfig.getBoolean("keepSynapseLoaded"));
+				DimensionManager.registerDimension(TragicConfig.getInt("synapseID"), TragicConfig.getInt("synapseProviderID"));
+				TragicMC.logInfo("Dimension (Synapse) was registered with an ID of " + TragicConfig.getInt("synapseID"));
 			}
 
-			DimensionManager.registerProviderType(4, tragicneko.tragicmc.dimension.NekoHomeworldProvider.class, false);
-			DimensionManager.registerDimension(4, 4);
-			TragicMC.logInfo("Dimension (Neko Homeworld) was registered with an ID of " + 4);
+			if (TragicConfig.getBoolean("allowNekoHomeworld"))
+			{
+				if (DimensionManager.isDimensionRegistered(TragicConfig.getInt("nekoHomeworldID")))
+				{
+					final int id = DimensionManager.getNextFreeDimId();
+					TragicConfig.overrideObject("nekoHomeworldID", id);
+					TragicConfig.overrideObject("nekoHomeworldProviderID", id);
+				}
+				DimensionManager.registerProviderType(TragicConfig.getInt("nekoHomeworldProviderID"), tragicneko.tragicmc.dimension.NekoHomeworldProvider.class, TragicConfig.getBoolean("keepNekoHomeworldLoaded"));
+				DimensionManager.registerDimension(TragicConfig.getInt("nekoHomeworldID"), TragicConfig.getInt("nekoHomeworldProviderID"));
+				TragicMC.logInfo("Dimension (Neko Homeworld) was registered with an ID of " + TragicConfig.getInt("nekoHomeworldID"));
+			}
 			/* 
 			DimensionManager.registerProviderType(5, tragicneko.tragicmc.dimension.WildsWorldProvider.class, false);
 			DimensionManager.registerDimension(5, 5);
@@ -175,32 +186,35 @@ public class CommonProxy implements IGuiHandler {
 		}
 
 		TragicEntities.load();
-		if (TragicConfig.allowMobs) tragicneko.tragicmc.util.EntityDropHelper.fill();
-		if (TragicConfig.allowIre) registerEvent(new ServerTickEvents());
+		if (TragicConfig.getBoolean("allowMobs"))
+		{
+			tragicneko.tragicmc.util.EntityDropHelper.fill();
+			if (TragicConfig.getBoolean("allowIre")) registerEvent(new ServerTickEvents());
+		}
 
-		if (TragicConfig.allowChallengeScrolls && TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks && TragicConfig.allowMobs && TragicConfig.allowDimension)
+		if (TragicConfig.getBoolean("allowChallengeScrolls") && TragicConfig.getBoolean("allowNonMobItems") && TragicConfig.getBoolean("allowNonMobBlocks") && TragicConfig.getBoolean("allowMobs") && TragicConfig.getBoolean("allowDimensions"))
 		{
 			TragicItems.initializeChallengeItem();
 			registerEvent(new ChallengeItemEvents());
 		}
-		else if (TragicConfig.allowChallengeScrolls)
+		else if (TragicConfig.getBoolean("allowChallengeScrolls"))
 		{
 			TragicMC.logWarning("Challenge Scrolls are enabled in config but are disabled due to certain things being disabled. This is to prevent game crashes from ocurring.");
-			TragicConfig.allowChallengeScrolls = false;
+			TragicConfig.overrideObject("allowChallengeScrolls", false);
 		}
 
-		if (TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks) registerEvent(new DropEvents());
+		if (TragicConfig.getBoolean("allowNonMobItems") && TragicConfig.getBoolean("allowNonMobBlocks")) registerEvent(new DropEvents());
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(TragicMC.getInstance(), this);
-		if (TragicConfig.allowDoomsdays) registerEvent(new DoomsdayManager());
+		if (TragicConfig.getBoolean("allowDoomsdays")) registerEvent(new DoomsdayManager());
 		DoomsdayManager.clearRegistry();
 
-		if (TragicConfig.allowVanillaChanges) registerEvent(new VanillaChangingEvents());
-		if (TragicConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.OverworldOreWorldGen(), 1);
-		if (TragicConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.NetherOreWorldGen(), 2);
-		if (TragicConfig.allowFlowerGen) GameRegistry.registerWorldGenerator(new FlowerWorldGen(), 3);
+		if (TragicConfig.getBoolean("allowVanillaChanges")) registerEvent(new VanillaChangingEvents());
+		if (TragicConfig.getBoolean("allowOverworldOreGen")) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.OverworldOreWorldGen(), 1);
+		if (TragicConfig.getBoolean("allowNetherOreGen")) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.NetherOreWorldGen(), 2);
+		if (TragicConfig.getBoolean("allowFlowerGen")) GameRegistry.registerWorldGenerator(new FlowerWorldGen(), 3);
 
-		if (TragicConfig.allowDimension && TragicConfig.allowFlowerGen)
+		if (TragicConfig.getBoolean("allowDimensions") && TragicConfig.getBoolean("allowFlowerGen"))
 		{
 			FlowerWorldGen.allowedBiomes.add(TragicBiome.PaintedClearing);
 			FlowerWorldGen.allowedBiomes.add(TragicBiome.PaintedForest);
@@ -218,9 +232,9 @@ public class CommonProxy implements IGuiHandler {
 			FlowerWorldGen.allowedBiomes.add(TragicBiome.HallowedPrarie);
 		}
 
-		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 10);
+		if (TragicConfig.getBoolean("allowStructureGen")) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 10);
 
-		if (TragicConfig.allowNetwork)
+		if (TragicConfig.getBoolean("allowNetwork"))
 		{
 			net = new SimpleNetworkWrapper(TragicMC.MODID);
 			net.registerMessage(MessageHandlerDoom.class, MessageDoom.class, 0, Side.CLIENT);
@@ -233,15 +247,15 @@ public class CommonProxy implements IGuiHandler {
 			net.registerMessage(MessageHandlerFrozenInput.class, MessageFrozenInput.class, 8, Side.SERVER);
 		}
 
-		if (TragicConfig.allowAchievements && TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks && TragicConfig.allowChallengeScrolls && TragicConfig.allowAmulets && TragicConfig.allowDoom && TragicConfig.allowDoomsdays && TragicConfig.allowDimension) //register achievements after everything else is processed
+		if (TragicConfig.getBoolean("allowAchievements") && TragicConfig.getBoolean("allowNonMobItems") && TragicConfig.getBoolean("allowNonMobBlocks") && TragicConfig.getBoolean("allowChallengeScrolls") && TragicConfig.getBoolean("allowAmulets") && TragicConfig.getBoolean("allowDoom") && TragicConfig.getBoolean("allowDoomsdays") && TragicConfig.getBoolean("allowDimensions")) //register achievements after everything else is processed
 		{
 			TragicAchievements.load(); 
 			registerEvent(new AchievementEvents());
 		}
-		else if (TragicConfig.allowAchievements)
+		else if (TragicConfig.getBoolean("allowAchievements"))
 		{
 			TragicMC.logWarning("Achievements are enabled in config but are disabled due to certain blocks and items being disabled. This is to prevent game crashes from ocurring.");
-			TragicConfig.allowAchievements = false;
+			TragicConfig.overrideObject("allowAchievements", false);
 		}
 	}
 

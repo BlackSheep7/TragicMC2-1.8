@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.fuseaStats;
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,8 +27,6 @@ import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.base.Predicate;
 
 public class EntityFusea extends TragicMob {
 
@@ -67,6 +66,7 @@ public class EntityFusea extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] fuseaStats = TragicConfig.getMobStat("fuseaStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(fuseaStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(fuseaStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(fuseaStats[2]);
@@ -77,12 +77,12 @@ public class EntityFusea extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) fuseaStats[5];
+		return TragicConfig.getMobStat("fuseaStats").getArmorValue();
 	}
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicConfig.allowVolatileFusea;
+		return TragicConfig.getBoolean("allowVolatileFusea");
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class EntityFusea extends TragicMob {
 		}
 
 		int i = this.getAttackTarget() != null ? 15 : 25;
-		if (this.ticksExisted % i == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.fusea.hum", this.getAttackTarget() != null ? 1.4F : 0.8F, this.getAttackTarget() != null ? 0.2F : 1.0F);
+		if (this.ticksExisted % i == 0 && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.fusea.hum", this.getAttackTarget() != null ? 1.4F : 0.8F, this.getAttackTarget() != null ? 0.2F : 1.0F);
 	}
 
 	@Override
@@ -165,10 +165,10 @@ public class EntityFusea extends TragicMob {
 
 		if ((src.getEntity() != null && !src.isExplosion() || src == DamageSource.onFire || src == DamageSource.inFire) && !this.worldObj.isRemote && this.explosionBuffer == 0 && !flag)
 		{
-			if (!TragicConfig.fuseaExplosiveLayers) return super.attackEntityFrom(src, dmg);
+			if (!TragicConfig.getBoolean("fuseaExplosiveLayers")) return super.attackEntityFrom(src, dmg);
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
 			this.setHealth(this.getHealth() - 1F);
-			if (TragicConfig.fuseaExplosiveDamage) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
+			if (TragicConfig.getBoolean("fuseaExplosiveAttack")) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
 			this.recentlyHit = 60;
 			if (this.getHealth() == 0F) this.onDeath(src);
 		}
@@ -181,10 +181,10 @@ public class EntityFusea extends TragicMob {
 	{
 		if (!this.worldObj.isRemote && this.explosionBuffer == 0 && this.superiorForm != null && par1Entity.getClass() != this.superiorForm)
 		{
-			if (!TragicConfig.fuseaExplosiveLayers) return super.attackEntityAsMob(par1Entity);
+			if (!TragicConfig.getBoolean("fuseaExplosiveLayers")) return super.attackEntityAsMob(par1Entity);
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
 			this.setHealth(this.getHealth() - 1F);
-			if (TragicConfig.fuseaExplosiveAttack) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
+			if (TragicConfig.getBoolean("fuseaExplosiveAttack")) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
 			this.hasDamagedEntity = true;
 		}
 		return !this.worldObj.isRemote;
@@ -219,19 +219,19 @@ public class EntityFusea extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.fusea.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.fusea.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.fusea.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.fusea.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.fusea.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.fusea.death" : null;
 	}
 
 	@Override
@@ -256,7 +256,7 @@ public class EntityFusea extends TragicMob {
 	public void onDeath(DamageSource src)
 	{
 		super.onDeath(src);
-		if (!this.hasDamagedEntity && TragicConfig.allowAchievements && src.isFireDamage() && this.getAttackTarget() instanceof EntityPlayerMP) ((EntityPlayerMP) this.getAttackTarget()).triggerAchievement(TragicAchievements.fusea);
+		if (!this.hasDamagedEntity && TragicConfig.getBoolean("allowAchievements") && src.isFireDamage() && this.getAttackTarget() instanceof EntityPlayerMP) ((EntityPlayerMP) this.getAttackTarget()).triggerAchievement(TragicAchievements.fusea);
 	}
 	
 	@Override

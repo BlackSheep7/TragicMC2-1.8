@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.archangelStats;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -23,7 +21,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -51,6 +48,7 @@ public class EntityArchangel extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] archangelStats = TragicConfig.getMobStat("archangelStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(archangelStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(archangelStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(archangelStats[2]);
@@ -61,7 +59,7 @@ public class EntityArchangel extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) archangelStats[5];
+		return TragicConfig.getMobStat("archangelStats").getArmorValue();
 	}
 
 	@Override
@@ -218,9 +216,9 @@ public class EntityArchangel extends TragicMob {
 			{
 				if (this.getAttackTarget() != null)
 				{
-					d0 = this.getAttackTarget().posX + (this.rand.nextFloat() * 2.0F - 1.0F) * 8.0F;
-					d1 = this.getAttackTarget().posY + (this.rand.nextFloat() * 2.0F - 1.0F) * 8.0F;
-					d2 = this.getAttackTarget().posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * 8.0F;
+					d0 = this.getAttackTarget().posX + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
+					d1 = this.getAttackTarget().posY + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
+					d2 = this.getAttackTarget().posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
 				}
 				else
 				{
@@ -254,7 +252,7 @@ public class EntityArchangel extends TragicMob {
 				this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 			}
 
-			if (this.getHoverTicks() % 15 == 0 && TragicConfig.allowMobSounds)
+			if (this.getHoverTicks() % 15 == 0 && TragicConfig.getBoolean("allowMobSounds"))
 			{
 				this.playSound("tragicmc:mob.archangel.low", 0.4F, 1.0F);
 				if (this.getAttackTarget() != null) this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:mob.archangel.low", 0.4F, 1.0F);
@@ -384,19 +382,19 @@ public class EntityArchangel extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.archangel.choir" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.archangel.choir" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.archangel.vibrato" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.archangel.vibrato" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.archangel.triple" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.archangel.triple" : null;
 	}
 
 	@Override

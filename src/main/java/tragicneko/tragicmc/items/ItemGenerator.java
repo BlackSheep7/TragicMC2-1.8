@@ -100,7 +100,7 @@ public class ItemGenerator extends Item {
 		switch(meta)
 		{
 		case 0:
-			names = TragicConfig.voidPitFilter;
+			names = TragicConfig.getStringArray("voidPitFilter");
 			filter = new HashSet<Block>();
 
 			for (String s : names)
@@ -109,9 +109,9 @@ public class ItemGenerator extends Item {
 				if (block != null) filter.add(block);
 			}
 
-			if (!TragicConfig.voidPitUsesFilter) filter.clear();
+			if (!TragicConfig.getBoolean("voidPitUsesFilter")) filter.clear();
 
-			size = TragicConfig.voidPitSize;
+			size = TragicConfig.getDouble("voidPitSize");
 
 			for (int pow = 0; pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
 			{
@@ -146,7 +146,7 @@ public class ItemGenerator extends Item {
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Void pit generated with size of " + size));
 			break;
 		case 3:
-			names = TragicConfig.sphereFilter;
+			names = TragicConfig.getStringArray("sphereFilter");
 			filter = new HashSet<Block>();
 
 			for (String s : names)
@@ -155,14 +155,14 @@ public class ItemGenerator extends Item {
 				if (block != Blocks.air) filter.add(block);
 			}
 
-			size = TragicConfig.sphereSize;
+			size = TragicConfig.getDouble("sphereSize");
 			Block ablock;
 			list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord, Zcoord);
 
-			ablock = TragicConfig.sphereGenUsesFilter && filter.size() > 0 ? (Block) filter.toArray()[itemRand.nextInt(filter.size())] : Block.getBlockById(random.nextInt(4096));
+			ablock = TragicConfig.getBoolean("sphereGenUsesFilter") && filter.size() > 0 ? (Block) filter.toArray()[itemRand.nextInt(filter.size())] : Block.getBlockById(random.nextInt(4096));
 			byte attempts = 0;			
 
-			if (!TragicConfig.sphereGenUsesFilter)
+			if (!TragicConfig.getBoolean("sphereGenUsesFilter"))
 			{
 				while (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable) || ablock.hasTileEntity(ablock.getDefaultState()) || ablock instanceof BlockFalling)
 				{
@@ -187,7 +187,7 @@ public class ItemGenerator extends Item {
 			}
 			break;
 		case 4:
-			names = TragicConfig.eraserFilter;
+			names = TragicConfig.getStringArray("eraserFilter");
 			filter = new HashSet<Block>();
 
 			for (String s : names)
@@ -196,12 +196,12 @@ public class ItemGenerator extends Item {
 				if (block != Blocks.air) filter.add(block);
 			}
 
-			list = WorldHelper.getBlocksInSphericalRange(world, TragicConfig.eraserSize, Xcoord, Ycoord, Zcoord);
+			list = WorldHelper.getBlocksInSphericalRange(world, TragicConfig.getDouble("eraserSize"), Xcoord, Ycoord, Zcoord);
 
 			for (int i = 0; i < list.size(); i++)
 			{
 				coords = list.get(i);
-				if (!TragicConfig.eraserUsesFilter || !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
+				if (!TragicConfig.getBoolean("eraserUsesFilter") || !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
 			}
 
 			if (!list.isEmpty())
@@ -210,7 +210,7 @@ public class ItemGenerator extends Item {
 			}
 			break;
 		case 5:
-			list = WorldHelper.getBlocksInSphericalRange(world, TragicConfig.eraserSize, Xcoord, Ycoord, Zcoord);
+			list = WorldHelper.getBlocksInSphericalRange(world, TragicConfig.getDouble("eraserSize"), Xcoord, Ycoord, Zcoord);
 
 			for (int i = 0; i < list.size(); i++)
 			{
@@ -289,7 +289,7 @@ public class ItemGenerator extends Item {
 			}
 			break;
 		case 1:
-			names = TragicConfig.spikeFilter;
+			names = TragicConfig.getStringArray("spikeFilter");
 			filter = new HashSet<Block>();
 
 			for (String s : names)
@@ -298,11 +298,11 @@ public class ItemGenerator extends Item {
 				if (block != Blocks.air) filter.add(block);
 			}
 
-			if (!TragicConfig.spikeGenUsesFilter) filter.clear();
+			if (!TragicConfig.getBoolean("spikeGenUsesFilter")) filter.clear();
 
-			size = TragicConfig.spikeSize;
+			size = TragicConfig.getDouble("spikeSize");
 			Block spike = filter.isEmpty() ? TragicBlocks.DarkStone : (Block) filter.toArray()[itemRand.nextInt(filter.size())];
-			int blockMeta = TragicConfig.spikeGenUsesFilter && !filter.isEmpty() ? 0 : 14;
+			int blockMeta = TragicConfig.getBoolean("spikeGenUsesFilter") && !filter.isEmpty() ? 0 : 14;
 			int spikeType = random.nextInt(2);
 			boolean flag = false;
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spike of type " + spikeType + " and size of " + size + " generated."));
@@ -311,7 +311,7 @@ public class ItemGenerator extends Item {
 			{
 				if (random.nextBoolean())
 				{
-					size *= TragicConfig.spikeRegression; //reduce the radius of the spike randomly, give at least 2 levels at max radius
+					size *= TragicConfig.getDouble("spikeRegression"); //reduce the radius of the spike randomly, give at least 2 levels at max radius
 
 					if (random.nextInt(3) == 0 && size >= 0.4888233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
 					{
@@ -326,7 +326,7 @@ public class ItemGenerator extends Item {
 					}
 				}
 
-				if (size < TragicConfig.spikeCutoff || Ycoord + y1 > 256) break;
+				if (size < TragicConfig.getDouble("spikeCutoff") || Ycoord + y1 > 256) break;
 
 				list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
@@ -364,7 +364,7 @@ public class ItemGenerator extends Item {
 			player.addChatMessage(new ChatComponentText("Lightning created."));
 			break;
 		case 8:
-			float f = (float) TragicConfig.explosionBaseSize + ((float) TragicConfig.explosionSizeVariation * itemRand.nextFloat());
+			float f = (float) TragicConfig.getDouble("explosionBaseSize") + ((float) TragicConfig.getDouble("explosionSizeVariation") * itemRand.nextFloat());
 			world.createExplosion(player, Xcoord, Ycoord, Zcoord, f, WorldHelper.getMobGriefing(world));
 			player.addChatMessage(new ChatComponentText("Explosion created with size of " + f));
 			break;

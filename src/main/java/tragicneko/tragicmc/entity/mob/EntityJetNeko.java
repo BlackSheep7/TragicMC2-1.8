@@ -89,7 +89,7 @@ public class EntityJetNeko extends EntityNeko {
 
 			if ((this.getFiringTicks() == 40 || this.getFiringTicks() == 20) && this.canEntityBeSeen(this.getAttackTarget()))
 			{
-				if (TragicConfig.tragicNekoRockets) this.doMissleAttack();
+				if (TragicConfig.getBoolean("tragicNekoRockets")) this.doMissleAttack();
 			}
 			else if (this.hasFired() && this.getFiringTicks() % 40 == 0 && this.getAttackTime() == 0 && rand.nextInt(8) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0)
 			{
@@ -265,19 +265,19 @@ public class EntityJetNeko extends EntityNeko {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.jetneko.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds && rand.nextInt(6) == 0 ? "tragicmc:mob.jetneko.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(6) == 0 ? "tragicmc:mob.jetneko.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.jetneko.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.death" : null;
 	}
 
 	@Override

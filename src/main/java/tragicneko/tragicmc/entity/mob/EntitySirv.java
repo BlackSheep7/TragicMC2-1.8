@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.sirvStats;
-
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -23,6 +21,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EntitySirv extends TragicMob {
@@ -74,6 +73,7 @@ public class EntitySirv extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] sirvStats = TragicConfig.getMobStat("sirvStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(sirvStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(sirvStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(sirvStats[2]);
@@ -84,7 +84,7 @@ public class EntitySirv extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) sirvStats[5];
+		return TragicConfig.getMobStat("sirvStats").getArmorValue();
 	}
 
 	@Override
@@ -101,7 +101,7 @@ public class EntitySirv extends TragicMob {
 
 		if (result && par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase)
 		{
-			if (TragicConfig.sirvHelpCall)
+			if (TragicConfig.getBoolean("sirvHelpCall"))
 			{
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
 				EntitySirv sirv;
@@ -111,12 +111,12 @@ public class EntitySirv extends TragicMob {
 					if (list.get(i) instanceof EntitySirv)
 					{
 						sirv = (EntitySirv) list.get(i);
-						if (sirv.getAttackTarget() != null) sirv.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
+						if (sirv.getAttackTarget() == null) sirv.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
 					}
 				}
 			}
 
-			if (par2 >= 30F && par1DamageSource.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
+			if (par2 >= 30F && par1DamageSource.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements"))
 			{
 				((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.sirv);
 			}
@@ -141,7 +141,7 @@ public class EntitySirv extends TragicMob {
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(200)));
 					break;
 				case 2:
-					if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
+					if (TragicConfig.getBoolean("allowSubmission")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
 					break;
 				}
 			}
@@ -172,19 +172,19 @@ public class EntitySirv extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.sirv.crunch" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.sirv.crunch" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.sirv.snap" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.sirv.snap" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.sirv.crunch" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.sirv.crunch" : null;
 	}
 
 	@Override
@@ -202,7 +202,7 @@ public class EntitySirv extends TragicMob {
 	@Override
 	protected void playStepSound(BlockPos pos, Block block)
 	{
-		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.sirv.snap", 0.45F, 1.0F);
+		if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:mob.sirv.snap", 0.45F, 1.0F);
 	}
 
 	@Override

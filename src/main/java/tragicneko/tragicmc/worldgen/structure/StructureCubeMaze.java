@@ -16,7 +16,7 @@ public class StructureCubeMaze extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.collisionID;
+		return dim == TragicConfig.getInt("collisionID");
 	}
 
 	@Override

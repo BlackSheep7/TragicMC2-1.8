@@ -46,7 +46,7 @@ public class ItemDoomsdayScroll extends Item {
 		par2List.add(EnumChatFormatting.WHITE + "This is a one-time use, regardless of if the");
 		par2List.add(EnumChatFormatting.WHITE + "effect is successful or not.");
 
-		if (TragicConfig.allowDoomsdays && dday != null)
+		if (TragicConfig.getBoolean("allowDoomsdays") && dday != null)
 		{
 			par2List.add(""); //extra space in between
 			EnumChatFormatting format = dday.getDoomsdayType().getFormat();
@@ -109,7 +109,7 @@ public class ItemDoomsdayScroll extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (!TragicConfig.allowDoomsdays) return stack;
+		if (!TragicConfig.getBoolean("allowDoomsdays")) return stack;
 
 		if (world.isRemote)
 		{
@@ -123,7 +123,7 @@ public class ItemDoomsdayScroll extends Item {
 				Doomsday doomsday = Doomsday.getDoomsdayFromId(stack.getItemDamage() + 1);
 				if (doomsday != null) doomsday.activateDoomsday(doom);
 				stack.stackSize--;
-				if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.doomsdayScroll);
+				if (TragicConfig.getBoolean("allowAchievements") && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.doomsdayScroll);
 			}
 		}
 		return stack;

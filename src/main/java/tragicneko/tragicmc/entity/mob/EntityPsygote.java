@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.psygoteStats;
-
 import java.util.UUID;
 
 import net.minecraft.block.Block;
@@ -113,6 +111,7 @@ public class EntityPsygote extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] psygoteStats = TragicConfig.getMobStat("psygoteStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(psygoteStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(psygoteStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(psygoteStats[2]);
@@ -167,7 +166,7 @@ public class EntityPsygote extends TragicMob {
 			if (this.getFiringTicks() > 0) this.setFiringTicks(0);
 			if (this.getSwitchTicks() > 0) this.setSwitchTicks(0);
 
-			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && TragicConfig.psygoteProjectiles)
+			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && TragicConfig.getBoolean("psygoteProjectiles"))
 			{
 				this.fireOneMortor();
 			}
@@ -185,15 +184,15 @@ public class EntityPsygote extends TragicMob {
 
 		if (this.getFiringTicks() == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && this.getFiringTicks() == 0 && this.getSwitchTicks() == 0 && rand.nextInt(48) == 0) this.setSwitchTicks(60);
 
-		if (this.getFiringTicks() >= 60 && this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && TragicConfig.psygoteProjectiles)
+		if (this.getFiringTicks() >= 60 && this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && TragicConfig.getBoolean("psygoteProjectiles"))
 		{
 			this.shootProjectiles();
 		}
-		if (this.getSwitchTicks() == 2 && this.getAttackTarget() != null && TragicConfig.psygoteSwapTeleport) this.switchPlaces();
+		if (this.getSwitchTicks() == 2 && this.getAttackTarget() != null && TragicConfig.getBoolean("psygoteSwapTeleport")) this.switchPlaces();
 
-		if (this.ticksExisted % 20 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.psygoteRegeneration) this.heal(3.0F);
+		if (this.ticksExisted % 20 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.getBoolean("psygoteRegeneration")) this.heal(3.0F);
 
-		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(128) == 0 && TragicConfig.allowInhibit && this.canEntityBeSeen(this.getAttackTarget())) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 120));
+		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(128) == 0 && TragicConfig.getBoolean("allowInhibit") && this.canEntityBeSeen(this.getAttackTarget())) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 120));
 		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(32) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && this.canEntityBeSeen(this.getAttackTarget())) this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.blindness.id, 120));
 	}
 
@@ -281,7 +280,7 @@ public class EntityPsygote extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) psygoteStats[5];
+		return TragicConfig.getMobStat("psygoteStats").getArmorValue();
 	}
 
 	@Override
@@ -311,19 +310,19 @@ public class EntityPsygote extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? (this.getAttackTarget() == null ? "tragicmc:mob.psygote.coo" : "tragicmc:mob.psygote.cry") : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.getAttackTarget() == null ? "tragicmc:mob.psygote.coo" : "tragicmc:mob.psygote.cry") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.psygote.shriek" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.psygote.shriek" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.psygote.shriek" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.psygote.shriek" : null;
 	}
 
 	@Override
@@ -347,7 +346,7 @@ public class EntityPsygote extends TragicMob {
 	@Override
 	public void onDeath(DamageSource src) {
 		super.onDeath(src);
-		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements && !this.hasTeleported)
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements") && !this.hasTeleported)
 		{
 			((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.psygote);
 		}

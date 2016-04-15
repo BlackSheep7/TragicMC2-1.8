@@ -54,7 +54,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		int x = 3 + l;
 		int amt = 0;
 
-		if (TragicConfig.allowExtraBossLoot)
+		if (TragicConfig.getBoolean("allowExtraBossLoot"))
 		{
 			int amount = rand.nextInt(6) + 4 * x;
 
@@ -75,14 +75,14 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		for (int i = 0; i < x + 3; i++)
 		{
-			if (rand.nextInt(100) <= TragicConfig.commonDropRate + (x * 4))
+			if (rand.nextInt(100) <= TragicConfig.getInt("commonMobDropChance") + (x * 4))
 			{
 				ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), true);
 				if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
 				total += 1;
 			}
 
-			if (flag && rand.nextInt(25) <= TragicConfig.rareDropRate + x)
+			if (flag && rand.nextInt(25) <= TragicConfig.getInt("rareMobDropChance") + x)
 			{
 				ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), false);
 				if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
@@ -97,7 +97,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 			ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), false);
 			if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
 
-			if (TragicConfig.allowNonMobItems)
+			if (TragicConfig.getBoolean("allowNonMobItems"))
 			{
 				drop = new ItemStack(TragicItems.EtherealDistortion);
 				this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
@@ -125,9 +125,9 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		{
 			EntityPlayer player = (EntityPlayer) par1.getEntity();
 
-			if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.killBoss);
+			if (TragicConfig.getBoolean("allowAchievements") && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.killBoss);
 
-			if (!this.hasDamagedEntity && TragicConfig.allowAchievements && player instanceof EntityPlayerMP)
+			if (!this.hasDamagedEntity && TragicConfig.getBoolean("allowAchievements") && player instanceof EntityPlayerMP)
 			{
 				player.triggerAchievement(TragicAchievements.cantTouchThis);
 			}
@@ -150,14 +150,14 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	@Override
 	public void onLivingUpdate()
 	{
-		if (TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption)) this.removePotionEffect(TragicPotion.Corruption.id);
+		if (TragicConfig.getBoolean("allowCorruption") && this.isPotionActive(TragicPotion.Corruption)) this.removePotionEffect(TragicPotion.Corruption.id);
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
-		if (this.getAttackTarget() != null && !TragicConfig.allowMobInfighting && (this.getAttackTarget() instanceof TragicMob || this.getAttackTarget() instanceof TragicBoss)) this.setAttackTarget(null);
+		if (this.getAttackTarget() != null && !TragicConfig.getBoolean("allowMobInfighting") && (this.getAttackTarget() instanceof TragicMob || this.getAttackTarget() instanceof TragicBoss)) this.setAttackTarget(null);
 
-		if (this.worldObj.getDifficulty() == EnumDifficulty.EASY && !TragicConfig.allowEasyBosses || this.posY <= -30 || this.posY > 280) this.setDead();
+		if (this.worldObj.getDifficulty() == EnumDifficulty.EASY && !TragicConfig.getBoolean("allowEasyBosses") || this.posY <= -30 || this.posY > 280) this.setDead();
 
-		if (!this.worldObj.isRemote && this.getIllumination() && TragicConfig.allowMobIllumination && this.ticksExisted % 4 == 0)
+		if (!this.worldObj.isRemote && this.getIllumination() && TragicConfig.getBoolean("allowMobIllumination") && this.ticksExisted % 4 == 0)
 		{
 			int w = MathHelper.floor_float(this.width);
 			int h = MathHelper.floor_float(this.height);
@@ -167,14 +167,14 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 			if (EntityOverlordCore.replaceableBlocks.contains(WorldHelper.getBlock(this.worldObj, pos))) this.worldObj.setBlockState(pos, TragicBlocks.Luminescence.getDefaultState());
 		}
 
-		if (!this.worldObj.isRemote && TragicConfig.bossesDenyFlight)
+		if (!this.worldObj.isRemote && TragicConfig.getBoolean("bossesDenyFlight"))
 		{
 			List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0));
 
 			for (EntityPlayerMP mp : list)
 			{
 				if (!mp.capabilities.isCreativeMode) mp.capabilities.allowFlying = false;
-				if (TragicConfig.allowFlight && mp.isPotionActive(TragicPotion.Flight)) mp.removePotionEffect(TragicPotion.Flight.id);
+				if (TragicConfig.getBoolean("allowFlight") && mp.isPotionActive(TragicPotion.Flight)) mp.removePotionEffect(TragicPotion.Flight.id);
 			}
 		}
 	}
@@ -211,7 +211,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false;
+		if (TragicConfig.getBoolean("allowStun") && this.isPotionActive(TragicPotion.Stun)) return false;
 
 		boolean flag = super.attackEntityAsMob(par1Entity);
 
@@ -226,12 +226,12 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (par1DamageSource.getEntity() != null)
 		{
-			if (par1DamageSource.getEntity() instanceof EntityPlayer && par2 >= TragicConfig.bossDamageCap)
+			if (par1DamageSource.getEntity() instanceof EntityPlayer && par2 >= TragicConfig.getInt("bossDamageCap"))
 			{
 				EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 				boolean flag = player.getCurrentEquippedItem() == null ? false : (player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice);
 
-				if (!player.capabilities.isCreativeMode || !flag) par2 = MathHelper.clamp_float(par2, 0.0F, TragicConfig.bossDamageCap);
+				if (!player.capabilities.isCreativeMode || !flag) par2 = MathHelper.clamp_float(par2, 0.0F, (float) TragicConfig.getInt("bossDamageCap"));
 			}
 
 			if (rand.nextBoolean() && this.getAttackTarget() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && this.getAttackTarget() != par1DamageSource.getEntity()) this.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());

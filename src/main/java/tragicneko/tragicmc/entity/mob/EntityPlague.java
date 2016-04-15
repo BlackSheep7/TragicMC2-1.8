@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.plagueStats;
-
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -53,6 +51,7 @@ public class EntityPlague extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] plagueStats = TragicConfig.getMobStat("plagueStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(plagueStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(plagueStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(plagueStats[2]);
@@ -63,7 +62,7 @@ public class EntityPlague extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) plagueStats[5];
+		return TragicConfig.getMobStat("plagueStats").getArmorValue();
 	}
 
 	@Override
@@ -105,7 +104,7 @@ public class EntityPlague extends TragicMob {
 		}
 		else
 		{
-			if (this.ticksExisted % 120 == 0 && TragicConfig.allowCorruption)
+			if (this.ticksExisted % 120 == 0 && TragicConfig.getBoolean("allowCorruption"))
 			{
 				this.addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 200, 0));
 			}
@@ -119,7 +118,7 @@ public class EntityPlague extends TragicMob {
 				this.motionZ = rand.nextDouble() * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 			}
 
-			if (TragicConfig.allowCorruption && this.ticksExisted % 60 == 0 && TragicConfig.plagueCorruption)
+			if (TragicConfig.getBoolean("allowCorruption") && this.ticksExisted % 60 == 0 && TragicConfig.getBoolean("plagueCorruption"))
 			{
 				int dif = this.worldObj.getDifficulty().getDifficultyId();
 				double d0 = dif == 2 ? 6.0 : (dif == 3 ? 16.0 : 10.0);
@@ -153,11 +152,11 @@ public class EntityPlague extends TragicMob {
 							{
 								((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 80 + rand.nextInt(60)));
 							}
-							else if (TragicConfig.allowSubmission && this.rand.nextInt(32) == 0)
+							else if (TragicConfig.getBoolean("allowSubmission") && this.rand.nextInt(32) == 0)
 							{
 								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 160 + rand.nextInt(160)));
 							}
-							else if (TragicConfig.allowDisorientation && this.rand.nextInt(16) == 0)
+							else if (TragicConfig.getBoolean("allowDisorientation") && this.rand.nextInt(16) == 0)
 							{
 								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 60 + rand.nextInt(80)));
 							}
@@ -171,7 +170,7 @@ public class EntityPlague extends TragicMob {
 				this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
 			}
 
-			if (this.ticksExisted % 20 == 0 && TragicConfig.allowMobSounds)
+			if (this.ticksExisted % 20 == 0 && TragicConfig.getBoolean("allowMobSounds"))
 			{
 				this.worldObj.playSoundAtEntity(this,"tragicmc:mob.plague.chirp", 0.3F, 1.0F);
 			}
@@ -204,7 +203,7 @@ public class EntityPlague extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.plague.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.plague.death" : null;
 	}
 
 	@Override

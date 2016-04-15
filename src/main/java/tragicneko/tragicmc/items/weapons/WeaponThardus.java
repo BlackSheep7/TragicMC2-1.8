@@ -41,7 +41,7 @@ public class WeaponThardus extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (doom == null || !TragicConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
+		if (doom == null || !TragicConfig.getBoolean("allowNonDoomsdayAbilities") || par2World.isRemote) return par1ItemStack;
 
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;

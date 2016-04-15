@@ -1,9 +1,9 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.avrisStats;
-
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
+
+import com.google.common.base.Predicate;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -29,8 +29,6 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.items.challenge.ItemChallenge;
 import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
-
-import com.google.common.base.Predicate;
 
 public class EntityAvris extends TragicMob {
 	public int rarity = 1;
@@ -90,13 +88,13 @@ public class EntityAvris extends TragicMob {
 				if (e instanceof EntityLivingBase && this.canEntityBeSeen(e)) flag = false;
 			}
 
-			if (this.timeAlive >= 3600 && TragicConfig.avrisDespawnTime) flag = true;
+			if (this.timeAlive >= 3600 && TragicConfig.getBoolean("avrisDespawnTime")) flag = true;
 
-			if (flag && TragicConfig.avrisDespawnTime)
+			if (flag && TragicConfig.getBoolean("avrisDespawnTime"))
 			{
 				this.setDead();
 
-				if (TragicConfig.avrisAnnouncements)
+				if (TragicConfig.getBoolean("avrisAnnouncements"))
 				{
 					List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(48.0, 48.0, 48.0));
 
@@ -113,7 +111,7 @@ public class EntityAvris extends TragicMob {
 		super.onDeath(src);
 		if (!this.worldObj.isRemote)
 		{
-			if (TragicConfig.avrisAnnouncements)
+			if (TragicConfig.getBoolean("avrisAnnouncements"))
 			{
 				List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(48.0, 48.0, 48.0));
 
@@ -133,21 +131,21 @@ public class EntityAvris extends TragicMob {
 					x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
 				}
 
-				if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) player).triggerAchievement(TragicAchievements.avris);
+				if (player instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) player).triggerAchievement(TragicAchievements.avris);
 			}
 
 			int drops = 0;
 
 			for (int i = 0; i < x; i++)
 			{
-				if (rand.nextInt(100) <= TragicConfig.commonDropRate + (x * 4))
+				if (rand.nextInt(100) <= TragicConfig.getInt("commonMobDropChance") + (x * 4))
 				{
 					ItemStack drop = ((EntityDrop) WeightedRandom.getRandomItem(rand, Arrays.asList(this.getDropsFromRarity()))).getStack();
 					if (drop != null) this.entityDropItem(drop.copy(), 0.4F);
 					drops++;
 				}
 
-				if (this.recentlyHit > 0 && rand.nextInt(100) <= TragicConfig.rareDropRate + x)
+				if (this.recentlyHit > 0 && rand.nextInt(100) <= TragicConfig.getInt("rareMobDropChance") + x)
 				{
 					ItemStack drop = ((EntityDrop) WeightedRandom.getRandomItem(rand, Arrays.asList(this.getDropsFromRarity()))).getStack();
 					if (drop != null) this.entityDropItem(drop.copy(), 0.4F);
@@ -167,6 +165,7 @@ public class EntityAvris extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] avrisStats = TragicConfig.getMobStat("avrisStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(avrisStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(avrisStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(avrisStats[2]);
@@ -177,7 +176,7 @@ public class EntityAvris extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) avrisStats[5];
+		return TragicConfig.getMobStat("avrisStats").getArmorValue();
 	}
 
 	@Override
@@ -187,7 +186,7 @@ public class EntityAvris extends TragicMob {
 		{
 			rarity = rand.nextInt(3) + 1;
 
-			if (TragicConfig.avrisAnnouncements)
+			if (TragicConfig.getBoolean("avrisAnnouncements"))
 			{
 				List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(48.0, 48.0, 48.0));
 
@@ -218,19 +217,19 @@ public class EntityAvris extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.avris.laugh" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.avris.laugh" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.avris.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.avris.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.avris.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.avris.death" : null;
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.harvesterStats;
-
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -40,6 +38,7 @@ public class EntityHarvester extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] harvesterStats = TragicConfig.getMobStat("harvesterStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(harvesterStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(harvesterStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(harvesterStats[2]);
@@ -50,7 +49,7 @@ public class EntityHarvester extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) harvesterStats[5];
+		return TragicConfig.getMobStat("harvesterStats").getArmorValue();
 	}
 
 	@Override
@@ -156,7 +155,7 @@ public class EntityHarvester extends TragicMob {
 			}
 		}
 
-		if (this.ticksExisted % 20 == 0 && TragicConfig.harvesterBuffDebuffEntities)
+		if (this.ticksExisted % 20 == 0 && TragicConfig.getBoolean("harvesterBuffDebuffEntities"))
 		{
 			double d0 = this.getEntityAttribute(SharedMonsterAttributes.followRange).getAttributeValue();
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(d0, d0, d0));
@@ -188,11 +187,11 @@ public class EntityHarvester extends TragicMob {
 			}
 
 			if (flag && rand.nextInt(32) == 0 && this.getReleaseTicks() == 0) this.setReleaseTicks(20);
-			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.6F, 1.0F);
+			if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.6F, 1.0F);
 		}
 
 		if (this.getReleaseTicks() > 0) this.setReleaseTicks(this.getReleaseTicks() - 1);
-		if (this.getReleaseTicks() == 10 && TragicConfig.harvesterNanoSwarms)
+		if (this.getReleaseTicks() == 10 && TragicConfig.getBoolean("harvesterNanoSwarms") && TragicConfig.getBoolean("allowNanoSwarm"))
 		{
 			EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
 			swarm.setPosition(this.posX, this.posY, this.posZ);
@@ -267,7 +266,7 @@ public class EntityHarvester extends TragicMob {
 	{
 		super.onDeath(src);
 		
-		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements"))
 		{
 			if (!((EntityLivingBase) src.getEntity()).isPotionActive(Potion.weakness))
 			{

@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.parasmiteStats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -43,6 +42,7 @@ public class EntityParasmite extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] parasmiteStats = TragicConfig.getMobStat("parasmiteStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(parasmiteStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(parasmiteStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(parasmiteStats[2]);
@@ -53,7 +53,7 @@ public class EntityParasmite extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) parasmiteStats[5];
+		return TragicConfig.getMobStat("parasmiteStats").getArmorValue();
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class EntityParasmite extends TragicMob {
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.ridingEntity != null && TragicConfig.parasmiteLeech)
+		if (this.ridingEntity != null && TragicConfig.getBoolean("parasmiteLeech"))
 		{
 			this.power = 1;
 			if (this.ridingEntity instanceof EntityParasmite)
@@ -138,7 +138,7 @@ public class EntityParasmite extends TragicMob {
 			this.motionY *= 0.256D;
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
 
-			if (TragicConfig.parasmiteLeech)
+			if (TragicConfig.getBoolean("parasmiteLeech"))
 			{
 				EntityParasmite smite = (EntityParasmite) this.worldObj.findNearestEntityWithinAABB(EntityParasmite.class, this.getEntityBoundingBox().expand(2.0, 2.0, 2.0), this);
 				if (smite != null && smite.riddenByEntity == null && this.ridingEntity == null) this.mountEntity(smite);
@@ -159,7 +159,7 @@ public class EntityParasmite extends TragicMob {
 	{
 		if (!this.worldObj.isRemote && par1Entity.riddenByEntity == null && this.ridingEntity == null)
 		{
-			if (!TragicConfig.parasmiteLeech) return super.attackEntityAsMob(par1Entity);
+			if (!TragicConfig.getBoolean("parasmiteLeech")) return super.attackEntityAsMob(par1Entity);
 
 			this.mountEntity(par1Entity);
 			return true;
@@ -176,19 +176,19 @@ public class EntityParasmite extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? (this.ridingEntity == null ? "tragicmc:mob.parasmite.squeek" : "tragicmc:mob.parasmite.shriek") : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.ridingEntity == null ? "tragicmc:mob.parasmite.squeek" : "tragicmc:mob.parasmite.shriek") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.parasmite.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.parasmite.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.parasmite.shriek" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.parasmite.shriek" : null;
 	}
 
 	@Override

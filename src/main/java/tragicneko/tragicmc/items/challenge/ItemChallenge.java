@@ -101,7 +101,7 @@ public class ItemChallenge extends Item {
 				stack.getTagCompound().setInteger(Challenge.CHALLENGE_ID, challenge.getChallengeId());
 				player.addChatMessage(new ChatComponentText("Challenge accepted!"));
 				if (player instanceof EntityPlayerMP) player.worldObj.playSoundAtEntity(player, "tragicmc:random.challengestart", 0.4F, 1.0F);
-				if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.challengeScroll);
+				if (TragicConfig.getBoolean("allowAchievements") && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.challengeScroll);
 			}
 			catch (Exception e)
 			{

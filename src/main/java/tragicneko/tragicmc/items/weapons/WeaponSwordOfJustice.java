@@ -29,7 +29,7 @@ public class WeaponSwordOfJustice extends ItemSword {
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
 	{
-		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
+		if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) return false;
 		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote && !((EntityPlayer) entity2).capabilities.isCreativeMode) stack.stackSize--;
 		return true;
 	}
@@ -55,7 +55,7 @@ public class WeaponSwordOfJustice extends ItemSword {
 
 		if (!stack.isItemEnchanted())
 		{
-			if (TragicConfig.allowReach) stack.addEnchantment(TragicEnchantments.Reach, 10);
+			if (TragicConfig.getBoolean("allowReach")) stack.addEnchantment(TragicEnchantments.Reach, 10);
 			stack.addEnchantment(Enchantment.looting, 10);
 		}
 	}
@@ -73,7 +73,7 @@ public class WeaponSwordOfJustice extends ItemSword {
 			{
 				if (e instanceof EntityLivingBase && !e.isDead && ((EntityLivingBase) e).getHealth() > 0F)
 				{
-					if (e instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					if (e instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 					if (!e.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE)) e.setDead();
 					count++;
 				}

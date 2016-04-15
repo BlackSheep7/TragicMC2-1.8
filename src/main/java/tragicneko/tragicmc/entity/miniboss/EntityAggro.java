@@ -1,14 +1,11 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.aggroStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 
 public class EntityAggro extends EntityRagr implements TragicMiniBoss {
@@ -75,17 +72,17 @@ public class EntityAggro extends EntityRagr implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(aggroStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(aggroStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(aggroStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(aggroStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(aggroStats[4]);
+		//this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(aggroStats[0]);
+		//this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(aggroStats[1]);
+		//this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(aggroStats[2]);
+		//this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(aggroStats[3]);
+		//this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(aggroStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) aggroStats[5];
+		return 0; //(int) aggroStats[5];
 	}
 
 	@Override

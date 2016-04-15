@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.nanoSwarmStats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -48,6 +47,7 @@ public class EntityNanoSwarm extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] nanoSwarmStats = TragicConfig.getMobStat("nanoSwarmStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(nanoSwarmStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(nanoSwarmStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(nanoSwarmStats[2]);
@@ -58,7 +58,7 @@ public class EntityNanoSwarm extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) nanoSwarmStats[5];
+		return TragicConfig.getMobStat("nanoSwarmStats").getArmorValue();
 	}
 
 	@Override
@@ -104,14 +104,14 @@ public class EntityNanoSwarm extends TragicMob {
 				if (!(entity.getEquipmentInSlot(0).getItem() instanceof ItemBow) && this.getDistanceToEntity(entity) <= 2.0F)
 				{
 					entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
-					if (TragicConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(60)));
+					if (TragicConfig.getBoolean("allowHacked")) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(60)));
 					return super.attackEntityFrom(par1DamageSource, Float.MAX_VALUE);
 				}
 			}
 			else
 			{
 				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
-				if (TragicConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(60)));
+				if (TragicConfig.getBoolean("allowHacked")) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(60)));
 				return super.attackEntityFrom(par1DamageSource, Float.MAX_VALUE);
 			}
 		}
@@ -129,7 +129,7 @@ public class EntityNanoSwarm extends TragicMob {
 		if (result && par1Entity instanceof EntityLivingBase && ((EntityLivingBase) par1Entity).getCreatureAttribute() != TragicEntities.Synapse)
 		{
 			this.setDead();
-			if (TragicConfig.allowHacked) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120 + rand.nextInt(80)));
+			if (TragicConfig.getBoolean("allowHacked")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120 + rand.nextInt(80)));
 		}
 
 		return result;
@@ -150,19 +150,19 @@ public class EntityNanoSwarm extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.nanoswarm.glitch" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.nanoswarm.glitch" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.nanoswarm.glitch" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.nanoswarm.glitch" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.nanoswarm.glitch" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.nanoswarm.glitch" : null;
 	}
 
 	@Override

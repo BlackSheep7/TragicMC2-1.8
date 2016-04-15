@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicConfig.aegarStats;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -88,6 +86,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] aegarStats = TragicConfig.getMobStat("aegarStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(aegarStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(aegarStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(aegarStats[2]);
@@ -390,14 +389,14 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 		else
 		{
 			this.setTargetID(this.getAttackTarget().getEntityId());
-			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(64) == 0 && TragicConfig.aegarLasers) this.setLaserTicks(40);
-			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F && rand.nextInt(128) == 0 && this.getHypermode() && TragicConfig.aegarLasers) this.setAutoTicks(100 + rand.nextInt(80));
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(64) == 0 && TragicConfig.getBoolean("aegarLasers")) this.setLaserTicks(40);
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F && rand.nextInt(128) == 0 && this.getHypermode() && TragicConfig.getBoolean("aegarLasers")) this.setAutoTicks(100 + rand.nextInt(80));
 			if (this.getLaserTicks() == 5 && this.canEntityBeSeen(this.getAttackTarget()) || this.getAutoTicks() > 20 && this.getAutoTicks() % 5 == 0 && this.canEntityBeSeen(this.getAttackTarget())) this.fireLaser();
 			if (this.getLaserTicks() > 0 && !this.canEntityBeSeen(this.getAttackTarget())) this.setLaserTicks(0);
 
-			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && rand.nextInt(this.getHypermode() ? 48 : 128) == 0 && this.onGround && TragicConfig.aegarShockwave)
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && rand.nextInt(this.getHypermode() ? 48 : 128) == 0 && this.onGround && TragicConfig.getBoolean("aegarShockwave"))
 			{
-				if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.shockwave", 1.0F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.shockwave", 1.0F, 1.0F);
 				this.setShockwaveTicks(60);
 			}
 
@@ -407,14 +406,14 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 				this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(6.0D, 6.0D , 6.0D)));
 			}
 
-			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) > 12.0F && this.getHypermode() && rand.nextInt(128) == 0 && TragicConfig.aegarMortors) this.setMortorTicks(100);
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) > 12.0F && this.getHypermode() && rand.nextInt(128) == 0 && TragicConfig.getBoolean("aegarMortors")) this.setMortorTicks(100);
 			if (this.getMortorTicks() > 20 && this.getMortorTicks() % 20 == 0) this.createCrystalMortors();
 		}
 	}
 
 	private void createCrystalMortors() {
 
-		if (!TragicConfig.aegarMortors) return;
+		if (!TragicConfig.getBoolean("aegarMortors")) return;
 		double d0 = this.getAttackTarget().posX - this.posX;
 		double d1 = rand.nextInt(4);
 		double d2 = this.getAttackTarget().posZ - this.posZ;
@@ -427,12 +426,12 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 		mortor.motionY += 0.36D * f1;
 		this.worldObj.spawnEntityInWorld(mortor);
 
-		if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.trill", 0.6F, 1.0F);
+		if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.trill", 0.6F, 1.0F);
 	}
 
 	private void fireLaser() {
-		if (!TragicConfig.aegarLasers) return;
-		if (TragicConfig.allowMobSounds) 
+		if (!TragicConfig.getBoolean("aegarLasers")) return;
+		if (TragicConfig.getBoolean("allowMobSounds")) 
 		{
 			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
 			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
@@ -441,7 +440,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 	}
 
 	private void onCrystalDestruction() {
-		if (TragicConfig.aegarHypermode) this.setHypermode(true);
+		if (TragicConfig.getBoolean("aegarHypermode")) this.setHypermode(true);
 		super.attackEntityFrom(DamageSource.magic, 75.0F);
 		this.setStunTicks(120);
 
@@ -455,7 +454,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) aegarStats[5];
+		return TragicConfig.getMobStat("aegarStats").getArmorValue();
 	}
 
 	@Override
@@ -522,7 +521,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 		{
 			if (entity == this.aegarCrystal)
 			{
-				if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.harshhurt", 0.6F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.harshhurt", 0.6F, 1.0F);
 				damage *= 1.35F;
 			}
 			else
@@ -546,7 +545,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 			this.setAttackTime(20);
 			par1Entity.motionX *= 2.35D;
 			par1Entity.motionZ *= 2.35D;
-			if (par1Entity instanceof EntityPlayer && TragicConfig.allowHacked && rand.nextInt(6) == 0) ((EntityPlayer) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120, 0));
+			if (par1Entity instanceof EntityPlayer && TragicConfig.getBoolean("allowHacked") && rand.nextInt(6) == 0) ((EntityPlayer) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120, 0));
 		}
 		return result;
 	}
@@ -560,7 +559,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 			if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse)
 			{
 				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 16.0F);
-				if (entity instanceof EntityPlayer && TragicConfig.allowHacked && rand.nextInt(6) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120, 0));
+				if (entity instanceof EntityPlayer && TragicConfig.getBoolean("allowHacked") && rand.nextInt(6) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120, 0));
 
 				entity.motionX *= 3.225D;
 				entity.motionZ *= 3.225D;
@@ -609,19 +608,19 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? (this.getHypermode() ? "tragicmc:boss.aegar.hyperwah" : "tragicmc:boss.aegar.wah") : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.getHypermode() ? "tragicmc:boss.aegar.hyperwah" : "tragicmc:boss.aegar.wah") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{ 
-		return TragicConfig.allowMobSounds ? (this.getHypermode() ? "tragicmc:boss.aegar.harshhurt" : "tragicmc:boss.aegar.hurt") : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.getHypermode() ? "tragicmc:boss.aegar.harshhurt" : "tragicmc:boss.aegar.hurt") : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.aegar.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.aegar.death" : null;
 	}
 
 	@Override
@@ -655,7 +654,7 @@ public class EntityAegar extends TragicBoss implements IMultiPart {
 
 		if (this.worldObj.isRemote) return;
 		
-		if (par1.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements && !this.getHypermode())
+		if (par1.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements") && !this.getHypermode())
 		{
 			((EntityPlayerMP) par1.getEntity()).triggerAchievement(TragicAchievements.aegar);
 		}

@@ -28,7 +28,7 @@ public class DoomsdayEscape extends Doomsday {
 			if (list.get(i) instanceof EntityLivingBase)
 			{
 				entity = (EntityLivingBase) list.get(i);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 				entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 10));
 			}
 		}

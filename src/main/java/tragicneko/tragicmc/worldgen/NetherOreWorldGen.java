@@ -25,28 +25,28 @@ public class NetherOreWorldGen implements IWorldGenerator {
 			byte i;
 			Predicate pred = BlockHelper.forBlock(Blocks.netherrack);
 			
-			for (i = 0; i < TragicConfig.rubyOreRate; i++)
+			for (i = 0; i < TragicConfig.getInt("rubyOreGenRate"); i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(30) + 15;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.RubyOre.getStateFromMeta(0), TragicConfig.rubyOreVeinSize, pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				new WorldGenMinable(TragicBlocks.RubyOre.getStateFromMeta(0), TragicConfig.getInt("rubyOreVeinSize"), pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 
-			for (i = 0; i < TragicConfig.sapphireOreRate; i++)
+			for (i = 0; i < TragicConfig.getInt("sapphireOreGenRate"); i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(20) + 95;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.SapphireOre.getStateFromMeta(0), TragicConfig.sapphireOreVeinSize, pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				new WorldGenMinable(TragicBlocks.SapphireOre.getStateFromMeta(0), TragicConfig.getInt("sapphireOreVeinSize"), pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 
-			for (i = 0; i < TragicConfig.drudgeRate && TragicConfig.allowDrudgeGen; i++)
+			for (i = 0; i < TragicConfig.getInt("drudgeGenRate") && TragicConfig.getBoolean("allowDrudgeGen"); i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(60) + 30;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.Quicksand.getStateFromMeta(2), TragicConfig.drudgeVeinSize, pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				new WorldGenMinable(TragicBlocks.Quicksand.getStateFromMeta(2), TragicConfig.getInt("drudgeVeinSize"), pred).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 		}
 	}

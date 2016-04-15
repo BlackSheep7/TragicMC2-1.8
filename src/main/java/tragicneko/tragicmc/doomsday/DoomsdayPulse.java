@@ -28,15 +28,15 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 		{
 			if (list.get(j) instanceof EntityLivingBase && player.canEntityBeSeen((Entity) list.get(j)))
 			{
-				if (list.get(j) instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				if (list.get(j) instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 				if (effect.utilityFlag)
 				{
-					((Entity) list.get(j)).motionY = 1.0;
-					if (TragicConfig.allowSubmission) ((EntityLivingBase) list.get(j)).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120, rand.nextInt(2)));
+					((Entity) list.get(j)).motionY = 1.5;
+					if (TragicConfig.getBoolean("allowSubmission")) ((EntityLivingBase) list.get(j)).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120, rand.nextInt(2)));
 				}
 				else
 				{
-					((Entity) list.get(j)).motionY = -1.0;
+					((Entity) list.get(j)).motionY = -1.5;
 				}
 			}
 		}
@@ -54,11 +54,11 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 		{
 			if (list.get(j) instanceof EntityLivingBase && player.canEntityBeSeen((Entity) list.get(j)))
 			{
-				if (list.get(j) instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				if (list.get(j) instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 				if (effect.utilityFlag)
 				{
 					((Entity) list.get(j)).motionY = 1.0;
-					if (TragicConfig.allowSubmission) ((EntityLivingBase) list.get(j)).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120, rand.nextInt(2)));
+					if (TragicConfig.getBoolean("allowSubmission")) ((EntityLivingBase) list.get(j)).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120, rand.nextInt(2)));
 				}
 				else
 				{

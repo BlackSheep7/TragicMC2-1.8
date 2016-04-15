@@ -83,7 +83,7 @@ public class EnchantmentArmorExtra extends Enchantment {
 						}
 						break;
 					case 1:
-						if (rand.nextInt(4) == 0 && TragicConfig.allowStun)
+						if (rand.nextInt(4) == 0 && TragicConfig.getBoolean("allowStun"))
 							{
 							entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 * par1));
 							flag = true;
@@ -140,7 +140,7 @@ public class EnchantmentArmorExtra extends Enchantment {
 						break;
 					}
 					
-					if (flag && entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.enchantArmor); 
+					if (flag && entity instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.enchantArmor); 
 				}
 			}
 		}

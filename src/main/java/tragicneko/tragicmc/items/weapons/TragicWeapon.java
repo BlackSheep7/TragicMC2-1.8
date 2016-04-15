@@ -70,7 +70,7 @@ public class TragicWeapon extends ItemSword {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
+		if (TragicConfig.getBoolean("allowRandomWeaponLore") && LoreHelper.getRarityFromStack(stack) >= 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
 
@@ -81,7 +81,7 @@ public class TragicWeapon extends ItemSword {
 			}
 		}
 
-		if (TragicConfig.allowDoomsdays && this.doomsday != null)
+		if (TragicConfig.getBoolean("allowDoomsdays") && this.doomsday != null)
 		{
 			EnumChatFormatting format;
 			String d = this.doomsday2 != null ? "Doomsdays:" : "Doomsday:";
@@ -134,7 +134,7 @@ public class TragicWeapon extends ItemSword {
 		if (!stack.getTagCompound().hasKey("cooldown")) stack.getTagCompound().setInteger("cooldown", 0);
 		if (getStackCooldown(stack) > 0) setStackCooldown(stack, getStackCooldown(stack) - 1);
 
-		if (!TragicConfig.allowRandomWeaponLore || stack.getItem() == null) return;
+		if (!TragicConfig.getBoolean("allowRandomWeaponLore") || stack.getItem() == null) return;
 
 		LoreEntry entry = LoreHelper.getLoreEntry(stack.getItem().getClass());
 		if (entry == null) return;
@@ -161,7 +161,7 @@ public class TragicWeapon extends ItemSword {
 
 	public static boolean canUseAbility(PropertyDoom doom, int rq)
 	{
-		return doom != null && TragicConfig.allowNonDoomsdayAbilities && doom.getCurrentCooldown() == 0 && doom.getCurrentDoom() >= rq;
+		return doom != null && TragicConfig.getBoolean("allowNonDoomsdayAbilities") && doom.getCurrentCooldown() == 0 && doom.getCurrentDoom() >= rq;
 	}
 
 	public static void setStackCooldown(ItemStack stack, int i)
@@ -183,7 +183,7 @@ public class TragicWeapon extends ItemSword {
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
 	{
-		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
+		if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) return false;
 		return super.hitEntity(stack, entity, entity2);
 	}
 	

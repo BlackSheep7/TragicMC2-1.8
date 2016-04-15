@@ -22,7 +22,7 @@ public class WeaponHarmonyBell extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && TragicConfig.allowHarmony && canUseAbility(doom, TragicConfig.doomAbilityCost[17]) && getStackCooldown(stack) == 0 && TragicConfig.doomAbility[17])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && TragicConfig.getBoolean("allowHarmony") && canUseAbility(doom, TragicConfig.doomAbilityCost[17]) && getStackCooldown(stack) == 0 && TragicConfig.doomAbility[17])
 		{
 			if (doom != null && doom.getCurrentDoom() >= 3)
 			{

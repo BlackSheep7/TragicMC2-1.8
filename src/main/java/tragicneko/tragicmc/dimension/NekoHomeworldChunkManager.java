@@ -18,6 +18,7 @@ import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 import net.minecraft.world.gen.layer.IntCache;
 import tragicneko.tragicmc.TragicBiome;
+import tragicneko.tragicmc.TragicConfig;
 
 public class NekoHomeworldChunkManager extends WorldChunkManager
 {
@@ -52,7 +53,7 @@ public class NekoHomeworldChunkManager extends WorldChunkManager
 	public static GenLayer[] getGenLayers(long seed, WorldType worldType)
 	{
 		GenLayer biomes = new NekoHomeworldBiomeGenLayer(seed);
-		biomes = GenLayerZoom.magnify(100L, biomes, 8);
+		biomes = GenLayerZoom.magnify(100L, biomes, TragicConfig.getInt("nekoHomeworldBiomeSize"));
 		GenLayer zoom = new GenLayerVoronoiZoom(10L, biomes);
 
 		biomes.initWorldGenSeed(seed);

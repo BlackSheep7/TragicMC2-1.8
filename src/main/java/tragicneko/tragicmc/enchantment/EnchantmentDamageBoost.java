@@ -63,7 +63,7 @@ public class EnchantmentDamageBoost extends Enchantment {
 			}
 			break;
 		case 1:
-			if (TragicConfig.allowCorruption && par2EntityLivingBase.isPotionActive(TragicPotion.Corruption.id))
+			if (TragicConfig.getBoolean("allowCorruption") && par2EntityLivingBase.isPotionActive(TragicPotion.Corruption.id))
 			{
 				if (par2EntityLivingBase.worldObj.rand.nextInt((16 / par1) + 1) == 0)
 				{

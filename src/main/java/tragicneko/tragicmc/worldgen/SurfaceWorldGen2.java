@@ -28,7 +28,7 @@ public class SurfaceWorldGen2 implements IWorldGen {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
-		if (!TragicConfig.allowScatteredSurfaceGen) return;
+		if (!TragicConfig.getBoolean("allowScatteredSurfaceGen")) return;
 		
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);

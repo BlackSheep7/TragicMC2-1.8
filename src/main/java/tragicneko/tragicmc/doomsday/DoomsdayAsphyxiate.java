@@ -35,7 +35,7 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 				{
 					EntityLivingBase entity = (EntityLivingBase) list.get(i);
 					entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 2400, 10));
-					if (TragicConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 2400, (int) crisis));
+					if (TragicConfig.getBoolean("allowSubmission")) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 2400, (int) crisis));
 					entity.motionX = entity.motionY = entity.motionZ = 0.0;
 					entity.velocityChanged = false;
 

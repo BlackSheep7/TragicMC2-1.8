@@ -26,7 +26,7 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
-		if (TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600, 0));
+		if (TragicConfig.getBoolean("allowImmunity")) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600, 0));
 	}
 
 	@Override

@@ -55,7 +55,7 @@ public class ChallengeItemEvents {
 				}
 			}
 
-			if (TragicMC.rand.nextInt(1000) <= TragicConfig.challengeScrollDropChance && event.entityLiving instanceof EntityMob)
+			if (TragicMC.rand.nextInt(1000) <= TragicConfig.getInt("challengeScrollDropChance") && event.entityLiving instanceof EntityMob)
 			{
 				event.entityLiving.entityDropItem(new ItemStack(TragicItems.ChallengeScroll, 1, 0), 0.4F);
 			}

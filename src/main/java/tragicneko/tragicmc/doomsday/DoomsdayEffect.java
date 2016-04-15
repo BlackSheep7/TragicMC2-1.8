@@ -91,8 +91,8 @@ public class DoomsdayEffect {
 
 		if (this.timeBetweenUpdates == 0)
 		{
-			if (TragicConfig.allowCrucialMoments) crucMoment = rand.nextInt(100) <= TragicConfig.crucialMomentChance;
-			if (TragicConfig.allowAchievements && crucMoment) this.player.triggerAchievement(TragicAchievements.doomCritical);
+			if (TragicConfig.getBoolean("allowCrucialMoments")) crucMoment = rand.nextInt(100) <= TragicConfig.getInt("crucialMomentChance");
+			if (TragicConfig.getBoolean("allowAchievements") && crucMoment) this.player.triggerAchievement(TragicAchievements.doomCritical);
 
 			try
 			{

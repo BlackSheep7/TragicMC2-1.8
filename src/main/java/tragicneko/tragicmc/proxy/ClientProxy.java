@@ -220,7 +220,7 @@ public class ClientProxy extends CommonProxy {
 		Minecraft mc = Minecraft.getMinecraft();
 
 		//Gui event registration
-		if (TragicConfig.showDoomGui || TragicConfig.showAmuletStatusGui) registerEvent(new GuiDoom(mc));
+		if (TragicConfig.getBoolean("showDoomGui") || TragicConfig.getBoolean("showAmuletStatusGui")) registerEvent(new GuiDoom(mc));
 
 		//Keybinding registrations
 		ClientRegistry.registerKeyBinding(useSpecial);
@@ -422,7 +422,7 @@ public class ClientProxy extends CommonProxy {
 
 		registerBlockToBakery(TragicBlocks.SummonBlock, getPrefixedArray(summonBlock));
 
-		if (TragicConfig.allowNonMobBlocks)
+		if (TragicConfig.getBoolean("allowNonMobBlocks"))
 		{
 			registerBlockToBakery(TragicBlocks.CompactOre, getPrefixedArray(compactOre));
 			registerBlockToBakery(TragicBlocks.StructureSeed2, DOMAIN + "structureSeed");
@@ -466,9 +466,9 @@ public class ClientProxy extends CommonProxy {
 
 		registerItemToBakery(TragicItems.Projectile, getPrefixedArray(projectile));
 
-		if (TragicConfig.allowMobs) registerItemToBakery(TragicItems.SpawnEgg, getPrefixedArray(spawnEggs));
+		if (TragicConfig.getBoolean("allowMobs")) registerItemToBakery(TragicItems.SpawnEgg, getPrefixedArray(spawnEggs));
 
-		if (TragicConfig.allowNonMobItems)
+		if (TragicConfig.getBoolean("allowNonMobItems"))
 		{			
 			registerArmorToBakery(TragicItems.SkullHelmet, "skullHelmet");
 			registerArmorToBakery(TragicItems.SkullPlate, "skullPlate");
@@ -535,9 +535,9 @@ public class ClientProxy extends CommonProxy {
 			registerItemToBakery(TragicItems.Untitled, DOMAIN + "record");
 			registerItemToBakery(TragicItems.Untitled2, DOMAIN + "record");
 
-			if (TragicConfig.allowGeneratorItems) registerItemToBakery(TragicItems.Generator, getPrefixedArray(generator));
+			if (TragicConfig.getBoolean("allowGeneratorItems")) registerItemToBakery(TragicItems.Generator, getPrefixedArray(generator));
 			registerItemToBakery(TragicItems.MobStatue, getPrefixedArray(statue));
-			if (TragicConfig.allowAmulets)
+			if (TragicConfig.getBoolean("allowAmulets"))
 			{
 				registerAmuletToBakery(TragicItems.KitsuneAmulet);
 				registerAmuletToBakery(TragicItems.PeaceAmulet);
@@ -571,7 +571,7 @@ public class ClientProxy extends CommonProxy {
 				registerAmuletToBakery(TragicItems.EnyvilAmulet);
 				registerAmuletToBakery(TragicItems.LuckAmulet);
 			}
-			if (TragicConfig.allowChallengeScrolls) registerItemToBakery(TragicItems.ChallengeScroll, getPrefixedArray(challengeScroll));
+			if (TragicConfig.getBoolean("allowChallengeScrolls")) registerItemToBakery(TragicItems.ChallengeScroll, getPrefixedArray(challengeScroll));
 		}
 
 		int i; //for loops
@@ -579,9 +579,9 @@ public class ClientProxy extends CommonProxy {
 		for (i = 0; i < summonBlock.length; i++) registerBlockToMesher(TragicBlocks.SummonBlock, i, summonBlock[i]);
 
 		registerBlockToMesher(TragicBlocks.Luminescence, ZERO, "luminescence");
-		if (TragicConfig.allowOverlord) registerBlockToMesher(TragicBlocks.OverlordBarrier, ZERO, "overlordBarrier");
+		if (TragicConfig.getBoolean("allowOverlord")) registerBlockToMesher(TragicBlocks.OverlordBarrier, ZERO, "overlordBarrier");
 
-		if (TragicConfig.allowNonMobBlocks)
+		if (TragicConfig.getBoolean("allowNonMobBlocks"))
 		{
 			registerBlockToMesher(TragicBlocks.MercuryOre, ZERO, "mercuryOre");
 			registerBlockToMesher(TragicBlocks.TungstenOre, ZERO, "tungstenOre");
@@ -728,7 +728,7 @@ public class ClientProxy extends CommonProxy {
 		registerItemToMesher(TragicItems.SwordOfJustice, ZERO, "swordOfJustice");
 		registerItemToMesher(TragicItems.NekoNekoWand, ZERO, "nekoNekoWand");
 
-		if (TragicConfig.allowMobs)
+		if (TragicConfig.getBoolean("allowMobs"))
 		{
 			for (i = 0; i < TragicEntityList.idToClassMapping.size(); i++)
 			{
@@ -748,7 +748,7 @@ public class ClientProxy extends CommonProxy {
 		for (i = 0; i < projectile.length; i++)
 			registerItemToMesher(TragicItems.Projectile, i, projectile[i]);
 
-		if (TragicConfig.allowNonMobItems)
+		if (TragicConfig.getBoolean("allowNonMobItems"))
 		{
 			registerItemToMesher(TragicItems.RedMercury, ZERO, "redMercury");
 			registerItemToMesher(TragicItems.Quicksilver, ZERO, "quicksilver");
@@ -828,21 +828,21 @@ public class ClientProxy extends CommonProxy {
 
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "beastlyClaws" : "beastlyClawsInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "beastlyClaws" : "beastlyClawsInventory"), "inventory");
 				}
 			});
 			registerItemToMesher(TragicItems.GuiltyThorn, ZERO, "guiltyThorn");
 			registerItemWithCustomDefinition(TragicItems.NekoLauncher, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "nekoLauncher" : "nekoLauncherInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "nekoLauncher" : "nekoLauncherInventory"), "inventory");
 				}
 			});
 			registerItemWithCustomDefinition(TragicItems.ReaperScythe, new ItemMeshDefinition() {
 
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "reaperScythe" : "reaperScytheInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "reaperScythe" : "reaperScytheInventory"), "inventory");
 				}
 			});
 			registerItemToMesher(TragicItems.WitheringAxe, ZERO, "witheringAxe");
@@ -851,7 +851,7 @@ public class ClientProxy extends CommonProxy {
 
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "celestialAegis" : "celestialAegisInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "celestialAegis" : "celestialAegisInventory"), "inventory");
 				}
 			});
 
@@ -886,44 +886,44 @@ public class ClientProxy extends CommonProxy {
 			registerItemWithCustomDefinition(TragicItems.Titan, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "titan" : "titanInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "titan" : "titanInventory"), "inventory");
 				}
 			});
 			registerItemWithCustomDefinition(TragicItems.Splinter, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "splinter" : "splinterInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "splinter" : "splinterInventory"), "inventory");
 				}
 			});
 			registerItemWithCustomDefinition(TragicItems.Butcher, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "butcher" : "butcherInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "butcher" : "butcherInventory"), "inventory");
 				}
 			});
 			registerItemWithCustomDefinition(TragicItems.Thardus, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "thardus" : "thardusInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "thardus" : "thardusInventory"), "inventory");
 				}
 			});
 			registerItemWithCustomDefinition(TragicItems.Paranoia, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "paranoia" : "paranoiaInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "paranoia" : "paranoiaInventory"), "inventory");
 				}
 			});
 			registerItemWithCustomDefinition(TragicItems.DragonFang, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "dragonFang" : "dragonFangInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "dragonFang" : "dragonFangInventory"), "inventory");
 				}
 			});
 
 			registerItemWithCustomDefinition(TragicItems.Sentinel, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "sentinel" : "sentinelInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "sentinel" : "sentinelInventory"), "inventory");
 				}
 			});
 
@@ -1000,7 +1000,7 @@ public class ClientProxy extends CommonProxy {
 			registerItemWithCustomDefinition(TragicItems.IreNetParticleCannon, new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.allowWeaponModels ? "ireParticleCannon" : "ireParticleCannonInventory"), "inventory");
+					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "ireParticleCannon" : "ireParticleCannonInventory"), "inventory");
 				}
 			});
 			registerItemToMesher(TragicItems.CatalyticCompound, ZERO, "catalyticCompound");
@@ -1071,7 +1071,7 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.HydrationTalisman, ZERO, "hydrationTalisman");
 			registerItemToMesher(TragicItems.LightningRodTalisman, ZERO, "lightningRodTalisman");
 
-			if (TragicConfig.allowAmulets)
+			if (TragicConfig.getBoolean("allowAmulets"))
 			{
 				registerAmuletToMesher(TragicItems.KitsuneAmulet);
 				registerAmuletToMesher(TragicItems.PeaceAmulet);
@@ -1108,7 +1108,7 @@ public class ClientProxy extends CommonProxy {
 				registerItemToMesher(TragicItems.AmuletRelease, ZERO, "amuletRelease");
 			}
 
-			if (TragicConfig.allowDoom)
+			if (TragicConfig.getBoolean("allowDoom"))
 			{
 				registerItemToMesher(TragicItems.DoomConsume, ZERO, "doomConsume");
 				registerItemToMesher(TragicItems.CooldownDefuse, ZERO, "cooldownDefuse");
@@ -1120,7 +1120,7 @@ public class ClientProxy extends CommonProxy {
 			for (i = 0; i < statue.length; i++)
 				registerItemToMesher(TragicItems.MobStatue, i, statue[i]);
 
-			if (TragicConfig.allowDimension)
+			if (TragicConfig.getBoolean("allowDimensions"))
 			{
 				registerItemToMesher(TragicItems.DimensionalKey, ZERO, "dimensionalKey");
 				registerItemToMesher(TragicItems.DimensionalKeyEnd, ZERO, "dimensionalKeyEnd");
@@ -1132,7 +1132,7 @@ public class ClientProxy extends CommonProxy {
 				registerItemToMesher(TragicItems.WarpDrive, ZERO, "warpDrive");
 			}
 
-			if (TragicConfig.allowDoomsdays)
+			if (TragicConfig.getBoolean("allowDoomsdays"))
 			{
 				for (i = 1; i < Doomsday.doomsdayList.length; i++)
 				{
@@ -1143,13 +1143,13 @@ public class ClientProxy extends CommonProxy {
 
 			registerItemToMesher(TragicItems.SoundExtrapolator, ZERO, "soundExtrapolator");
 
-			if (TragicConfig.allowGeneratorItems)
+			if (TragicConfig.getBoolean("allowGeneratorItems"))
 			{
 				for (i = 0; i < generator.length; i++)
 					registerItemToMesher(TragicItems.Generator, i, generator[i]);
 			}
 
-			if (TragicConfig.allowChallengeScrolls)
+			if (TragicConfig.getBoolean("allowChallengeScrolls"))
 			{
 				for (i = 0; i < 251; i++)
 				{

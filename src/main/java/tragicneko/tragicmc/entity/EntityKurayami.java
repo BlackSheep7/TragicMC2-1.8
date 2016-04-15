@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity;
 
-import static tragicneko.tragicmc.TragicConfig.kurayamiStats;
-
 import java.util.UUID;
 
 import com.google.common.base.Predicate;
@@ -82,7 +80,8 @@ public class EntityKurayami extends EntityGolem {
 
 	public void setKurayamiLevel(double d0)
 	{
-		this.armorValue = MathHelper.ceiling_double_int(d0 * kurayamiStats[5]);
+		double[] kurayamiStats = TragicConfig.getMobStat("kurayamiStats").getStats();
+		this.armorValue = MathHelper.ceiling_double_int(d0 * TragicConfig.getMobStat("kurayamiStats").getArmorValue());
 		this.timeToLive = MathHelper.ceiling_double_int(1800 * d0);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kurayamiStats[0] * d0);
 		this.setHealth(this.getMaxHealth());
@@ -108,6 +107,7 @@ public class EntityKurayami extends EntityGolem {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] kurayamiStats = TragicConfig.getMobStat("kurayamiStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kurayamiStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(kurayamiStats[1]);
 		this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
@@ -164,7 +164,7 @@ public class EntityKurayami extends EntityGolem {
 	@Override
 	public void onLivingUpdate()
 	{
-		if (TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption)) this.removePotionEffect(TragicPotion.Corruption.id);
+		if (TragicConfig.getBoolean("allowCorruption") && this.isPotionActive(TragicPotion.Corruption)) this.removePotionEffect(TragicPotion.Corruption.id);
 
 		super.onLivingUpdate();
 
@@ -246,7 +246,7 @@ public class EntityKurayami extends EntityGolem {
 	@Override
 	public boolean attackEntityAsMob(Entity entity)
 	{
-		if (this.worldObj.isRemote || TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun) || this.getAttackTime() > 0) return false;
+		if (this.worldObj.isRemote || TragicConfig.getBoolean("allowStun") && this.isPotionActive(TragicPotion.Stun) || this.getAttackTime() > 0) return false;
 
 		boolean flag = entity != this.owner && entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 
@@ -266,7 +266,7 @@ public class EntityKurayami extends EntityGolem {
 					((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, rand.nextInt(200) + 320));
 					break;
 				case 2:
-					if (TragicConfig.allowDisorientation)
+					if (TragicConfig.getBoolean("allowDisorientation"))
 					{
 						((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
 					}
@@ -414,19 +414,19 @@ public class EntityKurayami extends EntityGolem {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.kitsune.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.kitsune.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.kitsune.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.kitsune.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.kitsune.hurt" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.kitsune.hurt" : null;
 	}
 
 	@Override

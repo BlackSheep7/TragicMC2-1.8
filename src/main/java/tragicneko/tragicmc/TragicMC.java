@@ -77,12 +77,12 @@ public class TragicMC
 	@EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{
-		if (TragicConfig.allowDoom) event.registerServerCommand(new tragicneko.tragicmc.commands.DoomCommand());
-		if (TragicConfig.allowDoomsdays) event.registerServerCommand(new tragicneko.tragicmc.commands.DoomsdayComand());
+		if (TragicConfig.getBoolean("allowDoom")) event.registerServerCommand(new tragicneko.tragicmc.commands.DoomCommand());
+		if (TragicConfig.getBoolean("allowDoomsdays")) event.registerServerCommand(new tragicneko.tragicmc.commands.DoomsdayComand());
 
 		if (!event.getServer().isFlightAllowed())
 		{
-			TragicConfig.allowFlight = false;
+			TragicConfig.overrideObject("allowFlight", false);
 			logWarning("Flight potion effect is disabled due to the server not allowing it. Change the option in your server.properties file if you want it enabled.");
 		}
 	}
@@ -90,7 +90,7 @@ public class TragicMC
 	@EventHandler
 	public void onMapping(FMLMissingMappingsEvent event)
 	{
-		if (!TragicConfig.allowNonMobBlocks || !TragicConfig.allowNonMobItems) return;
+		if (!TragicConfig.getBoolean("allowNonMobBlocks") || !TragicConfig.getBoolean("allowNonMobItems")) return;
 
 		List<MissingMapping> list = event.get();
 

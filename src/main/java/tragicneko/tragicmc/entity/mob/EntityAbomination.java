@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.abominationStats;
-
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -88,6 +86,7 @@ public class EntityAbomination extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] abominationStats = TragicConfig.getMobStat("abominationStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(abominationStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(abominationStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(abominationStats[2]);
@@ -182,7 +181,7 @@ public class EntityAbomination extends TragicMob {
 			}
 		}
 
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean() && TragicConfig.abominationHelpCall)
+		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean() && TragicConfig.getBoolean("abominationHelpCall"))
 		{
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(12.0, 12.0, 12.0));
 			EntityAbomination mob;
@@ -221,7 +220,7 @@ public class EntityAbomination extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) abominationStats[5];
+		return TragicConfig.getMobStat("abominationStats").getArmorValue();
 	}
 
 	@Override
@@ -247,19 +246,19 @@ public class EntityAbomination extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.abomination.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.abomination.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.abomination.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.abomination.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.abomination.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.abomination.death" : null;
 	}
 
 	@Override

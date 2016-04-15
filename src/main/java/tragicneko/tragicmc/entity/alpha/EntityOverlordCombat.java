@@ -1,9 +1,9 @@
 package tragicneko.tragicmc.entity.alpha;
 
-import static tragicneko.tragicmc.TragicConfig.overlordCombatStats;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.common.base.Predicate;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -38,8 +38,6 @@ import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.base.Predicate;
 
 public class EntityOverlordCombat extends TragicBoss {
 	
@@ -114,11 +112,11 @@ public class EntityOverlordCombat extends TragicBoss {
 					e.motionZ = d2 / f2 * d4 * 26.800000011920929D + e.motionZ * 20.70000000298023224D;
 					e.motionY = rand.nextDouble() + rand.nextDouble() * 2.700000011920929D + e.motionZ * 1.70000000298023224D;
 					e.velocityChanged = true;
-					if (TragicConfig.allowHacked && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(20), 0));
+					if (TragicConfig.getBoolean("allowHacked") && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(20), 0));
 				}
 			}
 
-			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wam", 1.8F, 1.0F);
+			if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wam", 1.8F, 1.0F);
 		}
 
 		if (this.worldObj.isRemote && dist > 16.0F)
@@ -181,6 +179,7 @@ public class EntityOverlordCombat extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] overlordCombatStats = TragicConfig.getMobStat("overlordCombatStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(overlordCombatStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(overlordCombatStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(overlordCombatStats[2]);
@@ -191,7 +190,7 @@ public class EntityOverlordCombat extends TragicBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) overlordCombatStats[5];
+		return TragicConfig.getMobStat("overlordCombatStats").getArmorValue();
 	}
 
 	@Override
@@ -429,7 +428,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 		if (this.getTransformationTicks() > 0)
 		{
-			if (this.getTransformationTicks() == 120 && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcombat.wam", 1.6F, 0.6F);
+			if (this.getTransformationTicks() == 120 && TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.overlordcombat.wam", 1.6F, 0.6F);
 			this.setTransformationTicks(this.getTransformationTicks() - 1);
 
 			this.reflectionBuffer = 0;
@@ -515,7 +514,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(8.0, 8.0, 8.0));
 			for (Entity e : list)
 			{
-				if (e instanceof EntityLivingBase && TragicConfig.allowHacked && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(20), 0));
+				if (e instanceof EntityLivingBase && TragicConfig.getBoolean("allowHacked") && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(20), 0));
 			}
 		}
 
@@ -552,7 +551,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					}
 				}
 
-				if (this.getChargeTicks() % 10 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.march", 1.8F, 1.0F);
+				if (this.getChargeTicks() % 10 == 0 && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.march", 1.8F, 1.0F);
 			}
 			else
 			{
@@ -583,7 +582,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				e.motionZ = -d2 / f2 * d4 * 0.600000011920929D + e.motionZ * 0.20000000298023224D;
 				e.motionY = -d3 / f2 * d4 * 0.300000011920929D + e.motionZ * 0.10000000298023224D;
 
-				if (this.getGrappleTicks() % 20 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.phaser", 1.8F, 1.0F);
+				if (this.getGrappleTicks() % 20 == 0 && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.phaser", 1.8F, 1.0F);
 			}
 			else
 			{
@@ -616,7 +615,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				this.worldObj.spawnEntityInWorld(hunter);
 			}
 
-			if (this.getReflectionTicks() % 20 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wow", 1.8F, 1.0F);
+			if (this.getReflectionTicks() % 20 == 0 && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wow", 1.8F, 1.0F);
 		}
 		if (this.onGround && this.hasLeaped) this.hasLeaped = false;
 
@@ -641,7 +640,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		if (src.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote)
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
-			boolean flag = TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity);
+			boolean flag = TragicConfig.getBoolean("allowDivinity") && entity.isPotionActive(TragicPotion.Divinity);
 
 			if (this.getReflectionTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse && dmg > 1.0F)
 			{
@@ -649,7 +648,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				return false;
 			}
 
-			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse || entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())// || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
+			if (flag || !TragicConfig.getBoolean("allowDivinity") && entity.getCreatureAttribute() != TragicEntities.Synapse || entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())// || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
 			{
 				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 16)
 				{
@@ -692,7 +691,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				{
 					if (e instanceof EntityLivingBase && e != entity) e.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 				}
-				if (this.getChargeTicks() == 0 && this.getAttackTime() == 20 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.shink", 1.9F, 1.0F);
+				if (this.getChargeTicks() == 0 && this.getAttackTime() == 20 && TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.shink", 1.9F, 1.0F);
 			}
 			return flag;
 		}
@@ -749,19 +748,19 @@ public class EntityOverlordCombat extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcombat.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.overlordcombat.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcombat.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.overlordcombat.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcombat.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.overlordcombat.death" : null;
 	}
 
 	@Override

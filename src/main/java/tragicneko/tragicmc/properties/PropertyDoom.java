@@ -31,7 +31,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	{
 		this.thePlayer = player;
 		this.doomCooldown = 0;
-		this.maxDoom = TragicConfig.maxDoomStart;
+		this.maxDoom = TragicConfig.getInt("maxDoomStartAmount");
 		this.currentDoom = 0;
 		this.hasUpgraded = false;
 	}
@@ -71,7 +71,8 @@ public class PropertyDoom implements IExtendedEntityProperties {
 			this.hasUpgraded = properties.getBoolean("hasUpgraded");
 		}
 		
-		if (this.maxDoom < TragicConfig.maxDoomStart || !this.hasUpgraded && this.maxDoom > TragicConfig.maxDoomStart) this.maxDoom = TragicConfig.maxDoomStart;
+		final int i = TragicConfig.getInt("maxDoomStartAmount");
+		if (this.maxDoom < i || !this.hasUpgraded && this.maxDoom > i) this.maxDoom = i;
 	}
 
 	@Override
@@ -102,7 +103,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 			if (this.shouldRecoverNaturally())
 			{
 				int doom = this.getCurrentDoom();
-				int increment = TragicConfig.doomRechargeAmount;
+				int increment = TragicConfig.getInt("doomRechargeAmount");
 
 				if (doom >= this.getMaxDoom()) return;
 
@@ -145,7 +146,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 	public void setCooldown(int cooldown)
 	{
-		if (TragicConfig.allowCooldown)
+		if (TragicConfig.getBoolean("allowCooldown"))
 		{
 			this.doomCooldown = cooldown;
 		}
@@ -157,7 +158,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 	public void increaseCooldown(int cooldown)
 	{
-		if (TragicConfig.allowCooldown)
+		if (TragicConfig.getBoolean("allowCooldown"))
 		{
 			this.doomCooldown += cooldown;
 		}
@@ -208,16 +209,16 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	public void increaseConsumptionLevel()
 	{
 		this.hasUpgraded = true;
-		if (this.getMaxDoom() + TragicConfig.doomConsumeAmount <= TragicConfig.maxDoomAmount)
+		if (this.getMaxDoom() + TragicConfig.getInt("doomConsumeIncreaseAmount") <= TragicConfig.getInt("maxDoomAmount"))
 		{
-			this.setMaxDoom(this.getMaxDoom() + TragicConfig.doomConsumeAmount);
+			this.setMaxDoom(this.getMaxDoom() + TragicConfig.getInt("doomConsumeIncreaseAmount"));
 		}
 		else
 		{
-			this.setMaxDoom(TragicConfig.maxDoomAmount);
+			this.setMaxDoom(TragicConfig.getInt("maxDoomAmount"));
 		}
 
-		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
+		if (this.thePlayer instanceof EntityPlayerMP && TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
 	}
 
 	/**
@@ -230,7 +231,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 		if (amount > this.getMaxDoom()) amount = this.getMaxDoom();
 
 		this.currentDoom = amount;
-		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
+		if (this.thePlayer instanceof EntityPlayerMP && TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
 	}
 
 	/**
@@ -241,7 +242,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	{
 		if (amount < 0) amount = 0;
 		this.maxDoom = amount;
-		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
+		if (this.thePlayer instanceof EntityPlayerMP && TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
 	}
 
 	/**
@@ -284,7 +285,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 	protected boolean shouldRecoverWithDamage()
 	{
-		if (TragicConfig.allowDoomPainRecharge && this.getCurrentDoom() < this.getMaxDoom())
+		if (TragicConfig.getBoolean("allowDoomPainRecharge") && this.getCurrentDoom() < this.getMaxDoom())
 		{
 			return true;
 		}
@@ -300,7 +301,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 		tick++;
 
-		if (TragicConfig.allowNaturalRecharge && this.getCurrentDoom() < this.getMaxDoom() && this.tick >= 100 / TragicConfig.doomRechargeRate)
+		if (TragicConfig.getBoolean("allowNaturalRecharge") && this.getCurrentDoom() < this.getMaxDoom() && this.tick >= 100 / TragicConfig.getInt("doomRechargeRate"))
 		{
 			tick = 0;
 			return true;
@@ -350,7 +351,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 				this.increaseDoom(6);
 			}
 
-			if (this.thePlayer instanceof EntityPlayerMP) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP) this.thePlayer);
+			if (this.thePlayer instanceof EntityPlayerMP && TragicConfig.getBoolean("allowNetwork")) TragicMC.proxy.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP) this.thePlayer);
 		}
 	}
 

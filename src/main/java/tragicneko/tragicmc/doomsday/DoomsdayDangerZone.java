@@ -22,7 +22,7 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
-		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 300));
+		if (TragicConfig.getBoolean("allowInvulnerability")) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 300));
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 			if (list.get(i) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) list.get(i);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				if (entity instanceof EntityPlayer && !TragicConfig.getBoolean("allowPvP")) continue;
 				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, rand.nextFloat() * f, TragicConfig.griefConfig[1]);
 			}
 		}

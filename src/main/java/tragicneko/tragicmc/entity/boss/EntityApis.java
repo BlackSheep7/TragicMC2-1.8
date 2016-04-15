@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicConfig.apisStats;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -84,6 +82,7 @@ public class EntityApis extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] apisStats = TragicConfig.getMobStat("apisStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(apisStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(apisStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(apisStats[2]);
@@ -95,14 +94,14 @@ public class EntityApis extends TragicBoss {
 	public void onDeath(DamageSource src)
 	{
 		super.onDeath(src);
-		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.apis);
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAchievements")) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.apis);
 	}
 	
 	@Override
 	protected void dropFewItems(boolean flag, int l)
 	{
 		super.dropFewItems(flag, l);
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 0)));
+		if (!this.worldObj.isRemote && TragicConfig.getBoolean("allowMobStatueDrops") && rand.nextInt(100) <= TragicConfig.getInt("mobStatueDropChance") && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 0)));
 	}
 
 	@Override
@@ -294,9 +293,9 @@ public class EntityApis extends TragicBoss {
 			if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 
 			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 2.0F, 8.0F)
-					&& this.onGround && rand.nextInt(32) == 0 && this.onGround && !this.isCharging() && !this.isStomping() && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.apisChargeAttack)
+					&& this.onGround && rand.nextInt(32) == 0 && this.onGround && !this.isCharging() && !this.isStomping() && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.getBoolean("apisChargeAttack"))
 			{
-				if (rand.nextInt(3) == 0 && TragicConfig.apisExplosiveCharge)
+				if (rand.nextInt(3) == 0 && TragicConfig.getBoolean("apisExplosiveCharge"))
 				{
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F, false);
 				}
@@ -312,9 +311,9 @@ public class EntityApis extends TragicBoss {
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
 			
-			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F) && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.apisChargeAttack)
+			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F) && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.getBoolean("apisChargeAttack"))
 			{
-				if (rand.nextInt(3) == 0 && TragicConfig.apisExplosiveCharge)
+				if (rand.nextInt(3) == 0 && TragicConfig.getBoolean("apisExplosiveCharge"))
 				{
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat(), false);
 				}
@@ -330,9 +329,9 @@ public class EntityApis extends TragicBoss {
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
 			
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.apisChargeAttack)
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.getBoolean("apisChargeAttack"))
 			{
-				if (rand.nextInt(3) == 0 && TragicConfig.apisExplosiveCharge)
+				if (rand.nextInt(3) == 0 && TragicConfig.getBoolean("apisExplosiveCharge"))
 				{
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 0.5F, false);
 				}
@@ -347,9 +346,9 @@ public class EntityApis extends TragicBoss {
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
 			
-			if (this.getAttackTarget() != null && this.ticksExisted % 3 == 0 && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && TragicConfig.apisSuperStomp)
+			if (this.getAttackTarget() != null && this.ticksExisted % 3 == 0 && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && TragicConfig.getBoolean("apisSuperStomp"))
 			{
-				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.apis.roar", 1.8F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.apis.roar", 1.8F, 1.0F);
 				this.setStompTicks(40);
 			}
 
@@ -367,7 +366,7 @@ public class EntityApis extends TragicBoss {
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 1.225F + 4.0F, this.getMobGriefing());
 			}
 
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 10.0F && rand.nextInt(8) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.apisSolarBombs)
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 10.0F && rand.nextInt(8) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.getBoolean("apisSolarbombs"))
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().getEntityBoundingBox().minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -403,7 +402,7 @@ public class EntityApis extends TragicBoss {
 				}
 			}
 
-			if (this.getAttackTarget() != null && this.reflectionBuffer == 0 && this.ticksExisted % 20 == 0 && !this.isReflecting() && TragicConfig.apisReflection)
+			if (this.getAttackTarget() != null && this.reflectionBuffer == 0 && this.ticksExisted % 20 == 0 && !this.isReflecting() && TragicConfig.getBoolean("apisReflection"))
 			{
 				this.setReflectionTicks(160);
 			}
@@ -418,7 +417,7 @@ public class EntityApis extends TragicBoss {
 		if (this.isReflecting() && par1DamageSource.getEntity() != null && !(par1DamageSource.getEntity() instanceof EntityApis))
 		{
 			if (par2 > 3.0F) par1DamageSource.getEntity().attackEntityFrom(par1DamageSource, par2 / 2.0F + 1.0F);
-			if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.apis.reflect", 1.0F, 1.0F);
+			if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:boss.apis.reflect", 1.0F, 1.0F);
 			return true;
 		}
 
@@ -495,7 +494,8 @@ public class EntityApis extends TragicBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.worldObj.isDaytime() ? (int) apisStats[5] : MathHelper.floor_double(apisStats[5] / 2);
+		final int i = TragicConfig.getMobStat("apisStats").getArmorValue();
+		return this.worldObj.isDaytime() ? i : MathHelper.floor_double(i / 2);
 	}
 
 	@Override
@@ -528,7 +528,7 @@ public class EntityApis extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.apis.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.apis.living" : null;
 	}
 
 	@Override
@@ -540,7 +540,7 @@ public class EntityApis extends TragicBoss {
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:boss.apis.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.apis.death" : null;
 	}
 
 	@Override

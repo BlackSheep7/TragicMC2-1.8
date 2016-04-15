@@ -53,7 +53,7 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 					this.mountEntity(mop.entityHit);
 				}
 
-				if (mop.entityHit instanceof EntityLivingBase && TragicConfig.allowStun)
+				if (mop.entityHit instanceof EntityLivingBase && TragicConfig.getBoolean("allowStun"))
 				{
 					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 10, 0));
 				}

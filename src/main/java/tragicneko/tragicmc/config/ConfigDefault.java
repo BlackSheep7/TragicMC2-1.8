@@ -4,8 +4,9 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import tragicneko.tragicmc.TragicConfig;
 
-public class ConfigDefault extends TragicNewConfig {
+public class ConfigDefault extends TragicConfig {
 
 	public static void load(Configuration config)
 	{
@@ -330,13 +331,13 @@ public class ConfigDefault extends TragicNewConfig {
 		prop.comment = "Can you respawn in the Synapse or will you be forced back to the Overworld?";
 		dimensionConfig[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "keepCollisionLoaded", true);
+		prop = config.get(cat.getName(), "keepCollisionLoaded", false);
 		prop.comment = "Will the Collision Dimension remain loaded when no one is there?";
-		dimensionConfig[++m] = prop.getBoolean(true);
+		dimensionConfig[++m] = prop.getBoolean(false);
 
-		prop = config.get(cat.getName(), "keepSynapseLoaded", true);
+		prop = config.get(cat.getName(), "keepSynapseLoaded", false);
 		prop.comment = "Will the Synapse Dimension remain loaded when no one is there?";
-		dimensionConfig[++m] = prop.getBoolean(true);
+		dimensionConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "allowSynapseVariants", true);
 		prop.comment = "Can the Synapse generate with mini-Biomes?";
@@ -350,9 +351,9 @@ public class ConfigDefault extends TragicNewConfig {
 		prop.comment = "Can you respawn in the Neko Homeworld or will you be forced back to the Overworld?";
 		dimensionConfig[++m] = prop.getBoolean(true);
 		
-		prop = config.get(cat.getName(), "keepNekoHomeworldLoaded", true);
+		prop = config.get(cat.getName(), "keepNekoHomeworldLoaded", false);
 		prop.comment = "Will the Neko Homeworld Dimension remain loaded when no one is there?";
-		dimensionConfig[++m] = prop.getBoolean(true);
+		dimensionConfig[++m] = prop.getBoolean(false);
 
 		s = "collisionID";
 		prop = config.get(cat.getName(), s, 2);
@@ -650,7 +651,7 @@ public class ConfigDefault extends TragicNewConfig {
 		prop = config.get(cat.getName(), s, 10);
 		registerObject(s, clamp(prop.getInt(10), 0, 250));
 
-		s = "tainedRisesWeight";
+		s = "taintedRisesWeight";
 		prop = config.get(cat.getName(), s, 15);
 		registerObject(s, clamp(prop.getInt(15), 0, 250));
 
@@ -840,7 +841,7 @@ public class ConfigDefault extends TragicNewConfig {
 		registerObject(s, clamp(prop.getInt(50), 1, 100));
 
 		s = "cooldownDefuseRefillAmount";
-		prop = config.get(cat.getName(), "cooldownDefuseRefillAmount", 30);
+		prop = config.get(cat.getName(), s, 30);
 		prop.comment = "The amount of cooldown that you'll remove upon use of a Cooldown Defuse.";
 		registerObject(s, clampPositive(prop.getInt(30)));
 
@@ -2016,10 +2017,6 @@ public class ConfigDefault extends TragicNewConfig {
 		prop.comment = "Can normal mobs transform into their Mini-Boss variants?";
 		mobConfig[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "allowMobDynamicHealthScaling", true);
-		prop.comment = "Do the mod-exclusive mobs have their health buffed or debuffed based on difficulty?";
-		mobConfig[++m] = prop.getBoolean(true);
-
 		prop = config.get(cat.getName(), "allowNonDimensionMobSpawns", true);
 		prop.comment = "Are the mod-exclusive mobs able to spawn naturally outside of the mod's Dimensions?";
 		mobConfig[++m] = prop.getBoolean(true);
@@ -2638,6 +2635,10 @@ public class ConfigDefault extends TragicNewConfig {
 		prop = config.get(cat.getName(), s, 25);
 		registerObject(s, clamp(prop.getInt(25), 1, 1000));
 		
+		s = "avrisSpawnChance";
+		prop = config.get(cat.getName(), s, 5);
+		registerObject(s, clamp(prop.getInt(5), 1, 1000));
+		
 		s = "aegarSpawnChance";
 		prop = config.get(cat.getName(), s, 5);
 		registerObject(s, clamp(prop.getInt(5), 1, 1000));
@@ -2877,7 +2878,7 @@ public class ConfigDefault extends TragicNewConfig {
 
 		s = "gragulSpawnOverride";
 		prop = config.get(cat.getName(), s, false);
-		registerObject(s, getIntsAsBiome(prop.getIntList()));
+		registerObject(s, prop.getBoolean(false));
 
 		s = "gragulSpawnBiomes";
 		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
@@ -2958,7 +2959,7 @@ public class ConfigDefault extends TragicNewConfig {
 
 		s = "norVoxSpawnOverride";
 		prop = config.get(cat.getName(), s, false);
-		registerObject(s, getIntsAsBiome(prop.getIntList()));
+		registerObject(s, prop.getBoolean(false));
 
 		s = "norVoxSpawnBiomes";
 		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.deepOcean.biomeID,
@@ -3823,7 +3824,7 @@ public class ConfigDefault extends TragicNewConfig {
 		prop.comment = "Should Minotaurs charge at their target?";
 		registerObject(s, prop.getBoolean(true));
 
-		s = "inklingInvisiblity";
+		s = "inklingInvisibility";
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "Should Inklings become invisible when threatened?";
 		registerObject(s, prop.getBoolean(true));

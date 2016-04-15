@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.minotaurStats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -90,6 +89,7 @@ public class EntityMinotaur extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] minotaurStats = TragicConfig.getMobStat("minotaurStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(minotaurStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(minotaurStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(minotaurStats[2]);
@@ -115,7 +115,7 @@ public class EntityMinotaur extends TragicMob {
 		}
 
 		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F
-				&& this.onGround && rand.nextInt(16) == 0 && this.onGround && !this.isCharging() && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.minotaurCharge)
+				&& this.onGround && rand.nextInt(16) == 0 && this.onGround && !this.isCharging() && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.getBoolean("minotaurCharge"))
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
 			double d1 = this.getAttackTarget().posZ - this.posZ;
@@ -176,7 +176,7 @@ public class EntityMinotaur extends TragicMob {
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(200)));
 					break;
 				case 2:
-					if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
+					if (TragicConfig.getBoolean("allowSubmission")) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
 					break;
 				}
 			}
@@ -195,7 +195,7 @@ public class EntityMinotaur extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) minotaurStats[5];
+		return TragicConfig.getMobStat("minotaurStats").getArmorValue();
 	}
 
 	@Override
@@ -219,19 +219,19 @@ public class EntityMinotaur extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? ( this.getAttackTarget() == null ? "tragicmc:mob.minotaur.snort" : "tragicmc:mob.minotaur.charge") : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? ( this.getAttackTarget() == null ? "tragicmc:mob.minotaur.snort" : "tragicmc:mob.minotaur.charge") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.minotaur.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.minotaur.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.minotaur.charge" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.minotaur.charge" : null;
 	}
 
 	@Override
@@ -249,7 +249,7 @@ public class EntityMinotaur extends TragicMob {
 	@Override
 	protected void playStepSound(BlockPos pos, Block block)
 	{
-		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.minotaur.hoof", 0.1F + rand.nextFloat() * 0.05F, 0.4F);
+		if (TragicConfig.getBoolean("allowMobSounds")) this.playSound("tragicmc:mob.minotaur.hoof", 0.1F + rand.nextFloat() * 0.05F, 0.4F);
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public class DoomsdayResurge extends Doomsday {
 			if (e instanceof EntityPlayer)
 			{
 				((EntityLivingBase) e).addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, crucMoment ? 5 : 1));
-				if (TragicConfig.allowConvergence && e != player) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 600, crucMoment ? 5 : 1));
+				if (TragicConfig.getBoolean("allowConvergence") && e != player) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 600, crucMoment ? 5 : 1));
 			}
 		}
 	}

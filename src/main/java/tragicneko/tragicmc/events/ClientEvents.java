@@ -63,12 +63,12 @@ public class ClientEvents extends Gui {
 
 				if (player == null) return;
 
-				if (ClientProxy.openAmuletGui.isPressed() && TragicConfig.allowAmulets)
+				if (ClientProxy.openAmuletGui.isPressed() && TragicConfig.getBoolean("allowAmulets") && TragicConfig.getBoolean("allowNetwork"))
 				{
 					TragicMC.proxy.net.sendToServer(new MessageGui(ClientProxy.AMULET_GUI_ID));
 				}
 
-				if (ClientProxy.useSpecial.isPressed() && TragicConfig.allowDoomsdays)
+				if (ClientProxy.useSpecial.isPressed() && TragicConfig.getBoolean("allowDoomsdays") && TragicConfig.getBoolean("allowNetwork"))
 				{
 					TragicMC.proxy.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
 				}
@@ -113,9 +113,9 @@ public class ClientEvents extends Gui {
 			Minecraft mc = Minecraft.getMinecraft();
 			EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 
-			if (player != null && TragicConfig.allowFlight && player.isPotionActive(TragicPotion.Flight.id) && mc.inGameHasFocus)
+			if (player != null && TragicConfig.getBoolean("allowFlight") && player.isPotionActive(TragicPotion.Flight.id) && mc.inGameHasFocus)
 			{
-				boolean flag = !TragicConfig.allowStun || TragicConfig.allowStun && !player.isPotionActive(TragicPotion.Stun.id);
+				boolean flag = !TragicConfig.getBoolean("allowStun") || TragicConfig.getBoolean("allowStun") && !player.isPotionActive(TragicPotion.Stun.id);
 
 				if (flag && Keyboard.isCreated())
 				{
@@ -133,7 +133,7 @@ public class ClientEvents extends Gui {
 				}
 			}
 
-			if (player != null && TragicConfig.allowHacked && player.isPotionActive(TragicPotion.Hacked.id) && rand.nextInt(4) == 0)
+			if (player != null && TragicConfig.getBoolean("allowHacked") && player.isPotionActive(TragicPotion.Hacked.id) && rand.nextInt(4) == 0)
 			{
 				ItemStack current = player.getCurrentEquippedItem();
 				if (current != null && rand.nextInt(1048) == 0 && rand.nextInt(1048) == 42) player.dropOneItem(true);
@@ -147,16 +147,16 @@ public class ClientEvents extends Gui {
 				RECREATE_MI = true;
 			}
 
-			if (player != null && !(player.movementInput instanceof MovementInputFromOptions) && TragicConfig.allowHacked && !player.isPotionActive(TragicPotion.Hacked) && RECREATE_MI) player.movementInput = new MovementInputFromOptions(mc.gameSettings);
+			if (player != null && !(player.movementInput instanceof MovementInputFromOptions) && TragicConfig.getBoolean("allowHacked") && !player.isPotionActive(TragicPotion.Hacked) && RECREATE_MI) player.movementInput = new MovementInputFromOptions(mc.gameSettings);
 
-			if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation))
+			if (player != null && TragicConfig.getBoolean("allowDisorientation") && player.isPotionActive(TragicPotion.Disorientation))
 			{
 				float f = player.getActivePotionEffect(TragicPotion.Disorientation).getAmplifier() * 0.45F + 0.45F;
 				player.rotationPitch += (rand.nextFloat() - rand.nextFloat()) * f;
 				player.rotationYaw += (rand.nextFloat() - rand.nextFloat()) * f;
 			}
 
-			if (player != null && TragicConfig.allowStun && player.isPotionActive(TragicPotion.Stun))
+			if (player != null && TragicConfig.getBoolean("allowStun") && player.isPotionActive(TragicPotion.Stun))
 			{
 				if (mc.inGameHasFocus) Mouse.setGrabbed(true);
 				mc.mouseHelper.deltaX = 0;
@@ -171,7 +171,7 @@ public class ClientEvents extends Gui {
 			player.sprintingTicksLeft = 0;
 		} */
 
-			if (player != null && TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear))
+			if (player != null && TragicConfig.getBoolean("allowFear") && player.isPotionActive(TragicPotion.Fear))
 			{
 				buffer++;
 				if (rand.nextInt(256) == 0 && buffer >= 9600)
@@ -238,7 +238,7 @@ public class ClientEvents extends Gui {
 		@SubscribeEvent
 		public void renderHackedEffects(RenderGameOverlayEvent event)
 		{
-			if (TragicConfig.allowNonMobBlocks)
+			if (TragicConfig.getBoolean("allowNonMobBlocks"))
 			{
 				((BlockGenericLeaves) TragicBlocks.PaintedLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 				((BlockGenericLeaves) TragicBlocks.AshenLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
@@ -247,17 +247,17 @@ public class ClientEvents extends Gui {
 				((BlockGenericLeaves) TragicBlocks.DarkLeaves).setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 			}
 
-			if (event.type != ElementType.HOTBAR || !TragicConfig.allowPotionEffectOverlays) return;
+			if (event.type != ElementType.HOTBAR || !TragicConfig.getBoolean("allowPotionEffectOverlays")) return;
 
 			Minecraft mc = Minecraft.getMinecraft();
 			if (mc.thePlayer == null) return;
 
-			boolean flag = TragicConfig.allowHacked && mc.thePlayer.isPotionActive(TragicPotion.Hacked);
-			boolean flag2 = TragicConfig.allowDivinity && mc.thePlayer.isPotionActive(TragicPotion.Divinity);
-			boolean flag3 = TragicConfig.allowConvergence && mc.thePlayer.isPotionActive(TragicPotion.Convergence);
+			boolean flag = TragicConfig.getBoolean("allowHacked") && mc.thePlayer.isPotionActive(TragicPotion.Hacked);
+			boolean flag2 = TragicConfig.getBoolean("allowDivinity") && mc.thePlayer.isPotionActive(TragicPotion.Divinity);
+			boolean flag3 = TragicConfig.getBoolean("allowConvergence") && mc.thePlayer.isPotionActive(TragicPotion.Convergence);
 			boolean flag4 = false; //mc.thePlayer.isPotionActive(TragicPotion.Nightmare);
 			boolean flag5 = false; //mc.thePlayer.isPotionActive(TragicPotion.Frozen);
-			boolean flag6 = TragicConfig.allowCorruption && mc.thePlayer.isPotionActive(TragicPotion.Corruption);
+			boolean flag6 = TragicConfig.getBoolean("allowCorruption") && mc.thePlayer.isPotionActive(TragicPotion.Corruption);
 
 			if (!flag && !flag2 && !flag3 && !flag4 && !flag5 && !flag6) return;
 
@@ -305,7 +305,7 @@ public class ClientEvents extends Gui {
 			if (counter > 20)
 			{
 				counter = 0;
-				color = flag2 && TragicConfig.allowDivinityColorChange ? rand.nextInt(rgb.length) : 0;
+				color = flag2 && TragicConfig.getBoolean("allowDivinityColorChange") ? rand.nextInt(rgb.length) : 0;
 				if (color >= rgb.length) color = 0;
 			}
 		}

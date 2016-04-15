@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.erkelStats;
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,8 +32,6 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenTaintedSpikes;
-
-import com.google.common.base.Predicate;
 
 public class EntityErkel extends TragicMob {
 	
@@ -70,6 +69,7 @@ public class EntityErkel extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] erkelStats = TragicConfig.getMobStat("erkelStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(erkelStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(erkelStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(erkelStats[2]);
@@ -80,7 +80,7 @@ public class EntityErkel extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) erkelStats[5];
+		return TragicConfig.getMobStat("erkelStats").getArmorValue();
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class EntityErkel extends TragicMob {
 		}
 		else
 		{
-			if (this.rand.nextInt(32) == 0 && this.onGround && this.getMobGriefing() && this.ticksExisted % 20 == 0 && TragicConfig.erkelMushroomSpawning)
+			if (this.rand.nextInt(32) == 0 && this.onGround && this.getMobGriefing() && this.ticksExisted % 20 == 0 && TragicConfig.getBoolean("erkelMushroomSpawning"))
 			{
 				int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 				int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
@@ -208,19 +208,19 @@ public class EntityErkel extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.tox.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.tox.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.hurt" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.tox.hurt" : null;
 	}
 
 	@Override

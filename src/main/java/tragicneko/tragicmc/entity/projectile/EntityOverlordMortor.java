@@ -144,7 +144,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 			}
 		}
 		
-		if (this.ticksExisted % 10 == 1 && TragicConfig.allowMobSounds && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcore.vulnerable", 1.8F, 1.0F);
+		if (this.ticksExisted % 10 == 1 && TragicConfig.getBoolean("allowMobSounds") && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcore.vulnerable", 1.8F, 1.0F);
 	}
 
 	@Override

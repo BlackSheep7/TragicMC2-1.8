@@ -33,7 +33,7 @@ public class ItemCooldownDefuse extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && !TragicConfig.allowCooldownDefuse) return par1ItemStack;
+		if (!par2World.isRemote && !TragicConfig.getBoolean("allowCooldownDefuse")) return par1ItemStack;
 
 		PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
 		if (property == null) return par1ItemStack;
@@ -46,14 +46,14 @@ public class ItemCooldownDefuse extends Item {
 			}
 			else
 			{
-				if (TragicConfig.defuseRefillAmount >= property.getCurrentCooldown())
+				if (TragicConfig.getInt("cooldownDefuseRefillAmount") >= property.getCurrentCooldown())
 				{
 					property.setCooldown(0);
 					par3EntityPlayer.addChatMessage(new ChatComponentText("Cooldown was removed!"));
 				}
 				else
 				{
-					int cooldown = TragicConfig.defuseRefillAmount;
+					int cooldown = TragicConfig.getInt("cooldownDefuseRefillAmount");
 
 					if (cooldown < property.getCurrentCooldown())
 					{
@@ -62,7 +62,7 @@ public class ItemCooldownDefuse extends Item {
 					}
 				}
 
-				if (TragicConfig.allowAchievements && par3EntityPlayer instanceof EntityPlayerMP) par3EntityPlayer.triggerAchievement(TragicAchievements.doomCooldown);
+				if (TragicConfig.getBoolean("allowAchievements") && par3EntityPlayer instanceof EntityPlayerMP) par3EntityPlayer.triggerAchievement(TragicAchievements.doomCooldown);
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 			}
 		}

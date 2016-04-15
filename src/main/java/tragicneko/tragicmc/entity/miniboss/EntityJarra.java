@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicConfig.jarraStats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -65,6 +64,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		double[] jarraStats = TragicConfig.getMobStat("jarraStats").getStats();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(jarraStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(jarraStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(jarraStats[2]);
@@ -75,7 +75,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) jarraStats[5];
+		return TragicConfig.getMobStat("jarraStats").getArmorValue();
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	@Override
 	protected void spawnProjectiles()
 	{
-		if (!TragicConfig.jabbaProjectiles) return;
+		if (!TragicConfig.getBoolean("jabbaProjectiles")) return;
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
 		double d1 = entity.getEntityBoundingBox().minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
@@ -112,7 +112,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(entity)) * 0.5F;
 
-		for (int i = 0; i < 5; ++i)
+		for (byte i = 0; i < 5; ++i)
 		{
 			EntityPoisonBarb poisonbarb = new EntityPoisonBarb(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 			poisonbarb.posX = this.posX + d0 * 0.115D;
