@@ -9,13 +9,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityDirectedLightning extends EntityWeatherEffect
 {
 	public static final int DW_USER_ID = 5;
-	
+
 	private int lightningState;
 	public long boltVertex;
 	private int boltLivingTime;
@@ -108,12 +109,16 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 			if (!this.worldObj.isRemote)
 			{
 				double d0 = 3.0D;
-				List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(d0, d0, d0));
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(d0, d0, d0));
 
 				for (int l = 0; l < list.size(); ++l)
 				{
 					Entity entity = (Entity)list.get(l);
-					if (this.user != entity && !net.minecraftforge.event.ForgeEventFactory.onEntityStruckByLightning(entity, null)) entity.onStruckByLightning(null);
+					if (this.user != entity && !entity.isImmuneToFire())
+					{
+						entity.attackEntityFrom(DamageSource.lightningBolt, 5.0F);
+						entity.setFire(8);
+					}
 				}
 			}
 		}
