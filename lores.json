@@ -1,0 +1,229 @@
+[
+  {
+	"itemName" : "tragicmc:darkHelm",
+    "lores": [	
+		{
+			"desc"  : "It's dark.",
+			"rarity": 1
+		},
+		{
+			"desc"  : "Dim.",
+			"rarity": 1
+		},
+		{
+			"desc"  : "Rather dark out!",
+			"rarity": 1
+		},
+		{
+			"desc"  : "Hold me.",
+			"rarity": 1
+		},
+		{
+			"desc"  : "I'm so alone.",
+			"rarity": 1
+		},
+		{
+			"desc"  : "Cold, dark and alone...",
+			"rarity": 1
+		},
+		{
+			"desc"  : "Darkness all around me!",
+			"rarity": 1
+		},
+		{
+			"desc"  : "It's quite dark out tonight, isn't it?",
+			"rarity": 1
+		},
+		{
+			"desc"  : "Lonely, lonely is the night...",
+			"rarity": 2
+		},
+		{
+			"desc"  : "How can you see in this darkness?",
+			"rarity": 1
+		},
+		{
+			"desc"  : "Scream!",
+			"rarity": 2
+		},
+		{
+			"desc"  : "Screaming bloody Mary!",
+			"rarity": 2
+		},
+		{
+			"desc"  : "Welcome to my nightmare!",
+			"rarity": 2
+		},
+		{
+			"desc"  : "Just another slasher...",
+			"rarity": 2
+		},
+		{
+			"desc"  : "I'll rip you a new one!",
+			"rarity": 2
+		},
+		{
+			"desc"  : "Oh yes, there will be blood.",
+			"rarity": 2
+		},
+		{
+			"desc"  : "Let's play a game.",
+			"rarity": 2
+		},
+		{
+			"desc"  : "Fright night!",
+			"rarity": 2
+		},
+		{
+			"desc"  : "I see dead people...",
+			"rarity": 2
+		},
+		{
+			"desc"  : "The Boogeyman is real and you found him!",
+			"rarity": 3
+		},
+		{
+			"desc"  : "You will die in 7 days.",
+			"rarity": 3
+		},
+		{
+			"desc"  : "If you don't forward this to 10 people by midnight, a psychopath will come to your house and kill you.",
+			"rarity": 3
+		},
+		{
+			"desc"  : "Come play with us, forever and ever and ever...",
+			"rarity": 3
+		},
+		{
+			"desc"  : "We all go a little mad sometimes...",
+			"rarity": 3
+		},
+		{
+			"desc"  : "Victims... aren't we all?",
+			"rarity": 3
+		},
+		{
+			"desc"  : "Join us... one of us... one of us!",
+			"rarity": 3
+		},
+		{
+			"desc"  : "One, two, Freddy's coming for you!",
+			"rarity": 3
+		},
+		{
+			"desc"  : "Three, four, better lock your door!",
+			"rarity": 3
+		},
+		{
+			"desc"  : "Want to play a game?",
+			"rarity": 2
+		},
+		{
+			"desc"  : "I know what you did last summer.",
+			"rarity": 2
+		},
+		{
+			"desc"  : "Jeepers creepers!",
+			"rarity": 2
+		},
+		{
+			"desc"  : "It rubs the lotion on it's skin.",
+			"rarity": 3
+		}
+	],
+	"enchantEntries": [
+		{
+			"enchant": "minecraft:unbreaking",
+			"level"  : 3,
+			"rarity" : 1
+		},
+		{
+			"enchant": "minecraft:unbreaking",
+			"level"  : 5,
+			"rarity" : 2
+		},
+		{
+			"enchant": "tragicmc:deathTouch",
+			"level"  : 3,
+			"rarity" : 2
+		},
+		{
+			"enchant": "minecraft:unbreaking",
+			"level"  : 7,
+			"rarity" : 3
+		},
+		{
+			"enchant": "tragicmc:deathTouch",
+			"level"  : 5,
+			"rarity" : 3
+		},
+		{
+			"enchant": "minecraft:respiration",
+			"level"  : 1,
+			"rarity" : 3
+		}
+	]
+  },
+  {
+	"itemName" : "tragicmc:darkPlate",
+	"loreParent": "tragicmc:darkHelm",
+	"enchantEntries": [ 
+		{
+			"enchant": "minecraft:unbreaking",
+			"level"  : 3,
+			"rarity" : 1
+		},
+		{
+			"enchant": "minecraft:unbreaking",
+			"level"  : 5,
+			"rarity" : 2
+		},
+		{
+			"enchant": "tragicmc:deathTouch",
+			"level"  : 3,
+			"rarity" : 2
+		},
+		{
+			"enchant": "minecraft:unbreaking",
+			"level"  : 7,
+			"rarity" : 3
+		},
+		{
+			"enchant": "tragicmc:deathTouch",
+			"level"  : 5,
+			"rarity" : 3
+		},
+		{
+			"enchant": "tragicmc:toxicity",
+			"level"  : 3,
+			"rarity" : 3
+		},
+		{
+			"enchant": "minecraft:thorns",
+			"level"  : 1,
+			"rarity" : 3
+		}
+	]
+  },
+  {
+	"itemName" : "orespawn:bigBertha",
+	"loreParent": "tragicmc:darkHelm",
+	"enchantEntries": [ 
+		{
+			"enchant": "tragicmc:reach",
+			"level"  : 5,
+			"rarity" : 1
+		},
+		{
+			"enchant": "tragicmc:reach",
+			"level"  : 10,
+			"rarity" : 2
+		},
+		{
+			"enchant": "tragicmc:reach",
+			"level"  : 20,
+			"rarity" : 3
+		}
+	]
+  }
+]

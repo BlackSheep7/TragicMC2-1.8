@@ -5,10 +5,12 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
@@ -65,30 +67,6 @@ public class TragicArmor extends ItemArmor {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
-		if (stack == null || stack.getItem() == null) return;
-		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-		if (!TragicConfig.getBoolean("allowRandomWeaponLore")) return;
-
-		LoreEntry entry = LoreHelper.getLoreEntry(stack.getItem().getClass());
-		if (entry == null) return;
-		Lore lore = entry.getRandomLore();
-		if (lore == null) return;
-
-		if (!stack.getTagCompound().hasKey("tragicLoreRarity")) stack.getTagCompound().setByte("tragicLoreRarity", Byte.valueOf((byte) lore.getRarity()));
-		if (!stack.getTagCompound().hasKey("tragicLoreDesc")) stack.getTagCompound().setString("tragicLoreDesc", lore.getDesc() == null ? "" : lore.getDesc());
-
-		int rarity = stack.getTagCompound().getByte("tragicLoreRarity");
-		lore = entry.getLoreOfRarity(rarity);
-
-		if (!stack.isItemEnchanted() && lore != null)
-		{
-			EnchantEntry[] enchants = entry.getEnchantmentsForArmor(rarity, this.armorType);
-			if (enchants == null) return;
-
-			for (EnchantEntry e : enchants)
-			{
-				if (e != null && e.getEnchantment() != null) stack.addEnchantment(e.getEnchantment(), e.getEnchantLevel());
-			}
-		}
+		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
 	}
 }

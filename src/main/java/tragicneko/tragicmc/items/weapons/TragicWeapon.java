@@ -13,6 +13,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
@@ -136,7 +137,8 @@ public class TragicWeapon extends ItemSword {
 
 		if (!TragicConfig.getBoolean("allowRandomWeaponLore") || stack.getItem() == null) return;
 
-		LoreEntry entry = LoreHelper.getLoreEntry(stack.getItem().getClass());
+		ResourceLocation rl = Item.itemRegistry.getNameForObject(stack.getItem());
+		LoreEntry entry = LoreHelper.getLoreEntry(rl.toString());
 		if (entry == null) return;
 		Lore lore = entry.getRandomLore();
 		if (lore == null) return;
@@ -149,12 +151,44 @@ public class TragicWeapon extends ItemSword {
 
 		if (!stack.isItemEnchanted() && lore != null)
 		{
-			EnchantEntry[] enchants = entry.getEnchantmentsForRarity(rarity);
+			EnchantEntry[] enchants = entry.getEnchantmentForRarity(rarity);
 			if (enchants == null) return;
 
 			for (EnchantEntry e : enchants)
 			{
-				if (e != null && e.getEnchantment() != null) stack.addEnchantment(e.getEnchantment(), e.getEnchantLevel());
+				if (e != null && e.getEnchantment() != null && e.getEnchantLevel() > 0) stack.addEnchantment(e.getEnchantment(), e.getEnchantLevel());
+			}
+		}
+	}
+	
+	/**
+	 * Allows any generic itemstack to update on tick to apply lore and enchantments from it's lore entry, if any
+	 * @param stack
+	 */
+	public static void updateGenericallyAsWeapon(ItemStack stack) {
+		if (!TragicConfig.getBoolean("allowRandomWeaponLore") || stack.getItem() == null) return;
+
+		ResourceLocation rl = Item.itemRegistry.getNameForObject(stack.getItem());
+		LoreEntry entry = LoreHelper.getLoreEntry(rl.toString());
+		if (entry == null) return;
+		Lore lore = entry.getRandomLore();
+		if (lore == null) return;
+		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+
+		if (!stack.getTagCompound().hasKey("tragicLoreRarity")) stack.getTagCompound().setByte("tragicLoreRarity", Byte.valueOf((byte) lore.getRarity()));
+		if (!stack.getTagCompound().hasKey("tragicLoreDesc")) stack.getTagCompound().setString("tragicLoreDesc", lore.getDesc());
+
+		int rarity = stack.getTagCompound().getByte("tragicLoreRarity");
+		lore = entry.getLoreOfRarity(rarity);
+
+		if (!stack.isItemEnchanted() && lore != null)
+		{
+			EnchantEntry[] enchants = entry.getEnchantmentForRarity(rarity);
+			if (enchants == null) return;
+
+			for (EnchantEntry e : enchants)
+			{
+				if (e != null && e.getEnchantment() != null && e.getEnchantLevel() > 0) stack.addEnchantment(e.getEnchantment(), e.getEnchantLevel());
 			}
 		}
 	}

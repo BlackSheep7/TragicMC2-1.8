@@ -1,25 +1,13 @@
 package tragicneko.tragicmc.proxy;
 
-import java.util.Set;
+import java.io.File;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.common.collect.Sets;
-
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.stats.StatCrafting;
-import net.minecraft.stats.StatList;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,7 +28,6 @@ import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.TragicRecipes;
 import tragicneko.tragicmc.client.gui.GuiAmuletInventory;
@@ -82,13 +69,17 @@ public class CommonProxy implements IGuiHandler {
 	private static final Logger logger = LogManager.getLogger(TragicMC.MODID);
 
 	public static final int AMULET_GUI_ID = 0;
+	public static File configDir = null;
 
 	public void init(FMLInitializationEvent event){ }
 
-	public void postInit(FMLPostInitializationEvent event) { }
+	public void postInit(FMLPostInitializationEvent event) {
+		if (TragicConfig.getBoolean("allowRandomWeaponLore") && TragicConfig.getBoolean("allowNonMobItems") && TragicConfig.getBoolean("allowRandomWeaponLore")) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(configDir);
+	}
 
 	public void preInit(FMLPreInitializationEvent event) {
 		TragicConfig.doConfigProcess(event);
+		configDir = event.getModConfigurationDirectory();
 
 		if (TragicConfig.getBoolean("allowPotions"))
 		{
@@ -121,7 +112,7 @@ public class CommonProxy implements IGuiHandler {
 
 		TragicBlocks.load();
 		TragicItems.load();
-		if (TragicConfig.getBoolean("allowRandomWeaponLore") && TragicConfig.getBoolean("allowNonMobItems")) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
+		
 		if (TragicConfig.getBoolean("allowPotions") && TragicConfig.getBoolean("allowNonMobBlocks") && TragicConfig.getBoolean("allowNonMobItems")) TragicPotion.setPotionIcons();
 		if (TragicConfig.getBoolean("allowRecipes")) TragicRecipes.load();
 		if (TragicConfig.getBoolean("allowAmulets")) registerEvent(new AmuletEvents());

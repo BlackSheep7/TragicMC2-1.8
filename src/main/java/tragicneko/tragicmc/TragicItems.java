@@ -314,7 +314,7 @@ public class TragicItems {
 	private static final ToolMaterial toolScythe = EnumHelper.addToolMaterial("SCYTHE", 1, 110, 10.0F, 0.0F, 6);
 	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 825, 14.0F, 2.0F, 5);
 	private static final ToolMaterial toolGravity = EnumHelper.addToolMaterial("GRAVITY", 1, 220, 0.5F, 0.5F, 10);
-	private static final ToolMaterial toolHarmony = EnumHelper.addToolMaterial("HARMONY", 0, 330, 0F, -4F, 5);
+	private static final ToolMaterial toolHarmony = EnumHelper.addToolMaterial("HARMONY", 0, 330, 0F, -3F, 5);
 	private static final ToolMaterial toolLauncher = EnumHelper.addToolMaterial("LAUNCHER", 0, 330, 0F, 0F, 1);
 	private static final ToolMaterial toolHunter = EnumHelper.addToolMaterial("HUNTER", 1, 160, 1F, 1F, 4);
 	private static final ToolMaterial toolMercury = EnumHelper.addToolMaterial("MERCURY", 2, 160, 3.0F, 3.0F, 12);
