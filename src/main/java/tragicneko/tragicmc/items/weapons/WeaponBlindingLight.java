@@ -70,7 +70,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 			rocket.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
 			par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 
-			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-15);
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[1]);
 			setStackCooldown(par1ItemStack, 5);
 		}
 		return par1ItemStack;

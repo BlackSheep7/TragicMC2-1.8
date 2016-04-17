@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.items.weapons;
 
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,23 +18,31 @@ public class WeaponHarmonyBell extends TragicWeapon {
 	public WeaponHarmonyBell(ToolMaterial material, Doomsday dday) {
 		super(material, dday);
 	}
-
+	
 	@Override
-	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		PropertyDoom doom = PropertyDoom.get(player);
+		if (par2World.isRemote) return par1ItemStack;
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && TragicConfig.getBoolean("allowHarmony") && canUseAbility(doom, TragicConfig.doomAbilityCost[17]) && getStackCooldown(stack) == 0 && TragicConfig.doomAbility[17])
+		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
+
+		if (canUseAbility(doom, TragicConfig.doomAbilityCost[17]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.doomAbility[17])
 		{
-			if (doom != null && doom.getCurrentDoom() >= 3)
-			{
-				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 60, 0));
-				if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[17]);
-				setStackCooldown(stack, 5);
-			}
-		}
+			List<EntityLivingBase> list = par2World.getEntitiesWithinAABB(EntityLivingBase.class, par3EntityPlayer.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 
-		return super.onLeftClickEntity(stack, player, entity);
+			for (int i = 0; i < list.size(); i++)
+			{
+				EntityLivingBase e = list.get(i);
+				if (e != par3EntityPlayer && par3EntityPlayer.canEntityBeSeen(e))
+				{
+					e.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 60, 0));
+				}
+			}
+			
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[17]);
+			setStackCooldown(par1ItemStack, 5);
+		}
+		return par1ItemStack;
 	}
 
 	@Override
