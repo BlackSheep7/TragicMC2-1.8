@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.client.gui;
 
+import java.awt.Color;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -243,9 +245,10 @@ public class GuiDoom extends Gui
 						GlStateManager.scale(0.475, 0.475, 0.475);
 						EnumDifficulty dif = mc.theWorld.getDifficulty();
 						String s3 = "Current Doomsday: " + doomsday.getLocalizedName() + (mc.thePlayer.isSneaking() && sneakFlag ? " (Sneak)" : "");
-						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 30, 0xAAAAAA);
+						drawRect(xPos + 2, yPos + 32, mc.fontRendererObj.getStringWidth(s3) + 15, yPos + 33 + mc.fontRendererObj.FONT_HEIGHT * 2, 0x77333333);
+						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 33, 0xDDDDDD);
 						s3 = "Cost/Cooldown: " + doomsday.getScaledDoomRequirement(dif) + " / " + doomsday.getScaledCooldown(dif);
-						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 40, 0xAAAAAA);
+						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 43, 0xDDDDDD);
 						
 						GlStateManager.scale(0.745, 0.745, 0.745);
 						String s4 = "Press " + Keyboard.getKeyName(ClientProxy.useSpecial.getKeyCode()) + " to activate!";
