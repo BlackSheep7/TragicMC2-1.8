@@ -4697,7 +4697,7 @@ Added display that tells people how to use the currently activatable doomsday, t
 Made default Enchantment IDs look from 128 up by default instead of 64, this gives a bit more room from the vanilla ones
 Mobs searching for a target no longer attempt to target Plagues
 
-4.49.3062++ <221> (April 11, 2016) [Restructure of config to a registry system, new modifiable master config files]
+4.49.3089 <221> (April 11, 2016) [Restructure of config to a registry system, new modifiable master config files]
 Restructured config to work as a registry, this will take a lot of work to ensure of no errors but should pay off in the end
 Also added the ability to have multiple "configs", each set based on the master configs the mod has, but able to be edited by users if they so wish it
 Added configurability of Neko Homeworld properties (biome ids, dimension ids, etc.) to new config
@@ -4729,14 +4729,29 @@ Fixed backlashed Doomsdays still doing their effects when in Creative Mode, they
 Adjusted Pulse to apply more velocity to entities
 Fixed crash while checking for reach
 Enabled Doomsday Scroll combining with items for Lightweight mode
+Do the default interaction when Directed Lightning hits an entity instead of hooking into forge events and hoping people actually use null-checks
 
+4.50.3089++ <222> (April 15, 2016) [Rewrite of LoreHelper]
+Lore registration is going to use Resource Locations (item names) instead of classes as keys, this'll simplify end user experience for creating custom lore and
+makes it easier for me to register lore for certain items (especially for armor)
+Rewrote EnchantEntries to also keep their rarity values and return a list based on the rarity parameter, greatly simplifying registration of them
+Appended all current resource locations for potions and enchantments with the mod id
+Modified Armor to update as weapon now, added new method to update generic itemstacks on update to have lores and enchantments
+Modified Harmony Bell to do +1 damage on hit, right-click now inflicts Harmony on things
+Fixed Blinding Light ignoring configured ability cost for it's right-click ability
+Reduced volume of Nor-Vox and Cryse sounds
+Added sound for when a Vox Stellarum is healing and fixed layer render and particle effects not applying only when the Vox is actually healing
+Added shaded background for Doomsday info in the gui to make it easier to read against background of similar colors
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9, for now they can just use namespaced registries
 Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my own drophelper's things are put into a json file in the
 config directory so that they can be easily modified by others, just like I'm planning on doing with the lores and enchantments
-Move Lores, Enchantment tiers to json files in the TragicMC2 folder in the config directory
+Convert structures to use a tick scheduled builder system, this would require them being converted to the matrix system that I was previously going to implement
+so that I can keep track of which block is being set, the builder system would "build" a certain amount of the structure per tick (maybe 1000 blocks per tick)
+and then hold off on building until next tick, the build progress would need to be stored in the world though to prevent partial structures in case the game is
+stopped mid-build via the player quitting, the server stopping or the game crashing
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
