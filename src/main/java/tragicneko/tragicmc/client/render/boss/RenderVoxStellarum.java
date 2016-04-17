@@ -26,7 +26,7 @@ public class RenderVoxStellarum extends RenderLiving {
 
 			@Override
 			public boolean shouldShieldRender(EntityLivingBase entity) {
-				return entity instanceof EntityVoxStellarum && ((EntityVoxStellarum) entity).isHealing();
+				return entity instanceof EntityVoxStellarum && ((EntityVoxStellarum) entity).getHealTicks() >= 100;
 			}
 
 			@Override

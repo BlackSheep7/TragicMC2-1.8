@@ -422,7 +422,7 @@ public class EntityNorVox extends TragicMob {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.8F + rand.nextFloat() * 0.2F;
+		return 0.6F;
 	}
 
 	@Override

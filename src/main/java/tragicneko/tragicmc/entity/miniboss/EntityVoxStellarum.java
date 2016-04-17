@@ -159,7 +159,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 						(this.rand.nextDouble() - 0.6D) * 0.1D);
 			}
 			
-			if (this.isHealing())
+			if (this.getHealTicks() >= 100)
 			{
 				for (byte i = 0; i < 8; i++)
 				{
@@ -212,7 +212,11 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				if (this.getHealth() >= this.getMaxHealth()) this.setHealTicks(0);
 				if (this.getHealth() >= this.getMaxHealth() || this.getHealTicks() == 100)
 				{
-					this.playSound("tragicmc:random.beep", 1.4F, 0.2F);
+					this.playSound("tragicmc:random.truncatedbeep", 1.4F, 0.2F);
+				}
+				else
+				{
+					this.playSound("tragicmc:random.truncatedbeep", 0.2F, 1.98F);
 				}
 			}
 
@@ -385,7 +389,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.8F + rand.nextFloat() * 0.2F;
+		return 0.6F;
 	}
 
 	@Override
