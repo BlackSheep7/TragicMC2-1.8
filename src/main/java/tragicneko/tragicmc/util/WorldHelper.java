@@ -217,7 +217,8 @@ public class WorldHelper {
 	 */
 	public static Vec3 getVecFromEntity(Entity ent, double distance)
 	{
-		return getMOPFromEntity(ent, distance).hitVec;
+		MovingObjectPosition mop = getMOPFromEntity(ent, distance);
+		return mop != null ? mop.hitVec : new Vec3(ent.posX - ent.prevPosX, ent.posY - ent.prevPosY, ent.posZ - ent.prevPosZ);
 	}
 
 	/**

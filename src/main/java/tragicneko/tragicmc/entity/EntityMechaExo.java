@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
+import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,14 +37,17 @@ public class EntityMechaExo extends EntityRidable {
 	public static final int DW_TARGET_ID = 20;
 	public static final int DW_HAS_FIRED = 21;
 	public static final int DW_THRUST_TICKS = 22;
+	public static final int DW_ATTACK_TIME = 23;
 
 	public final EntityAIBase attackOnCollide = new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true);
 	public final EntityAIBase moveTowardsTarget = new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F);
 	public final EntityAIBase hurtByTarget = new EntityAIHurtByTarget(this, true);
+	public final EntityAIBase wander = new EntityAIWander(this, 0.65D);
 
 	public EntityMechaExo(World par1World) {
 		super(par1World);
 		this.setSize(2.25F, 2.4F);
+		this.isImmuneToFire = true;
 	}
 
 	@Override
@@ -52,6 +56,7 @@ public class EntityMechaExo extends EntityRidable {
 		this.dataWatcher.addObject(DW_TARGET_ID, Integer.valueOf(0));
 		this.dataWatcher.addObject(DW_HAS_FIRED, (byte) 0);
 		this.dataWatcher.addObject(DW_THRUST_TICKS, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
 	}
 
 	public int getTargetID()
@@ -83,6 +88,16 @@ public class EntityMechaExo extends EntityRidable {
 	public void setThrustTicks(int i)
 	{
 		this.dataWatcher.updateObject(DW_THRUST_TICKS, i);
+	}
+	
+	public int getAttackTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(DW_ATTACK_TIME);
+	}
+
+	public void setAttackTime(int i)
+	{
+		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
 	}
 
 	@Override
@@ -119,53 +134,73 @@ public class EntityMechaExo extends EntityRidable {
 					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + d0 * d3, this.posY + d1 * d3 + 1.25D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 				}
 			}
+
+			if (this.getThrustTicks() > 0)
+			{
+				for (byte l = 0; l < 6; l++)
+				{
+					this.worldObj.spawnParticle(EnumParticleTypes.CLOUD, this.posX - this.motionX, this.posY + 1.25D - this.motionY, this.posZ - this.motionZ, 0.0, 0.0, 0.0);
+				}
+				
+				for (byte l = 0; l < 2; l++)
+				{
+					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY + 1.25D, this.posZ, 0.0, 0.0, 0.0);
+				}
+			}
 			return;
 		}
 
 		if (this.hasFired() && cooldown <= 9) this.setFired(false, 0);
 		if (cooldown > 0) cooldown--;
-
-		if (this.ticksExisted % 20 == 0)
-		{
-			TragicMC.logInfo("exo health is " + this.getHealth() + "/ " + this.getMaxHealth());
-			TragicMC.logInfo("cooldown is " + this.cooldown);
-		}
+		if (this.getAttackTime() > 0) this.setAttackTime(this.getAttackTime() - 1);
 
 		if (this.getThrustTicks() > 0 && this.riddenByEntity != null)
 		{
 			this.setThrustTicks(this.getThrustTicks() - 1);
-			TragicMC.logInfo("thrusttttttt");
-			if (this.getThrustTicks() % 5 == 0 && this.getThrustTicks() > 0) this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 0.8F, 0.115F);
+			if (this.getThrustTicks() % 8 == 0 && this.getThrustTicks() > 0) this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 1.8F, 0.015F);
 
 			if (this.riddenByEntity instanceof EntityPlayer)
 			{
 				Vec3 vec = WorldHelper.getVecFromEntity(this.riddenByEntity, 1.5);
-				double d0 = vec.xCoord - this.posX;
-				double d2 = vec.zCoord - this.posZ;
-				this.motionX = d0;
-				this.motionZ = d2;
-				this.motionY = this.motionY * 1.1D;
-				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
+				if (vec != null)
+				{
+					double d0 = vec.xCoord - this.posX;
+					double d2 = vec.zCoord - this.posZ;
+					this.motionX = d0;
+					this.motionZ = d2;
+					this.motionY = 0.05D;
+					this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
+				}
 			}
 			else if (this.getAttackTarget() != null)
 			{
-				double d0 = this.getAttackTarget().posX - this.posX;
-				double d2 = this.getAttackTarget().posZ - this.posZ;
-				this.motionX = d0;
-				this.motionZ = d2;
-				this.motionY = this.motionY * 1.1D;
-				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
+				Vec3 vec = WorldHelper.getVecFromEntity(this, 1.5);
+				if (vec != null)
+				{
+					double d0 = vec.xCoord - this.posX;
+					double d2 = vec.zCoord - this.posZ;
+					this.motionX = d0;
+					this.motionZ = d2;
+					this.motionY = this.motionY * 1.1D;
+					this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
+				}
 			}
 
 			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(2.0, 1.0, 2.0));
 			for (int i = 0; i < list.size(); i++)
 			{
 				EntityLivingBase e = list.get(i);
-				if (e != this.riddenByEntity && e != this && this.riddenByEntity instanceof EntityLivingBase)
+				if (e != this.riddenByEntity && e != this && this.riddenByEntity instanceof EntityLivingBase && !(e instanceof EntityRidable))
 				{
 					this.attackEntityAsMob(e);
 				}
 			}
+
+			this.setSprinting(true);
+		}
+		else if (this.getThrustTicks() <= 0)
+		{
+			this.setSprinting(false);
 		}
 	}
 
@@ -280,7 +315,7 @@ public class EntityMechaExo extends EntityRidable {
 			if (attackType == 0)
 			{
 				EntityNekoRocket rocket = new EntityNekoRocket(this.worldObj, entity, d4, d5, d6);
-				rocket.posY = entity.posY + entity.getEyeHeight() - 0.45F;
+				rocket.posY = this.posY + this.getEyeHeight() - 0.45F;
 				rocket.posX += d4 * 0.315;
 				rocket.posZ += d6 * 0.315;
 				if (!this.worldObj.isRemote)
@@ -321,31 +356,39 @@ public class EntityMechaExo extends EntityRidable {
 			this.tasks.removeTask(attackOnCollide);
 			this.tasks.removeTask(moveTowardsTarget);
 			this.targetTasks.removeTask(hurtByTarget);
-			TragicMC.logInfo("removed tasks");
+			this.tasks.removeTask(wander);
 		}
 		else if (!(this.previousRider instanceof EntityCreature) && this.riddenByEntity instanceof EntityCreature)
 		{
 			this.tasks.addTask(0, attackOnCollide);
 			this.tasks.addTask(1, moveTowardsTarget);
+			this.tasks.addTask(6, wander);
 			this.targetTasks.addTask(2, hurtByTarget);
-			TragicMC.logInfo("added tasks");
 		}
 	}
-	
+
 	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
-    {
+	{
 		super.attackEntityAsMob(entityIn);
 		if (this.riddenByEntity instanceof EntityLiving && entityIn instanceof EntityLivingBase) ((EntityLiving) this.riddenByEntity).setAttackTarget((EntityLivingBase) entityIn);
-        return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 5.0F);
-    }
-	
+		if (this.getDistanceToEntity(entityIn) > 4) return false;
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 5.0F);
+
+		if (flag)
+		{
+			entityIn.motionX += this.motionX * 2;
+			entityIn.motionZ += this.motionZ * 2;
+			entityIn.motionY += 0.45D;
+		}
+		return flag;
+	}
+
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float damage)
 	{
 		if (src.getEntity() != null && src.getEntity() == this.ridingEntity) return false;
+		if (src.getEntity() instanceof EntityLiving && this.ridingEntity == null) ((EntityLiving) src.getEntity()).setAttackTarget(null);
 		return super.attackEntityFrom(src, damage);
-		
 	}
-
 }

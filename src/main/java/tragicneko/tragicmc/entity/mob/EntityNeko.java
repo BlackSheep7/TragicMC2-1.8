@@ -67,7 +67,6 @@ public abstract class EntityNeko extends TragicMob {
 	public final EntityAIBase moveTowardsTarget = new EntityAIMoveTowardsTarget(this, 0.85D, 32.0F);
 	public final EntityAIBase targetPlayers = new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget);
 	public final EntityAIBase targetUnreleasedNekos = new EntityAINearestAttackableTarget(this, EntityNeko.class, 0, true, false, nekoTarget);
-	public final EntityAIBase wander = new EntityAIWander(this, 0.65D);
 
 	public EntityNeko(World par1World) {
 		super(par1World);
@@ -75,7 +74,7 @@ public abstract class EntityNeko extends TragicMob {
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		if (!this.isProperDate()) this.tasks.addTask(0, attackOnCollide);
 		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.tasks.addTask(6, wander);
+		this.tasks.addTask(6, new EntityAIWander(this, 0.65D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		if (!this.isProperDate()) this.tasks.addTask(1, moveTowardsTarget);
 		if (!this.isReleased()) this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
@@ -532,12 +531,5 @@ public abstract class EntityNeko extends TragicMob {
 			}
 		}
 		return false;
-	}
-	
-	@Override
-	public void mountEntity(Entity entity) {
-		super.mountEntity(entity);
-		if (entity != null) this.tasks.removeTask(wander);
-		else this.tasks.addTask(6, wander);
 	}
 }

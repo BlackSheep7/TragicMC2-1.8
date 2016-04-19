@@ -24,7 +24,7 @@ public class EntityMechaNeko extends EntityNeko {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(75.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.27);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
@@ -33,7 +33,7 @@ public class EntityMechaNeko extends EntityNeko {
 
 	@Override
 	public int getTotalArmorValue() {
-		return 6;
+		return this.ridingEntity != null ? 24 : 0;
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class EntityMechaNeko extends EntityNeko {
 						this.commandBuffer = i == 0 ? 80 : 20;
 					}
 				}
-				else if (this.getDistanceToEntity(this.getAttackTarget()) < 5 && this.ticksExisted % 20 == 0) //charge at them if close enough to knock them back
+				else if (this.getDistanceToEntity(this.getAttackTarget()) < 6 && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0) //charge at them if close enough to knock them back
 				{
 					if (er instanceof EntityMechaExo && ((EntityMechaExo) er).getThrustTicks() == 0)
 					{
@@ -74,36 +74,18 @@ public class EntityMechaNeko extends EntityNeko {
 				this.commandBuffer--;
 			}
 		}
-		else if (this.getAttackTarget() != null && this.getAttackTarget() instanceof EntityLiving)
-		{
-			((EntityLiving) this.getAttackTarget()).setAttackTarget(null);
-			this.setAttackTarget(null);
-		}
-	}
-
-	@Override
-	public void moveEntityWithHeading(float strafe, float forward) {
-		super.moveEntityWithHeading(strafe, forward);
 	}
 
 	@Override
 	public boolean attackEntityAsMob(Entity entity) {
-		boolean flag = super.attackEntityAsMob(entity);
-
-		if (flag && this.ridingEntity != null)
-		{
-			entity.motionX += this.motionX;
-			entity.motionZ += this.motionZ;
-			entity.motionY += 1.4D;
-		}
-
-		return flag;
+		if (entity == this.ridingEntity) return false;
+		return super.attackEntityAsMob(entity);
 	}
 
 	@Override
 	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
-		if (!this.worldObj.isRemote)
+		if (!this.worldObj.isRemote && this.ridingEntity == null)
 		{
 			EntityMechaExo exo = new EntityMechaExo(this.worldObj);
 			exo.setPositionAndUpdate(this.posX, this.posY, this.posZ);
