@@ -4742,6 +4742,20 @@ Fixed Blinding Light ignoring configured ability cost for it's right-click abili
 Reduced volume of Nor-Vox and Cryse sounds
 Added sound for when a Vox Stellarum is healing and fixed layer render and particle effects not applying only when the Vox is actually healing
 Added shaded background for Doomsday info in the gui to make it easier to read against background of similar colors
+Adding a Ridable entity, the entity will use the mod's keybindings in a contextual way, you won't be able to use Doomsdays while riding them but you'll be able
+to use attacks and such, so balance/trade-off
+Added Mecha Neko, it'll spawn in riding an Exo, it'll use the Exo's abilities to attack, primary ability is to fire a Neko rocket, secondary ability is to attack
+using a laser
+Added some things to the Exo that allow it to move and attack separately from it's rider (if it's rider is not a player)
+Fixed Neko Rocket targeting creative mode players and ridable entities
+No longer enforce rarity on the Overlord Armor, this makes it way more difficult to have the op enchantments on it and encourages killing it more than once
+Added more Lores for the lower rarities of the Overlord Armor
+Fixed Mecha not being able to move by itself while being ridden
+Fixed npe that could arise from using the vector from the WorldHelper
+Added extra chat info when riding an EntityRidable for the new movement ability thing
+Working on converting schematics to use a matrix instead of creating the entire structure and placing each block individually, the structure would do preset checks
+for if a structure can be set somewhere, then when checks are met, it'll generate a new schematic, which generates a new matrix based on the seed and then will
+place all of the blocks after that is all generated, this will allow the structure to be rotated and also allow me to use the tick builder that I had planned to use
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
@@ -4760,7 +4774,8 @@ Side expansion:
 Neko homeworld with new neko types:
 *Jet Neko - Exhilerated, excitement
 *Science Neko - Intelligent
-Mecha Neko - War-like
+*Mecha Neko - War-like
+*Mecha Exo - Ridable entity
 Saber Neko - Need to become better, faster, stronger
 Professor Nekoid - The greatest, best, genius
 *Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
