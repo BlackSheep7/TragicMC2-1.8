@@ -24,14 +24,6 @@ public class ArmorOverlord extends TragicArmor {
 	}
 
 	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
-	{
-		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-		if (!stack.getTagCompound().hasKey("tragicLoreRarity")) stack.getTagCompound().setInteger("tragicLoreRarity", 3);
-		super.onUpdate(stack, world, entity, par, flag);
-	}
-
-	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
 	{
 		if (world.isRemote) return;
