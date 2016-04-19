@@ -318,7 +318,7 @@ public class EntityYeti extends TragicBoss {
 					this.motionX = d0 / f2 * 2.15D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
 					this.motionZ = d1 / f2 * 2.15D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
 					this.motionY = d2 / f2 * 1.95D * 0.400000011920929D + this.motionY * 0.80000000298023224D;
-					if (TragicConfig.getBoolean("empariahRegeneration")) this.incrementDemeanor();
+					if (TragicConfig.getBoolean("empariahDemeanor")) this.incrementDemeanor();
 					this.setChargeTicks(5);
 					this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 				}
