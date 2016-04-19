@@ -1,8 +1,10 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
@@ -16,30 +18,106 @@ import tragicneko.tragicmc.TragicMC;
 
 public abstract class Schematic {
 
-	//public ArrayList<BlockPreset[][]> layers;
+	public ArrayList<PosPreset[][]> matrix;
 	public int width;
 	public int height;
 	public int structureHeight;
+	
+	private float progress = 0.0F;
+	public int placedBlocks = 0;
+	public int[] placedPosition = new int[] {0, 0, 0}; //height, width, depth dimensions for the location of the last placed block position
 
-	//public int offsetX;
-	//public int offsetY;
-	//public int offsetZ;
-	//may use these to deal with structures that don't have their origin matching the matrix
-
-	public Schematic(int structureHeight, int w, int h)
+	public Schematic(int structureHeight, int w, int d)
 	{
-		//layers = new ArrayList<BlockPreset[][]>();
-		//for (int i = 0; i < structureHeight; i++) layers.add(new BlockPreset[w][h]);
+		matrix = new ArrayList<PosPreset[][]>(structureHeight);
+		for (int i = 0; i < structureHeight; i++) matrix.add(new PosPreset[w][d]);
 		this.width = w;
-		this.height = h;
+		this.height = d;
 		this.structureHeight = structureHeight;
 		//this.fillMatrices();
 	}
+	
+	public float getProgress() {
+		return this.progress;
+	}
+	
+	protected void setProgress(float f) {
+		this.progress = f;
+	}
+	
+	public void updateBuildProgress() {
+		int b = 0;
+		for (int i = 0; i < this.structureHeight; i++)
+		{
+			for (int j = 0; j < this.height; j++)
+			{
+				for (int k = 0; k < this.width; k++)
+				{
+					if (this.matrix.get(this.structureHeight)[this.width][this.height].placed) b++;
+				}
+			}
+		}
+		
+		this.placedBlocks = b;
+		this.updateProgress();
+	}
+	
+	protected void updateProgress() {
+		this.setProgress((float) this.placedBlocks / (float) this.getTotalBlocks());
+	}
+	
+	public int getPlacedBlocks() {
+		return this.placedBlocks;
+	}
+	
+	public int getTotalBlocks() {
+		return this.structureHeight * this.width * this.height;
+	}
+	
+	public boolean hasFinished() {
+		return this.progress >= 1.0F;
+	}
+	
+	public void setMatrixBlock(World world, BlockPos origin, PosPreset preset) {
+		world.setBlockState(origin.add(preset.pos), preset.state);
+		if (preset.tileEntity) preset.handleTileEntity(world, origin);
+		preset.placed = true;
+	}
+	
+	public static class PosPreset {
+		
+		public final BlockPos pos;
+		public final boolean tileEntity;
+		public final IBlockState state;
+		public boolean placed = false;
+		
+		public PosPreset(BlockPos pos, IBlockState state, boolean isTileEntity) {
+			this.pos = pos;
+			this.state = state;
+			this.tileEntity = isTileEntity;
+		}
+		
+		public PosPreset(BlockPos pos, IBlockState state) {
+			this(pos, state, false);
+		}
+		
+		public int getX() { return this.pos.getX(); }
+		public int getY() { return this.pos.getY(); }
+		public int getZ() { return this.pos.getZ(); }
+		
+		/**
+		 * Allows a preset to set it's own tile entity data
+		 * @param world
+		 * @param origin of the current schematic
+		 */
+		public void handleTileEntity(World world, final BlockPos origin) {
+			
+		}
+	}
 
-	/*
-	public abstract void fillMatrices();
+	//public abstract void fillMatrices();
 
-	public void invertMatrix(BlockPreset[][] presets)
+	public void invertMatrix(PosPreset[][] presets)
 	{
 		for (int k = 0; k < this.height; k++)
 		{
@@ -47,10 +125,10 @@ public abstract class Schematic {
 		}
 	}
 
-	public void invertRow(BlockPreset[][] presets, int row)
+	public void invertRow(PosPreset[][] presets, int row)
 	{
-		BlockPreset[] temp = presets[row];
-		BlockPreset block;
+		PosPreset[] temp = presets[row];
+		PosPreset block;
 		for (int i = 0; i < this.width; i++)
 		{
 			block = temp[i];
@@ -58,7 +136,7 @@ public abstract class Schematic {
 		}
 	}
 
-	public void rotateMatrix(BlockPreset[][] presets, int rotations)
+	public void rotateMatrix(PosPreset[][] presets, int rotations)
 	{
 		for (int k = 0; k < this.height; k++)
 		{
@@ -66,10 +144,10 @@ public abstract class Schematic {
 		}
 	}
 
-	public void rotateRow(BlockPreset[][] presets, int row, int rotations)
+	public void rotateRow(PosPreset[][] presets, int row, int rotations)
 	{
-		BlockPreset[] temp = presets[row];
-		BlockPreset block;
+		PosPreset[] temp = presets[row];
+		PosPreset block;
 		for (int i = 0; i < this.width; i++)
 		{
 			block = temp[i];
@@ -79,32 +157,32 @@ public abstract class Schematic {
 
 	public void rotateEntireMatrix()
 	{
-		int h = this.height;
-		int w = this.width;
+		final int h = this.height;
+		final int w = this.width;
 
-		for (int m = 0; m < layers.size(); m++)
+		for (int m = 0; m < matrix.size(); m++)
 		{
-			BlockPreset[][] matrix = layers.get(m);
-			BlockPreset[][] newMatrix = new BlockPreset[h][w];
-			BlockPreset preset;
+			PosPreset[][] matrice = matrix.get(m);
+			PosPreset[][] newMatrix = new PosPreset[h][w];
+			PosPreset preset;
 
 			for (int i = 0; i < h; i++)
 			{
 				for (int k = 0; k < w; k++)
 				{
-					newMatrix[k][i] = matrix[i][k];
+					newMatrix[k][i] = matrice[i][k];
 					preset = newMatrix[k][i];
-					if (preset.block instanceof net.minecraft.block.BlockStairs) preset.meta = preset.meta < 4 ? (preset.meta + 1) % 4 : (preset.meta + 1 % 4) + 4;
+					//if (preset.state.getBlock() instanceof net.minecraft.block.BlockStairs) preset.meta = preset.meta < 4 ? (preset.meta + 1) % 4 : (preset.meta + 1 % 4) + 4;
 				}
 			}
 
 			this.invertMatrix(newMatrix);
-			layers.set(m, newMatrix);
+			matrix.set(m, newMatrix);
 		}
 		//invert width and height parameters since these are used to keep track of the matrices assumed width and height
 		this.height = w;
 		this.width = h;
-	} */
+	}
 
 	/**
 	 * Main method to generate the particular structure, variants should be decided upon before this method is called, this may split off variants
@@ -186,20 +264,4 @@ public abstract class Schematic {
 	{
 		world.setBlockState(new BlockPos(x, y, z), block.getStateFromMeta(meta), 3);
 	}
-
-	/*
-	public static class BlockPreset {
-
-		public final Block block;
-		public int meta;
-		public boolean isSpecial; //used to determine if a preset has special randomization applied when generating, like for a chest or luxury block
-		public final boolean forceReplace;
-
-		public BlockPreset(Block block, int meta, boolean replace)
-		{
-			this.block = block;
-			this.meta = meta;
-			this.forceReplace = replace;
-		}
-	} */
 }
