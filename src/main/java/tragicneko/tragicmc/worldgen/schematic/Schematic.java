@@ -23,7 +23,6 @@ public abstract class Schematic {
 	public int height;
 	public int structureHeight;
 	
-	private float progress = 0.0F;
 	public int placedBlocks = 0;
 	public int[] placedPosition = new int[] {0, 0, 0}; //height, width, depth dimensions for the location of the last placed block position
 
@@ -35,14 +34,6 @@ public abstract class Schematic {
 		this.height = d;
 		this.structureHeight = structureHeight;
 		//this.fillMatrices();
-	}
-	
-	public float getProgress() {
-		return this.progress;
-	}
-	
-	protected void setProgress(float f) {
-		this.progress = f;
 	}
 	
 	public void updateBuildProgress() {
@@ -59,11 +50,6 @@ public abstract class Schematic {
 		}
 		
 		this.placedBlocks = b;
-		this.updateProgress();
-	}
-	
-	protected void updateProgress() {
-		this.setProgress((float) this.placedBlocks / (float) this.getTotalBlocks());
 	}
 	
 	public int getPlacedBlocks() {
@@ -75,7 +61,7 @@ public abstract class Schematic {
 	}
 	
 	public boolean hasFinished() {
-		return this.progress >= 1.0F;
+		return this.placedBlocks >= this.getTotalBlocks();
 	}
 	
 	public void setMatrixBlock(World world, BlockPos origin, PosPreset preset) {

@@ -14,6 +14,7 @@ import tragicneko.tragicmc.worldgen.schematic.Schematic;
 
 public class Structure extends WorldGenerator {
 
+	@Deprecated
 	protected final Schematic schematic;
 	@Deprecated
 	public final int structureId;
@@ -158,5 +159,9 @@ public class Structure extends WorldGenerator {
 	public int getStructureColor()
 	{
 		return 0x000000;
+	}
+	
+	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
+		return this.schematic;
 	}
 }
