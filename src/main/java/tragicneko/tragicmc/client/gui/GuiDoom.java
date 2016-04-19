@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.client.gui;
 
-import java.awt.Color;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -11,6 +9,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -20,7 +19,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.entity.EntityRidable;
 import tragicneko.tragicmc.items.armor.TragicArmor;
 import tragicneko.tragicmc.items.weapons.TragicBow;
 import tragicneko.tragicmc.items.weapons.TragicTool;
@@ -64,7 +65,7 @@ public class GuiDoom extends Gui
 
 		boolean shiftAmuStatus = false;
 		boolean isDoomDisplayed = true;
-		
+
 		final float trans = ((float) TragicConfig.getInt("guiTransparency") / 100.0F);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, trans);
 
@@ -227,6 +228,8 @@ public class GuiDoom extends Gui
 					if (flag2 && doomsday != null && doomsday.doesCurrentDoomMeetRequirement(props)) flag = true;
 				}
 
+				if (mc.thePlayer.ridingEntity != null) flag = false; //disable notification of Doomsdays if riding an entity since we can't use Doomsdays while doing so anymore
+
 				if (flag)
 				{
 					if (buffer > 10 && buffer <= 20)
@@ -249,7 +252,7 @@ public class GuiDoom extends Gui
 						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 33, 0xDDDDDD);
 						s3 = "Cost/Cooldown: " + doomsday.getScaledDoomRequirement(dif) + " / " + doomsday.getScaledCooldown(dif);
 						this.mc.fontRendererObj.drawString(s3, xPos + 4, yPos + 43, 0xDDDDDD);
-						
+
 						GlStateManager.scale(0.745, 0.745, 0.745);
 						String s4 = "Press " + Keyboard.getKeyName(ClientProxy.useSpecial.getKeyCode()) + " to activate!";
 						this.mc.fontRendererObj.drawString(s4, xPos + 48, yPos + 25, color);
@@ -263,7 +266,7 @@ public class GuiDoom extends Gui
 				{
 					boolean flg = difference > 0;
 					String s2 = (flg ? "+" : "") + difference;
-					int y = yPos + (TragicConfig.getBoolean("allowAnimatedGui") ? (difTick / 2) : 0);
+					int y = yPos + (TragicConfig.getBoolean("allowAnimatedGui") ? MathHelper.floor_float(difTick * 0.5F + event.partialTicks) : 0);
 					this.mc.fontRendererObj.drawString(s2, xPos + 70, y, flg ? 0x00FF00 : 0xFF0000);
 				}
 			}

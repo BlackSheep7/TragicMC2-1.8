@@ -2,14 +2,13 @@ package tragicneko.tragicmc.entity.projectile;
 
 import java.util.List;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.EntityRidable;
 
 public class EntityNekoRocket extends EntityProjectile {
 
@@ -73,7 +72,9 @@ public class EntityNekoRocket extends EntityProjectile {
 
 			for (int i = 0; i < list.size(); i++)
 			{
-				if (list.get(i) != this.shootingEntity && list.get(i) instanceof EntityLivingBase && this.shootingEntity != null && this.shootingEntity.canEntityBeSeen(list.get(i)))
+				if (list.get(i) != this.shootingEntity && list.get(i) instanceof EntityLivingBase && this.shootingEntity != null && this.shootingEntity.canEntityBeSeen(list.get(i)) &&
+						list.get(i) != this.shootingEntity.ridingEntity && list.get(i) != this.shootingEntity.riddenByEntity && !(list.get(i) instanceof EntityRidable) &&
+						list.get(i) instanceof EntityPlayer && !((EntityPlayer) list.get(i)).capabilities.isCreativeMode)
 				{
 					if (!((EntityLivingBase) list.get(i)).canEntityBeSeen(this)) continue;
 					if (this.target == null || this.getDistanceToEntity(list.get(i)) < this.getDistanceToEntity(this.target)) this.target = (EntityLivingBase) list.get(i);
@@ -108,7 +109,7 @@ public class EntityNekoRocket extends EntityProjectile {
 		{
 			if (this.worldObj.isRemote)
 			{
-				for (int l = 0; l < 5; ++l) {
+				for (byte l = 0; l < 5; ++l) {
 					worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 				}
 				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.3F, 0.4F);

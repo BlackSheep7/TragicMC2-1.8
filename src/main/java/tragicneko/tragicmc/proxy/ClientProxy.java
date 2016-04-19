@@ -142,6 +142,7 @@ import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityJetNeko;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
+import tragicneko.tragicmc.entity.mob.EntityMechaNeko;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
@@ -197,8 +198,8 @@ public class ClientProxy extends CommonProxy {
 
 	public static final String DOMAIN = TragicMC.MODID.toLowerCase() + ":";
 
-	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
-	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);
+	public static KeyBinding useSpecial = new KeyBinding("Doomsday Use / Secondary Weapon", Keyboard.KEY_R, TragicMC.MODNAME);
+	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui / Primary Weapon", Keyboard.KEY_Y, TragicMC.MODNAME);
 
 	public static final ModelOverlordArmor[] modelsOverlord = new ModelOverlordArmor[] {new ModelOverlordArmor(0), new ModelOverlordArmor(1),
 			new ModelOverlordArmor(2), new ModelOverlordArmor(3)};
@@ -334,6 +335,7 @@ public class ClientProxy extends CommonProxy {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderDirectedLightning(manager); }});
 		registerRender(EntityNuke.class, new IRenderFactory() {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderNuke(manager); }});
+		//TODO add render for Mecha Exo
 
 		//Mob renders
 		registerRender(EntityJabba.class, new IRenderFactory() {
@@ -393,6 +395,7 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityAvris.class, new RenderFactoryMob(new ModelAvris(), 0.645F, "Avris"));
 		registerRender(EntityJetNeko.class, new RenderFactoryMob(new ModelJetNeko(), 0.295F, "JetNeko"));
 		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.825F));
+		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.295F, "TragicNeko"));
 
 		//Boss renders
 		registerRender(EntityApis.class, new IRenderFactory() {

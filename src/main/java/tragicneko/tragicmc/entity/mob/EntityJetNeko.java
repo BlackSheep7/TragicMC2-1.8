@@ -61,7 +61,7 @@ public class EntityJetNeko extends EntityNeko {
 
 	@Override
 	public int getTotalArmorValue() {
-		return (int) 6;
+		return 6;
 	}
 
 	@Override

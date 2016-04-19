@@ -6,13 +6,10 @@ import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
-import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
-import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityScienceNeko extends EntityNeko {
@@ -60,6 +57,11 @@ public class EntityScienceNeko extends EntityNeko {
 	@Override
 	public void onLivingUpdate()
 	{
+		for (int i = 0; i < 256; i++)
+		{
+			if (Potion.potionTypes[i] != null && this.isPotionActive(i)) this.removePotionEffect(i);
+		}
+		
 		super.onLivingUpdate();
 		
 		if (this.worldObj.isRemote)
@@ -111,15 +113,15 @@ public class EntityScienceNeko extends EntityNeko {
 	protected void doMissleAttack() {
 		if (TragicConfig.getBoolean("allowMobSounds")) 
 		{
-			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
-			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
+			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.laser", 0.4F, 1.8F);
+			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:boss.aegar.laser", 0.4F, 1.8F);
 		}
 		this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 	}
 	
 	@Override
 	protected void throwRandomProjectile() {
-		int i = rand.nextInt(32) == 0 ? 28 : (rand.nextInt(16) == 0 ? 4 : 56);
+		int i = rand.nextInt(32) == 0 ? 8 : (rand.nextInt(16) == 0 ? 4 : 42);
 		EntityThrowable theProjectile = new EntityPotion(this.worldObj, this, new ItemStack(Items.potionitem, 1, i));
 		theProjectile.motionX = (this.getAttackTarget().posX - this.posX) * 0.335D;
 		theProjectile.motionZ = (this.getAttackTarget().posZ - this.posZ) * 0.335D;

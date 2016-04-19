@@ -18,6 +18,7 @@ import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.EntityKurayami;
 import tragicneko.tragicmc.entity.EntityLock;
+import tragicneko.tragicmc.entity.EntityMechaExo;
 import tragicneko.tragicmc.entity.EntityNuke;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
@@ -56,6 +57,7 @@ import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityJetNeko;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
+import tragicneko.tragicmc.entity.mob.EntityMechaNeko;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
@@ -1176,62 +1178,16 @@ public class TragicEntities {
 		//TODO add config stuff for Science Neko
 		EntityRegistry.registerModEntity(EntityScienceNeko.class, "ScienceNeko", listid++, TragicMC.getInstance(), 80, 1, true);
 		TragicEntityList.addMapping(EntityScienceNeko.class, "TragicMC.ScienceNeko", id++, 0x000000, 0x000000);
+		
+		//TODO add config stuff for Mecha Neko
+		EntityRegistry.registerModEntity(EntityMechaNeko.class, "MechaNeko", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntityMechaNeko.class, "TragicMC.MechaNeko", id++, 0x000000, 0x000000);
 		/*
-		if (TragicConfig.allowBlist)
-		{
-			EntityRegistry.registerModEntity(EntityBlist.class, "Blist", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityBlist.class, "TragicMC.Blist", id++, 0x000000, 0x000000);
+		EntityRegistry.registerModEntity(EntityBlist.class, "Blist", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntityBlist.class, "TragicMC.Blist", id++, 0x000000, 0x000000);
 
-			if (allowVanillaSpawns && TragicConfig.blistSOV)
-			{
-				list.clear();
-
-				for (int i : TragicConfig.blistSpawns)
-				{
-					if (i >= biomes.length || i < 0) continue;
-					if (biomes[i] != null)
-					{
-						TragicMC.logInfo(biomes[i].biomeName + " was added to list of possible spawns for Blist.");
-						list.add(biomes[i]);
-					}
-				}
-
-				if (!list.isEmpty())
-				{
-					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityBlist.class, TragicConfig.blistSC, TragicConfig.blistGS[0], TragicConfig.blistGS[1], EnumCreatureType.monster, spawns);
-					spawns = new BiomeGenBase[1];
-				}
-			}
-		}
-
-		if (TragicConfig.allowThorg)
-		{
-			EntityRegistry.registerModEntity(EntityThorg.class, "Thorg", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityThorg.class, "TragicMC.Thorg", id++, 0x000000, 0x000000);
-
-			if (allowVanillaSpawns && TragicConfig.thorgSOV)
-			{
-				list.clear();
-
-				for (int i : TragicConfig.thorgSpawns)
-				{
-					if (i >= biomes.length || i < 0) continue;
-					if (biomes[i] != null)
-					{
-						TragicMC.logInfo(biomes[i].biomeName + " was added to list of possible spawns for Thorg.");
-						list.add(biomes[i]);
-					}
-				}
-
-				if (!list.isEmpty())
-				{
-					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityThorg.class, TragicConfig.thorgSC, TragicConfig.thorgGS[0], TragicConfig.thorgGS[1], EnumCreatureType.monster, spawns);
-					spawns = new BiomeGenBase[1];
-				}
-			}
-		}
+		EntityRegistry.registerModEntity(EntityThorg.class, "Thorg", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntityThorg.class, "TragicMC.Thorg", id++, 0x000000, 0x000000);
 		
 		EntityRegistry.registerModEntity(EntityGirsh.class, "Girsh", listid++, TragicMC.getInstance(), 80, 1, true);
 		TragicEntityList.addMapping(EntityGirsh.class, "TragicMC.Girsh", id++, 0x000000, 0x000000);
@@ -2076,5 +2032,6 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityIreEnergy.class, "IreEnergy", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityNuke.class, "Nuke", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityEnergyCharge.class, "EnergyCharge", listid++, TragicMC.getInstance(), 80, 3, true);
+		EntityRegistry.registerModEntity(EntityMechaExo.class, "MechaExo", listid++, TragicMC.getInstance(), 80, 3, true);
 	}
 }

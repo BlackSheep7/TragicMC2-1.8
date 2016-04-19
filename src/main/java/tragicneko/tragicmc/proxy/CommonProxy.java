@@ -58,8 +58,10 @@ import tragicneko.tragicmc.network.MessageHandlerFrozenInput;
 import tragicneko.tragicmc.network.MessageHandlerGui;
 import tragicneko.tragicmc.network.MessageHandlerSpawnParticle;
 import tragicneko.tragicmc.network.MessageHandlerUseDoomsday;
+import tragicneko.tragicmc.network.MessageHandlerUseRidable;
 import tragicneko.tragicmc.network.MessageParticle;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
+import tragicneko.tragicmc.network.MessageUseRidable;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
 
@@ -235,6 +237,7 @@ public class CommonProxy implements IGuiHandler {
 			net.registerMessage(MessageHandlerFlight.class, MessageFlight.class, 4, Side.CLIENT);
 			net.registerMessage(MessageHandlerAttack.class, MessageAttack.class, 5, Side.SERVER);
 			net.registerMessage(MessageHandlerSpawnParticle.class, MessageParticle.class, 6, Side.CLIENT);
+			net.registerMessage(MessageHandlerUseRidable.class, MessageUseRidable.class, 7, Side.SERVER);
 			net.registerMessage(MessageHandlerFrozenInput.class, MessageFrozenInput.class, 8, Side.SERVER);
 		}
 

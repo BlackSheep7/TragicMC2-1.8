@@ -30,6 +30,7 @@ import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.items.amulet.ItemAmulet;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
+import tragicneko.tragicmc.network.MessageUseRidable;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.proxy.ClientProxy;
 import tragicneko.tragicmc.util.AmuletHelper;
@@ -63,15 +64,36 @@ public class ClientEvents extends Gui {
 
 				if (player == null) return;
 
-				if (ClientProxy.openAmuletGui.isPressed() && TragicConfig.getBoolean("allowAmulets") && TragicConfig.getBoolean("allowNetwork"))
+				if (player.ridingEntity == null)
 				{
-					TragicMC.proxy.net.sendToServer(new MessageGui(ClientProxy.AMULET_GUI_ID));
-				}
+					if (ClientProxy.openAmuletGui.isPressed() && TragicConfig.getBoolean("allowAmulets") && TragicConfig.getBoolean("allowNetwork"))
+					{
+						TragicMC.proxy.net.sendToServer(new MessageGui(ClientProxy.AMULET_GUI_ID));
+					}
 
-				if (ClientProxy.useSpecial.isPressed() && TragicConfig.getBoolean("allowDoomsdays") && TragicConfig.getBoolean("allowNetwork"))
-				{
-					TragicMC.proxy.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
+					if (ClientProxy.useSpecial.isPressed() && TragicConfig.getBoolean("allowDoomsdays") && TragicConfig.getBoolean("allowNetwork"))
+					{
+						TragicMC.proxy.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
+					}
 				}
+				else
+				{
+					if (ClientProxy.openAmuletGui.isPressed() && TragicConfig.getBoolean("allowNetwork"))
+					{
+						TragicMC.proxy.net.sendToServer(new MessageUseRidable((byte) 0));
+					}
+
+					if (ClientProxy.useSpecial.isPressed() && TragicConfig.getBoolean("allowNetwork"))
+					{
+						TragicMC.proxy.net.sendToServer(new MessageUseRidable((byte) 1));
+					}
+					
+					if (Keyboard.isKeyDown(Keyboard.KEY_SPACE) && TragicConfig.getBoolean("allowNetwork"))
+					{
+						TragicMC.proxy.net.sendToServer(new MessageUseRidable((byte) 2));
+					}
+				}
+				
 			}
 		}
 
