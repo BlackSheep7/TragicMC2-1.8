@@ -40,6 +40,7 @@ import tragicneko.tragicmc.items.ItemDyingObsidianOrb;
 import tragicneko.tragicmc.items.ItemFile;
 import tragicneko.tragicmc.items.ItemGenerator;
 import tragicneko.tragicmc.items.ItemGeneric;
+import tragicneko.tragicmc.items.ItemMechaExo;
 import tragicneko.tragicmc.items.ItemMobEgg;
 import tragicneko.tragicmc.items.ItemNekoInfluencer;
 import tragicneko.tragicmc.items.ItemNekoWand;
@@ -250,6 +251,8 @@ public class TragicItems {
 	public static Item NekoInfluencer;
 	public static Item NekoidStrain; //Drops from Professor Nekoid, used to craft Nekoid's devices (as they require his biometric signature to use)
 	public static Item Nekite; //Neko Homeworld exclusive metal that they use for crafting armor, can be smelted into infallible metal
+	public static Item MechaExo;
+	public static Item Wrench;
 	
 	//Records (Set and file numbers)
 	public static Item Starstruck; //S1F1
@@ -745,6 +748,12 @@ public class TragicItems {
 		
 		Nekite = (new ItemGeneric().setUnlocalizedName("tragicmc.nekite").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(Nekite, "nekite");
+		
+		MechaExo = (new ItemMechaExo().setUnlocalizedName("tragicmc.mechaExo").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(MechaExo, "mechaExo");
+		
+		Wrench = (new ItemGeneric().setUnlocalizedName("tragicmc.wrench").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(Wrench, "wrench");
 		
 		//Records
 		Starstruck = (new ItemFile("starstruck", 0xCFB677));

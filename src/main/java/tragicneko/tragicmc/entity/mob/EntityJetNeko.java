@@ -28,7 +28,7 @@ public class EntityJetNeko extends EntityNeko {
 	public EntityJetNeko(World par1World) {
 		super(par1World);
 		this.moveHelper = new EntityArchangel.FlyingMoveHelper(this);
-		this.setSize(0.675F, 1.955F);
+		this.setSize(0.675F * 0.725F, 1.955F * 0.725F);
 		this.experienceValue = 100;
 	}
 
@@ -265,19 +265,19 @@ public class EntityJetNeko extends EntityNeko {
 	@Override
 	public String getLivingSound()
 	{
-		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.living" : null;
+		return null;// TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(6) == 0 ? "tragicmc:mob.jetneko.hurt" : super.getHurtSound();
+		return super.getHurtSound();// TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(6) == 0 ? "tragicmc:mob.jetneko.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.death" : null;
+		return null;// TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.death" : null;
 	}
 
 	@Override

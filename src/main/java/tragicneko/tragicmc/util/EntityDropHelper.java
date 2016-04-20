@@ -49,6 +49,7 @@ import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityJetNeko;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
+import tragicneko.tragicmc.entity.mob.EntityMechaNeko;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
@@ -197,6 +198,10 @@ public class EntityDropHelper {
 			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
 			new EntityDrop(5, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(3, TragicItems.ParadoxicalFormula), new EntityDrop(3, TragicItems.NauseatingConcoction), new EntityDrop(10, TragicItems.NekoMindControlDevice),
 			new EntityDrop(10, getScienceNekoPotions()), new EntityDrop(5, Items.spider_eye)}});
+		
+		addToDropList(EntityMechaNeko.class, new EntityDrop[][] {{new EntityDrop(15, Items.iron_ingot), new EntityDrop(25, Items.gunpowder)},
+			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
+			new EntityDrop(5, TragicItems.Wrench), new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
 		
 		//addToDropList(EntityBlist.class, new EntityDrop[][] {{}, {}});
 

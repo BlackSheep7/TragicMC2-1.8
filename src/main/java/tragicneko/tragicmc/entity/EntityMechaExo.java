@@ -17,6 +17,8 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
@@ -25,6 +27,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
@@ -137,12 +140,12 @@ public class EntityMechaExo extends EntityRidable {
 
 			if (this.getThrustTicks() > 0)
 			{
-				for (byte l = 0; l < 6; l++)
+				for (byte l = 0; l < 10; l++)
 				{
 					this.worldObj.spawnParticle(EnumParticleTypes.CLOUD, this.posX - this.motionX, this.posY + 1.25D - this.motionY, this.posZ - this.motionZ, 0.0, 0.0, 0.0);
 				}
 				
-				for (byte l = 0; l < 2; l++)
+				for (byte l = 0; l < 5; l++)
 				{
 					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY + 1.25D, this.posZ, 0.0, 0.0, 0.0);
 				}
@@ -390,5 +393,29 @@ public class EntityMechaExo extends EntityRidable {
 		if (src.getEntity() != null && src.getEntity() == this.ridingEntity) return false;
 		if (src.getEntity() instanceof EntityLiving && this.ridingEntity == null) ((EntityLiving) src.getEntity()).setAttackTarget(null);
 		return super.attackEntityFrom(src, damage);
+	}
+	
+	@Override
+	public boolean interact(EntityPlayer player) {
+		if (player.getCurrentEquippedItem() != null && this.getHealth() > 0F)
+		{
+			Item item = player.getCurrentEquippedItem().getItem();
+			if (item == TragicItems.Wrench || item.getRegistryName() != null &&
+					(item.getRegistryName().contains("wrench") || item.getRegistryName().contains("Wrench")))
+			{
+				if (!this.worldObj.isRemote) this.dropExoItem();
+				//play sound, maybe do particle effect
+				this.setDead();
+				return true;
+			}
+		}
+		return super.interact(player);
+		
+	}
+
+	private void dropExoItem() {
+		ItemStack stack = new ItemStack(TragicItems.MechaExo, 1, MathHelper.ceiling_float_int(this.getMaxHealth() - this.getHealth()));
+		EntityItem item = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, stack);
+		this.worldObj.spawnEntityInWorld(item);
 	}
 }

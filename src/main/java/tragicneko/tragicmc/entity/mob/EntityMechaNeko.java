@@ -16,7 +16,7 @@ public class EntityMechaNeko extends EntityNeko {
 
 	public EntityMechaNeko(World par1World) {
 		super(par1World);
-		this.setSize(0.475F, 1.955F);
+		this.setSize(0.475F * 0.915F, 1.955F * 0.915F);
 		this.experienceValue = 100;
 	}
 
@@ -24,7 +24,7 @@ public class EntityMechaNeko extends EntityNeko {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.27);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);

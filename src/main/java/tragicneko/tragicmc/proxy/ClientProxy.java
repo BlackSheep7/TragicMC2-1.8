@@ -42,6 +42,7 @@ import tragicneko.tragicmc.client.model.ModelJetNeko;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelKurayami;
 import tragicneko.tragicmc.client.model.ModelLockbot;
+import tragicneko.tragicmc.client.model.ModelMechaNeko;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
 import tragicneko.tragicmc.client.model.ModelNanoSwarm;
 import tragicneko.tragicmc.client.model.ModelPlague;
@@ -393,9 +394,9 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityParasmite.class, new RenderFactoryMob(new ModelHunter(), 0.565F, "Parasmite", 1.355F));
 		registerRender(EntityKurayami.class, new RenderFactoryMob(new ModelKurayami(), 0.645F, "Kurayami", 0.825F));
 		registerRender(EntityAvris.class, new RenderFactoryMob(new ModelAvris(), 0.645F, "Avris"));
-		registerRender(EntityJetNeko.class, new RenderFactoryMob(new ModelJetNeko(), 0.295F, "JetNeko"));
+		registerRender(EntityJetNeko.class, new RenderFactoryMob(new ModelJetNeko(), 0.295F, "JetNeko", 0.725F));
 		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.825F));
-		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.295F, "TragicNeko"));
+		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelMechaNeko(), 0.295F, "MechaNeko", 0.915F));
 
 		//Boss renders
 		registerRender(EntityApis.class, new IRenderFactory() {
@@ -1017,6 +1018,8 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.NekoInfluencer, ZERO, "nekoInfluencer");
 			registerItemToMesher(TragicItems.NekoidStrain, ZERO, "nekoidStrain");
 			registerItemToMesher(TragicItems.Nekite, ZERO, "nekite");
+			registerItemToMesher(TragicItems.MechaExo, ZERO, "mechaExo");
+			registerItemToMesher(TragicItems.Wrench, ZERO, "wrench");
 
 			registerItemToMesher(TragicItems.Starstruck, ZERO, "record");
 			registerItemToMesher(TragicItems.Faultless, ZERO, "record");

@@ -51,6 +51,7 @@ public abstract class EntityRidable extends EntityCreature {
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
+		if (this.getHealth() <= 0F) return false;
 		ItemStack itemstack = player.inventory.getCurrentItem();
 		if (itemstack == null && this.riddenByEntity == null) {
 			player.mountEntity(this);
