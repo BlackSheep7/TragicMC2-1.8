@@ -4753,9 +4753,13 @@ Added more Lores for the lower rarities of the Overlord Armor
 Fixed Mecha not being able to move by itself while being ridden
 Fixed npe that could arise from using the vector from the WorldHelper
 Added extra chat info when riding an EntityRidable for the new movement ability thing
-Working on converting schematics to use a matrix instead of creating the entire structure and placing each block individually, the structure would do preset checks
+Experimenting with converting schematics to use a matrix instead of creating the entire structure and placing each block individually, the structure would do preset checks
 for if a structure can be set somewhere, then when checks are met, it'll generate a new schematic, which generates a new matrix based on the seed and then will
 place all of the blocks after that is all generated, this will allow the structure to be rotated and also allow me to use the tick builder that I had planned to use
+Working on Mecha-Neko's texture then I'll work on the Mecha Exo's model and texture, then I'll do the sounds for it
+Adjusted sizes for the various Neko subtypes, they are all smaller than the base Tragic Neko
+Added item to spawn a Mecha Exo, added Wrench to turn a mecha exo back into it's item form, this will be used for other Neko related items as well
+Added Mecha Neko's drops, added textures for the new items
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
@@ -4776,7 +4780,7 @@ Neko homeworld with new neko types:
 *Science Neko - Intelligent
 *Mecha Neko - War-like
 *Mecha Exo - Ridable entity
-Saber Neko - Need to become better, faster, stronger
+Assault Neko - Need to become better, faster, stronger
 Professor Nekoid - The greatest, best, genius
 *Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
 
