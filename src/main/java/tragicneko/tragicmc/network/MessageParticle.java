@@ -11,10 +11,10 @@ public class MessageParticle implements IMessage {
 
 	public MessageParticle() {}
 
-	public MessageParticle(String s, double x, double y, double z, double x2, double y2, double z2)
+	public MessageParticle(int id, double x, double y, double z, double x2, double y2, double z2)
 	{
 		this.nameTag = new NBTTagCompound();
-		this.nameTag.setString("particleName", s);
+		this.nameTag.setInteger("particleID", id);
 		this.nameTag.setDouble("xPos", x);
 		this.nameTag.setDouble("yPos", y);
 		this.nameTag.setDouble("zPos", z);
