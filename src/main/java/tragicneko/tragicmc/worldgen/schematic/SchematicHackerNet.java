@@ -3,15 +3,17 @@ package tragicneko.tragicmc.worldgen.schematic;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicHackerNet extends Schematic {
 
-	public SchematicHackerNet() {
-		super(8, 14, 14);
+	public SchematicHackerNet(BlockPos pos, Structure str) {
+		super(pos, str, 8, 14, 14);
 	}
 
 	@Override
@@ -43,8 +45,7 @@ public class SchematicHackerNet extends Schematic {
 				int xr = x + rand.nextInt(14) - rand.nextInt(14);
 				int yr = y + rand.nextInt(14) - rand.nextInt(14);
 				int zr = z + rand.nextInt(14) - rand.nextInt(14);
-				this.setBlock(world, xr, yr, zr, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, xr, yr, zr, TragicConfig.getBoolean("allowHunter") ? "TragicMC.Hunter" : "Ghast");
+				this.setBlock(world, xr, yr, zr, Blocks.mob_spawner, 0, 2, TragicConfig.getBoolean("allowHunter") ? "TragicMC.Hunter" : "Ghast");
 			}
 		}
 		
@@ -55,8 +56,7 @@ public class SchematicHackerNet extends Schematic {
 				int xr = x + rand.nextInt(14) - rand.nextInt(14);
 				int yr = y + rand.nextInt(14) - rand.nextInt(14);
 				int zr = z + rand.nextInt(14) - rand.nextInt(14);
-				this.setBlock(world, xr, yr, zr, Blocks.chest, 0, 2);
-				this.applyChestContents(world, rand, xr, yr, zr, TragicItems.NetherStructureHook);
+				this.setBlock(world, xr, yr, zr, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
 			}
 		}
 		return true;

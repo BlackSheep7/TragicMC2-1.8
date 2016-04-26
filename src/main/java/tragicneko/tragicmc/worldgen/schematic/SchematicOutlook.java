@@ -3,15 +3,16 @@ package tragicneko.tragicmc.worldgen.schematic;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicOutlook extends Schematic {
 
-	public SchematicOutlook() {
-		super(48, 4, 4);
+	public SchematicOutlook(BlockPos pos, Structure str) {
+		super(pos, str, 48, 4, 4);
 	}
 
 	@Override
@@ -41,14 +42,10 @@ public class SchematicOutlook extends Schematic {
 				}
 				
 				byte b = 4;
-				this.setBlock(world, x + b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, x + b, y + y1 + 1, z + b, "Skeleton");
-				this.setBlock(world, x + b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, x + b, y + y1 + 1, z - b, "Skeleton");
-				this.setBlock(world, x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, x - b, y + y1 + 1, z + b, "Skeleton");
-				this.setBlock(world, x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, x - b, y + y1 + 1, z - b, "Skeleton");
+				this.setBlock(world, x + b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2, "Skeleton");
+				this.setBlock(world, x + b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2, "Skeleton");
+				this.setBlock(world, x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2, "Skeleton");
+				this.setBlock(world, x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2, "Skeleton");
 			}
 			this.setBlock(world, x, y + y1, z, TragicBlocks.ErodedStone, 1, 2);
 			this.setBlock(world, x - 1, y + y1, z, Blocks.ladder, 4, 2);
@@ -70,23 +67,17 @@ public class SchematicOutlook extends Schematic {
 				this.setBlock(world, x + z1, y + y1, z + x1, TragicBlocks.ErodedStone, 1, 2);
 			}
 		}
-		this.setBlock(world, x + 1, y + y1 + 1, z + 1, TragicBlocks.SoulChest, 0, 2);
-		this.setBlock(world, x + 1, y + y1 + 1, z + 2, TragicBlocks.SoulChest, 0, 2);
-		this.applyChestContents(world, rand, x + 1, y + y1 + 1, z + 1, TragicItems.BossStructureHook);
-		this.applyChestContents(world, rand, x + 1, y + y1 + 1, z + 2, TragicItems.BossStructureHook);
+		this.setBlock(world, x + 1, y + y1 + 1, z + 1, TragicBlocks.SoulChest, 0, 2, TragicItems.BossStructureHook);
+		this.setBlock(world, x + 1, y + y1 + 1, z + 2, TragicBlocks.SoulChest, 0, 2, TragicItems.BossStructureHook);
 		
 		this.setBlock(world, x, y + y1, z, TragicBlocks.ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y + y1, z, Blocks.ladder, 4, 2);
 		
 		byte b = 5;
-		this.setBlock(world, x + b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
-		this.setSpawnerMob(world, x + b, y + y1 + 1, z + b, "Enderman");
-		this.setBlock(world, x + b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
-		this.setSpawnerMob(world, x + b, y + y1 + 1, z - b,  "Enderman");
-		this.setBlock(world, x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2);
-		this.setSpawnerMob(world, x - b, y + y1 + 1, z + b,  "Enderman");
-		this.setBlock(world, x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2);
-		this.setSpawnerMob(world, x - b, y + y1 + 1, z - b,  "Enderman");
+		this.setBlock(world, x + b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2, "Enderman");
+		this.setBlock(world, x + b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2, "Enderman");
+		this.setBlock(world, x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2, "Enderman");
+		this.setBlock(world, x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2, "Enderman");
 		
 		return true;
 	}

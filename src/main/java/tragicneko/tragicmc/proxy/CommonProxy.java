@@ -64,6 +64,7 @@ import tragicneko.tragicmc.network.MessageUseDoomsday;
 import tragicneko.tragicmc.network.MessageUseRidable;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
+import tragicneko.tragicmc.worldgen.structure.TickBuilder;
 
 public class CommonProxy implements IGuiHandler {
 
@@ -114,7 +115,7 @@ public class CommonProxy implements IGuiHandler {
 
 		TragicBlocks.load();
 		TragicItems.load();
-		
+
 		if (TragicConfig.getBoolean("allowPotions") && TragicConfig.getBoolean("allowNonMobBlocks") && TragicConfig.getBoolean("allowNonMobItems")) TragicPotion.setPotionIcons();
 		if (TragicConfig.getBoolean("allowRecipes")) TragicRecipes.load();
 		if (TragicConfig.getBoolean("allowAmulets")) registerEvent(new AmuletEvents());
@@ -225,7 +226,11 @@ public class CommonProxy implements IGuiHandler {
 			FlowerWorldGen.allowedBiomes.add(TragicBiome.HallowedPrarie);
 		}
 
-		if (TragicConfig.getBoolean("allowStructureGen")) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 10);
+		if (TragicConfig.getBoolean("allowStructureGen"))
+		{
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 10);
+			if (TragicConfig.getBoolean("allowTickBuilder")) registerEvent(new TickBuilder(null));
+		}
 
 		if (TragicConfig.getBoolean("allowNetwork"))
 		{

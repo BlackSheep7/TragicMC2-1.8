@@ -3,17 +3,18 @@ package tragicneko.tragicmc.worldgen.schematic;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicSpiderNest extends Schematic {
 
-	public SchematicSpiderNest() {
-		super(8, 16, 16);
+	public SchematicSpiderNest(BlockPos pos, Structure str) {
+		super(pos, str, 8, 16, 16);
 	}
 
 	@Override
@@ -42,13 +43,11 @@ public class SchematicSpiderNest extends Schematic {
 						{
 							if (rand.nextInt(6) == 0)
 							{
-								this.setBlock(world, x + x1, y + y1, z + z1, Blocks.mob_spawner, 0, 2);
-								this.setSpawnerMob(world, x + x1, y + y1, z + z1, TragicConfig.getBoolean("allowStin") ? "TragicMC.Stin" : "Spider");
+								this.setBlock(world, x + x1, y + y1, z + z1, Blocks.mob_spawner, 0, 2, TragicConfig.getBoolean("allowStin") ? "TragicMC.Stin" : "Spider");
 							}
 							else if (rand.nextInt(16) == 0)
 							{
-								this.setBlock(world, x + x1, y + y1, z + z1, Blocks.chest, 0, 2);
-								this.applyChestContents(world, rand, x + x1, y + y1, z + z1, TragicItems.NetherStructureHook);
+								this.setBlock(world, x + x1, y + y1, z + z1, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
 							}
 							else
 							{

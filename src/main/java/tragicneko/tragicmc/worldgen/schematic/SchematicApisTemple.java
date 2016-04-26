@@ -4,9 +4,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicApisTemple extends Schematic {
 
@@ -19,8 +21,8 @@ public class SchematicApisTemple extends Schematic {
 
 	public static Block[] commonBlocks = new Block[] {Blocks.cobblestone, Blocks.gravel, Blocks.dirt, Blocks.mossy_cobblestone, Blocks.stone};
 
-	public SchematicApisTemple() {
-		super(10, 25, 25);
+	public SchematicApisTemple(BlockPos origin, Structure str) {
+		super(origin, str, 10, 25, 25);
 	}
 
 	@Override
@@ -145,8 +147,8 @@ public class SchematicApisTemple extends Schematic {
 		this.setBlock(world, x + 4, y, z + 1, obs, 0, 2);
 		this.setBlock(world, x + 4, y, z + 2, brick, rand.nextInt(3), 2);
 		this.setBlock(world, x + 4, y, z + 3, glow, 0, 2);
-		this.setBlock(world, x + 4, y, z + 4, chest, 0, 2);
-		this.setBlock(world, x + 4, y, z + 5, chest, 0, 2);
+		this.setBlock(world, x + 4, y, z + 4, chest, 0, 2, TragicItems.BossStructureHook);
+		this.setBlock(world, x + 4, y, z + 5, chest, 0, 2, TragicItems.BossStructureHook);
 		this.setBlock(world, x + 4, y, z + 6, glow, 0, 2);
 		this.setBlock(world, x + 4, y, z + 7, brick, rand.nextInt(3), 2);
 		this.setBlock(world, x + 4, y, z + 8, obs, 0, 2);
@@ -247,10 +249,6 @@ public class SchematicApisTemple extends Schematic {
 		{
 			this.setBlock(world, x + 15, y, z + i, commonBlocks[rand.nextInt(5)], 0, 2);
 		}
-
-		//First layer chest gen
-		this.applyChestContents(world, rand, x + 4, y, z + 4, TragicItems.BossStructureHook);
-		this.applyChestContents(world, rand, x + 4, y, z + 5, TragicItems.BossStructureHook);
 
 		y++;
 		//Second layer

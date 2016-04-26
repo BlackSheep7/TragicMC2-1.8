@@ -12,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicClaymationRuin extends Schematic {
 
@@ -19,8 +20,8 @@ public class SchematicClaymationRuin extends Schematic {
 	private static final byte ROOM_PADDING = 13;
 	private static final byte ROOM_HEIGHT = 8;
 
-	public SchematicClaymationRuin() {
-		super(5, 5, 5);
+	public SchematicClaymationRuin(BlockPos pos, Structure str) {
+		super(pos, str, 5, 5, 5);
 	}
 
 	@Override
@@ -457,10 +458,9 @@ public class SchematicClaymationRuin extends Schematic {
 
 		if (rand.nextInt(5) == 0)
 		{
-			this.setBlock(world, x, y + 1, z, Blocks.chest, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
 			this.setBlockToAir(world, x, y + 2, z);
 			this.setBlockToAir(world, x, y + 3, z);
-			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
 		}
 
 		this.generateTunnels(world, rand, x, y, z);
@@ -565,11 +565,7 @@ public class SchematicClaymationRuin extends Schematic {
 			}
 		}
 
-		if (rand.nextInt(20) == 0)
-		{
-			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
-			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.LameChestHook);
-		}
+		if (rand.nextInt(20) == 0) this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.LameChestHook);
 
 		this.generateTunnels(world, rand, x, y, z);
 	}
@@ -1154,74 +1150,18 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 		default:
 		case 0:
-			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
-			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
-
-			this.setBlock(world, x, y + 2, z, Blocks.mob_spawner, 0, 2);
-			this.setSpawnerMob(world, x, y + 2, z, "Blaze");
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
+			this.setBlock(world, x, y + 2, z, Blocks.mob_spawner, 0, 2, "Blaze");
 			break;
 		case 1:
-			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
-			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
-
-			for (byte x1 = -3; x1 < 4; x1++)
-			{
-				for (byte z1 = -3; z1 < 4; z1++)
-				{
-					this.setBlock(world, x + x1, y + 6, z + z1, DarkSand, 0, 2);
-					this.setBlock(world, x + x1, y + 5, z + z1, DarkSand, 0, 2);
-					this.setBlock(world, x + x1, y + 4, z + z1, Blocks.red_flower, 0, 2);
-					world.scheduleUpdate(new BlockPos(x + x1, y + 4, z + z1), Blocks.red_flower, 2);
-				}
-			}
-
-			for (byte x1 = -2; x1 < 3; x1++)
-			{
-				for (byte z1 = -2; z1 < 3; z1++)
-				{
-					this.setBlock(world, x + x1, y + 4, z + z1, DarkSand, 0, 2);
-					this.setBlock(world, x + x1, y + 3, z + z1, DarkSand, 0, 2);
-					this.setBlock(world, x + x1, y + 2, z + z1, Blocks.red_flower, 0, 2);
-					world.scheduleUpdate(new BlockPos(x + x1, y + 2, z + z1), Blocks.red_flower, 2);
-				}
-			}
-
-			this.setBlock(world, x, y + 2, z, DarkSand, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
 			break;
 		case 2:
-			this.setBlock(world, x, y + 1, z, Blocks.mob_spawner, 0, 2);
-			this.setSpawnerMob(world, x, y + 1, z, "Blaze");
-
-			for (byte x1 = -3; x1 < 4; x1++)
-			{
-				for (byte z1 = -3; z1 < 4; z1++)
-				{
-					this.setBlock(world, x + x1, y + 6, z + z1, DarkSand, 0, 2);
-					this.setBlock(world, x + x1, y + 5, z + z1, DarkSand, 0, 2);
-					this.setBlock(world, x + x1, y + 4, z + z1, Blocks.red_flower, 0, 2);
-					world.scheduleUpdate(new BlockPos(x + x1, y + 4, z + z1), Blocks.red_flower, 2);
-				}
-			}
-
-			for (byte x1 = -2; x1 < 3; x1++)
-			{
-				for (byte z1 = -2; z1 < 3; z1++)
-				{
-					this.setBlock(world, x + x1, y + 4, z + z1, DarkSand, 0, 2);
-					this.setBlock(world, x + x1, y + 3, z + z1, DarkSand, 0, 2);
-					this.setBlock(world, x + x1, y + 2, z + z1, Blocks.red_flower, 0, 2);
-					world.scheduleUpdate(new BlockPos(x + x1, y + 2, z + z1), Blocks.red_flower, 2);
-				}
-			}
-
-			this.setBlock(world, x, y + 2, z, DarkSand, 0, 2);
+			this.setBlock(world, x, y + 1, z, Blocks.mob_spawner, 0, 2, "Blaze");
 			break;
 		case 3:
-			this.setBlock(world, x, y + 1, z, Blocks.mob_spawner, 0, 2);
-			this.setSpawnerMob(world, x, y + 1, z, "Blaze");
-
-			this.setBlock(world, x, y + 2, z, Blocks.trapped_chest, 0, 2);
-			this.applyChestContents(world, rand, x, y + 2, z, TragicItems.NetherStructureHook);
+			this.setBlock(world, x, y + 1, z, Blocks.mob_spawner, 0, 2, "Blaze");
+			this.setBlock(world, x, y + 2, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
 
 			for (byte x1 = -3; x1 < 4; x1++)
 			{
@@ -1249,27 +1189,22 @@ public class SchematicClaymationRuin extends Schematic {
 			{
 				for (byte z1 = -1; z1 < 2; z1++)
 				{
-					this.setBlock(world, x + x1, y + 1, z + z1, Blocks.mob_spawner, 0, 2);
-					this.setSpawnerMob(world, x + x1, y + 1, z + z1, "Blaze");
+					this.setBlock(world, x + x1, y + 1, z + z1, Blocks.mob_spawner, 0, 2, "Blaze");
 				}
 			}
 
-			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
-			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
 			break;
 		case 5:
 			for (byte x1 = -1; x1 < 2; x1++)
 			{
 				for (byte z1 = -1; z1 < 2; z1++)
 				{
-					this.setBlock(world, x + x1, y + 1, z + z1, Blocks.mob_spawner, 0, 2);
-					this.setSpawnerMob(world, x + x1, y + 1, z + z1, "Blaze");
+					this.setBlock(world, x + x1, y + 1, z + z1, Blocks.mob_spawner, 0, 2, "Blaze");
 				}
 			}
 
-			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2);
-			this.applyChestContents(world, rand, x, y + 1, z, TragicItems.NetherStructureHook);
-
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
 			this.setBlock(world, x, y, z, Blocks.tnt, 0, 2);
 			break;
 		}

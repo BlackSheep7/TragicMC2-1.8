@@ -12,10 +12,8 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 
-public class Structure extends WorldGenerator {
+public abstract class Structure extends WorldGenerator {
 
-	@Deprecated
-	protected final Schematic schematic;
 	@Deprecated
 	public final int structureId;
 	@Deprecated
@@ -45,14 +43,13 @@ public class Structure extends WorldGenerator {
 	public static Structure cubeMaze = new StructureCubeMaze(16, "cubeMaze");
 	public static Structure outlook = new StructureOutlook(17, "outlook");
 
-	public Structure(Schematic sch, int id, String s)
+	public Structure(int id, String s, int height)
 	{
-		this.schematic = sch;
 		if (structureList[id] != null) throw new IllegalArgumentException("There is a structure using that ID (" + id + ") already!");
 		structureList[id] = this;
 		this.structureId = id;
-		this.height = sch.structureHeight;
 		this.structureName = s;
+		this.height = height;
 	}
 
 	/**
@@ -161,7 +158,5 @@ public class Structure extends WorldGenerator {
 		return 0x000000;
 	}
 	
-	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return this.schematic;
-	}
+	public abstract Schematic getSchematicFor(World world, Random rand, BlockPos pos);
 }

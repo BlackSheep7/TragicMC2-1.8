@@ -21,8 +21,8 @@ public class SchematicCelestialTemple extends Schematic {
 	private static Block stone = TragicBlocks.DarkStone;
 	private static Block summon = TragicBlocks.SummonBlock;
 
-	public SchematicCelestialTemple() {
-		super(12, 25, 25);
+	public SchematicCelestialTemple(BlockPos origin, Structure str) {
+		super(origin, str, 12, 25, 25);
 	}
 
 	@Override
@@ -224,8 +224,8 @@ public class SchematicCelestialTemple extends Schematic {
 		this.setBlock(world, x + 4, y, z + 1, obs, 0, 2);
 		this.setBlock(world, x + 4, y, z + 2, quartz, 1, 2);
 		this.setBlock(world, x + 4, y, z + 3, glow, 0, 2);
-		this.setBlock(world, x + 4, y, z + 4, chest, 0, 2);
-		this.setBlock(world, x + 4, y, z + 5, chest, 0, 2);
+		this.setBlock(world, x + 4, y, z + 4, chest, 0, 2, TragicItems.BossStructureHook);
+		this.setBlock(world, x + 4, y, z + 5, chest, 0, 2, TragicItems.BossStructureHook);
 		this.setBlock(world, x + 4, y, z + 6, glow, 0, 2);
 		this.setBlock(world, x + 4, y, z + 7, quartz, 1, 2);
 		this.setBlock(world, x + 4, y, z + 8, obs, 0, 2);
@@ -327,12 +327,6 @@ public class SchematicCelestialTemple extends Schematic {
 			this.setBlock(world, x + 15, y, z + i, quartz, 0, 2);
 		}
 
-		if (!world.isRemote)
-		{
-			//First layer chest gen
-			this.applyChestContents(world, rand, x + 4, y, z + 4, TragicItems.BossStructureHook);
-			this.applyChestContents(world, rand, x + 4, y, z + 5, TragicItems.BossStructureHook);
-		}
 		y++;
 		//Second layer
 		x -= 1;

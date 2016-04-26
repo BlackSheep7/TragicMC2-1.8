@@ -9,12 +9,13 @@ import net.minecraft.world.biome.BiomeGenHell;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
+import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicDeathCircle;
 
 public class StructureDeathCircle extends StructureBoss {
 
 	public StructureDeathCircle(int id, String name) {
-		super(new SchematicDeathCircle(), id, name);
+		super(id, name, new SchematicDeathCircle(BlockPos.ORIGIN, null).height);
 	}
 
 	@Override
@@ -45,12 +46,17 @@ public class StructureDeathCircle extends StructureBoss {
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
 		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.schematic.generateStructure(world, rand, x, y, z);
+		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(world, rand, x, y, z);
 	}
 
 	@Override
 	public int getStructureColor()
 	{
 		return 0x770300;
+	}
+
+	@Override
+	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
+		return new SchematicDeathCircle(pos, this);
 	}
 }

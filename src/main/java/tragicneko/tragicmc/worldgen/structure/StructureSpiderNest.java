@@ -7,12 +7,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
+import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicSpiderNest;
 
 public class StructureSpiderNest extends Structure {
 
 	public StructureSpiderNest(int id, String s) {
-		super(new SchematicSpiderNest(), id, s);
+		super(id, s, new SchematicSpiderNest(BlockPos.ORIGIN, null).height);
 	}
 
 	@Override
@@ -38,12 +39,17 @@ public class StructureSpiderNest extends Structure {
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
 		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.schematic.generateStructure(world, rand, x, y, z);
+		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(world, rand, x, y, z);
 	}
 	
 	@Override
 	public int getStructureColor()
 	{
 		return 0x56327B;
+	}
+
+	@Override
+	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
+		return new SchematicSpiderNest(pos, this);
 	}
 }

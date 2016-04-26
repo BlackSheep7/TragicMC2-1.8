@@ -59,7 +59,6 @@ public class TragicMC
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{		
-		//proxy.registerEvent(this);
 		proxy.preInit(event);
 	}
 
@@ -87,44 +86,7 @@ public class TragicMC
 			logWarning("Flight potion effect is disabled due to the server not allowing it. Change the option in your server.properties file if you want it enabled.");
 		}
 	}
-/*
-	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load event) {
-		if (TickBuilder.getBuilderFor(event.world) != null)
-		{
-			TickBuilder.getBuilderFor(event.world).continueBuilding();
-		}
-		else
-		{
-			proxy.registerEvent(new TickBuilder(event.world));
-		}
-	}
 
-	@SubscribeEvent
-	public void onWorldUnload(WorldEvent.Unload event) {
-		if (TickBuilder.getBuilderFor(event.world) != null)
-			TickBuilder.getBuilderFor(event.world).stopBuilding();
-	}
-
-	@SubscribeEvent
-	public void onChunkLoad(ChunkDataEvent.Load event) {
-		if (TickBuilder.getBuilderFor(event.world) != null)
-		{
-			TickBuilder tb = TickBuilder.getBuilderFor(event.world);
-			//check if the chunk has a tag for incomplete builds, if it does then regenerate it from the start using the same things that the world used when first loading the chunk
-			//new StructureWorldGen().generate(event.world.rand, event.getChunk().xPosition, event.getChunk().zPosition, event.world, null, null);
-		}
-	}
-	
-	@SubscribeEvent
-	public void onChunkLoad(ChunkDataEvent.Save event) {
-		if (TickBuilder.getBuilderFor(event.world) != null)
-		{
-			TickBuilder.getBuilderFor(event.world).stopBuilding();
-			//save a tag in the chunk if the builder still has unfinished schematics in that particular chunk
-		}
-	}
-*/
 	@EventHandler
 	public void onMapping(FMLMissingMappingsEvent event)
 	{

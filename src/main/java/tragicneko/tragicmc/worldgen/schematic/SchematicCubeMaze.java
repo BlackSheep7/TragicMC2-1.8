@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicCubeMaze extends Schematic {
 
@@ -15,8 +17,8 @@ public class SchematicCubeMaze extends Schematic {
 		{3, -10}, {3, -4}, {3, 3}, {3, 9},
 		{9, -10}, {9, -4}, {9, 3}, {9, 9}};
 
-	public SchematicCubeMaze() {
-		super(32, 24, 24);
+	public SchematicCubeMaze(BlockPos pos, Structure str) {
+		super(pos, str, 32, 24, 24);
 	}
 
 	@Override
@@ -140,10 +142,9 @@ public class SchematicCubeMaze extends Schematic {
 
 				this.generateOpenings(world, rand, x + x0, y + y1, z + z0, roomType, y1, invFlag);
 				boolean treasure = roomType == 0 && rand.nextInt(8) == 0 && t == 0 && y1 > 5 && y1 < 28;
-				this.setBlock(world, x + x0, y + y1 + 3, z + z0, treasure ? Blocks.chest : (rand.nextInt(16) == 0 ? Blocks.air : Blocks.glowstone), 0, 2);
+				this.setBlock(world, x + x0, y + y1 + 3, z + z0, treasure ? Blocks.chest : (rand.nextInt(16) == 0 ? Blocks.air : Blocks.glowstone), 0, 2, TragicItems.NetherStructureHook);
 				if (treasure)
 				{
-					this.applyChestContents(world, rand, x + x0, y + y1 + 3, z + z0, TragicItems.NetherStructureHook);
 					t++;
 				}
 				else if (trap < 3 && rand.nextInt(16) == 0)
@@ -154,8 +155,7 @@ public class SchematicCubeMaze extends Schematic {
 					}
 					else
 					{
-						this.setBlock(world, x + x0, y + y1 + 4, z + z0, Blocks.mob_spawner, 0, 2);
-						this.setSpawnerMob(world, x + x0, y + y1 + 4, z + z0, TragicConfig.getBoolean("allowInkling") ? "TragicMC.Inkling" : "Enderman");
+						this.setBlock(world, x + x0, y + y1 + 4, z + z0, Blocks.mob_spawner, 0, 2, TragicConfig.getBoolean("allowInkling") ? "TragicMC.Inkling" : "Enderman");
 					}
 					trap++;
 				}

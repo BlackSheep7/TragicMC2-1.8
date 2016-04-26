@@ -10,7 +10,9 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.structure.Structure;
+import tragicneko.tragicmc.worldgen.structure.TickBuilder;
 
 public class StructureWorldGen implements IWorldGenerator {
 
@@ -21,11 +23,11 @@ public class StructureWorldGen implements IWorldGenerator {
 				(world.provider.getDimensionId() == TragicConfig.getInt("collisionID") || world.provider.getDimensionId() == TragicConfig.getInt("synapseID") ||
 				world.provider.getDimensionId() == TragicConfig.getInt("nekoHomeworldID")) && !TragicConfig.getBoolean("allowDimensions")) return;
 
-		int x = (chunkX * 16) + random.nextInt(16);
-		int y = random.nextInt(118) + random.nextInt(118) + 10;
-		int z = (chunkZ * 16) + random.nextInt(16);
+		final int x = (chunkX * 16) + random.nextInt(16);
+		final int y = random.nextInt(118) + random.nextInt(118) + 10;
+		final int z = (chunkZ * 16) + random.nextInt(16);
 
-		int top = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
+		final int top = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
 		ArrayList<Structure> cands = new ArrayList<Structure>();
 
 		for (Structure s : Structure.structureList)
@@ -45,8 +47,12 @@ public class StructureWorldGen implements IWorldGenerator {
 
 		for (Structure s : cands)
 		{
-			if (s.generate(world, random, new BlockPos(x, s.isSurfaceStructure() ? top : y, z)))
+			BlockPos pos = new BlockPos(x, s.isSurfaceStructure() ? top : y, z);
+			if (s.generate(world, random, pos))
 			{
+				Schematic sch = s.getSchematicFor(world, random, pos);
+				sch.generateStructure(world, random, pos.getX(), pos.getY(), pos.getZ());
+				if (TickBuilder.getBuilderFor(world) != null) TickBuilder.getBuilderFor(world).addSchematic(pos, sch);
 				TragicMC.logInfo(s.getLocalizedName() + " succesfully generated at " + x + ", " + (s.isSurfaceStructure() ? top : y) + ", " + z);
 				break;
 			}

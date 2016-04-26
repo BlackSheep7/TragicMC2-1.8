@@ -19,8 +19,8 @@ public class SchematicTimeAltar extends Schematic {
 	private static Block summon = TragicBlocks.SummonBlock;
 	private static Block chest = Blocks.chest;
 
-	public SchematicTimeAltar() {
-		super(5, 10, 10);
+	public SchematicTimeAltar(BlockPos pos, Structure str) {
+		super(pos, str, 5, 10, 10);
 	}
 
 	@Override
@@ -67,8 +67,7 @@ public class SchematicTimeAltar extends Schematic {
 
 		this.setBlock(world, x, y + 3, z, summon, 7, 2);
 
-		this.setBlock(world, x, y, z, chest, 0, 2);
-		this.applyChestContents(world, rand, x, y, z, TragicItems.AwesomeChestHook);
+		this.setBlock(world, x, y, z, chest, 0, 2, TragicItems.AwesomeChestHook);
 
 		this.setBlock(world, x + 1, y, z, quartz); //blocks to ensure the chest is concealed
 		this.setBlock(world, x - 1, y, z, quartz);

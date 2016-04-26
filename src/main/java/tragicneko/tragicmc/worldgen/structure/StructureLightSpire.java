@@ -7,12 +7,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
+import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicLightSpire;
 
 public class StructureLightSpire extends Structure {
 
 	public StructureLightSpire(int id, String s) {
-		super(new SchematicLightSpire(), id, s);
+		super(id, s, new SchematicLightSpire(BlockPos.ORIGIN, null).height);
 	}
 	
 	@Override
@@ -43,12 +44,17 @@ public class StructureLightSpire extends Structure {
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
 		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.schematic.generateStructure(world, rand, x, y, z);
+		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(world, rand, x, y, z);
 	}
 
 	@Override
 	public int getStructureColor()
 	{
 		return 0xFFFCAF;
+	}
+
+	@Override
+	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
+		return new SchematicLightSpire(pos, this);
 	}
 }

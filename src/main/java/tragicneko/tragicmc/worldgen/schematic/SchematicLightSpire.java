@@ -10,11 +10,12 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicLightSpire extends Schematic {
 
-	public SchematicLightSpire() {
-		super(24, 6, 6);
+	public SchematicLightSpire(BlockPos pos, Structure str) {
+		super(pos, str, 24, 6, 6);
 	}
 
 	@Override
@@ -41,15 +42,13 @@ public class SchematicLightSpire extends Schematic {
 			{
 				int xr = x + rand.nextInt(3) - rand.nextInt(3);
 				int zr = z + rand.nextInt(3) - rand.nextInt(3);
-				this.setBlock(world, xr, y + y1, zr, Blocks.chest, 0, 2);
-				this.applyChestContents(world, rand, xr, y + y1, zr, TragicItems.NetherStructureHook);
+				this.setBlock(world, xr, y + y1, zr, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
 			}
 			else if (rand.nextInt(16) == 0)
 			{
 				int xr = x + rand.nextInt(3) - rand.nextInt(3);
 				int zr = z + rand.nextInt(3) - rand.nextInt(3);
-				this.setBlock(world, xr, y + y1, zr, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, xr, y + y1, zr, TragicConfig.getBoolean("allowArchangel") ? "TragicMC.Archangel" : "Ghast");
+				this.setBlock(world, xr, y + y1, zr, Blocks.mob_spawner, 0, 2, TragicConfig.getBoolean("allowArchangel") ? "TragicMC.Archangel" : "Ghast");
 			}
 		}
 

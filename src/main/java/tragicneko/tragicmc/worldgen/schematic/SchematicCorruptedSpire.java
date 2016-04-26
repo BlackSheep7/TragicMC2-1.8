@@ -13,17 +13,19 @@ import static tragicneko.tragicmc.TragicBlocks.SummonBlock;
 
 import java.util.Random;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicCorruptedSpire extends Schematic {
 
 	private static final byte[] bosses = new byte[] {0, 2, 3, 6};
 	private static final byte FINAL_ROOM = 15;
 
-	public SchematicCorruptedSpire() {
-		super(120, 52, 36);
+	public SchematicCorruptedSpire(BlockPos pos, Structure str) {
+		super(pos, str, 120, 52, 36);
 	}
 
 	@Override
@@ -2461,11 +2463,8 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 		}
 
-		this.setBlock(world, x - 1, y, z, wall_sign, 4, 2);
-		this.addSignContents(world, x - 1, y, z, 1, "Floor 1");
-		this.setBlock(world, x - 1, y, z + 1, wall_sign, 4, 2);
-		this.addSignContents(world, x - 1, y, z + 1, 1, "Tranquil");
-		this.addSignContents(world, x - 1, y, z + 1, 2, "Beginnings!");
+		this.setBlock(world, x - 1, y, z, wall_sign, 4, 2, "Floor 1");
+		this.setBlock(world, x - 1, y, z + 1, wall_sign, 4, 2, new Object[] {new String[] {"Tranquil", "Beginnings!"}});
 
 		this.generateFirstFloor2(world, rand, x, y, z);
 	}
@@ -4899,17 +4898,10 @@ public class SchematicCorruptedSpire extends Schematic {
 	{
 		String s = flag ? this.getMiniBossForSpawner(rand) : this.getMobNameforSpawner(rand);
 
-		this.setBlock(world, x + 1, y, z, mob_spawner);
-		this.setSpawnerMob(world, x + 1, y, z, s);
-
-		this.setBlock(world, x, y, z, mob_spawner);
-		this.setSpawnerMob(world, x, y, z, s);
-
-		this.setBlock(world, x + 1, y, z + 1, mob_spawner);
-		this.setSpawnerMob(world, x + 1, y, z + 1, s);
-
-		this.setBlock(world, x, y, z + 1, mob_spawner);
-		this.setSpawnerMob(world, x, y, z + 1, s);
+		this.setBlock(world, x + 1, y, z, mob_spawner, 0, 2, s);
+		this.setBlock(world, x, y, z, mob_spawner, 0, 2, s);
+		this.setBlock(world, x + 1, y, z + 1, mob_spawner, 0, 2, s);
+		this.setBlock(world, x, y, z + 1, mob_spawner, 0, 2, s);
 	}
 
 	public void generateBedrockLayer(World world, Random rand, final int x, final int y, final int z)
@@ -6935,10 +6927,8 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.setBlock(world, x - 9, y - 1, z - 5, CelledLamp);
 		this.setBlock(world, x - 9, y - 1, z + 6, CelledLamp);
 
-		this.setBlock(world, x - 1, y - 4, z, standing_sign, 4, 2);
-		this.addSignContents(world, x - 1, y - 4, z, 1, "Floor " + floorNumber);
-		this.setBlock(world, x - 1, y - 4, z + 1, standing_sign, 4, 2);
-		this.addSignContents(world, x - 1, y - 4, z + 1, 1, floorNumber == FINAL_ROOM ? "Final floor!" : "Boss floor");
+		this.setBlock(world, x - 1, y - 4, z, standing_sign, 4, 2, "Floor " + floorNumber);
+		this.setBlock(world, x - 1, y - 4, z + 1, standing_sign, 4, 2, floorNumber == FINAL_ROOM ? "Final floor!" : "Boss floor");
 
 		this.setBlock(world, x, y - 4, z + 1, SummonBlock, floorNumber == FINAL_ROOM ? 10 : bosses[rand.nextInt(bosses.length)], 2);
 
@@ -9356,10 +9346,8 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 		}
 
-		this.setBlock(world, x - 1, y, z, wall_sign, 4, 2);
-		this.addSignContents(world, x - 1, y, z, 1, "Floor " + floorNumber);
-		this.setBlock(world, x - 1, y, z + 1, wall_sign, 4, 2);
-		this.addSignContents(world, x - 1, y, z + 1, 1, "Floor " + floorNumber);
+		this.setBlock(world, x - 1, y, z, wall_sign, 4, 2, "Floor " + floorNumber);
+		this.setBlock(world, x - 1, y, z + 1, wall_sign, 4, 2, "Floor " + floorNumber);
 
 		return this.generateNormalFloor2(world, rand, x, y, z, floorNumber, lastHole);
 	}
@@ -11765,10 +11753,8 @@ public class SchematicCorruptedSpire extends Schematic {
 		if ((floorNumber % 5) == 3)
 		{
 			//generate a double soul chest with good stuff in it
-			this.setBlock(world, x - 1, y - 3, z, SoulChest);
-			this.setBlock(world, x - 1, y - 3, z + 1, SoulChest);
-			this.applyChestContents(world, rand, x - 1, y - 3, z, TragicItems.AwesomeChestHook);
-			this.applyChestContents(world, rand, x - 1, y - 3, z + 1, TragicItems.AwesomeChestHook);
+			this.setBlock(world, x - 1, y - 3, z, SoulChest, 0, 3, TragicItems.AwesomeChestHook);
+			this.setBlock(world, x - 1, y - 3, z + 1, SoulChest, 0, 3, TragicItems.AwesomeChestHook);
 		}
 
 		this.generateBedrockLayer(world, rand, x, y + 1, z);

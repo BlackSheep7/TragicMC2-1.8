@@ -10,11 +10,12 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicEmpariahCave extends Schematic {
 
-	public SchematicEmpariahCave() {
-		super(8, 12, 12);
+	public SchematicEmpariahCave(BlockPos pos, Structure str) {
+		super(pos, str, 8, 12, 12);
 	}
 
 	@Override
@@ -66,23 +67,15 @@ public class SchematicEmpariahCave extends Schematic {
 			}
 		}
 
-		this.setBlock(world, x, y - 31, z, Blocks.chest, 0, 2);
-		this.applyChestContents(world, rand, x, y - 31, z, TragicItems.BossStructureHook);
+		this.setBlock(world, x, y - 31, z, Blocks.chest, 0, 2, TragicItems.BossStructureHook);
 		this.setBlock(world, x, y - 30, z, TragicBlocks.SummonBlock, 6, 2);
 
 		if (TragicConfig.getBoolean("allowAbomination"))
 		{
-			this.setBlock(world, x + 5, y - 31, z, Blocks.mob_spawner, 0, 2);
-			this.setSpawnerMob(world, x + 5, y - 31, z, "TragicMC.Abomination");
-
-			this.setBlock(world, x - 5, y - 31, z, Blocks.mob_spawner, 0, 2);
-			this.setSpawnerMob(world, x - 5, y - 31, z, "TragicMC.Abomination");
-
-			this.setBlock(world, x, y - 31, z + 5, Blocks.mob_spawner, 0, 2);
-			this.setSpawnerMob(world, x, y - 31, z + 5, "TragicMC.Abomination");
-
-			this.setBlock(world, x, y - 31, z - 5, Blocks.mob_spawner, 0, 2);
-			this.setSpawnerMob(world, x, y - 31, z - 5, "TragicMC.Abomination");
+			this.setBlock(world, x + 5, y - 31, z, Blocks.mob_spawner, 0, 2, "TragicMC.Abomination");
+			this.setBlock(world, x - 5, y - 31, z, Blocks.mob_spawner, 0, 2, "TragicMC.Abomination");
+			this.setBlock(world, x, y - 31, z + 5, Blocks.mob_spawner, 0, 2, "TragicMC.Abomination");
+			this.setBlock(world, x, y - 31, z - 5, Blocks.mob_spawner, 0, 2, "TragicMC.Abomination");
 		}
 
 		return true;

@@ -8,12 +8,13 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenHell;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
+import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicKitsuneDen;
 
 public class StructureKitsuneDen extends StructureBoss {
 
 	public StructureKitsuneDen(int id, String name) {
-		super(new SchematicKitsuneDen(), id, name);
+		super(id, name, new SchematicKitsuneDen(BlockPos.ORIGIN, null).height);
 	}
 
 	@Override
@@ -44,12 +45,17 @@ public class StructureKitsuneDen extends StructureBoss {
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
 		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.schematic.generateStructure(variant, world, rand, x, y, z);
+		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(variant, world, rand, x, y, z);
 	}
 	
 	@Override
 	public int getStructureColor()
 	{
 		return 0xAF0000;
+	}
+
+	@Override
+	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
+		return new SchematicKitsuneDen(pos, this);
 	}
 }

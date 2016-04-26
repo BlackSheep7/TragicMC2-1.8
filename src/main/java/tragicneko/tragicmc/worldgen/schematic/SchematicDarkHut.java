@@ -7,11 +7,12 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicDarkHut extends Schematic {
 
-	public SchematicDarkHut() {
-		super(13, 5, 7);
+	public SchematicDarkHut(BlockPos pos, Structure str) {
+		super(pos, str, 13, 5, 7);
 	}
 
 	@Override
@@ -118,10 +119,8 @@ public class SchematicDarkHut extends Schematic {
 					this.setBlock(world, x + 1, y + y1, z - 4, TragicBlocks.Darkwood, 0, 2);
 
 					this.setBlock(world, x + 1, y + y1, z - 2, Blocks.anvil, 2, 2);
-					this.setBlock(world, x - 2, y + y1, z - 2, Blocks.trapped_chest, 0, 2);
-					this.setBlock(world, x - 2, y + y1, z - 1, Blocks.trapped_chest, 0, 2);
-					this.applyChestContents(world, rand, x - 2, y + y1, z - 2, TragicItems.LameChestHook);
-					this.applyChestContents(world, rand, x - 2, y + y1, z - 1, TragicItems.LameChestHook);
+					this.setBlock(world, x - 2, y + y1, z - 2, Blocks.trapped_chest, 0, 2, TragicItems.LameChestHook);
+					this.setBlock(world, x - 2, y + y1, z - 1, Blocks.trapped_chest, 0, 2, TragicItems.LameChestHook);
 
 					this.setBlock(world, x + 1, y + y1, z + 2, Blocks.crafting_table, 0, 2);
 
@@ -213,17 +212,10 @@ public class SchematicDarkHut extends Schematic {
 				this.setBlock(world, x - 1, y + y1, z + 4, TragicBlocks.Darkwood, 0, 2);
 				this.setBlock(world, x, y + y1, z + 4, TragicBlocks.Darkwood, 0, 2);
 				
-				this.setBlock(world, x - 1, y + y1, z + 1, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, x - 1, y + y1, z + 1, "Witch");
-				
-				this.setBlock(world, x, y + y1, z + 1, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, x, y + y1, z + 1, "Witch");
-				
-				this.setBlock(world, x - 1, y + y1, z - 1, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, x - 1, y + y1, z - 1, "Witch");
-				
-				this.setBlock(world, x, y + y1, z - 1, Blocks.mob_spawner, 0, 2);
-				this.setSpawnerMob(world, x, y + y1, z - 1, "Witch");
+				this.setBlock(world, x - 1, y + y1, z + 1, Blocks.mob_spawner, 0, 2, "Witch");
+				this.setBlock(world, x, y + y1, z + 1, Blocks.mob_spawner, 0, 2, "Witch");
+				this.setBlock(world, x - 1, y + y1, z - 1, Blocks.mob_spawner, 0, 2, "Witch");
+				this.setBlock(world, x, y + y1, z - 1, Blocks.mob_spawner, 0, 2, "Witch");
 			}
 			else if (y1 == 11)
 			{

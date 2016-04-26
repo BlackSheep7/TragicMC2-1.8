@@ -4,9 +4,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicDeathCircle extends Schematic {
 
@@ -16,8 +18,8 @@ public class SchematicDeathCircle extends Schematic {
 	private static Block summon = TragicBlocks.SummonBlock;
 	private static Block chest = Blocks.chest;
 
-	public SchematicDeathCircle() {
-		super(6, 11, 11);
+	public SchematicDeathCircle(BlockPos pos, Structure str) {
+		super(pos, str, 6, 11, 11);
 	}
 
 	@Override
@@ -296,9 +298,7 @@ public class SchematicDeathCircle extends Schematic {
 		this.setBlock(world, x + 2, y, z + 1, exCob, 1, 2);
 
 		this.setBlock(world, x - 8, y, z, darkCob);
-		this.setBlock(world, x, y, z, chest, 0, 2);
-
-		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, chest, 0, 2, TragicItems.NetherStructureHook);
 
 		this.setBlock(world, x - 4, y, z - 1, exCob, 1, 2);
 

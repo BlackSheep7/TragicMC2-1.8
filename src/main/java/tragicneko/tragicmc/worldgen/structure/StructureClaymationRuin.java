@@ -8,12 +8,13 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenDesert;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
+import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicClaymationRuin;
 
 public class StructureClaymationRuin extends StructureBoss {
 
 	public StructureClaymationRuin(int id, String name) {
-		super(new SchematicClaymationRuin(), id, name);
+		super(id, name, 5);
 	}
 
 	@Override
@@ -51,12 +52,17 @@ public class StructureClaymationRuin extends StructureBoss {
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
 		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.schematic.generateStructure(variant, world, rand, x, y, z);
+		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(variant, world, rand, x, y, z);
 	}
 	
 	@Override
 	public int getStructureColor()
 	{
 		return 0xFF8100;
+	}
+
+	@Override
+	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
+		return new SchematicClaymationRuin(pos, this);
 	}
 }

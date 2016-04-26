@@ -1,9 +1,14 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockChest;
+import net.minecraft.block.BlockMobSpawner;
+import net.minecraft.block.BlockSign;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
@@ -14,95 +19,155 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public abstract class Schematic {
 
-	public ArrayList<PosPreset[][]> matrix;
-	public int width;
-	public int height;
-	public int structureHeight;
-	
-	public int placedBlocks = 0;
-	public int[] placedPosition = new int[] {0, 0, 0}; //height, width, depth dimensions for the location of the last placed block position
+	public HashMap<BlockPos, PosPreset> map;
+	//public ArrayList<PosPreset[][]> matrix;
+	public int width; //current width
+	public int depth; //current depth
+	public int height; //structure height, should only change for certain structures like the pillar of persistence
 
-	public Schematic(int structureHeight, int w, int d)
-	{
-		matrix = new ArrayList<PosPreset[][]>(structureHeight);
-		for (int i = 0; i < structureHeight; i++) matrix.add(new PosPreset[w][d]);
+	public int placedBlocks = 0;
+
+	public final BlockPos origin; //origin of this particular schematic
+	public Random random; //the random that the world is using
+
+	public final Structure structure; //the structure this schematic is associated with
+
+	public Schematic(BlockPos origin, Structure structure, int h, int w, int d) {
+		map = new HashMap<BlockPos, PosPreset>();
+		this.structure = structure;
+		this.height = h;
 		this.width = w;
-		this.height = d;
-		this.structureHeight = structureHeight;
-		//this.fillMatrices();
+		this.depth = d;
+		this.origin = origin;
 	}
-	
-	public void updateBuildProgress() {
+
+	public void retrogradeBuildProgress() {
 		int b = 0;
-		for (int i = 0; i < this.structureHeight; i++)
+		int i = 0;
+
+		Set<BlockPos> set = map.keySet();
+		Iterator<BlockPos> ite = set.iterator();
+		boolean hasContinued = false;
+
+		while (ite.hasNext())
 		{
-			for (int j = 0; j < this.height; j++)
+			BlockPos pos = ite.next();
+			if (i++ < this.placedBlocks && !hasContinued)
 			{
-				for (int k = 0; k < this.width; k++)
-				{
-					if (this.matrix.get(this.structureHeight)[this.width][this.height].placed) b++;
-				}
+				if (map.get(pos) != null) map.get(pos).placed = true;
+				b++;
+				continue;
 			}
+			hasContinued = true;
+			if (map.get(pos) == null || map.get(pos).placed) b++;
 		}
-		
-		this.placedBlocks = b;
 	}
-	
+
 	public int getPlacedBlocks() {
 		return this.placedBlocks;
 	}
-	
+
 	public int getTotalBlocks() {
-		return this.structureHeight * this.width * this.height;
+		return this.map.size(); //this.height * this.width * this.depth;
 	}
-	
+
 	public boolean hasFinished() {
 		return this.placedBlocks >= this.getTotalBlocks();
 	}
-	
-	public void setMatrixBlock(World world, BlockPos origin, PosPreset preset) {
+
+	public void setMappedBlock(World world, PosPreset preset) {
 		world.setBlockState(origin.add(preset.pos), preset.state);
 		if (preset.tileEntity) preset.handleTileEntity(world, origin);
 		preset.placed = true;
 	}
-	
+
 	public static class PosPreset {
-		
 		public final BlockPos pos;
 		public final boolean tileEntity;
 		public final IBlockState state;
 		public boolean placed = false;
-		
+
 		public PosPreset(BlockPos pos, IBlockState state, boolean isTileEntity) {
 			this.pos = pos;
 			this.state = state;
 			this.tileEntity = isTileEntity;
 		}
-		
+
 		public PosPreset(BlockPos pos, IBlockState state) {
 			this(pos, state, false);
 		}
-		
+
 		public int getX() { return this.pos.getX(); }
 		public int getY() { return this.pos.getY(); }
 		public int getZ() { return this.pos.getZ(); }
-		
+
 		/**
 		 * Allows a preset to set it's own tile entity data
-		 * @param world
-		 * @param origin of the current schematic
+		 * @param world current world we are in
+		 * @param origin origin of the current schematic
 		 */
-		public void handleTileEntity(World world, final BlockPos origin) {
-			
+		public void handleTileEntity(World world, BlockPos origin) {
+
 		}
 	}
 
-	//public abstract void fillMatrices();
+	public static class SpawnerPreset extends PosPreset {
+		public final String mobName;
 
+		public SpawnerPreset(BlockPos pos, IBlockState state, String mobName) {
+			super(pos, state, true);
+			this.mobName = mobName;
+		}
+
+		@Override
+		public void handleTileEntity(World world, BlockPos pos) {
+			pos = pos.add(this.pos);
+			Schematic.setSpawnerMob(world, pos, this.mobName);
+		}
+	}
+
+	public static class SignPreset extends PosPreset {
+		public final String[] signContents;
+		
+		public SignPreset(BlockPos pos, IBlockState state, String signContent) {
+			this(pos, state, new String[] {signContent});
+		}
+
+		public SignPreset(BlockPos pos, IBlockState state, String[] signContent) {
+			super(pos, state, true);
+			this.signContents = signContent;
+		}
+
+		@Override
+		public void handleTileEntity(World world, BlockPos pos) {
+			pos = pos.add(this.pos);
+			for (int i = 0; i < this.signContents.length; i++)
+				Schematic.addSignContents(world, pos, i, this.signContents[i]);
+		}
+	}
+
+	public static class ChestPreset extends PosPreset {
+		public final ChestGenHooks hook;
+
+		public ChestPreset(BlockPos pos, IBlockState state, ChestGenHooks hook) {
+			super(pos, state, true);
+			this.hook = hook;
+		}
+
+		@Override
+		public void handleTileEntity(World world, BlockPos pos) {
+			pos = pos.add(this.pos);
+			Schematic.applyChestContents(world, world.rand, pos, hook);
+		}
+	}
+
+	/*
 	public void invertMatrix(PosPreset[][] presets)
 	{
 		for (int k = 0; k < this.height; k++)
@@ -168,7 +233,7 @@ public abstract class Schematic {
 		//invert width and height parameters since these are used to keep track of the matrices assumed width and height
 		this.height = w;
 		this.width = h;
-	}
+	} */
 
 	/**
 	 * Main method to generate the particular structure, variants should be decided upon before this method is called, this may split off variants
@@ -193,14 +258,11 @@ public abstract class Schematic {
 		return this.generateStructure(rand.nextInt(variantSize), world, rand, x, y, z);
 	}
 
-	/**
-	 * Use this to apply chest contents to generated chests
-	 */
-	public boolean applyChestContents(World world, Random rand, int x, int y, int z, ChestGenHooks hook)
+	private static boolean applyChestContents(World world, Random rand, BlockPos pos, ChestGenHooks hook)
 	{
-		if (world.isRemote || y <= 0 || y >= 256) return false;
+		if (world.isRemote || pos.getY() <= 0 || pos.getY() >= 256) return false;
 
-		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(new BlockPos(x, y, z));
+		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(pos);
 		if (tileentity != null)
 		{
 			WeightedRandomChestContent.generateChestContents(rand, hook.getItems(rand), tileentity, hook.getCount(rand));
@@ -213,8 +275,9 @@ public abstract class Schematic {
 		}
 	}
 
-	public boolean addSignContents(World world, int x, int y, int z, int line, String text) {
-		TileEntitySign sign = (TileEntitySign) world.getTileEntity(new BlockPos(x, y, z));
+	private static boolean addSignContents(World world, BlockPos pos, int line, String text) {
+
+		TileEntitySign sign = (TileEntitySign) world.getTileEntity(pos);
 		if (sign == null || line > 4)
 		{
 			TragicMC.logWarning("Sign text setup failed. The tile entity was null or an improper text line was chosen.");
@@ -224,9 +287,9 @@ public abstract class Schematic {
 		return true;
 	}
 
-	public boolean setSpawnerMob(World world, int x, int y, int z, String mobName)
+	private static boolean setSpawnerMob(World world, BlockPos pos, String mobName)
 	{
-		TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(new BlockPos(x, y, z));
+		TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(pos);
 		if (spawner == null || mobName == null)
 		{
 			TragicMC.logWarning("Spawner setup failed. The tile entity was null or mobName was null.");
@@ -235,19 +298,70 @@ public abstract class Schematic {
 		spawner.getSpawnerBaseLogic().setEntityName(mobName);
 		return true;
 	}
-	
+
 	public void setBlockToAir(World world, int x, int y, int z)
 	{
 		this.setBlock(world, x, y, z, Blocks.air);
 	}
-	
+
 	public void setBlock(World world, int x, int y, int z, Block block)
 	{
 		this.setBlock(world, x, y, z, block, 0, 3);
 	}
-	
+
 	public void setBlock(World world, int x, int y, int z, Block block, int meta, int flag)
 	{
-		world.setBlockState(new BlockPos(x, y, z), block.getStateFromMeta(meta), 3);
+		this.setBlock(world, x, y, z, block, meta, flag, new Object[] {});
+	}
+
+	public void setBlock(World world, int x, int y, int z, Block block, int meta, int flag, Object... params)
+	{
+		if (TragicConfig.getBoolean("allowTickBuilder"))
+		{
+			this.setBlockToMap(new BlockPos(x, y, z), block.getStateFromMeta(meta), params);
+		}
+		else 
+		{//if the builder isn't used, all tile entity stuff is handled through here so we'll just call as if it was being handled by the builder
+			IBlockState state = block.getStateFromMeta(meta);
+			BlockPos pos = new BlockPos(x, y, z);
+			world.setBlockState(pos, state, 3);
+			
+			if (state.getBlock() instanceof BlockSign)
+			{
+				if (params[0] instanceof String) new SignPreset(pos.subtract(this.origin), state, (String) params[0]).handleTileEntity(world, this.origin);
+				else new SignPreset(pos.subtract(this.origin), state, (String[]) params[0]).handleTileEntity(world, this.origin);
+			}
+			else if (state.getBlock() instanceof BlockMobSpawner)
+			{
+				new SpawnerPreset(pos.subtract(this.origin), state, (String) params[0]).handleTileEntity(world, this.origin);
+			}
+			else if (state.getBlock() instanceof BlockChest)
+			{
+				new ChestPreset(pos.subtract(this.origin), state, (ChestGenHooks) params[0]).handleTileEntity(world, this.origin);
+			} 
+		}
+	}
+
+	public void setBlockToMap(BlockPos pos, IBlockState state, Object[] params) 
+	{
+		pos = pos.subtract(this.origin);
+
+		if (state.getBlock() instanceof BlockSign)
+		{
+			if (params[0] instanceof String) map.put(pos, new SignPreset(pos, state, (String) params[0]));
+			else map.put(pos, new SignPreset(pos, state, (String[]) params[0]));
+		}
+		else if (state.getBlock() instanceof BlockMobSpawner)
+		{
+			map.put(pos, new SpawnerPreset(pos, state, (String) params[0]));
+		}
+		else if (state.getBlock() instanceof BlockChest)
+		{
+			map.put(pos, new ChestPreset(pos, state, (ChestGenHooks) params[0]));
+		}
+		else
+		{ 
+			map.put(pos, new PosPreset(pos, state));
+		}
 	}
 }

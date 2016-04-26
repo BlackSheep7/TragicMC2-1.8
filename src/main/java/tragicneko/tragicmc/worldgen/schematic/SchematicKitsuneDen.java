@@ -4,19 +4,22 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicKitsuneDen extends Schematic {
 
 	private static Block fox = TragicBlocks.SmoothNetherrack; //1 is chiseled, 2 is beveled, 3 is sculpted, 5 is molten
 	private static Block chest = Blocks.chest;
 	private static Block spawner = Blocks.mob_spawner;
-	public SchematicKitsuneDen() {
-		super(12, 9, 9);
+	
+	public SchematicKitsuneDen(BlockPos pos, Structure str) {
+		super(pos, str, 12, 9, 9);
 	}
 
 	@Override
@@ -64,11 +67,8 @@ public class SchematicKitsuneDen extends Schematic {
 		this.setBlock(world, x + 2, y, z - 2, fox, 3, 2);
 		this.setBlock(world, x - 2, y, z - 2, fox, 3, 2);
 
-		this.setBlock(world, x, y, z, chest, 0, 2);
-		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
-
-		this.setBlock(world, x, y + 1, z, spawner, 0, 2);
-		this.setSpawnerMob(world, x, y + 1, z, TragicConfig.getBoolean("allowKitsunakuma") ? "TragicMC.Kitsune" : "Blaze");
+		this.setBlock(world, x, y, z, chest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y + 1, z, spawner, 0, 2, TragicConfig.getBoolean("allowKitsunakuma") ? "TragicMC.Kitsune" : "Blaze");
 
 		for (int z1 = -1; z1 < 2; z1++) //sets the extra sculpted blocks on the 0 layer
 		{
@@ -319,12 +319,8 @@ public class SchematicKitsuneDen extends Schematic {
 		this.setBlock(world, x + 1, y, z - 1, fox, 3, 2);
 		this.setBlock(world, x - 1, y, z - 1, fox, 3, 2);
 
-		this.setBlock(world, x, y, z, chest, 0, 2);
-		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
-
-		this.setBlock(world, x, y + 1, z, spawner, 0, 2);
-		this.setSpawnerMob(world, x, y + 1, z, TragicConfig.getBoolean("allowJabba") ? "TragicMC.Jabba" : "Blaze");
-
+		this.setBlock(world, x, y, z, chest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y + 1, z, spawner, 0, 2, TragicConfig.getBoolean("allowJabba") ? "TragicMC.Jabba" : "Blaze");
 
 		this.setBlock(world, x + 1, y, z, fox, 3, 2);
 		this.setBlock(world, x - 1, y, z, fox, 3, 2);

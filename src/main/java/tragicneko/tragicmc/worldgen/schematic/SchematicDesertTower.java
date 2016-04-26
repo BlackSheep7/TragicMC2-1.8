@@ -4,9 +4,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicDesertTower extends Schematic {
 
@@ -45,8 +47,8 @@ public class SchematicDesertTower extends Schematic {
 	//9 luxury blocks currently
 	public static Block[] luxuryBlocks = new Block[] {Blocks.diamond_block, Blocks.gold_block, Blocks.emerald_block, TragicBlocks.CompactOre, Blocks.iron_block, Blocks.lapis_block};
 
-	public SchematicDesertTower() {
-		super(25, 9, 9);
+	public SchematicDesertTower(BlockPos pos, Structure str) {
+		super(pos, str, 25, 9, 9);
 	}
 
 	@Override
@@ -913,11 +915,9 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, sandstone, 2, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, sandstone, 2, 2);
-
-		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		this.setBlock(world, x + 1, y, z - 2, sandstone, 1, 2);
@@ -1727,11 +1727,9 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, hardClay, 2, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, hardClay, 2, 2);
-
-		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		this.setBlock(world, x + 1, y, z - 2, hardClay, 1, 2);
@@ -2712,11 +2710,9 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, brick, 1, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, brick, 1, 2);
-
-		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		this.setBlock(world, x + 1, y, z - 2, brick, 0, 2);
@@ -3721,11 +3717,9 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, netherBrick, 2, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, netherBrick, 2, 2);
-
-		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		this.setBlock(world, x + 1, y, z - 2, netherBrick, 1, 2);
@@ -4715,11 +4709,9 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, ice, 2, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, ice, 2, 2);
-
-		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		this.setBlock(world, x + 1, y, z - 2, ice, 1, 2);

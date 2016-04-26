@@ -2,7 +2,6 @@ package tragicneko.tragicmc.worldgen.schematic;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -28,8 +27,8 @@ public class SchematicObsidianCavern extends Schematic {
 	private static Block glowstone = Blocks.glowstone;
 	private static Block spawner = Blocks.mob_spawner;
 
-	public SchematicObsidianCavern() {
-		super(8, 12, 12);
+	public SchematicObsidianCavern(BlockPos pos, Structure str) {
+		super(pos, str, 8, 12, 12);
 	}
 
 	@Override
@@ -637,19 +636,14 @@ public class SchematicObsidianCavern extends Schematic {
 				this.setBlockToAir(world, coords.getX(), coords.getY(), coords.getZ());
 			}
 			this.setBlock(world, x, 0, z, bedrock);
-			this.setBlock(world, x, 1, z, chest);
-			this.generateChestGoodies(world, rand, x, 1, z, 1);
+			this.setBlock(world, x, 1, z, chest, 0, 2, this.getChestHooks(1));
 			break;
 		case 1:
 			this.setBlock(world, x, 1, z, bedrock);
-			this.setBlock(world, x + 1, 1, z, chest);
-			this.setBlock(world, x - 1, 1, z, chest);
-			this.setBlock(world, x, 1, z + 1, chest);
-			this.setBlock(world, x, 1, z - 1, chest);
-			this.generateChestGoodies(world, rand, x + 1, 1, z, 0);
-			this.generateChestGoodies(world, rand, x - 1, 1, z, 0);
-			this.generateChestGoodies(world, rand, x, 1, z + 1, 0);
-			this.generateChestGoodies(world, rand, x, 1, z - 1, 0);
+			this.setBlock(world, x + 1, 1, z, chest, 0, 2, this.getChestHooks(0));
+			this.setBlock(world, x - 1, 1, z, chest, 0, 2, this.getChestHooks(0));
+			this.setBlock(world, x, 1, z + 1, chest, 0, 2, this.getChestHooks(0));
+			this.setBlock(world, x, 1, z - 1, chest, 0, 2, this.getChestHooks(0));
 			break;
 		case 2:
 			this.setBlock(world, x, 1, z, bedrock);
@@ -668,8 +662,7 @@ public class SchematicObsidianCavern extends Schematic {
 			}
 
 			this.setBlock(world, x + 5, 1, z + 5, summon, xerces, 2);
-			this.setBlock(world, x + 1, 1, z, chest);
-			this.generateChestGoodies(world, rand, x + 1, 1, z, 2);
+			this.setBlock(world, x + 1, 1, z, chest, 0, 2, this.getChestHooks(2));
 
 			if (wubwub > 1)
 			{
@@ -686,8 +679,7 @@ public class SchematicObsidianCavern extends Schematic {
 				}
 
 				this.setBlock(world, x - 5, 1, z + 5, summon, xerces, 2);
-				this.setBlock(world, x - 1, 1, z, chest);
-				this.generateChestGoodies(world, rand, x - 1, 1, z, 2);
+				this.setBlock(world, x - 1, 1, z, chest, 0, 2, this.getChestHooks(2));
 
 				if (wubwub > 2)
 				{
@@ -704,8 +696,7 @@ public class SchematicObsidianCavern extends Schematic {
 					}
 
 					this.setBlock(world, x - 5, 1, z - 5, summon, xerces, 2);
-					this.setBlock(world, x, 1, z + 1, chest);
-					this.generateChestGoodies(world, rand, x, 1, z + 1, 2);
+					this.setBlock(world, x, 1, z + 1, chest, 0, 2, this.getChestHooks(2));
 
 					if (wubwub > 3)
 					{
@@ -722,8 +713,7 @@ public class SchematicObsidianCavern extends Schematic {
 						}
 
 						this.setBlock(world, x + 5, 1, z - 5, summon, xerces, 2);
-						this.setBlock(world, x, 1, z - 1, chest);
-						this.generateChestGoodies(world, rand, x, 1, z - 1, 2);
+						this.setBlock(world, x, 1, z - 1, chest, 0, 2, this.getChestHooks(2));
 					}
 				}
 			}
@@ -744,8 +734,7 @@ public class SchematicObsidianCavern extends Schematic {
 			this.setBlock(world, x, 1, z, summon, mow, 2);
 			break;
 		case 4:
-			this.setBlock(world, x, 1, z, spawner, 0, 2);
-			this.setSpawnerMob(world, x, 1, z, this.getRandomEntityNameForSpawner(rand.nextInt(10)));
+			this.setBlock(world, x, 1, z, spawner, 0, 2, this.getRandomEntityNameForSpawner(rand.nextInt(10)));
 			break;
 		case 5:
 			this.setBlock(world, x, 1, z, bedrock);
@@ -753,45 +742,35 @@ public class SchematicObsidianCavern extends Schematic {
 			int zera = rand.nextInt(4) + 1;
 			int oppa = rand.nextInt(10);
 
-			this.setBlock(world, x + 5, 1, z + 5, spawner, 0, 2);
-			this.setSpawnerMob(world, x + 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
-			this.setBlock(world, x + 1, 1, z, chest);
-			this.generateChestGoodies(world, rand, x + 1, 1, z, 0);
+			this.setBlock(world, x + 5, 1, z + 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
+			this.setBlock(world, x + 1, 1, z, chest, 0, 2, this.getChestHooks(0));
 			oppa = rand.nextInt(10);
 
 			if (zera > 1)
 			{
 
-				this.setBlock(world, x - 5, 1, z + 5, spawner, 0, 2);
-				this.setSpawnerMob(world, x - 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
-				this.setBlock(world, x - 1, 1, z, chest);
-				this.generateChestGoodies(world, rand, x - 1, 1, z, 0);
+				this.setBlock(world, x - 5, 1, z + 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
+				this.setBlock(world, x - 1, 1, z, chest, 0, 2, this.getChestHooks(0));
 				oppa = rand.nextInt(10);
 
 				if (zera > 2)
 				{
 
-					this.setBlock(world, x - 5, 1, z - 5, spawner, 0, 2);
-					this.setSpawnerMob(world, x - 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
-					this.setBlock(world, x, 1, z + 1, chest);
-					this.generateChestGoodies(world, rand, x, 1, z + 1, 0);
+					this.setBlock(world, x - 5, 1, z - 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
+					this.setBlock(world, x, 1, z + 1, chest, 0, 2, this.getChestHooks(0));
 					oppa = rand.nextInt(10);
 
 					if (zera > 3)
 					{
-						this.setBlock(world, x + 5, 1, z - 5, spawner, 0, 2);
-						this.setSpawnerMob(world, x + 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
-						this.setBlock(world, x, 1, z - 1, chest);
-						this.generateChestGoodies(world, rand, x, 1, z - 1, 0);
+						this.setBlock(world, x + 5, 1, z - 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
+						this.setBlock(world, x, 1, z - 1, chest, 0, 2, this.getChestHooks(0));
 					}
 				}
 			}
 			break;
 		case 6:
-			this.setBlock(world, x, 1, z, chest);
-			this.generateChestGoodies(world, rand, x, 1, z, 1);
-			this.setBlock(world, x, 2, z, spawner, 0, 2);
-			this.setSpawnerMob(world, x, 2, z, this.getRandomEntityNameForSpawner(rand.nextInt(10)));
+			this.setBlock(world, x, 1, z, chest, 0, 2, this.getChestHooks(1));
+			this.setBlock(world, x, 2, z, spawner, 0, 2, this.getRandomEntityNameForSpawner(rand.nextInt(10)));
 			break;
 		case 7:
 			int mrow = rand.nextInt(10);
@@ -806,33 +785,28 @@ public class SchematicObsidianCavern extends Schematic {
 				mrow = 6;
 			}
 
-			this.setBlock(world, x, 1, z, chest, 0, 2);
-			this.generateChestGoodies(world, rand, x, 1, z, 0);
+			this.setBlock(world, x, 1, z, chest, 0, 2, 0, 2, this.getChestHooks(0));
 			this.setBlock(world, x, 2, z, summon, mrow, 2);
 
 			zera = rand.nextInt(4) + 1;
 			oppa = rand.nextInt(10);
 
-			this.setBlock(world, x + 5, 1, z + 5, spawner, 0, 2);
-			this.setSpawnerMob(world, x + 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
+			this.setBlock(world, x + 5, 1, z + 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
 			oppa = rand.nextInt(10);
 
 			if (zera > 1)
 			{
-				this.setBlock(world, x - 5, 1, z + 5, spawner, 0, 2);
-				this.setSpawnerMob(world, x - 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
+				this.setBlock(world, x - 5, 1, z + 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
 				oppa = rand.nextInt(10);
 
 				if (zera > 2)
 				{
-					this.setBlock(world, x - 5, 1, z - 5, spawner, 0, 2);
-					this.setSpawnerMob(world, x - 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
+					this.setBlock(world, x - 5, 1, z - 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
 					oppa = rand.nextInt(10);
 
 					if (zera > 3)
 					{
-						this.setBlock(world, x + 5, 1, z - 5, spawner, 0, 2);
-						this.setSpawnerMob(world, x + 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
+						this.setBlock(world, x + 5, 1, z - 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
 					}
 				}
 			}
@@ -850,8 +824,7 @@ public class SchematicObsidianCavern extends Schematic {
 				mrow = 6;
 			}
 
-			this.setBlock(world, x, 1, z, chest, 0, 2);
-			this.generateChestGoodies(world, rand, x, 1, z, 2);
+			this.setBlock(world, x, 1, z, chest, 0, 2, 0, 2, this.getChestHooks(2));
 
 			Block luxury = SchematicDesertTower.luxuryBlocks[rand.nextInt(SchematicDesertTower.luxuryBlocks.length)];
 			int meta = 0;
@@ -867,59 +840,35 @@ public class SchematicObsidianCavern extends Schematic {
 			zera = rand.nextInt(4) + 1;
 			oppa = rand.nextInt(10);
 
-			this.setBlock(world, x + 5, 1, z + 5, spawner, 0, 2);
-			this.setSpawnerMob(world, x + 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
+			this.setBlock(world, x + 5, 1, z + 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
 			oppa = rand.nextInt(10);
 
 			if (zera > 1)
 			{
-				this.setBlock(world, x - 5, 1, z + 5, spawner, 0, 2);
-				this.setSpawnerMob(world, x - 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
+				this.setBlock(world, x - 5, 1, z + 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
 				oppa = rand.nextInt(10);
 
 				if (zera > 2)
 				{
 
-					this.setBlock(world, x - 5, 1, z - 5, spawner, 0, 2);
-					this.setSpawnerMob(world, x - 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
+					this.setBlock(world, x - 5, 1, z - 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
 					oppa = rand.nextInt(10);
 
 					if (zera > 3)
 					{
-						this.setBlock(world, x + 5, 1, z - 5, spawner, 0, 2);
-						this.setSpawnerMob(world, x + 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
+						this.setBlock(world, x + 5, 1, z - 5, spawner, 0, 2, this.getRandomEntityNameForSpawner(oppa));
 					}
 				}
 			}
 			break;
 		default:
-			this.setBlock(world, x, 1, z, chest);
-			this.generateChestGoodies(world, rand, x, 1, z, 1);
+			this.setBlock(world, x, 1, z, chest, 0, 2, this.getChestHooks(1));
 			break;
 		}
 	}
-
-	/**
-	 * Generate chest hooks based on variant created, flag here is 0 for normal boss chest, 1 for vanilla mineshaft chest, 2 for the super rare items hook, any other integer for
-	 * the super lame hook
-	 * @param world
-	 * @param rand
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @param flag
-	 */
-	public void generateChestGoodies(World world, Random rand, int x, int y, int z, int flag)
-	{
-		TileEntityChest chest = (TileEntityChest) world.getTileEntity(new BlockPos(x, y, z));
-		ChestGenHooks hook = null;
-
-		if (chest == null)
-		{
-			TragicMC.logWarning("There was an error setting chest contents");
-			return;
-		}
-
+	
+	public ChestGenHooks getChestHooks(int flag) {
+		ChestGenHooks hook = TragicItems.LameChestHook;
 		if (flag == 0)
 		{
 			hook = TragicItems.BossStructureHook;
@@ -932,12 +881,7 @@ public class SchematicObsidianCavern extends Schematic {
 		{
 			hook = TragicItems.AwesomeChestHook;
 		}
-		else
-		{
-			hook = TragicItems.LameChestHook;
-		}
-
-		WeightedRandomChestContent.generateChestContents(rand, hook.getItems(rand), chest, hook.getCount(rand));
+		return hook;
 	}
 
 	public String getRandomEntityNameForSpawner(int i)

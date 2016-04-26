@@ -239,6 +239,9 @@ public class TragicConfig {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile(), true);
 		config.load();
 
+		registerObject("allowTickBuilder", true); //TODO move this into the configs, kept here for testing purposes right now
+		registerObject("tickBuilderLimit", 100); //the amount of blocks the builder sets per tick per schematic
+		registerObject("tickBuilderOverallLimit", 200); //the total blocks the builder may set per tick
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
 		EnumConfigType type = getMasterSettings(config);
