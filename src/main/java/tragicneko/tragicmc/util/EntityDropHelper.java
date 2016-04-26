@@ -3,8 +3,7 @@ package tragicneko.tragicmc.util;
 import static tragicneko.tragicmc.TragicMC.rand;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -69,7 +68,7 @@ import tragicneko.tragicmc.entity.mob.EntityWisp;
 
 public class EntityDropHelper {
 
-	private static Map<Class<? extends EntityLivingBase>, DropEntry> entityDrops = new HashMap();
+	private static ConcurrentHashMap<Class<? extends EntityLivingBase>, DropEntry> entityDrops = new ConcurrentHashMap();
 	private static EntityDrop[] luxuryDrops = new EntityDrop[] {new EntityDrop(60, Items.diamond), new EntityDrop(45, Items.emerald), new EntityDrop(75, Items.iron_ingot),
 		new EntityDrop(60, Items.gold_ingot), new EntityDrop(75, Items.gold_nugget), new EntityDrop(20, TragicItems.Sapphire), new EntityDrop(25, TragicItems.Ruby),
 		new EntityDrop(65, TragicItems.Tungsten), new EntityDrop(75, TragicItems.RedMercury), new EntityDrop(10, Blocks.gold_block), new EntityDrop(15, Blocks.iron_block),
@@ -406,7 +405,7 @@ public class EntityDropHelper {
 		return stack;
 	}
 
-	public static ItemStack getRandomDropFromEntity(Class clazz)
+	public synchronized static ItemStack getRandomDropFromEntity(Class clazz)
 	{
 		try
 		{
@@ -425,7 +424,7 @@ public class EntityDropHelper {
 	 * @param flag
 	 * @return
 	 */
-	public static ItemStack getDropFromEntity(Class clazz, boolean flag)
+	public synchronized static ItemStack getDropFromEntity(Class clazz, boolean flag)
 	{
 		try
 		{
@@ -438,7 +437,7 @@ public class EntityDropHelper {
 		}
 	}
 
-	public static ItemStack getRandomDropFromVariant(Class clazz)
+	public synchronized static ItemStack getRandomDropFromVariant(Class clazz)
 	{
 		try
 		{
@@ -457,7 +456,7 @@ public class EntityDropHelper {
 	 * @param flag
 	 * @return
 	 */
-	public static ItemStack getDropFromVariant(Class clazz, boolean flag)
+	public synchronized static ItemStack getDropFromVariant(Class clazz, boolean flag)
 	{
 		try
 		{

@@ -16,7 +16,7 @@ public class SchematicDarkHut extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		for (byte y1 = 0; y1 < 13; y1++)
 		{
@@ -241,7 +241,7 @@ public class SchematicDarkHut extends Schematic {
 			}
 		}
 
-		return true;
+		return this;
 	}
 
 }

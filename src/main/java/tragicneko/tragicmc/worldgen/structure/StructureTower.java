@@ -47,16 +47,9 @@ public class StructureTower extends Structure {
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, BlockPos pos)
+	public Schematic generate(World world, Random rand, BlockPos pos)
 	{
 		return generateStructureWithVariant(this.getVariantFromBiome(world.getBiomeGenForCoords(pos)), world, rand, pos.getX(), pos.getY(), pos.getZ());
-	}
-
-	@Override
-	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
-	{
-		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(variant, world, rand, x, y, z);
 	}
 
 	public int getVariantFromBiome(BiomeGenBase biome)

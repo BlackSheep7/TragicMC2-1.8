@@ -19,7 +19,7 @@ public class SchematicLightSpire extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		ArrayList<BlockPos> list;
 		final int height = rand.nextInt(30) + 36;
@@ -52,7 +52,7 @@ public class SchematicLightSpire extends Schematic {
 			}
 		}
 
-		return true;
+		return this;
 	}
 
 }

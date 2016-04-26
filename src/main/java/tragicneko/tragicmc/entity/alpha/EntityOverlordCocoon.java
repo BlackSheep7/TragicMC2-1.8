@@ -33,7 +33,7 @@ import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityOverlordCocoon extends TragicBoss {
-	
+
 	public static final int DW_PHASE_TICKS = 20;
 
 	private boolean phaseChange = false;
@@ -153,18 +153,23 @@ public class EntityOverlordCocoon extends TragicBoss {
 			}
 		}
 
-		if (this.seekers.isEmpty() && this.getPhaseTicks() == 0 && this.deathTime == 0) this.setPhaseTicks(200);
+		if (this.seekers.isEmpty() && this.ticksExisted % 100 == 0 && !TragicConfig.getBoolean("overlordPhases")) this.spawnSeekers();
 
-		if (this.getPhaseTicks() > 0)
+		if (this.seekers.isEmpty() && this.getPhaseTicks() == 0 && this.deathTime == 0 && TragicConfig.getBoolean("overlordPhases")) this.setPhaseTicks(200);
+
+		if (this.getPhaseTicks() > 0 && TragicConfig.getBoolean("overlordPhases"))
 		{
 			this.setPhaseTicks(this.getPhaseTicks() - 1);
 
-			List<BlockPos> lst2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX + rand.nextInt(4) - rand.nextInt(4), this.posY, this.posZ + rand.nextInt(4) - rand.nextInt(4));
-			for (BlockPos coords : lst2)
+			if (TragicConfig.getBoolean("overlordGas"))
 			{
-				if (World.doesBlockHaveSolidTopSurface(this.worldObj, coords.down()) && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock()))
+				List<BlockPos> lst2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX + rand.nextInt(4) - rand.nextInt(4), this.posY, this.posZ + rand.nextInt(4) - rand.nextInt(4));
+				for (BlockPos coords : lst2)
 				{
-					this.worldObj.setBlockState(coords, TragicBlocks.CorruptedGas.getDefaultState());
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, coords.down()) && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlockState(coords).getBlock()))
+					{
+						this.worldObj.setBlockState(coords, TragicBlocks.CorruptedGas.getDefaultState());
+					}
 				}
 			}
 
@@ -263,10 +268,10 @@ public class EntityOverlordCocoon extends TragicBoss {
 							if (e instanceof EntityLivingBase && ((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).removePotionEffect(TragicPotion.Divinity.id);
 						}
 					}
-					
+
 					if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.phasefail", 1.8F, 1.0F);
 				}
-				
+
 				if (TragicConfig.getBoolean("allowMobSounds") && this.getPhaseTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.0F);
 			}
 
@@ -289,6 +294,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 	public void spawnSeekers()
 	{
+		if (!TragicConfig.getBoolean("overlordSeekers")) return;
 		int i;
 
 		switch(this.getCurrentPhase())
@@ -336,7 +342,8 @@ public class EntityOverlordCocoon extends TragicBoss {
 			if (rand.nextInt(4) == 0 && this.getAttackTarget() != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.setAttackTarget(entity);
 
 			if (flag && this.hurtResistantTime == 0 || !TragicConfig.getBoolean("allowDivinity") && entity.getCreatureAttribute() != TragicEntities.Synapse && this.hurtResistantTime == 0 ||
-					entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())
+					entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative() || !TragicConfig.getBoolean("overlordDivineWeakness") ||
+					!TragicConfig.getBoolean("overlordPhases"))
 			{
 				this.phaseDamage += MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, (float) TragicConfig.getInt("bossDamageCap"));
 
@@ -371,7 +378,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 					}
 				}
 
-				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 16 && this.getCurrentPhase() > 1)
+				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 16 && this.getCurrentPhase() > 1 && TragicConfig.getBoolean("allowNanoSwarm") && TragicConfig.getBoolean("overlordNanoSwarms"))
 				{
 					EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
 					swarm.setPosition(this.posX + rand.nextInt(6) - rand.nextInt(6), this.posY, this.posZ + rand.nextInt(6) - rand.nextInt(6));
@@ -398,20 +405,22 @@ public class EntityOverlordCocoon extends TragicBoss {
 	{
 		if (!this.worldObj.isRemote)
 		{
-			List<BlockPos> lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.5, this.posX, this.posY + 1, this.posZ);
-
-			for (BlockPos coord: lst)
+			if (TragicConfig.getBoolean("overlordClearSpace"))
 			{
-				if (this.posY > coord.getY() + 1 && this.worldObj.getBlockState(coord).getBlock().getBlockHardness(this.worldObj, coord) > 0F) this.worldObj.setBlockToAir(coord);
+				List<BlockPos> lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.5, this.posX, this.posY + 1, this.posZ);
+
+				for (BlockPos coord: lst)
+				{
+					if (this.posY > coord.getY() + 1 && this.worldObj.getBlockState(coord).getBlock().getBlockHardness(this.worldObj, coord) > 0F) this.worldObj.setBlockToAir(coord);
+				}
+
+				lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);
+
+				for (BlockPos coords : lst)
+				{
+					if (this.posY >= coords.getY() + 1 && (!EntityOverlordCore.ignoredBlocks.contains(this.worldObj.getBlockState(coords).getBlock()) && this.worldObj.getBlockState(coords).getBlock().getBlockHardness(this.worldObj, coords) > 0F || this.worldObj.getBlockState(coords).getBlock() == Blocks.air)) this.worldObj.setBlockState(coords, !TragicConfig.getBoolean("allowNonMobBlocks") ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState());
+				}
 			}
-
-			lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);
-
-			for (BlockPos coords : lst)
-			{
-				if (this.posY >= coords.getY() + 1 && (!EntityOverlordCore.ignoredBlocks.contains(this.worldObj.getBlockState(coords).getBlock()) && this.worldObj.getBlockState(coords).getBlock().getBlockHardness(this.worldObj, coords) > 0F || this.worldObj.getBlockState(coords).getBlock() == Blocks.air)) this.worldObj.setBlockState(coords, !TragicConfig.getBoolean("allowNonMobBlocks") ? Blocks.obsidian.getDefaultState() : TragicBlocks.CelledBlock.getDefaultState());
-			}
-
 			this.spawnSeekers();
 			List<EntitySeeker> list = this.worldObj.getEntitiesWithinAABB(EntitySeeker.class, this.getEntityBoundingBox().expand(32.0, 32.0, 32.0));
 
@@ -503,18 +512,21 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			if (!this.worldObj.isRemote)
 			{
-				EntityOverlordCombat combat = new EntityOverlordCombat(this.worldObj);
-				combat.setPosition(this.posX, this.posY, this.posZ);
-				combat.setTransforming();
-				this.worldObj.spawnEntityInWorld(combat);
-				
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 				for (Entity e : list)
 				{
-					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && e != combat)
+					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse)
 					{
 						e.setDead();
 					}
+				}
+
+				if (TragicConfig.getBoolean("overlordTransformation"))
+				{
+					EntityOverlordCombat combat = new EntityOverlordCombat(this.worldObj);
+					combat.setPosition(this.posX, this.posY, this.posZ);
+					combat.setTransforming();
+					this.worldObj.spawnEntityInWorld(combat);
 				}
 			}
 		}
@@ -531,7 +543,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 			this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0.1, 0.1, 0.1);
 		}
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{

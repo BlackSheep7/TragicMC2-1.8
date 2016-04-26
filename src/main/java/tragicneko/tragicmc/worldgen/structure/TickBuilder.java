@@ -28,8 +28,10 @@ public class TickBuilder {
 	public static HashMap<World, TickBuilder> builders = new HashMap<World, TickBuilder>(); //static map of all the current builders
 	public final World theWorld; //the world this tick builder is building for
 	private boolean shouldBuild = true; //should this builder build
-	public static int BUILD_LIMIT = TragicConfig.getInt("tickBuilderLimit"); //the max amount of blocks to be placed per schematic per tick, should be initialized after the config is set up
+	public static int BUILD_LIMIT = TragicConfig.getInt("tickBuilderSchematicLimit"); //the max amount of blocks to be placed per schematic per tick, should be initialized after the config is set up
 	public static int OVERALL_BUILD_LIMIT = TragicConfig.getInt("tickBuilderOverallLimit"); //the max amount of blocks that can be placed per tick
+	public static int TICK_RATE = TragicConfig.getInt("tickBuilderTickRate"); //the rate in which the tick builder will run
+	public static long tick = 0L; //the ticks we have been running
 	public static final String BUILD_TAG = "TragicMC.IncompleteBuilds";
 	public static final String STRUCTURE_ID_TAG = "structureID";
 	public static final String STRUCTURE_ORIGIN_X_TAG = "posOriginX";
@@ -63,7 +65,7 @@ public class TickBuilder {
 	public void onTick(ServerTickEvent event)
 	{
 		if (builders.isEmpty()) return;
-
+		if (tick++ % TICK_RATE != 0L) return;
 		Iterator<TickBuilder> bldrs = builders.values().iterator();
 
 		while (bldrs.hasNext())

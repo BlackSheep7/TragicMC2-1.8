@@ -22,7 +22,7 @@ public class SchematicCubeMaze extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		for (byte y1 = 0; y1 < 37; y1++)
 		{
@@ -114,10 +114,6 @@ public class SchematicCubeMaze extends Schematic {
 									roomType = (byte) (flag ? 6 : 7);
 								}
 							}
-							else
-							{
-								return false;
-							}
 						}
 						else
 						{
@@ -129,10 +125,6 @@ public class SchematicCubeMaze extends Schematic {
 					{
 						boolean flag = z0 > 0; //eliminate exits based on which edge it's on
 						roomType = (byte) (flag ? 3 : 4);
-					}
-					else //this would be an error of some sort since the previous check should remove all middle rooms
-					{
-						return false;
 					}
 				}
 				else //middle room
@@ -161,7 +153,7 @@ public class SchematicCubeMaze extends Schematic {
 				}
 			}
 		} 
-		return true;
+		return this;
 	}
 
 	/**

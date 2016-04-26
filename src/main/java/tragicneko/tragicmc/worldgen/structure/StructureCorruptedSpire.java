@@ -31,19 +31,6 @@ public class StructureCorruptedSpire extends Structure {
 	{
 		return false; //should not generate naturally
 	}
-
-	@Override
-	public boolean generate(World world, Random rand, BlockPos pos)
-	{
-		return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, pos.getX(), pos.getY(), pos.getZ());
-	}
-
-	@Override
-	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
-	{
-		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(variant, world, rand, x, y, z);
-	}
 	
 	@Override
 	public int getStructureColor()

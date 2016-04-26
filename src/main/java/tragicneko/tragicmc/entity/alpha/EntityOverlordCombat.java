@@ -40,7 +40,7 @@ import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityOverlordCombat extends TragicBoss {
-	
+
 	public static final int DW_UNSTABLE_TICKS = 20;
 	public static final int DW_HURT_TIME = 21;
 	public static final int DW_ATTACK_TIME = 22;
@@ -60,7 +60,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		public boolean apply(Object o) {
 			return canApply((Entity) o);
 		}
-		
+
 		public boolean canApply(Entity entity) {
 			return entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse;
 		}
@@ -149,20 +149,23 @@ public class EntityOverlordCombat extends TragicBoss {
 		super.onDeath(par1DamageSource);
 		if (!this.worldObj.isRemote)
 		{
-			EntityOverlordCore core = new EntityOverlordCore(this.worldObj);
-			core.setPosition(this.posX, this.posY, this.posZ);
-			core.setStartTransform();
-			this.worldObj.spawnEntityInWorld(core);
-
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
 			for (Entity e : list)
 			{
-				if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && e != core)
+				if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse)
 				{
 					e.setDead();
 				}
 			}
 
+			if (TragicConfig.getBoolean("overlordTransformation"))
+			{
+				EntityOverlordCore core = new EntityOverlordCore(this.worldObj);
+				core.setPosition(this.posX, this.posY, this.posZ);
+				core.setStartTransform();
+				this.worldObj.spawnEntityInWorld(core);
+			}
+			
 			if (par1DamageSource.getEntity() instanceof EntityPlayerMP) ((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.overlord3);
 			List<EntityPlayerMP> list2 = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(24.0, 24.0, 24.0));
 			if (!list2.isEmpty())
@@ -289,7 +292,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 	public EntityOverlordCombat setTransforming()
 	{
-		this.setTransformationTicks(120);
+		if (TragicConfig.getBoolean("overlordTransformationAesthetics")) this.setTransformationTicks(120);
 		return this;
 	}
 
@@ -466,14 +469,14 @@ public class EntityOverlordCombat extends TragicBoss {
 				this.worldObj.spawnEntityInWorld(ana);
 			}
 
-			if (this.getHealth() <= this.getMaxHealth() / 2 && this.ticksExisted % 10 == 0 && rand.nextBoolean())
+			if (this.getHealth() <= this.getMaxHealth() / 2 && this.ticksExisted % 10 == 0 && rand.nextBoolean() && TragicConfig.getBoolean("allowNanoSwarm") && TragicConfig.getBoolean("overlordNanoSwarms"))
 			{
 				EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
 				swarm.copyLocationAndAnglesFrom(this);
 				this.worldObj.spawnEntityInWorld(swarm);
 			}
 
-			if (this.getHealth() <= this.getMaxHealth() / 4 && this.ticksExisted % 10 == 0 && rand.nextBoolean())
+			if (this.getHealth() <= this.getMaxHealth() / 4 && this.ticksExisted % 10 == 0 && rand.nextBoolean() && TragicConfig.getBoolean("overlordHunters"))
 			{
 				EntityHunter hunter = new EntityHunter(this.worldObj);
 				hunter.setPosition(this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble(), this.posZ + rand.nextDouble() - rand.nextDouble());
@@ -504,9 +507,9 @@ public class EntityOverlordCombat extends TragicBoss {
 			this.aggregate = 1;
 		}
 
-		if (this.canUseAbility() && this.ticksExisted % 20 == 0 && this.onGround && rand.nextInt(64) == 0) this.setLeapTicks(40);
+		if (this.canUseAbility() && this.ticksExisted % 20 == 0 && this.onGround && rand.nextInt(64) == 0 && TragicConfig.getBoolean("overlordMegaLeap")) this.setLeapTicks(40);
 
-		if (this.canUseAbility() && this.unstableBuffer == 0 && this.ticksExisted % (1000 / aggregate) == 0 && rand.nextInt(32) == 0)
+		if (this.canUseAbility() && this.unstableBuffer == 0 && this.ticksExisted % (1000 / aggregate) == 0 && rand.nextInt(32) == 0 && TragicConfig.getBoolean("overlordUnstableAnomalies"))
 		{
 			this.setUnstableTicks(200 + rand.nextInt(100));
 			this.aggregate = 1;
@@ -518,7 +521,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 		}
 
-		if (this.getAttackTarget() != null && this.canUseAbility() && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && this.onGround && !this.isInWater()) this.setChargeTicks(200);
+		if (this.getAttackTarget() != null && this.canUseAbility() && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && this.onGround && !this.isInWater() && TragicConfig.getBoolean("overlordChargeAttack")) this.setChargeTicks(200);
 
 		this.setSprinting(false);
 		if (this.getChargeTicks() > 0)
@@ -559,7 +562,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 		}
 
-		if (this.canUseAbility() && this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(16) == 0 && this.onGround) this.setGrappleTicks(80 + rand.nextInt(40));
+		if (this.canUseAbility() && this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(16) == 0 && this.onGround && TragicConfig.getBoolean("overlordGrappleAttack")) this.setGrappleTicks(80 + rand.nextInt(40));
 		if (this.getGrappleTicks() > 0)
 		{
 			this.setGrappleTicks(this.getGrappleTicks() - 1);
@@ -590,12 +593,12 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 		}
 
-		if (this.canUseAbility() && rand.nextInt(16) == 0 && this.ticksExisted % 5 == 0 && !this.onGround && this.motionY <= 0 && this.reflectionBuffer == 0 && !this.isInWater()) this.setReflectionTicks(200 + rand.nextInt(100));
+		if (this.canUseAbility() && rand.nextInt(16) == 0 && this.ticksExisted % 5 == 0 && !this.onGround && this.motionY <= 0 && this.reflectionBuffer == 0 && !this.isInWater() && TragicConfig.getBoolean("overlordReflection")) this.setReflectionTicks(200 + rand.nextInt(100));
 		if (this.getReflectionTicks() > 0)
 		{
 			this.setReflectionTicks(this.getReflectionTicks() - 1);
 			this.reflectionBuffer = 200;
-			if (this.motionY < 0 && !this.onGround)
+			if (this.motionY < 0 && !this.onGround && TragicConfig.getBoolean("overlordBarriers"))
 			{
 				ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
 				for (BlockPos coords : list)
@@ -608,7 +611,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 			this.motionY = 0;
 
-			if (this.ticksExisted % 10 == 0)
+			if (this.ticksExisted % 10 == 0 && TragicConfig.getBoolean("overlordHunters") && TragicConfig.getBoolean("allowHunter"))
 			{
 				EntityHunter hunter = new EntityHunter(this.worldObj);
 				hunter.setPosition(this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble(), this.posZ + rand.nextDouble() - rand.nextDouble());
@@ -619,7 +622,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		}
 		if (this.onGround && this.hasLeaped) this.hasLeaped = false;
 
-		if (this.posY <= 1 && this.motionY < 0 && !this.onGround && this.getReflectionTicks() == 0)
+		if (this.posY <= 1 && this.motionY < 0 && !this.onGround && this.getReflectionTicks() == 0 && TragicConfig.getBoolean("overlordBarriers"))
 		{
 			ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
 			for (BlockPos coords : list)
@@ -648,9 +651,10 @@ public class EntityOverlordCombat extends TragicBoss {
 				return false;
 			}
 
-			if (flag || !TragicConfig.getBoolean("allowDivinity") && entity.getCreatureAttribute() != TragicEntities.Synapse || entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())// || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
+			if (flag || !TragicConfig.getBoolean("allowDivinity") && entity.getCreatureAttribute() != TragicEntities.Synapse || entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice ||
+					src.canHarmInCreative() || !TragicConfig.getBoolean("overlordDivineWeakness") || !TragicConfig.getBoolean("overlordUnstableAnomalies"))
 			{
-				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 16)
+				if (rand.nextBoolean() && TragicConfig.getBoolean("allowNanoSwarm") && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0D)).size() < 16 && TragicConfig.getBoolean("allowNanoSwarm") && TragicConfig.getBoolean("overlordNanoSwarms"))
 				{
 					EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
 					swarm.setPosition(this.posX, this.posY, this.posZ);
@@ -680,7 +684,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		if (this.getChargeTicks() > 0 || this.canUseAbility())
 		{
 			boolean flag = super.attackEntityAsMob(entity);
-			if (flag && !this.worldObj.isRemote)
+			if (flag && !this.worldObj.isRemote && TragicConfig.getBoolean("overlordSlashAttack"))
 			{
 				entity.motionX *= 2.24D;
 				entity.motionZ *= 2.24D;

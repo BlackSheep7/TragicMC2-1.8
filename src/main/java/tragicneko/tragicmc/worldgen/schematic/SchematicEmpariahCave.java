@@ -19,7 +19,7 @@ public class SchematicEmpariahCave extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		ArrayList<BlockPos> list = new ArrayList<BlockPos>();
 		byte i;
@@ -78,7 +78,7 @@ public class SchematicEmpariahCave extends Schematic {
 			this.setBlock(world, x, y - 31, z - 5, Blocks.mob_spawner, 0, 2, "TragicMC.Abomination");
 		}
 
-		return true;
+		return this;
 	}
 
 }

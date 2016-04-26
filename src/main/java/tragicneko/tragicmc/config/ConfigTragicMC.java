@@ -16,7 +16,7 @@ public class ConfigTragicMC extends TragicConfig {
 		Property prop; //The value currently being parsed
 		byte m; //a byte mapping to make it easier for my array hypervisors to work
 		String s = ""; //what will be used by each property to keep the config string and the registration string the same
-		
+
 		registerObject("allowNonMobItems", true);
 		registerObject("allowNonMobBlocks", true);
 		registerObject("allowNetwork", true);
@@ -342,15 +342,15 @@ public class ConfigTragicMC extends TragicConfig {
 		prop = config.get(cat.getName(), "allowSynapseVariants", true);
 		prop.comment = "Can the Synapse generate with mini-Biomes?";
 		dimensionConfig[++m] = prop.getBoolean(true);
-		
+
 		prop = config.get(cat.getName(), "allowNekoHomeworld", true);
 		prop.comment = "Is the Neko Homeworld Dimension allowed?";
 		dimensionConfig[++m] = prop.getBoolean(true);
-		
+
 		prop = config.get(cat.getName(), "allowNekoHomeworldRespawn", true);
 		prop.comment = "Can you respawn in the Neko Homeworld or will you be forced back to the Overworld?";
 		dimensionConfig[++m] = prop.getBoolean(true);
-		
+
 		prop = config.get(cat.getName(), "keepNekoHomeworldLoaded", false);
 		prop.comment = "Will the Neko Homeworld Dimension remain loaded when no one is there?";
 		dimensionConfig[++m] = prop.getBoolean(false);
@@ -384,7 +384,7 @@ public class ConfigTragicMC extends TragicConfig {
 		prop = config.get(cat.getName(), s, 128);
 		prop.comment = "The chance that a Synapse mini-biome will generate, higher number is lower chance to generate.";
 		registerObject(s, prop.getInt(128));
-		
+
 		s = "nekoHomeworldID";
 		prop = config.get(cat.getName(), s, 4);
 		prop.comment = "The ID that the Neko Homeworld Dimension will use.";
@@ -394,7 +394,7 @@ public class ConfigTragicMC extends TragicConfig {
 		prop = config.get(cat.getName(), s, 4);
 		prop.comment = "The ID that the Neko Homeworld's provider will use, if you don't know what this is, keep it the same as the Neko Homeworld's Dimension ID.";
 		registerObject(s, prop.getInt(4));
-		
+
 		s = "nekoHomeworldBiomeSize";
 		prop = config.get(cat.getName(), s, 8);
 		prop.comment = "How large the Neko Homeworld's biomes generate.";
@@ -570,7 +570,7 @@ public class ConfigTragicMC extends TragicConfig {
 		s2 = s; s = "synapseCorruptID";
 		prop = config.get(cat.getName(), s, findBiomeID(getInt(s2) + 1));
 		registerObject(s, prop.getInt(findBiomeID(getInt(s2) + 1)));
-		
+
 		s2 = s; s = "nekoBarrensID";
 		prop = config.get(cat.getName(), s, findBiomeID(getInt(s2) + 1));
 		registerObject(s, prop.getInt(findBiomeID(getInt(s2) + 1)));
@@ -2208,7 +2208,7 @@ public class ConfigTragicMC extends TragicConfig {
 
 		prop = config.get(cat.getName(), "volatileFuseaAllow", true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = config.get(cat.getName(), "apisAllow", true);
 		bossAllow[m = 0] = prop.getBoolean(true);
 
@@ -2271,7 +2271,7 @@ public class ConfigTragicMC extends TragicConfig {
 		s = "ragrStats";
 		prop = config.get(cat.getName(), s, new double[] {65.0, 0.380, 7.0, 32.0, 1.0, 10});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
-		
+
 		s = "pumpkinheadStats";
 		prop = config.get(cat.getName(), s, new double[] {60.0, 0.275, 6.0, 32.0, 0.0, 18});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
@@ -2415,7 +2415,7 @@ public class ConfigTragicMC extends TragicConfig {
 		s = "avrisStats";
 		prop = config.get(cat.getName(), s, new double[] {75.0, 0.312, 2.0, 64.0, 0.6, 16});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
-		
+
 		s = "aegarStats";
 		prop = config.get(cat.getName(), s, new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
@@ -2502,7 +2502,7 @@ public class ConfigTragicMC extends TragicConfig {
 		s = "ragrSpawnChance";
 		prop = config.get(cat.getName(), s, 25);
 		registerObject(s, clamp(prop.getInt(25), 1, 1000));
-		
+
 		s = "pumpkinheadSpawnChance";
 		prop = config.get(cat.getName(), s, 25);
 		registerObject(s, clamp(prop.getInt(25), 1, 1000));
@@ -2634,11 +2634,11 @@ public class ConfigTragicMC extends TragicConfig {
 		s = "parasmiteSpawnChance";
 		prop = config.get(cat.getName(), s, 25);
 		registerObject(s, clamp(prop.getInt(25), 1, 1000));
-		
+
 		s = "avrisSpawnChance";
 		prop = config.get(cat.getName(), s, 5);
 		registerObject(s, clamp(prop.getInt(5), 1, 1000));
-		
+
 		s = "aegarSpawnChance";
 		prop = config.get(cat.getName(), s, 5);
 		registerObject(s, clamp(prop.getInt(5), 1, 1000));
@@ -2702,7 +2702,7 @@ public class ConfigTragicMC extends TragicConfig {
 		s = "ragrGroupSize";
 		prop = config.get(cat.getName(), s, new int[] {0, 1});
 		registerObject(s, verifyGS(prop.getIntList()));
-		
+
 		s = "pumpkinheadGroupSize";
 		prop = config.get(cat.getName(), s, new int[] {2, 4});
 		registerObject(s, verifyGS(prop.getIntList()));
@@ -2810,7 +2810,7 @@ public class ConfigTragicMC extends TragicConfig {
 		s = "avrisGroupSize";
 		prop = config.get(cat.getName(), s, new int[] {0, 1});
 		registerObject(s, verifyGS(prop.getIntList()));
-		
+
 		s = "jarraGroupSize";
 		prop = config.get(cat.getName(), s, new int[] {0, 1});
 		registerObject(s, verifyGS(prop.getIntList()));
@@ -2850,7 +2850,7 @@ public class ConfigTragicMC extends TragicConfig {
 		s = "aegarGroupSize";
 		prop = config.get(cat.getName(), s, new int[] {0, 1});
 		registerObject(s, verifyGS(prop.getIntList()));
-		
+
 		s = "jabbaSpawnOverride";
 		prop = config.get(cat.getName(), s, false);
 		registerObject(s, prop.getBoolean(false));
@@ -3144,7 +3144,7 @@ public class ConfigTragicMC extends TragicConfig {
 		s = "avrisSpawnBiomes";
 		prop = config.get(cat.getName(), s, new int[] {0});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
-		
+
 		s = "snowGolemSpawnOverride";
 		prop = config.get(cat.getName(), s, false);
 		registerObject(s, prop.getBoolean(false));
@@ -3253,7 +3253,7 @@ public class ConfigTragicMC extends TragicConfig {
 				BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID, BiomeGenBase.sky.biomeID, BiomeGenBase.stoneBeach.biomeID, BiomeGenBase.swampland.biomeID,
 				BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
-		
+
 		s = "apisSpawnOverride";
 		prop = config.get(cat.getName(), s, false);
 		registerObject(s, prop.getBoolean(false));
@@ -3591,6 +3591,26 @@ public class ConfigTragicMC extends TragicConfig {
 		prop = config.get(cat.getName(), s, 15);
 		registerObject(s, clamp(prop.getInt(15), 1, 500));
 
+		s = "tickBuilderSchematicLimit";
+		prop = config.get(cat.getName(), s, 250);
+		prop.comment = "The maximum blocks the tick builder will set per structure schematic per tick";
+		registerObject(s, clampPositive(prop.getInt(100)));
+
+		s = "tickBuilderOverallLimit";
+		prop = config.get(cat.getName(), s, 500);
+		prop.comment = "The maximum total blocks the tick builder will place per tick.";
+		registerObject(s, clampPositive(prop.getInt(200)));
+		
+		s = "tickBuilderTickRate";
+		prop = config.get(cat.getName(), s, 4);
+		prop.comment = "The tick rate that the Builders will work at, higher value is slower building";
+		registerObject(s, clampPositive(prop.getInt(4)));
+
+		s = "allowTickBuilder";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should structures generate using a tick builder, which spreads out the placement of blocks over several ticks instead of generating the structure all at once in one tick?";
+		registerObject(s, prop.getBoolean(true));
+
 		prop = config.get(cat.getName(), "apisTempleAllow", true);
 		structureAllow[m = 0] = prop.getBoolean(true);
 
@@ -3794,7 +3814,7 @@ public class ConfigTragicMC extends TragicConfig {
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "Whether certain potion effects have an overlay rendered while they are active";
 		registerObject(s, prop.getBoolean(true));
-		
+
 		s = "allowExtraDoomsdayInfoInGui";
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "If you can activate a Doomsday, displays that Doomsday's information in the Gui";
@@ -4372,7 +4392,124 @@ public class ConfigTragicMC extends TragicConfig {
 		prop.comment = "Should Claymation reflect bad potion effects at it's target?";
 		registerObject(s, prop.getBoolean(true));
 
-		//TODO overlord configs
+		//all overlord forms
+		s = "overlordDivineWeakness";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord species be immune to all damage unless Divinity is active on the attacker?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordBarriers";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord species place their specialized barrier blocks in specific situations?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordGas";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord species place Corrupting gas in specific situations?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordClearSpace";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord species clear space around them to avoid suffocation?";
+		registerObject(s, prop.getBoolean(true)); //if the overlord should clear space to avoid suffocation
+
+		s = "overlordTransformation";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord species transform into it's next form upon death?";
+		registerObject(s, prop.getBoolean(true)); //if the overlord should transform into it's next form upon death
+
+		s = "overlordTransformationAesthetics";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord species do the transformation idle stuff upon spawning?";
+		registerObject(s, prop.getBoolean(true)); //if the overlord should do it's 'transforming' stuff when it spawns in
+
+		s = "overlordNanoSwarms";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord species spawn in Nano Swarms for protection?";
+		registerObject(s, prop.getBoolean(true)); //if the overlord should spawn in nano swarms to help it
+
+		//cocoon form
+		s = "overlordPhases";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Cocoon instance be in phases, alternating Seekers and damage cycles? If this is disabled you won't need Divinity to damage it.";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordSeekers";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Cocoon use Seekers in it's instance? If this is set to false and phases are true, it'll always be in damage cycle.";
+		registerObject(s, prop.getBoolean(true));
+
+		//combat form
+		s = "overlordUnstableAnomalies";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Combat become unstable and spawn anomalies? If this is disabled, you won't need Divinity to damage it.";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordMegaLeap";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Combat leap into the air and doing a massive slam onto the ground?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordSlashAttack";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Combat have an Area of Effect on it's normal attack?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordChargeAttack";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Combat turtle up and charge towards it's target?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordGrappleAttack";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Combat pull targets towards it with an attracting laser beam?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordReflection";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Combat cocoon up and reflect all incoming damage?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordHunters";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Combat spawn Hunters to attack it's target?";
+		registerObject(s, prop.getBoolean(true));
+
+		//core form
+		s = "overlordDeleteBlocks";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Core delete blocks it passes through?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordMortors";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Core hover and fire mortors to create anomalies? If this is disabled, you won't need Divinity to damage it.";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordVulnerable";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Core become vulnerable and flee when it takes damage?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordGrabAttack";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Core grab nearby targets and focus attacks on them while carrying them high up into the sky?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordRegeneration";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Core regenerate health naturally?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordPlatform";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Core generate a platform to catch it's drops upon death?";
+		registerObject(s, prop.getBoolean(true));
+
+		s = "overlordSentinelDrop";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should the Overlord Core drop a Sentinel upon death every time?";
+		registerObject(s, prop.getBoolean(true));
 
 		cat = config.getCategory(CAT_MODIFIERS);
 		cat.setComment("Set each mob's modifier's actual amount, these can also be used to disable them by setting them to 0 in most cases.");

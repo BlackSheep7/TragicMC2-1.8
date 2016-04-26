@@ -25,10 +25,10 @@ public class SchematicClaymationRuin extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		this.generateEntrance(world, rand, x, y, z);
-		return true;
+		return this;
 	}
 
 	public byte[][] createMap(Random rand)

@@ -20,7 +20,7 @@ public class SchematicSoulTomb extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		for (int y1 = 0; y1 < 10; y1++)
 		{
@@ -127,7 +127,7 @@ public class SchematicSoulTomb extends Schematic {
 		this.setBlock(world, x + 1, y + 8, z, Blocks.flowing_lava, 0, 2);
 		this.setBlock(world, x - 1, y + 8, z, Blocks.flowing_lava, 0, 2);
 
-		return true;
+		return this;
 	}
 
 }

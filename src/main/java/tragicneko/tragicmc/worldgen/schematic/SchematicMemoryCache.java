@@ -19,7 +19,7 @@ public class SchematicMemoryCache extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 		double size = rand.nextDouble() * 4.45D + 5.55D;
 		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(world, size, x, y, z);
 
@@ -48,7 +48,7 @@ public class SchematicMemoryCache extends Schematic {
 
 		this.setBlock(world, x, y, z, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
 
-		return true;
+		return this;
 	}
 
 }

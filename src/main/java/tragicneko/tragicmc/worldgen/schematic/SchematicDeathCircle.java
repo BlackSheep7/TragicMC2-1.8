@@ -23,7 +23,7 @@ public class SchematicDeathCircle extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z)
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
 		for (int y1 = 0; y1 < 6; y1++)
 		{
@@ -411,17 +411,17 @@ public class SchematicDeathCircle extends Schematic {
 
 		this.setBlock(world, x + 2, y, z + 1, fire);
 
-		return true;
+		return this;
 	}
 
 	@Override
-	public boolean generateStructure(World world, Random rand, int x, int y, int z)
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z)
 	{
 		return generateStructure(0, world, rand, x, y, z);
 	}
 
 	@Override
-	public boolean generateWithRandomVariant(int variantSize, World world, Random rand, int x, int y, int z) {
+	public Schematic generateWithRandomVariant(int variantSize, World world, Random rand, int x, int y, int z) {
 		return generateStructure(world, rand, x, y, z);
 	}
 }

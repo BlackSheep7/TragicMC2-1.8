@@ -52,7 +52,7 @@ public class SchematicDesertTower extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 		switch(variant)
 		{
 		case 0: //Desert tower
@@ -72,7 +72,7 @@ public class SchematicDesertTower extends Schematic {
 			generateVariant4(world, rand, x, y, z);
 			break;
 		}
-		return true;
+		return this;
 	}
 
 	public void generateVariant0(World world, Random rand, int x, int y, int z) {

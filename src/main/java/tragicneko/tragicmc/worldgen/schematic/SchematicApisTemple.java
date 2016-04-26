@@ -26,7 +26,7 @@ public class SchematicApisTemple extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z)
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
 		for (int y1 = 1; y1 < 10; y1++)
 		{
@@ -983,6 +983,6 @@ public class SchematicApisTemple extends Schematic {
 		this.setBlock(world, x + 10, y, z + 8, brick, rand.nextInt(3), 2);
 		this.setBlock(world, x + 10, y, z + 9, brick, 3, 2);
 
-		return true;
+		return this;
 	}
 }

@@ -26,13 +26,6 @@ public class StructureCubeMaze extends Structure {
 		if (pos.getY() >= 48 || world.getTopSolidOrLiquidBlock(pos).down(22).getY() < pos.getY()) return false;
 		return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
 	}
-
-	@Override
-	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
-	{
-		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(world, rand, x, y, z);
-	}
 	
 	@Override
 	public int getStructureColor()

@@ -23,7 +23,7 @@ public class SchematicKitsuneDen extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 		int dens = MathHelper.clamp_int(variant, 0, 4);
 
 		for (int y1 = 0; y1 < 8; y1++)
@@ -273,7 +273,7 @@ public class SchematicKitsuneDen extends Schematic {
 				}
 			}
 		}
-		return true;
+		return this;
 	}
 
 	public void generateDen(World world, Random rand, int x, int y, int z) {

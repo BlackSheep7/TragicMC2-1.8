@@ -43,13 +43,6 @@ public class StructureDeathCircle extends StructureBoss {
 	}
 
 	@Override
-	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
-	{
-		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(world, rand, x, y, z);
-	}
-
-	@Override
 	public int getStructureColor()
 	{
 		return 0x770300;

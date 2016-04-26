@@ -38,13 +38,6 @@ public class StructureObsidianCavern extends Structure {
 		if (pos.getY() > 80) return false; //To prevent huge lagspikes from it generating from a high y value
 		return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
 	}
-
-	@Override
-	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
-	{
-		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
-		return this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(variant, world, rand, x, y, z);
-	}
 	
 	@Override
 	public int getStructureColor()

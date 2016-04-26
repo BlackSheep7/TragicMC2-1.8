@@ -16,7 +16,7 @@ public class SchematicOutlook extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 		
 		byte x1, z1;
 		int y1;
@@ -79,7 +79,7 @@ public class SchematicOutlook extends Schematic {
 		this.setBlock(world, x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2, "Enderman");
 		this.setBlock(world, x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2, "Enderman");
 		
-		return true;
+		return this;
 	}
 
 }

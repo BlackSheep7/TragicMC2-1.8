@@ -17,7 +17,7 @@ public class SchematicHackerNet extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		final int iterations = 400 + rand.nextInt(200);
 		this.setBlockToAir(world, x, y, z);
@@ -59,7 +59,7 @@ public class SchematicHackerNet extends Schematic {
 				this.setBlock(world, xr, yr, zr, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
 			}
 		}
-		return true;
+		return this;
 	}
 
 }

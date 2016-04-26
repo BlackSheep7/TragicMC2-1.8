@@ -24,7 +24,7 @@ public class SchematicTimeAltar extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 		for (int y1 = 0; y1 < 6; y1++)
 		{
 			for (int x1 = -7; x1 < 8; x1++)
@@ -74,6 +74,6 @@ public class SchematicTimeAltar extends Schematic {
 		this.setBlock(world, x, y, z + 1, quartz);
 		this.setBlock(world, x, y, z - 1, quartz);
 
-		return true;
+		return this;
 	}
 }

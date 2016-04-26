@@ -12,7 +12,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 
-public abstract class Structure extends WorldGenerator {
+public abstract class Structure {
 
 	@Deprecated
 	public final int structureId;
@@ -121,8 +121,7 @@ public abstract class Structure extends WorldGenerator {
 		return this.height;
 	}
 
-	@Override
-	public boolean generate(World world, Random rand, BlockPos pos)
+	public Schematic generate(World world, Random rand, BlockPos pos)
 	{
 		return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, pos.getX(), pos.getY(), pos.getZ());
 	}
@@ -138,9 +137,9 @@ public abstract class Structure extends WorldGenerator {
 	 * @param z
 	 * @return
 	 */
-	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
+	public Schematic generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
-		return !world.isRemote && this.canGenerate();
+		return !world.isRemote && this.canGenerate() ? this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(variant, world, rand, x, y, z) : null;
 	}
 
 	public String getLocalizedName()

@@ -18,7 +18,7 @@ public class SchematicSpiderNest extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		final int radius = rand.nextInt(20) + 14; //max of 23, min of 14
 		final int top = rand.nextInt(3) + 5; //max of 7, min of 5
@@ -75,7 +75,7 @@ public class SchematicSpiderNest extends Schematic {
 		}
 
 		this.setBlockToAir(world, x, y, z);
-		return true;
+		return this;
 	}
 
 }

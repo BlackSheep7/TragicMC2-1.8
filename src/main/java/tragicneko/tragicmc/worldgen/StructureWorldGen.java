@@ -48,10 +48,9 @@ public class StructureWorldGen implements IWorldGenerator {
 		for (Structure s : cands)
 		{
 			BlockPos pos = new BlockPos(x, s.isSurfaceStructure() ? top : y, z);
-			if (s.generate(world, random, pos))
+			Schematic sch = s.generate(world, random, pos);
+			if (sch != null && TragicConfig.getBoolean("allowTickBuilder"))
 			{
-				Schematic sch = s.getSchematicFor(world, random, pos);
-				sch.generateStructure(world, random, pos.getX(), pos.getY(), pos.getZ());
 				if (TickBuilder.getBuilderFor(world) != null) TickBuilder.getBuilderFor(world).addSchematic(pos, sch);
 				TragicMC.logInfo(s.getLocalizedName() + " succesfully generated at " + x + ", " + (s.isSurfaceStructure() ? top : y) + ", " + z);
 				break;

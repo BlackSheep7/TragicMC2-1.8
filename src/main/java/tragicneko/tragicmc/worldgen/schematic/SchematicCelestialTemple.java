@@ -26,7 +26,7 @@ public class SchematicCelestialTemple extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z)
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
 		ArrayList<BlockPos> list;
 		byte relays = (byte) (6 + (rand.nextInt(variant + 1) + 1) * (rand.nextInt(variant + 1) + 1));
@@ -1060,6 +1060,6 @@ public class SchematicCelestialTemple extends Schematic {
 		this.setBlock(world, x + 10, y, z + 8, quartz, 1, 2);
 		this.setBlock(world, x + 10, y, z + 9, quartz, 1, 2);
 
-		return true;
+		return this;
 	}
 }

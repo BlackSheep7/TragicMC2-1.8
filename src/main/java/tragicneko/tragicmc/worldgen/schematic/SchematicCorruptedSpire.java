@@ -29,7 +29,7 @@ public class SchematicCorruptedSpire extends Schematic {
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 
 		byte lastHole = 0;
 		
@@ -48,7 +48,7 @@ public class SchematicCorruptedSpire extends Schematic {
 				lastHole = this.generateNormalFloor(world, rand, x, y, z, f, lastHole);
 			}
 		}
-		return true;
+		return this;
 	}
 
 	/**

@@ -239,12 +239,12 @@ public abstract class Schematic {
 	 * Main method to generate the particular structure, variants should be decided upon before this method is called, this may split off variants
 	 * into their own methods at the schematic's discretion
 	 */
-	public abstract boolean generateStructure(int variant, World world, Random rand, int x, int y, int z);
+	public abstract Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z);
 
 	/**
 	 * This tells the schematic to generate as the basic version
 	 */
-	public boolean generateStructure(World world, Random rand, int x, int y, int z)
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z)
 	{
 		return this.generateStructure(0, world, rand, x, y, z);
 	}
@@ -253,7 +253,7 @@ public abstract class Schematic {
 	 * This tells the schematic to generate as a random variant, use the main generation method if you want to pick a particular variant,
 	 * variantSize should be greater than 0, otherwise errors will ensue
 	 */
-	public boolean generateWithRandomVariant(int variantSize, World world, Random rand, int x, int y, int z)
+	public Schematic generateWithRandomVariant(int variantSize, World world, Random rand, int x, int y, int z)
 	{
 		return this.generateStructure(rand.nextInt(variantSize), world, rand, x, y, z);
 	}
@@ -306,12 +306,12 @@ public abstract class Schematic {
 
 	public void setBlock(World world, int x, int y, int z, Block block)
 	{
-		this.setBlock(world, x, y, z, block, 0, 3);
+		this.setBlock(world, x, y, z, block, 0, 2);
 	}
 
 	public void setBlock(World world, int x, int y, int z, Block block, int meta, int flag)
 	{
-		this.setBlock(world, x, y, z, block, meta, flag, new Object[] {});
+		this.setBlock(world, x, y, z, block, meta, 2, new Object[] {});
 	}
 
 	public void setBlock(World world, int x, int y, int z, Block block, int meta, int flag, Object... params)
@@ -324,7 +324,7 @@ public abstract class Schematic {
 		{//if the builder isn't used, all tile entity stuff is handled through here so we'll just call as if it was being handled by the builder
 			IBlockState state = block.getStateFromMeta(meta);
 			BlockPos pos = new BlockPos(x, y, z);
-			world.setBlockState(pos, state, 3);
+			world.setBlockState(pos, state, 2);
 			
 			if (state.getBlock() instanceof BlockSign)
 			{

@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ITickable;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockStructureSeed;
 import tragicneko.tragicmc.blocks.BlockStructureSeed2;
@@ -44,11 +45,10 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 			return;
 		}
 
-		if (structure.generateStructureWithVariant(this.worldObj.rand.nextInt(structure.getVariantSize()), this.worldObj, this.worldObj.rand, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()))
+		Schematic sch = structure.generateStructureWithVariant(this.worldObj.rand.nextInt(structure.getVariantSize()), this.worldObj, this.worldObj.rand, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+		if (sch != null)
 		{
-			Schematic sch = structure.getSchematicFor(this.worldObj, this.worldObj.rand, pos);
-			sch.generateStructure(this.worldObj, this.worldObj.rand, pos.getX(), pos.getY(), pos.getZ());
-			if (TickBuilder.getBuilderFor(this.worldObj) != null) TickBuilder.getBuilderFor(this.worldObj).addSchematic(pos, sch);
+			if (TragicConfig.getBoolean("allowTickBuilder") && TickBuilder.getBuilderFor(this.worldObj) != null) TickBuilder.getBuilderFor(this.worldObj).addSchematic(pos, sch);
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
 			if (player != null) player.addChatMessage(new ChatComponentText(structure.getLocalizedName() + " was generated successfully!"));
 			this.worldObj.setBlockState(this.pos, Blocks.air.getDefaultState());
