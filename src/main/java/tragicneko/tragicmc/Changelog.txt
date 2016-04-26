@@ -4731,7 +4731,7 @@ Fixed crash while checking for reach
 Enabled Doomsday Scroll combining with items for Lightweight mode
 Do the default interaction when Directed Lightning hits an entity instead of hooking into forge events and hoping people actually use null-checks
 
-4.50.3089++ <222> (April 15, 2016) [Rewrite of LoreHelper]
+4.50.3112 <222> (April 15, 2016) [Rewrite of LoreHelper]
 Lore registration is going to use Resource Locations (item names) instead of classes as keys, this'll simplify end user experience for creating custom lore and
 makes it easier for me to register lore for certain items (especially for armor)
 Rewrote EnchantEntries to also keep their rarity values and return a list based on the rarity parameter, greatly simplifying registration of them
@@ -4761,15 +4761,23 @@ Adjusted sizes for the various Neko subtypes, they are all smaller than the base
 Added item to spawn a Mecha Exo, added Wrench to turn a mecha exo back into it's item form, this will be used for other Neko related items as well
 Added Mecha Neko's drops, added textures for the new items
 
+4.51.3112++ <223> (April 25, 2016) [Conversion of structures to use instantiated schematics, using a tick builder to build them]
+Rewrote the abstraction layer that my structures use to convert from their current state to map form
+Implemented the Tick Builders, added config option to disable them and revert to the previous method of generating structures all at once
+Fixed lots of initial bugs (mostly with using the tick builder instances correctly and ensuring the schematic continues correctly on chunk reload)
+Fixed some concurrency issues with the hashmaps, found a good value as a limit for building done per tick
+Fixed loading from a previously saved chunk, fixed loading tile entity data through the builder
+Added way to use the previous generation format if the builder was disabled through the config
+Fixed signs causing crashes
+Fixed tile entities positions not being offset when they were being handled by the preset's methods
+Found good presets for the builder to use for it's build limits
+Just need to add the values to the config
+
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9, for now they can just use namespaced registries
 Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my own drophelper's things are put into a json file in the
 config directory so that they can be easily modified by others, just like I'm planning on doing with the lores and enchantments
-Convert structures to use a tick scheduled builder system, this would require them being converted to the matrix system that I was previously going to implement
-so that I can keep track of which block is being set, the builder system would "build" a certain amount of the structure per tick (maybe 1000 blocks per tick)
-and then hold off on building until next tick, the build progress would need to be stored in the world though to prevent partial structures in case the game is
-stopped mid-build via the player quitting, the server stopping or the game crashing
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
