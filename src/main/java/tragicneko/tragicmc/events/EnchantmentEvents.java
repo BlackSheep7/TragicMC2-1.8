@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -35,7 +36,6 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -72,7 +72,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onCombustion(HarvestDropsEvent event)
 	{
-		if (event.harvester != null && !event.isSilkTouching && !event.world.isRemote)
+		if (event.harvester != null && !event.isSilkTouching)
 		{
 			if (event.harvester.getEquipmentInSlot(0) != null)
 			{
@@ -83,16 +83,16 @@ public class EnchantmentEvents {
 					if (tool.getItem().getDigSpeed(tool, event.state) > 1.0F)
 					{
 						final int z = EnchantmentHelper.getFortuneModifier(event.harvester);
-						ItemStack input = new ItemStack(event.state.getBlock().getItem(event.world, event.pos), 1, event.state.getBlock().damageDropped(event.state));
-						ItemStack result = FurnaceRecipes.instance().getSmeltingList().get(input);						
-						
+						ItemStack input = new ItemStack(event.state.getBlock().getItemDropped(event.state, rand, z), 1, 0);
+						ItemStack result = FurnaceRecipes.instance().getSmeltingResult(input);	
+
 						if (result != null)
 						{
-							result.stackSize = z > 0 ? rand.nextInt(z) + 1 : 1;
+							result.stackSize = z > 0 && !(result.getItem() instanceof ItemBlock) ? rand.nextInt(z) + 1 : 1;
 							tool.attemptDamageItem(1, rand);
 							event.drops.clear();
 							event.drops.add(result.copy());
-							event.world.playSoundAtEntity(event.harvester, "random.fire.hiss", 0.4F, 1.0F);
+							event.world.playSoundAtEntity(event.harvester, "random.fizz", 0.4F, 1.9F);
 						}
 					}
 				}
@@ -118,7 +118,7 @@ public class EnchantmentEvents {
 
 				if (tool.getItem() instanceof ItemTool && canMineWithTool(event.world, tool, event.pos) && TragicConfig.getBoolean("allowVeteran") && !event.world.isRemote)
 				{
-					int e = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool);
+					final int e = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool);
 					if (e < 1) return;
 					MovingObjectPosition mop = WorldHelper.getMOPFromEntity(event.getPlayer(), event.getPlayer().capabilities.isCreativeMode ? 4.5 : 3.5);
 
