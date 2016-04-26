@@ -4771,7 +4771,12 @@ Added way to use the previous generation format if the builder was disabled thro
 Fixed signs causing crashes
 Fixed tile entities positions not being offset when they were being handled by the preset's methods
 Found good presets for the builder to use for it's build limits
-Just need to add the values to the config
+Added tick builder settings to the config
+Added overlord ai config settings to the config now as well
+Modified Structure/Schematic methods to generate only one schematic per generation attempt, and using that instead of checking if generation is possible with one
+then generating a new one to hand off to the tick builder
+Added tick rate configurability for the Tick Builder
+Fixed concurrency issue with getting entity drops
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
