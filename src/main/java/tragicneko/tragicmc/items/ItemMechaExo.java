@@ -49,7 +49,6 @@ public class ItemMechaExo extends Item {
 			exo.setPosition(pos.getX(), pos.getY(), pos.getZ());
 			if (!world.getCollidingBoundingBoxes(exo, exo.getEntityBoundingBox()).isEmpty() || world.isAnyLiquid(exo.getEntityBoundingBox())) return stack;
 			exo.setHealth(stack.getMaxDamage() - stack.getItemDamage());
-			TragicMC.logInfo("exo should have spawned with " + (stack.getMaxDamage() - stack.getItemDamage()));
 			world.spawnEntityInWorld(exo);
 			if (!player.capabilities.isCreativeMode) stack.stackSize--;
 		}
