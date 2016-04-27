@@ -3,7 +3,7 @@
   "promos": {
     "1.8-latest": "3.47.2791",
     "1.8-recommended": "3.47.2791",
-    "1.8.9-latest": "4.47.3017",
+    "1.8.9-latest": "4.51.3133",
     "1.8.9-recommended": "4.47.3003"
   },
   "1.8": {
@@ -11,6 +11,6 @@
   },
   "1.8.9": {
     "4.47.3003": "Initial port to 1.8.9",
-    "4.47.3017": "Latest version, should only be available in dev environment"
+    "4.51.3133": "Latest version, should only be available in dev environment"	
   }
 }
