@@ -151,7 +151,7 @@ public class TragicBlocks {
 	public static Block Glowvine;
 	public static Block Root;
 
-	public static Block TragicObsidian;
+	public static Block ObsidianVariant;
 
 	public static Block TimeDisruptionCube;
 
@@ -338,8 +338,8 @@ public class TragicBlocks {
 		Spike = (new BlockGeneric(Material.rock, "pickaxe", 0).setUnlocalizedName("tragicmc.spike").setHardness(1.5F).setResistance(3.0F));
 		GameRegistry.registerBlock(Spike, ItemBlock.class, "spike");
 
-		TragicObsidian = (new BlockObsidianVariant());
-		GameRegistry.registerBlock(TragicObsidian, TragicItemBlock.class, "obsidian", new Object[] {new String[] {"crying", "bleeding", "dying"}, "obsidian"});
+		ObsidianVariant = (new BlockObsidianVariant());
+		GameRegistry.registerBlock(ObsidianVariant, TragicItemBlock.class, "obsidian", new Object[] {new String[] {"crying", "bleeding", "dying"}, "obsidian"});
 
 		DeadDirt = (new BlockDeadDirt().setUnlocalizedName("tragicmc.deadDirt"));
 		GameRegistry.registerBlock(DeadDirt, TragicItemBlock.class, "deadDirt", new Object[] {new String[] {"normal", "rugged", "mixed"}, "deadDirt"});

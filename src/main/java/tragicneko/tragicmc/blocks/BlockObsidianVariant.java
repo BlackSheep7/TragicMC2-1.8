@@ -24,6 +24,7 @@ public class BlockObsidianVariant extends BlockObsidian {
 		this.setResistance(2500.0F);
 		this.setHardness(50.0F);
 		this.setUnlocalizedName("tragicmc.tragicObsidian");
+		this.setLightLevel(15.0F);
 	}
 
 	@Override

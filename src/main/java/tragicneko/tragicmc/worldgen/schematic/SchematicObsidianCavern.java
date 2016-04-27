@@ -144,7 +144,7 @@ public class SchematicObsidianCavern extends Schematic {
 
 		for (int wah = 0; wah < 5; wah++)
 		{
-			for (int wuh = 0; wuh < 7; wuh++) //To make sure the cavern is completely empty before generation
+			for (int wuh = 0; wuh < 5; wuh++) //To make sure the cavern is completely empty before generation
 			{
 				this.setBlockToAir(world, x + wah - 2, y, z + wuh - 2);
 			}
@@ -193,19 +193,19 @@ public class SchematicObsidianCavern extends Schematic {
 
 			for (int x1 = 0; x1 < 3; x1++) //To generate the obsidian tube
 			{
+				
+				this.setBlock(world, x + x1 - 1, y + who, z - 1, obs);
+				this.setBlock(world, x - 1, y + who, z + x1 - 1, obs);
+				this.setBlock(world, x + 2 - 1, y + who, z + x1 - 1, obs);
+				this.setBlock(world, x + x1 - 1, y + who, z + 2 - 1, obs);
+
 				if ((y + who) % 12 == 0 && y + who != starty)
 				{
-					this.setBlock(world, x + x1 - 1, y + who, z - 1, glowstone);
-					this.setBlock(world, x - 1, y + who, z + x1 - 1, glowstone);
-					this.setBlock(world, x + 2 - 1, y + who, z + x1 - 1, glowstone);
-					this.setBlock(world, x + x1 - 1, y + who, z + 2 - 1, glowstone);
-				}
-				else
-				{
-					this.setBlock(world, x + x1 - 1, y + who, z - 1, obs);
-					this.setBlock(world, x - 1, y + who, z + x1 - 1, obs);
-					this.setBlock(world, x + 2 - 1, y + who, z + x1 - 1, obs);
-					this.setBlock(world, x + x1 - 1, y + who, z + 2 - 1, obs);
+					final int i = rand.nextInt(3);
+					this.setBlock(world, x, y + who, z - 1, TragicBlocks.ObsidianVariant, i, 3);
+					this.setBlock(world, x - 1, y + who, z, TragicBlocks.ObsidianVariant, i, 3);
+					this.setBlock(world, x + 1, y + who, z, TragicBlocks.ObsidianVariant, i, 3);
+					this.setBlock(world, x, y + who, z + 1, TragicBlocks.ObsidianVariant, i, 3);
 				}
 			}
 		}
@@ -620,8 +620,7 @@ public class SchematicObsidianCavern extends Schematic {
 			break;
 		}
 
-		if (world.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.ladder && world.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.air) this.setBlockToAir(world, x, y, z);
-
+		this.setBlockToAir(world, x, y, z);
 	}
 
 	public void generateCavernOfferings(int variant, World world, Random rand, int x, int y, int z) {
@@ -785,7 +784,7 @@ public class SchematicObsidianCavern extends Schematic {
 				mrow = 6;
 			}
 
-			this.setBlock(world, x, 1, z, chest, 0, 2, 0, 2, this.getChestHooks(0));
+			this.setBlock(world, x, 1, z, chest, 0, 2, this.getChestHooks(0));
 			this.setBlock(world, x, 2, z, summon, mrow, 2);
 
 			zera = rand.nextInt(4) + 1;
@@ -824,7 +823,7 @@ public class SchematicObsidianCavern extends Schematic {
 				mrow = 6;
 			}
 
-			this.setBlock(world, x, 1, z, chest, 0, 2, 0, 2, this.getChestHooks(2));
+			this.setBlock(world, x, 1, z, chest, 0, 2, this.getChestHooks(2));
 
 			Block luxury = SchematicDesertTower.luxuryBlocks[rand.nextInt(SchematicDesertTower.luxuryBlocks.length)];
 			int meta = 0;
@@ -866,7 +865,7 @@ public class SchematicObsidianCavern extends Schematic {
 			break;
 		}
 	}
-	
+
 	public ChestGenHooks getChestHooks(int flag) {
 		ChestGenHooks hook = TragicItems.LameChestHook;
 		if (flag == 0)

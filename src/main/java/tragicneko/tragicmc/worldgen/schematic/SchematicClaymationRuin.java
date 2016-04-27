@@ -23,6 +23,11 @@ public class SchematicClaymationRuin extends Schematic {
 	public SchematicClaymationRuin(BlockPos pos, Structure str) {
 		super(pos, str, 5, 5, 5);
 	}
+	
+	@Override
+	public boolean shouldLimitSpawnerRate() {
+		return true;
+	}
 
 	@Override
 	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {

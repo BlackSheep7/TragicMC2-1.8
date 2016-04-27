@@ -284,7 +284,7 @@ public class SchematicKitsuneDen extends Schematic {
 			{
 				for (int z1 = -4; z1 < 5; z1++)
 				{
-					if (y1 == 0)
+					if (y1 == 0 && Math.abs(x1) < 4 && Math.abs(z1) < 4)
 					{
 						this.setBlock(world, x + x1, y + y1, z + z1, fox, 1, 2);
 					}

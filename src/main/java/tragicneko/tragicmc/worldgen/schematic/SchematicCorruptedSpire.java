@@ -3,7 +3,6 @@ package tragicneko.tragicmc.worldgen.schematic;
 import static net.minecraft.init.Blocks.bedrock;
 import static net.minecraft.init.Blocks.mob_spawner;
 import static net.minecraft.init.Blocks.standing_sign;
-import static net.minecraft.init.Blocks.wall_sign;
 import static tragicneko.tragicmc.TragicBlocks.CelledBlock;
 import static tragicneko.tragicmc.TragicBlocks.CelledLamp;
 import static tragicneko.tragicmc.TragicBlocks.ErodedStone;
@@ -26,6 +25,11 @@ public class SchematicCorruptedSpire extends Schematic {
 
 	public SchematicCorruptedSpire(BlockPos pos, Structure str) {
 		super(pos, str, 120, 52, 36);
+	}
+	
+	@Override
+	public boolean shouldLimitSpawnerRate() {
+		return true;
 	}
 
 	@Override
@@ -2463,8 +2467,8 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 		}
 
-		this.setBlock(world, x - 1, y, z, wall_sign, 4, 2, "Floor 1");
-		this.setBlock(world, x - 1, y, z + 1, wall_sign, 4, 2, new Object[] {new String[] {"Tranquil", "Beginnings!"}});
+		this.setBlock(world, x - 1, y - 1, z, standing_sign, 4, 2, "Floor 1");
+		this.setBlock(world, x - 1, y - 1, z + 1, standing_sign, 4, 2, new Object[] {new String[] {"Tranquil", "Beginnings!"}});
 
 		this.generateFirstFloor2(world, rand, x, y, z);
 	}
@@ -9346,8 +9350,8 @@ public class SchematicCorruptedSpire extends Schematic {
 			this.setBlock(world, x + 19, y, z + 3, Spike, 0, 2);
 		}
 
-		this.setBlock(world, x - 1, y, z, wall_sign, 4, 2, "Floor " + floorNumber);
-		this.setBlock(world, x - 1, y, z + 1, wall_sign, 4, 2, "Floor " + floorNumber);
+		this.setBlock(world, x - 1, y - 1, z, standing_sign, 4, 2, "Floor " + floorNumber);
+		this.setBlock(world, x - 1, y - 1, z + 1, standing_sign, 4, 2, "Floor " + floorNumber);
 
 		return this.generateNormalFloor2(world, rand, x, y, z, floorNumber, lastHole);
 	}

@@ -77,7 +77,6 @@ public class SchematicCelestialTemple extends Schematic {
 
 				for (BlockPos coords2 : list)
 				{
-					block = world.getBlockState(coords2).getBlock();
 					if (!cands.contains(coords2))
 					{
 						if (yMax < coords2.getY()) yMax = coords2.getY();

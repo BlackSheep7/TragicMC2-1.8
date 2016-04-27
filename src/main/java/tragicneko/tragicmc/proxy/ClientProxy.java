@@ -434,7 +434,7 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToBakery(TragicBlocks.DarkStone, getPrefixedArray(darkStone));
 			registerBlockToBakery(TragicBlocks.DarkCobblestone, getPrefixedArray(darkCobble));
 			registerBlockToBakery(TragicBlocks.LightCobblestone, getPrefixedArray(lightCobble));
-			registerBlockToBakery(TragicBlocks.TragicObsidian, getPrefixedArray(obsidian));
+			registerBlockToBakery(TragicBlocks.ObsidianVariant, getPrefixedArray(obsidian));
 			registerBlockToBakery(TragicBlocks.DeadDirt, getPrefixedArray(deadDirt));
 			registerBlockToBakery(TragicBlocks.DarkSandstone, getPrefixedArray(darkSandstone));
 			registerBlockToBakery(TragicBlocks.TragicOres, getPrefixedArray(ores));
@@ -611,7 +611,7 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.LightStone, ZERO, "lightStone");
 			registerBlockToMesher(TragicBlocks.Spike, ZERO, "spike");
 
-			for (i = 0; i < obsidian.length; i++) registerBlockToMesher(TragicBlocks.TragicObsidian, i, obsidian[i]);
+			for (i = 0; i < obsidian.length; i++) registerBlockToMesher(TragicBlocks.ObsidianVariant, i, obsidian[i]);
 			for (i = 0; i < deadDirt.length; i++) registerBlockToMesher(TragicBlocks.DeadDirt, i, deadDirt[i]);
 			registerBlockToMesher(TragicBlocks.DarkSand, ZERO, "darkSand");
 			for (i = 0; i < darkSandstone.length; i++) registerBlockToMesher(TragicBlocks.DarkSandstone, i, darkSandstone[i]);

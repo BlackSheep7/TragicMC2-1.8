@@ -16,11 +16,13 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 import tragicneko.tragicmc.worldgen.structure.TickBuilder;
 
 public class TileEntityStructureSeed extends TileEntity implements ITickable {
+	
+	public boolean warned = false;
 
 	@Override
 	public void update()
 	{
-		if (!this.worldObj.isRemote && this.worldObj.getTotalWorldTime() % 20L == 0L) this.growStructure();
+		if (!this.worldObj.isRemote && this.worldObj.getTotalWorldTime() % 5L == 0L && !warned) this.growStructure();
 	}
 
 	public void growStructure()
@@ -35,6 +37,7 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 		{
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
 			if (player != null) player.addChatMessage(new ChatComponentText("The structure you are attempting to generate is null for some reason. Try a different seed."));
+			warned = true;
 			return;
 		}
 
@@ -42,6 +45,7 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 		{
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
 			if (player != null) player.addChatMessage(new ChatComponentText(structure.getLocalizedName() + " wasn't able to generate due to not enough height!"));
+			warned = true;
 			return;
 		}
 
@@ -56,6 +60,7 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 		else
 		{
 			TragicMC.logError("Something went wrong while generating a " + structure.getLocalizedName() + " with a structure seed");
+			warned = true;
 		}
 	}
 

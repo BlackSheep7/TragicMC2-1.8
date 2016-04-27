@@ -1552,9 +1552,9 @@ public class TragicItems {
 		ChallengeScroll = (new ItemChallenge());
 		GameRegistry.registerItem(ChallengeScroll, "challengeScroll");
 
-		BossStructureHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 0, 1, 5));
-		NetherStructureHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 0, 1, 15));
-		AwesomeChestHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 0, 1, 25));
+		BossStructureHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 1, 1, 5));
+		NetherStructureHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 1, 1, 15));
+		AwesomeChestHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 1, 1, 25));
 	}
 
 }

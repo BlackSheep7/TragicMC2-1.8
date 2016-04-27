@@ -45,7 +45,6 @@ public class TickBuilder {
 
 	public TickBuilder(World world) {
 		this.theWorld = world;
-		if (world != null) logger.info("New tick builder added for world of " + world.provider.getDimensionName());
 		this.builders.put(world, this);
 	}
 
@@ -91,17 +90,14 @@ public class TickBuilder {
 				{
 					final int progress = sch.placedBlocks;
 
-					Set<BlockPos> set = sch.map.keySet();
-					Iterator<BlockPos> ite2 = set.iterator();
 					boolean hasContinued = false;
 					int i = 0; //to keep track of iterations we've done through the map
 
-					while (ite2.hasNext() && placements < BUILD_LIMIT && totalPlaces < OVERALL_BUILD_LIMIT)
+					for (int j = 0; j < sch.list.size() && placements < BUILD_LIMIT && totalPlaces < OVERALL_BUILD_LIMIT; j++)
 					{
-						BlockPos pos = ite2.next();
 						if (i++ < progress && !hasContinued) continue;
 						hasContinued = true;
-						PosPreset pre = sch.map.get(pos);
+						PosPreset pre = sch.list.get(j);
 						if (pre != null)
 						{
 							sch.setMappedBlock(tb.theWorld, pre);
@@ -126,11 +122,16 @@ public class TickBuilder {
 			logger.warn("Builder already has a mapping for this schematic's origin, ignoring...");
 			return;
 		}
+		else
+		{
+			logger.info("Added schematic with origin of " + origin + (sch.structure != null ? (" for the structure, " + sch.structure.getLocalizedName()) : ""));
+		}
 		this.schemas.put(origin, sch);
 	}
 
 	public synchronized void removeSchematic(BlockPos origin) {
-		logger.info("Removed schematic at origin of " + origin);
+		Schematic sch = this.schemas.get(origin);
+		logger.info("Removed schematic at origin of " + origin + (sch != null && sch.structure != null ? (" for the structure, " + sch.structure.getLocalizedName()) : ""));
 		this.schemas.remove(origin);
 	}
 

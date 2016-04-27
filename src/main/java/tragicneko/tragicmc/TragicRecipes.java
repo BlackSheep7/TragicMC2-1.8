@@ -1688,19 +1688,19 @@ public class TragicRecipes {
 				TragicItems.DyingObsidianOrb, TragicItems.CryingObsidianOrb, TragicItems.BleedingObsidianOrb, Items.nether_star
 				);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.TragicObsidian, 3, 0),
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.ObsidianVariant, 3, 0),
 				"xx",
 				"xx",
 				'x', TragicItems.CryingObsidianOrb
 				);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.TragicObsidian, 3, 1),
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.ObsidianVariant, 3, 1),
 				"xx",
 				"xx",
 				'x', TragicItems.BleedingObsidianOrb
 				);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.TragicObsidian, 3, 2),
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.ObsidianVariant, 3, 2),
 				"xx",
 				"xx",
 				'x', TragicItems.DyingObsidianOrb

@@ -139,7 +139,7 @@ public abstract class Structure {
 	 */
 	public Schematic generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
-		return !world.isRemote && this.canGenerate() ? this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(variant, world, rand, x, y, z) : null;
+		return !world.isRemote && this.canGenerate() ? this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(variant, world, rand, x, y, z).sortIntoList() : null;
 	}
 
 	public String getLocalizedName()
