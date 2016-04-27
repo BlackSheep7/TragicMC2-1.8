@@ -265,19 +265,19 @@ public class EntityJetNeko extends EntityNeko {
 	@Override
 	public String getLivingSound()
 	{
-		return null;// TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.living" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return super.getHurtSound();// TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(6) == 0 ? "tragicmc:mob.jetneko.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(6) == 0 ? "tragicmc:mob.jetneko.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return null;// TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.jetneko.death" : null;
 	}
 
 	@Override
