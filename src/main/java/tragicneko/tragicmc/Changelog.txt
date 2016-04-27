@@ -4761,7 +4761,7 @@ Adjusted sizes for the various Neko subtypes, they are all smaller than the base
 Added item to spawn a Mecha Exo, added Wrench to turn a mecha exo back into it's item form, this will be used for other Neko related items as well
 Added Mecha Neko's drops, added textures for the new items
 
-4.51.3112++ <223> (April 25, 2016) [Conversion of structures to use instantiated schematics, using a tick builder to build them]
+4.51.3133 <223> (April 25, 2016) [Conversion of structures to use instantiated schematics, using a tick builder to build them]
 Rewrote the abstraction layer that my structures use to convert from their current state to map form
 Implemented the Tick Builders, added config option to disable them and revert to the previous method of generating structures all at once
 Fixed lots of initial bugs (mostly with using the tick builder instances correctly and ensuring the schematic continues correctly on chunk reload)
@@ -4777,6 +4777,16 @@ Modified Structure/Schematic methods to generate only one schematic per generati
 then generating a new one to hand off to the tick builder
 Added tick rate configurability for the Tick Builder
 Fixed concurrency issue with getting entity drops
+Added sounds for Jet Neko (lots of singing)
+Recorded sounds for Science Neko, need to actually add them and record more
+Made it so that the Sound Extrapolator displays which entity it's using for sounds and also made it so that you can cycle between living, hurt and death sounds,
+this is also displayed where the entity is in the tooltip
+Minor fixes for the Obisidan Cavern, Kitsune Den and Corrupted Spire schematics
+Changed how spawners are setup certain schematics that have a lot of them, reduced the range and spawn rate in them
+Fixed Challenge Scrolls generating improperly in chests
+Fixed possible crash when regenerating an Obsidian Cavern from chunk memory
+After creation of the schematic, it is passed off into a list as we no longer need to use the keys to be used by the tick builder
+Bump version for test build
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
