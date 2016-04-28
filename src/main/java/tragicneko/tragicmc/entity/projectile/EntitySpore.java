@@ -28,7 +28,7 @@ public class EntitySpore extends EntityProjectile {
 			if (mop.entityHit instanceof EntityLivingBase && !(mop.entityHit instanceof EntityTox) && !(mop.entityHit instanceof EntityErkel))
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
-				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 2));
+				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 200, 2));
 			}
 		}
 
