@@ -756,6 +756,17 @@ public class TragicBlocks {
 		OreDictionary.registerOre("plankWood", DarkwoodPlanks);
 		OreDictionary.registerOre("logWood", Nekowood);
 		OreDictionary.registerOre("plankWood", NekowoodPlanks);
+		
+		for (int i = 0; i < 16; i++) OreDictionary.registerOre("flowers", new ItemStack(Blocks.red_flower, 1, i));
+		for (int i = 0; i < 6; i++) OreDictionary.registerOre("flowers", new ItemStack(Blocks.double_plant, 1, i));
+		for (int i = 0; i < 16; i++) OreDictionary.registerOre("flowers", new ItemStack(TragicFlower, 1, i));
+		for (int i = 0; i < 16; i++) OreDictionary.registerOre("flowers", new ItemStack(TragicFlower2, 1, i));
+		OreDictionary.registerOre("flowers", new ItemStack(Blocks.yellow_flower));
+		
+		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.red_mushroom));
+		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.brown_mushroom));
+		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.red_mushroom_block));
+		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.brown_mushroom_block));
 
 		java.util.Set<BiomeGenBase> set = FlowerWorldGen.allowedBiomes;
 		BiomeGenBase[] biomes = set.toArray(new BiomeGenBase[set.size()]);

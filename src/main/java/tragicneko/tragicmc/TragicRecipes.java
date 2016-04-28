@@ -1863,6 +1863,12 @@ public class TragicRecipes {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.ToxicAmalgation),
 				new ItemStack(TragicItems.Projectile, 1, 11), TragicItems.Thorns, "materialVine", TragicItems.InterestingResin));
 		
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.ToxicAmalgation),
+				new ItemStack(TragicItems.Projectile, 1, 11), TragicItems.Thorns, "flowers", TragicItems.InterestingResin));
+		
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.ToxicAmalgation),
+				new ItemStack(TragicItems.Projectile, 1, 11), TragicItems.Thorns, "mushrooms", TragicItems.InterestingResin));
+		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LunarPowder),
 				Items.glowstone_dust, TragicItems.SoulExcess, TragicItems.Ectoplasm, TragicItems.WispParticles, TragicItems.StarPieces);
 		
@@ -1882,10 +1888,10 @@ public class TragicRecipes {
 				TragicItems.NanoBots, TragicItems.CatalyticCompound, TragicItems.IreNode, TragicItems.LightningOrb);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.NauseatingConcoction),
-				TragicItems.Ectoplasm, TragicItems.BoneMarrow, Items.slime_ball, Items.spider_eye, TragicItems.Ash);
+				Items.sugar, TragicItems.BoneMarrow, Items.slime_ball, Items.spider_eye, TragicItems.Ash);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CreepyIdol),
-				TragicItems.Chitin, TragicItems.Horn, TragicItems.InterestingResin, Items.clay_ball, TragicItems.SoulExcess);
+				TragicItems.Chitin, TragicItems.Horn, TragicItems.InterestingResin, Items.rabbit_foot, TragicItems.SoulExcess);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.PurifiedEnergy),
 				TragicItems.EnchantedTears, TragicItems.CatalyticCompound, TragicItems.LightningOrb);
