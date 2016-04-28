@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.events;
 
 import static tragicneko.tragicmc.TragicMC.rand;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockDoublePlant;
@@ -15,8 +16,10 @@ import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntitySpider;
@@ -28,7 +31,6 @@ import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -268,23 +270,32 @@ public class DropEvents {
 		{
 			ItemStack stack = null;
 
-			switch(rand.nextInt(6))
+			switch(rand.nextInt(9))
 			{
 			case 0:
 			case 1:
-				stack = new ItemStack(TragicItems.Projectile, 1, rand.nextInt(3) + 2);
+				stack = new ItemStack(TragicItems.Projectile, rand.nextInt(3) + 1, 11);
 				break;
 			case 2:
-				stack = new ItemStack(TragicItems.Ash, rand.nextInt(3) + 1);
+				stack = new ItemStack(TragicItems.Ash, rand.nextInt(4) + 1);
 				break;
 			case 3:
-				stack = new ItemStack(TragicItems.Projectile, rand.nextInt(3) + 1, 10 + rand.nextInt(2));
+				if (rand.nextBoolean()) break;
+				stack = new ItemStack(TragicItems.EnchantedTears, rand.nextInt(2) + 1);
 				break;
 			case 4:
-				stack = new ItemStack(TragicItems.BoneMarrow, rand.nextInt(2) + 1);
+				stack = new ItemStack(TragicItems.BoneMarrow, rand.nextInt(3) + 1);
 				break;
 			case 5:
-				stack = new ItemStack(TragicItems.Ectoplasm, rand.nextInt(2) + 1);
+				stack = new ItemStack(TragicItems.Ectoplasm, rand.nextInt(4) + 1);
+				break;
+			case 6:
+				if (rand.nextBoolean()) break;
+				stack = new ItemStack(TragicItems.CreepyIdol, 1);
+				break;
+			case 7:
+				if (rand.nextBoolean()) break;
+				stack = new ItemStack(TragicItems.Shadowskin, 1);
 				break;
 			}
 
@@ -295,10 +306,22 @@ public class DropEvents {
 			}
 		}
 
-		if (event.entityLiving instanceof EntitySpider && rand.nextInt(16) == 0)
+		if (event.entityLiving instanceof EntitySpider && rand.nextInt(12) == 0)
 		{
 			event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
-					new ItemStack(TragicItems.WovenSilk, 1)));
+					new ItemStack(rand.nextBoolean() ? TragicItems.WovenSilk : TragicItems.Chitin, 1)));
+		}
+		
+		if (event.entityLiving instanceof EntitySilverfish && rand.nextInt(4) == 0)
+		{
+			event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+					new ItemStack(TragicItems.Chitin, 1)));
+		}
+		
+		if (event.entityLiving instanceof EntityGuardian && rand.nextInt(6) == 0)
+		{
+			event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+					new ItemStack(rand.nextBoolean() ? TragicItems.AquaOrb : TragicItems.EnchantedTears, 1)));
 		}
 
 		if (event.entityLiving instanceof EntitySquid && rand.nextInt(4) == 0)
