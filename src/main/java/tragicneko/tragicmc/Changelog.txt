@@ -4788,6 +4788,16 @@ Fixed possible crash when regenerating an Obsidian Cavern from chunk memory
 After creation of the schematic, it is passed off into a list as we no longer need to use the keys to be used by the tick builder
 Bump version for test build
 
+4.51.3133 <224> (April 27, 2016)
+Reduced length of time you are inflicted with Poison from Spores
+Clay ball replaced in Creepy Idol recipe with Rabbit foot
+Added alternative Toxic Amalgation recipe that uses Flowers instead of Vines, includes all of my flowers and the vanilla ones
+Added another alternative Amalgation recipe that uses mushrooms intead of flowers or vines, includes all of the vanilla ones
+Changed Nauseating Concoction recipe to require sugar instead of Ectoplasm (Ectoplasm was used a bit too much in catalyst item recipes)
+Added Chitin as a drop for Spiders and Silverfish (more common for Silverfish)
+Changed Witch drops to be Spore instead of other random projectiles and to also have a chance to drop Shadowskin and Creepy Idols
+Added drop for Guardians, they can now drop Aqua Orbs and Enchanted Tears (they are generally a tough mob compared to other Vanilla mobs)
+
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9, for now they can just use namespaced registries
