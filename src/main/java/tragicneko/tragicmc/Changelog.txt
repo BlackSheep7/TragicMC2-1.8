@@ -4788,7 +4788,7 @@ Fixed possible crash when regenerating an Obsidian Cavern from chunk memory
 After creation of the schematic, it is passed off into a list as we no longer need to use the keys to be used by the tick builder
 Bump version for test build
 
-4.51.3133 <224> (April 27, 2016)
+4.51.3133++ <224> (April 27, 2016)
 Reduced length of time you are inflicted with Poison from Spores
 Clay ball replaced in Creepy Idol recipe with Rabbit foot
 Added alternative Toxic Amalgation recipe that uses Flowers instead of Vines, includes all of my flowers and the vanilla ones
@@ -4797,12 +4797,40 @@ Changed Nauseating Concoction recipe to require sugar instead of Ectoplasm (Ecto
 Added Chitin as a drop for Spiders and Silverfish (more common for Silverfish)
 Changed Witch drops to be Spore instead of other random projectiles and to also have a chance to drop Shadowskin and Creepy Idols
 Added drop for Guardians, they can now drop Aqua Orbs and Enchanted Tears (they are generally a tough mob compared to other Vanilla mobs)
+Reset fall distance for when an Exo is using it's thrusters, as it's not technically falling and shouldn't take fall damage for being in the air an extended amount of time
+Started making the model for the Exo
+Ensure the Exo isn't being ridden when a Wrench is used on it so that it isn't basically stolen from literally under the rider's nose (unless they don't have a
+nose then we don't care about them)
+Adding config options for the new nekos and ridable entities
+Added attack damage attribute to Mecha Exo
+Added Kurayami allowance to the config, that way it can be disabled independently from the Doomsday
+Setup Mecha Exo as a spawnable entity in the entity list
+Added localization for Mecha Exo
+Fixed bug with Neko's celebrating the start of each month instead of their birthday week
+Fixed similar bug with getting if it was Halloween week, increased length of time in which it is treated as Halloween
+Fixed Guardian Shields doing wonky things when their owner attempts to launch them at enemies
+Updated textures for the Nekos
+Added effect that made Corrupted mobs render darker the longer they are corrupted, mini-bosses do not render darker, only affects my mobs
+Reduced opacity of the Corruption render effect
+Fixed creative mode players being affected by Corruption radiation
+Fixed Mini-Bosses incrementing Corruption ticks
+Fixed statue datawatcher incorrectly getting the animated variable, fixed statue placement offset
+Fixed riders taking suffocation damage when their ride went under something (only affects my mobs)
+Built a few possible structures for the Neko Homeworld
+Made it so that Compressed Nekite gives off light (so that I can use it for lighting in the structures)
+Converted Doomsday, Structure and Challenge to use their namespaced registries
+Added a load method for Doomsday since they need to be initialized before items are
+Adding new Structures/Schematics for Neko Homeworld
+Moved ChestGenHooks out of the TragicItems class and put them into their own class, renamed the hooks to more fitting names
+Somewhat modified uncommon hooks to weigh more to common items
+Added hidden chest to Claymation Ruin boss room
+
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
-Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9, for now they can just use namespaced registries
-Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my own drophelper's things are put into a json file in the
-config directory so that they can be easily modified by others, just like I'm planning on doing with the lores and enchantments
+Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
+Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my entity's drops and my custom chest gen hooks are able to be
+overridden and configured via json files just like the lores and enchantment entries are now
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
@@ -4813,7 +4841,7 @@ Neko homeworld with new neko types:
 *Science Neko - Intelligent
 *Mecha Neko - War-like
 *Mecha Exo - Ridable entity
-Assault Neko - Need to become better, faster, stronger
+Assault Neko - Decent armor, low health, attacks with a battering ram charge attack, normally hits with a laser sword
 Professor Nekoid - The greatest, best, genius
 *Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
 
