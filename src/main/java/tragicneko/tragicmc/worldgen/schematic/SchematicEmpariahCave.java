@@ -8,7 +8,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -67,7 +67,7 @@ public class SchematicEmpariahCave extends Schematic {
 			}
 		}
 
-		this.setBlock(world, x, y - 31, z, Blocks.chest, 0, 2, TragicItems.BossStructureHook);
+		this.setBlock(world, x, y - 31, z, Blocks.chest, 0, 2, ChestHooks.rareHook);
 		this.setBlock(world, x, y - 30, z, TragicBlocks.SummonBlock, 6, 2);
 
 		if (TragicConfig.getBoolean("allowAbomination"))

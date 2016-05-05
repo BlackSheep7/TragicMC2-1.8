@@ -5,15 +5,12 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -867,10 +864,10 @@ public class SchematicObsidianCavern extends Schematic {
 	}
 
 	public ChestGenHooks getChestHooks(int flag) {
-		ChestGenHooks hook = TragicItems.LameChestHook;
+		ChestGenHooks hook = ChestHooks.commonHook;
 		if (flag == 0)
 		{
-			hook = TragicItems.BossStructureHook;
+			hook = ChestHooks.rareHook;
 		}
 		else if (flag == 1)
 		{
@@ -878,7 +875,7 @@ public class SchematicObsidianCavern extends Schematic {
 		}
 		else if (flag == 2)
 		{
-			hook = TragicItems.AwesomeChestHook;
+			hook = ChestHooks.epicHook;
 		}
 		return hook;
 	}

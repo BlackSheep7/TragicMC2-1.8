@@ -7,7 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicCubeMaze extends Schematic {
@@ -134,7 +134,7 @@ public class SchematicCubeMaze extends Schematic {
 
 				this.generateOpenings(world, rand, x + x0, y + y1, z + z0, roomType, y1, invFlag);
 				boolean treasure = roomType == 0 && rand.nextInt(8) == 0 && t == 0 && y1 > 5 && y1 < 28;
-				this.setBlock(world, x + x0, y + y1 + 3, z + z0, treasure ? Blocks.chest : (rand.nextInt(16) == 0 ? Blocks.air : Blocks.glowstone), 0, 2, TragicItems.NetherStructureHook);
+				this.setBlock(world, x + x0, y + y1 + 3, z + z0, treasure ? Blocks.chest : (rand.nextInt(16) == 0 ? Blocks.air : Blocks.glowstone), 0, 2, ChestHooks.uncommonHook);
 				if (treasure)
 				{
 					t++;

@@ -8,7 +8,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicSpiderNest extends Schematic {
@@ -47,7 +47,7 @@ public class SchematicSpiderNest extends Schematic {
 							}
 							else if (rand.nextInt(16) == 0)
 							{
-								this.setBlock(world, x + x1, y + y1, z + z1, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
+								this.setBlock(world, x + x1, y + y1, z + z1, Blocks.chest, 0, 2, ChestHooks.uncommonHook);
 							}
 							else
 							{

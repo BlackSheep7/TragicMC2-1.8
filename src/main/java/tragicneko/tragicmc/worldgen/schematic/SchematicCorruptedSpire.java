@@ -15,7 +15,7 @@ import java.util.Random;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicCorruptedSpire extends Schematic {
@@ -11757,8 +11757,8 @@ public class SchematicCorruptedSpire extends Schematic {
 		if ((floorNumber % 5) == 3)
 		{
 			//generate a double soul chest with good stuff in it
-			this.setBlock(world, x - 1, y - 3, z, SoulChest, 0, 3, TragicItems.AwesomeChestHook);
-			this.setBlock(world, x - 1, y - 3, z + 1, SoulChest, 0, 3, TragicItems.AwesomeChestHook);
+			this.setBlock(world, x - 1, y - 3, z, SoulChest, 0, 3, ChestHooks.epicHook);
+			this.setBlock(world, x - 1, y - 3, z + 1, SoulChest, 0, 3, ChestHooks.epicHook);
 		}
 
 		this.generateBedrockLayer(world, rand, x, y + 1, z);

@@ -6,7 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicDarkHut extends Schematic {
@@ -119,8 +119,8 @@ public class SchematicDarkHut extends Schematic {
 					this.setBlock(world, x + 1, y + y1, z - 4, TragicBlocks.Darkwood, 0, 2);
 
 					this.setBlock(world, x + 1, y + y1, z - 2, Blocks.anvil, 2, 2);
-					this.setBlock(world, x - 2, y + y1, z - 2, Blocks.trapped_chest, 0, 2, TragicItems.LameChestHook);
-					this.setBlock(world, x - 2, y + y1, z - 1, Blocks.trapped_chest, 0, 2, TragicItems.LameChestHook);
+					this.setBlock(world, x - 2, y + y1, z - 2, Blocks.trapped_chest, 0, 2, ChestHooks.commonHook);
+					this.setBlock(world, x - 2, y + y1, z - 1, Blocks.trapped_chest, 0, 2, ChestHooks.commonHook);
 
 					this.setBlock(world, x + 1, y + y1, z + 2, Blocks.crafting_table, 0, 2);
 

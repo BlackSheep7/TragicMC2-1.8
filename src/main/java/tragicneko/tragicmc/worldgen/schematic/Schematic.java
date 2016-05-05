@@ -402,7 +402,6 @@ public abstract class Schematic {
 			TragicMC.logWarning("Spawner setup failed. The tile entity was null or mobName was null.");
 			return false;
 		}
-		
 
 		if (limit)
 		{
@@ -437,17 +436,22 @@ public abstract class Schematic {
 	{
 		this.setBlock(world, x, y, z, block, meta, 3, new Object[] {});
 	}
-
-	public void setBlock(World world, int x, int y, int z, Block block, int meta, int flag, Object... params)
-	{
+	
+	public void setBlock(World world, int x, int y, int z, Block block, int meta, int flag, Object... params) {
+		this.setBlock(world, new BlockPos(x, y, z), block.getStateFromMeta(meta), params);
+	}
+	
+	public void setBlock(World world, BlockPos pos, IBlockState state) {
+		this.setBlock(world, pos, state, new Object[] {});
+	}
+	
+	public void setBlock(World world, BlockPos pos, IBlockState state, Object... params) {
 		if (TragicConfig.getBoolean("allowTickBuilder"))
 		{
-			this.setBlockToMap(new BlockPos(x, y, z), block.getStateFromMeta(meta), params);
+			this.setBlockToMap(pos, state, params);
 		}
 		else 
 		{//if the builder isn't used, all tile entity stuff is handled through here so we'll just call as if it was being handled by the builder
-			IBlockState state = block.getStateFromMeta(meta);
-			BlockPos pos = new BlockPos(x, y, z);
 			world.setBlockState(pos, state, 3);
 
 			if (state.getBlock() instanceof BlockSign)
@@ -511,6 +515,7 @@ public abstract class Schematic {
 		{
 			//TragicMC.logInfo("mapping is " + list.get(i));
 		} */
+		//TragicMC.logInfo("Map size is " + this.map.size());
 		this.map.clear();
 		return this;
 	}

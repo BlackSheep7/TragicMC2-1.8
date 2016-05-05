@@ -7,7 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicSoulTomb extends Schematic {
@@ -119,7 +119,7 @@ public class SchematicSoulTomb extends Schematic {
 		this.setBlock(world, x, y + 9, z, block, 1, 2);
 		this.setBlock(world, x, y + 10, z, block, 1, 2);
 
-		this.setBlock(world, x, y + 1, z, TragicBlocks.SoulChest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y + 1, z, TragicBlocks.SoulChest, 0, 2, ChestHooks.uncommonHook);
 
 		this.setBlock(world, x, y + 8, z, block, 1, 2);
 		this.setBlock(world, x, y + 8, z + 1, Blocks.flowing_lava, 0, 2);

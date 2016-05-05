@@ -7,7 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicDesertTower extends Schematic {
@@ -915,7 +915,7 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, sandstone, 2, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, ChestHooks.uncommonHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, sandstone, 2, 2);
 
@@ -1727,7 +1727,7 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, hardClay, 2, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, ChestHooks.uncommonHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, hardClay, 2, 2);
 
@@ -2710,7 +2710,7 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, brick, 1, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, ChestHooks.uncommonHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, brick, 1, 2);
 
@@ -3717,7 +3717,7 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, netherBrick, 2, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, ChestHooks.uncommonHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, netherBrick, 2, 2);
 
@@ -4709,7 +4709,7 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		this.setBlock(world, x, y, z - 2, ice, 2, 2);
 		this.setBlockToAir(world, x, y, z - 1);
-		this.setBlock(world, x, y, z, trapChest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, trapChest, 0, 2, ChestHooks.uncommonHook);
 		this.setBlockToAir(world, x, y, z + 1);
 		this.setBlock(world, x, y, z + 2, ice, 2, 2);
 

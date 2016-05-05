@@ -8,7 +8,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -42,7 +42,7 @@ public class SchematicLightSpire extends Schematic {
 			{
 				int xr = x + rand.nextInt(3) - rand.nextInt(3);
 				int zr = z + rand.nextInt(3) - rand.nextInt(3);
-				this.setBlock(world, xr, y + y1, zr, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
+				this.setBlock(world, xr, y + y1, zr, Blocks.chest, 0, 2, ChestHooks.uncommonHook);
 			}
 			else if (rand.nextInt(16) == 0)
 			{

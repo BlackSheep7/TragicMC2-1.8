@@ -9,7 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicKitsuneDen extends Schematic {
@@ -67,7 +67,7 @@ public class SchematicKitsuneDen extends Schematic {
 		this.setBlock(world, x + 2, y, z - 2, fox, 3, 2);
 		this.setBlock(world, x - 2, y, z - 2, fox, 3, 2);
 
-		this.setBlock(world, x, y, z, chest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, chest, 0, 2, ChestHooks.uncommonHook);
 		this.setBlock(world, x, y + 1, z, spawner, 0, 2, TragicConfig.getBoolean("allowKitsunakuma") ? "TragicMC.Kitsune" : "Blaze");
 
 		for (int z1 = -1; z1 < 2; z1++) //sets the extra sculpted blocks on the 0 layer
@@ -319,7 +319,7 @@ public class SchematicKitsuneDen extends Schematic {
 		this.setBlock(world, x + 1, y, z - 1, fox, 3, 2);
 		this.setBlock(world, x - 1, y, z - 1, fox, 3, 2);
 
-		this.setBlock(world, x, y, z, chest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, chest, 0, 2, ChestHooks.uncommonHook);
 		this.setBlock(world, x, y + 1, z, spawner, 0, 2, TragicConfig.getBoolean("allowJabba") ? "TragicMC.Jabba" : "Blaze");
 
 		this.setBlock(world, x + 1, y, z, fox, 3, 2);

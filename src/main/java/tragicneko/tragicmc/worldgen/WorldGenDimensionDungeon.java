@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.worldgen;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -17,8 +16,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.DungeonHooks;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.util.ChestHooks;
 
 public class WorldGenDimensionDungeon extends WorldGenerator {
 
@@ -143,7 +142,7 @@ public class WorldGenDimensionDungeon extends WorldGenerator {
 
                                     if (tileentity1 instanceof TileEntityChest)
                                     {
-                                        WeightedRandomChestContent.generateChestContents(rand, TragicItems.NetherStructureHook.getItems(rand), (TileEntityChest)tileentity1, TragicItems.NetherStructureHook.getCount(rand));
+                                        WeightedRandomChestContent.generateChestContents(rand, ChestHooks.uncommonHook.getItems(rand), (TileEntityChest)tileentity1, ChestHooks.uncommonHook.getCount(rand));
                                     }
 
                                     break label197;

@@ -1888,7 +1888,7 @@ public class TragicRecipes {
 				TragicItems.NanoBots, TragicItems.CatalyticCompound, TragicItems.IreNode, TragicItems.LightningOrb);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.NauseatingConcoction),
-				Items.sugar, TragicItems.BoneMarrow, Items.slime_ball, Items.spider_eye, TragicItems.Ash);
+				Items.sugar, TragicItems.BoneMarrow, Items.slime_ball, Items.fermented_spider_eye, TragicItems.Ash);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CreepyIdol),
 				TragicItems.Chitin, TragicItems.Horn, TragicItems.InterestingResin, Items.rabbit_foot, TragicItems.SoulExcess);

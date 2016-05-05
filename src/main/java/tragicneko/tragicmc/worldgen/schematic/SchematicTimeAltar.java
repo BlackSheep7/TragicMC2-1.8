@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -67,7 +67,7 @@ public class SchematicTimeAltar extends Schematic {
 
 		this.setBlock(world, x, y + 3, z, summon, 7, 2);
 
-		this.setBlock(world, x, y, z, chest, 0, 2, TragicItems.AwesomeChestHook);
+		this.setBlock(world, x, y, z, chest, 0, 2, ChestHooks.epicHook);
 
 		this.setBlock(world, x + 1, y, z, quartz); //blocks to ensure the chest is concealed
 		this.setBlock(world, x - 1, y, z, quartz);

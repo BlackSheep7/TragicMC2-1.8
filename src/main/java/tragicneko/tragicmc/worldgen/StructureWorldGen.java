@@ -30,8 +30,9 @@ public class StructureWorldGen implements IWorldGenerator {
 		final int top = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
 		ArrayList<Structure> cands = new ArrayList<Structure>();
 
-		for (Structure s : Structure.structureList)
+		for (int i = 0; i < Structure.getRegistrySize(); i++)
 		{
+			Structure s = Structure.getStructureById(i);
 			if (s != null && s.isValidDimension(world.provider.getDimensionId()))
 			{
 				if (s.isSurfaceStructure() && s.areCoordsValidForGeneration(world, new BlockPos(x, top, z), random) || s.areCoordsValidForGeneration(world, new BlockPos(x, y, z), random))

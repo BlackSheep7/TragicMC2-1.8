@@ -6,7 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicOutlook extends Schematic {
@@ -67,8 +67,8 @@ public class SchematicOutlook extends Schematic {
 				this.setBlock(world, x + z1, y + y1, z + x1, TragicBlocks.ErodedStone, 1, 2);
 			}
 		}
-		this.setBlock(world, x + 1, y + y1 + 1, z + 1, TragicBlocks.SoulChest, 0, 2, TragicItems.BossStructureHook);
-		this.setBlock(world, x + 1, y + y1 + 1, z + 2, TragicBlocks.SoulChest, 0, 2, TragicItems.BossStructureHook);
+		this.setBlock(world, x + 1, y + y1 + 1, z + 1, TragicBlocks.SoulChest, 0, 2, ChestHooks.rareHook);
+		this.setBlock(world, x + 1, y + y1 + 1, z + 2, TragicBlocks.SoulChest, 0, 2, ChestHooks.rareHook);
 		
 		this.setBlock(world, x, y + y1, z, TragicBlocks.ErodedStone, 1, 2);
 		this.setBlock(world, x - 1, y + y1, z, Blocks.ladder, 4, 2);

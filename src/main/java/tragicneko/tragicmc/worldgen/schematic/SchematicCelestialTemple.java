@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -223,8 +223,8 @@ public class SchematicCelestialTemple extends Schematic {
 		this.setBlock(world, x + 4, y, z + 1, obs, 0, 2);
 		this.setBlock(world, x + 4, y, z + 2, quartz, 1, 2);
 		this.setBlock(world, x + 4, y, z + 3, glow, 0, 2);
-		this.setBlock(world, x + 4, y, z + 4, chest, 0, 2, TragicItems.BossStructureHook);
-		this.setBlock(world, x + 4, y, z + 5, chest, 0, 2, TragicItems.BossStructureHook);
+		this.setBlock(world, x + 4, y, z + 4, chest, 0, 2, ChestHooks.rareHook);
+		this.setBlock(world, x + 4, y, z + 5, chest, 0, 2, ChestHooks.rareHook);
 		this.setBlock(world, x + 4, y, z + 6, glow, 0, 2);
 		this.setBlock(world, x + 4, y, z + 7, quartz, 1, 2);
 		this.setBlock(world, x + 4, y, z + 8, obs, 0, 2);

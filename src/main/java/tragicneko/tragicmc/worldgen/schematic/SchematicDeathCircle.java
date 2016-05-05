@@ -7,7 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicDeathCircle extends Schematic {
@@ -298,7 +298,7 @@ public class SchematicDeathCircle extends Schematic {
 		this.setBlock(world, x + 2, y, z + 1, exCob, 1, 2);
 
 		this.setBlock(world, x - 8, y, z, darkCob);
-		this.setBlock(world, x, y, z, chest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, chest, 0, 2, ChestHooks.uncommonHook);
 
 		this.setBlock(world, x - 4, y, z - 1, exCob, 1, 2);
 

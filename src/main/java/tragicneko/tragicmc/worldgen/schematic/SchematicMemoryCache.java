@@ -8,7 +8,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -46,7 +46,7 @@ public class SchematicMemoryCache extends Schematic {
 			}
 		}
 
-		this.setBlock(world, x, y, z, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
+		this.setBlock(world, x, y, z, Blocks.chest, 0, 2, ChestHooks.uncommonHook);
 
 		return this;
 	}

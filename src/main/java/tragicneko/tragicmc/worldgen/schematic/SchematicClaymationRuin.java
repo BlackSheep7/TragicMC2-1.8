@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
 import static tragicneko.tragicmc.TragicBlocks.Candle;
-import static tragicneko.tragicmc.TragicBlocks.DarkSand;
 import static tragicneko.tragicmc.TragicBlocks.DarkSandstone;
 import static tragicneko.tragicmc.TragicBlocks.SummonBlock;
 
@@ -11,7 +10,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicClaymationRuin extends Schematic {
@@ -463,7 +462,7 @@ public class SchematicClaymationRuin extends Schematic {
 
 		if (rand.nextInt(5) == 0)
 		{
-			this.setBlock(world, x, y + 1, z, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
+			this.setBlock(world, x, y + 1, z, Blocks.chest, 0, 2, ChestHooks.uncommonHook);
 			this.setBlockToAir(world, x, y + 2, z);
 			this.setBlockToAir(world, x, y + 3, z);
 		}
@@ -570,7 +569,7 @@ public class SchematicClaymationRuin extends Schematic {
 			}
 		}
 
-		if (rand.nextInt(20) == 0) this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.LameChestHook);
+		if (rand.nextInt(20) == 0) this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, ChestHooks.commonHook);
 
 		this.generateTunnels(world, rand, x, y, z);
 	}
@@ -965,7 +964,7 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					int xr = (x + ((rand.nextInt(9) + 3) * (rand.nextBoolean() ? -1 : 1)));
 					int zr = (z + rand.nextInt(24) - 12);
-					if (world.getBlockState(new BlockPos(xr, y + y1, zr)).getBlock().isAir(world, new BlockPos(xr, y + y1, zr))) this.setBlock(world, xr, y + y1, zr, Candle, 8, 2);
+					this.setBlock(world, xr, y + y1, zr, Candle, 8, 2);
 				}
 			}
 			else if (y1 == 7)
@@ -1039,6 +1038,7 @@ public class SchematicClaymationRuin extends Schematic {
 				{
 					this.setBlock(world, x + 1, y + 3, z + z1, Candle, 8, 2);
 					this.setBlock(world, x, y + 3, z + z1, SummonBlock, 9, 2);
+					this.setBlock(world, x, y + 1, z + z1, Blocks.chest, 0, 2, ChestHooks.epicHook);
 					this.setBlock(world, x -1, y + 3, z + z1, Candle, 8, 2);
 				}
 			}
@@ -1155,18 +1155,18 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 		default:
 		case 0:
-			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, ChestHooks.uncommonHook);
 			this.setBlock(world, x, y + 2, z, Blocks.mob_spawner, 0, 2, "Blaze");
 			break;
 		case 1:
-			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, ChestHooks.uncommonHook);
 			break;
 		case 2:
 			this.setBlock(world, x, y + 1, z, Blocks.mob_spawner, 0, 2, "Blaze");
 			break;
 		case 3:
 			this.setBlock(world, x, y + 1, z, Blocks.mob_spawner, 0, 2, "Blaze");
-			this.setBlock(world, x, y + 2, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
+			this.setBlock(world, x, y + 2, z, Blocks.trapped_chest, 0, 2, ChestHooks.uncommonHook);
 
 			for (byte x1 = -3; x1 < 4; x1++)
 			{
@@ -1198,7 +1198,7 @@ public class SchematicClaymationRuin extends Schematic {
 				}
 			}
 
-			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, ChestHooks.uncommonHook);
 			break;
 		case 5:
 			for (byte x1 = -1; x1 < 2; x1++)
@@ -1209,7 +1209,7 @@ public class SchematicClaymationRuin extends Schematic {
 				}
 			}
 
-			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, TragicItems.NetherStructureHook);
+			this.setBlock(world, x, y + 1, z, Blocks.trapped_chest, 0, 2, ChestHooks.uncommonHook);
 			this.setBlock(world, x, y, z, Blocks.tnt, 0, 2);
 			break;
 		}

@@ -7,7 +7,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicHackerNet extends Schematic {
@@ -56,7 +56,7 @@ public class SchematicHackerNet extends Schematic {
 				int xr = x + rand.nextInt(14) - rand.nextInt(14);
 				int yr = y + rand.nextInt(14) - rand.nextInt(14);
 				int zr = z + rand.nextInt(14) - rand.nextInt(14);
-				this.setBlock(world, xr, yr, zr, Blocks.chest, 0, 2, TragicItems.NetherStructureHook);
+				this.setBlock(world, xr, yr, zr, Blocks.chest, 0, 2, ChestHooks.uncommonHook);
 			}
 		}
 		return this;
