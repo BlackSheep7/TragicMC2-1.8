@@ -17,7 +17,6 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
@@ -27,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -121,14 +121,14 @@ public class EntityPlague extends TragicMob {
 			if (TragicConfig.getBoolean("allowCorruption") && this.ticksExisted % 60 == 0 && TragicConfig.getBoolean("plagueCorruption"))
 			{
 				int dif = this.worldObj.getDifficulty().getDifficultyId();
-				double d0 = dif == 2 ? 6.0 : (dif == 3 ? 16.0 : 10.0);
+				double d0 = dif == 2 ? 6.0 : (dif == 3 ? 24.0 : 12.0);
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(d0, d0, d0));
 
 				for (int i = 0; i < list.size(); i++)
 				{
 					Entity entity = list.get(i);
 
-					if (!this.canEntityBeSeen(entity) || !(entity instanceof EntityLivingBase) || ((EntityLivingBase)entity).isPotionActive(TragicPotion.Corruption)) continue;
+					if (!this.canEntityBeSeen(entity) || !(entity instanceof EntityLivingBase) || entity instanceof EntityPlayer && ((EntityPlayer)entity).capabilities.isCreativeMode) continue;
 
 					if (entity instanceof TragicMob && ((TragicMob) entity).canCorrupt() || entity instanceof EntityGolem)
 					{
@@ -141,26 +141,6 @@ public class EntityPlague extends TragicMob {
 					else if (entity instanceof EntityPlayer && !((EntityPlayer)entity).capabilities.isCreativeMode)
 					{
 						((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 200));
-
-						if (rand.nextBoolean())
-						{
-							if (this.rand.nextInt(16) == 0)
-							{
-								((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 100 + rand.nextInt(100)));
-							}
-							else if (this.rand.nextInt(16) == 0)
-							{
-								((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 80 + rand.nextInt(60)));
-							}
-							else if (TragicConfig.getBoolean("allowSubmission") && this.rand.nextInt(32) == 0)
-							{
-								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 160 + rand.nextInt(160)));
-							}
-							else if (TragicConfig.getBoolean("allowDisorientation") && this.rand.nextInt(16) == 0)
-							{
-								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 60 + rand.nextInt(80)));
-							}
-						}
 					}
 				}
 			}

@@ -264,7 +264,7 @@ public class PotionEvents {
 						if (entity.getDistanceToEntity(target) <= 4.0D && entity.canEntityBeSeen(target))
 						{
 							if (!flag) flag = true;
-							if (entity instanceof EntityPlayer && ((EntityPlayer) entity).capabilities.isCreativeMode) continue;
+							if (target instanceof EntityPlayer && ((EntityPlayer) target).capabilities.isCreativeMode) continue;
 							if (rand.nextBoolean() && !((EntityLivingBase) target).isPotionActive(TragicPotion.Corruption.id)) ((EntityLivingBase) target).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, temp.getDuration() / 2, temp.getAmplifier()));
 						}
 					}
@@ -721,7 +721,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void onCorruptedAttack(LivingHurtEvent event)
 	{
-		if (event.entityLiving.worldObj.isRemote || !TragicConfig.getBoolean("allowCorruption")) return;
+		if (event.entityLiving.worldObj.isRemote || !TragicConfig.getBoolean("allowCorruption") || event.entityLiving instanceof EntityPlayer && ((EntityPlayer) event.entityLiving).capabilities.isCreativeMode) return;
 
 		if (!event.entityLiving.isPotionActive(TragicPotion.Corruption.id))
 		{

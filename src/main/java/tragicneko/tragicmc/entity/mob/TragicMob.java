@@ -283,13 +283,14 @@ public abstract class TragicMob extends EntityMob
 
 		if (TragicConfig.getBoolean("allowCorruption"))
 		{
-			if (this.isPotionActive(TragicPotion.Corruption))
+			if (this.isPotionActive(TragicPotion.Corruption) && !(this instanceof TragicMiniBoss))
 			{
 				this.incrementCorruptionTicks();
 			}
 			else
 			{
-				this.setCorruptionTicks(this.getCorruptionTicks() - 1);
+				final int i = this instanceof TragicMiniBoss ? 0 : this.getCorruptionTicks() - 1;
+				this.setCorruptionTicks(i);
 			}
 
 			if (this.canChange() && this.getCorruptionTicks() >= 400 && this.rand.nextInt(200) <= TragicConfig.getInt("mobTransformationChance") && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
@@ -715,6 +716,7 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
+		if (src == DamageSource.inWall && this.ridingEntity != null) return false; /*
 		if (src.getEntity() instanceof EntityLivingBase) //ascension testing
 		{
 			if (((EntityLivingBase) src.getEntity()).getHeldItem() != null)
@@ -725,7 +727,7 @@ public abstract class TragicMob extends EntityMob
 					dmg += ((TragicWeapon) stack.getItem()).ascensionLevel;
 				}
 			}
-		}
+		} */
 		return super.attackEntityFrom(src, dmg);
 	}
 
@@ -759,7 +761,7 @@ public abstract class TragicMob extends EntityMob
 	{
 		Calendar calendar = this.worldObj.getCurrentDate();
 
-		if ((calendar.get(2) + 1 == 10 && calendar.get(5) > 29) || (calendar.get(2) + 1 == 11 || calendar.get(5) < 3))
+		if ((calendar.get(2) + 1 == 10 && calendar.get(5) > 27) || (calendar.get(2) + 1 == 11 && calendar.get(5) < 4))
 		{
 			return true;
 		}
