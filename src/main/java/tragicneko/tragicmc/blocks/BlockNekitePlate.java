@@ -29,6 +29,12 @@ public class BlockNekitePlate extends Block {
 		this.setHarvestLevel("pickaxe", 3);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumVariant.COMPRESSED));
 	}
+	
+	@Override
+	public int getLightValue(IBlockAccess world, BlockPos pos)
+	{
+		return this.getMetaFromState(world.getBlockState(pos)) == 0 ? 10 : super.getLightValue(world, pos);
+	}
 
 	@Override
 	public int damageDropped(IBlockState state)
