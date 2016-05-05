@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.client.render.mob;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -10,14 +11,15 @@ import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.client.model.ModelTox;
 import tragicneko.tragicmc.entity.mob.EntityTox;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 
-public class RenderTox extends RenderLiving {
+public class RenderTox extends RenderMob {
 
 	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Tox.png");
 	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Pox.png");
 
 	public RenderTox(RenderManager rm) {
-		super(rm, new ModelTox(), 0.855F);
+		super(rm, new ModelTox(), 0.855F, "");
 	}
 
 	@Override
@@ -26,6 +28,14 @@ public class RenderTox extends RenderLiving {
 		EntityTox tox = (EntityTox) entity;
 		float scale = tox.getToxType() == 0 ? 1.0F : 0.635F;
 		GL11.glScalef(scale, scale, scale);
+		
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0)
+		{
+			float f = (float) ((TragicMob) entity).getCorruptionTicks();
+			if (f > 400.0F) f = 400.0F;
+			final float f2 = 1.0F - (f / 400.0F);
+			GlStateManager.color(f2, f2, f2);
+		}
 	}
 
 	@Override

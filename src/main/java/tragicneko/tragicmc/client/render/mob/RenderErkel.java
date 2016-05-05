@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelErkel;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 
-public class RenderErkel extends RenderLiving {
+public class RenderErkel extends RenderMob {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Erkel.png");
 	private static final ResourceLocation ashenTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelAshen.png");
@@ -18,7 +18,7 @@ public class RenderErkel extends RenderLiving {
 	private static final ResourceLocation frozenTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelFrozen.png");
 
 	public RenderErkel(RenderManager rm) {
-		super(rm, new ModelErkel(), 0.625F);
+		super(rm, new ModelErkel(), 0.625F, "");
 	}
 
 	@Override

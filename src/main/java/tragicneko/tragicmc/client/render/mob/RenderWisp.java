@@ -6,12 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelBlock;
 
-public class RenderWisp extends RenderLiving {
+public class RenderWisp extends RenderMob {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/blocks/Transparency.png");
 
 	public RenderWisp(RenderManager rm) {
-		super(rm, new ModelBlock(), 0.275F);
+		super(rm, new ModelBlock(), 0.275F, "");
 	}
 
 	@Override

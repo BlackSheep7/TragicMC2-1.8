@@ -7,13 +7,13 @@ import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 
-public class RenderPumpkinhead extends RenderLiving {
+public class RenderPumpkinhead extends RenderMob {
 
 	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/PumpkinheadNormal.png");
 	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Pumpkinhead.png");
 
 	public RenderPumpkinhead(RenderManager rm) {
-		super(rm, new ModelPumpkinhead(), 0.655F);
+		super(rm, new ModelPumpkinhead(), 0.655F, "");
 	}
 
 	@Override

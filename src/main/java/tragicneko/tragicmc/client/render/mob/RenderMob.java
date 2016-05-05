@@ -1,13 +1,15 @@
 package tragicneko.tragicmc.client.render.mob;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 
 public class RenderMob extends RenderLiving {
 
@@ -29,7 +31,14 @@ public class RenderMob extends RenderLiving {
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
-		GL11.glScalef(scale, scale, scale);
+		GlStateManager.scale(scale, scale, scale);
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0)
+		{
+			float f = (float) ((TragicMob) entity).getCorruptionTicks();
+			if (f > 400.0F) f = 400.0F;
+			final float f2 = 1.0F - (f / 400.0F);
+			GlStateManager.color(f2, f2, f2);
+		}
 	}
 
 	@Override

@@ -7,11 +7,9 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import tragicneko.tragicmc.client.model.ModelNorVox;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 
 public class RenderNorVox extends RenderLiving {
 
@@ -27,7 +25,15 @@ public class RenderNorVox extends RenderLiving {
 	{
 		EntityNorVox vox = (EntityNorVox) entity;
 		float scale = vox.getNorVoxType() == 0 ? 1.455F : 1.0F;
-		GL11.glScalef(scale, scale, scale);
+		GlStateManager.scale(scale, scale, scale);
+		
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0)
+		{
+			float f = (float) ((TragicMob) entity).getCorruptionTicks();
+			if (f > 400.0F) f = 400.0F;
+			final float f2 = 1.0F - (f / 400.0F);
+			GlStateManager.color(f2, f2, f2);
+		}
 	}
 
 	@Override

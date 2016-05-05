@@ -7,11 +7,9 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import tragicneko.tragicmc.client.model.ModelCryse;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 
 public class RenderCryse extends RenderLiving {
 
@@ -27,7 +25,15 @@ public class RenderCryse extends RenderLiving {
 	{
 		EntityCryse cryse = (EntityCryse) entity;
 		float scale = cryse.getCryseType() == 0 ? 1.0F : 0.625F;
-		GL11.glScalef(scale, scale, scale);
+		GlStateManager.scale(scale, scale, scale);
+		
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0)
+		{
+			float f = (float) ((TragicMob) entity).getCorruptionTicks();
+			if (f > 400.0F) f = 400.0F;
+			final float f2 = 1.0F - (f / 400.0F);
+			GlStateManager.color(f2, f2, f2);
+		}
 	}
 
 	@Override
