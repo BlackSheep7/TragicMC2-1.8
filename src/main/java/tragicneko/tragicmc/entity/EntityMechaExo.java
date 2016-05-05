@@ -107,15 +107,18 @@ public class EntityMechaExo extends EntityRidable {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.19);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		double[] mechaExoStats = TragicConfig.getMobStat("mechaExoStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(mechaExoStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(mechaExoStats[1]);
+		this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(mechaExoStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(mechaExoStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(mechaExoStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue() {
-		return 24;
+		return TragicConfig.getMobStat("mechaExoStats").getArmorValue();
 	}
 
 	@Override
@@ -160,6 +163,7 @@ public class EntityMechaExo extends EntityRidable {
 		if (this.getThrustTicks() > 0 && this.riddenByEntity != null)
 		{
 			this.setThrustTicks(this.getThrustTicks() - 1);
+			this.fallDistance = 0F; //reset fall distance as it's not technically falling while thrusting forward
 			if (this.getThrustTicks() % 8 == 0 && this.getThrustTicks() > 0) this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 1.8F, 0.015F);
 
 			if (this.riddenByEntity instanceof EntityPlayer)
@@ -278,7 +282,7 @@ public class EntityMechaExo extends EntityRidable {
 						if (e instanceof IMultiPart)
 						{
 
-							((IMultiPart) e).getDefaultPart().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(entity), 5.0F);
+							((IMultiPart) e).getDefaultPart().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(entity), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 							if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(e, "tragicmc:boss.aegar.laser", 0.4F, 1.8F);
 							this.setFired(true, e.getEntityId());
 							cooldown = 10;
@@ -288,7 +292,7 @@ public class EntityMechaExo extends EntityRidable {
 						if (!(e instanceof EntityItem) && !(e instanceof EntityXPOrb) && !(e instanceof EntityArrow) && e != this && e != this.riddenByEntity)
 						{
 
-							e.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(entity), 5.0F);
+							e.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(entity), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 							if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(e, "tragicmc:boss.aegar.laser", 0.4F, 1.8F);
 							this.setFired(true, e.getEntityId());
 							cooldown = 10;
@@ -337,7 +341,7 @@ public class EntityMechaExo extends EntityRidable {
 			{
 				if (this.canEntityBeSeen(target))
 				{
-					target.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), 5.0F);
+					target.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 					this.setFired(true, target.getEntityId());
 					this.cooldown = 10;
 				}
@@ -376,7 +380,7 @@ public class EntityMechaExo extends EntityRidable {
 		super.attackEntityAsMob(entityIn);
 		if (this.riddenByEntity instanceof EntityLiving && entityIn instanceof EntityLivingBase) ((EntityLiving) this.riddenByEntity).setAttackTarget((EntityLivingBase) entityIn);
 		if (this.getDistanceToEntity(entityIn) > 4) return false;
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 5.0F);
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 
 		if (flag)
 		{
@@ -397,7 +401,7 @@ public class EntityMechaExo extends EntityRidable {
 	
 	@Override
 	public boolean interact(EntityPlayer player) {
-		if (player.getCurrentEquippedItem() != null && this.getHealth() > 0F)
+		if (player.getCurrentEquippedItem() != null && this.getHealth() > 0F && this.riddenByEntity == null)
 		{
 			Item item = player.getCurrentEquippedItem().getItem();
 			if (item == TragicItems.Wrench || item.getRegistryName() != null &&

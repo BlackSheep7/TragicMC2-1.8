@@ -52,16 +52,17 @@ public class EntityJetNeko extends EntityNeko {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(45.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		double[] jetNekoStats = TragicConfig.getMobStat("jetNekoStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(jetNekoStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(jetNekoStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(jetNekoStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(jetNekoStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(jetNekoStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue() {
-		return 6;
+		return TragicConfig.getMobStat("jetNekoStats").getArmorValue();
 	}
 
 	@Override
@@ -89,11 +90,11 @@ public class EntityJetNeko extends EntityNeko {
 
 			if ((this.getFiringTicks() == 40 || this.getFiringTicks() == 20) && this.canEntityBeSeen(this.getAttackTarget()))
 			{
-				if (TragicConfig.getBoolean("tragicNekoRockets")) this.doMissleAttack();
+				if (TragicConfig.getBoolean("jetNekoRockets")) this.doMissleAttack();
 			}
 			else if (this.hasFired() && this.getFiringTicks() % 40 == 0 && this.getAttackTime() == 0 && rand.nextInt(8) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0)
 			{
-				if (this.getHoverTicks() > 0 && rand.nextInt(4) == 0) this.setHoverTicks(0);
+				if (this.getHoverTicks() > 0 && rand.nextInt(4) == 0 && TragicConfig.getBoolean("jetNekoHovering")) this.setHoverTicks(0);
 			}
 
 			if (rand.nextInt(4) == 0 && this.canFire() && this.ticksExisted % 5 == 0 && this.getAttackTime() == 0 && this.getDistanceToEntity(this.getAttackTarget()) >= 6.0F)

@@ -1,7 +1,14 @@
 package tragicneko.tragicmc.entity.mob;
 
+import com.google.common.base.Predicate;
+
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Items;
@@ -13,21 +20,33 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityScienceNeko extends EntityNeko {
-	
+
 	private static final int DW_TARGET_ID = 25;
+	
+	public static final Predicate undeadTarget = new Predicate() {
+		@Override
+		public boolean apply(Object input) {
+			return canApply((Entity) input);
+		}
+
+		public boolean canApply(Entity entity) {
+			return entity instanceof EntityMob && ((EntityMob) entity).getCreatureAttribute() == EnumCreatureAttribute.UNDEAD;
+		}
+	};
 
 	public EntityScienceNeko(World par1World) {
 		super(par1World);
 		this.setSize(0.675F * 0.825F, 1.955F * 0.825F);
 		this.experienceValue = 50;
+		if (TragicConfig.getBoolean("scienceNekoTargetsUndead")) this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true, false, undeadTarget));
 	}
-	
+
 	@Override
 	protected void entityInit() {
 		super.entityInit();
 		this.dataWatcher.addObject(DW_TARGET_ID, Integer.valueOf(0));
 	}
-	
+
 	public int getTargetID()
 	{
 		return this.dataWatcher.getWatchableObjectInt(DW_TARGET_ID);
@@ -53,7 +72,7 @@ public class EntityScienceNeko extends EntityNeko {
 	public int getTotalArmorValue() {
 		return (int) 0;
 	}
-	
+
 	@Override
 	public void onLivingUpdate()
 	{
@@ -61,9 +80,9 @@ public class EntityScienceNeko extends EntityNeko {
 		{
 			if (Potion.potionTypes[i] != null && this.isPotionActive(i)) this.removePotionEffect(i);
 		}
-		
+
 		super.onLivingUpdate();
-		
+
 		if (this.worldObj.isRemote)
 		{
 			if (this.getFiringTicks() == 40)
@@ -92,12 +111,15 @@ public class EntityScienceNeko extends EntityNeko {
 
 			if (this.getFiringTicks() == 40 && this.canEntityBeSeen(this.getAttackTarget()) && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0 && this.getDistanceToEntity(this.getAttackTarget()) >= 4.0)
 			{
-				if (TragicConfig.getBoolean("tragicNekoRockets")) this.doMissleAttack();
+				if (TragicConfig.getBoolean("scienceNekoLaser")) this.doMissleAttack();
 			}
 			else if (this.hasFired() && this.getFiringTicks() % 40 == 0 && this.getAttackTime() == 0 && rand.nextBoolean() && this.getDistanceToEntity(this.getAttackTarget()) >= 5.0 && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0)
 			{
-				this.throwRandomProjectile();
-				this.setThrowingTicks(20);
+				if (TragicConfig.getBoolean("scienceNekoPotions"))
+				{
+					this.throwRandomProjectile();
+					this.setThrowingTicks(20);
+				}
 			}
 
 			if (rand.nextInt(16) == 0 && this.canFire() && this.ticksExisted % 10 == 0 && this.getAttackTime() == 0 && this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F)
@@ -105,10 +127,10 @@ public class EntityScienceNeko extends EntityNeko {
 				this.setFiringTicks(0);
 			}
 		}
-		
+
 		if (this.getAttackTarget() == null) this.setTargetID(0);
 	}
-	
+
 	@Override
 	protected void doMissleAttack() {
 		if (TragicConfig.getBoolean("allowMobSounds")) 
@@ -118,7 +140,7 @@ public class EntityScienceNeko extends EntityNeko {
 		}
 		this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 	}
-	
+
 	@Override
 	protected void throwRandomProjectile() {
 		int i = rand.nextInt(32) == 0 ? 8 : (rand.nextInt(16) == 0 ? 4 : 42);

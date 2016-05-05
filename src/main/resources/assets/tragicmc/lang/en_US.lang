@@ -1110,7 +1110,8 @@ entity.TragicMC.Avris.name=Avris
 entity.TragicMC.JetNeko.name=Jet Neko
 entity.TragicMC.ScienceNeko.name=Science Neko
 entity.TragicMC.MechaNeko.name=Mecha-Neko
-entity.TragicMC.SaberNeko.name=Saber Neko
+entity.TragicMC.AssaultNeko.name=Assault Neko
+entity.TragicMC.MechaExo.name=Mecha Exo
 entity.TragicMC.ProfessorNekoid.name=Professor Nekoid
 
 entity.TragicMC.Pyragr.name=Pyragr

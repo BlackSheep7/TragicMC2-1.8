@@ -165,6 +165,11 @@ public class ModelScienceNeko extends ModelBiped
 			bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
 			bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
 		}
+		else
+		{
+			bipedRightLeg.rotateAngleY = 0F;
+			bipedLeftLeg.rotateAngleY = 0F;
+		}
 	}
 
 	private float simplifyAngle(float par1, float par2)

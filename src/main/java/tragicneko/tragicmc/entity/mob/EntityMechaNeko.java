@@ -1,12 +1,11 @@
 package tragicneko.tragicmc.entity.mob;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.EntityMechaExo;
 import tragicneko.tragicmc.entity.EntityRidable;
 
@@ -24,16 +23,17 @@ public class EntityMechaNeko extends EntityNeko {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.27);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		double[] mechaNekoStats = TragicConfig.getMobStat("mechaNekoStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(mechaNekoStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(mechaNekoStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(mechaNekoStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(mechaNekoStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(mechaNekoStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue() {
-		return this.ridingEntity != null ? 24 : 0;
+		return this.ridingEntity != null && TragicConfig.getBoolean("mechaNekoRidingArmor") ? 24 : TragicConfig.getMobStat("mechaNekoStats").getArmorValue();
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class EntityMechaNeko extends EntityNeko {
 
 		if (this.getAttackTarget() == this.ridingEntity) this.setAttackTarget(null);
 
-		if (this.ridingEntity instanceof EntityRidable && this.getAttackTarget() != null) 
+		if (this.ridingEntity instanceof EntityRidable && this.getAttackTarget() != null && TragicConfig.getBoolean("mechaNekoCommandExo")) 
 		{
 			EntityRidable er = (EntityRidable) this.ridingEntity;
 			er.setAttackTarget(this.getAttackTarget());
@@ -53,7 +53,7 @@ public class EntityMechaNeko extends EntityNeko {
 			{
 				if (this.getDistanceToEntity(this.getAttackTarget()) >= 6 && this.canEntityBeSeen(this.getAttackTarget()))
 				{
-					if (er.canAttack())
+					if (er.canAttack() && TragicConfig.getBoolean("allowRidableEntityAbilitiesViaMob"))
 					{
 						final int i = rand.nextInt(2);
 						er.useAttackViaMob(i, this.getAttackTarget());
@@ -85,7 +85,7 @@ public class EntityMechaNeko extends EntityNeko {
 	@Override
 	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
-		if (!this.worldObj.isRemote && this.ridingEntity == null)
+		if (!this.worldObj.isRemote && this.ridingEntity == null && TragicConfig.getBoolean("mechaNekoRidingExo") && TragicConfig.getBoolean("allowMechaExo"))
 		{
 			EntityMechaExo exo = new EntityMechaExo(this.worldObj);
 			exo.setPositionAndUpdate(this.posX, this.posY, this.posZ);

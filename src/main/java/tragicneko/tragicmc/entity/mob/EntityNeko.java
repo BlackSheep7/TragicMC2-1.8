@@ -36,6 +36,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
@@ -349,7 +350,7 @@ public abstract class EntityNeko extends TragicMob {
 		if (!TragicConfig.getBoolean("tragicNekoCelebration")) return false;
 		Calendar calendar = this.worldObj.getCurrentDate();
 
-		if ((calendar.get(2) + 1 == 8 && calendar.get(5) > 29) || (calendar.get(2) + 1 == 9 || calendar.get(5) < 3))
+		if (calendar.get(2) + 1 == 9 && calendar.get(5) < 8) //celebrate for the whole first week of september
 		{
 			return true;
 		}
