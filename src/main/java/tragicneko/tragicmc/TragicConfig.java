@@ -209,6 +209,7 @@ public class TragicConfig {
 	protected static final String CAT_GRIEF = "Griefing Options";
 	protected static final String CAT_PETS = "Pets";
 	protected static final String CAT_MOBAI = "Mob AI";
+	protected static final String CAT_RIDABLE = "Ridable Entities";
 
 	//array hypervisors
 	protected static boolean[] amuletConfig = new boolean[16];
@@ -225,6 +226,8 @@ public class TragicConfig {
 	protected static boolean[] mobAllow = new boolean[64];
 	protected static boolean[] miniBossAllow = new boolean[32];
 	protected static boolean[] bossAllow = new boolean[24];
+	protected static boolean[] ridableAllow = new boolean[16];
+	protected static boolean[] petAllow = new boolean[16];
 	protected static boolean[] potionAllow = new boolean[32];
 	protected static boolean[] vanillaConfig = new boolean[24];
 	protected static boolean[] worldGenConfig = new boolean[16];
@@ -239,6 +242,59 @@ public class TragicConfig {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile(), true);
 		config.load();
 
+		registerObject("allowRidableEntities", true); //if ridable entities should be allowed from the mod
+		registerObject("allowRidableEntityAbilities", true); //if ridable entity abilities should be able to be used
+		registerObject("allowRidableEntityAbilitiesViaMob", true); //if another mob is riding one, can they use the ridable's abilities
+		registerObject("allowMechaExo", true); //if the Mecha Exo is allowed
+		registerObject("mechaExoStats", new MobStat(new double[] {25.0, 0.19, 5.0, 32.0, 1.0}, 24));
+		
+		registerObject("allowJetNeko", true);
+		registerObject("jetNekoStats", new MobStat(new double[] {45.0, 0.23, 1.0, 32.0, 1.0}, 6));
+		registerObject("jetNekoGroupSize", new int[] {0, 0});
+		registerObject("jetNekoSpawnChance", 5);
+		registerObject("jetNekoSpawnOverride", false);
+		registerObject("jetNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
+		
+		registerObject("jetNekoRockets", true); //should the jet neko fire rockets
+		registerObject("jetNekoHovering", true); //should the jet neko stop and hover sometimes
+		
+		registerObject("allowScienceNeko", true);
+		registerObject("scienceNekoStats", new MobStat(new double[] {}, 0));
+		registerObject("scienceNekoGroupSize", new int[] {1, 2});
+		registerObject("scienceNekoSpawnChance", 25);
+		registerObject("scienceNekoSpawnOverride", false);
+		registerObject("scienceNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
+		
+		registerObject("scienceNekoLaser", true); //should the science neko fire it's ray gun
+		registerObject("scienceNekoPotions", true); //should the science neko toss potions
+		registerObject("scienceNekoTargetsUndead", true); //should the science neko target undead creatures
+		
+		registerObject("allowMechaNeko", true);
+		registerObject("mechaNekoStats", new MobStat(new double[] {15.0, 0.27, 4.0, 32.0, 0.0}, 0));
+		registerObject("mechaNekoGroupSize", new int[] {0, 0});
+		registerObject("mechaNekoSpawnChance", 1);
+		registerObject("mechaNekoSpawnOverride", false);
+		registerObject("mechaNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
+		
+		registerObject("mechaNekoCommandExo", true); //should the mecha neko can 'command' the Exo to use abilities
+		registerObject("mechaNekoRidingExo", true); //should the mecha neko spawn in riding an Exo
+		registerObject("mechaNekoRidingArmor", true); //should, when the mecha neko is riding an entity, gain very high armor
+		
+		registerObject("allowAssaultNeko", true);
+		registerObject("assaultNekoStats", new MobStat(new double[] {}, 0));
+		registerObject("assaultNekoGroupSize", new int[] {0, 0});
+		registerObject("assaultNekoSpawnChance", 1);
+		registerObject("assaultNekoSpawnOverride", false);
+		registerObject("assaultNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
+		
+		registerObject("allowKurayami", true); //if the kurayami entity itself is allowed
+		
+		structureAllow[18] = true;
+		structureAllow[19] = true;
+		structureAllow[20] = true;
+		structureAllow[21] = true;
+		structureAllow[22] = true;
+		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
 		EnumConfigType type = getMasterSettings(config);
@@ -4364,6 +4420,8 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "avrisDespawnTime", true);
 		prop.comment = "Should Avris' despawn after a preset amount of time?";
 		registerObject(s, prop.getBoolean(true));
+		
+		//add new neko-specific grief configs here TODO
 
 		s = "kragulSpiritCasts";
 		prop = config.get(cat.getName(), s, true);
