@@ -292,7 +292,8 @@ public class ClientEvents extends Gui {
 
 			float f = 2.635F;
 			float f1 = flag4 ? 0.525F : 0.325F;
-			float f2 = flag6 ? 0.265F : 0.225F;
+			if (flag6) f1 = 0.145F;
+			float f2 = flag6 ? 0.105F : 0.225F;
 			float trans = flag || flag4 || flag6 ? f1 - MathHelper.cos(mc.thePlayer.ticksExisted / f) * f2 : 0.1375F;
 
 			float r = flag3 ? 1F : rgb[color][0];
