@@ -68,7 +68,7 @@ public class EntityStatue extends Entity {
 		this.setDead();
 		this.setBeenAttacked();
 
-		if (!this.worldObj.getGameRules().getBoolean("doMobLoot")) return true;
+		if (!this.worldObj.getGameRules().getBoolean("doMobLoot") || source.getEntity() instanceof EntityPlayer && ((EntityPlayer)source.getEntity()).capabilities.isCreativeMode) return true;
 
 		ItemStack stack = new ItemStack(TragicItems.MobStatue, 1, this.getMobID());
 		stack.setTagCompound(new NBTTagCompound());
@@ -122,7 +122,7 @@ public class EntityStatue extends Entity {
 
 	public boolean getAnimated()
 	{
-		return this.dataWatcher.getWatchableObjectInt(DW_ANIMATED) == 1;
+		return this.dataWatcher.getWatchableObjectByte(DW_ANIMATED) == 1;
 	}
 
 	@Override
@@ -142,7 +142,6 @@ public class EntityStatue extends Entity {
 			this.applyEntityCollision(e);
 			e.velocityChanged = true;
 		}
-
 	}
 
 	@Override
