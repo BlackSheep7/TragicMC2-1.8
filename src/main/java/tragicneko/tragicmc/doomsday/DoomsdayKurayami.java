@@ -4,6 +4,8 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
@@ -20,6 +22,12 @@ public class DoomsdayKurayami extends Doomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		if (!TragicConfig.getBoolean("allowKurayami"))
+		{
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Kurayami entity is disabled in config..."));
+			return;
+		}
+		
 		double d = (double) this.getScaledDoomRequirement(doom);
 		double d0 = MathHelper.clamp_double(((double) doom.getCurrentDoom() - d) / ((double) doom.getMaxDoom() - d), 0.1, 1.0);
 		EntityKurayami kurayami = new EntityKurayami(player.worldObj);
