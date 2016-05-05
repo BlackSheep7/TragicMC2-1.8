@@ -4824,7 +4824,11 @@ Adding new Structures/Schematics for Neko Homeworld
 Moved ChestGenHooks out of the TragicItems class and put them into their own class, renamed the hooks to more fitting names
 Somewhat modified uncommon hooks to weigh more to common items
 Added hidden chest to Claymation Ruin boss room
-
+Reduced logger spam from the TickBuilder since it works pretty effectively now, only log errors and weird happenings
+Added exception handling for getting a Schematic from chunk memory on load, if it fails then the schematic is skipped instead of an outright crash being caused
+Fixed recursion error (stack overflow) that would happen when reloading a schematic from chunk memory, with the schematic attempting to get a block from the chunk
+at the same time, this could've been fixed via having a variable set for when a schematic needs to be initialized by theh builder instead of doing the initalization
+when the chunk is loaded
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
