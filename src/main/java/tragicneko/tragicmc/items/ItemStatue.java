@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
@@ -123,7 +124,7 @@ public class ItemStatue extends Item {
 			statue = new EntityStatue(world);
 			float rotation = ((MathHelper.floor_float((player.rotationYaw * 8.0F / 360.0F) + 0.5F)) * 45.0F) + 180F;
 
-			statue.setPosition(pos.getX(), pos.getY(), pos.getZ());
+			statue.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 			statue.setRotation(rotation);
 			if (!world.getCollidingBoundingBoxes(statue, statue.getEntityBoundingBox()).isEmpty() || world.isAnyLiquid(statue.getEntityBoundingBox())) return stack;
 			statue.setMobID(stack.getItemDamage() % subNames.length);
