@@ -91,10 +91,10 @@ public class ItemChallenge extends Item {
 		{
 			try
 			{
-				Challenge challenge = Challenge.getChallengeFromID(itemRand.nextInt(Challenge.challengeList.length - 1) + 1);
+				Challenge challenge = Challenge.getChallengeFromID(itemRand.nextInt(Challenge.getRegistrySize() - 1) + 1);
 				while (challenge == null)
 				{
-					challenge = Challenge.getChallengeFromID(itemRand.nextInt(Challenge.challengeList.length - 1) + 1);
+					challenge = Challenge.getChallengeFromID(itemRand.nextInt(Challenge.getRegistrySize() - 1) + 1);
 				}
 				stack.setItemDamage(challenge.getChallengeId());
 				if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());

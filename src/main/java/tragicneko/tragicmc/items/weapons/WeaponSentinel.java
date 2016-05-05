@@ -12,12 +12,4 @@ public class WeaponSentinel extends TragicWeapon {
 		super(material, dday);
 		this.doomsday2 = Doomsday.GuardiansCall;
 	}
-
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
-	{
-		if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-		if (!stack.getTagCompound().hasKey("tragicLoreRarity")) stack.getTagCompound().setInteger("tragicLoreRarity", 3);
-		super.onUpdate(stack, world, entity, par, flag);
-	}
 }

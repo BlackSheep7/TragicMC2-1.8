@@ -16,11 +16,11 @@ public class DoomsdayParadigmShift extends Doomsday {
 		boolean flag = (int) ((1 / this.getCrisis(player)) * 10) >= 15 || effect.isCommandActivated;
 		if (crucMoment)
 		{
-			Doomsday dday = Doomsday.doomsdayList[rand.nextInt(Doomsday.doomsdayList.length)];
+			Doomsday dday = getRandomDoomsday();
 
 			while (dday == null && dday != this)
 			{
-				dday = Doomsday.doomsdayList[rand.nextInt(Doomsday.doomsdayList.length)];
+				dday = getRandomDoomsday();
 			}
 
 			if (!flag)
@@ -29,16 +29,16 @@ public class DoomsdayParadigmShift extends Doomsday {
 			}
 			else
 			{
-				DoomsdayEffect effect2 = new DoomsdayEffect(dday.doomID, doom, flag);
+				DoomsdayEffect effect2 = new DoomsdayEffect(dday.getDoomId(), doom, flag);
 				DoomsdayManager.registerDoomsdayEffect(player.getUniqueID(), effect2);
 			}
 		}
 
-		Doomsday dday = Doomsday.doomsdayList[rand.nextInt(Doomsday.doomsdayList.length)];
+		Doomsday dday = getRandomDoomsday();
 
 		while (dday == null && dday != this)
 		{
-			dday = Doomsday.doomsdayList[rand.nextInt(Doomsday.doomsdayList.length)];
+			dday = getRandomDoomsday();
 		}
 
 		if (!flag)
@@ -47,7 +47,7 @@ public class DoomsdayParadigmShift extends Doomsday {
 		}
 		else
 		{
-			DoomsdayEffect effect2 = new DoomsdayEffect(dday.doomID, doom, flag);
+			DoomsdayEffect effect2 = new DoomsdayEffect(dday.getDoomId(), doom, flag);
 			DoomsdayManager.registerDoomsdayEffect(player.getUniqueID(), effect2);
 		}
 	}

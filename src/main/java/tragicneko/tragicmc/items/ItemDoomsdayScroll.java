@@ -133,9 +133,9 @@ public class ItemDoomsdayScroll extends Item {
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list)
 	{
-		for (int i = 1; i < Doomsday.doomsdayList.length; i++)
+		for (int i = 1; i < Doomsday.getRegistrySize(); i++)
 		{
-			if (Doomsday.doomsdayList[i] != null) list.add(new ItemStack(item, 1, i - 1));
+			if (Doomsday.getDoomsdayFromId(i) != null) list.add(new ItemStack(item, 1, i - 1));
 			else break;
 		}
 	}

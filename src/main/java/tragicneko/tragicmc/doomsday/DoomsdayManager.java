@@ -175,7 +175,7 @@ public class DoomsdayManager {
 
 							try
 							{
-								list.add(new DoomsdayEffect(effect.dday.getCombination().doomID, effect.doom, effect.isCommandActivated).inheritCooldown(temp, effect));
+								list.add(new DoomsdayEffect(effect.dday.getCombination().getDoomId(), effect.doom, effect.isCommandActivated).inheritCooldown(temp, effect));
 							}
 							catch (NullPointerException e)
 							{
@@ -212,7 +212,7 @@ public class DoomsdayManager {
 										list.clear();
 										reason = "Partner activated a Combination.";
 										clearPlayerFromRegistry(uuid, "Partner Combination activated.");
-										registerDoomsdayEffect(uuid, new DoomsdayEffect(effect.dday.getCombination().doomID, effect.doom, effect.isCommandActivated).inheritCooldown(eff, effect));
+										registerDoomsdayEffect(uuid, new DoomsdayEffect(effect.dday.getCombination().getDoomId(), effect.doom, effect.isCommandActivated).inheritCooldown(eff, effect));
 										break;
 									}
 								}

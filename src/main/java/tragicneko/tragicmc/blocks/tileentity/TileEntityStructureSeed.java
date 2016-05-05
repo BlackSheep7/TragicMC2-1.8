@@ -30,9 +30,9 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 		IBlockState state = this.worldObj.getBlockState(this.getPos());
 		Integer prop = state.getBlock() == TragicBlocks.StructureSeed ? state.getValue(BlockStructureSeed.STRUCTURE) : state.getValue(BlockStructureSeed2.STRUCTURE);
 		final int id = prop.intValue();
-		if (id >= Structure.structureList.length) return;
+		if (id >= Structure.getRegistrySize()) return;
 
-		Structure structure = Structure.structureList[id];
+		Structure structure = Structure.getStructureById(id);
 		if (structure == null)
 		{
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);

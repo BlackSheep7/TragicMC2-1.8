@@ -42,6 +42,7 @@ import tragicneko.tragicmc.client.model.ModelJetNeko;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelKurayami;
 import tragicneko.tragicmc.client.model.ModelLockbot;
+import tragicneko.tragicmc.client.model.ModelMechaExo;
 import tragicneko.tragicmc.client.model.ModelMechaNeko;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
 import tragicneko.tragicmc.client.model.ModelNanoSwarm;
@@ -105,6 +106,7 @@ import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.EntityKurayami;
 import tragicneko.tragicmc.entity.EntityLock;
+import tragicneko.tragicmc.entity.EntityMechaExo;
 import tragicneko.tragicmc.entity.EntityNuke;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
@@ -336,7 +338,7 @@ public class ClientProxy extends CommonProxy {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderDirectedLightning(manager); }});
 		registerRender(EntityNuke.class, new IRenderFactory() {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderNuke(manager); }});
-		//TODO add render for Mecha Exo
+		registerRender(EntityMechaExo.class, new RenderFactoryMob(new ModelMechaExo(), 0.665F, "MechaExo", 1.5F));
 
 		//Mob renders
 		registerRender(EntityJabba.class, new IRenderFactory() {
@@ -1140,9 +1142,9 @@ public class ClientProxy extends CommonProxy {
 
 			if (TragicConfig.getBoolean("allowDoomsdays"))
 			{
-				for (i = 1; i < Doomsday.doomsdayList.length; i++)
+				for (i = 1; i < Doomsday.getRegistrySize(); i++)
 				{
-					if (Doomsday.doomsdayList[i] != null && i - 1 >= 0)
+					if (Doomsday.getDoomsdayFromId(i) != null && i - 1 >= 0)
 						registerItemToMesher(TragicItems.DoomsdayScroll, i - 1, "doomsdayScroll");
 				}
 			}

@@ -25,11 +25,17 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 public abstract class Doomsday {
 
 	protected static final Random rand = new Random();
+	
+	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
+			"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
+			"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
+			"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
+			"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler", "soulstealer", "parasite", "symbiosis", "timeCollapse",
+			"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "radiantLight", "dangerZone", "support", "purify", "recall", "shuffle", "blink", "evacuation",
+			"medic", "resurge"
+		};
 
 	public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Doomsday> doomsdayRegistry = new RegistryNamespacedDefaultedByKey<ResourceLocation, Doomsday>(new ResourceLocation("null"));
-	
-	@Deprecated
-	public static final Doomsday[] doomsdayList = new Doomsday[96];
 
 	public static final Doomsday Decay = (new DoomsdayDecay(1));
 	public static final Doomsday HuntersInstinct = (new DoomsdayHuntersInstinct(2));
@@ -102,21 +108,6 @@ public abstract class Doomsday {
 	public static final Doomsday Medic = new DoomsdayMedic(69);
 	public static final Doomsday Resurge = new DoomsdayResurge(70);
 
-	@Deprecated
-	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
-		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
-		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
-		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
-		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler", "soulstealer", "parasite", "symbiosis", "timeCollapse",
-		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "radiantLight", "dangerZone", "support", "purify", "recall", "shuffle", "blink", "evacuation",
-		"medic", "resurge"
-	};
-
-	@Deprecated
-	public static final Map<String, Integer> stringToIDMapping = new HashMap();
-
-	@Deprecated
-	public final int doomID;
 	public final EnumDoomType doomsdayType;
 	public final int requiredDoom;
 	public final int cooldown;
@@ -128,13 +119,15 @@ public abstract class Doomsday {
 
 	public Doomsday(int id, EnumDoomType doomType)
 	{
+		ResourceLocation rl = new ResourceLocation("tragicmc:" + doomsdayNames[id]);
 		this.doomsdayType = doomType;
-		this.doomID = id;
 		this.cooldown = TragicConfig.doomsdayCooldown[id];
 		this.requiredDoom = TragicConfig.doomsdayCost[id];
-		if (doomsdayList[id] != null) throw new IllegalArgumentException("There is already a Doomsday registered for that ID!");
-		doomsdayList[id] = this;
+		if (doomsdayRegistry.containsKey(rl)) throw new IllegalArgumentException("There is already a Doomsday registered with that name! (" + rl +")");
+		doomsdayRegistry.register(id, rl, this);
 	}
+	
+	public static void load() {} //to initialize the Doomsday registry
 
 	public EnumDoomType getDoomsdayType()
 	{
@@ -194,7 +187,7 @@ public abstract class Doomsday {
 			TragicMC.logError("You have Doom disabled... this shouldn't have been called, report this");
 			return false;
 		}
-		else if (!TragicConfig.doomsdayAllow[this.doomID])
+		else if (!TragicConfig.doomsdayAllow[this.getDoomId()])
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.fail5")));
 			return false;
@@ -270,7 +263,7 @@ public abstract class Doomsday {
 			return false;
 		}
 
-		DoomsdayEffect effect = new DoomsdayEffect(this.doomID, doom);
+		DoomsdayEffect effect = new DoomsdayEffect(this.getDoomId(), doom);
 		DoomsdayManager.registerDoomsdayEffect(player.getUniqueID(), effect);
 		if (TragicConfig.getBoolean("allowAchievements")) player.triggerAchievement(TragicAchievements.doomsday);
 		return true;
@@ -397,7 +390,7 @@ public abstract class Doomsday {
 	 */
 	public String getUnlocalizedName()
 	{
-		int a = this.doomID;
+		final int a = this.getDoomId();
 
 		String s = null;
 
@@ -438,7 +431,7 @@ public abstract class Doomsday {
 	 */
 	public static EnumDoomType getDoomsdayTypeFromId(int id)
 	{
-		return doomsdayList[id].doomsdayType;
+		return doomsdayRegistry.getObjectById(id).doomsdayType;
 	}
 
 	/**
@@ -485,7 +478,7 @@ public abstract class Doomsday {
 
 	public int getDoomId()
 	{
-		return this.doomID;
+		return doomsdayRegistry.getIDForObject(this);
 	}
 
 	/**
@@ -494,7 +487,7 @@ public abstract class Doomsday {
 	 * @return
 	 */
 	public static Doomsday getDoomsdayFromId(int id) {
-		return doomsdayList[id];
+		return doomsdayRegistry.getObjectById(id);
 	}
 
 	/**
@@ -505,7 +498,16 @@ public abstract class Doomsday {
 	public static Doomsday getDoomsdayFromString(String s)
 	{
 		s.trim();
-		return getDoomsdayFromId(stringToIDMapping.get(s));
+		return doomsdayRegistry.getObject(new ResourceLocation("tragicmc:" + s));
+	}
+	
+	public static int getRegistrySize() {
+		return doomsdayRegistry.getKeys().size();
+	}
+	
+	public static Doomsday getRandomDoomsday() {
+		final int i = getRegistrySize();
+		return doomsdayRegistry.getObjectById(rand.nextInt(i));
 	}
 
 	public int getOverflow(PropertyDoom doom)
@@ -565,13 +567,5 @@ public abstract class Doomsday {
 	public interface IExtendedDoomsday {
 		public int getWaitTime();
 		public int getMaxIterations();
-	}
-
-	static
-	{
-		for (int i = 0; i < doomsdayNames.length; i++)
-		{
-			stringToIDMapping.put(doomsdayNames[i], i);
-		}
 	}
 }

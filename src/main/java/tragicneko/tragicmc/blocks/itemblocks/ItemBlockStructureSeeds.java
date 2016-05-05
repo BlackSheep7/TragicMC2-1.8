@@ -18,22 +18,22 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 	public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
 	{
 		int damage = par1ItemStack.getItemDamage();
-		return Structure.structureList[damage] != null ? Structure.structureList[damage].getStructureColor() : 0;
+		return Structure.getStructureById(damage) != null ? Structure.getStructureById(damage).getStructureColor() : 0;
 	}
 	
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int damage = itemstack.getItemDamage();
 
-		if (damage >= Structure.structureList.length)
+		if (damage >= Structure.getRegistrySize())
 		{
-			damage = Structure.structureList.length - 1;
+			damage = Structure.getRegistrySize() - 1;
 		}
 		
-		if (Structure.structureList[damage] == null)
+		if (Structure.getStructureById(damage) == null)
 		{
 			damage = 0;
 		}
-		return getUnlocalizedName() + "." + Structure.structureList[damage].getUnlocalizedName();
+		return getUnlocalizedName() + "." + Structure.getStructureById(damage).getUnlocalizedName();
 	}
 }

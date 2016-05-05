@@ -77,7 +77,7 @@ public class DoomsdayComand extends CommandBase {
 		{
 			id = Integer.valueOf(var2[1]);
 
-			if (id > Doomsday.doomsdayList.length || id == 0)
+			if (Doomsday.getDoomsdayFromId(id) == null)
 			{
 				var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "This id does not correspond to a Doomsday."));
 				return;
@@ -89,9 +89,9 @@ public class DoomsdayComand extends CommandBase {
 		{
 			s = var2[1];
 
-			if (Doomsday.stringToIDMapping.get(s) != null)
+			if (Doomsday.getDoomsdayFromString(s) != null)
 			{
-				doomsday = Doomsday.getDoomsdayFromId(Doomsday.stringToIDMapping.get(s));
+				doomsday = Doomsday.getDoomsdayFromString(s);
 			}
 			else
 			{
@@ -106,7 +106,7 @@ public class DoomsdayComand extends CommandBase {
 			return;
 		}
 
-		if (!TragicConfig.doomsdayAllow[doomsday.doomID])
+		if (!TragicConfig.doomsdayAllow[doomsday.getDoomId()])
 		{
 			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "That particular Doomsday is disabled, enable in config."));
 			return;

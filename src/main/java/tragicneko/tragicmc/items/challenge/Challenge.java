@@ -64,11 +64,25 @@ import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class Challenge {
+	
+	private static final String[] challengeNames = new String[] {"null", "zombieKills", "collectWheat", "stayAlive", "stayAlive3", "survive", "endermanKills", "bossKills",
+			"collectLeather", "stayAlive7", "witherKill", "findEmerald", "findDiamonds", "collectAsh", "miniBossKills", "stinKills", "tragicNekoKills", "collectGoldenApples",
+			"findWisp", "findApis", "findIronGolem", "findSnowBlock", "iceBucketChallenge", "findRecord11", "collectFish", "collectGunpowder", "collectRedSand", "bossKill",
+			"survive2", "collectCooldownDefuse", "findStarlitCliffs", "findMesa", "findMushroomIsland", "findBedrock", "findWater", "findAshenGrass", "findRedMushroomBlock",
+			"findSand", "findMossyCobblestone", "findIronOre", "findIceMountains", "findDeepOcean", "findNorVox", "killInklings", "findHorses", "killTragicMobs", "findOcelots",
+			"findVillagers", "killGhasts", "findSlime", "killZombiePigmen", "survive3", "cliffDiamond", "killVillagers", "collectEmeralds", "collectIronBlocks", "killPirah",
+			"killSkeletons", "findClay", "findLeaves", "killKitsune", "killRagr", "killWisps", "goFishing", "goFishing2", "findLightChestplate", "findAwakeningStone",
+			"findDimensionalKey", "findSavanna", "collectPotatoes", "collectStatues", "findAbomination", "findPlague", "findTimeController", "collectSmoothNetherrack",
+			"collectRedFlowers", "goFishing3", "findMobStatue", "collectTNT", "collectEnderPearls", "findEpicLore", "findRareLore", "collectEpicLore", "collectUncommonLore",
+			"wearDiamondArmor", "wearPumpkin", "wearDarkArmor", "findEverlastingLight", "collectExoticFruit", "collectChallengeScrolls", "findEnderChest", "killBats",
+			"longTermKilling", "killPlayer", "findPlayer", "longTermKilling2", "longTermKilling3", "killAnimals", "findWolf", "collectRedstone", "killEnderDragon", "travelFar",
+			"travelFar2", "travelFar3", "travelFar4", "findScorchedWasteland", "findIreNetCannon", "findArchangel", "findRanmas", "findDarkForest", "killOverlordCore",
+			"findSynapse", "collectNanoBots", "findWingsOfLiberation", "killFusea", "findPermafrost", "netherBed", "darkAeris", "findAshenBadlands", "findHallowedHills",
+			"findPsygote", "killHarvesters", "collectConduit", "findQuicksand", "killHunters", "findSoulChest", "onABoat", "collectQuartz", "findGuiltyThorn", "chickenMassacre",
+			"thisIsAmazing"
+	};
 
 	public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Challenge> challengeRegistry = new RegistryNamespacedDefaultedByKey<ResourceLocation, Challenge>(new ResourceLocation("null"));
-	
-	@Deprecated
-	public static final Challenge[] challengeList = new Challenge[249];
 
 	public static final Challenge nullChallenge = new Challenge(0, false, 0);
 	public static final Challenge zombieKills = new ChallengeEntity(1, false, 50, EntityZombie.class, false).setDifficulty(EnumDifficulty.EASY);
@@ -206,8 +220,6 @@ public class Challenge {
 	public static final Challenge chickenMassacre = new ChallengeEntity(129, true, 20, EntityChicken.class, false).setTimed(600).setDifficulty(EnumDifficulty.HARD);
 	public static final Challenge thisIsAmazing = new ChallengeEntity(130, true, 5, EntityCreature.class, false).setTimed(200).setDifficulty(EnumDifficulty.HARD);
 	
-	@Deprecated
-	protected final int challengeID;
 	protected final boolean savesProgress;
 	protected final int requirement;
 
@@ -221,32 +233,13 @@ public class Challenge {
 	public static final String CHALLENGE_PROG = "challengeProgress";
 	public static final String CHALLENGE_LOC = "challengeLocation";
 	public static final String CHALLENGE_TIME = "challengeTime";
-	@Deprecated
 	public static final String CHALLENGE_ID = "challengeID";
-
-	@Deprecated
-	private static final String[] challengeNames = new String[] {"null", "zombieKills", "collectWheat", "stayAlive", "stayAlive3", "survive", "endermanKills", "bossKills",
-			"collectLeather", "stayAlive7", "witherKill", "findEmerald", "findDiamonds", "collectAsh", "miniBossKills", "stinKills", "tragicNekoKills", "collectGoldenApples",
-			"findWisp", "findApis", "findIronGolem", "findSnowBlock", "iceBucketChallenge", "findRecord11", "collectFish", "collectGunpowder", "collectRedSand", "bossKill",
-			"survive2", "collectCooldownDefuse", "findStarlitCliffs", "findMesa", "findMushroomIsland", "findBedrock", "findWater", "findAshenGrass", "findRedMushroomBlock",
-			"findSand", "findMossyCobblestone", "findIronOre", "findIceMountains", "findDeepOcean", "findNorVox", "killInklings", "findHorses", "killTragicMobs", "findOcelots",
-			"findVillagers", "killGhasts", "findSlime", "killZombiePigmen", "survive3", "cliffDiamond", "killVillagers", "collectEmeralds", "collectIronBlocks", "killPirah",
-			"killSkeletons", "findClay", "findLeaves", "killKitsune", "killRagr", "killWisps", "goFishing", "goFishing2", "findLightChestplate", "findAwakeningStone",
-			"findDimensionalKey", "findSavanna", "collectPotatoes", "collectStatues", "findAbomination", "findPlague", "findTimeController", "collectSmoothNetherrack",
-			"collectRedFlowers", "goFishing3", "findMobStatue", "collectTNT", "collectEnderPearls", "findEpicLore", "findRareLore", "collectEpicLore", "collectUncommonLore",
-			"wearDiamondArmor", "wearPumpkin", "wearDarkArmor", "findEverlastingLight", "collectExoticFruit", "collectChallengeScrolls", "findEnderChest", "killBats",
-			"longTermKilling", "killPlayer", "findPlayer", "longTermKilling2", "longTermKilling3", "killAnimals", "findWolf", "collectRedstone", "killEnderDragon", "travelFar",
-			"travelFar2", "travelFar3", "travelFar4", "findScorchedWasteland", "findIreNetCannon", "findArchangel", "findRanmas", "findDarkForest", "killOverlordCore",
-			"findSynapse", "collectNanoBots", "findWingsOfLiberation", "killFusea", "findPermafrost", "netherBed", "darkAeris", "findAshenBadlands", "findHallowedHills",
-			"findPsygote", "killHarvesters", "collectConduit", "findQuicksand", "killHunters", "findSoulChest", "onABoat", "collectQuartz", "findGuiltyThorn", "chickenMassacre",
-			"thisIsAmazing"
-	};
 
 	public Challenge(int id, boolean saveProgress, int requirement)
 	{
-		if (challengeList[id] != null) throw new IllegalArgumentException("There is already a Challenge that has that id!");
-		challengeList[id] = this;
-		this.challengeID = id;
+		ResourceLocation rl = new ResourceLocation("tragicmc:" + challengeNames[id]);
+		if (challengeRegistry.containsKey(rl)) throw new IllegalArgumentException("There is a Challenge using that name (" + rl + ") already!");
+		challengeRegistry.register(id, rl, this);
 		this.savesProgress = saveProgress;
 		this.requirement = requirement;
 	}	
@@ -413,7 +406,7 @@ public class Challenge {
 	}
 
 	public int getChallengeId() {
-		return this.challengeID;
+		return challengeRegistry.getIDForObject(this);
 	}
 
 	public boolean getSavesProgress() {
@@ -464,6 +457,10 @@ public class Challenge {
 
 	public static Challenge getChallengeFromID(int id)
 	{
-		return challengeList[id];
+		return challengeRegistry.getObjectById(id);
+	}
+	
+	public static int getRegistrySize() {
+		return challengeRegistry.getKeys().size();
 	}
 }

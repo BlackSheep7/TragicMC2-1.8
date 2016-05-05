@@ -104,7 +104,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			return null;
 		}
 
-		if (!TragicConfig.doomsdayAllow[doomsday.doomID])
+		if (!TragicConfig.doomsdayAllow[doomsday.getDoomId()])
 		{
 			player.addChatComponentMessage(new ChatComponentText("That particular Doomsday is disabled, enable in config."));
 			return null;

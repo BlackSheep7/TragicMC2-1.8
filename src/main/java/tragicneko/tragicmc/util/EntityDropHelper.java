@@ -293,10 +293,10 @@ public class EntityDropHelper {
 
 	private static ItemStack[] getDoomsdayScrollStacks()
 	{
-		ItemStack[] stack = new ItemStack[Doomsday.doomsdayNames.length];
-		for (int i = 0; i < Doomsday.doomsdayNames.length; i++)
+		ItemStack[] stack = new ItemStack[Doomsday.getRegistrySize()];
+		for (int i = 0; i < Doomsday.getRegistrySize(); i++)
 		{
-			if (Doomsday.doomsdayList[i] != null) stack[i] = new ItemStack(TragicItems.DoomsdayScroll, 1, i - 1);
+			if (Doomsday.getDoomsdayFromId(i) != null) stack[i] = new ItemStack(TragicItems.DoomsdayScroll, 1, i - 1);
 		}
 		return stack;
 	}

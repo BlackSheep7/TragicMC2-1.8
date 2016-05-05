@@ -58,7 +58,7 @@ public class BlockStructureSeed2 extends BlockContainer {
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < Structure.structureList.length && Structure.structureList[i + 16] != null && i < 16; i++)
+		for (int i = 0; i < Structure.getRegistrySize() && Structure.getStructureById(i + 16) != null && i < 16; i++)
 			par3.add(new ItemStack(par1, 1, i));
 	}
 	

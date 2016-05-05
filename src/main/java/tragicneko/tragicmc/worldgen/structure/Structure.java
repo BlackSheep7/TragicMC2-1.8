@@ -7,23 +7,16 @@ import net.minecraft.util.RegistryNamespacedDefaultedByKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 
 public abstract class Structure {
 
-	@Deprecated
-	public final int structureId;
-	@Deprecated
-	private final String structureName;
 	protected final int height;
 	
 	public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Structure> structureRegistry = new RegistryNamespacedDefaultedByKey<ResourceLocation, Structure>(new ResourceLocation("null"));
 
-	@Deprecated
-	public static Structure[] structureList = new Structure[24];
 	public static Structure apisTemple = new StructureApisTemple(0, "apisTemple");
 	public static Structure towerStructure = new StructureTower(1, "tower");
 	public static Structure deathCircle = new StructureDeathCircle(2, "deathCircle");
@@ -42,13 +35,17 @@ public abstract class Structure {
 	public static Structure hackerNet = new StructureHackerNet(15, "hackerNet");
 	public static Structure cubeMaze = new StructureCubeMaze(16, "cubeMaze");
 	public static Structure outlook = new StructureOutlook(17, "outlook");
+	public static Structure nekoBarracks = new StructureNekoBarracks(18, "nekoBarracks");
+	public static Structure nekoWarehouse = new StructureNekoWarehouse(19, "nekoWarehouse");
+	public static Structure nekoGuardTower = new StructureNekoTower(20, "nekoGuardTower");
+	public static Structure nekoCottage = new StructureNekoHouse(21, "nekoCottage");
+	public static Structure nekoVillage = new StructureNekoVillage(22, "nekoVillage");
 
 	public Structure(int id, String s, int height)
 	{
-		if (structureList[id] != null) throw new IllegalArgumentException("There is a structure using that ID (" + id + ") already!");
-		structureList[id] = this;
-		this.structureId = id;
-		this.structureName = s;
+		ResourceLocation rl = new ResourceLocation("tragicmc:" + s);
+		if (structureRegistry.containsKey(rl)) throw new IllegalArgumentException("There is a Structure using that name (" + rl + ") already!");
+		structureRegistry.register(id, rl, this);
 		this.height = height;
 	}
 
@@ -103,7 +100,11 @@ public abstract class Structure {
 	 */
 	public boolean canGenerate()
 	{
-		return TragicConfig.structureAllow[this.structureId];
+		return TragicConfig.structureAllow[this.getStructureId()];
+	}
+	
+	public int getStructureId() {
+		return structureRegistry.getIDForObject(this);
 	}
 	
 	/**
@@ -113,7 +114,7 @@ public abstract class Structure {
 	 */
 	public boolean getRarity(final int compare)
 	{
-		return TragicMC.rand.nextInt(compare) <= TragicConfig.structureRarity[this.structureId];
+		return TragicMC.rand.nextInt(compare) <= TragicConfig.structureRarity[this.getStructureId()];
 	}
 
 	public int getHeight()
@@ -144,17 +145,25 @@ public abstract class Structure {
 
 	public String getLocalizedName()
 	{
-		return StatCollector.translateToLocal("tile.tragicmc.structureSeed." + this.structureName + ".name");
+		return StatCollector.translateToLocal("tile.tragicmc.structureSeed." + this.getUnlocalizedName() + ".name");
 	}
 
 	public String getUnlocalizedName() 
 	{
-		return this.structureName;
+		return structureRegistry.getNameForObject(this).getResourcePath();
 	}
 	
 	public int getStructureColor()
 	{
 		return 0x000000;
+	}
+	
+	public static Structure getStructureById(int i) {
+		return structureRegistry.getObjectById(i);
+	}
+	
+	public static int getRegistrySize() {
+		return structureRegistry.getKeys().size();
 	}
 	
 	public abstract Schematic getSchematicFor(World world, Random rand, BlockPos pos);

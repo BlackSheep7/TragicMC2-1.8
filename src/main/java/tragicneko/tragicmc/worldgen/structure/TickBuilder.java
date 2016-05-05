@@ -184,7 +184,7 @@ public class TickBuilder {
 							BlockPos pos = toPos(new int[] {x, y, z});
 							int progress = tg.getInteger(STRUCTURE_LAST_POS_TAG);
 
-							Structure str = Structure.structureList[id];
+							Structure str = Structure.getStructureById(id);
 							Schematic sch = str.getSchematicFor(event.world, event.world.rand, pos);
 
 							sch.generateStructure(event.world, event.world.rand, pos.getX(), pos.getY(), pos.getZ());
@@ -227,7 +227,7 @@ public class TickBuilder {
 					tag.setInteger(STRUCTURE_ORIGIN_X_TAG, array[0]);
 					tag.setInteger(STRUCTURE_ORIGIN_Y_TAG, array[1]);
 					tag.setInteger(STRUCTURE_ORIGIN_Z_TAG, array[2]);
-					tag.setInteger(STRUCTURE_ID_TAG, sch.structure.structureId);
+					tag.setInteger(STRUCTURE_ID_TAG, sch.structure.getStructureId());
 					tag.setInteger(STRUCTURE_LAST_POS_TAG, sch.placedBlocks);
 					tagList.appendTag(tag);
 					if (!event.getChunk().isLoaded()) tb.removeSchematic(pos);

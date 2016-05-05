@@ -31,6 +31,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.TragicRecipes;
 import tragicneko.tragicmc.client.gui.GuiAmuletInventory;
+import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.AchievementEvents;
 import tragicneko.tragicmc.events.AmuletEvents;
@@ -44,6 +45,7 @@ import tragicneko.tragicmc.events.RespawnDoomEvents;
 import tragicneko.tragicmc.events.ServerTickEvents;
 import tragicneko.tragicmc.events.VanillaChangingEvents;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
+import tragicneko.tragicmc.items.challenge.Challenge;
 import tragicneko.tragicmc.network.MessageAmulet;
 import tragicneko.tragicmc.network.MessageAttack;
 import tragicneko.tragicmc.network.MessageDoom;
@@ -64,6 +66,7 @@ import tragicneko.tragicmc.network.MessageUseDoomsday;
 import tragicneko.tragicmc.network.MessageUseRidable;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import tragicneko.tragicmc.worldgen.structure.TickBuilder;
 
 public class CommonProxy implements IGuiHandler {
@@ -112,7 +115,8 @@ public class CommonProxy implements IGuiHandler {
 				return TragicItems.NekoNekoWand;
 			}
 		});
-
+		
+		Doomsday.load();
 		TragicBlocks.load();
 		TragicItems.load();
 
