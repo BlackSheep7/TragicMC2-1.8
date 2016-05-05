@@ -28,12 +28,10 @@ public class SchematicDarkHut extends Schematic {
 				}
 			}
 
-			if (y1 == 0 && world.getBlockState(new BlockPos(x, y, z)).getBlock() == TragicBlocks.StructureSeed) this.setBlockToAir(world, x, y, z);
-
-			if (y1 > 3 || world.getBlockState(new BlockPos(x + 2, y + y1, z - 3)).getBlock().isAir(world, new BlockPos(x + 2, y + y1, z - 3))) this.setBlock(world, x + 2, y + y1, z - 3, TragicBlocks.Darkwood, 0, 2);
-			if (y1 > 3 || world.getBlockState(new BlockPos(x - 3, y + y1, z - 3)).getBlock().isAir(world, new BlockPos(x + 2, y + y1, z - 3))) this.setBlock(world, x - 3, y + y1, z - 3, TragicBlocks.Darkwood, 0, 2);
-			if (y1 > 3 || world.getBlockState(new BlockPos(x + 2, y + y1, z + 3)).getBlock().isAir(world, new BlockPos(x + 2, y + y1, z - 3))) this.setBlock(world, x + 2, y + y1, z + 3, TragicBlocks.Darkwood, 0, 2);
-			if (y1 > 3 || world.getBlockState(new BlockPos(x - 3, y + y1, z + 3)).getBlock().isAir(world, new BlockPos(x + 2, y + y1, z - 3))) this.setBlock(world, x - 3, y + y1, z + 3, TragicBlocks.Darkwood, 0, 2);
+			this.setBlock(world, x + 2, y + y1, z - 3, TragicBlocks.Darkwood, 0, 2);
+			this.setBlock(world, x - 3, y + y1, z - 3, TragicBlocks.Darkwood, 0, 2);
+			this.setBlock(world, x + 2, y + y1, z + 3, TragicBlocks.Darkwood, 0, 2);
+			this.setBlock(world, x - 3, y + y1, z + 3, TragicBlocks.Darkwood, 0, 2);
 
 			if (y1 == 4)
 			{

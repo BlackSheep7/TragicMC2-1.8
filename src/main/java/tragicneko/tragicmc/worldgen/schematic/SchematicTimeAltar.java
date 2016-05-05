@@ -53,8 +53,7 @@ public class SchematicTimeAltar extends Schematic {
 		for (int i = 0; i < list.size(); i++) //creates a smaller hemisphere of star crystal to provide lighting
 		{
 			coords = list.get(i);
-			block = world.getBlockState(coords).getBlock();
-			if (block == quartz) this.setBlock(world, coords.getX(), coords.getY(), coords.getZ(), crystal, variant, 2);
+			this.setBlock(world, coords.getX(), coords.getY(), coords.getZ(), crystal, variant, 2);
 		}
 
 		//Creates a structure in the middle that you can use to create another time controller, it comes with a summon block on top though

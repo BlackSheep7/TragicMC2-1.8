@@ -109,7 +109,7 @@ public class SchematicClaymationRuin extends Schematic {
 		{
 			for (byte x1 = -2; x1 < 3; x1++)
 			{
-				if (world.getBlockState(new BlockPos(x + x1, y + y1, z)).getBlock().isAir(world, new BlockPos(x + x1, y + y1, z))) this.setBlock(world, x + x1, y + y1, z, DarkSandstone, 0, 2);
+				 this.setBlock(world, x + x1, y + y1, z, DarkSandstone, 0, 2);
 			}
 		}
 

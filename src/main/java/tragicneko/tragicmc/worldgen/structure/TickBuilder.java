@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.ChunkDataEvent;
@@ -38,6 +39,9 @@ public class TickBuilder {
 	public static final String STRUCTURE_ORIGIN_Y_TAG = "posOriginY";
 	public static final String STRUCTURE_ORIGIN_Z_TAG = "posOriginZ";
 	public static final String STRUCTURE_LAST_POS_TAG = "structureLastPosition";
+	
+	private boolean timeOut = false;
+	private long lastTime = 0L;
 
 	public TickBuilder() {
 		this.theWorld = null;
@@ -70,6 +74,7 @@ public class TickBuilder {
 		while (bldrs.hasNext())
 		{
 			TickBuilder tb = bldrs.next();
+			tb.lastTime = MinecraftServer.getCurrentTimeMillis();
 			if (tb.hasFinished() || !tb.shouldBuild || tb.theWorld == null) continue;
 			Set<BlockPos> schemas = tb.schemas.keySet();
 			Iterator<BlockPos> ite = schemas.iterator();
@@ -119,19 +124,19 @@ public class TickBuilder {
 	public synchronized void addSchematic(BlockPos origin, Schematic sch) {
 		if (this.schemas.containsKey(origin)) 
 		{
-			logger.warn("Builder already has a mapping for this schematic's origin, ignoring...");
+			logger.warn("Builder already has a mapping for this schematic's origin (" + origin + "), ignoring...");
 			return;
-		}
-		else
-		{
-			logger.info("Added schematic with origin of " + origin + (sch.structure != null ? (" for the structure, " + sch.structure.getLocalizedName()) : ""));
 		}
 		this.schemas.put(origin, sch);
 	}
 
 	public synchronized void removeSchematic(BlockPos origin) {
 		Schematic sch = this.schemas.get(origin);
-		logger.info("Removed schematic at origin of " + origin + (sch != null && sch.structure != null ? (" for the structure, " + sch.structure.getLocalizedName()) : ""));
+		if (sch == null || !this.schemas.containsKey(origin))
+		{
+			logger.warn("Attempted to remove schematic at that origin (" + origin + "), but the map didn't contain one, this is an error...");
+			return;
+		}
 		this.schemas.remove(origin);
 	}
 
@@ -177,20 +182,28 @@ public class TickBuilder {
 						NBTTagCompound tg = tagList.getCompoundTagAt(i);
 						if (tg != null)
 						{
-							int id = tg.getInteger(STRUCTURE_ID_TAG);
-							int x = tg.getInteger(STRUCTURE_ORIGIN_X_TAG);
-							int y = tg.getInteger(STRUCTURE_ORIGIN_Y_TAG);
-							int z = tg.getInteger(STRUCTURE_ORIGIN_Z_TAG);
-							BlockPos pos = toPos(new int[] {x, y, z});
-							int progress = tg.getInteger(STRUCTURE_LAST_POS_TAG);
+							try
+							{						
+								final int id = tg.getInteger(STRUCTURE_ID_TAG);
+								final int x = tg.getInteger(STRUCTURE_ORIGIN_X_TAG);
+								final int y = tg.getInteger(STRUCTURE_ORIGIN_Y_TAG);
+								final int z = tg.getInteger(STRUCTURE_ORIGIN_Z_TAG);
+								BlockPos pos = toPos(new int[] {x, y, z});
+								int progress = tg.getInteger(STRUCTURE_LAST_POS_TAG);
 
-							Structure str = Structure.getStructureById(id);
-							Schematic sch = str.getSchematicFor(event.world, event.world.rand, pos);
+								Structure str = Structure.getStructureById(id);
+								Schematic sch = str.getSchematicFor(event.world, event.world.rand, pos);
 
-							sch.generateStructure(event.world, event.world.rand, pos.getX(), pos.getY(), pos.getZ());
-							sch.placedBlocks = progress;
-							sch.retrogradeBuildProgress();
-							tb.addSchematic(pos, sch);
+								sch.generateStructure(event.world, event.world.rand, pos.getX(), pos.getY(), pos.getZ()).sortIntoList();
+								sch.placedBlocks = progress;
+								sch.retrogradeBuildProgress();
+								tb.addSchematic(pos, sch);
+							}
+							catch (Exception e)
+							{
+								logger.error("There was an error trying to read a Schematic from chunk data, skipping...", e);
+								continue;
+							}
 						}
 					}
 				}
