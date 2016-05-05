@@ -10,7 +10,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -125,24 +127,24 @@ public class EntityGuardianShield extends EntityProjectile {
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
-		if (src == DamageSource.inWall) return false;
+		if (src == DamageSource.inWall || src.isExplosion()) return false;
 
-		if (src.getEntity() != null && src.getEntity() == this.shootingEntity)
+		if (!this.worldObj.isRemote && src.getEntity() != null && src.getEntity() == this.shootingEntity)
 		{
 			this.motionFlag = true;
-			Vec3 vec3 = this.shootingEntity.getLookVec();
+			Vec3 vec3 = WorldHelper.getVecFromEntity(this.shootingEntity, 2.0D);
 
 			if (vec3 != null)
 			{
-				this.motionX = vec3.xCoord;
-				this.motionY = vec3.yCoord;
-				this.motionZ = vec3.zCoord;
-				this.accelerationX = this.motionX * 0.1D;
-				this.accelerationY = this.motionY * 0.1D;
-				this.accelerationZ = this.motionZ * 0.1D;
+				this.rotationPitch = this.shootingEntity.rotationPitch;
+				this.rotationYaw = this.shootingEntity.rotationYaw;
+				this.motionX = vec3.xCoord - this.shootingEntity.posX;
+				this.motionY = vec3.yCoord - this.shootingEntity.posY - this.shootingEntity.getEyeHeight();
+				this.motionZ = vec3.zCoord - this.shootingEntity.posZ;
+				this.accelerationX = this.accelerationY = this.accelerationZ = 0;
 			}
 
-			return super.attackEntityFrom(src, dmg);
+			return false;
 		}
 
 		if (!this.worldObj.isRemote)
@@ -173,13 +175,18 @@ public class EntityGuardianShield extends EntityProjectile {
 
 			if (!this.motionFlag && this.shootingEntity != null)
 			{
-				this.motionX = this.shootingEntity.motionX;
-				this.motionY = this.shootingEntity.motionY;
-				this.motionZ = this.shootingEntity.motionZ;
-
 				int i = (this.ticksExisted + this.getEntityId()) % 100;
-				double d0 = (Math.sin(i * 0.1)) + 1.6;
-				this.setPosition(this.motionX + this.shootingEntity.posX + this.xOffset, this.shootingEntity.posY + d0, this.motionZ + this.shootingEntity.posZ + this.zOffset);
+				double d0 = (Math.sin(i * 0.23 + (i * 0.123))) + 1.8; 
+				Vec3 vec3 = new Vec3(this.shootingEntity.posX, this.shootingEntity.posY,
+						this.shootingEntity.posZ);
+				
+				this.prevPosX = this.posX;
+				this.prevPosY = this.posY;
+				this.prevPosZ = this.posZ;
+				
+				this.setPosition(vec3.xCoord + this.shootingEntity.motionX + this.xOffset,
+						vec3.yCoord + d0 + this.shootingEntity.motionY,
+						vec3.zCoord + this.shootingEntity.motionZ + this.zOffset);
 			}
 			else if (this.motionFlag)
 			{
@@ -206,16 +213,27 @@ public class EntityGuardianShield extends EntityProjectile {
 	protected void onImpact(MovingObjectPosition var1) {
 		if (this.worldObj.isRemote || var1 == null) return;
 
-		if (this.motionFlag)
+		if (this.motionFlag && var1.typeOfHit != MovingObjectType.MISS)
 		{
 			if (var1.entityHit != null && var1.entityHit != this.shootingEntity)
 			{
 				if (var1.entityHit instanceof EntityGuardianShield) return;
 				var1.entityHit.attackEntityFrom(this.shootingEntity != null ? DamageHelper.causeModMagicDamageToEntity(this.shootingEntity) : DamageSource.magic , this.maxHealth / 10.0F);
 			}
-
-			this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, (this.maxHealth / 10.0F) * rand.nextFloat(), WorldHelper.getMobGriefing(this.worldObj));
+			this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, (this.maxHealth / 10.0F) * rand.nextFloat() + 1.0F, WorldHelper.getMobGriefing(this.worldObj));
 			this.setDead();
 		}
+	}
+	
+	@Override
+	public int getLifespan()
+	{
+		return 1200;
+	}
+	
+	@Override
+	public float getMotionFactor()
+	{
+		return 0.998F;
 	}
 }

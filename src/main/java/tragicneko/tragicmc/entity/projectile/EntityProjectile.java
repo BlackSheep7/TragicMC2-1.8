@@ -322,7 +322,7 @@ public abstract class EntityProjectile extends Entity
 			}
 			else if (this.canBeDeflected())
 			{
-				Vec3 vec3 = par1DamageSource.getEntity().getLookVec();
+				Vec3 vec3 = WorldHelper.getVecFromEntity(par1DamageSource.getEntity(), 1.0D);
 
 				if (vec3 != null)
 				{
