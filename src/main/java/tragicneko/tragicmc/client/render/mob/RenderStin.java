@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.model.ModelStin;
 import tragicneko.tragicmc.client.model.ModelStinBaby;
 import tragicneko.tragicmc.entity.mob.EntityStin;
@@ -33,7 +34,7 @@ public class RenderStin extends RenderMob {
 			this.mainModel = new ModelStin();
 		}
 		
-		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0)
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowMobCorruptionRender"))
 		{
 			float f = (float) ((TragicMob) entity).getCorruptionTicks();
 			if (f > 400.0F) f = 400.0F;

@@ -301,6 +301,8 @@ public class TragicConfig {
 		structureRarity[21] = 50; //cottage
 		structureRarity[22] = 1; //village
 		
+		registerObject("allowMobCorruptionRender", true);
+		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
 		EnumConfigType type = getMasterSettings(config);

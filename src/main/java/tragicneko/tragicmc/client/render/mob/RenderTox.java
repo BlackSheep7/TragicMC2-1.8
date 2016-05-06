@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.model.ModelTox;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.TragicMob;
@@ -29,7 +30,7 @@ public class RenderTox extends RenderMob {
 		float scale = tox.getToxType() == 0 ? 1.0F : 0.635F;
 		GL11.glScalef(scale, scale, scale);
 		
-		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0)
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowMobCorruptionRender"))
 		{
 			float f = (float) ((TragicMob) entity).getCorruptionTicks();
 			if (f > 400.0F) f = 400.0F;

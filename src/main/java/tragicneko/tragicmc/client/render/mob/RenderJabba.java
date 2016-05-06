@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.model.ModelJabba;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.TragicMob;
@@ -26,7 +27,7 @@ public class RenderJabba extends RenderMob {
 		float scale = jab.getJabbaType() == 0 ? 1.0F : 0.825F;
 		GlStateManager.scale(scale, scale, scale);
 		
-		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0)
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowMobCorruptionRender"))
 		{
 			float f = (float) ((TragicMob) entity).getCorruptionTicks();
 			if (f > 400.0F) f = 400.0F;
