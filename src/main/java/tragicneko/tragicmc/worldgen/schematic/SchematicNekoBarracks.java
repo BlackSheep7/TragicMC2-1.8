@@ -5,9 +5,13 @@ import static tragicneko.tragicmc.TragicBlocks.NekitePlate;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -181,5 +185,4 @@ public class SchematicNekoBarracks extends Schematic {
 		
 		return this;
 	}
-
 }

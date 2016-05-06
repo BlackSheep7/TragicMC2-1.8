@@ -5,8 +5,12 @@ import static tragicneko.tragicmc.TragicBlocks.NekitePlate;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -264,25 +268,25 @@ public class SchematicNekoWarehouse extends Schematic {
 			this.setBlock(world, new BlockPos(x - 3, y + y1, z - 6), Blocks.chest.getStateFromMeta(3), ChestHooks.commonHook);
 			this.setBlock(world, new BlockPos(x - 4, y + y1, z - 6), Blocks.chest.getStateFromMeta(3), ChestHooks.commonHook);
 
-			this.setBlock(world, new BlockPos(x - 5, y + y1, z - 2), Blocks.furnace.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x - 5, y + y1, z - 2), Blocks.furnace.getStateFromMeta(5), getFurnaceStacks(0, rand), getFurnaceStacks(1, rand), getFurnaceStacks(2, rand));
 			this.setBlock(world, new BlockPos(x - 5, y + y1, z - 3), Blocks.chest.getStateFromMeta(5), ChestHooks.uncommonHook);
 			this.setBlock(world, new BlockPos(x - 5, y + y1, z - 4), Blocks.chest.getStateFromMeta(5), ChestHooks.uncommonHook);
-			this.setBlock(world, new BlockPos(x - 5, y + y1, z - 5), Blocks.furnace.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x - 5, y + y1, z - 5), Blocks.furnace.getStateFromMeta(5), getFurnaceStacks(0, rand), getFurnaceStacks(1, rand), getFurnaceStacks(2, rand));
 
-			this.setBlock(world, new BlockPos(x - 5, y + y1, z + 1), Blocks.furnace.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x - 5, y + y1, z + 1), Blocks.furnace.getStateFromMeta(5), getFurnaceStacks(0, rand), getFurnaceStacks(1, rand), getFurnaceStacks(2, rand));
 			this.setBlock(world, new BlockPos(x - 5, y + y1, z + 2), Blocks.chest.getStateFromMeta(5), ChestHooks.uncommonHook);
 			this.setBlock(world, new BlockPos(x - 5, y + y1, z + 3), Blocks.chest.getStateFromMeta(5), ChestHooks.uncommonHook);
-			this.setBlock(world, new BlockPos(x - 5, y + y1, z + 4), Blocks.furnace.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x - 5, y + y1, z + 4), Blocks.furnace.getStateFromMeta(5), getFurnaceStacks(0, rand), getFurnaceStacks(1, rand), getFurnaceStacks(2, rand));
 
-			this.setBlock(world, new BlockPos(x + 5, y + y1, z - 2), Blocks.furnace.getStateFromMeta(4));
+			this.setBlock(world, new BlockPos(x + 5, y + y1, z - 2), Blocks.furnace.getStateFromMeta(4), getFurnaceStacks(0, rand), getFurnaceStacks(1, rand), getFurnaceStacks(2, rand));
 			this.setBlock(world, new BlockPos(x + 5, y + y1, z - 3), Blocks.chest.getStateFromMeta(4), ChestHooks.uncommonHook);
 			this.setBlock(world, new BlockPos(x + 5, y + y1, z - 4), Blocks.chest.getStateFromMeta(4), ChestHooks.uncommonHook);
-			this.setBlock(world, new BlockPos(x + 5, y + y1, z - 5), Blocks.furnace.getStateFromMeta(4));
+			this.setBlock(world, new BlockPos(x + 5, y + y1, z - 5), Blocks.furnace.getStateFromMeta(4), getFurnaceStacks(0, rand), getFurnaceStacks(1, rand), getFurnaceStacks(2, rand));
 
-			this.setBlock(world, new BlockPos(x + 5, y + y1, z + 1), Blocks.furnace.getStateFromMeta(4));
+			this.setBlock(world, new BlockPos(x + 5, y + y1, z + 1), Blocks.furnace.getStateFromMeta(4), getFurnaceStacks(0, rand), getFurnaceStacks(1, rand), getFurnaceStacks(2, rand));
 			this.setBlock(world, new BlockPos(x + 5, y + y1, z + 2), Blocks.chest.getStateFromMeta(4), ChestHooks.uncommonHook);
 			this.setBlock(world, new BlockPos(x + 5, y + y1, z + 3), Blocks.chest.getStateFromMeta(4), ChestHooks.uncommonHook);
-			this.setBlock(world, new BlockPos(x + 5, y + y1, z + 4), Blocks.furnace.getStateFromMeta(4));
+			this.setBlock(world, new BlockPos(x + 5, y + y1, z + 4), Blocks.furnace.getStateFromMeta(4), getFurnaceStacks(0, rand), getFurnaceStacks(1, rand), getFurnaceStacks(2, rand));
 
 			if (y1 < 2)
 			{
@@ -308,4 +312,11 @@ public class SchematicNekoWarehouse extends Schematic {
 		return this;
 	}
 
+	public static ItemStack getFurnaceStacks(int slot, Random rand) {
+		ItemStack stack = null;
+		if (slot == 1) stack = rand.nextInt(16) == 0 ? new ItemStack(TragicBlocks.Nekowood) : (rand.nextInt(4) == 0 ? new ItemStack(TragicBlocks.NekiteOre) : (rand.nextInt(16) == 0 ? new ItemStack(TragicItems.RedMercury) : null));
+		if (slot == 0) stack = rand.nextInt(32) == 0 ? new ItemStack(Blocks.coal_block) : (rand.nextInt(4) == 0 ? new ItemStack(Items.coal) : (rand.nextInt(16) == 0 ? new ItemStack(TragicBlocks.Nekowood) : null));
+		if (slot == 2) stack = rand.nextInt(16) == 0 ? new ItemStack(Items.coal, 1, 1) : (rand.nextInt(4) == 0 ? new ItemStack(TragicItems.Quicksilver) : (rand.nextInt(16) == 0 ? new ItemStack(TragicItems.Nekite) : (rand.nextInt(12) == 0 ? new ItemStack(Items.diamond) : null)));
+		return stack;
+	}
 }

@@ -111,6 +111,12 @@ tile.tragicmc.structureSeed.lightSpire.name=Light Spire
 tile.tragicmc.structureSeed.hackerNet.name=Hacker Net
 tile.tragicmc.structureSeed.cubeMaze.name=Cube Maze
 tile.tragicmc.structureSeed.outlook.name=Outlook of Persistence
+tile.tragicmc.structureSeed.nekoBarracks.name=Neko Barracks
+tile.tragicmc.structureSeed.nekoWarehouse.name=Neko Warehouse
+tile.tragicmc.structureSeed.nekoCottage.name=Neko Cottage
+tile.tragicmc.structureSeed.nekoGuardTower.name=Neko Guard Tower
+tile.tragicmc.structureSeed.nekoVillage.name=Neko Village
+tile.tragicmc.structureSeed.nekoidCamp.name=Nekoid's Forward Camp
 
 tile.tragicmc.deadDirt.normal.name=Dead Dirt
 tile.tragicmc.deadDirt.rugged.name=Rugged Dirt
@@ -131,8 +137,8 @@ tile.tragicmc.tragicOres.gold.name=Gold Ore
 tile.tragicmc.tragicOres.iron.name=Iron Ore
 tile.tragicmc.tragicOres.coal.name=Coal Ore
 
-tile.tragicmc.boneBlock.normal.name=Block of Bones
-tile.tragicmc.boneBlock.rotten.name=Rotten Block of Bones
+tile.tragicmc.boneBlock.normal.name=Block of Bone
+tile.tragicmc.boneBlock.rotten.name=Rotten Block of Bone
 
 tile.tragicmc.fox.normal.name=Smooth Netherrack
 tile.tragicmc.fox.beveled.name=Beveled Netherrack

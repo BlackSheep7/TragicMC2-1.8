@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -10,13 +9,17 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockLadder;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.block.BlockSign;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.BlockPos;
@@ -31,6 +34,7 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 public abstract class Schematic {
 
 	public HashMap<BlockPos, PosPreset> map;
+	public HashMap<BlockPos, Entity> entityMap; //keeps entity position and the actual entity instance, when saved in chunk data, will use their normal nbt
 	public LinkedList<PosPreset> list;
 	//public LinkedList<PosPreset> matrix;
 	public int width; //current width
@@ -273,6 +277,24 @@ public abstract class Schematic {
 			Schematic.applyChestContents(world, world.rand, pos, hook);
 		}
 	}
+	
+	public static class FurnacePreset extends PosPreset {
+		
+		private final ItemStack fuel, toCook, result;
+
+		public FurnacePreset(BlockPos pos, IBlockState state, ItemStack fuel, ItemStack toCook, ItemStack result) {
+			super(pos, state, true);
+			this.fuel = fuel;
+			this.toCook = toCook;
+			this.result = result;
+		}
+
+		@Override
+		public void handleTileEntity(World world, BlockPos pos) {
+			pos = pos.add(this.pos);
+			Schematic.applyFurnaceContents(world, world.rand, pos, fuel, toCook, result);
+		}
+	}
 
 	/*
 	public void invertMatrix(PosPreset[][] presets)
@@ -381,6 +403,25 @@ public abstract class Schematic {
 			return false;
 		}
 	}
+	
+	private static boolean applyFurnaceContents(World world, Random rand, BlockPos pos, ItemStack fuel, ItemStack toCook, ItemStack result) {
+		if (world.isRemote || pos.getY() <= 0 || pos.getY() >= 256) return false;
+
+		TileEntityFurnace tileentity = (TileEntityFurnace)world.getTileEntity(pos);
+		if (tileentity != null)
+		{
+			tileentity.setInventorySlotContents(0, toCook);
+			tileentity.setInventorySlotContents(1, fuel);
+			tileentity.setInventorySlotContents(2, result);
+			TragicMC.logInfo("Handled furnace generation. Itemstacks were " + (fuel != null ? fuel : "") + ", " + (toCook != null ? toCook : "") + ", " + (result != null ? result : ""));
+			return true;
+		}
+		else
+		{
+			TragicMC.logWarning("Furnace generation failed. The tile entity was null.");
+			return false;
+		}
+	}
 
 	private static boolean addSignContents(World world, BlockPos pos, int line, String text) {
 
@@ -467,6 +508,10 @@ public abstract class Schematic {
 			{
 				new ChestPreset(pos.subtract(this.origin), state, (ChestGenHooks) params[0]).handleTileEntity(world, this.origin);
 			} 
+			else if (state.getBlock() instanceof BlockFurnace)
+			{
+				new FurnacePreset(pos.subtract(this.origin), state, (ItemStack) params[0], (ItemStack) params[1], (ItemStack) params[2]).handleTileEntity(world, this.origin);
+			}
 		}
 	}
 
@@ -487,9 +532,25 @@ public abstract class Schematic {
 		{
 			map.put(pos, new ChestPreset(pos, state, (ChestGenHooks) params[0]));
 		}
+		else if (state.getBlock() instanceof BlockFurnace)
+		{
+			map.put(pos, new FurnacePreset(pos, state, (ItemStack) params[0], (ItemStack) params[1], (ItemStack) params[2]));
+		}
 		else
 		{ 
 			map.put(pos, new PosPreset(pos, state));
+		}
+	}
+	
+	public void spawnEntity(World world, Random rand, BlockPos pos, Entity entity) {
+		if (TragicConfig.getBoolean("allowTickBuilder"))
+		{
+			this.entityMap.put(pos, entity);
+		}
+		else
+		{
+			entity.setPosition(pos.getX(), pos.getY(), pos.getZ());
+			world.spawnEntityInWorld(entity);
 		}
 	}
 	

@@ -53,7 +53,7 @@ public class StructureWorldGen implements IWorldGenerator {
 			if (sch != null && TragicConfig.getBoolean("allowTickBuilder"))
 			{
 				if (TickBuilder.getBuilderFor(world) != null) TickBuilder.getBuilderFor(world).addSchematic(pos, sch);
-				TragicMC.logInfo(s.getLocalizedName() + " succesfully generated at " + x + ", " + (s.isSurfaceStructure() ? top : y) + ", " + z);
+				TragicMC.logInfo(s.getLocalizedName() + " succesfully generated at " + pos);
 				break;
 			}
 		}

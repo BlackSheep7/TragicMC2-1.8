@@ -295,6 +295,12 @@ public class TragicConfig {
 		structureAllow[21] = true;
 		structureAllow[22] = true;
 		
+		structureRarity[18] = 10; //barracks
+		structureRarity[19] = 3; //warehouse
+		structureRarity[20] = 25; //tower
+		structureRarity[21] = 50; //cottage
+		structureRarity[22] = 1; //village
+		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
 		EnumConfigType type = getMasterSettings(config);

@@ -17,7 +17,7 @@ import tragicneko.tragicmc.doomsday.Doomsday;
 
 public class ChestHooks {
 
-	public static ChestGenHooks rareHook, uncommonHook, commonHook, epicHook;
+	public static ChestGenHooks rareHook, uncommonHook, commonHook, epicHook, foodHook;
 
 	public static void load() {
 		
@@ -184,6 +184,8 @@ public class ChestHooks {
 				new WeightedRandomChestContent(new ItemStack(Items.rotten_flesh), 2, 5, 100),
 				new WeightedRandomChestContent(new ItemStack(Items.string), 2, 4, 75),
 				new WeightedRandomChestContent(new ItemStack(Items.bone), 1, 3, 25),
+				new WeightedRandomChestContent(new ItemStack(Items.slime_ball), 1, 3, 15),
+				new WeightedRandomChestContent(new ItemStack(Items.clay_ball), 1, 3, 15),
 				new WeightedRandomChestContent(new ItemStack(Projectile, 1, 11), 1, 3, 10)
 		};
 
@@ -223,11 +225,37 @@ public class ChestHooks {
 		}
 
 		ArrayUtils.addAll(epicChestContent, scrollArray);
+		
+		WeightedRandomChestContent[] foodChestContent = new WeightedRandomChestContent[] {
+				new WeightedRandomChestContent(new ItemStack(Items.golden_apple, 1), 1, 2, 3),
+				new WeightedRandomChestContent(new ItemStack(Items.golden_apple, 1, 1), 1, 2, 1),
+				new WeightedRandomChestContent(new ItemStack(Honeydrop, 1), 1, 4, 5),
+				new WeightedRandomChestContent(new ItemStack(Gloopii, 1), 1, 3, 8),
+				new WeightedRandomChestContent(new ItemStack(Items.cooked_beef, 3), 2, 5, 15),
+				new WeightedRandomChestContent(new ItemStack(Items.cooked_porkchop, 3), 2, 5, 15),
+				new WeightedRandomChestContent(new ItemStack(Items.cooked_chicken, 3), 2, 5, 15),
+				new WeightedRandomChestContent(new ItemStack(Items.cooked_mutton), 3, 6, 15),
+				new WeightedRandomChestContent(new ItemStack(Items.cooked_rabbit), 5, 10, 15),
+				new WeightedRandomChestContent(new ItemStack(Tentacle, 1), 1, 4, 30),
+				new WeightedRandomChestContent(new ItemStack(Items.mutton), 1, 4, 65),
+				new WeightedRandomChestContent(new ItemStack(Items.beef), 1, 4, 65),
+				new WeightedRandomChestContent(new ItemStack(Items.porkchop), 1, 4, 65),
+				new WeightedRandomChestContent(new ItemStack(Items.chicken), 1, 4, 65),
+				new WeightedRandomChestContent(new ItemStack(Items.rabbit, 3), 2, 5, 65),
+				new WeightedRandomChestContent(new ItemStack(Items.apple, 3), 4, 9, 45),
+				new WeightedRandomChestContent(new ItemStack(Items.carrot, 3), 2, 5, 45),
+				new WeightedRandomChestContent(new ItemStack(Items.potato, 3), 2, 5, 45),
+				new WeightedRandomChestContent(new ItemStack(Items.sugar, 3), 2, 5, 5),
+				new WeightedRandomChestContent(new ItemStack(Items.mushroom_stew, 3), 2, 5, 3),
+				new WeightedRandomChestContent(new ItemStack(Items.rabbit_stew, 3), 2, 5, 5),
+				new WeightedRandomChestContent(new ItemStack(Items.bowl, 3), 1, 3, 25)
+		};
 
-		rareHook = (new ChestGenHooks("TragicMC.RareHook", Arrays.asList(rareChestContent), 3, 7));
-		uncommonHook = (new ChestGenHooks("TragicMC.UncommonHook", Arrays.asList(uncommonChestContent), 5, 8));
+		rareHook = (new ChestGenHooks("TragicMC.RareHook", Arrays.asList(rareChestContent), 1, 7));
+		uncommonHook = (new ChestGenHooks("TragicMC.UncommonHook", Arrays.asList(uncommonChestContent), 2, 6));
 		commonHook = (new ChestGenHooks("TragicMC.CommonHook", Arrays.asList(commonChestContent), 3, 6));
-		epicHook = (new ChestGenHooks("TragicMC.EpicHook", Arrays.asList(epicChestContent), 6, 10));
+		epicHook = (new ChestGenHooks("TragicMC.EpicHook", Arrays.asList(epicChestContent), 2, 6));
+		foodHook = (new ChestGenHooks("TragicMC.FoodHook", Arrays.asList(foodChestContent), 4, 9));
 
 		if (TragicConfig.getBoolean("allowCooldownDefuse"))
 		{

@@ -10,12 +10,13 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 public class SchematicNekoVillage extends Schematic {
 
 	public SchematicNekoVillage(BlockPos origin, Structure structure) {
-		super(origin, structure, 10, 10, 10);
+		super(origin, structure, 30, 70, 70);
 	}
 
 	@Override
 	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 		this.setBlock(world, new BlockPos(x, y, z), TragicBlocks.NekitePlate.getStateFromMeta(0));
+		byte[][] byteMap = this.generateBlockComposition(rand);
 		return this;
 	}
 	
