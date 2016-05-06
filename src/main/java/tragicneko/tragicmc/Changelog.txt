@@ -4827,8 +4827,23 @@ Added hidden chest to Claymation Ruin boss room
 Reduced logger spam from the TickBuilder since it works pretty effectively now, only log errors and weird happenings
 Added exception handling for getting a Schematic from chunk memory on load, if it fails then the schematic is skipped instead of an outright crash being caused
 Fixed recursion error (stack overflow) that would happen when reloading a schematic from chunk memory, with the schematic attempting to get a block from the chunk
-at the same time, this could've been fixed via having a variable set for when a schematic needs to be initialized by theh builder instead of doing the initalization
+at the same time, this could've been fixed via having a variable set for when a schematic needs to be initialized by the builder instead of doing the initalization
 when the chunk is loaded
+Reduced overall amount of items that generate from my chests, added new chest hook for food items
+Added new schematic preset for furnaces
+Added schematic for Neko Guard Towers
+Added localizations for the new structures
+
+TODO:
+Create schematic for the Neko Village (this will be a huge schematic like the claymation ruin/corrupted spire)
+Add entity placer for schematics, either as a block that places the entity after a set amount of time or as a separate entity list to be spawned after the
+structure is finished by the tick builder
+Add sounds for Science Neko, record some more for it
+Add sounds for Mecha Neko
+Add sounds and finish model for Mecha Exo
+Add Assault Neko, Worker Neko and Trader Neko
+Add trades for Trader Nekos
+Add Professor Nekoid and related Summon block
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
