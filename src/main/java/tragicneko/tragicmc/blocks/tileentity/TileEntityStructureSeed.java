@@ -16,7 +16,7 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 import tragicneko.tragicmc.worldgen.structure.TickBuilder;
 
 public class TileEntityStructureSeed extends TileEntity implements ITickable {
-	
+
 	public boolean warned = false;
 
 	@Override
@@ -54,7 +54,11 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 		{
 			if (TragicConfig.getBoolean("allowTickBuilder") && TickBuilder.getBuilderFor(this.worldObj) != null) TickBuilder.getBuilderFor(this.worldObj).addSchematic(pos, sch);
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
-			if (player != null) player.addChatMessage(new ChatComponentText(structure.getLocalizedName() + " was generated successfully!"));
+			if (player != null)
+			{
+				ChatComponentText text = new ChatComponentText(structure.getLocalizedName() + (TragicConfig.getBoolean("allowTickBuilder") ? " had it's schematic generated successfully, building..." : " was generated successfully!"));
+				player.addChatMessage(text);
+			}
 			this.worldObj.setBlockState(this.pos, Blocks.air.getDefaultState());
 		}
 		else
