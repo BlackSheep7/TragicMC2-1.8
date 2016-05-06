@@ -4833,6 +4833,8 @@ Reduced overall amount of items that generate from my chests, added new chest ho
 Added new schematic preset for furnaces
 Added schematic for Neko Guard Towers
 Added localizations for the new structures
+Added client-side config option to disable corruption rendering on mobs
+Added alternative confirmation message for Structure Seeds based on if the TickBuilder is active or not
 
 TODO:
 Create schematic for the Neko Village (this will be a huge schematic like the claymation ruin/corrupted spire)
