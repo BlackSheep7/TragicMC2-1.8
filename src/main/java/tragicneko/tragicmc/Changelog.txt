@@ -4835,11 +4835,15 @@ Added schematic for Neko Guard Towers
 Added localizations for the new structures
 Added client-side config option to disable corruption rendering on mobs
 Added alternative confirmation message for Structure Seeds based on if the TickBuilder is active or not
+Modified confirmation message for Structure Seed based on if the structure can't be built because one is already being built at the targeted location
+Finished the schmeatic for the Neko Village (which was renamed to Neko City since it looked more city-like)
+Added ability to do a one-time spawn for entities in a structure, will probably only be used for the Neko City to spawn in Worker and Trader Nekos, they will have
+a tag set for them to not despawn after they are spawned
+Remove a builder from the builder list in TickBuilder if the world is unloaded for it, we were keeping it in memory to not have to recreate it every time but
+if a world is unloaded (when the server is stopped) then it remains in memory, potentially becoming a memory leak
 
 TODO:
-Create schematic for the Neko Village (this will be a huge schematic like the claymation ruin/corrupted spire)
-Add entity placer for schematics, either as a block that places the entity after a set amount of time or as a separate entity list to be spawned after the
-structure is finished by the tick builder
+Create schematic for Nekoid's Forward Base
 Add sounds for Science Neko, record some more for it
 Add sounds for Mecha Neko
 Add sounds and finish model for Mecha Exo
@@ -4863,6 +4867,7 @@ Neko homeworld with new neko types:
 *Mecha Neko - War-like
 *Mecha Exo - Ridable entity
 Assault Neko - Decent armor, low health, attacks with a battering ram charge attack, normally hits with a laser sword
+Worker, Trader Nekos - Workers are passive, they don't do anything really, Traders are basically villagers
 Professor Nekoid - The greatest, best, genius
 *Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
 
