@@ -276,7 +276,7 @@ public class TragicConfig {
 		registerObject("mechaNekoSpawnOverride", false);
 		registerObject("mechaNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
-		registerObject("mechaNekoCommandExo", true); //should the mecha neko can 'command' the Exo to use abilities
+		registerObject("mechaNekoCommandExo", true); //should the mecha neko 'command' the Exo to use abilities
 		registerObject("mechaNekoRidingExo", true); //should the mecha neko spawn in riding an Exo
 		registerObject("mechaNekoRidingArmor", true); //should, when the mecha neko is riding an entity, gain very high armor
 		
@@ -287,21 +287,26 @@ public class TragicConfig {
 		registerObject("assaultNekoSpawnOverride", false);
 		registerObject("assaultNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
-		registerObject("allowKurayami", true); //if the kurayami entity itself is allowed
+		registerObject("allowWorkerNeko", true);
+		registerObject("workerNekoStats", new MobStat(new double[] {}, 0));
+		registerObject("workerNekoGroupSize", new int[] {0, 0});
+		registerObject("workerNekoSpawnChance", 1);
+		registerObject("workerNekoSpawnOverride", false);
+		registerObject("workerNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
-		structureAllow[18] = true;
-		structureAllow[19] = true;
-		structureAllow[20] = true;
-		structureAllow[21] = true;
-		structureAllow[22] = true;
+		registerObject("allowTraderNeko", true);
+		registerObject("traderNekoStats", new MobStat(new double[] {}, 0));
+		registerObject("traderNekoGroupSize", new int[] {0, 0});
+		registerObject("traderNekoSpawnChance", 1);
+		registerObject("traderNekoSpawnOverride", false);
+		registerObject("traderNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
-		structureRarity[18] = 10; //barracks
-		structureRarity[19] = 3; //warehouse
-		structureRarity[20] = 25; //tower
-		structureRarity[21] = 50; //cottage
-		structureRarity[22] = 1; //village
-		
-		registerObject("allowMobCorruptionRender", true);
+		registerObject("allowProfessorNekoid", true);
+		registerObject("professorNekoidStats", new MobStat(new double[] {}, 0));
+		registerObject("professorNekoidGroupSize", new int[] {0, 0});
+		registerObject("professorNekoidSpawnChance", 1);
+		registerObject("professorNekoidSpawnOverride", false);
+		registerObject("professorNekoidSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
@@ -2567,6 +2572,9 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "avrisAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "kurayamiAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "jarraAllow", true);
 		miniBossAllow[m = 0] = prop.getBoolean(true);
@@ -4011,6 +4019,24 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "outlookAllow", true);
 		structureAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "nekoBarracksAllow", true);
+		structureAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "nekoWarehouseAllow", true);
+		structureAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "nekoGuardTowerAllow", true);
+		structureAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "nekoCottageAllow", true);
+		structureAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "nekoVillageAllow", true);
+		structureAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "nekoidsForwardBaseAllow", true);
+		structureAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "apisTempleRarity", 5);
 		structureRarity[m = 0] = clamp(prop.getInt(5), 1, 200);
@@ -4065,6 +4091,14 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "outlookRarity", 3);
 		structureRarity[++m] = clamp(prop.getInt(3), 1, 200);
+		
+		//TODO add these to the actual config, for now we'll just test out the numbers
+		structureRarity[18] = 10; //barracks
+		structureRarity[19] = 5; //warehouse
+		structureRarity[20] = 25; //tower
+		structureRarity[21] = 50; //cottage
+		structureRarity[22] = 3; //village
+		structureRarity[23] = 1; //Nekoid FOB
 
 		cat = config.getCategory(CAT_MISC);
 		cat.setComment("Random other options that don't quite fit into other categories.");
@@ -4165,6 +4199,11 @@ public class TragicConfig {
 		s = "allowExtraDoomsdayInfoInGui";
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "If you can activate a Doomsday, displays that Doomsday's information in the Gui";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "allowCorruptionMobRender";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should mobs render darker the longer they are corrupted? Only affects this mod's mobs.";
 		registerObject(s, prop.getBoolean(true));
 
 		s = "guiTransparency";
@@ -5180,6 +5219,7 @@ public class TragicConfig {
 		registerObject("allowRanmas", mobAllow[++m]);
 		registerObject("allowParasmite", mobAllow[++m]);
 		registerObject("allowAvris", mobAllow[++m]);
+		registerObject("allowKurayami", mobAllow[++m]);
 
 		registerObject("allowJarra", miniBossAllow[m = 0]);
 		registerObject("allowKragul", miniBossAllow[++m]);

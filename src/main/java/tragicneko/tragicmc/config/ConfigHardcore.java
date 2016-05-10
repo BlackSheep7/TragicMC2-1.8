@@ -2178,6 +2178,9 @@ public class ConfigHardcore extends TragicConfig {
 
 		prop = config.get(cat.getName(), "avrisAllow", false);
 		mobAllow[++m] = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "kurayamiAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "jarraAllow", true);
 		miniBossAllow[m = 0] = prop.getBoolean(true);
@@ -3775,6 +3778,11 @@ public class ConfigHardcore extends TragicConfig {
 		s = "allowExtraDoomsdayInfoInGui";
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "If you can activate a Doomsday, displays that Doomsday's information in the Gui";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "allowCorruptionMobRender";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should mobs render darker the longer they are corrupted? Only affects this mod's mobs.";
 		registerObject(s, prop.getBoolean(true));
 
 		s = "guiTransparency";
