@@ -52,11 +52,15 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 		Schematic sch = structure.generateStructureWithVariant(this.worldObj.rand.nextInt(structure.getVariantSize()), this.worldObj, this.worldObj.rand, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
 		if (sch != null)
 		{
-			if (TragicConfig.getBoolean("allowTickBuilder") && TickBuilder.getBuilderFor(this.worldObj) != null) TickBuilder.getBuilderFor(this.worldObj).addSchematic(pos, sch);
+			boolean flag = false;
+			if (TragicConfig.getBoolean("allowTickBuilder") && TickBuilder.getBuilderFor(this.worldObj) != null)
+			{
+				flag = TickBuilder.getBuilderFor(this.worldObj).addSchematic(pos, sch);
+			}
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
 			if (player != null)
 			{
-				ChatComponentText text = new ChatComponentText(structure.getLocalizedName() + (TragicConfig.getBoolean("allowTickBuilder") ? " had it's schematic generated successfully, building..." : " was generated successfully!"));
+				ChatComponentText text = new ChatComponentText(structure.getLocalizedName() + (TragicConfig.getBoolean("allowTickBuilder") ? (flag ? " had it's schematic generated successfully, building..." : " had it's schematic generated, however, there is a schematic being generated at that coordinate already.") : " was generated successfully!"));
 				player.addChatMessage(text);
 			}
 			this.worldObj.setBlockState(this.pos, Blocks.air.getDefaultState());

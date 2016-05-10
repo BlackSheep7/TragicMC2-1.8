@@ -8,12 +8,12 @@ import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenNekoBarrens;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
-import tragicneko.tragicmc.worldgen.schematic.SchematicNekoVillage;
+import tragicneko.tragicmc.worldgen.schematic.SchematicNekoidsForwardBase;
 
-public class StructureNekoVillage extends Structure {
+public class StructureNekoidsForwardBase extends Structure {
 
-	public StructureNekoVillage(int id, String s) {
-		super(id, s, 12);
+	public StructureNekoidsForwardBase(int id, String s) {
+		super(id, s, 20);
 	}
 
 	@Override
@@ -48,6 +48,6 @@ public class StructureNekoVillage extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicNekoVillage(pos, this);
+		return new SchematicNekoidsForwardBase(pos, this);
 	}
 }

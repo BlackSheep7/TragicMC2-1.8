@@ -208,7 +208,7 @@ public class SchematicClaymationRuin extends Schematic {
 			this.setBlock(world, x - 1, y + y1, z + z1 + j, DarkSandstone, 1, 2);
 			this.setBlock(world, x - 2, y + y1, z + z1 + j, DarkSandstone, 0, 2);
 		}
-
+ 
 		this.setBlock(world, x + 2, y + y1 + 1, z + z1 + 1, Candle, 8, 2);
 		this.setBlock(world, x - 2, y + y1 + 1, z + z1 + 1, Candle, 8, 2);
 

@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
 
@@ -29,12 +30,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.util.Tuple;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public abstract class Schematic {
 
 	public HashMap<BlockPos, PosPreset> map;
-	public HashMap<BlockPos, Entity> entityMap; //keeps entity position and the actual entity instance, when saved in chunk data, will use their normal nbt
+	public List<Tuple<BlockPos, Entity>> entityList; //keeps entity position and the actual entity instance
 	public LinkedList<PosPreset> list;
 	//public LinkedList<PosPreset> matrix;
 	public int width; //current width
@@ -413,7 +415,6 @@ public abstract class Schematic {
 			tileentity.setInventorySlotContents(0, toCook);
 			tileentity.setInventorySlotContents(1, fuel);
 			tileentity.setInventorySlotContents(2, result);
-			TragicMC.logInfo("Handled furnace generation. Itemstacks were " + (fuel != null ? fuel : "") + ", " + (toCook != null ? toCook : "") + ", " + (result != null ? result : ""));
 			return true;
 		}
 		else
@@ -545,11 +546,11 @@ public abstract class Schematic {
 	public void spawnEntity(World world, Random rand, BlockPos pos, Entity entity) {
 		if (TragicConfig.getBoolean("allowTickBuilder"))
 		{
-			this.entityMap.put(pos, entity);
+			this.entityList.add(new Tuple<BlockPos, Entity>(pos, entity));
 		}
 		else
 		{
-			entity.setPosition(pos.getX(), pos.getY(), pos.getZ());
+			entity.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 			world.spawnEntityInWorld(entity);
 		}
 	}

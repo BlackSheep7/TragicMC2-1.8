@@ -40,6 +40,7 @@ public abstract class Structure {
 	public static Structure nekoGuardTower = new StructureNekoTower(20, "nekoGuardTower");
 	public static Structure nekoCottage = new StructureNekoHouse(21, "nekoCottage");
 	public static Structure nekoVillage = new StructureNekoVillage(22, "nekoVillage");
+	public static Structure nekoidsForwardBase = new StructureNekoidsForwardBase(23, "nekoidsForwardBase");
 
 	public Structure(int id, String s, int height)
 	{

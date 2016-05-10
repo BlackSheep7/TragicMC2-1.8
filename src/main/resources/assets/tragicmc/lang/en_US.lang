@@ -115,8 +115,8 @@ tile.tragicmc.structureSeed.nekoBarracks.name=Neko Barracks
 tile.tragicmc.structureSeed.nekoWarehouse.name=Neko Warehouse
 tile.tragicmc.structureSeed.nekoCottage.name=Neko Cottage
 tile.tragicmc.structureSeed.nekoGuardTower.name=Neko Guard Tower
-tile.tragicmc.structureSeed.nekoVillage.name=Neko Village
-tile.tragicmc.structureSeed.nekoidCamp.name=Nekoid's Forward Camp
+tile.tragicmc.structureSeed.nekoVillage.name=Neko City
+tile.tragicmc.structureSeed.nekoidsForwardBase.name=Nekoid's Forward Operating Base
 
 tile.tragicmc.deadDirt.normal.name=Dead Dirt
 tile.tragicmc.deadDirt.rugged.name=Rugged Dirt

@@ -2,12 +2,14 @@ package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.server.MinecraftServer;
@@ -19,6 +21,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.util.Tuple;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.Schematic.PosPreset;
 
@@ -39,7 +42,7 @@ public class TickBuilder {
 	public static final String STRUCTURE_ORIGIN_Y_TAG = "posOriginY";
 	public static final String STRUCTURE_ORIGIN_Z_TAG = "posOriginZ";
 	public static final String STRUCTURE_LAST_POS_TAG = "structureLastPosition";
-	
+
 	private boolean timeOut = false;
 	private long lastTime = 0L;
 
@@ -68,7 +71,7 @@ public class TickBuilder {
 	public void onTick(ServerTickEvent event)
 	{
 		if (builders.isEmpty()) return;
-		if (tick++ % TICK_RATE != 0L) return;
+		if (tick++ % 1L != 0L) return; //TODO change back to TICK_RATE
 		Iterator<TickBuilder> bldrs = builders.values().iterator();
 
 		while (bldrs.hasNext())
@@ -89,6 +92,15 @@ public class TickBuilder {
 				if (sch.hasFinished())
 				{
 					tb.removeSchematic(origin);
+					List<Tuple<BlockPos, Entity>> list = sch.entityList;
+
+					for (Tuple<BlockPos, Entity> tp : list)
+					{
+						Entity e = tp.getRight();
+						BlockPos pos = tp.getLeft();
+						e.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+						tb.theWorld.spawnEntityInWorld(e);
+					}
 					continue;
 				}
 				else
@@ -121,13 +133,14 @@ public class TickBuilder {
 		return this.schemas.isEmpty();
 	}
 
-	public synchronized void addSchematic(BlockPos origin, Schematic sch) {
+	public synchronized boolean addSchematic(BlockPos origin, Schematic sch) {
 		if (this.schemas.containsKey(origin)) 
 		{
 			logger.warn("Builder already has a mapping for this schematic's origin (" + origin + "), ignoring...");
-			return;
+			return false;
 		}
 		this.schemas.put(origin, sch);
+		return true;
 	}
 
 	public synchronized void removeSchematic(BlockPos origin) {
@@ -136,6 +149,10 @@ public class TickBuilder {
 		{
 			logger.warn("Attempted to remove schematic at that origin (" + origin + "), but the map didn't contain one, this is an error...");
 			return;
+		}
+		else
+		{
+			logger.info("Removed schematic at the origin (" + origin + ")");
 		}
 		this.schemas.remove(origin);
 	}
@@ -156,7 +173,11 @@ public class TickBuilder {
 	@SubscribeEvent
 	public void onWorldUnload(WorldEvent.Unload event) {
 		if (event.world.isRemote) return;
-		if (TickBuilder.getBuilderFor(event.world) != null) TickBuilder.getBuilderFor(event.world).stopBuilding();
+		if (TickBuilder.getBuilderFor(event.world) != null)
+		{
+			TickBuilder.getBuilderFor(event.world).stopBuilding();
+			TickBuilder.builders.remove(event.world);
+		}
 	}
 
 	@SubscribeEvent
