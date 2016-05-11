@@ -150,4 +150,40 @@ public class EntityScienceNeko extends EntityNeko {
 		theProjectile.motionY = (this.getAttackTarget().posY - this.posY) * 0.335D;
 		this.worldObj.spawnEntityInWorld(theProjectile);
 	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.scienceneko.living" : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(6) == 0 ? "tragicmc:mob.scienceneko.hurt" : super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.scienceneko.death" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.65F;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return 320 + rand.nextInt(120);
+	}
 }

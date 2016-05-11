@@ -1094,6 +1094,39 @@
             "mob/jetneko/death5", "mob/jetneko/death6",
             "mob/jetneko/death7"]
     },
+    "mob.scienceneko.living":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/scienceneko/living", "mob/scienceneko/living2",
+            "mob/scienceneko/living3", "mob/scienceneko/living4",
+            "mob/scienceneko/living5", "mob/scienceneko/living6",
+            "mob/scienceneko/living7", "mob/scienceneko/living8",
+            "mob/scienceneko/living9", "mob/scienceneko/living10",
+            "mob/scienceneko/living11", "mob/scienceneko/living12",
+            "mob/scienceneko/living13", "mob/scienceneko/living14",
+            "mob/scienceneko/living15", "mob/scienceneko/living16",
+            "mob/scienceneko/living17", "mob/scienceneko/living18",
+            "mob/scienceneko/living19", "mob/scienceneko/living20",
+            "mob/scienceneko/living21"]
+    },
+    "mob.scienceneko.hurt":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/scienceneko/hurt", "mob/scienceneko/hurt2",
+            "mob/scienceneko/hurt3", "mob/scienceneko/hurt4",
+            "mob/scienceneko/hurt5", "mob/scienceneko/hurt6",
+            "mob/sciencenkoe/hurt7"]
+    },
+    "mob.scienceneko.death":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/scienceneko/death", "mob/scienceneko/death2",
+            "mob/scienceneko/death3", "mob/scienceneko/death4",
+            "mob/scienceneko/death5"]
+    },
 	"mob.wisp.fear":
     {
 		"category": "hostile",
