@@ -418,7 +418,7 @@ public class MiscEvents {
 								world.destroyBlock(pos, true);
 							}
 						}
-
+						
 						if (entity.ticksExisted % 10 == 0)
 						{
 							if (block == TragicBlocks.DarkGas)
@@ -445,7 +445,7 @@ public class MiscEvents {
 							{
 								entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 120, 0));
 							}
-						}
+						} 
 
 						if (block instanceof BlockQuicksand)
 						{

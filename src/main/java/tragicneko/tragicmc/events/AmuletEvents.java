@@ -4,8 +4,9 @@ import static tragicneko.tragicmc.TragicMC.rand;
 
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
+
+import com.google.common.collect.Multimap;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -36,6 +37,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -52,9 +54,6 @@ import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.util.AmuletHelper;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
 
 public class AmuletEvents {
 	
@@ -622,16 +621,6 @@ public class AmuletEvents {
 				}
 			}
 		}
-		else if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAmuletDeathDrops") && !event.entityLiving.worldObj.getGameRules().getBoolean("keepInventory"))
-		{
-			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
-			PropertyAmulets amu = PropertyAmulets.get(player);
-			if (amu == null) return;
-
-			InventoryAmulet inv = amu.inventory;
-			inv.dropAllAmulets();
-			inv.markDirty();
-		}
 
 		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving && TragicConfig.getBoolean("allowAmuletModifiers"))
 		{
@@ -656,6 +645,20 @@ public class AmuletEvents {
 			{
 				TragicMC.logError("Error caught while reflecting experience value from a mob for the Luck attribute.", e);
 			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onAmuletDrop(PlayerDropsEvent event) {
+		if (event.entityPlayer instanceof EntityPlayerMP && TragicConfig.getBoolean("allowAmuletDeathDrops") && !event.entityPlayer.worldObj.getGameRules().getBoolean("keepInventory"))
+		{
+			EntityPlayerMP player = (EntityPlayerMP) event.entityPlayer;
+			PropertyAmulets amu = PropertyAmulets.get(player);
+			if (amu == null) return;
+
+			InventoryAmulet inv = amu.inventory;
+			inv.dropAllAmulets(event.drops);
+			inv.markDirty();
 		}
 	}
 
