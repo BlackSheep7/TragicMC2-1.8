@@ -370,7 +370,7 @@ public class NekoHomeworldChunkProvider implements IChunkProvider
 	}
 
 	@Override
-	public boolean func_177460_a(IChunkProvider provider, Chunk chunk, int x, int z) {
+	public boolean populateChunk(IChunkProvider provider, Chunk chunk, int x, int z) {
 		return false;
 	}
 

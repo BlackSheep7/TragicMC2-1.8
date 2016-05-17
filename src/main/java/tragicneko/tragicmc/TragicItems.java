@@ -249,6 +249,8 @@ public class TragicItems {
 	public static Item Nekite; //Neko Homeworld exclusive metal that they use for crafting armor, can be smelted into infallible metal
 	public static Item MechaExo;
 	public static Item Wrench;
+	public static Item NekoRayGun; //what the science nekos use, does low ap damage but has a "reload" time after shots are fired
+	public static Item NekoLaserSword; //what the assault nekos use, does low armor piercing damage
 	
 	//Records (Set and file numbers)
 	public static Item Starstruck; //S1F1
@@ -745,6 +747,12 @@ public class TragicItems {
 		
 		Wrench = (new ItemGeneric().setUnlocalizedName("tragicmc.wrench").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(Wrench, "wrench");
+		
+		NekoRayGun = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoRayGun").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(NekoRayGun, "nekoRayGun");
+		
+		NekoLaserSword = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoLaserSword").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(NekoLaserSword, "nekoLaserSword");
 		
 		//Records
 		Starstruck = (new ItemFile("starstruck", 0xCFB677));
