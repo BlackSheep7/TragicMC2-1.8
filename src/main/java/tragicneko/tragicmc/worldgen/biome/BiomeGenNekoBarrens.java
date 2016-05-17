@@ -21,9 +21,9 @@ import tragicneko.tragicmc.worldgen.WorldGenCustomTallGrass;
 public class BiomeGenNekoBarrens extends TragicBiome {
 
 	public final RuggedTerrainWorldGen ruggedGen;
-	
+
 	public static final float[][] heights = new float[][] {{0.01F, 0.05F}, {0.12F, 0.06F}, {0.85F, 0.15F}};
-	
+
 	public BiomeGenNekoBarrens(int par1, byte par2) {
 		super(par1, par2);
 		this.enableSnow = false;
@@ -37,31 +37,34 @@ public class BiomeGenNekoBarrens extends TragicBiome {
 		this.spawnableMonsterList.clear();
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableCreatureList.clear();
-		if (TragicConfig.getBoolean("allowTragicNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicConfig.getInt("tragicNekoSpawnChance"), TragicConfig.getIntArray("tragicNekoGroupSize")[0], TragicConfig.getIntArray("tragicNekoGroupSize")[1]));
-		if (TragicConfig.getBoolean("allowJetNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJetNeko.class, TragicConfig.getInt("jetNekoSpawnChance"), TragicConfig.getIntArray("jetNekoGroupSize")[0], TragicConfig.getIntArray("jetNekoGroupSize")[1]));
-		if (TragicConfig.getBoolean("allowScienceNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityScienceNeko.class, TragicConfig.getInt("scienceNekoSpawnChance"), TragicConfig.getIntArray("scienceNekoGroupSize")[0], TragicConfig.getIntArray("scienceNekoGroupSize")[1]));
-		if (TragicConfig.getBoolean("allowMechaNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityMechaNeko.class, TragicConfig.getInt("mechaNekoSpawnChance"), TragicConfig.getIntArray("mechaNekoGroupSize")[0], TragicConfig.getIntArray("mechaNekoGroupSize")[1]));
+		if (!TragicConfig.getBoolean("allowStructureGen"))
+		{
+			if (TragicConfig.getBoolean("allowTragicNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicConfig.getInt("tragicNekoSpawnChance"), TragicConfig.getIntArray("tragicNekoGroupSize")[0], TragicConfig.getIntArray("tragicNekoGroupSize")[1]));
+			if (TragicConfig.getBoolean("allowJetNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJetNeko.class, TragicConfig.getInt("jetNekoSpawnChance"), TragicConfig.getIntArray("jetNekoGroupSize")[0], TragicConfig.getIntArray("jetNekoGroupSize")[1]));
+			if (TragicConfig.getBoolean("allowScienceNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityScienceNeko.class, TragicConfig.getInt("scienceNekoSpawnChance"), TragicConfig.getIntArray("scienceNekoGroupSize")[0], TragicConfig.getIntArray("scienceNekoGroupSize")[1]));
+			if (TragicConfig.getBoolean("allowMechaNeko")) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityMechaNeko.class, TragicConfig.getInt("mechaNekoSpawnChance"), TragicConfig.getIntArray("mechaNekoGroupSize")[0], TragicConfig.getIntArray("mechaNekoGroupSize")[1]));
+		}
 		this.fillerBlock = TragicBlocks.DeadDirt.getDefaultState();
 		this.topBlock = TragicBlocks.NekoGrass.getDefaultState();
 		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, (byte) 0, TragicBlocks.NekoGrass, (byte) 4, 3.0D, 2.0D, false, (byte) 8);
 	}
-	
+
 	@Override
 	public int getFlowersFromBiomeType()
 	{
 		return 14;
 	}
-	
+
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand) {
 		return new WorldGenCustomOakTree(false, 4, TragicBlocks.Nekowood.getDefaultState(), TragicBlocks.NekowoodLeaves.getDefaultState());
 	}
-	
+
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
 		return new WorldGenCustomTallGrass(TragicBlocks.NekoBush.getDefaultState());
 	}
-	
+
 	@Override
 	public void decorate(World world, Random rand, BlockPos pos)
 	{
