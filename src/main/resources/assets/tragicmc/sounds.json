@@ -1100,7 +1100,7 @@
         "sounds": [
             "mob/scienceneko/living", "mob/scienceneko/living2",
             "mob/scienceneko/living3", "mob/scienceneko/living4",
-            "mob/scienceneko/living5", "mob/scienceneko/living6",
+            "mob/scienceneko/living6",
             "mob/scienceneko/living7", "mob/scienceneko/living8",
             "mob/scienceneko/living9", "mob/scienceneko/living10",
             "mob/scienceneko/living11", "mob/scienceneko/living12",
@@ -1117,7 +1117,7 @@
             "mob/scienceneko/hurt", "mob/scienceneko/hurt2",
             "mob/scienceneko/hurt3", "mob/scienceneko/hurt4",
             "mob/scienceneko/hurt5", "mob/scienceneko/hurt6",
-            "mob/sciencenkoe/hurt7"]
+            "mob/scienceneko/hurt7"]
     },
     "mob.scienceneko.death":
     {
