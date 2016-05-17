@@ -4788,7 +4788,7 @@ Fixed possible crash when regenerating an Obsidian Cavern from chunk memory
 After creation of the schematic, it is passed off into a list as we no longer need to use the keys to be used by the tick builder
 Bump version for test build
 
-4.51.3133++ <224> (April 27, 2016)
+4.51.3183 <224> (April 27, 2016)
 Reduced length of time you are inflicted with Poison from Spores
 Clay ball replaced in Creepy Idol recipe with Rabbit foot
 Added alternative Toxic Amalgation recipe that uses Flowers instead of Vines, includes all of my flowers and the vanilla ones
@@ -4836,26 +4836,46 @@ Added localizations for the new structures
 Added client-side config option to disable corruption rendering on mobs
 Added alternative confirmation message for Structure Seeds based on if the TickBuilder is active or not
 Modified confirmation message for Structure Seed based on if the structure can't be built because one is already being built at the targeted location
-Finished the schmeatic for the Neko Village (which was renamed to Neko City since it looked more city-like)
+Finished the schematic for the Neko Village (which was renamed to Neko City since it looked more city-like)
 Added ability to do a one-time spawn for entities in a structure, will probably only be used for the Neko City to spawn in Worker and Trader Nekos, they will have
 a tag set for them to not despawn after they are spawned
 Remove a builder from the builder list in TickBuilder if the world is unloaded for it, we were keeping it in memory to not have to recreate it every time but
 if a world is unloaded (when the server is stopped) then it remains in memory, potentially becoming a memory leak
+Added sounds for Science Neko
+Moved amulet drops into the actual player drops event
+Added null check to structure generation to see if the schematic is null before generating
+Modified schematics/structures to remove the variant system and save schematic specific data in nbt tags, since they are being treated as instances now
+like entities, they can now save instance specific data when they are saved into chunk data
+Made it so that Nekos don't naturally spawn in the Neko Homeworld, they are only spawned in via their structures, unless structures are disabled then their
+natural spawns are allowed
+
+4.51.3183++ <225> (May 15, 2016)
+Working on the schematic for Nekoid's FOB
+Added Nekite Wire (Barbed Wire) for Nekoid's FOB, it's made out of Nekite and works like a web, except it damages entities inside of it
+Added TickBuilder option to ignore air as part of it's "placements" per tick/schematic, this results in more of the actual "structure" being built per
+iteration, but also heavily increases the amount of blocks set per tick
+Split Tower structure variants into their own schematics, structure again controls which schematic is used based on the biome of the origin of the structure
+Started work on the Assault Neko AI
+Added placeholder items for the Neko Ray Gun (that will mirror the Science Neko's ray gun) and the Neko Laser Sword (which will mirror the Assault Neko's
+weapon)
+Updated to new MCP mappings
+Updated to new Forge version in dev environment to do some 1.9-specific updates (for ease of porting to it in the future)
 
 TODO:
-Create schematic for Nekoid's Forward Base
-Add sounds for Science Neko, record some more for it
 Add sounds for Mecha Neko
 Add sounds and finish model for Mecha Exo
-Add Assault Neko, Worker Neko and Trader Neko
+Add Worker Neko and Trader Neko
 Add trades for Trader Nekos
 Add Professor Nekoid and related Summon block
+Implement Capabilities for my Properties so that the transition to Capabilities in 1.9 will be easier
 
 Note to self (Future TODOs):
-IExtendedProperties are to be changed, most likely in 1.9, fine for now since new methods don't exist yet
+IExtendedProperties are to be changed to Capabilities, Doomsdays and Weapon Influences will use this for ItemStacks, Amulets, Quests, Blessings and
+Achromy will use it for Entities
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
 Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my entity's drops and my custom chest gen hooks are able to be
 overridden and configured via json files just like the lores and enchantment entries are now
+Add more generic schematics for things like benches and fountains since schematics can have child schematics now
 
 TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
 TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
@@ -4870,6 +4890,7 @@ Assault Neko - Decent armor, low health, attacks with a battering ram charge att
 Worker, Trader Nekos - Workers are passive, they don't do anything really, Traders are basically villagers
 Professor Nekoid - The greatest, best, genius
 *Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
+*Neko Homeworld has multiple Structures, which are going to be the source of the Neko spawning in the Dimension
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
