@@ -8,16 +8,10 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicCelestialTemple;
 
-public class StructureCelestialTemple extends StructureBoss {
+public class StructureCelestialTemple extends Structure {
 
 	public StructureCelestialTemple(int id, String name) {
-		super(id, name, new SchematicCelestialTemple(BlockPos.ORIGIN, null).height);
-	}
-
-	@Override
-	public int getVariantSize()
-	{
-		return 3;
+		super(id, name, 12);
 	}
 
 	@Override
@@ -41,6 +35,6 @@ public class StructureCelestialTemple extends StructureBoss {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicCelestialTemple(pos, this);
+		return new SchematicCelestialTemple(pos, this, world);
 	}
 }

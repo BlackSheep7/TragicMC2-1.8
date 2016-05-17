@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.server.MinecraftServer;
@@ -42,11 +43,9 @@ public class TickBuilder {
 	public static final String STRUCTURE_ORIGIN_Y_TAG = "posOriginY";
 	public static final String STRUCTURE_ORIGIN_Z_TAG = "posOriginZ";
 	public static final String STRUCTURE_LAST_POS_TAG = "structureLastPosition";
+	public static final String STRUCTURE_NBT_DATA = "structureNbtData";
 
-	private boolean timeOut = false;
-	private long lastTime = 0L;
-
-	public TickBuilder() {
+	public TickBuilder() { //empty constructor to register the events the class uses
 		this.theWorld = null;
 	}
 
@@ -71,13 +70,13 @@ public class TickBuilder {
 	public void onTick(ServerTickEvent event)
 	{
 		if (builders.isEmpty()) return;
-		if (tick++ % 1L != 0L) return; //TODO change back to TICK_RATE
+		if (tick++ % TICK_RATE != 0L) return;
 		Iterator<TickBuilder> bldrs = builders.values().iterator();
+		final boolean flag = TragicConfig.getBoolean("tickBuilderIgnoresAir");
 
 		while (bldrs.hasNext())
 		{
 			TickBuilder tb = bldrs.next();
-			tb.lastTime = MinecraftServer.getCurrentTimeMillis();
 			if (tb.hasFinished() || !tb.shouldBuild || tb.theWorld == null) continue;
 			Set<BlockPos> schemas = tb.schemas.keySet();
 			Iterator<BlockPos> ite = schemas.iterator();
@@ -119,8 +118,12 @@ public class TickBuilder {
 						{
 							sch.setMappedBlock(tb.theWorld, pre);
 							sch.placedBlocks++;
-							placements++;
-							totalPlaces++;
+
+							if (!flag || flag && pre.state.getBlock() != Blocks.air)
+							{
+								placements++;
+								totalPlaces++;
+							}
 						}
 					}
 					if (sch.hasFinished()) tb.removeSchematic(origin);
@@ -211,9 +214,10 @@ public class TickBuilder {
 								final int z = tg.getInteger(STRUCTURE_ORIGIN_Z_TAG);
 								BlockPos pos = toPos(new int[] {x, y, z});
 								int progress = tg.getInteger(STRUCTURE_LAST_POS_TAG);
+								NBTTagCompound tag2 = tg.getCompoundTag(STRUCTURE_NBT_DATA);
 
 								Structure str = Structure.getStructureById(id);
-								Schematic sch = str.getSchematicFor(event.world, event.world.rand, pos);
+								Schematic sch = str.getSchematicFor(event.world, event.world.rand, pos).readFromNBT(tag2);
 
 								sch.generateStructure(event.world, event.world.rand, pos.getX(), pos.getY(), pos.getZ()).sortIntoList();
 								sch.placedBlocks = progress;
@@ -227,6 +231,8 @@ public class TickBuilder {
 							}
 						}
 					}
+
+					tag.removeTag(BUILD_TAG);
 				}
 			}
 		}
@@ -237,7 +243,7 @@ public class TickBuilder {
 	}
 
 	@SubscribeEvent
-	public void onChunkLoad(ChunkDataEvent.Save event) {
+	public void onChunkSave(ChunkDataEvent.Save event) {
 		if (event.world.isRemote) return;
 		TickBuilder tb = TickBuilder.getBuilderFor(event.world);
 		if (tb == null) tb = new TickBuilder(event.world);
@@ -263,6 +269,7 @@ public class TickBuilder {
 					tag.setInteger(STRUCTURE_ORIGIN_Z_TAG, array[2]);
 					tag.setInteger(STRUCTURE_ID_TAG, sch.structure.getStructureId());
 					tag.setInteger(STRUCTURE_LAST_POS_TAG, sch.placedBlocks);
+					tag.setTag(STRUCTURE_NBT_DATA, sch.writeToNBT(new NBTTagCompound()));
 					tagList.appendTag(tag);
 					if (!event.getChunk().isLoaded()) tb.removeSchematic(pos);
 				}

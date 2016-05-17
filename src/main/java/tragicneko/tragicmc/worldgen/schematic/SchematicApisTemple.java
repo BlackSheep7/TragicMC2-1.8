@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -20,19 +21,22 @@ public class SchematicApisTemple extends Schematic {
 	private static Block summon = TragicBlocks.SummonBlock;
 
 	public static Block[] commonBlocks = new Block[] {Blocks.cobblestone, Blocks.gravel, Blocks.dirt, Blocks.mossy_cobblestone, Blocks.stone};
+	
+	private int variant = 0;
 
-	public SchematicApisTemple(BlockPos origin, Structure str) {
-		super(origin, str, 10, 25, 25);
-	}
+	public SchematicApisTemple(BlockPos origin, Structure str, World world) {
+		super(origin, str, world, 10, 25, 25);
+		this.variant = world.rand.nextInt(4);
+	}	
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z)
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z)
 	{
-		for (int y1 = 1; y1 < 10; y1++)
+		for (byte y1 = 1; y1 < 10; y1++)
 		{
-			for (int x1 = -6; x1 < 15; x1++)
+			for (byte x1 = -6; x1 < 15; x1++)
 			{
-				for (int z1 = -4; z1 < 13; z1++)
+				for (byte z1 = -4; z1 < 13; z1++)
 				{
 					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 				}
@@ -983,6 +987,18 @@ public class SchematicApisTemple extends Schematic {
 		this.setBlock(world, x + 10, y, z + 8, brick, rand.nextInt(3), 2);
 		this.setBlock(world, x + 10, y, z + 9, brick, 3, 2);
 
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		tag.setInteger("variant", this.variant);
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		this.variant = tag.getInteger("variant");
 		return this;
 	}
 }

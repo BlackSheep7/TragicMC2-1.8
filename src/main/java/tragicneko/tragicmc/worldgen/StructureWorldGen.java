@@ -50,10 +50,29 @@ public class StructureWorldGen implements IWorldGenerator {
 		{
 			BlockPos pos = new BlockPos(x, s.isSurfaceStructure() ? top : y, z);
 			Schematic sch = s.generate(world, random, pos);
-			if (sch != null && TragicConfig.getBoolean("allowTickBuilder"))
+			if (sch != null)
 			{
-				if (TickBuilder.getBuilderFor(world) != null) TickBuilder.getBuilderFor(world).addSchematic(pos, sch);
-				TragicMC.logInfo(s.getLocalizedName() + " succesfully generated at " + pos);
+				String str = " successfully generated at " + pos;
+				if (TragicConfig.getBoolean("allowTickBuilder"))
+				{
+					if (TickBuilder.getBuilderFor(world) != null)
+					{
+						if (TickBuilder.getBuilderFor(world).addSchematic(pos, sch))
+						{
+							str = " was added to the TickBuilder with origin of " + pos;
+						}
+						else
+						{
+							str = " could not be added to the TickBuilder since there is a structure being built at that coordinate already";
+						}
+					}
+					else
+					{
+						str = " failed to generate due to an error with the TickBuilder, report this.";
+					}
+
+				}
+				TragicMC.logInfo(s.getLocalizedName() + str);
 				break;
 			}
 		}

@@ -12,6 +12,7 @@ import static tragicneko.tragicmc.TragicBlocks.SummonBlock;
 
 import java.util.Random;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -23,8 +24,8 @@ public class SchematicCorruptedSpire extends Schematic {
 	private static final byte[] bosses = new byte[] {0, 2, 3, 6};
 	private static final byte FINAL_ROOM = 15;
 
-	public SchematicCorruptedSpire(BlockPos pos, Structure str) {
-		super(pos, str, 120, 52, 36);
+	public SchematicCorruptedSpire(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 120, 52, 36);
 	}
 	
 	@Override
@@ -33,7 +34,7 @@ public class SchematicCorruptedSpire extends Schematic {
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		byte lastHole = 0;
 		
@@ -11889,5 +11890,15 @@ public class SchematicCorruptedSpire extends Schematic {
 			break;
 		}
 		return s;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		return this;
 	}
 }

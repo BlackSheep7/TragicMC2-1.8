@@ -13,7 +13,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicMemoryCache;
 public class StructureMemoryCache extends Structure {
 
 	public StructureMemoryCache(int id, String s) {
-		super(id, s, new SchematicMemoryCache(BlockPos.ORIGIN, null).height);
+		super(id, s, 12);
 	}
 	
 	@Override
@@ -36,6 +36,6 @@ public class StructureMemoryCache extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicMemoryCache(pos, this);
+		return new SchematicMemoryCache(pos, this, world);
 	}
 }

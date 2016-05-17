@@ -14,18 +14,16 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
+import tragicneko.tragicmc.worldgen.schematic.SchematicClayTower;
+import tragicneko.tragicmc.worldgen.schematic.SchematicCobblestoneTower;
 import tragicneko.tragicmc.worldgen.schematic.SchematicDesertTower;
+import tragicneko.tragicmc.worldgen.schematic.SchematicIceTower;
+import tragicneko.tragicmc.worldgen.schematic.SchematicNetherTower;
 
 public class StructureTower extends Structure {
 
 	public StructureTower(int id, String name) {
-		super(id, name, new SchematicDesertTower(BlockPos.ORIGIN, null).height);
-	}
-	
-	@Override
-	public int getVariantSize()
-	{
-		return 5;
+		super(id, name, 25);
 	}
 
 	@Override
@@ -47,22 +45,6 @@ public class StructureTower extends Structure {
 	}
 
 	@Override
-	public Schematic generate(World world, Random rand, BlockPos pos)
-	{
-		return generateStructureWithVariant(this.getVariantFromBiome(world.getBiomeGenForCoords(pos)), world, rand, pos.getX(), pos.getY(), pos.getZ());
-	}
-
-	public int getVariantFromBiome(BiomeGenBase biome)
-	{
-		if (biome instanceof BiomeGenMesa) return 1; //clay tower
-		else if (biome instanceof BiomeGenDesert) return 0; //sandstone tower
-		else if (biome instanceof BiomeGenHell || biome instanceof BiomeGenScorchedWasteland || biome instanceof BiomeGenCorrodedSteppe) return 3; //netherbrick tower
-		else if (biome == BiomeGenBase.coldTaiga || biome == BiomeGenBase.coldTaigaHills || biome == BiomeGenBase.coldBeach ||
-				biome instanceof BiomeGenSnow || biome instanceof BiomeGenFrozenTundra) return 4; //ice tower
-		return 2; //stone tower
-	}
-
-	@Override
 	public int getStructureColor()
 	{
 		return 0xC3E799;
@@ -70,6 +52,15 @@ public class StructureTower extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicDesertTower(pos, this);
+		
+		return getSchematicFromBiome(world.getBiomeGenForCoords(pos), world, pos);
+	}
+	
+	public Schematic getSchematicFromBiome(BiomeGenBase biome, World world, BlockPos pos) {
+		if (biome instanceof BiomeGenMesa) return new SchematicClayTower(pos, this, world);
+		else if (biome instanceof BiomeGenDesert) return new SchematicDesertTower(pos, this, world);
+		else if (biome instanceof BiomeGenHell || biome instanceof BiomeGenScorchedWasteland || biome instanceof BiomeGenCorrodedSteppe) return new SchematicNetherTower(pos, this, world);
+		else if (biome.getTempCategory() == BiomeGenBase.TempCategory.COLD) return new SchematicIceTower(pos, this, world);
+		return new SchematicCobblestoneTower(pos, this, world);
 	}
 }

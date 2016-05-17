@@ -51,15 +51,6 @@ public abstract class Structure {
 	}
 
 	/**
-	 * Override to set a variant amount for a particular structure
-	 * @return
-	 */
-	public int getVariantSize()
-	{
-		return 1;
-	}
-
-	/**
 	 * Whether or not this particular structure should only generate on a solid surface
 	 * @return
 	 */
@@ -125,23 +116,31 @@ public abstract class Structure {
 
 	public Schematic generate(World world, Random rand, BlockPos pos)
 	{
-		return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, pos.getX(), pos.getY(), pos.getZ());
+		if (!world.isRemote && this.canGenerate())
+		{
+			Schematic sch = this.getSchematicFor(world, rand, pos);
+			if (sch != null)
+			{
+				sch = this.applySchematicTransformations(sch, world, rand, pos);
+				sch = sch.generateStructure(world, rand, pos.getX(), pos.getY(), pos.getZ());
+				return sch != null ? sch.sortIntoList() : null;
+			}
+		}
+		return null;
 	}
-
+	
 	/**
-	 * Must be overridden by each structure to actually generate their schematics, this just does generic preliminary checks, also note that
-	 * this is how structure seeds generate structures
-	 * @param variant
+	 * This can be overridden to apply NBT data transformations to the schematic, to change things like the type of structure and other schematic-specific
+	 * presets based on the world it's generating in
+	 * @param sch
 	 * @param world
 	 * @param rand
-	 * @param x
-	 * @param y
-	 * @param z
+	 * @param pos
 	 * @return
 	 */
-	public Schematic generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
+	public Schematic applySchematicTransformations(Schematic sch, World world, Random rand, BlockPos pos)
 	{
-		return !world.isRemote && this.canGenerate() ? this.getSchematicFor(world, rand, new BlockPos(x, y, z)).generateStructure(variant, world, rand, x, y, z).sortIntoList() : null;
+		return sch;
 	}
 
 	public String getLocalizedName()

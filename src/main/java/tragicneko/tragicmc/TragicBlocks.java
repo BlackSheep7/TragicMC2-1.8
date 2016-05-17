@@ -30,6 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import tragicneko.tragicmc.blocks.BlockAeris;
 import tragicneko.tragicmc.blocks.BlockAshenLeaves;
+import tragicneko.tragicmc.blocks.BlockBarbedWire;
 import tragicneko.tragicmc.blocks.BlockBone;
 import tragicneko.tragicmc.blocks.BlockCandle;
 import tragicneko.tragicmc.blocks.BlockCelledLamp;
@@ -249,6 +250,8 @@ public class TragicBlocks {
 	public static Block NekowoodLeaves;
 	public static Block NekoBush;
 	public static Block NekitePlate;
+	
+	public static Block NekiteWire;
 
 	public static void load()
 	{
@@ -719,6 +722,9 @@ public class TragicBlocks {
 		NekitePlate = new BlockNekitePlate().setUnlocalizedName("tragicmc.nekitePlate");
 		GameRegistry.registerBlock(NekitePlate, TragicItemBlock.class, "nekitePlate", new Object[] {new String[] {"compressed", "normal", "smooth", "cross", "marked", "grated"}, "nekitePlate"});
 
+		NekiteWire = new BlockBarbedWire().setUnlocalizedName("tragicmc.nekiteWire").setCreativeTab(TragicMC.Survival).setHardness(25.0F).setResistance(6.0F);
+		GameRegistry.registerBlock(NekiteWire, ItemBlock.class, "nekiteWire");
+		
 		for (byte i = 0; i < 3; i++)
 		{
 			OreDictionary.registerOre("blockQuicksand", new ItemStack(Quicksand, 1, i));

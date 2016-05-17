@@ -13,7 +13,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicLightSpire;
 public class StructureLightSpire extends Structure {
 
 	public StructureLightSpire(int id, String s) {
-		super(id, s, new SchematicLightSpire(BlockPos.ORIGIN, null).height);
+		super(id, s, 24);
 	}
 	
 	@Override
@@ -48,6 +48,6 @@ public class StructureLightSpire extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicLightSpire(pos, this);
+		return new SchematicLightSpire(pos, this, world);
 	}
 }

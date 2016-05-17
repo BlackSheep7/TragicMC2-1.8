@@ -11,13 +11,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicObsidianCavern;
 public class StructureObsidianCavern extends Structure {
 
 	public StructureObsidianCavern(int id, String name) {
-		super(id, name, 6);
-	}
-
-	@Override
-	public int getVariantSize()
-	{
-		return 10;
+		super(id, name, 8);
 	}
 
 	@Override
@@ -47,6 +41,6 @@ public class StructureObsidianCavern extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicObsidianCavern(pos, this);
+		return new SchematicObsidianCavern(pos, this, world);
 	}
 }

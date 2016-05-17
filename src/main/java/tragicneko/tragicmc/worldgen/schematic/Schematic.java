@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -46,17 +47,27 @@ public abstract class Schematic {
 	public int placedBlocks = 0;
 
 	public final BlockPos origin; //origin of this particular schematic
-	public Random random; //the random that the world is using
+	public World worldObj; //the world we are generating in
 
-	public final Structure structure; //the structure this schematic is associated with
+	public final Structure structure;
+	public ArrayList<Schematic> childSchematics = new ArrayList<Schematic>(); 
 
-	public Schematic(BlockPos origin, Structure structure, int h, int w, int d) {
+	public Schematic(BlockPos origin, Structure structure, World world, int h, int w, int d) {
 		map = new LinkedHashMap<BlockPos, PosPreset>();
+		this.origin = origin;
 		this.structure = structure;
+		this.worldObj = world;
 		this.height = h;
 		this.width = w;
 		this.depth = d;
-		this.origin = origin;
+	}
+	
+	public void setChild(Schematic sch) {
+		this.childSchematics.add(sch);
+	}
+	
+	public boolean hasChildren() {
+		return !this.childSchematics.isEmpty();
 	}
 
 	public void retrogradeBuildProgress() {
@@ -111,7 +122,7 @@ public abstract class Schematic {
 	}
 
 	public static class PosPreset implements Comparable {
-		public final BlockPos pos;
+		public BlockPos pos;
 		public final boolean tileEntity;
 		public final IBlockState state;
 		public boolean placed = false;
@@ -367,27 +378,15 @@ public abstract class Schematic {
 	} */
 
 	/**
-	 * Main method to generate the particular structure, variants should be decided upon before this method is called, this may split off variants
-	 * into their own methods at the schematic's discretion
+	 * The main method to generate schematics, nbt data should be read before this is called
+	 * @param world
+	 * @param rand
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return the generated schematic
 	 */
-	public abstract Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z);
-
-	/**
-	 * This tells the schematic to generate as the basic version
-	 */
-	public Schematic generateStructure(World world, Random rand, int x, int y, int z)
-	{
-		return this.generateStructure(0, world, rand, x, y, z);
-	}
-
-	/**
-	 * This tells the schematic to generate as a random variant, use the main generation method if you want to pick a particular variant,
-	 * variantSize should be greater than 0, otherwise errors will ensue
-	 */
-	public Schematic generateWithRandomVariant(int variantSize, World world, Random rand, int x, int y, int z)
-	{
-		return this.generateStructure(rand.nextInt(variantSize), world, rand, x, y, z);
-	}
+	public abstract Schematic generateStructure(World world, Random rand, int x, int y, int z);
 
 	private static boolean applyChestContents(World world, Random rand, BlockPos pos, ChestGenHooks hook)
 	{
@@ -560,11 +559,31 @@ public abstract class Schematic {
 	}
 	
 	public Schematic sortIntoList() {
+		if (this.hasChildren())
+		{
+			for (int i = 0; i < this.childSchematics.size(); i++)
+			{
+				Schematic child = this.childSchematics.get(i);
+				BlockPos diff = child.origin.subtract(this.origin); 
+				//we need to offset the origin difference if we're using the tickbuilder, otherwise it generates based on this structure's origin
+				
+				for (Entry<BlockPos, PosPreset> entry : child.map.entrySet())
+				{
+					PosPreset pre = entry.getValue();
+					pre.pos = pre.pos.add(diff);
+					this.map.put(entry.getKey().add(diff), pre); //add to the parent's map so that the linkedlist only needs to be generated once
+				}
+				this.childSchematics.get(i).map.clear();
+			}
+		}
+		
 		this.list = new LinkedList<PosPreset>(); 
 		for (Entry<BlockPos, PosPreset> entry : this.map.entrySet())
 		{
 			this.list.add(entry.getValue());
-		}/*
+		}
+		
+		/*
 		try
 		{
 		Collections.sort(this.list, new PosComparator());
@@ -577,8 +596,11 @@ public abstract class Schematic {
 		{
 			//TragicMC.logInfo("mapping is " + list.get(i));
 		} */
-		//TragicMC.logInfo("Map size is " + this.map.size());
+		TragicMC.logInfo("Map size is " + this.map.size());
 		this.map.clear();
 		return this;
 	}
+	
+	public abstract NBTTagCompound writeToNBT(NBTTagCompound tag);
+	public abstract Schematic readFromNBT(NBTTagCompound tag);
 }

@@ -8,6 +8,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -17,12 +18,12 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicNekoHouse extends Schematic {
 
-	public SchematicNekoHouse(BlockPos origin, Structure structure) {
-		super(origin, structure, 5, 10, 10);
+	public SchematicNekoHouse(BlockPos origin, Structure structure, World world) {
+		super(origin, structure, world, 5, 10, 10);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 		
 		for (byte b = 0; b < 6; b++)
 		{
@@ -327,5 +328,15 @@ public class SchematicNekoHouse extends Schematic {
 		if (slot == 0) stack = rand.nextInt(32) == 0 ? new ItemStack(Blocks.coal_block) : (rand.nextInt(4) == 0 ? new ItemStack(Items.coal) : (rand.nextInt(16) == 0 ? new ItemStack(TragicBlocks.Nekowood) : null));
 		if (slot == 2) stack = rand.nextInt(16) == 0 ? new ItemStack(Items.coal, 1, 1) : (rand.nextInt(4) == 0 ? new ItemStack(TragicItems.Quicksilver) : (rand.nextInt(16) == 0 ? new ItemStack(TragicItems.Nekite) : (rand.nextInt(12) == 0 ? new ItemStack(Items.diamond) : null)));
 		return stack;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		return this;
 	}
 }

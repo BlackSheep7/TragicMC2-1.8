@@ -11,7 +11,7 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicClaymationRuin;
 
-public class StructureClaymationRuin extends StructureBoss {
+public class StructureClaymationRuin extends Structure {
 
 	public StructureClaymationRuin(int id, String name) {
 		super(id, name, 5);
@@ -21,12 +21,6 @@ public class StructureClaymationRuin extends StructureBoss {
 	public boolean isSurfaceStructure()
 	{
 		return true;
-	}
-
-	@Override
-	public int getVariantSize()
-	{
-		return 1;
 	}
 
 	@Override
@@ -56,6 +50,6 @@ public class StructureClaymationRuin extends StructureBoss {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicClaymationRuin(pos, this);
+		return new SchematicClaymationRuin(pos, this, world);
 	}
 }

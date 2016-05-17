@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.util.ChestHooks;
@@ -19,17 +20,21 @@ public class SchematicClaymationRuin extends Schematic {
 	private static final byte ROOM_PADDING = 13;
 	private static final byte ROOM_HEIGHT = 8;
 
-	public SchematicClaymationRuin(BlockPos pos, Structure str) {
-		super(pos, str, 5, 5, 5);
+	private byte[][] map = new byte[5][5];
+	private byte[][] map2 = new byte[5][5];
+
+	public SchematicClaymationRuin(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 5, 5, 5);
+		this.createMaps(world.rand);
 	}
-	
+
 	@Override
 	public boolean shouldLimitSpawnerRate() {
 		return true;
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		this.generateEntrance(world, rand, x, y, z);
 		return this;
@@ -78,11 +83,10 @@ public class SchematicClaymationRuin extends Schematic {
 
 		return map;
 	}
-
-	public ArrayList<byte[][]> generateTablet(World world, Random rand, final int x, final int y, final int z)
-	{
-		byte[][] map = this.createMap(rand);
-		byte[][] map2 = this.createMap(rand);
+	
+	public void createMaps(Random rand) {
+		map = this.createMap(rand);
+		map2 = this.createMap(rand);
 
 		for (byte i = 0; i < map.length; i++)
 		{
@@ -101,23 +105,31 @@ public class SchematicClaymationRuin extends Schematic {
 					}
 				}
 				if (map[i][j] == 4 && map2[i][j] != 1) map2[i][j] = 1; //ensure that the 2nd map has an empty room at the dropdown of the first
-				this.setBlock(world, x + j - 2, y + i, z, DarkSandstone, metas[map[i][j]], 2); //hide the tablet until after I get the generation for each room out of the way
 			}
 		}
+	}
 
+	public void generateTablet(World world, Random rand, final int x, final int y, final int z)
+	{
 		for (byte y1 = -2; y1 < 0; y1++)
 		{
 			for (byte x1 = -2; x1 < 3; x1++)
 			{
-				 this.setBlock(world, x + x1, y + y1, z, DarkSandstone, 0, 2);
+				this.setBlock(world, x + x1, y + y1, z, DarkSandstone, 0, 2);
 			}
 		}
 
-		ArrayList<byte[][]> list = new ArrayList<byte[][]>();
-		list.add(map);
-		list.add(map2);
+		this.setTabletBlocks(world, rand, x, y, z);
+	}
 
-		return list;
+	public void setTabletBlocks(World world, Random rand, int x, int y, int z) {
+		for (byte i = 0; i < map.length; i++)
+		{
+			for (byte j = 0; j < map[i].length; j++)
+			{
+				this.setBlock(world, x + j - 2, y + i, z, DarkSandstone, metas[map[i][j]], 2); //hide the tablet until after I get the generation for each room out of the way
+			}
+		}
 	}
 
 	public void generateEntrance(World world, Random rand, final int x, final int y, final int z)
@@ -208,65 +220,93 @@ public class SchematicClaymationRuin extends Schematic {
 			this.setBlock(world, x - 1, y + y1, z + z1 + j, DarkSandstone, 1, 2);
 			this.setBlock(world, x - 2, y + y1, z + z1 + j, DarkSandstone, 0, 2);
 		}
- 
+
 		this.setBlock(world, x + 2, y + y1 + 1, z + z1 + 1, Candle, 8, 2);
 		this.setBlock(world, x - 2, y + y1 + 1, z + z1 + 1, Candle, 8, 2);
 
-		ArrayList<byte[][]> list = this.generateTablet(world, rand, x, y + 1, z - 3);
+		this.generateTablet(world, rand, x, y + 1, z - 3);
 		this.generateFirstTunnel(world, rand, x, y + y1, z + z1 + 2);
-		this.generateRoomsBasedOnMap(world, rand, x, y + y1, z + z1 + 15, list);
+		this.generateRoomsBasedOnMap(world, rand, x, y + y1, z + z1 + 15);
 	}
 
-	public void generateRoomsBasedOnMap(World world, Random rand, final int x, final int y, final int z, final ArrayList<byte[][]> list) //Uses the first room's coords to determine how the grid of rooms will be generated, then generates them
+	public void generateRoomsBasedOnMap(World world, Random rand, final int x, final int y, final int z) //Uses the first room's coords to determine how the grid of rooms will be generated, then generates them
 	{
-		byte[] start = this.findRoomInMap(list.get(0), 5);
-		byte[] dropdown = this.findRoomInMap(list.get(0), 4);
+		byte[] start = this.findRoomInMap(map, 5);
+		byte[] dropdown = this.findRoomInMap(map, 4);
 
 		byte w = start[1];
 		int offsetX, offsetZ, offsetY;
 		byte b0;
 
-		for (byte d = 0; d < list.size(); d++)
+		for (byte i = 0; i < map.length; i++)
 		{
-			byte[][] map = list.get(d);
-
-			for (byte i = 0; i < map.length; i++)
+			for (byte j = 0; j < map[i].length; j++)
 			{
-				for (byte j = 0; j < map[i].length; j++)
+				b0 = map[i][j];
+				offsetX = (j - w) * ROOM_PADDING;
+				offsetZ = i * ROOM_PADDING;
+				offsetY = 0;
+
+				switch (b0)
 				{
-					b0 = map[i][j];
-					offsetX = (j - w) * ROOM_PADDING;
-					offsetZ = i * ROOM_PADDING;
-					offsetY = d * ROOM_HEIGHT;
-
-					switch (b0)
-					{
-					case 0:
-						continue;
-					case 1:
-						this.generateEmptyRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
-						break;
-					case 2:
-						this.generateColumnRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
-						break;
-					case 3:
-						this.generateTrapRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
-						break;
-					case 4:
-						if (d != 0) this.generateBossRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
-						break;
-					case 5:
-						this.generateColumnRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
-						break;
-					}
-
-					if (i == dropdown[0] && j == dropdown[1] && d == 1) //generate it on the generation of the 2nd floor to allow the hole to generate down to the proper height
-					{
-						this.generateDropdown(world, rand, x + offsetX, y, z + offsetZ);
-					}
+				case 0:
+					continue;
+				case 1:
+					this.generateEmptyRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
+				case 2:
+					this.generateColumnRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
+				case 3:
+					this.generateTrapRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
+				case 4:
+					//if (d != 0) this.generateBossRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
+				case 5:
+					this.generateColumnRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
 				}
 			}
 		}
+		
+		for (byte i = 0; i < map2.length; i++)
+		{
+			for (byte j = 0; j < map2[i].length; j++)
+			{
+				b0 = map2[i][j];
+				offsetX = (j - w) * ROOM_PADDING;
+				offsetZ = i * ROOM_PADDING;
+				offsetY = ROOM_HEIGHT;
+
+				switch (b0)
+				{
+				case 0:
+					continue;
+				case 1:
+					this.generateEmptyRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
+				case 2:
+					this.generateColumnRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
+				case 3:
+					this.generateTrapRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
+				case 4:
+					this.generateBossRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
+				case 5:
+					this.generateColumnRoom(world, rand, x + offsetX, y - offsetY, z + offsetZ);
+					break;
+				}
+
+				if (i == dropdown[0] && j == dropdown[1]) //generate it on the generation of the 2nd floor to allow the hole to generate down to the proper height
+				{
+					this.generateDropdown(world, rand, x + offsetX, y, z + offsetZ);
+				}
+			}
+		}
+
 	}
 
 	public byte[] findRoomInMap(final byte[][] map, final int room) //returns first room in the input map that matches the room number input, useful for finding entrance and boss rooms
@@ -1477,5 +1517,31 @@ public class SchematicClaymationRuin extends Schematic {
 				}
 			}
 		}
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		tag.setByteArray("mapValues0", this.map[0]);
+		tag.setByteArray("mapValues1", this.map[1]);
+		tag.setByteArray("mapValues2", this.map[2]);
+		tag.setByteArray("mapValues3", this.map[3]);
+		tag.setByteArray("mapValues4", this.map[4]);
+		
+		tag.setByteArray("map2Values0", this.map2[0]);
+		tag.setByteArray("map2Values1", this.map2[1]);
+		tag.setByteArray("map2Values2", this.map2[2]);
+		tag.setByteArray("map2Values3", this.map2[3]);
+		tag.setByteArray("map2Values4", this.map2[4]);
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		for (byte b = 0; b < this.map.length; b++)
+		{
+			this.map[b] = tag.getByteArray("mapValues" + b);
+			this.map2[b] = tag.getByteArray("map2Values" + b);
+		}
+		return this;
 	}
 }

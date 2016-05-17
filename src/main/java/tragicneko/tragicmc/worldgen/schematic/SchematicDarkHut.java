@@ -3,6 +3,7 @@ package tragicneko.tragicmc.worldgen.schematic;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -11,12 +12,12 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicDarkHut extends Schematic {
 
-	public SchematicDarkHut(BlockPos pos, Structure str) {
-		super(pos, str, 13, 5, 7);
+	public SchematicDarkHut(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 13, 5, 7);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		for (byte y1 = 0; y1 < 13; y1++)
 		{
@@ -240,6 +241,16 @@ public class SchematicDarkHut extends Schematic {
 		}
 
 		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return null;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		return null;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -17,12 +18,12 @@ public class SchematicCubeMaze extends Schematic {
 		{3, -10}, {3, -4}, {3, 3}, {3, 9},
 		{9, -10}, {9, -4}, {9, 3}, {9, 9}};
 
-	public SchematicCubeMaze(BlockPos pos, Structure str) {
-		super(pos, str, 32, 24, 24);
+	public SchematicCubeMaze(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 32, 24, 24);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		for (byte y1 = 0; y1 < 37; y1++)
 		{
@@ -271,5 +272,15 @@ public class SchematicCubeMaze extends Schematic {
 				}
 			}
 		}
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		return this;
 	}
 }

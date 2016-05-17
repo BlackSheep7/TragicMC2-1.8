@@ -49,7 +49,7 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 			return;
 		}
 
-		Schematic sch = structure.generateStructureWithVariant(this.worldObj.rand.nextInt(structure.getVariantSize()), this.worldObj, this.worldObj.rand, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+		Schematic sch = structure.generate(this.worldObj, this.worldObj.rand, this.getPos());
 		if (sch != null)
 		{
 			boolean flag = false;

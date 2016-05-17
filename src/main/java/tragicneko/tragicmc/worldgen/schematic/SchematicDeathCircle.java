@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -18,12 +19,12 @@ public class SchematicDeathCircle extends Schematic {
 	private static Block summon = TragicBlocks.SummonBlock;
 	private static Block chest = Blocks.chest;
 
-	public SchematicDeathCircle(BlockPos pos, Structure str) {
-		super(pos, str, 6, 11, 11);
+	public SchematicDeathCircle(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 6, 11, 11);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z)
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z)
 	{
 		for (int y1 = 0; y1 < 6; y1++)
 		{
@@ -415,13 +416,12 @@ public class SchematicDeathCircle extends Schematic {
 	}
 
 	@Override
-	public Schematic generateStructure(World world, Random rand, int x, int y, int z)
-	{
-		return generateStructure(0, world, rand, x, y, z);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
 	}
 
 	@Override
-	public Schematic generateWithRandomVariant(int variantSize, World world, Random rand, int x, int y, int z) {
-		return generateStructure(world, rand, x, y, z);
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		return this;
 	}
 }

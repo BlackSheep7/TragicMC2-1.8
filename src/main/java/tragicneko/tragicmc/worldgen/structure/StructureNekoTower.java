@@ -13,7 +13,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicNekoTower;
 public class StructureNekoTower extends Structure {
 
 	public StructureNekoTower(int id, String s) {
-		super(id, s, 20);
+		super(id, s, 25);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class StructureNekoTower extends Structure {
 		BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 		if (biome instanceof BiomeGenNekoBarrens)
 		{
-			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
+			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(500);
 		}
 
 		return false;
@@ -48,6 +48,6 @@ public class StructureNekoTower extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicNekoTower(pos, this);
+		return new SchematicNekoTower(pos, this, world);
 	}
 }

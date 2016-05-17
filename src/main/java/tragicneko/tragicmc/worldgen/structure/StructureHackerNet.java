@@ -12,7 +12,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicHackerNet;
 public class StructureHackerNet extends Structure {
 
 	public StructureHackerNet(int id, String s) {
-		super(id, s, new SchematicHackerNet(BlockPos.ORIGIN, null).height);
+		super(id, s, 8);
 	}
 
 	@Override
@@ -35,6 +35,6 @@ public class StructureHackerNet extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicHackerNet(pos, this);
+		return new SchematicHackerNet(pos, this, world);
 	}
 }

@@ -308,6 +308,8 @@ public class TragicConfig {
 		registerObject("professorNekoidSpawnOverride", false);
 		registerObject("professorNekoidSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
+		registerObject("tickBuilderIgnoresAir", false);
+		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
 		EnumConfigType type = getMasterSettings(config);
@@ -4468,7 +4470,7 @@ public class TragicConfig {
 		prop.comment = "Should Avris' despawn after a preset amount of time?";
 		registerObject(s, prop.getBoolean(true));
 		
-		//add new neko-specific grief configs here TODO
+		//TODO add new neko-specific grief configs here
 
 		s = "kragulSpiritCasts";
 		prop = config.get(cat.getName(), s, true);

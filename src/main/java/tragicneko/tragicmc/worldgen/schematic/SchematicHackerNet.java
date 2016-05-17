@@ -3,6 +3,7 @@ package tragicneko.tragicmc.worldgen.schematic;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -12,12 +13,12 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicHackerNet extends Schematic {
 
-	public SchematicHackerNet(BlockPos pos, Structure str) {
-		super(pos, str, 8, 14, 14);
+	public SchematicHackerNet(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 8, 14, 14);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		final int iterations = 400 + rand.nextInt(200);
 		this.setBlockToAir(world, x, y, z);
@@ -59,6 +60,16 @@ public class SchematicHackerNet extends Schematic {
 				this.setBlock(world, xr, yr, zr, Blocks.chest, 0, 2, ChestHooks.uncommonHook);
 			}
 		}
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
 		return this;
 	}
 

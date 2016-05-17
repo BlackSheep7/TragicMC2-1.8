@@ -8,16 +8,10 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicTimeAltar;
 
-public class StructureTimeAltar extends StructureBoss {
+public class StructureTimeAltar extends Structure {
 
 	public StructureTimeAltar(int id, String name) {
-		super(id, name, new SchematicTimeAltar(BlockPos.ORIGIN, null).height);
-	}
-
-	@Override
-	public int getVariantSize()
-	{
-		return 16;
+		super(id, name, 5);
 	}
 
 	@Override
@@ -46,6 +40,6 @@ public class StructureTimeAltar extends StructureBoss {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicTimeAltar(pos, this);
+		return new SchematicTimeAltar(pos, this, world);
 	}
 }

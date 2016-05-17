@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -14,12 +15,12 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicLightSpire extends Schematic {
 
-	public SchematicLightSpire(BlockPos pos, Structure str) {
-		super(pos, str, 24, 6, 6);
+	public SchematicLightSpire(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 24, 6, 6);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		ArrayList<BlockPos> list;
 		final int height = rand.nextInt(30) + 36;
@@ -52,6 +53,16 @@ public class SchematicLightSpire extends Schematic {
 			}
 		}
 
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
 		return this;
 	}
 

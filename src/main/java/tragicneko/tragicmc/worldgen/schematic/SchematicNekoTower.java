@@ -5,6 +5,7 @@ import static tragicneko.tragicmc.TragicBlocks.NekitePlate;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.util.ChestHooks;
@@ -12,12 +13,12 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicNekoTower extends Schematic {
 
-	public SchematicNekoTower(BlockPos origin, Structure structure) {
-		super(origin, structure, 25, 10, 10);
+	public SchematicNekoTower(BlockPos origin, Structure structure, World world) {
+		super(origin, structure, world, 25, 10, 10);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 		
 		for (byte b = 0; b < 25; b++)
 		{
@@ -884,6 +885,16 @@ public class SchematicNekoTower extends Schematic {
 		this.setBlock(world, new BlockPos(x + 1, y, z + 2), NekitePlate.getStateFromMeta(1));
 		this.setBlock(world, new BlockPos(x - 2, y, z + 2), NekitePlate.getStateFromMeta(1));
 		
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
 		return this;
 	}
 

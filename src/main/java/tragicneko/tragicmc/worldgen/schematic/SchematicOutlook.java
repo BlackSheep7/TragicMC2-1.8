@@ -3,6 +3,7 @@ package tragicneko.tragicmc.worldgen.schematic;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -11,12 +12,12 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicOutlook extends Schematic {
 
-	public SchematicOutlook(BlockPos pos, Structure str) {
-		super(pos, str, 48, 4, 4);
+	public SchematicOutlook(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 100, 4, 4);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 		
 		byte x1, z1;
 		int y1;
@@ -79,6 +80,16 @@ public class SchematicOutlook extends Schematic {
 		this.setBlock(world, x - b, y + y1 + 1, z + b, Blocks.mob_spawner, 0, 2, "Enderman");
 		this.setBlock(world, x - b, y + y1 + 1, z - b, Blocks.mob_spawner, 0, 2, "Enderman");
 		
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
 		return this;
 	}
 

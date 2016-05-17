@@ -11,7 +11,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicOutlook;
 public class StructureOutlook extends Structure {
 
 	public StructureOutlook(int id, String s) {
-		super(id, s, 64);
+		super(id, s, 100);
 	}
 	
 	@Override
@@ -40,7 +40,7 @@ public class StructureOutlook extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicOutlook(pos, this);
+		return new SchematicOutlook(pos, this, world);
 	}
 
 }

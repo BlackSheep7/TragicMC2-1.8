@@ -13,7 +13,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicDarkHut;
 public class StructureDarkHut extends Structure {
 
 	public StructureDarkHut(int id, String s) {
-		super(id, s, new SchematicDarkHut(BlockPos.ORIGIN, null).height);
+		super(id, s, 13);
 	}
 	
 	@Override
@@ -48,6 +48,6 @@ public class StructureDarkHut extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicDarkHut(pos, this);
+		return new SchematicDarkHut(pos, this, world);
 	}
 }

@@ -9,10 +9,10 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicEmpariahCave;
 
-public class StructureEmpariahCave extends StructureBoss {
+public class StructureEmpariahCave extends Structure {
 
 	public StructureEmpariahCave(int id, String s) {
-		super(id, s, new SchematicEmpariahCave(BlockPos.ORIGIN, null).height);
+		super(id, s, 4);
 	}
 
 	@Override
@@ -42,6 +42,6 @@ public class StructureEmpariahCave extends StructureBoss {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicEmpariahCave(pos, this);
+		return new SchematicEmpariahCave(pos, this, world);
 	}
 }

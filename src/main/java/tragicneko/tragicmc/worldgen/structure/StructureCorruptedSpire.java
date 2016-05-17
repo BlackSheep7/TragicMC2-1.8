@@ -11,7 +11,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicCorruptedSpire;
 public class StructureCorruptedSpire extends Structure {
 
 	public StructureCorruptedSpire(int id, String s) {
-		super(id, s, new SchematicCorruptedSpire(BlockPos.ORIGIN, null).height);
+		super(id, s, 120);
 	}
 
 	@Override
@@ -40,6 +40,6 @@ public class StructureCorruptedSpire extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicCorruptedSpire(pos, this);
+		return new SchematicCorruptedSpire(pos, this, world);
 	}
 }

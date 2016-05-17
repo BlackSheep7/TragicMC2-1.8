@@ -11,13 +11,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicSoulTomb;
 public class StructureSoulTomb extends Structure {
 
 	public StructureSoulTomb(int id, String s) {
-		super(id, s, new SchematicSoulTomb(BlockPos.ORIGIN, null).height);
-	}
-
-	@Override
-	public int getVariantSize()
-	{
-		return SchematicSoulTomb.blocks.length;
+		super(id, s, 10);
 	}
 
 	@Override
@@ -41,6 +35,6 @@ public class StructureSoulTomb extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicSoulTomb(pos, this);
+		return new SchematicSoulTomb(pos, this, world);
 	}
 }

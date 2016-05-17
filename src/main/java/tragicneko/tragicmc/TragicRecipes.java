@@ -496,6 +496,13 @@ public class TragicRecipes {
 				'z', TragicItems.NekoidStrain
 				);
 		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekiteWire, 4),
+				" x ",
+				"xxx",
+				" x ",
+				'x', TragicItems.Nekite
+				);
+		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 8, 0),
 				"xxx",
 				"xxx",

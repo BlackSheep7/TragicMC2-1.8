@@ -34,7 +34,7 @@ public class StructureNekoidsForwardBase extends Structure {
 		BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 		if (biome instanceof BiomeGenNekoBarrens)
 		{
-			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
+			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(500);
 		}
 
 		return false;
@@ -48,6 +48,6 @@ public class StructureNekoidsForwardBase extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicNekoidsForwardBase(pos, this);
+		return new SchematicNekoidsForwardBase(pos, this, world);
 	}
 }

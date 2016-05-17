@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -18,13 +19,16 @@ public class SchematicTimeAltar extends Schematic {
 	private static Block crystal = TragicBlocks.StarCrystal;
 	private static Block summon = TragicBlocks.SummonBlock;
 	private static Block chest = Blocks.chest;
+	
+	private int variant = 0;
 
-	public SchematicTimeAltar(BlockPos pos, Structure str) {
-		super(pos, str, 5, 10, 10);
+	public SchematicTimeAltar(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 5, 10, 10);
+		this.variant = world.rand.nextInt(16);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 		for (int y1 = 0; y1 < 6; y1++)
 		{
 			for (int x1 = -7; x1 < 8; x1++)
@@ -73,6 +77,18 @@ public class SchematicTimeAltar extends Schematic {
 		this.setBlock(world, x, y, z + 1, quartz);
 		this.setBlock(world, x, y, z - 1, quartz);
 
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		tag.setInteger("variant", this.variant);
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		this.variant = tag.getInteger("variant");
 		return this;
 	}
 }

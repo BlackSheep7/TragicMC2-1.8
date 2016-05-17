@@ -7,6 +7,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
@@ -17,12 +18,12 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicNekoBarracks extends Schematic {
 
-	public SchematicNekoBarracks(BlockPos origin, Structure structure) {
-		super(origin, structure, 8, 10, 10);
+	public SchematicNekoBarracks(BlockPos origin, Structure structure, World world) {
+		super(origin, structure, world, 8, 10, 10);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure( World world, Random rand, int x, int y, int z) {
 		
 		for (byte b = 0; b < 8; b++)
 		{
@@ -183,6 +184,16 @@ public class SchematicNekoBarracks extends Schematic {
 		this.setBlock(world, new BlockPos(x - 2, y, z + 1), Blocks.bed.getStateFromMeta(9));
 		this.setBlock(world, new BlockPos(x - 2, y, z + 3), Blocks.bed.getStateFromMeta(9));
 		
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
 		return this;
 	}
 }

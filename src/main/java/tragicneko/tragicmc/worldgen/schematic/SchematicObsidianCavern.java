@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
@@ -23,17 +24,21 @@ public class SchematicObsidianCavern extends Schematic {
 	private static Block chest = Blocks.chest;
 	private static Block glowstone = Blocks.glowstone;
 	private static Block spawner = Blocks.mob_spawner;
+	
+	private int variant = 0;
+	private int variant2 = 0;
 
-	public SchematicObsidianCavern(BlockPos pos, Structure str) {
-		super(pos, str, 8, 12, 12);
+	public SchematicObsidianCavern(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 8, 12, 12);
+		variant = world.rand.nextInt(7);
+		variant2 = world.rand.nextInt(10);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x,	int y, int z) {
-		int variant2 = rand.nextInt(10);
+	public Schematic generateStructure(World world, Random rand, int x,	int y, int z) {
 		generateTube(world, rand, x, y, z);
-		generateCavernOfferings(variant2, world, rand, x, y, z);
-		generateCaveOpening(variant, world, rand, x, y, z);
+		generateCavernOfferings(world, rand, x, y, z);
+		generateCaveOpening(world, rand, x, y, z);
 		return this;
 	}
 
@@ -224,7 +229,7 @@ public class SchematicObsidianCavern extends Schematic {
 		this.setBlock(world, x - 5, 11, z - 5, glowstone);
 	}
 
-	public void generateCaveOpening(int variant, World world, Random rand, int x, int y, int z) {
+	public void generateCaveOpening(World world, Random rand, int x, int y, int z) {
 
 		Block luxury = SchematicDesertTower.luxuryBlocks[rand.nextInt(SchematicDesertTower.luxuryBlocks.length)];
 		int meta = 0;
@@ -620,8 +625,8 @@ public class SchematicObsidianCavern extends Schematic {
 		this.setBlockToAir(world, x, y, z);
 	}
 
-	public void generateCavernOfferings(int variant, World world, Random rand, int x, int y, int z) {
-		switch(variant)
+	public void generateCavernOfferings(World world, Random rand, int x, int y, int z) {
+		switch(variant2)
 		{
 		case 0:
 			ArrayList<BlockPos> list = WorldHelper.getBlocksInCircularRange(world, 3.0D, x, 0, z);
@@ -967,5 +972,19 @@ public class SchematicObsidianCavern extends Schematic {
 			break;
 		}
 		return s;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		tag.setInteger("variant", this.variant);
+		tag.setInteger("variant2", this.variant2);
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		this.variant = tag.getInteger("variant");
+		this.variant2 = tag.getInteger("variant2");
+		return this;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -14,13 +15,16 @@ public class SchematicSoulTomb extends Schematic {
 
 	public static Block[] blocks = new Block[] {TragicBlocks.DarkCobblestone, TragicBlocks.DarkenedQuartz, TragicBlocks.SmoothNetherrack,
 		Blocks.stonebrick, TragicBlocks.ScorchedRock, TragicBlocks.ErodedStone};
+	
+	private int variant = 0;
 
-	public SchematicSoulTomb(BlockPos pos, Structure str) {
-		super(pos, str, 10, 6, 6);
+	public SchematicSoulTomb(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 10, 6, 6);
+		this.variant = world.rand.nextInt(blocks.length);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		for (int y1 = 0; y1 < 10; y1++)
 		{
@@ -127,6 +131,18 @@ public class SchematicSoulTomb extends Schematic {
 		this.setBlock(world, x + 1, y + 8, z, Blocks.flowing_lava, 0, 2);
 		this.setBlock(world, x - 1, y + 8, z, Blocks.flowing_lava, 0, 2);
 
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		tag.setInteger("variant", this.variant);
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		this.variant = tag.getInteger("variant");
 		return this;
 	}
 

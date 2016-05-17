@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -14,12 +15,12 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicMemoryCache extends Schematic {
 
-	public SchematicMemoryCache(BlockPos pos, Structure str) {
-		super(pos, str, 12, 12, 12);
+	public SchematicMemoryCache(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 12, 12, 12);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 		double size = rand.nextDouble() * 4.45D + 5.55D;
 		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(world, size, x, y, z);
 
@@ -48,6 +49,16 @@ public class SchematicMemoryCache extends Schematic {
 
 		this.setBlock(world, x, y, z, Blocks.chest, 0, 2, ChestHooks.uncommonHook);
 
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
 		return this;
 	}
 

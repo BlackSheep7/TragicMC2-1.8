@@ -12,22 +12,16 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicApisTemple;
 
-public class StructureApisTemple extends StructureBoss {
+public class StructureApisTemple extends Structure {
 
 	public StructureApisTemple(int id, String name) {
-		super(id, name, new SchematicApisTemple(BlockPos.ORIGIN, null).height);
+		super(id, name, 12);
 	}
 
 	@Override
 	public boolean isSurfaceStructure()
 	{
 		return true;
-	}
-
-	@Override
-	public int getVariantSize()
-	{
-		return 3;
 	}
 
 	@Override
@@ -56,6 +50,6 @@ public class StructureApisTemple extends StructureBoss {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicApisTemple(pos, this);
+		return new SchematicApisTemple(pos, this, world);
 	}
 }

@@ -14,7 +14,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicNekoWarehouse;
 public class StructureNekoWarehouse extends Structure {
 
 	public StructureNekoWarehouse(int id, String s) {
-		super(id, s, 20);
+		super(id, s, 10);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class StructureNekoWarehouse extends Structure {
 		BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 		if (biome instanceof BiomeGenNekoBarrens)
 		{
-			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
+			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(500);
 		}
 
 		return false;
@@ -49,6 +49,6 @@ public class StructureNekoWarehouse extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicNekoWarehouse(pos, this);
+		return new SchematicNekoWarehouse(pos, this, world);
 	}
 }

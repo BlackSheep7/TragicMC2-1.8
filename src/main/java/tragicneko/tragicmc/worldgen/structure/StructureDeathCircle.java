@@ -12,10 +12,10 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicDeathCircle;
 
-public class StructureDeathCircle extends StructureBoss {
+public class StructureDeathCircle extends Structure {
 
 	public StructureDeathCircle(int id, String name) {
-		super(id, name, new SchematicDeathCircle(BlockPos.ORIGIN, null).height);
+		super(id, name, 6);
 	}
 
 	@Override
@@ -50,6 +50,6 @@ public class StructureDeathCircle extends StructureBoss {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicDeathCircle(pos, this);
+		return new SchematicDeathCircle(pos, this, world);
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -14,12 +15,12 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicEmpariahCave extends Schematic {
 
-	public SchematicEmpariahCave(BlockPos pos, Structure str) {
-		super(pos, str, 8, 12, 12);
+	public SchematicEmpariahCave(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 8, 12, 12);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		ArrayList<BlockPos> list = new ArrayList<BlockPos>();
 		byte i;
@@ -78,6 +79,16 @@ public class SchematicEmpariahCave extends Schematic {
 			this.setBlock(world, x, y - 31, z - 5, Blocks.mob_spawner, 0, 2, "TragicMC.Abomination");
 		}
 
+		return this;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
 		return this;
 	}
 

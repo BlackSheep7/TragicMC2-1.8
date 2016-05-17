@@ -13,7 +13,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicNekoBarracks;
 public class StructureNekoBarracks extends Structure {
 
 	public StructureNekoBarracks(int id, String s) {
-		super(id, s, 10);
+		super(id, s, 8);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class StructureNekoBarracks extends Structure {
 		BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 		if (biome instanceof BiomeGenNekoBarrens)
 		{
-			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(200);
+			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(500);
 		}
 
 		return false;
@@ -48,6 +48,6 @@ public class StructureNekoBarracks extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicNekoBarracks(pos, this);
+		return new SchematicNekoBarracks(pos, this, world);
 	}
 }

@@ -11,22 +11,16 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 import tragicneko.tragicmc.worldgen.schematic.SchematicKitsuneDen;
 
-public class StructureKitsuneDen extends StructureBoss {
+public class StructureKitsuneDen extends Structure {
 
 	public StructureKitsuneDen(int id, String name) {
-		super(id, name, new SchematicKitsuneDen(BlockPos.ORIGIN, null).height);
+		super(id, name, 12);
 	}
 
 	@Override
 	public boolean isValidDimension(int dim)
 	{
 		return dim == -1 || dim == TragicConfig.getInt("collisionID");
-	}
-
-	@Override
-	public int getVariantSize()
-	{
-		return 4;
 	}
 
 	@Override
@@ -49,6 +43,6 @@ public class StructureKitsuneDen extends StructureBoss {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicKitsuneDen(pos, this);
+		return new SchematicKitsuneDen(pos, this, world);
 	}
 }

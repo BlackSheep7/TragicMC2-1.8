@@ -8,10 +8,12 @@ import java.util.Random;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
@@ -19,13 +21,20 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 public class SchematicNekoVillage extends Schematic {
 
 	private static final byte[] BLOCK_OFFSETS = new byte[] {-17, 0, 17};
+	private static final byte[][] SMALL_BUILDING_OFFSETS = new byte[][] {{-3, -3}, {3, -3}, {-3, 3}, {3, 3}}; //top left, top right, bottom left, bottom right;
+	private static final byte[][] INTERNAL_ROTATION_OFFSETS = new byte[][] {{-2, 0}, {2, 0}, {0, -2}, {0, 2}}; //west, east, north, south
 
-	public SchematicNekoVillage(BlockPos origin, Structure structure) {
-		super(origin, structure, 30, 70, 70);
+	private byte[][] byteMap = new byte[3][3]; //whether each block is made of large or small buildings
+	private byte[][] buildingMap = new byte[9][4]; //what each block's actual composition is, large buildings only care about the first byte in their array
+
+	public SchematicNekoVillage(BlockPos origin, Structure structure, World world) {
+		super(origin, structure, world, 15, 70, 70);
+		byteMap = this.generateBlockComposition(world.rand);
+		buildingMap = this.generateBuildingMap(world.rand);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		for (byte y1 = -1; y1 < 12; y1++)
 		{
@@ -39,8 +48,6 @@ public class SchematicNekoVillage extends Schematic {
 		}
 
 		this.generateRoads(world, rand, x, y, z);
-		
-		byte[][] byteMap = this.generateBlockComposition(rand);
 
 		for (byte b = 0; b < byteMap.length; b++)
 		{
@@ -55,7 +62,6 @@ public class SchematicNekoVillage extends Schematic {
 				else if (bit == 1) this.placeLargeBuilding(world, rand, x + xOffset, y, z + zOffset, block);
 			}
 		}
-		this.setBlock(world, new BlockPos(x, y, z), Blocks.gold_block.getStateFromMeta(0));
 		return this;
 	}
 
@@ -169,14 +175,11 @@ public class SchematicNekoVillage extends Schematic {
 		}
 	}
 
-	private static final byte[][] SMALL_BUILDING_OFFSETS = new byte[][] {{-3, -3}, {3, -3}, {-3, 3}, {3, 3}}; //top left, top right, bottom left, bottom right;
-	private static final byte[][] INTERNAL_ROTATION_OFFSETS = new byte[][] {{-2, 0}, {2, 0}, {0, -2}, {0, 2}}; //west, east, north, south
-
 	public void generateFiveByFive(World world, Random rand, int x, int y, int z, byte spot, byte block) //spot is the place in that block and block is which block it's in
 	{
-		final int meow = rand.nextInt(16);
 		final byte rotation = getRotationFromBlockPosition(rand, spot, block); //generates possible exit coords based on the building's position in the schematic
 
+		final int meow = buildingMap[block][spot];
 		if (meow <= 10)
 		{
 			this.generateSmallNekoFlat(world, rand, x, y, z, rotation);
@@ -290,7 +293,7 @@ public class SchematicNekoVillage extends Schematic {
 
 		this.setBlock(world, new BlockPos(x + 1, y, z + 1), Blocks.crafting_table.getStateFromMeta(0));
 		this.setBlock(world, new BlockPos(x - 1, y, z - 1), Blocks.furnace.getStateFromMeta(0), SchematicNekoHouse.getFurnaceStacks(0, rand), SchematicNekoHouse.getFurnaceStacks(1, rand), SchematicNekoHouse.getFurnaceStacks(2, rand));
-		
+
 		for (byte y1 = 0; y1 < 4; y1++)
 		{
 			this.setBlock(world, new BlockPos(x - 1, y + y1, z + 1), Blocks.ladder.getStateFromMeta(0));
@@ -358,8 +361,7 @@ public class SchematicNekoVillage extends Schematic {
 
 	public void placeLargeBuilding(World world, Random rand, int x, int y, int z, byte block) //builds a large building out of a full block (13x13) or (11x11)
 	{
-		final int meow = rand.nextInt(17);
-		
+		final int meow = buildingMap[block][0];
 		if (meow <= 6)
 		{
 			this.generateHousingComplex(world, rand, x, y, z, block);
@@ -372,16 +374,13 @@ public class SchematicNekoVillage extends Schematic {
 		{
 			this.generateStorageBuilding(world, rand, x, y, z, block);
 		}
+		else if (meow <= 13)
+		{
+			this.generatePark(world, rand, x, y, z);
+		}
 		else
 		{
-			if (rand.nextBoolean())
-			{
-				this.generatePark(world, rand, x, y, z);
-			}
-			else
-			{
-				this.generatePlaza(world, rand, x, y, z);
-			}
+			this.generatePlaza(world, rand, x, y, z);
 		} 
 
 		//streetlights
@@ -582,7 +581,7 @@ public class SchematicNekoVillage extends Schematic {
 	public void generatePark(World world, Random rand, int x, int y, int z) 
 	{
 		//has grass and trees
-		
+
 		//set the grass
 		for (byte x1 = -6; x1 < 7; x1++)
 		{
@@ -603,7 +602,7 @@ public class SchematicNekoVillage extends Schematic {
 		{
 			if (rand.nextInt(4) == 0) this.setBlock(world, new BlockPos(x + rand.nextInt(7) - rand.nextInt(7), y, z + rand.nextInt(7) - rand.nextInt(7)), TragicBlocks.TragicFlower2.getStateFromMeta(11));
 		}
-		
+
 		//random chance for a "lake"
 		for (byte b = 0; b < 3; b++)
 		{
@@ -617,14 +616,14 @@ public class SchematicNekoVillage extends Schematic {
 				{
 					this.setBlock(world, coord, Blocks.flowing_water.getStateFromMeta(0));
 				}
-				
+
 				list = WorldHelper.getBlocksInCircularRange(world, (double) width, pos);
 
 				for (BlockPos coord : list)
 				{
 					if (rand.nextInt(4) != 0) this.setBlock(world, coord, Blocks.flowing_water.getStateFromMeta(0));
 				}
-				
+
 				break;
 			}
 		}
@@ -702,8 +701,60 @@ public class SchematicNekoVillage extends Schematic {
 			{this.nextByte(rand), this.nextByte(rand), this.nextByte(rand)}
 		};
 	}
+	
+	private byte[][] generateBuildingMap(Random rand) {
+		return new byte[][] {
+			{this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand)},
+			{this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand)},
+			{this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand)},
+			{this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand)},
+			{this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand)},
+			{this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand)},
+			{this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand)},
+			{this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand)},
+			{this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand), this.nextByte(16, rand)}
+		};
+	}
 
 	public byte nextByte(Random rand) {
 		return (byte) rand.nextInt(2);
+	}
+
+	public byte nextByte(int value, Random rand) {
+		return (byte) rand.nextInt(value);
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		tag.setByteArray("mapValues0", byteMap[0]);
+		tag.setByteArray("mapValues1", byteMap[1]);
+		tag.setByteArray("mapValues2", byteMap[2]);
+
+		tag.setByteArray("map2Values0", buildingMap[0]);
+		tag.setByteArray("map2Values1", buildingMap[1]);
+		tag.setByteArray("map2Values2", buildingMap[2]);
+		tag.setByteArray("map2Values3", buildingMap[3]);
+		tag.setByteArray("map2Values4", buildingMap[4]);
+		tag.setByteArray("map2Values5", buildingMap[5]);
+		tag.setByteArray("map2Values6", buildingMap[6]);
+		tag.setByteArray("map2Values7", buildingMap[7]);
+		tag.setByteArray("map2Values8", buildingMap[8]);
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		for (byte b = 0; b < byteMap.length; b++)
+		{
+			byteMap[b] = tag.getByteArray("mapValues" + b);
+
+		}
+
+		for (byte b = 0; b < buildingMap.length; b++)
+		{
+			buildingMap[b] = tag.getByteArray("map2Values" + b);
+		}
+		
+		return this;
 	}
 }

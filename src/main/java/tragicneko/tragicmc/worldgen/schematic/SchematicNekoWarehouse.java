@@ -7,6 +7,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -15,13 +16,28 @@ import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicNekoWarehouse extends Schematic {
+	
+	private static final byte[][] bitMask = new byte[][] {
+		{1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1},
+		{0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0},
+		{0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0},
+		{1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+		{0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0},
+		{0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0},
+		{0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0},
+		{0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0},
+		{1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+		{0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0},
+		{0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0},
+		{1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1}
+	}; //bitMask for the weird design on the top of the building
 
-	public SchematicNekoWarehouse(BlockPos origin, Structure structure) {
-		super(origin, structure, 10, 15, 15);
+	public SchematicNekoWarehouse(BlockPos origin, Structure structure, World world) {
+		super(origin, structure, world, 10, 15, 15);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		for (byte b = 0; b < 10; b++)
 		{
@@ -235,22 +251,6 @@ public class SchematicNekoWarehouse extends Schematic {
 
 		this.setBlock(world, new BlockPos(x + 6, y + 8, z - 3), NekitePlate.getStateFromMeta(3));
 		this.setBlock(world, new BlockPos(x - 6, y + 8, z - 3), NekitePlate.getStateFromMeta(3));
-
-		//12 x 11
-		byte[][] bitMask = new byte[][] {
-			{1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1},
-			{0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0},
-			{0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0},
-			{1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
-			{0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0},
-			{0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0},
-			{0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0},
-			{0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0},
-			{1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
-			{0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0},
-			{0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0},
-			{1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1}
-		};
 		
 		for (byte b = 0; b < bitMask.length; b++)
 		{
@@ -318,5 +318,15 @@ public class SchematicNekoWarehouse extends Schematic {
 		if (slot == 0) stack = rand.nextInt(32) == 0 ? new ItemStack(Blocks.coal_block) : (rand.nextInt(4) == 0 ? new ItemStack(Items.coal) : (rand.nextInt(16) == 0 ? new ItemStack(TragicBlocks.Nekowood) : null));
 		if (slot == 2) stack = rand.nextInt(16) == 0 ? new ItemStack(Items.coal, 1, 1) : (rand.nextInt(4) == 0 ? new ItemStack(TragicItems.Quicksilver) : (rand.nextInt(16) == 0 ? new ItemStack(TragicItems.Nekite) : (rand.nextInt(12) == 0 ? new ItemStack(Items.diamond) : null)));
 		return stack;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		return this;
 	}
 }

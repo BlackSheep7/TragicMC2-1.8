@@ -11,7 +11,7 @@ import tragicneko.tragicmc.worldgen.schematic.SchematicCubeMaze;
 public class StructureCubeMaze extends Structure {
 
 	public StructureCubeMaze(int id, String s) {
-		super(id, s, new SchematicCubeMaze(BlockPos.ORIGIN, null).height);
+		super(id, s, 32);
 	}
 
 	@Override
@@ -35,6 +35,6 @@ public class StructureCubeMaze extends Structure {
 
 	@Override
 	public Schematic getSchematicFor(World world, Random rand, BlockPos pos) {
-		return new SchematicCubeMaze(pos, this);
+		return new SchematicCubeMaze(pos, this, world);
 	}
 }

@@ -115,7 +115,7 @@ tile.tragicmc.structureSeed.nekoBarracks.name=Neko Barracks
 tile.tragicmc.structureSeed.nekoWarehouse.name=Neko Warehouse
 tile.tragicmc.structureSeed.nekoCottage.name=Neko Cottage
 tile.tragicmc.structureSeed.nekoGuardTower.name=Neko Guard Tower
-tile.tragicmc.structureSeed.nekoVillage.name=Neko City
+tile.tragicmc.structureSeed.nekoVillage.name=Neko Walled City
 tile.tragicmc.structureSeed.nekoidsForwardBase.name=Nekoid's Forward Operating Base
 
 tile.tragicmc.deadDirt.normal.name=Dead Dirt
@@ -356,6 +356,8 @@ tile.tragicmc.nekitePlate.smooth.name=Smooth Nekite Plate
 tile.tragicmc.nekitePlate.cross.name=Crossed Nekite Plate
 tile.tragicmc.nekitePlate.marked.name=Marked Nekite Plate
 tile.tragicmc.nekitePlate.grated.name=Grated Nekite Plate
+
+tile.tragicmc.nekiteWire.name=Nekite Wire
 
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -18,13 +19,15 @@ public class SchematicKitsuneDen extends Schematic {
 	private static Block chest = Blocks.chest;
 	private static Block spawner = Blocks.mob_spawner;
 	
-	public SchematicKitsuneDen(BlockPos pos, Structure str) {
-		super(pos, str, 12, 9, 9);
+	private int dens = 0;
+	
+	public SchematicKitsuneDen(BlockPos pos, Structure str, World world) {
+		super(pos, str, world, 12, 9, 9);
+		dens = world.rand.nextInt(4);
 	}
 
 	@Override
-	public Schematic generateStructure(int variant, World world, Random rand, int x, int y, int z) {
-		int dens = MathHelper.clamp_int(variant, 0, 4);
+	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
 
 		for (int y1 = 0; y1 < 8; y1++)
 		{
@@ -450,5 +453,17 @@ public class SchematicKitsuneDen extends Schematic {
 		this.setBlock(world, x - 1, y + 5, z - 1, fox, 3, 2);
 
 		this.setBlock(world, x, y + 6, z, fox, 5, 2); //sets the one light block in the middle on top, lights it up just enough to see but not enough to prevent spawning
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		tag.setInteger("dens", this.dens);
+		return tag;
+	}
+
+	@Override
+	public Schematic readFromNBT(NBTTagCompound tag) {
+		this.dens = tag.getInteger("dens");
+		return this;
 	}
 }
