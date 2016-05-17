@@ -61,16 +61,17 @@ public class EntityScienceNeko extends EntityNeko {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(45.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.26);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0);
+		double[] scienceNekoStats = TragicConfig.getMobStat("scienceNekoStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(scienceNekoStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(scienceNekoStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(scienceNekoStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(scienceNekoStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(scienceNekoStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue() {
-		return (int) 0;
+		return TragicConfig.getMobStat("scienceNekoStats").getArmorValue();
 	}
 
 	@Override
