@@ -14,7 +14,7 @@ import tragicneko.tragicmc.network.MessageDoom;
 
 public class PropertyDoom implements IExtendedEntityProperties {
 
-	public static final String propertyName = "TragicMC.Doom";
+	public static final String PROPERTY_NAME = "TragicMC.Doom";
 	private final EntityPlayer thePlayer;
 
 	private int doomCooldown;
@@ -38,12 +38,12 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 	public static final void register(EntityPlayer player)
 	{
-		player.registerExtendedProperties(PropertyDoom.propertyName, new PropertyDoom(player));
+		player.registerExtendedProperties(PropertyDoom.PROPERTY_NAME, new PropertyDoom(player));
 	}
 
 	public static final PropertyDoom get(EntityPlayer player)
 	{
-		return (PropertyDoom) player.getExtendedProperties(PropertyDoom.propertyName);
+		return (PropertyDoom) player.getExtendedProperties(PropertyDoom.PROPERTY_NAME);
 	}
 
 	@Override
@@ -56,12 +56,12 @@ public class PropertyDoom implements IExtendedEntityProperties {
 		properties.setInteger("maxDoom", this.maxDoom);
 		properties.setBoolean("hasUpgraded", this.hasUpgraded);
 
-		compound.setTag(PropertyDoom.propertyName, properties);
+		compound.setTag(PropertyDoom.PROPERTY_NAME, properties);
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
-		NBTTagCompound properties = (NBTTagCompound)compound.getTag(PropertyDoom.propertyName);
+		NBTTagCompound properties = (NBTTagCompound)compound.getTag(PropertyDoom.PROPERTY_NAME);
 
 		if (properties != null)
 		{

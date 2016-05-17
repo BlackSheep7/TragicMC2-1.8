@@ -15,7 +15,7 @@ import tragicneko.tragicmc.items.amulet.ItemAmulet;
 
 public class PropertyAmulets implements IExtendedEntityProperties {
 
-	public static final String propertyName = "TragicMC.Amulets";
+	public static final String PROPERTY_NAME = "TragicMC.Amulets";
 	private final EntityPlayer thePlayer;
 	public final InventoryAmulet inventory;
 	private byte slotsOpen;
@@ -29,12 +29,12 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 
 	public static final void register(EntityPlayer player)
 	{
-		player.registerExtendedProperties(propertyName, new PropertyAmulets(player));
+		player.registerExtendedProperties(PROPERTY_NAME, new PropertyAmulets(player));
 	}
 
 	public static final PropertyAmulets get(EntityPlayer player)
 	{
-		return (PropertyAmulets) player.getExtendedProperties(propertyName);
+		return (PropertyAmulets) player.getExtendedProperties(PROPERTY_NAME);
 	}
 
 	@Override
@@ -42,13 +42,13 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 		NBTTagCompound comp = new NBTTagCompound();
 		inventory.writeToNBT(comp);
 		comp.setByte("slotsOpen", this.slotsOpen);
-		compound.setTag(PropertyAmulets.propertyName, comp);
+		compound.setTag(PropertyAmulets.PROPERTY_NAME, comp);
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
 		if (compound == null) return;
-		NBTTagCompound comp = (NBTTagCompound) compound.getTag(PropertyAmulets.propertyName);
+		NBTTagCompound comp = (NBTTagCompound) compound.getTag(PropertyAmulets.PROPERTY_NAME);
 		if (comp == null) return;
 		inventory.readFromNBT(comp);
 		this.slotsOpen = comp.getByte("slotsOpen");

@@ -1,11 +1,13 @@
 package tragicneko.tragicmc.inventory;
 
+import java.util.List;
+
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.items.amulet.ItemAmulet;
 
 public class InventoryAmulet extends InventoryBasic {
@@ -82,15 +84,13 @@ public class InventoryAmulet extends InventoryBasic {
 		}
 	}
 
-	public void dropAllAmulets() {
-		int i;
-
-		for (i = 0; i < this.getSizeInventory(); ++i)
+	public void dropAllAmulets(List<EntityItem> list) {
+		for (int i = 0; i < this.getSizeInventory(); ++i)
 		{
 			if (this.getStackInSlot(i) != null)
 			{
-				this.player.dropItem(this.getStackInSlot(i), true, false);
-				this.setInventorySlotContents(i, null);;
+				list.add(new EntityItem(this.player.worldObj, this.player.posX, this.player.posY, this.player.posZ, this.getStackInSlot(i)));
+				this.setInventorySlotContents(i, null);
 			}
 		}
 	}

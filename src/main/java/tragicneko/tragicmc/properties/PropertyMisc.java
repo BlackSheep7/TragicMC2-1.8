@@ -13,7 +13,7 @@ import tragicneko.tragicmc.network.MessageFrozenInput;
 
 public class PropertyMisc implements IExtendedEntityProperties {
 
-	public static final String propertyName = "TragicMC.Misc";
+	public static final String PROPERTY_NAME = "TragicMC.Misc";
 	private final EntityLivingBase theEntity;
 
 	/**
@@ -43,12 +43,12 @@ public class PropertyMisc implements IExtendedEntityProperties {
 
 	public static final void register(EntityLivingBase ent)
 	{
-		ent.registerExtendedProperties(PropertyMisc.propertyName, new PropertyMisc(ent));
+		ent.registerExtendedProperties(PropertyMisc.PROPERTY_NAME, new PropertyMisc(ent));
 	}
 
 	public static final PropertyMisc get(EntityLivingBase ent)
 	{
-		return (PropertyMisc) ent.getExtendedProperties(PropertyMisc.propertyName);
+		return (PropertyMisc) ent.getExtendedProperties(PropertyMisc.PROPERTY_NAME);
 	}
 
 	@Override
@@ -60,12 +60,12 @@ public class PropertyMisc implements IExtendedEntityProperties {
 		tag.setBoolean("hasBeenBuffed", this.hasBeenBuffed);
 		tag.setBoolean("isFrozen", this.isFrozen);
 		tag.setInteger("frozenInputs", this.frozenInputs);
-		compound.setTag(PropertyMisc.propertyName, tag);
+		compound.setTag(PropertyMisc.PROPERTY_NAME, tag);
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
-		NBTTagCompound tag = (NBTTagCompound)compound.getTag(PropertyMisc.propertyName);
+		NBTTagCompound tag = (NBTTagCompound)compound.getTag(PropertyMisc.PROPERTY_NAME);
 
 		if (tag != null)
 		{
