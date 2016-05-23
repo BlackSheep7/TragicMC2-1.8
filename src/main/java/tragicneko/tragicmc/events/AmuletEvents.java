@@ -564,6 +564,8 @@ public class AmuletEvents {
 			}
 		}
 	}
+	
+	public static boolean DO_LUCK_REFLECTION = true;
 
 	@SubscribeEvent
 	public void doomRechargeDeath(LivingDeathEvent event)
@@ -595,7 +597,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.getBoolean("amuLuck"); i++)
+			for (i = 0; i < 3 && TragicConfig.getBoolean("amuLuck") && DO_LUCK_REFLECTION; i++)
 			{
 				if (amulets[i] != null && ((ItemAmulet) amulets[i].getItem()) == TragicItems.LuckAmulet)
 				{
@@ -615,14 +617,15 @@ public class AmuletEvents {
 					catch (Exception e)
 					{
 						TragicMC.logError("Error caught while reflecting experience value from a mob for the Luck Amulet effect", e);
-						return;
+						DO_LUCK_REFLECTION = false;
+						break;
 					}
 					break;
 				}
 			}
 		}
 
-		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving && TragicConfig.getBoolean("allowAmuletModifiers"))
+		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving && TragicConfig.getBoolean("allowAmuletModifiers") && DO_LUCK_REFLECTION)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.source.getEntity();
 			IAttributeInstance ins = mp.getEntityAttribute(AmuletModifier.luck);
@@ -644,6 +647,8 @@ public class AmuletEvents {
 			catch (Exception e)
 			{
 				TragicMC.logError("Error caught while reflecting experience value from a mob for the Luck attribute.", e);
+				DO_LUCK_REFLECTION = false;
+				return;
 			}
 		}
 	}
