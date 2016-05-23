@@ -241,8 +241,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	}
 
 	@Override
-	public int getMaxSpawnedInChunk()
-	{
+	public int getMaxSpawnedInChunk() {
 		return 1;
 	}
 
@@ -485,6 +484,12 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	@Override
 	protected void onDeathUpdate()
 	{
+		if (!TragicConfig.getBoolean("allowCustomBossDeathUpdate")) 
+		{
+			super.onDeathUpdate();
+			return;
+		}
+		
 		++this.deathTime;
 
 		if (this.deathTime == 1)
