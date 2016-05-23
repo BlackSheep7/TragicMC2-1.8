@@ -74,6 +74,7 @@ import tragicneko.tragicmc.client.render.alpha.RenderOverlordCombat;
 import tragicneko.tragicmc.client.render.alpha.RenderOverlordCore;
 import tragicneko.tragicmc.client.render.boss.RenderAegar;
 import tragicneko.tragicmc.client.render.boss.RenderApis;
+import tragicneko.tragicmc.client.render.boss.RenderBoss;
 import tragicneko.tragicmc.client.render.boss.RenderClaymation;
 import tragicneko.tragicmc.client.render.boss.RenderDeathReaper;
 import tragicneko.tragicmc.client.render.boss.RenderEnyvil;
@@ -120,6 +121,7 @@ import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
+import tragicneko.tragicmc.entity.boss.EntityProfessorNekoid;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
@@ -133,6 +135,7 @@ import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityArchangel;
+import tragicneko.tragicmc.entity.mob.EntityAssaultNeko;
 import tragicneko.tragicmc.entity.mob.EntityAvris;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
@@ -161,8 +164,10 @@ import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTox;
+import tragicneko.tragicmc.entity.mob.EntityTraderNeko;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
+import tragicneko.tragicmc.entity.mob.EntityWorkerNeko;
 import tragicneko.tragicmc.entity.projectile.EntityBanana;
 import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
@@ -399,6 +404,9 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityJetNeko.class, new RenderFactoryMob(new ModelJetNeko(), 0.295F, "JetNeko", 0.725F));
 		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.825F));
 		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelMechaNeko(), 0.295F, "MechaNeko", 0.915F));
+		registerRender(EntityAssaultNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko", 1.215F));
+		registerRender(EntityWorkerNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko", 0.525F));
+		registerRender(EntityTraderNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko"));
 
 		//Boss renders
 		registerRender(EntityApis.class, new IRenderFactory() {
@@ -417,6 +425,8 @@ public class ClientProxy extends CommonProxy {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderEnyvil(manager); }});
 		registerRender(EntityClaymation.class, new IRenderFactory() {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderClaymation(manager); }});
+		registerRender(EntityProfessorNekoid.class, new IRenderFactory() {
+			@Override public Render createRenderFor(RenderManager manager) { return new RenderKitsune(manager); }});
 
 		//Alpha renders
 		registerRender(EntityOverlordCocoon.class, new IRenderFactory() {

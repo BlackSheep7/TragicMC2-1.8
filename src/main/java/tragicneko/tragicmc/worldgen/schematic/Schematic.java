@@ -117,7 +117,7 @@ public abstract class Schematic {
 			if (o1.equals(o2)) return 0;
 			final int comp = o1.compareTo(o2);
 			if (comp != 0) return comp;
-			return o1.hashCode() - o2.hashCode();
+			return o1.hashCode() - o2.hashCode() > 0 ? 1 : -1;
 		}
 	}
 
@@ -542,7 +542,7 @@ public abstract class Schematic {
 		}
 	}
 	
-	public void spawnEntity(World world, Random rand, BlockPos pos, Entity entity) {
+	public void spawnEntity(World world, BlockPos pos, Entity entity) {
 		if (TragicConfig.getBoolean("allowTickBuilder"))
 		{
 			this.entityList.add(new Tuple<BlockPos, Entity>(pos, entity));

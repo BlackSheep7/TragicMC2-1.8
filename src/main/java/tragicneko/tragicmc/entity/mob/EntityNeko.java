@@ -37,6 +37,7 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.dimension.NekoHomeworldProvider;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
@@ -50,7 +51,7 @@ public abstract class EntityNeko extends TragicMob {
 	public static final int DW_FLICK_TIME = 23;
 	public static final int DW_RELEASED = 24;
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", TragicConfig.modifier[9], 0);
+	public AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", TragicConfig.modifier[9], 0);
 
 	public static final Predicate nekoTarget = new Predicate() {
 		@Override
@@ -82,6 +83,7 @@ public abstract class EntityNeko extends TragicMob {
 		else this.targetTasks.addTask(2, hurtByNekos);
 		if (!this.isProperDate() && !this.isReleased()) this.targetTasks.addTask(3, targetPlayers);
 		if (this.isReleased()) this.targetTasks.addTask(3, targetUnreleasedNekos);
+		this.updateNekoTasks();
 	}
 
 	@Override
@@ -267,6 +269,7 @@ public abstract class EntityNeko extends TragicMob {
 	protected void updateNekoTasks() {
 		if (this.isProperDate())
 		{
+			this.tasks.removeTask(attackOnCollide);
 			this.tasks.removeTask(moveTowardsTarget);
 			this.targetTasks.removeTask(hurtByNekos);
 			this.targetTasks.removeTask(targetPlayers);
@@ -532,5 +535,11 @@ public abstract class EntityNeko extends TragicMob {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	protected boolean canDespawn()
+	{
+		return TragicConfig.getBoolean("allowStructureGen") && this.worldObj.provider instanceof NekoHomeworldProvider ? false : super.canDespawn();
 	}
 }

@@ -13,7 +13,8 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.mob.EntityMechaNeko;
+import tragicneko.tragicmc.entity.mob.EntityWorkerNeko;
 import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
@@ -309,6 +310,8 @@ public class SchematicNekoVillage extends Schematic {
 			this.setBlockToAir(world, x + INTERNAL_ROTATION_OFFSETS[b][0], y + 5, z + INTERNAL_ROTATION_OFFSETS[b][1]);
 			this.setBlockToAir(world, x + INTERNAL_ROTATION_OFFSETS[b][0], y + 6, z + INTERNAL_ROTATION_OFFSETS[b][1]);
 		}
+		
+		this.spawnEntity(world, new BlockPos(x, y, z), new EntityWorkerNeko(world));
 	}
 
 	public void generateVacantLot(World world, Random rand, int x, int y, int z, byte rotation)
@@ -496,6 +499,11 @@ public class SchematicNekoVillage extends Schematic {
 				this.setBlock(world, new BlockPos(x + 2, y + y1 + 4, z + 4), Blocks.chest.getStateFromMeta(0), ChestHooks.uncommonHook);
 			}
 		}
+		
+		this.spawnEntity(world, new BlockPos(x + 1, y, z), new EntityWorkerNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 1, y, z), new EntityWorkerNeko(world));
+		this.spawnEntity(world, new BlockPos(x, y, z + 1), new EntityWorkerNeko(world));
+		this.spawnEntity(world, new BlockPos(x, y, z - 1), new EntityWorkerNeko(world));
 	}
 
 	public void generateArmsDepot(World world, Random rand, int x, int y, int z, byte block) 
@@ -576,6 +584,16 @@ public class SchematicNekoVillage extends Schematic {
 			this.setBlock(world, new BlockPos(x + 3, y + y1, z + 4), Blocks.chest.getStateFromMeta(0), ChestHooks.uncommonHook);
 			this.setBlock(world, new BlockPos(x + 2, y + y1, z + 4), Blocks.chest.getStateFromMeta(0), ChestHooks.uncommonHook);
 		}
+		
+		EntityMechaNeko neko = new EntityMechaNeko(world);
+		neko.setPosition(x - 1.5, y, z - 1.5);
+		neko.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(x - 2, y, z - 2)), null);
+		this.spawnEntity(world, new BlockPos(x - 2, y, z - 2), neko);
+		
+		neko = new EntityMechaNeko(world);
+		neko.setPosition(x + 2.5, y, z + 2.5);
+		neko.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(x + 2, y, z + 2)), null);
+		this.spawnEntity(world, new BlockPos(x + 2, y, z + 2), neko);
 	}
 
 	public void generatePark(World world, Random rand, int x, int y, int z) 
@@ -692,6 +710,11 @@ public class SchematicNekoVillage extends Schematic {
 		this.setBlock(world, new BlockPos(x, y + 2, z), NekitePlate.getStateFromMeta(0));
 
 		this.setBlock(world, new BlockPos(x, y + 3, z), Blocks.flowing_water.getStateFromMeta(0));
+		
+		this.spawnEntity(world, new BlockPos(x + 3, y, z + 3), new EntityWorkerNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 3, y, z + 3), new EntityWorkerNeko(world));
+		this.spawnEntity(world, new BlockPos(x + 3, y, z - 3), new EntityWorkerNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 3, y, z - 3), new EntityWorkerNeko(world));
 	}
 
 	public byte[][] generateBlockComposition(Random rand) { //creates a bytemap overlay for the schematic, these change what generates for each "block"

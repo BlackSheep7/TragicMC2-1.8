@@ -259,7 +259,7 @@ public class TragicConfig {
 		registerObject("jetNekoHovering", true); //should the jet neko stop and hover sometimes
 		
 		registerObject("allowScienceNeko", true);
-		registerObject("scienceNekoStats", new MobStat(new double[] {}, 0));
+		registerObject("scienceNekoStats", new MobStat(new double[] {30.0, 0.225, 2.0, 32.0, 0.0}, 0));
 		registerObject("scienceNekoGroupSize", new int[] {1, 2});
 		registerObject("scienceNekoSpawnChance", 25);
 		registerObject("scienceNekoSpawnOverride", false);
@@ -281,34 +281,42 @@ public class TragicConfig {
 		registerObject("mechaNekoRidingArmor", true); //should, when the mecha neko is riding an entity, gain very high armor
 		
 		registerObject("allowAssaultNeko", true);
-		registerObject("assaultNekoStats", new MobStat(new double[] {}, 0));
-		registerObject("assaultNekoGroupSize", new int[] {0, 0});
-		registerObject("assaultNekoSpawnChance", 1);
+		registerObject("assaultNekoStats", new MobStat(new double[] {42.0, 0.28, 3.0, 32.0, 0.5}, 8));
+		registerObject("assaultNekoGroupSize", new int[] {2, 4});
+		registerObject("assaultNekoSpawnChance", 25);
 		registerObject("assaultNekoSpawnOverride", false);
 		registerObject("assaultNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
+		registerObject("assaultNekoBatteringRamCharge", true); //should the assault neko charge with a battering ram when far away from targets
+		registerObject("assaultNekoShield", true); //should the assault neko sometimes get a shield that absorbs all damage
+		registerObject("assaultNekoLaserSword", true); //should the assault neko do armor piercing damage when it uses it's laser sword
+		
 		registerObject("allowWorkerNeko", true);
-		registerObject("workerNekoStats", new MobStat(new double[] {}, 0));
+		registerObject("workerNekoStats", new MobStat(new double[] {20.0, 0.245, 2.0, 32.0, 0.0}, 4));
 		registerObject("workerNekoGroupSize", new int[] {0, 0});
-		registerObject("workerNekoSpawnChance", 1);
+		registerObject("workerNekoSpawnChance", 5);
 		registerObject("workerNekoSpawnOverride", false);
 		registerObject("workerNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
 		registerObject("allowTraderNeko", true);
-		registerObject("traderNekoStats", new MobStat(new double[] {}, 0));
+		registerObject("traderNekoStats", new MobStat(new double[] {30.0, 0.215, 1.0, 16.0, 0.0}, 0));
 		registerObject("traderNekoGroupSize", new int[] {0, 0});
 		registerObject("traderNekoSpawnChance", 1);
 		registerObject("traderNekoSpawnOverride", false);
 		registerObject("traderNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
+		registerObject("traderNekoTrading", true); //should the trader neko be allowed to have trades
+		registerObject("traderNekoReleaseTrading", false); //should the trader neko be released before it can trade
+		
 		registerObject("allowProfessorNekoid", true);
-		registerObject("professorNekoidStats", new MobStat(new double[] {}, 0));
+		registerObject("professorNekoidStats", new MobStat(new double[] {100.0, 0.25, 6.0, 32.0, 0.0}, 0));
 		registerObject("professorNekoidGroupSize", new int[] {0, 0});
 		registerObject("professorNekoidSpawnChance", 1);
 		registerObject("professorNekoidSpawnOverride", false);
 		registerObject("professorNekoidSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
 		registerObject("tickBuilderIgnoresAir", false);
+		registerObject("allowCustomBossDeathUpdate", false); //in case it's causing stupid crashes, we'll just let the vanilla one do it's thing
 		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
