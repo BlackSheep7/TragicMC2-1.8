@@ -4869,6 +4869,7 @@ Added Worker Neko, Trader Neko
 Nekos no longer despawn in the Dimension if they can only spawn via structures
 Added Neko spawning for the Neko City schematic
 Added spam protection for reflecting experience for the Luck attribute and Luck Amulet effect
+Added SRG names to reflections for the luck experience value method and the fire field, this should prevent them from screwing up in the future
 
 TODO:
 Add sounds for Mecha Neko
