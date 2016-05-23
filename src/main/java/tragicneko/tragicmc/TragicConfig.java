@@ -239,7 +239,7 @@ public class TragicConfig {
 	protected static Enchantment[] enchantList;
 
 	public static void doConfigProcess(FMLPreInitializationEvent event) {
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile(), true);
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		config.load();
 
 		registerObject("allowRidableEntities", true); //if ridable entities should be allowed from the mod
@@ -407,10 +407,10 @@ public class TragicConfig {
 			randomizeRegistry();
 		}
 		if (type == EnumConfigType.NORMAL) load(config);
-		else if (type == EnumConfigType.MOBS_ONLY) ConfigMobsOnly.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-mobsOnly.cfg"), true));
-		else if (type == EnumConfigType.HARDCORE) ConfigHardcore.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-hardcore.cfg"), true));
-		else if (type == EnumConfigType.LIGHTWEIGHT) ConfigLightweight.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-lightweight.cfg"), true));
-		else if (type == EnumConfigType.TRAGICMC) ConfigTragicMC.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-original.cfg"), true));
+		else if (type == EnumConfigType.MOBS_ONLY) ConfigMobsOnly.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-mobsOnly.cfg"), TragicMC.VERSION, true));
+		else if (type == EnumConfigType.HARDCORE) ConfigHardcore.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-hardcore.cfg"), TragicMC.VERSION, true));
+		else if (type == EnumConfigType.LIGHTWEIGHT) ConfigLightweight.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-lightweight.cfg"), TragicMC.VERSION, true));
+		else if (type == EnumConfigType.TRAGICMC) ConfigTragicMC.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-original.cfg"), TragicMC.VERSION, true));
 		return config;
 	}
 
