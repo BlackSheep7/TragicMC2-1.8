@@ -41,6 +41,7 @@ import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
@@ -603,7 +604,8 @@ public class AmuletEvents {
 				{
 					try
 					{
-						Method m = EntityLiving.class.getDeclaredMethod("getExperiencePoints", EntityPlayer.class);
+						Method m = ReflectionHelper.findMethod(EntityLivingBase.class, event.entityLiving,
+								new String[] {"getExperiencePoints", "func_70693_a"}, EntityPlayer.class);
 						m.setAccessible(true);
 						int j = (Integer) m.invoke(event.entityLiving, player);
 
@@ -632,7 +634,8 @@ public class AmuletEvents {
 			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
 			try
 			{
-				Method m = EntityLiving.class.getDeclaredMethod("getExperiencePoints", EntityPlayer.class);
+				Method m = ReflectionHelper.findMethod(EntityLivingBase.class, event.entityLiving,
+						new String[] {"getExperiencePoints", "func_70693_a"}, EntityPlayer.class);
 				m.setAccessible(true);
 				int j = (Integer) m.invoke((EntityLiving) event.entityLiving, mp);
 				j *= d0;

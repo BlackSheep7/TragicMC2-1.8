@@ -246,7 +246,7 @@ public class MiscEvents {
 					{
 						try 
 						{
-							Field f = ReflectionHelper.findField(Entity.class, "fire");
+							Field f = ReflectionHelper.findField(Entity.class, "fire", "field_70151_c");
 							burn = f.getInt(event.entityLiving);
 						}
 						catch (Exception e)
