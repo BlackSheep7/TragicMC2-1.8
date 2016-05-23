@@ -4860,18 +4860,26 @@ Added placeholder items for the Neko Ray Gun (that will mirror the Science Neko'
 weapon)
 Updated to new MCP mappings
 Updated to new Forge version in dev environment to do some 1.9-specific updates (for ease of porting to it in the future)
+Fixed animations for the Claymation while in Iron Golem form
+Fixed Claymation dropping multiple drops (this is like attempt number 5 for this), should actually be 100% working though
+Made Bosses's corpses disappear earlier when doing the extended death update thing
+Made custom death update thing configurable
+Added AI for the Assault Neko
+Added Worker Neko, Trader Neko
+Nekos no longer despawn in the Dimension if they can only spawn via structures
+Added Neko spawning for the Neko City schematic
+Added spam protection for reflecting experience for the Luck attribute and Luck Amulet effect
 
 TODO:
 Add sounds for Mecha Neko
 Add sounds and finish model for Mecha Exo
-Add Worker Neko and Trader Neko
-Add trades for Trader Nekos
+Add models/textures for Assault, Worker and Trader Nekos
+Add trades for Trader Neko
 Add Professor Nekoid and related Summon block
-Implement Capabilities for my Properties so that the transition to Capabilities in 1.9 will be easier
 
 Note to self (Future TODOs):
-IExtendedProperties are to be changed to Capabilities, Doomsdays and Weapon Influences will use this for ItemStacks, Amulets, Quests, Blessings and
-Achromy will use it for Entities
+IExtendedProperties are to be changed to Capabilities, Doomsdays, Shaders and Influences will use this for ItemStacks, Amulets, Quests, Doom, Blessings 
+and Achromy will use it for Entities
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
 Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my entity's drops and my custom chest gen hooks are able to be
 overridden and configured via json files just like the lores and enchantment entries are now
@@ -4886,8 +4894,8 @@ Neko homeworld with new neko types:
 *Science Neko - Intelligent
 *Mecha Neko - War-like
 *Mecha Exo - Ridable entity
-Assault Neko - Decent armor, low health, attacks with a battering ram charge attack, normally hits with a laser sword
-Worker, Trader Nekos - Workers are passive, they don't do anything really, Traders are basically villagers
+*Assault Neko - Decent armor, low health, attacks with a battering ram charge attack, normally hits with a laser sword
+*Worker, *Trader Nekos - Workers are passive, they don't do anything really, Traders are basically villagers
 Professor Nekoid - The greatest, best, genius
 *Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
 *Neko Homeworld has multiple Structures, which are going to be the source of the Neko spawning in the Dimension
