@@ -215,14 +215,14 @@ public class TragicConfig {
 	protected static boolean[] amuletConfig = new boolean[16];
 	protected static boolean[] amuletEffects = new boolean[48];
 	protected static boolean[] dimensionConfig = new boolean[16];
-	protected static boolean[] doomConfig = new boolean[24];
+	protected static boolean[] doomConfig = new boolean[32];
 	public static boolean[] doomsdayAllow = new boolean[96];
 	public static int[] doomsdayCooldown = new int[96];
 	public static int[] doomsdayCost = new int[96];
 	public static boolean[] doomAbility = new boolean[48];
 	public static int[] doomAbilityCost = new int[48];
 	protected static boolean[] enchantAllow = new boolean[32];
-	protected static boolean[] mobConfig = new boolean[16];
+	protected static boolean[] mobConfig = new boolean[32];
 	protected static boolean[] mobAllow = new boolean[64];
 	protected static boolean[] miniBossAllow = new boolean[32];
 	protected static boolean[] bossAllow = new boolean[24];
@@ -233,7 +233,7 @@ public class TragicConfig {
 	protected static boolean[] worldGenConfig = new boolean[16];
 	public static boolean[] structureAllow = new boolean[32];
 	public static int[] structureRarity = new int[32];
-	public static boolean[] griefConfig = new boolean[12];
+	public static boolean[] griefConfig = new boolean[16];
 	public static double[] modifier = new double[32];
 
 	protected static Enchantment[] enchantList;
@@ -310,13 +310,9 @@ public class TragicConfig {
 		
 		registerObject("allowProfessorNekoid", true);
 		registerObject("professorNekoidStats", new MobStat(new double[] {100.0, 0.25, 6.0, 32.0, 0.0}, 0));
-		registerObject("professorNekoidGroupSize", new int[] {0, 0});
 		registerObject("professorNekoidSpawnChance", 1);
 		registerObject("professorNekoidSpawnOverride", false);
 		registerObject("professorNekoidSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
-		
-		registerObject("tickBuilderIgnoresAir", false);
-		registerObject("allowCustomBossDeathUpdate", false); //in case it's causing stupid crashes, we'll just let the vanilla one do it's thing
 		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
@@ -2452,6 +2448,10 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowRandomSupportMob", false);
 		prop.comment = "Can Support mobs sometimes spawn and continuously buff other nearby mobs?";
 		mobConfig[++m] = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "allowCustomBossDeathUpdate", false);
+		prop.comment = "On death, should Bosses do a custom death effect?";
+		mobConfig[++m] = prop.getBoolean(false);
 
 		s = "commonMobDropChance";
 		prop = config.get(cat.getName(), s, 25);
@@ -3975,6 +3975,11 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "Should structures generate using a tick builder, which spreads out the placement of blocks over several ticks instead of generating the structure all at once in one tick?";
 		registerObject(s, prop.getBoolean(true));
+		
+		s = "tickBuilderIgnoresAir";
+		prop = config.get(cat.getName(), s, false);
+		prop.comment = "Will air factor into the total blocks placed by the TickBuilder?";
+		registerObject(s, prop.getBoolean(false));
 
 		prop = config.get(cat.getName(), "apisTempleAllow", true);
 		structureAllow[m = 0] = prop.getBoolean(true);
@@ -5193,6 +5198,7 @@ public class TragicConfig {
 		registerObject("allowMobInfighting", mobConfig[++m]);
 		registerObject("allowMobIllumination", mobConfig[++m]);
 		registerObject("allowRandomSupportMob", mobConfig[++m]);
+		registerObject("allowCustomBossDeathUpdate", mobConfig[++m]);
 
 		registerObject("allowJabba", mobAllow[m = 0]);
 		registerObject("allowJanna", mobAllow[++m]);
@@ -5504,7 +5510,6 @@ public class TragicConfig {
 	}
 
 	public static int findEnchantID(int start) {	
-
 		return findOpenID(enchantList, start, true);
 	}
 

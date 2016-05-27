@@ -2048,6 +2048,10 @@ public class ConfigHardcore extends TragicConfig {
 		prop = config.get(cat.getName(), "allowRandomSupportMob", false);
 		prop.comment = "Can Support mobs sometimes spawn and continuously buff other nearby mobs?";
 		mobConfig[++m] = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "allowCustomBossDeathUpdate", false);
+		prop.comment = "On death, should Bosses do a custom death effect?";
+		mobConfig[++m] = prop.getBoolean(false);
 
 		s = "commonMobDropChance";
 		prop = config.get(cat.getName(), s, 25);
@@ -3570,6 +3574,11 @@ public class ConfigHardcore extends TragicConfig {
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "Should structures generate using a tick builder, which spreads out the placement of blocks over several ticks instead of generating the structure all at once in one tick?";
 		registerObject(s, prop.getBoolean(true));
+		
+		s = "tickBuilderIgnoresAir";
+		prop = config.get(cat.getName(), s, false);
+		prop.comment = "Will air factor into the total blocks placed by the TickBuilder?";
+		registerObject(s, prop.getBoolean(false));
 
 		prop = config.get(cat.getName(), "apisTempleAllow", true);
 		structureAllow[m = 0] = prop.getBoolean(true);

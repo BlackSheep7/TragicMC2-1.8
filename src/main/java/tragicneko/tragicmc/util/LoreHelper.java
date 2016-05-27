@@ -25,6 +25,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
 
@@ -110,6 +111,8 @@ public class LoreHelper {
 
 	public static void registerLoreJson(File config)
 	{
+		if (TragicConfig.getBoolean("allowDefaultLores")) loadDefaultLores();
+		
 		File fileIn = new File(config, "TragicMC2/lores.json");
 
 		if (fileIn.exists())
@@ -231,11 +234,6 @@ public class LoreHelper {
 				logger.warn("Exception caught while loading elements of the lores json, stopping lore parsing... may cause instability!");
 				return;
 			}
-		}
-		else
-		{
-			logger.info("lores.json file was not found in the config/TragicMC2 directory, skipping lore parsing and loading default lores.");
-			loadDefaultLores();
 		}
 	}
 
