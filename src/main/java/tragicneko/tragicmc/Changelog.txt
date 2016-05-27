@@ -4871,8 +4871,15 @@ Added Neko spawning for the Neko City schematic
 Added spam protection for reflecting experience for the Luck attribute and Luck Amulet effect
 Added SRG names to reflections for the luck experience value method and the fire field, this should prevent them from screwing up in the future
 Added version number to the configs
+Added new config values to all of the configs
+Re-enable config option to toggle default lores being loaded, default lores now load before json parsed ones
+Added base class for Professor Nekoid
+Set custom boss update to default to false since it causes sporadic crashes
 
 TODO:
+Finish Nekoid FOB schematic (need the boss building)
+Add texture and actual weapon abilities for the Ray Gun and Laser Sword
+Add texture and blockstates to the Nekite Wire
 Add sounds for Mecha Neko
 Add sounds and finish model for Mecha Exo
 Add models/textures for Assault, Worker and Trader Nekos
@@ -4880,8 +4887,9 @@ Add trades for Trader Neko
 Add Professor Nekoid and related Summon block
 
 Note to self (Future TODOs):
-IExtendedProperties are to be changed to Capabilities, Doomsdays, Shaders and Influences will use this for ItemStacks, Amulets, Quests, Doom, Blessings 
-and Achromy will use it for Entities
+IExtendedProperties are to be changed to Capabilities
+Doomsdays, Shaders, Lore and Influences will use this for ItemStacks,
+Amulets, Quests, Doom, Blessings and Achromy will use it for Entities
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
 Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my entity's drops and my custom chest gen hooks are able to be
 overridden and configured via json files just like the lores and enchantment entries are now
