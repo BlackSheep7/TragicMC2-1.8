@@ -32,6 +32,7 @@ import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
+import tragicneko.tragicmc.entity.boss.EntityProfessorNekoid;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
@@ -2146,6 +2147,36 @@ public class TragicEntities {
 				}
 			}
 			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
+		}
+		
+		if (TragicConfig.getBoolean("allowProfessorNekoid"))
+		{
+			EntityRegistry.registerModEntity(EntityProfessorNekoid.class, "ProfessorNekoid", listid++, TragicMC.getInstance(), 80, 1, true);
+
+			if (allowVanillaSpawns)
+			{
+				if (TragicConfig.getBoolean("professorNekoidSpawnOverride"))
+				{
+					list.clear();
+
+					for (BiomeGenBase b : TragicConfig.getBiomeArray("professorNekoidSpawnBiomes"))
+					{
+						if (b != null)
+						{
+							TragicMC.logInfo(b.biomeName + " was added to list of possible spawns for Professor Nekoid.");
+							list.add(b);
+						}
+					}
+
+					if (!list.isEmpty())
+					{
+						spawns = (BiomeGenBase[]) list.toArray(spawns);
+						EntityRegistry.addSpawn(EntityProfessorNekoid.class, TragicConfig.getInt("professorNekoidSpawnChance"), 0, 0, EnumCreatureType.MONSTER, spawns);
+						spawns = new BiomeGenBase[1];
+					}
+				}
+			}
+			TragicEntityList.addMapping(EntityProfessorNekoid.class, "TragicMC.ProfessorNekoid", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
 		}
 
 		//Alphas

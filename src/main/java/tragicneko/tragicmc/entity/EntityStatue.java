@@ -46,6 +46,7 @@ public class EntityStatue extends Entity {
 		this.preventEntitySpawning = true;
 		this.setSize(0.525F, 0.865F);
 		this.isImmuneToFire = true;
+		this.ignoreFrustumCheck = true;
 	}
 
 	@Override
