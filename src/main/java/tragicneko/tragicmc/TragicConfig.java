@@ -294,7 +294,7 @@ public class TragicConfig {
 		registerObject("allowWorkerNeko", true);
 		registerObject("workerNekoStats", new MobStat(new double[] {20.0, 0.245, 2.0, 32.0, 0.0}, 4));
 		registerObject("workerNekoGroupSize", new int[] {0, 0});
-		registerObject("workerNekoSpawnChance", 5);
+		registerObject("workerNekoSpawnChance", 45);
 		registerObject("workerNekoSpawnOverride", false);
 		registerObject("workerNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		

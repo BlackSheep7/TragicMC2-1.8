@@ -8,7 +8,7 @@ public class EntityWorkerNeko extends EntityNeko {
 
 	public EntityWorkerNeko(World par1World) {
 		super(par1World);
-		this.setSize(0.475F * 0.525F, 1.955F * 0.525F);
+		this.setSize(0.475F * 0.655F, 1.955F * 0.655F);
 	}
 	
 	@Override
