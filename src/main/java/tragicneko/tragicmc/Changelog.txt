@@ -4875,6 +4875,8 @@ Added new config values to all of the configs
 Re-enable config option to toggle default lores being loaded, default lores now load before json parsed ones
 Added base class for Professor Nekoid
 Set custom boss update to default to false since it causes sporadic crashes
+Updated code in my custom entity list and mob egg code
+
 
 TODO:
 Finish Nekoid FOB schematic (need the boss building)
@@ -4888,7 +4890,7 @@ Add Professor Nekoid and related Summon block
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed to Capabilities
-Doomsdays, Shaders, Lore and Influences will use this for ItemStacks,
+Doomsdays, Shaders, Lore and Influences will use this for ItemStacks
 Amulets, Quests, Doom, Blessings and Achromy will use it for Entities
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
 Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my entity's drops and my custom chest gen hooks are able to be
