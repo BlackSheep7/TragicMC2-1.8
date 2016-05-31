@@ -405,7 +405,7 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.825F));
 		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelMechaNeko(), 0.295F, "MechaNeko", 0.915F));
 		registerRender(EntityAssaultNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko", 1.215F));
-		registerRender(EntityWorkerNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko", 0.525F));
+		registerRender(EntityWorkerNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko", 0.655F));
 		registerRender(EntityTraderNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko"));
 
 		//Boss renders
@@ -746,9 +746,10 @@ public class ClientProxy extends CommonProxy {
 
 		if (TragicConfig.getBoolean("allowMobs"))
 		{
-			for (i = 0; i < TragicEntityList.idToClassMapping.size(); i++)
+			final int k = TragicEntityList.getEntityNameList().size();
+			for (i = 0; i < k; i++)
 			{
-				if (TragicEntityList.idToClassMapping.containsKey(i))
+				if (TragicEntityList.getClassFromID(i) != null)
 				{
 					EntityEggInfo info = (EntityEggInfo) TragicEntityList.entityEggs.get(i);
 					String s = info.eggType == EnumEggType.NORMAL ? "spawnEgg2" : (info.eggType == EnumEggType.MINIBOSS ? "spawnEgg4" : (info.eggType == EnumEggType.BOSS ? "spawnEgg" : (info.eggType == EnumEggType.ALPHA ? "spawnEgg5" : "spawnEgg3")));

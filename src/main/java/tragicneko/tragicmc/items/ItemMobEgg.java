@@ -32,7 +32,6 @@ import tragicneko.tragicmc.util.TragicEntityList;
 
 public class ItemMobEgg extends Item
 {
-
 	public ItemMobEgg()
 	{
 		this.setHasSubtypes(true);
@@ -189,7 +188,7 @@ public class ItemMobEgg extends Item
 
     public static Entity spawnCreature(World worldIn, String name, double x, double y, double z)
     {
-        if (!TragicEntityList.stringToClassMapping.containsKey(name))
+        if (TragicEntityList.getIDFromString(name) == -1)
         {
             return null;
         }

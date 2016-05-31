@@ -1,10 +1,15 @@
 package tragicneko.tragicmc.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -12,56 +17,33 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatBase;
+import net.minecraft.util.RegistryNamespacedDefaultedByKey;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import tragicneko.tragicmc.util.TragicEntityList.EntityEggInfo;
 
 public class TragicEntityList
-{
-	public static final Map stringToClassMapping = Maps.newHashMap();
-    public static final Map classToStringMapping = Maps.newHashMap();
-    public static final Map idToClassMapping = Maps.newHashMap();
-    private static final Map classToIDMapping = Maps.newHashMap();
-    private static final Map stringToIDMapping = Maps.newHashMap();
-    public static final Map entityEggs = Maps.newLinkedHashMap();
+{    
+    public static RegistryNamespacedDefaultedByKey<String, Class<? extends Entity>> entityRegistry = new RegistryNamespacedDefaultedByKey<String, Class<? extends Entity>>("");
+    public static HashMap<Integer, EntityEggInfo> entityEggs = new LinkedHashMap<Integer, EntityEggInfo>();
 
-	public static void addMapping(Class clazz, String name, int id)
+	public static void addMapping(Class<? extends Entity> clazz, String name, int id)
     {
-        if (id < 0 || id > 255) throw new IllegalArgumentException("Attempted to register a entity with invalid ID: " + id + " Name: " + name + " Class: " + clazz);
-        if (stringToClassMapping.containsKey(name))
-        {
-            throw new IllegalArgumentException("ID is already registered: " + name);
-        }
-        else if (idToClassMapping.containsKey(Integer.valueOf(id)))
-        {
-            throw new IllegalArgumentException("ID is already registered: " + id);
-        }
-        else if (clazz == null)
-        {
-            throw new IllegalArgumentException("Cannot register null clazz for id: " + id);
-        }
-        else
-        {
-            stringToClassMapping.put(name, clazz);
-            classToStringMapping.put(clazz, name);
-            idToClassMapping.put(Integer.valueOf(id), clazz);
-            classToIDMapping.put(clazz, Integer.valueOf(id));
-            stringToIDMapping.put(name, Integer.valueOf(id));
-        }
+		if (entityRegistry.containsKey(name)) throw new IllegalArgumentException("Entity list already contains a mapping with that name! " + name);
+		if (entityRegistry.getObjectById(id) != null) throw new IllegalArgumentException("Entity list already contains a mapping for that id! " + id);
+        entityRegistry.register(id, name, clazz);
     }
 
-	public static void addMapping(Class clazz, String name, int id, int eggColor, int eggColor2)
+	public static void addMapping(Class<? extends Entity> clazz, String name, int id, int eggColor, int eggColor2)
 	{
 		addMapping(clazz, name, id);
-		entityEggs.put(Integer.valueOf(id), new TragicEntityList.EntityEggInfo(name, eggColor, eggColor2, EnumEggType.NORMAL));
+		entityEggs.put(id, new EntityEggInfo(name, eggColor, eggColor2, EnumEggType.NORMAL));
 	}
 
-	public static void addMapping(Class clazz, String name, int id, int eggColor, int eggColor2, EnumEggType eggType)
+	public static void addMapping(Class<? extends Entity> clazz, String name, int id, int eggColor, int eggColor2, EnumEggType eggType)
 	{
 		addMapping(clazz, name, id);
-		entityEggs.put(Integer.valueOf(id), new TragicEntityList.EntityEggInfo(name, eggColor, eggColor2, eggType));
+		entityEggs.put(id, new EntityEggInfo(name, eggColor, eggColor2, eggType));
 	}
 
 	public static Entity createEntityByName(String name, World world)
@@ -70,7 +52,7 @@ public class TragicEntityList
 
         try
         {
-            Class oclass = (Class)stringToClassMapping.get(name);
+            Class<? extends Entity> oclass = entityRegistry.getObject(name);
 
             if (oclass != null)
             {
@@ -88,17 +70,10 @@ public class TragicEntityList
 	public static Entity createEntityFromNBT(NBTTagCompound tag, World world)
 	{
 		Entity entity = null;
-
-        if ("Minecart".equals(tag.getString("id")))
-        {
-            tag.setString("id", EntityMinecart.EnumMinecartType.byNetworkID(tag.getInteger("Type")).getName());
-            tag.removeTag("Type");
-        }
-
-        Class oclass = null;
+        Class<? extends Entity> oclass = null;
         try
         {
-            oclass = (Class)stringToClassMapping.get(tag.getString("id"));
+            oclass = entityRegistry.getObject(tag.getString("id"));
 
             if (oclass != null)
             {
@@ -160,71 +135,46 @@ public class TragicEntityList
 
 	public static int getEntityID(Entity entity)
     {
-        Integer integer = (Integer)classToIDMapping.get(entity.getClass());
+        Integer integer = entityRegistry.getIDForObject(entity.getClass());
         return integer == null ? 0 : integer.intValue();
     }
 
-    public static Class getClassFromID(int id)
+    public static Class<? extends Entity> getClassFromID(int id)
     {
-        return (Class)idToClassMapping.get(Integer.valueOf(id));
+        return entityRegistry.getObjectById(id);
     }
 
     public static String getEntityString(Entity entity)
     {
-        return (String)classToStringMapping.get(entity.getClass());
+        return entityRegistry.getNameForObject(entity.getClass());
     }
 
     public static String getStringFromID(int id)
     {
-        return (String)classToStringMapping.get(getClassFromID(id));
+        return entityRegistry.getNameForObject(getClassFromID(id));
     }
 
     public static int getIDFromString(String string)
     {
-        Integer integer = (Integer)stringToIDMapping.get(string);
+        Integer integer = entityRegistry.getIDForObject(entityRegistry.getObject(string));
         return integer == null ? -1 : integer.intValue();
     }
 
     public static List getEntityNameList()
     {
-        Set set = stringToClassMapping.keySet();
+        Set<String> set = entityRegistry.getKeys();
         ArrayList arraylist = Lists.newArrayList();
-        Iterator iterator = set.iterator();
+        Iterator<String> iterator = set.iterator();
 
         while (iterator.hasNext())
         {
-            String s = (String)iterator.next();
-            Class oclass = (Class)stringToClassMapping.get(s);
+            String s = iterator.next();
+            Class<? extends Entity> oclass = entityRegistry.getObject(s);
 
-            if ((oclass.getModifiers() & 1024) != 1024)
-            {
-                arraylist.add(s);
-            }
+            if ((oclass.getModifiers() & 1024) != 1024) arraylist.add(s);
         }
 
-        arraylist.add("LightningBolt");
         return arraylist;
-    }
-    
-    public static boolean isStringEntityName(Entity entity, String name)
-    {
-        String s1 = getEntityString(entity);
-
-        if (s1 == null && entity instanceof EntityPlayer)
-        {
-            s1 = "Player";
-        }
-        else if (s1 == null && entity instanceof EntityLightningBolt)
-        {
-            s1 = "LightningBolt";
-        }
-
-        return name.equals(s1);
-    }
-
-    public static boolean isStringValidEntityName(String name)
-    {
-        return "Player".equals(name) || getEntityNameList().contains(name);
     }
 
 	public static class EntityEggInfo
