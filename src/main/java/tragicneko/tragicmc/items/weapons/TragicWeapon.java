@@ -59,7 +59,7 @@ public class TragicWeapon extends ItemSword {
 
 	public EnumDoomType doomsdayType()
 	{
-		return this.doomsday.doomsdayType;
+		return this.doomsday != null ? this.doomsday.doomsdayType : EnumDoomType.INFLUENCE;
 	}
 	
 	public TragicWeapon setAscensionLevel(float f)

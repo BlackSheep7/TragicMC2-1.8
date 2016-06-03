@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -85,6 +84,7 @@ import tragicneko.tragicmc.items.food.ItemSushi;
 import tragicneko.tragicmc.items.food.ItemTentacle;
 import tragicneko.tragicmc.items.weapons.ItemEverlastingLight;
 import tragicneko.tragicmc.items.weapons.ItemJack;
+import tragicneko.tragicmc.items.weapons.ItemNekoRayGun;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.items.weapons.WeaponBeastlyClaws;
@@ -251,6 +251,7 @@ public class TragicItems {
 	public static Item Wrench;
 	public static Item NekoRayGun; //what the science nekos use, does low ap damage but has a "reload" time after shots are fired
 	public static Item NekoLaserSword; //what the assault nekos use, does low armor piercing damage
+	public static Item NekoidsBlaster; //what professor nekoid uses, does very low damage but knocks everything in front of you away
 	
 	//Records (Set and file numbers)
 	public static Item Starstruck; //S1F1
@@ -748,11 +749,14 @@ public class TragicItems {
 		Wrench = (new ItemGeneric().setUnlocalizedName("tragicmc.wrench").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(Wrench, "wrench");
 		
-		NekoRayGun = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoRayGun").setCreativeTab(TragicMC.Survival));
+		NekoRayGun = (new ItemNekoRayGun().setUnlocalizedName("tragicmc.nekoRayGun").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(NekoRayGun, "nekoRayGun");
 		
 		NekoLaserSword = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoLaserSword").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(NekoLaserSword, "nekoLaserSword");
+		
+		NekoidsBlaster = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoidsBlaster").setCreativeTab(TragicMC.Survival));
+		GameRegistry.registerItem(NekoidsBlaster, "nekoidsBlaster");
 		
 		//Records
 		Starstruck = (new ItemFile("starstruck", 0xCFB677));
