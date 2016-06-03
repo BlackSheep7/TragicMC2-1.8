@@ -24,6 +24,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -257,28 +258,22 @@ public class EntityMechaExo extends EntityRidable {
 				meow: for (double d = 0.0D; d <= 30.0; d += 0.25D)
 				{
 					Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
+					
+					if (d > 0) 
+					{
+						MovingObjectPosition mop = WorldHelper.getMOPFromEntity(entity, d);
+						if (mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) break meow;
+					}
+					
 					bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).expand(box, box, box).offset(vec31.xCoord, vec31.yCoord + entity.getEyeHeight(), vec31.zCoord);
 					List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(entity, bb);		
 
-					List<BlockPos> list2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.45, vec31.xCoord, vec31.yCoord + entity.getEyeHeight(), vec31.zCoord);
-					Block block;
-					AxisAlignedBB bb2;
-
-					for (BlockPos coords : list2)
-					{
-						block = this.worldObj.getBlockState(coords).getBlock();
-
-						bb2 = block.getCollisionBoundingBox(this.worldObj, coords, this.worldObj.getBlockState(coords));
-						if (bb2 != null && bb2.isVecInside(vec31)) break meow;
-					}
-
-					if (list.isEmpty() || d < 2.5)
-					{
-						continue;
-					}	
+					if (list.isEmpty()) continue;
 
 					for (Entity e : list)
-					{					
+					{			
+						if (e == this || e == this.ridingEntity) continue;
+						
 						if (e instanceof IMultiPart)
 						{
 

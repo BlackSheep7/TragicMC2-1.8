@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
@@ -76,22 +77,16 @@ public class MouseEvents {
 			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.25D)
 			{
 				Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
+				if (d > 0) 
+				{
+					MovingObjectPosition mop = WorldHelper.getMOPFromEntity(player, d);
+					if (mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) break meow;
+				}
+				
 				bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).expand(box, box, box).offset(vec31.xCoord, vec31.yCoord + player.getEyeHeight(), vec31.zCoord);
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, bb);
 
 				if (list.size() > 0 && d <= limit) break;
-
-				List<BlockPos> list2 = WorldHelper.getBlocksInSphericalRange(world, 0.45, vec31.xCoord, vec31.yCoord + player.getEyeHeight(), vec31.zCoord);
-				Block block;
-				AxisAlignedBB bb2;
-
-				for (BlockPos coords : list2)
-				{
-					block = world.getBlockState(coords).getBlock();
-
-					bb2 = block.getCollisionBoundingBox(world, coords, world.getBlockState(coords));
-					if (bb2 != null && bb2.isVecInside(vec31)) break meow;
-				}
 
 				for (Entity entity : list)
 				{					
