@@ -31,11 +31,12 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 		Integer prop = state.getBlock() == TragicBlocks.StructureSeed ? state.getValue(BlockStructureSeed.STRUCTURE) : state.getValue(BlockStructureSeed2.STRUCTURE);
 		final int id = prop.intValue();
 		if (id >= Structure.getRegistrySize()) return;
+		
+		EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
 
 		Structure structure = Structure.getStructureById(id);
 		if (structure == null)
 		{
-			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
 			if (player != null) player.addChatMessage(new ChatComponentText("The structure you are attempting to generate is null for some reason. Try a different seed."));
 			warned = true;
 			return;
@@ -43,8 +44,14 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 
 		if (structure.getHeight() + this.getPos().getY() > this.worldObj.getActualHeight())
 		{
-			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
 			if (player != null) player.addChatMessage(new ChatComponentText(structure.getLocalizedName() + " wasn't able to generate due to not enough height!"));
+			warned = true;
+			return;
+		}
+		
+		if (!structure.canGenerate() && !TragicConfig.structureAllow[id])
+		{
+			if (player != null) player.addChatMessage(new ChatComponentText(structure.getLocalizedName() + " wasn't able to generate due to being disabled in the config!"));
 			warned = true;
 			return;
 		}
@@ -57,7 +64,7 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 			{
 				flag = TickBuilder.getBuilderFor(this.worldObj).addSchematic(pos, sch);
 			}
-			EntityPlayer player = this.worldObj.getClosestPlayer(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 16.0);
+			
 			if (player != null)
 			{
 				ChatComponentText text = new ChatComponentText(structure.getLocalizedName() + (TragicConfig.getBoolean("allowTickBuilder") ? (flag ? " had it's schematic generated successfully, building..." : " had it's schematic generated, however, there is a schematic being generated at that coordinate already.") : " was generated successfully!"));
@@ -68,6 +75,7 @@ public class TileEntityStructureSeed extends TileEntity implements ITickable {
 		else
 		{
 			TragicMC.logError("Something went wrong while generating a " + structure.getLocalizedName() + " with a structure seed");
+			if (player != null) player.addChatMessage(new ChatComponentText("Something went wrong while generating that structure..."));
 			warned = true;
 		}
 	}

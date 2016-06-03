@@ -314,6 +314,8 @@ public class TragicConfig {
 		registerObject("professorNekoidSpawnOverride", false);
 		registerObject("professorNekoidSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
+		
+		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
 		EnumConfigType type = getMasterSettings(config);
@@ -4052,6 +4054,9 @@ public class TragicConfig {
 		
 		prop = config.get(cat.getName(), "nekoidsForwardBaseAllow", true);
 		structureAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "nekoidsMansionAllow", true);
+		structureAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "apisTempleRarity", 5);
 		structureRarity[m = 0] = clamp(prop.getInt(5), 1, 200);
@@ -4114,6 +4119,7 @@ public class TragicConfig {
 		structureRarity[21] = 50; //cottage
 		structureRarity[22] = 3; //village
 		structureRarity[23] = 1; //Nekoid FOB
+		structureRarity[24] = 0; //Nekoids Mansion
 
 		cat = config.getCategory(CAT_MISC);
 		cat.setComment("Random other options that don't quite fit into other categories.");

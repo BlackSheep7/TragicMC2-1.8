@@ -17,7 +17,7 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicNekoWarehouse extends Schematic {
 	
-	private static final byte[][] bitMask = new byte[][] {
+	private static final byte[][] BIT_MASK = new byte[][] {
 		{1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1},
 		{0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0},
 		{0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0},
@@ -252,11 +252,11 @@ public class SchematicNekoWarehouse extends Schematic {
 		this.setBlock(world, new BlockPos(x + 6, y + 8, z - 3), NekitePlate.getStateFromMeta(3));
 		this.setBlock(world, new BlockPos(x - 6, y + 8, z - 3), NekitePlate.getStateFromMeta(3));
 		
-		for (byte b = 0; b < bitMask.length; b++)
+		for (byte b = 0; b < BIT_MASK.length; b++)
 		{
-			for (byte b0 = 0; b0 < bitMask[b].length; b0++)
+			for (byte b0 = 0; b0 < BIT_MASK[b].length; b0++)
 			{
-				if (bitMask[b][b0] == 1) this.setBlock(world, new BlockPos(x + b0 - 5, y + 9, z + b - 6), NekitePlate.getStateFromMeta(3));
+				if (BIT_MASK[b][b0] == 1) this.setBlock(world, new BlockPos(x + b0 - 5, y + 9, z + b - 6), NekitePlate.getStateFromMeta(3));
 			}
 		}
 

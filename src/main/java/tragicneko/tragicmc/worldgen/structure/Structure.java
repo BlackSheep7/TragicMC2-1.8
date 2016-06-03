@@ -14,7 +14,7 @@ import tragicneko.tragicmc.worldgen.schematic.Schematic;
 public abstract class Structure {
 
 	protected final int height;
-	
+
 	public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Structure> structureRegistry = new RegistryNamespacedDefaultedByKey<ResourceLocation, Structure>(new ResourceLocation("null"));
 
 	public static Structure apisTemple = new StructureApisTemple(0, "apisTemple");
@@ -41,6 +41,7 @@ public abstract class Structure {
 	public static Structure nekoCottage = new StructureNekoHouse(21, "nekoCottage");
 	public static Structure nekoVillage = new StructureNekoVillage(22, "nekoVillage");
 	public static Structure nekoidsForwardBase = new StructureNekoidsForwardBase(23, "nekoidsForwardBase");
+	public static Structure nekoidsMansion = new StructureNekoidsMansion(24, "nekoidsMansion");
 
 	public Structure(int id, String s, int height)
 	{
@@ -94,11 +95,11 @@ public abstract class Structure {
 	{
 		return TragicConfig.structureAllow[this.getStructureId()];
 	}
-	
+
 	public int getStructureId() {
 		return structureRegistry.getIDForObject(this);
 	}
-	
+
 	/**
 	 * Returns whether a structure can generate based on the configured rarity value out of the integer value to compare to
 	 * @param compare
@@ -118,17 +119,25 @@ public abstract class Structure {
 	{
 		if (!world.isRemote && this.canGenerate())
 		{
-			Schematic sch = this.getSchematicFor(world, rand, pos);
-			if (sch != null)
+			try
 			{
-				sch = this.applySchematicTransformations(sch, world, rand, pos);
-				sch = sch.generateStructure(world, rand, pos.getX(), pos.getY(), pos.getZ());
-				return sch != null ? sch.sortIntoList() : null;
+				Schematic sch = this.getSchematicFor(world, rand, pos);
+				if (sch != null)
+				{
+					sch = this.applySchematicTransformations(sch, world, rand, pos);
+					sch = sch.generateStructure(world, rand, pos.getX(), pos.getY(), pos.getZ());
+					return sch != null ? sch.sortIntoList() : null;
+				}
+			}
+			catch (Exception e)
+			{
+				TragicMC.logError("Schematic errored during generation. (" + this.getLocalizedName() + ")", e);
+				return null;
 			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * This can be overridden to apply NBT data transformations to the schematic, to change things like the type of structure and other schematic-specific
 	 * presets based on the world it's generating in
@@ -152,19 +161,19 @@ public abstract class Structure {
 	{
 		return structureRegistry.getNameForObject(this).getResourcePath();
 	}
-	
+
 	public int getStructureColor()
 	{
 		return 0x000000;
 	}
-	
+
 	public static Structure getStructureById(int i) {
 		return structureRegistry.getObjectById(i);
 	}
-	
+
 	public static int getRegistrySize() {
 		return structureRegistry.getKeys().size();
 	}
-	
+
 	public abstract Schematic getSchematicFor(World world, Random rand, BlockPos pos);
 }

@@ -89,7 +89,7 @@ public class SchematicNekoBarracks extends Schematic {
 		this.setBlock(world, new BlockPos(x + 2, y, z), Blocks.chest.getStateFromMeta(4), hook);
 		this.setBlock(world, new BlockPos(x + 2, y, z + 2), Blocks.chest.getStateFromMeta(4), hook);
 
-		this.setBlock(world, new BlockPos(x, y, z + 3), Blocks.mob_spawner.getDefaultState(), "TragicMC.TragicNeko");
+		this.setBlock(world, new BlockPos(x, y, z + 3), Blocks.mob_spawner.getDefaultState(), "TragicMC.AssaultNeko");
 
 		y++;
 

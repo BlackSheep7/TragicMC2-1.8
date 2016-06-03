@@ -15,6 +15,7 @@ public class SchematicNekoidsForwardBase extends Schematic {
 
 	public SchematicNekoWarehouse[] whSchematics = new SchematicNekoWarehouse[2];
 	public SchematicNekoBarracks[] brSchematics = new SchematicNekoBarracks[6];
+	public SchematicNekoidsMansion nmSchematic;
 	
 	private static final BlockPos WAREHOUSE_OFFSET = new BlockPos(-11, 0, -4);
 	private static final BlockPos WAREHOUSE2_OFFSET = new BlockPos(-11, 0, 20);
@@ -27,6 +28,8 @@ public class SchematicNekoidsForwardBase extends Schematic {
 			new BlockPos(19, 0, -24),
 			new BlockPos(19, 0, -40)
 	};
+	
+	private static final BlockPos MANSION_OFFSET = new BlockPos(13, 0, 23); //TODO ensure offsets are correct
 
 	public SchematicNekoidsForwardBase(BlockPos origin, Structure structure, World world) {
 		super(origin, structure, world, 25, 90, 50);
@@ -48,6 +51,9 @@ public class SchematicNekoidsForwardBase extends Schematic {
 		this.setChild(brSchematics[4]);
 		brSchematics[5] = new SchematicNekoBarracks(origin.add(BARRACKS_OFFSETS[5]), structure, world);
 		this.setChild(brSchematics[5]);
+		
+		nmSchematic = new SchematicNekoidsMansion(origin.add(MANSION_OFFSET), structure, world);
+		this.setChild(nmSchematic);
 	}
 
 	@Override
@@ -190,22 +196,7 @@ public class SchematicNekoidsForwardBase extends Schematic {
 		whSchematics[0].generateStructure(world, rand, x + WAREHOUSE_OFFSET.getX(), y + WAREHOUSE_OFFSET.getY(), z + WAREHOUSE_OFFSET.getZ());
 		whSchematics[1].generateStructure(world, rand, x + WAREHOUSE2_OFFSET.getX(), y + WAREHOUSE2_OFFSET.getY(), z + WAREHOUSE2_OFFSET.getZ());
 		
-		for (byte y1 = 0; y1 < 6; y1++) //walls around main building premises
-		{
-			final IBlockState state = y1 < 4 ? NekitePlate.getStateFromMeta(2) : (y1 != 5 ? NekitePlate.getStateFromMeta(1) : NekiteWire.getStateFromMeta(0));
-			
-			for (byte z1 = 2; z1 < 34; z1++)
-			{
-				this.setBlock(world, new BlockPos(x + 3, y + y1, z + z1), state);
-				this.setBlock(world, new BlockPos(x + 26, y + y1, z + z1), state);
-			}
-			
-			for (byte x1 = 3; x1 < 27; x1++)
-			{
-				this.setBlock(world, new BlockPos(x + x1, y + y1, z + 3), state);
-				this.setBlock(world, new BlockPos(x + x1, y + y1, z + 34), state);
-			}
-		}
+		nmSchematic.generateStructure(world, rand, x + MANSION_OFFSET.getX(), y + MANSION_OFFSET.getY(), z + MANSION_OFFSET.getZ());
 
 		return this;
 	}
