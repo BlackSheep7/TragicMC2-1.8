@@ -4876,11 +4876,13 @@ Re-enable config option to toggle default lores being loaded, default lores now 
 Added base class for Professor Nekoid
 Set custom boss update to default to false since it causes sporadic crashes
 Updated code in my custom entity list and mob egg code
-
+Added Nekoid's Blaster to the new Neko items
+Added effect for the Neko ray gun
+Fixed Reach and things that used similar methods not taking into account walls or blocks in the way
+Added more structure seed messages for why the schematic failed to generate
 
 TODO:
-Finish Nekoid FOB schematic (need the boss building)
-Add texture and actual weapon abilities for the Ray Gun and Laser Sword
+Add texture and actual weapon abilities for the Ray Gun, Nekoid's Blaster and Laser Sword
 Add texture and blockstates to the Nekite Wire
 Add sounds for Mecha Neko
 Add sounds and finish model for Mecha Exo
