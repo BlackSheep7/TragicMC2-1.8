@@ -146,7 +146,7 @@ public class TragicEntityList
 
     public static String getEntityString(Entity entity)
     {
-        return entityRegistry.getNameForObject(entity.getClass());
+        return entity != null ? entityRegistry.getNameForObject(entity.getClass()) : null;
     }
 
     public static String getStringFromID(int id)
