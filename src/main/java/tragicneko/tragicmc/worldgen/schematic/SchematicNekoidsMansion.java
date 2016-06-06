@@ -3,19 +3,18 @@ package tragicneko.tragicmc.worldgen.schematic;
 import static tragicneko.tragicmc.TragicBlocks.NekitePlate;
 import static tragicneko.tragicmc.TragicBlocks.NekiteWire;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Random;
 
-import com.google.common.collect.Sets;
-
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.ChestHooks;
+import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicNekoidsMansion extends Schematic {
@@ -27,7 +26,7 @@ public class SchematicNekoidsMansion extends Schematic {
 			1, 0, 0,
 			1, 0, 0
 	};
-	
+
 	//for the lights in the walls, this offsets the actual coordinate offsets so that they will all be positive since it is asymmetric
 	private static final byte[] BIT_MASK_Z = new byte[] {
 			0, 0, 1, 0, 0,
@@ -115,6 +114,48 @@ public class SchematicNekoidsMansion extends Schematic {
 			for (byte x1 = -2; y1 == 3 && x1 < 3; x1++) //upper entrance border
 			{
 				this.setBlock(world, new BlockPos(x + x1, y + y1, z - 19), NekitePlate.getStateFromMeta(1));
+			}
+		}
+		
+		int xTree = rand.nextInt(6) + 3;
+		xTree *= rand.nextBoolean() ? 1 : -1;
+		final int zTree = rand.nextInt(6) - 16;
+		final int yTree = rand.nextInt(3) + 4;
+		
+		int xTree2 = rand.nextInt(6) + 3;
+		xTree2 *= xTree < 0 ? 1 : -1;
+		final int zTree2 = rand.nextInt(6) - 16;
+		final int yTree2 = rand.nextInt(3) + 4;		
+		
+		ArrayList<BlockPos> list = WorldHelper.getBlocksInSphericalRange(world, 0.25 + yTree / 3.0, new BlockPos(x + xTree + 0.5, y + yTree - 1, z + zTree + 0.5));
+		for (BlockPos pos : list)
+		{
+			this.setBlock(world, pos, TragicBlocks.NekowoodLeaves.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true).withProperty(BlockLeaves.DECAYABLE, true));
+		}
+		
+		list = WorldHelper.getBlocksInSphericalRange(world, 0.25 + yTree2 / 3.0, new BlockPos(x + xTree2 + 0.5, y + yTree2 - 1, z + zTree2 + 0.5));
+		for (BlockPos pos : list)
+		{
+			this.setBlock(world, pos, TragicBlocks.NekowoodLeaves.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true).withProperty(BlockLeaves.DECAYABLE, true));
+		}
+		
+		for (byte y1 = 0; y1 < yTree; y1++)
+		{
+			this.setBlock(world, new BlockPos(x + xTree, y + y1, z + zTree), TragicBlocks.Nekowood.getStateFromMeta(0));
+		}
+		
+		for (byte y1 = 0; y1 < yTree2; y1++)
+		{
+			this.setBlock(world, new BlockPos(x + xTree2, y + y1, z + zTree2), TragicBlocks.Nekowood.getStateFromMeta(0));
+		}
+		
+		for (byte meow = 0; meow < 12; meow++)
+		{
+			final int randX = (rand.nextInt(7) + 3) * (rand.nextBoolean() ? 1 : -1);
+			final int randZ = rand.nextInt(7) - 16;
+			
+			if ((randX != xTree && randZ != zTree) && (randX != xTree2 && randZ != zTree2)) {
+				this.setBlock(world, new BlockPos(x + randX, y, z + randZ), TragicBlocks.NekoBush.getDefaultState());
 			}
 		}
 
@@ -215,7 +256,7 @@ public class SchematicNekoidsMansion extends Schematic {
 		this.setBlock(world, new BlockPos(x + 4, y, z - 4), Blocks.mob_spawner.getStateFromMeta(0), "TragicMC.TragicNeko");
 		this.setBlock(world, new BlockPos(x - 4, y, z - 4), Blocks.mob_spawner.getStateFromMeta(0), "TragicMC.TragicNeko");
 
-		//this.setBlock(world, new BlockPos(x, y, z), TragicBlocks.SoulChest.getStateFromMeta(0), ChestHooks.rareHook); //TODO uncomment this
+		this.setBlock(world, new BlockPos(x, y, z), TragicBlocks.SoulChest.getStateFromMeta(0), ChestHooks.rareHook);
 
 		//second layer start
 		for (byte z1 = -8; z1 < 9; z1++) //building external wall border layer
@@ -897,6 +938,610 @@ public class SchematicNekoidsMansion extends Schematic {
 		this.setBlockToAir(world, x + 6, y + 7, z + 6);
 		this.setBlockToAir(world, x - 6, y + 7, z + 6);
 
+		//ninth layer
+		for (byte z1 = -9; z1 < -4; z1++) //nekite border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 8, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 9, y + 8, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 8, z + 9), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 8, z - 9), NekitePlate.getStateFromMeta(1));
+		}
+
+		for (byte z1 = 5; z1 < 10; z1++) //nekite border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 8, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 9, y + 8, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 8, z + 9), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 8, z - 9), NekitePlate.getStateFromMeta(1));
+		}
+
+		for (byte z1 = -8; z1 < -5; z1++) //nekite smooth corner layer
+		{
+			this.setBlock(world, new BlockPos(x - 8, y + 8, z + z1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + 8, y + 8, z + z1), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 8, z + 8), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + z1, y + 8, z - 8), NekitePlate.getStateFromMeta(2));
+		}
+
+		for (byte z1 = 6; z1 < 9; z1++) //nekite smooth corner layer
+		{
+			this.setBlock(world, new BlockPos(x - 8, y + 8, z + z1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + 8, y + 8, z + z1), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 8, z + 8), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + z1, y + 8, z - 8), NekitePlate.getStateFromMeta(2));
+		}
+
+		//internal wall stuff
+		for (byte x1 = -2; x1 < 3; x1++)
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 8, z - 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 8, z - 8), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + x1, y + 8, z + 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 8, z + 8), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + 5, y + 8, z + x1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 8, y + 8, z + x1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x - 5, y + 8, z + x1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x - 8, y + 8, z + x1), NekitePlate.getStateFromMeta(1));
+		}
+
+		//internal tower border corner
+		this.setBlock(world, new BlockPos(x + 5, y + 8, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 8, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 8, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 8, z - 5), NekitePlate.getStateFromMeta(1));
+
+		//internal tower border corner, inset
+		this.setBlock(world, new BlockPos(x + 8, y + 8, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 8, y + 8, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 8, y + 8, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 8, y + 8, z - 5), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 5, y + 8, z + 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 8, z + 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 8, z - 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 8, z - 8), NekitePlate.getStateFromMeta(1));
+
+		for (byte x1 = -5; x1 < 6; x1++) //internal wall smooth layers
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 8, z - 6), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + x1, y + 8, z - 7), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x - 6, y + 8, z + x1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x - 7, y + 8, z + x1), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + x1, y + 8, z + 6), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + x1, y + 8, z + 7), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + 6, y + 8, z + x1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + 7, y + 8, z + x1), NekitePlate.getStateFromMeta(2));
+		}
+
+		//tenth layer
+		for (byte z1 = -9; z1 < -4; z1++) //grated border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 9, z + z1), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + 9, y + 9, z + z1), NekitePlate.getStateFromMeta(5));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 9, z + 9), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + z1, y + 9, z - 9), NekitePlate.getStateFromMeta(5));
+		}
+
+		for (byte z1 = 5; z1 < 10; z1++) //grated border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 9, z + z1), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + 9, y + 9, z + z1), NekitePlate.getStateFromMeta(5));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 9, z + 9), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + z1, y + 9, z - 9), NekitePlate.getStateFromMeta(5));
+		}
+
+		//tower external corners
+		this.setBlock(world, new BlockPos(x + 9, y + 9, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 9, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 9, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 9, z - 9), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 5, y + 9, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 9, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 9, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 9, z - 9), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 9, y + 9, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 9, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 9, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 9, z - 5), NekitePlate.getStateFromMeta(1));
+
+		for (byte z1 = -8; z1 < -5; z1++) //nekite smooth corner layer
+		{
+			this.setBlock(world, new BlockPos(x - 8, y + 9, z + z1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + 8, y + 9, z + z1), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 9, z + 8), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + z1, y + 9, z - 8), NekitePlate.getStateFromMeta(2));
+		}
+
+		for (byte z1 = 6; z1 < 9; z1++) //nekite smooth corner layer
+		{
+			this.setBlock(world, new BlockPos(x - 8, y + 9, z + z1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + 8, y + 9, z + z1), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 9, z + 8), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + z1, y + 9, z - 8), NekitePlate.getStateFromMeta(2));
+		}
+
+		//internal wall stuff
+		for (byte x1 = -2; x1 < 3; x1++)
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 9, z - 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 9, z + 5), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + 5, y + 9, z + x1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x - 5, y + 9, z + x1), NekitePlate.getStateFromMeta(1));
+		}
+
+		//internal tower border corner
+		this.setBlock(world, new BlockPos(x + 5, y + 9, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 9, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 9, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 9, z - 5), NekitePlate.getStateFromMeta(1));
+
+		//internal tower border corner, inset
+		this.setBlock(world, new BlockPos(x + 8, y + 9, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 8, y + 9, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 8, y + 9, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 8, y + 9, z - 5), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 5, y + 9, z + 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 9, z + 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 9, z - 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 9, z - 8), NekitePlate.getStateFromMeta(1));
+
+		//internal tower border corner, inset compressed
+		this.setBlock(world, new BlockPos(x + 8, y + 9, z + 4), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x - 8, y + 9, z + 4), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x + 8, y + 9, z - 4), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x - 8, y + 9, z - 4), NekitePlate.getStateFromMeta(0));
+
+		this.setBlock(world, new BlockPos(x + 4, y + 9, z + 8), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x - 4, y + 9, z + 8), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x + 4, y + 9, z - 8), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x - 4, y + 9, z - 8), NekitePlate.getStateFromMeta(0));
+
+		for (byte x1 = -7; x1 < 8; x1++) //internal wall smooth layers
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 9, z - 6), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + x1, y + 9, z - 7), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x - 6, y + 9, z + x1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x - 7, y + 9, z + x1), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + x1, y + 9, z + 6), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + x1, y + 9, z + 7), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + 6, y + 9, z + x1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + 7, y + 9, z + x1), NekitePlate.getStateFromMeta(2));
+		}
+
+		//tower floor corner lights
+		this.setBlock(world, new BlockPos(x + 7, y + 9, z + 7), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x - 7, y + 9, z + 7), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x + 7, y + 9, z - 7), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x - 7, y + 9, z - 7), NekitePlate.getStateFromMeta(0));
+
+		for (byte x1 = -2; x1 < 3; x1++) //ceiling layer
+		{
+			for (byte z1 = -4; z1 < 5; z1++)
+			{
+				this.setBlock(world, new BlockPos(x + x1, y + 9, z + z1), NekitePlate.getStateFromMeta(2));
+				this.setBlock(world, new BlockPos(x + z1, y + 9, z + x1), NekitePlate.getStateFromMeta(2));
+			}
+		}
+
+		//ceiling corner lights
+		this.setBlock(world, new BlockPos(x + 3, y + 9, z + 3), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x - 3, y + 9, z + 3), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x + 3, y + 9, z - 3), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x - 3, y + 9, z - 3), NekitePlate.getStateFromMeta(0));
+
+		//make room to step up to this floor
+		this.setBlockToAir(world, x + 6, y + 9, z + 6);
+		this.setBlockToAir(world, x + 7, y + 9, z + 6);
+		this.setBlockToAir(world, x + 8, y + 9, z + 6);
+
+		this.setBlockToAir(world, x - 6, y + 9, z + 6);
+		this.setBlockToAir(world, x - 7, y + 9, z + 6);
+		this.setBlockToAir(world, x - 8, y + 9, z + 6);
+
+		//floor design
+		this.setBlock(world, new BlockPos(x, y + 9, z), NekitePlate.getStateFromMeta(5));
+		this.setBlock(world, new BlockPos(x + 1, y + 9, z), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x - 1, y + 9, z), NekitePlate.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x + 2, y + 9, z), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 2, y + 9, z), NekitePlate.getStateFromMeta(1));
+
+		for (byte x1 = -1; x1 < 2; x1++)
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 9, z + 1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 9, z - 1), NekitePlate.getStateFromMeta(1));
+		}
+
+		//eleventh layer
+		for (byte z1 = -9; z1 < -4; z1++) //grated border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 10, z + z1), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + 9, y + 10, z + z1), NekitePlate.getStateFromMeta(5));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 10, z + 9), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + z1, y + 10, z - 9), NekitePlate.getStateFromMeta(5));
+		}
+
+		for (byte z1 = 5; z1 < 10; z1++) //grated border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 10, z + z1), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + 9, y + 10, z + z1), NekitePlate.getStateFromMeta(5));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 10, z + 9), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + z1, y + 10, z - 9), NekitePlate.getStateFromMeta(5));
+		}
+
+		//grated mark design
+		this.setBlock(world, new BlockPos(x + 9, y + 10, z + 7), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x - 9, y + 10, z + 7), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x + 9, y + 10, z - 7), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x - 9, y + 10, z - 7), NekitePlate.getStateFromMeta(4));
+
+		this.setBlock(world, new BlockPos(x + 7, y + 10, z + 9), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x - 7, y + 10, z + 9), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x + 7, y + 10, z - 9), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x - 7, y + 10, z - 9), NekitePlate.getStateFromMeta(4));
+
+		//tower external corners
+		this.setBlock(world, new BlockPos(x + 9, y + 10, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 10, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 10, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 10, z - 9), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 5, y + 10, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 10, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 10, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 10, z - 9), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 9, y + 10, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 10, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 10, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 10, z - 5), NekitePlate.getStateFromMeta(1));
+
+		//internal wall stuff
+		for (byte x1 = -2; x1 < 3; x1++)
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z - 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z + 5), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z - 8), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z + 8), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + 5, y + 10, z + x1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x - 5, y + 10, z + x1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + 8, y + 10, z + x1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x - 8, y + 10, z + x1), NekitePlate.getStateFromMeta(1));
+		}
+
+		for (byte x1 = -5; x1 < -2; x1++) //grated floor corners
+		{
+			for (byte z1 = -5; z1 < -2; z1++)
+			{
+				this.setBlock(world, new BlockPos(x + x1, y + 10, z + z1), NekitePlate.getStateFromMeta(5));
+				this.setBlock(world, new BlockPos(x - x1, y + 10, z + z1), NekitePlate.getStateFromMeta(5));
+				this.setBlock(world, new BlockPos(x + x1, y + 10, z - z1), NekitePlate.getStateFromMeta(5));
+				this.setBlock(world, new BlockPos(x - x1, y + 10, z - z1), NekitePlate.getStateFromMeta(5));
+			}
+		}
+
+		//internal tower border corner
+		this.setBlock(world, new BlockPos(x + 5, y + 10, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 10, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 10, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 10, z - 5), NekitePlate.getStateFromMeta(1));
+
+		//internal tower border corner, inset
+		this.setBlock(world, new BlockPos(x + 8, y + 10, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 8, y + 10, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 8, y + 10, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 8, y + 10, z - 5), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 5, y + 10, z + 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 10, z + 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 10, z - 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 10, z - 8), NekitePlate.getStateFromMeta(1));
+
+		for (byte x1 = -4; x1 < 5; x1++) //internal wall smooth layers
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z - 6), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z - 7), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x - 6, y + 10, z + x1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x - 7, y + 10, z + x1), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z + 6), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z + 7), NekitePlate.getStateFromMeta(2));
+
+			this.setBlock(world, new BlockPos(x + 6, y + 10, z + x1), NekitePlate.getStateFromMeta(2));
+			this.setBlock(world, new BlockPos(x + 7, y + 10, z + x1), NekitePlate.getStateFromMeta(2));
+		}
+
+		for (byte x1 = -1; x1 < 2; x1++) //internal wall compressed layers
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z - 6), NekitePlate.getStateFromMeta(0));
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z - 7), NekitePlate.getStateFromMeta(0));
+
+			this.setBlock(world, new BlockPos(x - 6, y + 10, z + x1), NekitePlate.getStateFromMeta(0));
+			this.setBlock(world, new BlockPos(x - 7, y + 10, z + x1), NekitePlate.getStateFromMeta(0));
+
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z + 6), NekitePlate.getStateFromMeta(0));
+			this.setBlock(world, new BlockPos(x + x1, y + 10, z + 7), NekitePlate.getStateFromMeta(0));
+
+			this.setBlock(world, new BlockPos(x + 6, y + 10, z + x1), NekitePlate.getStateFromMeta(0));
+			this.setBlock(world, new BlockPos(x + 7, y + 10, z + x1), NekitePlate.getStateFromMeta(0));
+		}
+
+		//summon block
+		this.setBlock(world, new BlockPos(x, y + 10, z), TragicBlocks.SummonBlock.getStateFromMeta(0));
+
+		//twelfth layer
+		for (byte z1 = -9; z1 < -4; z1++) //grated border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 11, z + z1), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + 9, y + 11, z + z1), NekitePlate.getStateFromMeta(5));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 11, z + 9), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + z1, y + 11, z - 9), NekitePlate.getStateFromMeta(5));
+		}
+
+		for (byte z1 = 5; z1 < 10; z1++) //grated border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 11, z + z1), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + 9, y + 11, z + z1), NekitePlate.getStateFromMeta(5));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 11, z + 9), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + z1, y + 11, z - 9), NekitePlate.getStateFromMeta(5));
+		}
+
+		//grated mark design
+		this.setBlock(world, new BlockPos(x + 9, y + 11, z + 7), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x - 9, y + 11, z + 7), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x + 9, y + 11, z - 7), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x - 9, y + 11, z - 7), NekitePlate.getStateFromMeta(4));
+
+		this.setBlock(world, new BlockPos(x + 7, y + 11, z + 9), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x - 7, y + 11, z + 9), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x + 7, y + 11, z - 9), NekitePlate.getStateFromMeta(4));
+		this.setBlock(world, new BlockPos(x - 7, y + 11, z - 9), NekitePlate.getStateFromMeta(4));
+
+		//tower external corners
+		this.setBlock(world, new BlockPos(x + 9, y + 11, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 11, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 11, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 11, z - 9), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 5, y + 11, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 11, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 11, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 11, z - 9), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 9, y + 11, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 11, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 11, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 11, z - 5), NekitePlate.getStateFromMeta(1));
+
+		//internal wall stuff
+		for (byte x1 = -5; x1 < -1; x1++)
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 11, z - 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 11, z + 5), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + x1, y + 11, z - 8), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 11, z + 8), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + 5, y + 11, z + x1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x - 5, y + 11, z + x1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + 8, y + 11, z + x1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x - 8, y + 11, z + x1), NekitePlate.getStateFromMeta(1));
+		}
+
+		//internal wall stuff
+		for (byte x1 = 2; x1 < 6; x1++)
+		{
+			this.setBlock(world, new BlockPos(x + x1, y + 11, z - 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 11, z + 5), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + x1, y + 11, z - 8), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + x1, y + 11, z + 8), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + 5, y + 11, z + x1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x - 5, y + 11, z + x1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + 8, y + 11, z + x1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x - 8, y + 11, z + x1), NekitePlate.getStateFromMeta(1));
+		}
+
+		//thirteenth layer
+		for (byte z1 = -9; z1 < -4; z1++) //grated border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 12, z + z1), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + 9, y + 12, z + z1), NekitePlate.getStateFromMeta(5));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 12, z + 9), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + z1, y + 12, z - 9), NekitePlate.getStateFromMeta(5));
+		}
+
+		for (byte z1 = 5; z1 < 10; z1++) //grated border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 12, z + z1), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + 9, y + 12, z + z1), NekitePlate.getStateFromMeta(5));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 12, z + 9), NekitePlate.getStateFromMeta(5));
+			this.setBlock(world, new BlockPos(x + z1, y + 12, z - 9), NekitePlate.getStateFromMeta(5));
+		}
+
+		//tower external corners
+		this.setBlock(world, new BlockPos(x + 9, y + 12, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 12, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 12, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 12, z - 9), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 5, y + 12, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 12, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 12, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 12, z - 9), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 9, y + 12, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 12, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 12, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 12, z - 5), NekitePlate.getStateFromMeta(1));
+
+		//internal tower border corner
+		this.setBlock(world, new BlockPos(x + 5, y + 12, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 12, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 12, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 12, z - 5), NekitePlate.getStateFromMeta(1));
+
+		//internal tower border corner, inset
+		this.setBlock(world, new BlockPos(x + 8, y + 12, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 8, y + 12, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 8, y + 12, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 8, y + 12, z - 5), NekitePlate.getStateFromMeta(1));
+
+		this.setBlock(world, new BlockPos(x + 5, y + 12, z + 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 12, z + 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 12, z - 8), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 12, z - 8), NekitePlate.getStateFromMeta(1));
+
+		//fourteenth layer
+		for (byte z1 = -9; z1 < -4; z1++) //nekite border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 13, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 9, y + 13, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 13, z + 9), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 13, z - 9), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x - 5, y + 13, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 5, y + 13, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 13, z + 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 13, z - 5), NekitePlate.getStateFromMeta(1));
+		}
+
+		for (byte z1 = 5; z1 < 10; z1++) //nekite border tower layer
+		{
+			this.setBlock(world, new BlockPos(x - 9, y + 13, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 9, y + 13, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 13, z + 9), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 13, z - 9), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x - 5, y + 13, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 5, y + 13, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 13, z + 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 13, z - 5), NekitePlate.getStateFromMeta(1));
+		}
+
+		for (byte x1 = -8; x1 < -5; x1++) //smooth tower internal bit
+		{
+			for (byte z1 = -8; z1 < -5; z1++)
+			{
+				this.setBlock(world, new BlockPos(x + x1, y + 13, z + z1), NekitePlate.getStateFromMeta(2));
+				this.setBlock(world, new BlockPos(x - x1, y + 13, z + z1), NekitePlate.getStateFromMeta(2));
+				this.setBlock(world, new BlockPos(x + x1, y + 13, z - z1), NekitePlate.getStateFromMeta(2));
+				this.setBlock(world, new BlockPos(x - x1, y + 13, z - z1), NekitePlate.getStateFromMeta(2));
+			}
+		}
+
+		//fifteenth layer
+		for (byte z1 = -9; z1 < -4; z1++) //nekite border tower layer
+		{
+			if (z1 == -7) continue;
+			this.setBlock(world, new BlockPos(x - 9, y + 14, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 9, y + 14, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 14, z + 9), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 14, z - 9), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x - 5, y + 14, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 5, y + 14, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 14, z + 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 14, z - 5), NekitePlate.getStateFromMeta(1));
+		}
+
+		for (byte z1 = 5; z1 < 10; z1++) //nekite border tower layer
+		{
+			if (z1 == 7) continue;
+			this.setBlock(world, new BlockPos(x - 9, y + 14, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 9, y + 14, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 14, z + 9), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 14, z - 9), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x - 5, y + 14, z + z1), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + 5, y + 14, z + z1), NekitePlate.getStateFromMeta(1));
+
+			this.setBlock(world, new BlockPos(x + z1, y + 14, z + 5), NekitePlate.getStateFromMeta(1));
+			this.setBlock(world, new BlockPos(x + z1, y + 14, z - 5), NekitePlate.getStateFromMeta(1));
+		}
+		
+		//randomly generate 4 chests, with up to 4 and a chance of 0
+		if (rand.nextBoolean())
+		{
+			this.setBlock(world , new BlockPos(x + 8, y + 14, z + 8), Blocks.chest.getStateFromMeta(0), ChestHooks.epicHook);
+		}
+		
+		if (rand.nextBoolean())
+		{
+			this.setBlock(world , new BlockPos(x - 8, y + 14, z + 8), Blocks.chest.getStateFromMeta(0), ChestHooks.epicHook);
+		}
+		
+		if (rand.nextBoolean())
+		{
+			this.setBlock(world , new BlockPos(x + 8, y + 14, z - 8), Blocks.chest.getStateFromMeta(0), ChestHooks.epicHook);
+		}
+		
+		if (rand.nextBoolean())
+		{
+			this.setBlock(world , new BlockPos(x - 8, y + 14, z - 8), Blocks.chest.getStateFromMeta(0), ChestHooks.epicHook);
+		}
+		
+		//sixteenth layer
+		this.setBlock(world, new BlockPos(x + 9, y + 15, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 15, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 15, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 15, z - 9), NekitePlate.getStateFromMeta(1));
+		
+		this.setBlock(world, new BlockPos(x + 5, y + 15, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 15, z + 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 15, z - 9), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 15, z - 9), NekitePlate.getStateFromMeta(1));
+		
+		this.setBlock(world, new BlockPos(x + 9, y + 15, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 15, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 9, y + 15, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 9, y + 15, z - 5), NekitePlate.getStateFromMeta(1));
+		
+		this.setBlock(world, new BlockPos(x + 5, y + 15, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 15, z + 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x + 5, y + 15, z - 5), NekitePlate.getStateFromMeta(1));
+		this.setBlock(world, new BlockPos(x - 5, y + 15, z - 5), NekitePlate.getStateFromMeta(1));
+		
 		return this;
 	}
 
