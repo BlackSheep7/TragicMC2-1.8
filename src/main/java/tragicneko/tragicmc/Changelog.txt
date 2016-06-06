@@ -4881,15 +4881,15 @@ Added Nekoid's Blaster to the new Neko items
 Added effect for the Neko ray gun
 Fixed Reach and things that used similar methods not taking into account walls or blocks in the way
 Added more structure seed messages for why the schematic failed to generate
+Finished Nekoid's Mansion and subsequently Nekoid's FOB
+Added summon block meta for Professor Nekoid
+Added texture and blockstates for Nekite Wire, Nekowood sapling and the Nekoid summon variant
 
 TODO:
 Add texture and actual weapon abilities for the Ray Gun, Nekoid's Blaster and Laser Sword
-Add texture and blockstates to the Nekite Wire
-Add sounds for Mecha Neko
-Add sounds and finish model for Mecha Exo
-Add models/textures for Assault, Worker and Trader Nekos
+Add sounds and finish models/textures for Mecha Exo and the other Nekos
 Add trades for Trader Neko
-Add Professor Nekoid and related Summon block
+Add Professor Nekoid's AI
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed to Capabilities
