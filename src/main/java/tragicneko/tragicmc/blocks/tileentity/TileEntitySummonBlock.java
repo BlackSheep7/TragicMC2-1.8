@@ -23,6 +23,7 @@ import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
+import tragicneko.tragicmc.entity.boss.EntityProfessorNekoid;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
@@ -121,6 +122,10 @@ public class TileEntitySummonBlock extends TileEntity implements ITickable {
 		else if (meta == 10 && TragicConfig.getBoolean("allowAegar"))
 		{
 			boss = new EntityAegar(this.worldObj);
+		}
+		else if (meta == 11 && TragicConfig.getBoolean("allowProfessorNekoid"))
+		{
+			boss = new EntityProfessorNekoid(this.worldObj);
 		}
 
 		if (boss instanceof TragicBoss && this.worldObj.getDifficulty().getDifficultyId() < 2 && !TragicConfig.getBoolean("allowEasyBosses") && player != null)

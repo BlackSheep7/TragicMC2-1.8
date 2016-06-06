@@ -4,6 +4,7 @@
         "variant=bleached": { "model": "tragicmc:saplingBleached" },
         "variant=ashen": { "model": "tragicmc:saplingAshen" },
         "variant=hallowed": { "model": "tragicmc:saplingHallowed" },
-        "variant=darkwood": { "model": "tragicmc:saplingDarkwood" }
+        "variant=darkwood": { "model": "tragicmc:saplingDarkwood" },
+	"variant=nekowood": { "model": "tragicmc:saplingNekowood" }
     }
 }

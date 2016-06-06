@@ -248,7 +248,7 @@ public class ClientProxy extends CommonProxy {
 
 	private static final String[] compactOre = new String[] {"rubyBlock", "sapphireBlock", "tungstenBlock", "mercuryBlock", "quicksilverBlock"};
 	private static final String[] summonBlock = new String[] {"witherSummon", "enderDragonSummon", "apisSummon", "deathReaperSummon", "kitsuneSummon", "polarisSummon", "yetiSummon", "timeControllerSummon",
-			"enyvilSummon", "claymationSummon", "aegarSummon"};
+			"enyvilSummon", "claymationSummon", "aegarSummon", "nekoidSummon"};
 	private static final String[] quicksand = new String[] {"quicksand", "mud", "drudge", "sludge"};
 	private static final String[] darkStone = new String[] {"darkStoneBlack", "darkStoneRed", "darkStoneGreen", "darkStoneTeal", "darkStoneBrown", "darkStoneViolet", "darkStoneNavy",
 			"darkStoneBlackBeveled", "darkStoneRedBeveled", "darkStoneGreenBeveled", "darkStoneTealBeveled", "darkStoneBrownBeveled", "darkStoneVioletBeveled", "darkStoneNavyBeveled"};
@@ -263,7 +263,7 @@ public class ClientProxy extends CommonProxy {
 	private static final String[] boneBlock = new String[] {"boneBlock", "boneBlockRotten"};
 	private static final String[] smoothNetherrack = new String[] {"smoothNetherrack", "smoothNetherrackChiseled", "smoothNetherrackBeveled", "smoothNetherrackSculpted", "smoothNetherrackFoxtail",
 			"smoothNetherrackMolten"};
-	private static final String[] saplings = new String[] {"saplingPainted", "saplingBleached", "saplingAshen", "saplingHallowed", "saplingDarkwood"};
+	private static final String[] saplings = new String[] {"saplingPainted", "saplingBleached", "saplingAshen", "saplingHallowed", "saplingDarkwood", "saplingNekowood"};
 	private static final String[] flowers = new String[] {"blueSpiranthes", "pinkSpiranthes", "redSpiranthes", "whiteSpiranthes", "blueCoral", "redCoral", "pinkGinger", "redGinger",
 			"bluebonnet", "violetSage", "pinkSage", "whiteSage", "birdOfParadise", "juniperBush", "stapelia", "thistle"};
 	private static final String[] flowers2 = new String[] {"bramble", "tangleweed", "deathClaw", "fusche", "osiris", "thusk", "podtail", "fanbrush", "torchweed",
@@ -713,6 +713,7 @@ public class ClientProxy extends CommonProxy {
 			registerBlockToMesher(TragicBlocks.NekiteOre, ZERO, "nekiteOre");
 			registerBlockToMesher(TragicBlocks.NekoBush, ZERO, "nekoBush");
 			for (i = 0; i < nekitePlate.length; i++) registerBlockToMesher(TragicBlocks.NekitePlate, i, nekitePlate[i]);
+			registerBlockToMesher(TragicBlocks.NekiteWire, ZERO, "nekiteWire");
 		}
 
 		registerItemWithCustomDefinition(TragicItems.BowOfJustice, new ItemMeshDefinition() {
@@ -746,8 +747,7 @@ public class ClientProxy extends CommonProxy {
 
 		if (TragicConfig.getBoolean("allowMobs"))
 		{
-			final int k = TragicEntityList.getEntityNameList().size();
-			for (i = 0; i < k; i++)
+			for (i = 0; i < 256; i++)
 			{
 				if (TragicEntityList.getClassFromID(i) != null)
 				{

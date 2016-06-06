@@ -73,7 +73,7 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (byte i = 0; i < 5; i++)
+		for (byte i = 0; i < EnumVariant.values().length; i++)
 			par3.add(new ItemStack(par1, 1, i));
 	}
 	
@@ -117,6 +117,8 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 		case 4:
 			object = new WorldGenCustomCanopyTree(TragicBlocks.Darkwood.getDefaultState(), TragicBlocks.DarkLeaves.getDefaultState());
 			break;
+		case 5:
+			object = new WorldGenCustomOakTree(false, 4, TragicBlocks.Nekowood.getDefaultState(), TragicBlocks.NekowoodLeaves.getDefaultState());
 		default:
 			return;
 		}
@@ -175,7 +177,8 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 		BLEACHED("bleached"),
 		ASHEN("ashen"),
 		HALLOWED("hallowed"),
-		DARKWOOD("darkwood");
+		DARKWOOD("darkwood"),
+		NEKOWOOD("nekowood");
 		
 		private final String name;
 		

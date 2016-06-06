@@ -76,8 +76,6 @@ public class SchematicNekoidsForwardBase extends Schematic {
 					this.setBlockToAir(world, x + x1, y + y1, z + z1);
 				}
 			}
-
-			this.setBlock(world, x, y + y1, z, NekitePlate, y1 == 9 ? 4 : 0, 3); //marker for building
 		}
 
 		for (byte z1 = -17; z1 < 39; z1++) //ground layers

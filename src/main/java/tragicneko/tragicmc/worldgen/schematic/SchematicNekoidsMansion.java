@@ -1293,7 +1293,7 @@ public class SchematicNekoidsMansion extends Schematic {
 		}
 
 		//summon block
-		this.setBlock(world, new BlockPos(x, y + 10, z), TragicBlocks.SummonBlock.getStateFromMeta(0));
+		this.setBlock(world, new BlockPos(x, y + 10, z), TragicBlocks.SummonBlock.getStateFromMeta(11));
 
 		//twelfth layer
 		for (byte z1 = -9; z1 < -4; z1++) //grated border tower layer

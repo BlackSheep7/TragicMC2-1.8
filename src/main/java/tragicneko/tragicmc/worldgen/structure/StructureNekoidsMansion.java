@@ -29,15 +29,8 @@ public class StructureNekoidsMansion extends Structure {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand)
-	{
-		BiomeGenBase biome = world.getBiomeGenForCoords(pos);
-		if (biome instanceof BiomeGenNekoBarrens)
-		{
-			return super.areCoordsValidForGeneration(world, pos, rand) && this.getRarity(500);
-		}
-
-		return false;
+	public boolean areCoordsValidForGeneration(World world, BlockPos pos, Random rand) {
+		return false; //doesn't generate naturally as it is meant specifically for testing purposes
 	}
 	
 	@Override

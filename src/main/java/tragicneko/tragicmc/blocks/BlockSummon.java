@@ -113,7 +113,8 @@ public class BlockSummon extends BlockContainer {
 		TIME_CONTROLLER("time_controller"),
 		ENYVIL("enyvil"),
 		CLAYMATION("claymation"),
-		AEGAR("aegar");
+		AEGAR("aegar"),
+		NEKOID("professor_nekoid");
 		
 		private final String name;
 		

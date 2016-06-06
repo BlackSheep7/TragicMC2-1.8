@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 public class ItemBlockSummonBlocks extends TragicItemBlock {
 
 	private static final String[] subNames = new String[] {"wither", "enderDragon", "apis", "deathReaper", "kitsune", "polaris", "yeti", "timeController",
-		"enyvil", "claymation", "aegar"};
+		"enyvil", "claymation", "aegar", "professorNekoid"};
 
 	public ItemBlockSummonBlocks(Block p_i45326_1_) {
 		super(p_i45326_1_, subNames);

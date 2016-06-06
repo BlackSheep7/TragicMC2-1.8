@@ -10,6 +10,7 @@
         "boss=time_controller": { "model": "tragicmc:timeControllerSummon" },
         "boss=enyvil": { "model": "tragicmc:enyvilSummon" },
         "boss=claymation": { "model": "tragicmc:claymationSummon" },
-        "boss=aegar": { "model": "tragicmc:aegarSummon" }
+        "boss=aegar": { "model": "tragicmc:aegarSummon" },
+	"boss=professor_nekoid": { "model": "tragicmc:nekoidSummon" }
     }
 }

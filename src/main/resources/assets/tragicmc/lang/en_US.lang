@@ -45,6 +45,7 @@ tile.tragicmc.summonBlock.timeController.name=Summon Time Controller
 tile.tragicmc.summonBlock.enyvil.name=Summon Enyvil
 tile.tragicmc.summonBlock.claymation.name=Summon Claymation
 tile.tragicmc.summonBlock.aegar.name=Summon Aegar
+tile.tragicmc.summonBlock.professorNekoid.name=Summon Professor Nekoid
 
 tile.tragicmc.sandstonePressurePlate.name=Sandstone Pressure Plate
 tile.tragicmc.netherBrickPressurePlate.name=Nether Brick Pressure Plate
@@ -117,6 +118,7 @@ tile.tragicmc.structureSeed.nekoCottage.name=Neko Cottage
 tile.tragicmc.structureSeed.nekoGuardTower.name=Neko Guard Tower
 tile.tragicmc.structureSeed.nekoVillage.name=Neko Walled City
 tile.tragicmc.structureSeed.nekoidsForwardBase.name=Nekoid's Forward Operating Base
+tile.tragicmc.structureSeed.nekoidsMansion.name=Nekoid's Mansion
 
 tile.tragicmc.deadDirt.normal.name=Dead Dirt
 tile.tragicmc.deadDirt.rugged.name=Rugged Dirt
@@ -181,6 +183,7 @@ tile.tragicmc.sapling.dead.name=Dead Tree Sapling
 tile.tragicmc.sapling.corroded.name=Corroded Tree Sapling
 tile.tragicmc.sapling.hallowed.name=Hallowed Tree Sapling
 tile.tragicmc.sapling.darkwood.name=Darkwood Tree Sapling
+tile.tragicmc.sapling.nekowood.name=Nekowood Tree Sapling
 
 tile.tragicmc.flower.blueSpiranthes.name=Blue Spiranthes
 tile.tragicmc.flower.pinkSpiranthes.name=Pink Spiranthes

@@ -33,7 +33,7 @@ public class BlockGenericLeaves extends BlockLeaves {
 	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return this == TragicBlocks.PaintedLeaves ? 0 : (this == TragicBlocks.BleachedLeaves ? 1 : (this == TragicBlocks.AshenLeaves ? 2 : (this == TragicBlocks.HallowedLeaves ? 3 : 4)));
+		return this == TragicBlocks.PaintedLeaves ? 0 : (this == TragicBlocks.BleachedLeaves ? 1 : (this == TragicBlocks.AshenLeaves ? 2 : (this == TragicBlocks.HallowedLeaves ? 3 : (this == TragicBlocks.DarkLeaves ? 4 : 5))));
 	}
 
 	@Override
