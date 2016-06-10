@@ -36,12 +36,13 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.NekoHomeworldProvider;
+import tragicneko.tragicmc.entity.boss.EntityProfessorNekoid;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
+import tragicneko.tragicmc.properties.PropertyMisc;
 
 public abstract class EntityNeko extends TragicMob {
 
@@ -64,11 +65,23 @@ public abstract class EntityNeko extends TragicMob {
 		}
 	};
 
+	public static final Predicate nekoidTarget = new Predicate() {
+		@Override
+		public boolean apply(Object input) {
+			return canApply((Entity) input);
+		}
+
+		public boolean canApply(Entity entity) {
+			return entity instanceof EntityProfessorNekoid;
+		}
+	};
+
 	public final EntityAIBase attackOnCollide = new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true);
 	public final EntityAIBase hurtByNekos = new EntityAIHurtByTarget(this, true, EntityNeko.class);
 	public final EntityAIBase moveTowardsTarget = new EntityAIMoveTowardsTarget(this, 0.85D, 32.0F);
 	public final EntityAIBase targetPlayers = new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget);
 	public final EntityAIBase targetUnreleasedNekos = new EntityAINearestAttackableTarget(this, EntityNeko.class, 0, true, false, nekoTarget);
+	public final EntityAIBase targetNekoid = new EntityAINearestAttackableTarget(this, EntityProfessorNekoid.class, 0, true, false, nekoidTarget);
 
 	public EntityNeko(World par1World) {
 		super(par1World);
@@ -83,6 +96,7 @@ public abstract class EntityNeko extends TragicMob {
 		else this.targetTasks.addTask(2, hurtByNekos);
 		if (!this.isProperDate() && !this.isReleased()) this.targetTasks.addTask(3, targetPlayers);
 		if (this.isReleased()) this.targetTasks.addTask(3, targetUnreleasedNekos);
+		if (this.isReleased()) this.targetTasks.addTask(4, targetNekoid);
 		this.updateNekoTasks();
 	}
 
@@ -200,14 +214,29 @@ public abstract class EntityNeko extends TragicMob {
 		}
 		else
 		{
-			player.addChatComponentMessage(new ChatComponentText("Thanks for releasing me from that mind control~! Have a copy of one of my favorite songs!"));
-
-			if (this.getAllowLoot())
+			if (rand.nextInt(8) == 0)
 			{
-				final Item[] items = new Item[] {TragicItems.Starstruck, TragicItems.Faultless, TragicItems.Transmissions,
-						TragicItems.Atrophy, TragicItems.Archaic, TragicItems.System, TragicItems.Mirrors,
-						TragicItems.Untitled, TragicItems.Untitled2};
-				this.entityDropItem(new ItemStack(items[rand.nextInt(items.length)]), 0.4F);
+				if (player != null) player.addChatComponentMessage(new ChatComponentText("Thanks for releasing me from that mind control~! Have a copy of one of my favorite songs!"));
+
+				if (this.getAllowLoot())
+				{
+					final Item[] items = new Item[] {TragicItems.Starstruck, TragicItems.Faultless, TragicItems.Transmissions,
+							TragicItems.Atrophy, TragicItems.Archaic, TragicItems.System, TragicItems.Mirrors,
+							TragicItems.Untitled, TragicItems.Untitled2};
+					this.entityDropItem(new ItemStack(items[rand.nextInt(items.length)]), 0.4F);
+				}
+			}
+
+			if (player != null && TragicConfig.getBoolean("allowAchievements")) 
+			{
+				PropertyMisc misc = PropertyMisc.get(player);
+				if (misc != null)
+				{
+					if (misc.nekosReleased++ >= 100)
+					{
+						player.triggerAchievement(TragicAchievements.tragicNeko100Release);
+					}
+				}
 			}
 		}
 		this.setAttackTarget(null);
@@ -255,7 +284,7 @@ public abstract class EntityNeko extends TragicMob {
 		{
 			this.setAttackTarget(null);
 		}
-		
+
 		if (this.getAttackTarget() == null)
 		{
 			if (this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0) this.setFlickTime(10);
@@ -281,6 +310,7 @@ public abstract class EntityNeko extends TragicMob {
 			this.targetTasks.removeTask(targetPlayers);
 			if (!this.targetTasks.taskEntries.contains(targetUnreleasedNekos)) this.targetTasks.addTask(3, targetUnreleasedNekos);
 			if (!this.targetTasks.taskEntries.contains(hurtByNekos)) this.targetTasks.addTask(2, hurtByNekos);
+			if (!this.targetTasks.taskEntries.contains(targetNekoid)) this.targetTasks.addTask(4, targetNekoid);
 		}
 	}
 
@@ -449,7 +479,7 @@ public abstract class EntityNeko extends TragicMob {
 	@Override
 	public int getDropAmount()
 	{
-		return 5;
+		return 2;
 	}
 
 	@Override
@@ -536,7 +566,7 @@ public abstract class EntityNeko extends TragicMob {
 		}
 		return false;
 	}
-	
+
 	@Override
 	protected boolean canDespawn()
 	{

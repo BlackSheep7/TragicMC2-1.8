@@ -35,6 +35,8 @@ public class PropertyMisc implements IExtendedEntityProperties {
 
 	private boolean hasBeenGeared = false;
 	private boolean hasBeenBuffed = false;
+	
+	public int nekosReleased = 0;
 
 	public PropertyMisc(EntityLivingBase ent)
 	{
@@ -60,6 +62,7 @@ public class PropertyMisc implements IExtendedEntityProperties {
 		tag.setBoolean("hasBeenBuffed", this.hasBeenBuffed);
 		tag.setBoolean("isFrozen", this.isFrozen);
 		tag.setInteger("frozenInputs", this.frozenInputs);
+		tag.setInteger("nekosReleased", this.nekosReleased);
 		compound.setTag(PropertyMisc.PROPERTY_NAME, tag);
 	}
 
@@ -75,6 +78,7 @@ public class PropertyMisc implements IExtendedEntityProperties {
 			this.hasBeenBuffed = tag.getBoolean("hasBeenBuffed");
 			this.isFrozen = tag.getBoolean("isFrozen");
 			this.frozenInputs = tag.getInteger("frozenInputs");
+			this.nekosReleased = tag.getInteger("nekosReleased");
 		}
 	}
 

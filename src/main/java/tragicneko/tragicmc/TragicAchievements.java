@@ -25,16 +25,21 @@ public class TragicAchievements {
 	public static Achievement overlord4 = new Achievement("tragicmc.achievement.overlord4", "tragicmc.overlord4", 8 + offsetX, -14 + offsetY, TragicItems.Sentinel, overlord3).registerStat().setSpecial();
 
 	//Neko side expansion achievements
-	public static Achievement tragicNekoDevice = (Achievement) new Achievement("tragicmc.achievement.tragicNekoDevice", "tragicmc.tragicNekoDevice", -4 + offsetX, 10 + offsetY, TragicItems.NekoMindControlDevice, null).registerStat().initIndependentStat();
-	public static Achievement tragicNekoRelease = (Achievement) new Achievement("tragicmc.achievement.tragicNekoRelease", "tragicmc.tragicNekoRelease", -2 + offsetX, 10 + offsetY, TragicItems.RecaptureSiphon, tragicNekoDevice).registerStat().setSpecial();
+	public static Achievement tragicNekoDevice = (Achievement) new Achievement("tragicmc.achievement.tragicNekoDevice", "tragicmc.tragicNekoDevice", -4 + offsetX, 10 + offsetY, Items.gunpowder, null).registerStat().initIndependentStat();
+	public static Achievement tragicNekoRelease = (Achievement) new Achievement("tragicmc.achievement.tragicNekoRelease", "tragicmc.tragicNekoRelease", -2 + offsetX, 10 + offsetY, TragicItems.NekoMindControlDevice, tragicNekoDevice).registerStat().setSpecial();
 	public static Achievement tragicNekoFile = (Achievement) new Achievement("tragicmc.achievement.tragicNekoFile", "tragicmc.tragicNekoFile", -2 + offsetX, 8 + offsetY, TragicItems.Starstruck, tragicNekoRelease).registerStat();
-	public static Achievement tragicNekoInfluence = (Achievement) new Achievement("tragicmc.achievement.tragicNekoInfluence", "tragicmc.tragicNekoInfluence",-2 + offsetX, 12 + offsetY, TragicItems.NekoInfluencer, tragicNekoRelease).registerStat();
-	public static Achievement tragicNekoLauncher = (Achievement) new Achievement("tragicmc.achievement.tragicNekoLauncher", "tragicmc.tragicNekoLauncher", 0 + offsetX, 12 + offsetY, TragicItems.NekoLauncher, tragicNekoInfluence).registerStat();
+	public static Achievement tragicNekoAllFiles = (Achievement) new Achievement("tragicmc.achievement.tragicNekoAllFiles", "tragicmc.tragicNekoAllFiles", 0 + offsetX, 8 + offsetY, TragicItems.Archaic, tragicNekoFile).registerStat();
+	public static Achievement tragicNekoSiphon = (Achievement) new Achievement("tragicmc.achievement.tragicNekoSiphon", "tragicmc.tragicNekoSiphon",-2 + offsetX, 12 + offsetY, TragicItems.RecaptureSiphon, tragicNekoRelease).registerStat();
+	public static Achievement tragicNeko100Release = (Achievement) new Achievement("tragicmc.achievement.tragicNeko100Release", "tragicmc.tragicNeko100Release", -2 + offsetX, 14 + offsetY, TragicBlocks.NekitePlate, tragicNekoSiphon).registerStat();
 	public static Achievement tragicNekoWarpDrive = (Achievement) new Achievement("tragicmc.achievement.tragicNekoWarpDrive", "tragicmc.tragicNekoWarpDrive", 0 + offsetX, 10 + offsetY, TragicItems.WarpDrive, tragicNekoRelease).registerStat();
 	public static Achievement tragicNekoHomeworld = (Achievement) new Achievement("tragicmc.achievement.tragicNekoHomeworld", "tragicmc.tragicNekoHomeworld", 2 + offsetX, 10 + offsetY, TragicBlocks.NekoGrass, tragicNekoWarpDrive).registerStat().setSpecial();
-	public static Achievement tragicNekoFindNekoid;
-	public static Achievement tragicNekoDefeatNekoid;
-	
+	public static Achievement tragicNekoTrader = (Achievement) new Achievement("tragicmc.achievement.tragicNekoTrader", "tragicmc.tragicNekoTrader", 2 + offsetX, 8 + offsetY, TragicItems.Sapphire, tragicNekoHomeworld).registerStat();
+	public static Achievement tragicNekoNekite = (Achievement) new Achievement("tragicmc.achievement.tragicNekoNekite", "tragicmc.tragicNekoNekite", 2 + offsetX, 12 + offsetY, TragicItems.Nekite, tragicNekoHomeworld).registerStat();
+	public static Achievement tragicNekoLauncher = (Achievement) new Achievement("tragicmc.achievement.tragicNekoLauncher", "tragicmcTragicNekoLauncher", 0 + offsetX, 12 + offsetY, TragicItems.NekoLauncher, tragicNekoNekite).registerStat();
+	public static Achievement tragicNekoSwordAndGun = (Achievement) new Achievement("tragicmc.achievement.tragicNekoSwordAndGun", "tragicmcTragicNekoSwordAndGun", 2 + offsetX, 14 + offsetY, TragicItems.NekoRayGun, tragicNekoNekite).registerStat();
+	public static Achievement tragicNekoDefeatNekoid = (Achievement) new Achievement("tragicmc.achievement.tragicNekoDefeatNekoid", "tragicmc.tragicNekoDefeatNekoid", 4 + offsetX, 10 + offsetY, TragicItems.NekoidStrain, tragicNekoHomeworld).registerStat().setSpecial();
+	public static Achievement tragicNekoNekoidBlaster = (Achievement) new Achievement("tragicmc.achievement.tragicNekoNekoidBlaster", "tragicmc.tragicNekoNekoidBlaster", 4 + offsetX, 12 + offsetY, TragicItems.NekoidsBlaster, tragicNekoDefeatNekoid).registerStat();
+	public static Achievement tragicNekoInfluence = (Achievement) new Achievement("tragicmc.achievement.tragicNekoInfluence", "tragicmc.tragicNekoInfluence", 4 + offsetX, 8 + offsetY, TragicItems.NekoInfluencer, tragicNekoDefeatNekoid).registerStat();
 	
 	//first expansion achievements
 	//public static Achievement wildsRelic = new Achievement("tragicmc.achievement.wildsRelic", "tragicmc.wildsRelic", 0, 0, Items.apple, (Achievement) null);
@@ -122,6 +127,7 @@ public class TragicAchievements {
 	public static Achievement fusea = (Achievement) new Achievement("tragicmc.achievement.fusea", "tragicmc.fusea", -12 + offsetX, -8 + offsetY, TragicItems.UnstableIsotope, null).registerStat().initIndependentStat();
 	public static Achievement ire = (Achievement) new Achievement("tragicmc.achievement.ire", "tragicmc.ire", -12 + offsetX, -6 + offsetY, TragicItems.IreNetParticleCannon, null).registerStat().initIndependentStat();
 	public static Achievement avris = (Achievement) new Achievement("tragicmc.achievement.avris", "tragicmc.avris", -6 + offsetX, -10 + offsetY, TragicItems.Ruby, null).registerStat().initIndependentStat();
+	public static Achievement professorNekoid = (Achievement) new Achievement("tragicmc.achievement.professorNekoid", "tragicmc.professorNekoid", -6 + offsetX, -8 + offsetY, TragicItems.MechaExo, null).registerStat().initIndependentStat();
 	//public static Achievement slangLeader; //Kill a Slang Leader without it taking your item, "Beat the devil out of it!"
 	//public static Achievement archangel; //Kill an Archangel while it is using it's holy beam on you, "Angel beats"
 	//public static Achievement blist; //Kill a Blist without it suiciding, "Step away from that ledge, my friend"
@@ -156,7 +162,9 @@ public class TragicAchievements {
 				tungsten, amulet, amuletEquip, amuletRelease, amuletMax, amuletSpecial, doom, doomsday, doomsdayCombo, doomCritical, doomCooldown, doomConsume, weapon, kill, killMiniBoss, killBoss,
 				enchant, reach, enchantArmor, fullSuit, haxEngage, jack, combustion, veteran, luminescence, talisman, talismanSpecial, talismanFull, goldenSushi, flight, disorientation, mobStatue, challengeScroll,
 				doomsdayScroll, mineXP, loot, loot2, systemCrash, divinity, useOrb, tragicNeko, pumpkinhead, norVox, psygote, sirv, ragr, kurayami, cantTouchThis, rewind, aegar, claymation2in1, skultarImmune,
-				minotaurSummon, seeker, harvester, lockdown, fusea, ire, avris, tragicNekoDevice, tragicNekoRelease, tragicNekoFile, tragicNekoInfluence, tragicNekoLauncher, tragicNekoWarpDrive, tragicNekoHomeworld, apis, skultar, kitsunakuma, polaris, empariah, timeController, enyvil, claymation);
+				minotaurSummon, seeker, harvester, lockdown, fusea, ire, avris, tragicNekoDevice, tragicNekoRelease, tragicNekoFile, tragicNekoSiphon, tragicNekoWarpDrive, tragicNekoHomeworld,
+				tragicNekoTrader, tragicNekoNekite, tragicNekoLauncher, tragicNekoSwordAndGun, tragicNekoDefeatNekoid, tragicNekoNekoidBlaster, tragicNekoInfluence, apis, skultar, kitsunakuma, polaris, empariah,
+				timeController, enyvil, claymation, professorNekoid, tragicNeko100Release, tragicNekoAllFiles);
 		AchievementPage.registerAchievementPage(page);
 	}
 }

@@ -1123,6 +1123,8 @@ entity.TragicMC.ScienceNeko.name=Science Neko
 entity.TragicMC.MechaNeko.name=Mecha-Neko
 entity.TragicMC.AssaultNeko.name=Assault Neko
 entity.TragicMC.MechaExo.name=Mecha Exo
+entity.TragicMC.WorkerNeko.name=Worker Neko
+entity.TragicMC.TraderNeko.name=Trader Neko
 entity.TragicMC.ProfessorNekoid.name=Professor Nekoid
 
 entity.TragicMC.Pyragr.name=Pyragr
@@ -1555,14 +1557,41 @@ achievement.tragicmc.tragicNekoWarpDrive.desc=Create a contraption that allows y
 achievement.tragicmc.tragicNekoHomeworld=Behind enemy lines...
 achievement.tragicmc.tragicNekoHomeworld.desc=Somehow end up inside of the Neko Homeworld and discover the source of their tragic fates!
 
-achievement.tragicmc.tragicNekoInfluence=This looks like a job for... Reverse Engineer!
-achievement.tragicmc.tragicNekoInfluence.desc=Use a Recapture Siphon to create a device that allows you to influence Nekos in new ways!
+achievement.tragicmc.tragicNekoSiphon=This looks like a job for... Reverse Engineer!
+achievement.tragicmc.tragicNekoSiphon.desc=Craft a Recapture Siphon to open up new Neko-related technology
+
+achievement.tragicmc.tragicNeko100Release=99 Problems and a switch ain't one!
+achievement.tragicmc.tragicNeko100Release.desc=Release 100 Nekos from their torture!
+
+achievement.tragicmc.tragicNekoInfluence=Anti-Propaganda Broadcast
+achievement.tragicmc.tragicNekoInfluence.desc=Craft a Neko Influencer and use it to release legions of Nekos!
 
 achievement.tragicmc.tragicNekoFile=No files match that search query!
 achievement.tragicmc.tragicNekoFile.desc=Obtain a Music file by releasing a Neko
 
+achievement.tragicmc.tragicNekoAllFiles=Complete Music Collection
+achievement.tragicmc.tragicNekoAllFiles.desc=Obtain all the Music files that Nekos can drop
+
+achievement.tragicmc.tragicNekoTrader=Hey Traitor Trader!
+achievement.tragicmc.tragicNekoTrader.desc=Complete a trade with a released Trader Neko
+
+achievement.tragicmc.tragicNekoNekite=Watch out for those Spinies!
+achievement.tragicmc.tragicNekoNekite.desc=Obtain Nekite
+
+achievement.tragicmc.tragicNekoSwordAndGun=This is my rifle, this is my gun
+achievement.tragicmc.tragicNekoSwordAndGun=Obtain a Neko Laser Sword and Neko Ray Gun
+
 achievement.tragicmc.tragicNekoLauncher=Explosive Personality
 achievement.tragicmc.tragicNekoLauncher.desc=Obtain a Neko Launcher
+
+achievement.tragicmc.tragicNekoDefeatNekoid=Crazed Fanboy
+achievement.tragicmc.tragicNekoDefeatNekoid.desc=Defeat Professor Nekoid! ... for now
+
+achievement.tragicmc.tragicNekoNekoidBlaster=Looks like Nekoid's blasting off again!
+achievement.tragicmc.tragicNekoNekoidBlaster.desc=Obtain a Nekoid Blaster
+
+achievement.tragicmc.professorNekoid=Nekoid of all reason
+achievement.tragicmc.professorNekoid.desc=Defeat Professor Nekoid without destroying the Mech that he's riding
 
 achievement.tragicmc.apis=Apis of mind
 achievement.tragicmc.apis.desc=Kill an Apis

@@ -84,7 +84,9 @@ import tragicneko.tragicmc.items.food.ItemSushi;
 import tragicneko.tragicmc.items.food.ItemTentacle;
 import tragicneko.tragicmc.items.weapons.ItemEverlastingLight;
 import tragicneko.tragicmc.items.weapons.ItemJack;
+import tragicneko.tragicmc.items.weapons.ItemNekoLaserSword;
 import tragicneko.tragicmc.items.weapons.ItemNekoRayGun;
+import tragicneko.tragicmc.items.weapons.ItemNekoidsBlaster;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.items.weapons.WeaponBeastlyClaws;
@@ -752,10 +754,10 @@ public class TragicItems {
 		NekoRayGun = (new ItemNekoRayGun().setUnlocalizedName("tragicmc.nekoRayGun").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(NekoRayGun, "nekoRayGun");
 		
-		NekoLaserSword = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoLaserSword").setCreativeTab(TragicMC.Survival));
+		NekoLaserSword = (new ItemNekoLaserSword(toolBasic).setUnlocalizedName("tragicmc.nekoLaserSword").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(NekoLaserSword, "nekoLaserSword");
 		
-		NekoidsBlaster = (new ItemGeneric().setUnlocalizedName("tragicmc.nekoidsBlaster").setCreativeTab(TragicMC.Survival));
+		NekoidsBlaster = (new ItemNekoidsBlaster().setUnlocalizedName("tragicmc.nekoidsBlaster").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(NekoidsBlaster, "nekoidsBlaster");
 		
 		//Records

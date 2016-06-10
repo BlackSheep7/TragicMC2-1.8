@@ -208,6 +208,35 @@ public class AchievementEvents {
 			{
 				mp.triggerAchievement(TragicAchievements.tragicNekoLauncher);
 			}
+			
+			if (inv.hasItem(TragicItems.Nekite))
+			{
+				mp.triggerAchievement(TragicAchievements.tragicNekoNekite);
+			}
+			
+			if (inv.hasItem(TragicItems.NekoidsBlaster))
+			{
+				mp.triggerAchievement(TragicAchievements.tragicNekoNekoidBlaster);
+			}
+			
+			if (inv.hasItem(TragicItems.NekoRayGun) && inv.hasItem(TragicItems.NekoLaserSword))
+			{
+				mp.triggerAchievement(TragicAchievements.tragicNekoSwordAndGun);
+			}
+			
+			if (inv.hasItem(TragicItems.RecaptureSiphon))
+			{
+				mp.triggerAchievement(TragicAchievements.tragicNekoSiphon);
+			}
+			
+			if (inv.hasItem(TragicItems.Archaic) && inv.hasItem(TragicItems.System)
+					&& inv.hasItem(TragicItems.Starstruck) && inv.hasItem(TragicItems.Faultless)
+					&& inv.hasItem(TragicItems.Transmissions) && inv.hasItem(TragicItems.Atrophy)
+					&& inv.hasItem(TragicItems.Mirrors) && inv.hasItem(TragicItems.Untitled)
+					&& inv.hasItem(TragicItems.Untitled2))
+			{
+				mp.triggerAchievement(TragicAchievements.tragicNekoAllFiles);
+			}
 
 			if (mp.worldObj != null)
 			{

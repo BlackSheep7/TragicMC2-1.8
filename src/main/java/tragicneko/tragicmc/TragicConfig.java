@@ -240,7 +240,7 @@ public class TragicConfig {
 
 	public static void doConfigProcess(FMLPreInitializationEvent event) {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
-		config.load();
+		config.load(); //TODO these are registered objects that aren't in the actual config
 
 		registerObject("allowRidableEntities", true); //if ridable entities should be allowed from the mod
 		registerObject("allowRidableEntityAbilities", true); //if ridable entity abilities should be able to be used
@@ -306,15 +306,13 @@ public class TragicConfig {
 		registerObject("traderNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
 		registerObject("traderNekoTrading", true); //should the trader neko be allowed to have trades
-		registerObject("traderNekoReleaseTrading", false); //should the trader neko be released before it can trade
+		registerObject("traderNekoReleaseTrading", true); //should the trader neko be released before it can trade
 		
 		registerObject("allowProfessorNekoid", true);
 		registerObject("professorNekoidStats", new MobStat(new double[] {100.0, 0.25, 6.0, 32.0, 0.0}, 0));
 		registerObject("professorNekoidSpawnChance", 1);
 		registerObject("professorNekoidSpawnOverride", false);
 		registerObject("professorNekoidSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
-		
-		
 		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();

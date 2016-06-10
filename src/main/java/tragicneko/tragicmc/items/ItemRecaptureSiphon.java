@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityNeko;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
@@ -36,6 +37,7 @@ public class ItemRecaptureSiphon extends Item {
 			}
 			
 			if (!par2World.isRemote && !par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);
+			if (!par2World.isRemote && TragicConfig.getBoolean("allowAchievements")) par3EntityPlayer.triggerAchievement(TragicAchievements.tragicNekoSiphon);
 		}
 		return par1ItemStack;
 	}

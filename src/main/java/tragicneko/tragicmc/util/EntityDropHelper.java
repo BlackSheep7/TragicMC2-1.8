@@ -24,6 +24,7 @@ import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
+import tragicneko.tragicmc.entity.boss.EntityProfessorNekoid;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
@@ -37,6 +38,7 @@ import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityArchangel;
+import tragicneko.tragicmc.entity.mob.EntityAssaultNeko;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
@@ -63,8 +65,10 @@ import tragicneko.tragicmc.entity.mob.EntityScienceNeko;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTox;
+import tragicneko.tragicmc.entity.mob.EntityTraderNeko;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
+import tragicneko.tragicmc.entity.mob.EntityWorkerNeko;
 
 public class EntityDropHelper {
 
@@ -111,8 +115,8 @@ public class EntityDropHelper {
 
 		addToDropList(EntityTragicNeko.class, new EntityDrop[][] {{new EntityDrop(25, Items.gunpowder), new EntityDrop(5, Blocks.tnt)},
 			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
-			new EntityDrop(5, new ItemStack(TragicItems.Projectile, 1, 5), new ItemStack(TragicItems.Projectile, 1, 6), new ItemStack(TragicItems.Projectile, 1, 7), new ItemStack(TragicItems.Projectile, 1, 8)),
-			new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
+			new EntityDrop(10, new ItemStack(TragicItems.Projectile, 1, 5), new ItemStack(TragicItems.Projectile, 1, 6), new ItemStack(TragicItems.Projectile, 1, 7), new ItemStack(TragicItems.Projectile, 1, 8)),
+			new EntityDrop(15, TragicItems.NekoMindControlDevice), new EntityDrop(1, TragicItems.NekoLauncher)}});
 
 		addToDropList(EntityTox.class, new EntityDrop[][] {{new EntityDrop(25, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(15, Blocks.vine), new EntityDrop(10, TragicItems.Thorns),
 			new EntityDrop(5, new ItemStack(Items.wheat_seeds), new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.melon_seeds))},
@@ -191,18 +195,24 @@ public class EntityDropHelper {
 		
 		addToDropList(EntityJetNeko.class, new EntityDrop[][] {{new EntityDrop(15, Items.iron_ingot), new EntityDrop(25, Items.gunpowder)},
 			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
-			new EntityDrop(5, new ItemStack(TragicItems.Projectile, 1, 5)), new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
+			new EntityDrop(10, new ItemStack(TragicItems.Projectile, 1, 5)), new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice),
+			new EntityDrop(3, TragicItems.NekoLauncher)}});
 		
 		addToDropList(EntityScienceNeko.class, new EntityDrop[][] {{new EntityDrop(25, Items.gunpowder), new EntityDrop(5, Blocks.tnt)},
 			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
 			new EntityDrop(5, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(3, TragicItems.ParadoxicalFormula), new EntityDrop(3, TragicItems.NauseatingConcoction), new EntityDrop(10, TragicItems.NekoMindControlDevice),
-			new EntityDrop(10, getScienceNekoPotions()), new EntityDrop(5, Items.spider_eye)}});
+			new EntityDrop(10, getScienceNekoPotions()), new EntityDrop(5, Items.spider_eye), new EntityDrop(5, TragicItems.Nekite), new EntityDrop(1, TragicItems.NekoRayGun)}});
 		
 		addToDropList(EntityMechaNeko.class, new EntityDrop[][] {{new EntityDrop(15, Items.iron_ingot), new EntityDrop(25, Items.gunpowder)},
 			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, Items.diamond),
-			new EntityDrop(5, TragicItems.Wrench), new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
+			new EntityDrop(3, TragicItems.Wrench), new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
 		
-		//addToDropList(EntityBlist.class, new EntityDrop[][] {{}, {}});
+		addToDropList(EntityAssaultNeko.class, new EntityDrop[][] {{new EntityDrop(5, Items.iron_ingot), new EntityDrop(5, TragicItems.Nekite)},
+			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, TragicItems.Nekite),
+			new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice), new EntityDrop(1, TragicItems.NekoLaserSword)}});
+		
+		addToDropList(EntityWorkerNeko.class, new EntityDrop[][] {{new EntityDrop(5, Items.iron_ingot), new EntityDrop(15, TragicItems.Nekite)},
+			{new EntityDrop(1, TragicItems.GoldenSushi), new EntityDrop(25, TragicItems.Nekite), new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
 
 		//Mini-Boss drops
 		addToDropList(EntityJarra.class, new EntityDrop[][] {{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicItems.Thorns), new EntityDrop(5, Items.magma_cream), new EntityDrop(15, TragicItems.InterestingResin)},
@@ -240,8 +250,6 @@ public class EntityDropHelper {
 		addToDropList(EntityVolatileFusea.class, new EntityDrop[][] {{new EntityDrop(15, Items.gunpowder), new EntityDrop(15, Items.redstone), new EntityDrop(25, TragicItems.UnstableIsotope)}, {new EntityDrop(5, Items.gunpowder), new EntityDrop(15, TragicItems.UnstableIsotope),
 			new EntityDrop(10, Items.redstone), new EntityDrop(3, Blocks.redstone_block), new EntityDrop(15, TragicItems.CatalyticCompound)}});
 		
-		//addToDropList(EntityAggro.class, new EntityDrop[][] {{new EntityDrop(5, Items.nether_wart)}, {new EntityDrop(15, TragicItems.FireOrb)}});
-
 		//Boss Drops
 		addToDropList(EntityApis.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.PureLight)}, {new EntityDrop(25, TragicItems.PureLight), new EntityDrop(20, TragicItems.Horn),
 			new EntityDrop(15, Items.leather), new EntityDrop(5, TragicItems.ToughLeather), new EntityDrop(20, TragicItems.LightParticles)}});
@@ -267,6 +275,13 @@ public class EntityDropHelper {
 		addToDropList(EntityClaymation.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.LivingClay)}, {new EntityDrop(5, TragicItems.Talisman), new EntityDrop(10, TragicBlocks.Wax),
 			new EntityDrop(5, TragicItems.EnchantedTears), new EntityDrop(15, Items.clay_ball), new EntityDrop(5, Blocks.clay)}});
 
+		addToDropList(EntityProfessorNekoid.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.NekoidStrain)},
+			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)),
+			new EntityDrop(1, TragicItems.Wrench), new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice), new EntityDrop(1, TragicItems.NekoidsBlaster),
+			new EntityDrop(1, TragicItems.NekoRayGun), new EntityDrop(1, TragicItems.NekoLaserSword), new EntityDrop(1, TragicItems.NekoRayGun), new EntityDrop(1, TragicItems.RecaptureSiphon),
+			new EntityDrop(5, TragicItems.WarpDrive), new EntityDrop(25, TragicItems.Nekite)}});
+		
+		
 		//Alpha Drops
 		addToDropList(EntityOverlordCore.class, new EntityDrop[][]{{new EntityDrop(25, TragicItems.CorruptedEye)}, {new EntityDrop(5, getDoomsdayScrollStacks()), new EntityDrop(5, TragicItems.CelestialSteel),
 			new EntityDrop(25, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.SynapseLink), new EntityDrop(5, TragicItems.CorruptedEssence), new EntityDrop(20, TragicBlocks.SynapseCore),

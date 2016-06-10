@@ -137,7 +137,7 @@ public class EntityAssaultNeko extends EntityNeko {
 			}
 			else
 			{
-				par2 -= shieldHealth;
+				par2 += shieldHealth; //add because it'll be negative at this point
 			}
 		}
 

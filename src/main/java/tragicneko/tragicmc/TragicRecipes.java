@@ -478,6 +478,38 @@ public class TragicRecipes {
 				'y', TragicItems.NekoMindControlDevice
 				);
 		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NekoidsBlaster, 1),
+				" xz",
+				"yay",
+				"wx ",
+				'w', TragicItems.InfallibleMetal,
+				'x', TragicItems.ComplexCircuitry,
+				'y', TragicItems.RecaptureSiphon,
+				'z', Items.gunpowder,
+				'a', TragicItems.NekoidStrain
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NekoRayGun, 1),
+				" y ",
+				"waz",
+				"wx ",
+				'w', TragicItems.InfallibleMetal,
+				'x', TragicItems.ComplexCircuitry,
+				'y', TragicItems.RecaptureSiphon,
+				'z', Items.gunpowder,
+				'a', TragicItems.NekoidStrain
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NekoLaserSword, 1),
+				"wyw",
+				"wzw",
+				"wxw",
+				'w', TragicItems.InfallibleMetal,
+				'x', TragicItems.ComplexCircuitry,
+				'y', TragicItems.Nekite,
+				'z', TragicItems.NekoidStrain
+				);
+		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.WarpDrive, 1),
 				"yxy",
 				"xzx",

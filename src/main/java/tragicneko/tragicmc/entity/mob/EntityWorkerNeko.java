@@ -36,4 +36,10 @@ public class EntityWorkerNeko extends EntityNeko {
 		this.targetTasks.removeTask(targetPlayers);
 		this.targetTasks.removeTask(targetUnreleasedNekos);
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 1;
+	}
 }
