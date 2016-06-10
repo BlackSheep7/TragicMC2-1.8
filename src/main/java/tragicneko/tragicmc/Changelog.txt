@@ -4849,7 +4849,7 @@ like entities, they can now save instance specific data when they are saved into
 Made it so that Nekos don't naturally spawn in the Neko Homeworld, they are only spawned in via their structures, unless structures are disabled then their
 natural spawns are allowed
 
-4.51.3183++ <225> (May 15, 2016)
+4.51.3217 <225> (May 15, 2016)
 Working on the schematic for Nekoid's FOB
 Added Nekite Wire (Barbed Wire) for Nekoid's FOB, it's made out of Nekite and works like a web, except it damages entities inside of it
 Added TickBuilder option to ignore air as part of it's "placements" per tick/schematic, this results in more of the actual "structure" being built per
@@ -4884,36 +4884,49 @@ Added more structure seed messages for why the schematic failed to generate
 Finished Nekoid's Mansion and subsequently Nekoid's FOB
 Added summon block meta for Professor Nekoid
 Added texture and blockstates for Nekite Wire, Nekowood sapling and the Nekoid summon variant
+Made it so that the laser sword acts like a normal sword but does armor piercing damage
+Added ability for Nekoids Blaster, it knocks away a huge amount of entities in an area in front of you and does very minimal damage
+Added sound effect for the laser sword
+Made it so that released Nekos will target Professor Nekoid automatically
+Added recipes for Neko themed weapons, added mob drops for all of the new mobs
+
+4.51.3217++ <226> (June 7, 2016)
+Added trading to the Trader Neko using Vanilla Villager stuff
+Added multiple trade variants for it, made it so that they have up to 7 and at fewest 4 trades
+Removed drops for Trader Nekos
+Added message for if Trader Nekos already are dealing with a customer
+Added all of the planned Neko Achievements, modified order of some
+Added Professor Nekoid's base AI, it'll specialize in knocking targets away from it and spawning in waves of enemies to pummel them
+These enemies that are spawned in by it, can of course be turned against it though
+Reduced chance of getting a music file drop (and the release message) when a Neko is released
+Added tracking for how many Nekos a player has released (this could probably just be put into a stat but it doesn't really matter)
 
 TODO:
-Add texture and actual weapon abilities for the Ray Gun, Nekoid's Blaster and Laser Sword
+Add texture for the Ray Gun, Nekoid's Blaster and Laser Sword
 Add sounds and finish models/textures for Mecha Exo and the other Nekos
-Add trades for Trader Neko
-Add Professor Nekoid's AI
+Add Professor Nekoid's texture/model/sounds
+
+Side expansion sounds:
+Assault Neko (Living, Hurt, Death)
+Worker Neko (Living, Hurt, Death)
+Trader Neko (Living, Hurt, Death, Trade Accept, Trade Decline)
+Professor Nekoid (Living, Hurt, Death, Blaster sound)
+Mecha Exo (Step, Hurt, Death, Low Health sound)
+
+Side expansion models/textures:
+Assault Neko (Recolor Texture, slight modification to model)
+Worker Neko (New textures, remove weapons from model)
+Trader Neko (New textures (add texture variants), remove weapons from model)
+Professor Nekoid (Completely new model based on Tragic Neko, new texture)
+Mecha Exo (Finish started model, new texture)
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed to Capabilities
 Doomsdays, Shaders, Lore and Influences will use this for ItemStacks
-Amulets, Quests, Doom, Blessings and Achromy will use it for Entities
+Amulets, Quests, Doom, Blessings, Misc and Achromy will use it for Entities
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
 Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my entity's drops and my custom chest gen hooks are able to be
 overridden and configured via json files just like the lores and enchantment entries are now
-Add more generic schematics for things like benches and fountains since schematics can have child schematics now
-
-TODO: Add textures for armor when armor models are disabled, only need Light Armor one still
-TODO: Optimize Doomsday, WorldGen and Entity AI code to better use BlockPos and IBlockStates
-
-Side expansion:
-Neko homeworld with new neko types:
-*Jet Neko - Exhilerated, excitement
-*Science Neko - Intelligent
-*Mecha Neko - War-like
-*Mecha Exo - Ridable entity
-*Assault Neko - Decent armor, low health, attacks with a battering ram charge attack, normally hits with a laser sword
-*Worker, *Trader Nekos - Workers are passive, they don't do anything really, Traders are basically villagers
-Professor Nekoid - The greatest, best, genius
-*Neko homeworld will contain 3 biomes, Neko barrens, Neko forests and Neko heights
-*Neko Homeworld has multiple Structures, which are going to be the source of the Neko spawning in the Dimension
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
