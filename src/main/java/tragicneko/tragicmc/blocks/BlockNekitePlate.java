@@ -45,7 +45,7 @@ public class BlockNekitePlate extends Block {
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (byte i = 0; i < 6; i++)
+		for (byte i = 0; i < EnumVariant.values().length; i++)
 			par3.add(new ItemStack(par1, 1, i));
 	}
 	
@@ -81,7 +81,11 @@ public class BlockNekitePlate extends Block {
 		SMOOTH("smooth"),
 		CROSS("cross"),
 		MARKED("marked"),
-		GRATED("grated");
+		GRATED("grated"),
+		IRON_PLATE("iron_plate"),
+		IRON_CROSS("iron_cross"),
+		IRON_MARKED("iron_marked"),
+		IRON_GRATED("iron_grated");
 		
 		private final String name;
 		

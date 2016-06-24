@@ -359,6 +359,10 @@ tile.tragicmc.nekitePlate.smooth.name=Smooth Nekite Plate
 tile.tragicmc.nekitePlate.cross.name=Crossed Nekite Plate
 tile.tragicmc.nekitePlate.marked.name=Marked Nekite Plate
 tile.tragicmc.nekitePlate.grated.name=Grated Nekite Plate
+tile.tragicmc.nekitePlate.ironPlate.name=Nekiron Plate
+tile.tragicmc.nekitePlate.ironCross.name=Crossed Nekiron Plate
+tile.tragicmc.nekitePlate.ironMarked.name=Marked Nekiron Plate
+tile.tragicmc.nekitePlate.ironGrated.name=Grated Nekiron Plate
 
 tile.tragicmc.nekiteWire.name=Nekite Wire
 
@@ -694,6 +698,9 @@ item.tragicmc.nekoInfluencer.name=Neko Influencer
 item.tragicmc.nekoidStrain.name=Nekoid Strain
 item.tragicmc.wrench.name=Wrench
 item.tragicmc.mechaExo.name=Mecha Exo
+item.tragicmc.nekoRayGun.name=Neko Ray Gun
+item.tragicmc.nekoLaserSword.name=Neko Laser Sword
+item.tragicmc.nekoidsBlaster.name=Nekoid's Aero-blaster
 
 item.tragicmc.starstruck.name=S001F001 Starstruck
 item.record.starstruck.name=Set001 - File001 - Starstruck

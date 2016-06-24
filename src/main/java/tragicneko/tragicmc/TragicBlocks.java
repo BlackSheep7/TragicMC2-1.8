@@ -720,7 +720,7 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(NekoBush, ItemBlock.class, "nekoBush");
 		
 		NekitePlate = new BlockNekitePlate().setUnlocalizedName("tragicmc.nekitePlate");
-		GameRegistry.registerBlock(NekitePlate, TragicItemBlock.class, "nekitePlate", new Object[] {new String[] {"compressed", "normal", "smooth", "cross", "marked", "grated"}, "nekitePlate"});
+		GameRegistry.registerBlock(NekitePlate, TragicItemBlock.class, "nekitePlate", new Object[] {new String[] {"compressed", "normal", "smooth", "cross", "marked", "grated", "ironPlate", "ironCross", "ironMarked", "ironGrated"}, "nekitePlate"});
 
 		NekiteWire = new BlockBarbedWire().setUnlocalizedName("tragicmc.nekiteWire").setCreativeTab(TragicMC.Survival).setHardness(25.0F).setResistance(6.0F);
 		GameRegistry.registerBlock(NekiteWire, ItemBlock.class, "nekiteWire");

@@ -1,8 +1,14 @@
 package tragicneko.tragicmc.entity.mob;
 
+import com.google.common.base.Predicate;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.monster.EntityGolem;
+import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -12,6 +18,18 @@ import tragicneko.tragicmc.entity.EntityRidable;
 public class EntityMechaNeko extends EntityNeko {
 
 	private int commandBuffer = 10;
+	public static final Predicate golemTarget = new Predicate() {
+		@Override
+		public boolean apply(Object input) {
+			return canApply((Entity) input);
+		}
+
+		public boolean canApply(Entity entity) {
+			return entity instanceof EntityIronGolem;
+		}
+	};
+	
+	public EntityAIBase targetGolems = new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true, false, golemTarget);
 
 	public EntityMechaNeko(World par1World) {
 		super(par1World);
@@ -40,6 +58,7 @@ public class EntityMechaNeko extends EntityNeko {
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 
+		this.onGround = true;
 		if (this.worldObj.isRemote) return;
 
 		if (this.getAttackTarget() == this.ridingEntity) this.setAttackTarget(null);
@@ -72,6 +91,11 @@ public class EntityMechaNeko extends EntityNeko {
 			else
 			{
 				this.commandBuffer--;
+			}
+			
+			if (this.getAttackTarget().isDead)
+			{
+				er.setAttackTarget(null);
 			}
 		}
 	}
@@ -106,5 +130,19 @@ public class EntityMechaNeko extends EntityNeko {
 			return super.getCanSpawnHere();
 		}
 		return false;
+	}
+	
+	@Override
+	protected void updateNekoTasks() {
+		super.updateNekoTasks();
+		
+		if (this.ridingEntity instanceof EntityMechaExo && !this.isProperDate())
+		{
+			if (!this.targetTasks.taskEntries.contains(targetGolems)) this.targetTasks.addTask(4, targetGolems);
+		}
+		else
+		{
+			this.targetTasks.removeTask(targetGolems);
+		}
 	}
 }

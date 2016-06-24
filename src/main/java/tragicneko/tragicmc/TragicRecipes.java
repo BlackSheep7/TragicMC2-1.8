@@ -19,7 +19,6 @@ public class TragicRecipes {
 		GameRegistry.addSmelting(TragicBlocks.MercuryOre, new ItemStack(TragicItems.RedMercury), 2F);
 		GameRegistry.addSmelting(TragicBlocks.TungstenOre, new ItemStack(TragicItems.Tungsten), 3.5F);
 		GameRegistry.addSmelting(TragicBlocks.NekiteOre, new ItemStack(TragicItems.Nekite), 5F);
-		GameRegistry.addSmelting(TragicItems.Nekite, new ItemStack(TragicItems.InfallibleMetal), 10F);
 		GameRegistry.addSmelting(new ItemStack(TragicBlocks.TragicOres, 1, 0), new ItemStack(TragicItems.RedMercury), 2F);
 		GameRegistry.addSmelting(new ItemStack(TragicBlocks.TragicOres, 1, 1), new ItemStack(TragicItems.Tungsten), 2F);
 		GameRegistry.addSmelting(new ItemStack(TragicBlocks.TragicOres, 1, 7), new ItemStack(Items.gold_ingot), 2F);
@@ -536,18 +535,25 @@ public class TragicRecipes {
 				);
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 8, 0),
-				"xxx",
-				"xxx",
-				"xxx",
-				'x', TragicItems.Nekite
-				);
-		
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 2),
 				"xyx",
 				"yxy",
 				"xyx",
 				'x', TragicItems.Nekite,
-				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 0)
+				'y', Items.glowstone_dust
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 2),
+				"xx",
+				"xx",
+				'x', TragicItems.Nekite
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 6),
+				"xyx",
+				"yxy",
+				"xyx",
+				'x', Items.iron_ingot,
+				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 2)
 				);
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 1),
@@ -560,7 +566,14 @@ public class TragicRecipes {
 				"xy",
 				"yx",
 				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2),
-				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 0)
+				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 1)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 7),
+				"xy",
+				"yx",
+				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2),
+				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 6)
 				);
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 8, 5),
@@ -568,15 +581,32 @@ public class TragicRecipes {
 				"yxy",
 				"xyx",
 				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2),
-				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 0)
+				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 1)
 				);
 		
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 8, 4),
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 8, 9),
+				"xyx",
+				"yxy",
+				"xyx",
+				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2),
+				'y', new ItemStack(TragicBlocks.NekitePlate, 1, 6)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 4),
 				"xxx",
 				"xyx",
 				"xxx",
 				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2),
 				'y', TragicItems.Nekite
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NekitePlate, 4, 8),
+				"xzx",
+				"zyz",
+				"xzx",
+				'x', new ItemStack(TragicBlocks.NekitePlate, 1, 2),
+				'y', TragicItems.Nekite,
+				'z', Items.iron_ingot
 				);
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.CelestialSteel, 1),

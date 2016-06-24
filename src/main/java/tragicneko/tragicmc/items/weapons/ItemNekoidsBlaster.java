@@ -46,7 +46,7 @@ public class ItemNekoidsBlaster extends Item {
 		{
 			if (!par2World.isRemote)
 			{
-				if (TragicConfig.getBoolean("allowMobSounds")) par2World.playSoundAtEntity(par3EntityPlayer, "tragicmc:random.soulbreath", 0.7F, 0.25F);
+				par2World.playSoundAtEntity(par3EntityPlayer, "tragicmc:random.windblast", 0.7F, 1.0F);
 			}
 			else
 			{

@@ -51,6 +51,7 @@ import tragicneko.tragicmc.client.model.ModelPsygote;
 import tragicneko.tragicmc.client.model.ModelRanmas;
 import tragicneko.tragicmc.client.model.ModelScienceNeko;
 import tragicneko.tragicmc.client.model.ModelSeeker;
+import tragicneko.tragicmc.client.model.ModelSimpleNeko;
 import tragicneko.tragicmc.client.model.ModelSirv;
 import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.client.model.ModelStinQueen;
@@ -74,7 +75,6 @@ import tragicneko.tragicmc.client.render.alpha.RenderOverlordCombat;
 import tragicneko.tragicmc.client.render.alpha.RenderOverlordCore;
 import tragicneko.tragicmc.client.render.boss.RenderAegar;
 import tragicneko.tragicmc.client.render.boss.RenderApis;
-import tragicneko.tragicmc.client.render.boss.RenderBoss;
 import tragicneko.tragicmc.client.render.boss.RenderClaymation;
 import tragicneko.tragicmc.client.render.boss.RenderDeathReaper;
 import tragicneko.tragicmc.client.render.boss.RenderEnyvil;
@@ -276,7 +276,8 @@ public class ClientProxy extends CommonProxy {
 	private static final String[] aeris = new String[] {"aerisPure", "aerisCorrupting", "aerisCorrupt"};
 	private static final String[] permafrost = new String[] {"permafrost", "permafrostCracked"};
 	private static final String[] corsin = new String[] {"corsin", "corsinFaded", "corsinBrick", "corsinFadedBrick", "corsinCircle", "corsinCelled", "corsinScarred", "corsinCrystal", "corsinCrystalWrap"};
-	private static final String[] nekitePlate = new String[] {"nekitePlateCompressed", "nekitePlate", "nekitePlateSmooth", "nekitePlateCross", "nekitePlateMarked", "nekitePlateGrated"};
+	private static final String[] nekitePlate = new String[] {"nekitePlateCompressed", "nekitePlate", "nekitePlateSmooth", "nekitePlateCross", "nekitePlateMarked", "nekitePlateGrated",
+			"nekitePlateIron", "nekitePlateCrossIron", "nekitePlateMarkedIron", "nekitePlateGratedIron"};
 	
 	private static final String[] spawnEggs = new String[] {"spawnEgg", "spawnEgg2", "spawnEgg3", "spawnEgg4", "spawnEgg5"};
 	private static final String[] huntersBow = new String[] {"huntersBow", "huntersBow1", "huntersBow2", "huntersBow3"};
@@ -405,8 +406,8 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.825F));
 		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelMechaNeko(), 0.295F, "MechaNeko", 0.915F));
 		registerRender(EntityAssaultNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko", 1.215F));
-		registerRender(EntityWorkerNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko", 0.655F));
-		registerRender(EntityTraderNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko"));
+		registerRender(EntityWorkerNeko.class, new RenderFactoryMob(new ModelSimpleNeko(), 0.245F, "TragicNeko", 0.655F));
+		registerRender(EntityTraderNeko.class, new RenderFactoryMob(new ModelSimpleNeko(), 0.245F, "TragicNeko"));
 
 		//Boss renders
 		registerRender(EntityApis.class, new IRenderFactory() {

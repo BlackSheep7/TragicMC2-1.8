@@ -5,6 +5,10 @@
         "variant=smooth": { "model": "tragicmc:nekitePlateSmooth" },
         "variant=cross": { "model": "tragicmc:nekitePlateCross" },
         "variant=marked": { "model": "tragicmc:nekitePlateMarked" },
-	"variant=grated": { "model": "tragicmc:nekitePlateGrated" }
+	"variant=grated": { "model": "tragicmc:nekitePlateGrated" },
+	"variant=iron_plate": { "model": "tragicmc:nekitePlateIron" },
+	"variant=iron_cross": { "model": "tragicmc:nekitePlateCrossIron" },
+	"variant=iron_marked": { "model": "tragicmc:nekitePlateMarkedIron" },
+	"variant=iron_grated": { "model": "tragicmc:nekitePlateGratedIron" }
     }
 }

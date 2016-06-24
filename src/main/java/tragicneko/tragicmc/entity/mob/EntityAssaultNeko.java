@@ -14,7 +14,7 @@ public class EntityAssaultNeko extends EntityNeko {
 	private static final int DW_SHIELD_TICKS = 26;
 	
 	private int shieldBuffer = 100;
-	private float shieldHealth = 0F;
+	private float shieldHealth = 100F;
 
 	public EntityAssaultNeko(World par1World) {
 		super(par1World);
@@ -80,6 +80,12 @@ public class EntityAssaultNeko extends EntityNeko {
 		{
 			this.setShieldTicks(this.getShieldTicks() - 1);
 			this.shieldBuffer = 100;
+			
+			if (this.getShieldTicks() % 40 == 0)
+			{
+				String s = shieldHealth > 50F ? "tragicmc:mob.assaultenko.shieldLow" : "tragicmc:mob.assaultneko.shield";
+				this.worldObj.playSoundAtEntity(this, s, 0.6F, 1.0F);
+			}
 		}
 		if (this.getChargeTicks() > 0) this.setChargeTicks(this.getChargeTicks() - 1);
 		if (shieldBuffer > 0) --shieldBuffer;
@@ -184,19 +190,19 @@ public class EntityAssaultNeko extends EntityNeko {
 	@Override
 	public String getLivingSound()
 	{
-		return null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.assaultneko.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(5) == 0 ? "tragicmc:mob.assaultneko.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.assaultneko.death" : null;
 	}
 
 	@Override
