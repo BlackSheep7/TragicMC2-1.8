@@ -4890,7 +4890,7 @@ Added sound effect for the laser sword
 Made it so that released Nekos will target Professor Nekoid automatically
 Added recipes for Neko themed weapons, added mob drops for all of the new mobs
 
-4.51.3217++ <226> (June 7, 2016)
+4.51.3236 <226> (June 7, 2016)
 Added trading to the Trader Neko using Vanilla Villager stuff
 Added multiple trade variants for it, made it so that they have up to 7 and at fewest 4 trades
 Removed drops for Trader Nekos
@@ -4900,25 +4900,43 @@ Added Professor Nekoid's base AI, it'll specialize in knocking targets away from
 These enemies that are spawned in by it, can of course be turned against it though
 Reduced chance of getting a music file drop (and the release message) when a Neko is released
 Added tracking for how many Nekos a player has released (this could probably just be put into a stat but it doesn't really matter)
+Added simple models for the Worker and Trader Nekos to use
+Added sounds for the Assault Neko
+Added thruster sound for the Mecha Exo and a sound for Nekoid's Blaster
+Finished model and animations for the Mecha Exo
+Added task to Mecha Neko that makes it target Iron Golems when it has an Exo
+Fixed weird AI bug with Mecha Exos that made them arbitrarily target random things
+Added iron-nekite hybrid variants of the Nekite Plate blocks which will just be called Nekiron cuz creativity
+Small fix to Nekite Plate normal variant texture
+Added new recipes for Nekiron blocks using the full Nekite variants as well as iron ingots
+Small modifications done to existing Nekite Plate recipes
+Added trade with Trader Nekos for glowstone dust
+
+4.51.3236++ <227> (June 22, 2016)
+Added Mecha Exo texture, shrunk down texture size
+Added last bits of the Mecha Exo model
+Fixed Neko rockets not targeting anything, also fixed them colliding with other projectiles
+Added more spread and randomness to the Suicidal Tendencies Doomsday, justice now rains from above
+Small fix done to Overlord Core's death offset rendering and Time Controller's model offset rendering for it's cubes
+Mobs and bosses can no longer initiate a teleport after death
+Increased frequency of wall and mob checks for Reach
+
 
 TODO:
-Add texture for the Ray Gun, Nekoid's Blaster and Laser Sword
-Add sounds and finish models/textures for Mecha Exo and the other Nekos
-Add Professor Nekoid's texture/model/sounds
+Add texture/item model for the Ray Gun, Nekoid's Blaster and Laser Sword
 
 Side expansion sounds:
-Assault Neko (Living, Hurt, Death)
+Mecha Neko (Living, Hurt, Death, Exo Death)
 Worker Neko (Living, Hurt, Death)
 Trader Neko (Living, Hurt, Death, Trade Accept, Trade Decline)
-Professor Nekoid (Living, Hurt, Death, Blaster sound)
+Professor Nekoid (Living, Hurt, Death)
 Mecha Exo (Step, Hurt, Death, Low Health sound)
 
 Side expansion models/textures:
-Assault Neko (Recolor Texture, slight modification to model)
-Worker Neko (New textures, remove weapons from model)
-Trader Neko (New textures (add texture variants), remove weapons from model)
+Assault Neko (Recolor Texture, slight modification to model for weapon)
+Worker Neko (New variant textures, add small model variants like hats and backpacks)
+Trader Neko (New variant textures)
 Professor Nekoid (Completely new model based on Tragic Neko, new texture)
-Mecha Exo (Finish started model, new texture)
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed to Capabilities
@@ -4927,6 +4945,8 @@ Amulets, Quests, Doom, Blessings, Misc and Achromy will use it for Entities
 Convert Structure, Doomsday and Challenge to use the new IForgeRegistry system in 1.9
 Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, make it so that my entity's drops and my custom chest gen hooks are able to be
 overridden and configured via json files just like the lores and enchantment entries are now
+Convert Enchantment events and Potion events into their proper classes using the proper methods, they are unnecessarily bundled into a huge event class
+and it makes it difficult to look for and modify certain effects
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
@@ -4967,7 +4987,7 @@ Worked on the outline of the Admin's AI phases, worked out more of it's actual A
 and create each phase's AI updates
 
 First Main Expansion:
-Working on new mob AI, pets and item systems while I finish the port to 1.8
+Working on new mob AI, pets and item systems
 Going to work on the pet leveling system now, which will use a hybrid version of the borderlands and call of duty systems, you level up the pet, every 5 levels
 you can unlock a new ability, which will unlock a new tier, you can then level them up enough to eventually unlock all of the abilities but you can only have
 one active out of each tier
@@ -5000,6 +5020,7 @@ Soulchaste (Mini-Boss)
 Kyrie
 Forsh
 Gorgoth
+Kaleid
 
 Pets:
 Kitsuneko -> Kitsune -> Greater Kitsune
