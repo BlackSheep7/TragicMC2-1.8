@@ -7,8 +7,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.EntityRidable;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityNekoRocket extends EntityProjectile {
 
@@ -37,7 +39,7 @@ public class EntityNekoRocket extends EntityProjectile {
 
 		if (mop.entityHit != null)
 		{
-			if (mop.entityHit == this.shootingEntity) return;
+			if (mop.entityHit == this.shootingEntity || mop.entityHit instanceof EntityProjectile) return;
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 		}
 
@@ -74,7 +76,7 @@ public class EntityNekoRocket extends EntityProjectile {
 			{
 				if (list.get(i) != this.shootingEntity && list.get(i) instanceof EntityLivingBase && this.shootingEntity != null && this.shootingEntity.canEntityBeSeen(list.get(i)) &&
 						list.get(i) != this.shootingEntity.ridingEntity && list.get(i) != this.shootingEntity.riddenByEntity && !(list.get(i) instanceof EntityRidable) &&
-						list.get(i) instanceof EntityPlayer && !((EntityPlayer) list.get(i)).capabilities.isCreativeMode)
+						!(list.get(i) instanceof EntityPlayer && ((EntityPlayer) list.get(i)).capabilities.isCreativeMode) && !list.get(i).isDead)
 				{
 					if (!((EntityLivingBase) list.get(i)).canEntityBeSeen(this)) continue;
 					if (this.target == null || this.getDistanceToEntity(list.get(i)) < this.getDistanceToEntity(this.target)) this.target = (EntityLivingBase) list.get(i);
@@ -90,8 +92,24 @@ public class EntityNekoRocket extends EntityProjectile {
 
 			if (flag)
 			{
+				/*
+				Vec3 vec = WorldHelper.getVecFromEntity(this, 1.5);
+				if (vec != null)
+				{
+					double d0 = this.target.posX - this.posX;
+					double d1 = this.target.posY - this.posY;
+					double d2 = this.target.posZ - this.posZ;
+					double limit = 0.113D;
+					
+					Vec3 vec2 = vec.addVector(d0 * limit, d1 * limit, d2 * limit);
+					
+					this.motionX += vec2.xCoord - this.posX;
+					this.motionY += vec2.yCoord - this.posY;
+					this.motionZ += vec2.zCoord - this.posZ;
+				} */
+				
 				double limit = 0.23;
-				double mx = (target.posX - this.posX) * 0.068;
+				double mx = (target.posX - this.posX + target.width / 2) * 0.068;
 				boolean mxf = Math.abs(mx) > 0 && Math.abs(mx) > limit;
 				this.motionX += mxf ? (mx > 0 ? limit : -limit) : mx;
 
@@ -99,7 +117,7 @@ public class EntityNekoRocket extends EntityProjectile {
 				boolean myf = Math.abs(my) > 0 && Math.abs(my) > limit;
 				this.motionY += myf ? (my > 0 ? limit : -limit) : my;
 
-				double mz = (target.posZ - this.posZ) * 0.068;
+				double mz = (target.posZ - this.posZ + target.width / 2) * 0.068;
 				boolean mzf = Math.abs(mz) > 0 && Math.abs(mz) > limit;
 				this.motionZ += mzf ? (mz > 0 ? limit : -limit) : mz;
 			}

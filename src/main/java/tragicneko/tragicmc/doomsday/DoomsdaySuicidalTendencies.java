@@ -19,17 +19,19 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 	{
 		Vec3 vec = WorldHelper.getVecFromEntity(player, 30.0);
 		if (vec == null) return;
+		
+		final int iteration = rand.nextInt(3) + 3;
 
-		double d4 = vec.xCoord - player.posX;
-		double d5 = vec.yCoord - (player.posY + player.height / 2.0F);
-		double d6 = vec.zCoord - player.posZ;
-
-		for (int i = 0; i < 3; i++)
+		for (byte i = 0; i < iteration; i++)
 		{
+			double d4 = vec.xCoord - player.posX + (rand.nextDouble() - rand.nextDouble()) * 10.8;
+			double d5 = vec.yCoord - player.posY - player.getEyeHeight() + (rand.nextDouble() - rand.nextDouble()) * 10.8;
+			double d6 = vec.zCoord - player.posZ + (rand.nextDouble() - rand.nextDouble()) * 10.8;
+			
 			EntityNekoRocket rocket = new EntityNekoRocket(player.worldObj, player, d4, d5, d6);
-			rocket.posX = player.posX + (d4 * 0.115D + rand.nextDouble() - rand.nextDouble());
-			rocket.posY = player.posY + player.getEyeHeight();
-			rocket.posZ = player.posZ + (d6 * 0.115D + rand.nextDouble() - rand.nextDouble());
+			rocket.posX = player.posX + (rand.nextDouble() - rand.nextDouble());
+			rocket.posY = player.posY + rand.nextDouble();
+			rocket.posZ = player.posZ + (rand.nextDouble() - rand.nextDouble());
 			player.worldObj.spawnEntityInWorld(rocket);
 		}
 	}
