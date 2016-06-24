@@ -4,6 +4,8 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +16,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.EntityMechaExo;
 import tragicneko.tragicmc.entity.mob.EntityAssaultNeko;
 import tragicneko.tragicmc.entity.mob.EntityJetNeko;
@@ -31,6 +35,23 @@ public class EntityProfessorNekoid extends TragicBoss {
 
 	public EntityProfessorNekoid(World par1World) {
 		super(par1World);
+	}
+	
+	@Override
+	protected void applyEntityAttributes()
+	{
+		super.applyEntityAttributes();
+		double[] professorNekoidStats = TragicConfig.getMobStat("professorNekoidStats").getStats();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(professorNekoidStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(professorNekoidStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(professorNekoidStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(professorNekoidStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(professorNekoidStats[4]);
+	}
+
+	@Override
+	public int getTotalArmorValue() {
+		return TragicConfig.getMobStat("professorNekoidStats").getArmorValue();
 	}
 
 	@Override
@@ -184,6 +205,25 @@ public class EntityProfessorNekoid extends TragicBoss {
 			}
 		}
 	}
+	
+	@Override
+	public boolean attackEntityAsMob(Entity entity) {
+		if (entity == this.ridingEntity) return false;
+		return super.attackEntityAsMob(entity);
+	}
+
+	@Override
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
+	{
+		if (!this.worldObj.isRemote && this.ridingEntity == null && TragicConfig.getBoolean("allowMechaExo"))
+		{
+			EntityMechaExo exo = new EntityMechaExo(this.worldObj);
+			exo.setPositionAndUpdate(this.posX, this.posY, this.posZ);
+			this.worldObj.spawnEntityInWorld(exo);
+			this.mountEntity(exo);
+		}
+		return super.onInitialSpawn(ins, data);
+	}
 
 	@Override
 	public void onDeath(DamageSource src)
@@ -197,8 +237,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 		double d = 64.0;
 		List<EntityNeko> list = this.worldObj.getEntitiesWithinAABB(EntityNeko.class, this.getEntityBoundingBox().expand(d, d, d));
 
-		for (EntityNeko e : list)
-		{
+		for (EntityNeko e : list) {
 			if (!e.isReleased()) e.releaseNeko(player);
 		}
 	}
