@@ -524,6 +524,12 @@
 			"boss/timecontroller/hurt3", "boss/timecontroller/hurt4",
 			"boss/timecontroller/hurt5", "boss/timecontroller/hurt6"]
     },
+    "mob.mechaexo.thruster":
+    {
+        "category": "ambient",
+            "sounds": [
+                "mob/mechaexo/thruster"]
+    },
 	"mob.abomination.hurt":
     {
 		"category": "hostile",
@@ -1127,6 +1133,49 @@
             "mob/scienceneko/death3", "mob/scienceneko/death4",
             "mob/scienceneko/death5"]
     },
+    "mob.assaultneko.living":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/assaultneko/living", "mob/assaultneko/living2",
+            "mob/assaultneko/living3", "mob/assaultneko/living4",
+            "mob/assaultneko/living5", "mob/assaultneko/living6",
+            "mob/assaultneko/living7", "mob/assaultneko/living8",
+            "mob/assaultneko/living9", "mob/assaultneko/living10",
+            "mob/assaultneko/living11", "mob/assaultneko/living12",
+            "mob/assaultneko/living13", "mob/assaultneko/living14"]
+    },
+    "mob.assaultneko.hurt":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/assaultneko/hurt", "mob/assaultneko/hurt2",
+            "mob/assaultneko/hurt3", "mob/assaultneko/hurt4",
+            "mob/assaultneko/hurt5"]
+    },
+    "mob.assaultneko.death":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/assaultneko/death", "mob/assaultneko/death2",
+            "mob/assaultneko/death3", "mob/assaultneko/death4",
+            "mob/assaultneko/death5"]
+    },
+    "mob.assaultneko.shield":
+    {
+        "category": "hostile",
+        "sound": ["mob/assaultneko/shield"]
+    },
+    "mob.assaultneko.shieldLow":
+    {
+        "category": "hostile",
+        "sound": ["mob/assaultneko/shield2"]
+    },
+    "mob.assaultneko.absorb":
+    {
+        "category": "hostile",
+        "sound": ["mob/assaultneko/absorb"]
+    },
 	"mob.wisp.fear":
     {
 		"category": "hostile",
@@ -1318,5 +1367,11 @@
         "category": "ambient",
         "sounds": [
             "random/siren"]
+    },
+    "random.windblast":
+    {
+        "category": "ambient",
+        "sounds": [
+            "random/windblast"]
     }
 }
