@@ -345,6 +345,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 	protected boolean teleportTo(double par1, double par3, double par5)
 	{
+		if (this.isDead) return false;
 		double d3 = this.posX;
 		double d4 = this.posY;
 		double d5 = this.posZ;

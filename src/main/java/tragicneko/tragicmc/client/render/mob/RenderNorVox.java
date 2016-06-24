@@ -28,7 +28,7 @@ public class RenderNorVox extends RenderLiving {
 		float scale = vox.getNorVoxType() == 0 ? 1.455F : 1.0F;
 		GlStateManager.scale(scale, scale, scale);
 		
-		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowMobCorruptionRender"))
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowCorruptionMobRender"))
 		{
 			float f = (float) ((TragicMob) entity).getCorruptionTicks();
 			if (f > 400.0F) f = 400.0F;

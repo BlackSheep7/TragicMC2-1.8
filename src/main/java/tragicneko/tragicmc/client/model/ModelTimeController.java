@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 
 public class ModelTimeController extends ModelBase
@@ -128,9 +129,26 @@ public class ModelTimeController extends ModelBase
 		if (ctrl.ticksExisted % 4 == 0 || ctrl.getFluxTicks() > 0 || ctrl.hurtTime > 0 || ctrl.getSpazTicks() > 0)
 		{
 			ModelRenderer cube = this.getRandomCube(entity.worldObj.rand);
-			cube.offsetX = entity.worldObj.rand.nextFloat();
-			cube.offsetY = entity.worldObj.rand.nextFloat();
-			cube.offsetZ = entity.worldObj.rand.nextFloat();
+			
+			if (ctrl.ticksExisted % 7 == 0)
+			{
+				cube.offsetX += MathHelper.cos(ctrl.ticksExisted + ctrl.getEntityId()) * 0.45F;
+				
+			}
+			else if (ctrl.ticksExisted % 13 == 0)
+			{
+				cube.offsetY += MathHelper.cos(ctrl.ticksExisted * ctrl.getEntityId()) * 0.45F;
+				
+			}
+			else if (ctrl.ticksExisted % 3 == 0)
+			{
+				cube.offsetZ += MathHelper.cos(ctrl.ticksExisted - ctrl.getEntityId()) * 0.45F;
+			}
+			
+			cube.offsetX += MathHelper.cos(ctrl.ticksExisted + ctrl.getEntityId()) * 0.25F;
+			cube.offsetY += MathHelper.cos(ctrl.ticksExisted * ctrl.getEntityId()) * 0.25F;
+			cube.offsetZ += MathHelper.cos(ctrl.ticksExisted - ctrl.getEntityId()) * 0.25F;
+			
 			if (Math.abs(cube.offsetX) > 0.5F) cube.offsetX = 0.0F;
 			if (Math.abs(cube.offsetY) > 0.5F) cube.offsetY = 0.0F;
 			if (Math.abs(cube.offsetZ) > 0.5F) cube.offsetZ = 0.0F;

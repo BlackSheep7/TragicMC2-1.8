@@ -34,7 +34,7 @@ public class RenderStin extends RenderMob {
 			this.mainModel = new ModelStin();
 		}
 		
-		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowMobCorruptionRender"))
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowCorruptionMobRender"))
 		{
 			float f = (float) ((TragicMob) entity).getCorruptionTicks();
 			if (f > 400.0F) f = 400.0F;

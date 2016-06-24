@@ -55,15 +55,16 @@ public class RenderOverlordCore extends RenderBoss {
 			if (core.deathTime > 0)
 			{
 				f = MathHelper.cos(core.ticksExisted * 0.2F) * 0.8F + 0.2F;
-				GlStateManager.translate(entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3);
+				double x = MathHelper.cos(core.ticksExisted + core.getEntityId()) * 0.3F;
+				double y = MathHelper.cos(core.ticksExisted * core.getEntityId()) * 0.3F;
+				double z = MathHelper.cos(core.ticksExisted - core.getEntityId()) * 0.3F;
+				GlStateManager.translate(x, y, z);
 			}
 			GlStateManager.color(f, f, f, 1.0F);
-			GlStateManager.enableNormalize();
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(770, 771);
 			this.mainModel.render(entity, par2, par3, par4, par5, par6, par7);
 			GlStateManager.disableBlend();
-			GlStateManager.disableNormalize();
 		}
 		else
 		{

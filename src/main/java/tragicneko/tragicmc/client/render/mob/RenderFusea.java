@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.model.ModelFusea;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
 import tragicneko.tragicmc.entity.mob.TragicMob;
@@ -29,7 +30,7 @@ public class RenderFusea extends RenderLiving {
 		float s = (scale * (entity.getHealth() / entity.getMaxHealth())) + 0.4F;
 		GlStateManager.scale(s, s, s);
 		
-		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0)
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowCorruptionMobRender"))
 		{
 			float f = (float) ((TragicMob) entity).getCorruptionTicks();
 			if (f > 400.0F) f = 400.0F;

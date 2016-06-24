@@ -30,7 +30,7 @@ public class RenderTox extends RenderMob {
 		float scale = tox.getToxType() == 0 ? 1.0F : 0.635F;
 		GL11.glScalef(scale, scale, scale);
 		
-		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowMobCorruptionRender"))
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowCorruptionMobRender"))
 		{
 			float f = (float) ((TragicMob) entity).getCorruptionTicks();
 			if (f > 400.0F) f = 400.0F;

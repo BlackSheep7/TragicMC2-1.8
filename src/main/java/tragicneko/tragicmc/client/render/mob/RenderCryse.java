@@ -28,7 +28,7 @@ public class RenderCryse extends RenderLiving {
 		float scale = cryse.getCryseType() == 0 ? 1.0F : 0.625F;
 		GlStateManager.scale(scale, scale, scale);
 		
-		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowMobCorruptionRender"))
+		if (entity instanceof TragicMob && ((TragicMob) entity).getCorruptionTicks() > 0 && TragicConfig.getBoolean("allowCorruptionMobRender"))
 		{
 			float f = (float) ((TragicMob) entity).getCorruptionTicks();
 			if (f > 400.0F) f = 400.0F;
