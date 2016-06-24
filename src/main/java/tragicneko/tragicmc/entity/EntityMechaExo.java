@@ -2,7 +2,7 @@ package tragicneko.tragicmc.entity;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -20,7 +20,6 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
@@ -29,7 +28,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.util.DamageHelper;
@@ -50,7 +48,8 @@ public class EntityMechaExo extends EntityRidable {
 
 	public EntityMechaExo(World par1World) {
 		super(par1World);
-		this.setSize(2.25F, 2.4F);
+		this.setSize(2.45F, 2.45F);
+		this.stepHeight = 1.5F;
 		this.isImmuneToFire = true;
 	}
 
@@ -132,13 +131,13 @@ public class EntityMechaExo extends EntityRidable {
 			if (entity != null && this.hasFired())
 			{
 				double d0 = entity.posX - this.posX;
-				double d1 = entity.posY - this.posY;
+				double d1 = entity.posY - this.posY - this.height + 0.225;
 				double d2 = entity.posZ - this.posZ;
 
 				for (byte l = 0; l < 8; l++)
 				{
 					double d3 = 0.123D * l + (rand.nextDouble() * 0.125D);
-					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + d0 * d3, this.posY + d1 * d3 + 1.25D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX + d0 * d3, this.posY + d1 * d3 + this.height + 0.225, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 				}
 			}
 
@@ -146,12 +145,12 @@ public class EntityMechaExo extends EntityRidable {
 			{
 				for (byte l = 0; l < 10; l++)
 				{
-					this.worldObj.spawnParticle(EnumParticleTypes.CLOUD, this.posX - this.motionX, this.posY + 1.25D - this.motionY, this.posZ - this.motionZ, 0.0, 0.0, 0.0);
+					this.worldObj.spawnParticle(EnumParticleTypes.CLOUD, this.posX - this.motionX, this.posY + this.height - this.motionY, this.posZ - this.motionZ, 0.0, 0.0, 0.0);
 				}
 				
 				for (byte l = 0; l < 5; l++)
 				{
-					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY + 1.25D, this.posZ, 0.0, 0.0, 0.0);
+					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY + this.height, this.posZ, 0.0, 0.0, 0.0);
 				}
 			}
 			return;
@@ -165,7 +164,6 @@ public class EntityMechaExo extends EntityRidable {
 		{
 			this.setThrustTicks(this.getThrustTicks() - 1);
 			this.fallDistance = 0F; //reset fall distance as it's not technically falling while thrusting forward
-			if (this.getThrustTicks() % 8 == 0 && this.getThrustTicks() > 0) this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 1.8F, 0.015F);
 
 			if (this.riddenByEntity instanceof EntityPlayer)
 			{
@@ -203,6 +201,14 @@ public class EntityMechaExo extends EntityRidable {
 					this.attackEntityAsMob(e);
 				}
 			}
+			
+			if (this.getAttackTarget() != null)
+			{
+				if (this.getAttackTarget().isInsideOfMaterial(Material.water) && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F)
+				{
+					if (this.riddenByEntity instanceof EntityLiving) ((EntityLiving) this.riddenByEntity).setAttackTarget(null);
+				}
+			}
 
 			this.setSprinting(true);
 		}
@@ -210,6 +216,8 @@ public class EntityMechaExo extends EntityRidable {
 		{
 			this.setSprinting(false);
 		}
+		
+		if (this.getAttackTarget() == this.riddenByEntity || this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 	}
 
 	@Override
@@ -301,6 +309,7 @@ public class EntityMechaExo extends EntityRidable {
 			else
 			{
 				this.setThrustTicks(30);
+				if (TragicConfig.getBoolean("allowMobSounds") && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.mechaexo.thruster", 1.8F, 1.0F);
 			}
 		}
 	}
@@ -330,7 +339,8 @@ public class EntityMechaExo extends EntityRidable {
 			}
 			else if (attackType == 2)
 			{
-				this.setThrustTicks(10);
+				this.setThrustTicks(15);
+				if (TragicConfig.getBoolean("allowMobSounds") && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.mechaexo.thruster", 1.8F, 1.0F);
 			}
 			else
 			{
@@ -372,9 +382,10 @@ public class EntityMechaExo extends EntityRidable {
 	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
-		super.attackEntityAsMob(entityIn);
-		if (this.riddenByEntity instanceof EntityLiving && entityIn instanceof EntityLivingBase) ((EntityLiving) this.riddenByEntity).setAttackTarget((EntityLivingBase) entityIn);
-		if (this.getDistanceToEntity(entityIn) > 4) return false;
+		if (this.riddenByEntity == entityIn) return false;
+		if (this.getAttackTime() > 0) return false;
+		if (this.riddenByEntity instanceof EntityLiving && entityIn instanceof EntityLivingBase && ((EntityLiving) this.riddenByEntity).getAttackTarget() == null) ((EntityLiving) this.riddenByEntity).setAttackTarget((EntityLivingBase) entityIn);
+		if (this.getDistanceToEntity(entityIn) > 4.5) return false;
 		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 
 		if (flag)
@@ -382,6 +393,7 @@ public class EntityMechaExo extends EntityRidable {
 			entityIn.motionX += this.motionX * 2;
 			entityIn.motionZ += this.motionZ * 2;
 			entityIn.motionY += 0.45D;
+			this.setAttackTime(10);
 		}
 		return flag;
 	}
@@ -389,8 +401,9 @@ public class EntityMechaExo extends EntityRidable {
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float damage)
 	{
-		if (src.getEntity() != null && src.getEntity() == this.ridingEntity) return false;
-		if (src.getEntity() instanceof EntityLiving && this.ridingEntity == null) ((EntityLiving) src.getEntity()).setAttackTarget(null);
+		if (src.getEntity() != null && src.getEntity() == this.riddenByEntity) return false;
+		if (src.getEntity() instanceof EntityLiving && this.riddenByEntity == null) ((EntityLiving) src.getEntity()).setAttackTarget(null);
+		if (src.getEntity() != this.getAttackTarget() && rand.nextInt(8) == 0 && this.riddenByEntity instanceof EntityLiving && src.getEntity() instanceof EntityLivingBase) ((EntityLiving) this.riddenByEntity).setAttackTarget((EntityLivingBase) src.getEntity());
 		return super.attackEntityFrom(src, damage);
 	}
 	
@@ -402,8 +415,8 @@ public class EntityMechaExo extends EntityRidable {
 			if (item == TragicItems.Wrench || item.getRegistryName() != null &&
 					(item.getRegistryName().contains("wrench") || item.getRegistryName().contains("Wrench")))
 			{
-				if (!this.worldObj.isRemote) this.dropExoItem();
-				//play sound, maybe do particle effect
+				if (!this.worldObj.isRemote && TragicConfig.getBoolean("allowNonMobItems")) this.dropExoItem();
+				else this.spawnExplosionParticle();
 				this.setDead();
 				return true;
 			}
