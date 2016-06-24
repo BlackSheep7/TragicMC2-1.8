@@ -74,7 +74,7 @@ public class MouseEvents {
 
 			AxisAlignedBB bb;
 
-			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.25D)
+			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.125D)
 			{
 				Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
 				if (d > 0) 
@@ -82,7 +82,7 @@ public class MouseEvents {
 					MovingObjectPosition mop = WorldHelper.getMOPFromEntity(player, d);
 					if (mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) break meow;
 				}
-				
+
 				bb = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).expand(box, box, box).offset(vec31.xCoord, vec31.yCoord + player.getEyeHeight(), vec31.zCoord);
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, bb);
 
