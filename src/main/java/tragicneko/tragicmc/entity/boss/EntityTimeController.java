@@ -257,14 +257,14 @@ public class EntityTimeController extends TragicBoss {
 
 		if (!this.onGround && this.motionY < 0.0D) this.motionY *= 0.68D;
 
-		if (this.getLeapTicks() == 140) this.addEntitiesToTracker(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D)));
+		if (this.getLeapTicks() == 180) this.addEntitiesToTracker(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D)));
 		if (this.getLeapTicks() == 1) this.doQuantumLeap();
 
 		if (this.worldObj.isRemote)
 		{
 			if (this.getFluxTicks() > 10)
 			{
-				for (int i = 0; i < 32; i++)
+				for (byte i = 0; i < 32; i++)
 				{
 					double d7 = (rand.nextDouble() * 10.0D - rand.nextDouble() * 10.0D);
 					double d8 = (rand.nextDouble() * 10.0D - rand.nextDouble() * 10.0D);
@@ -349,7 +349,7 @@ public class EntityTimeController extends TragicBoss {
 
 		if (rand.nextInt(1028) == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0 && TragicConfig.getBoolean("timeControllerQuantumLeap"))
 		{
-			this.setLeapTicks(180);
+			this.setLeapTicks(220);
 			if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.leap", 1.9F, 1.0F);
 		}
 
