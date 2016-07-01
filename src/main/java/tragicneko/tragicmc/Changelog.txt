@@ -4912,7 +4912,7 @@ Added new recipes for Nekiron blocks using the full Nekite variants as well as i
 Small modifications done to existing Nekite Plate recipes
 Added trade with Trader Nekos for glowstone dust
 
-4.51.3236++ <227> (June 22, 2016)
+4.52.3236++ <227> (June 22, 2016) [Added Thaumcraft Compatibility]
 Added Mecha Exo texture, shrunk down texture size
 Added last bits of the Mecha Exo model
 Fixed Neko rockets not targeting anything, also fixed them colliding with other projectiles
@@ -4920,10 +4920,14 @@ Added more spread and randomness to the Suicidal Tendencies Doomsday, justice no
 Small fix done to Overlord Core's death offset rendering and Time Controller's model offset rendering for it's cubes
 Mobs and bosses can no longer initiate a teleport after death
 Increased frequency of wall and mob checks for Reach
-
-
-TODO:
-Add texture/item model for the Ray Gun, Nekoid's Blaster and Laser Sword
+Adjusted length of time that the Time Controller's Flux ability takes to activate to better match with the sound and also give more time to take
+advantage of it being immobile
+Added new render for Trader Neko for variant textures (this doesn't affect the trades they have)
+Added Assault Neko texture and a few Trade Neko texture variants
+Added egg colors for (most) Neko subtypes and the Mecha Exo
+Added basic Thaumcraft compatibility, it'll just take a really long time to actually add the proper aspects to each mob, block and item in the mod
+so this'll probably be shelved for now (at least I got it working, right?)
+Fixed compiler issues with adding Thaumcraft compatibility
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)
@@ -4933,10 +4937,11 @@ Professor Nekoid (Living, Hurt, Death)
 Mecha Exo (Step, Hurt, Death, Low Health sound)
 
 Side expansion models/textures:
-Assault Neko (Recolor Texture, slight modification to model for weapon)
 Worker Neko (New variant textures, add small model variants like hats and backpacks)
-Trader Neko (New variant textures)
 Professor Nekoid (Completely new model based on Tragic Neko, new texture)
+Neko Ray Gun (Item model/texture, based on Science Neko's model weapon)
+Nekoid's Blaster (Item model/texture, based on Nekoid model weapon)
+Neko Laser Sword (Item model/texture, based on Assault Neko's model weapon)
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed to Capabilities
@@ -4947,6 +4952,8 @@ Prep to convert my DropHelper and ChestGenHooks to the 1.9 LootTable things, mak
 overridden and configured via json files just like the lores and enchantment entries are now
 Convert Enchantment events and Potion events into their proper classes using the proper methods, they are unnecessarily bundled into a huge event class
 and it makes it difficult to look for and modify certain effects
+Add a canUseAbility method in the superclasses for the mobs and bosses to make it easier to enforce things across all entities, they can override and
+add more parameters for this if need be as well
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
