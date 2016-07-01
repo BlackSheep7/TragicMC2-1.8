@@ -31,6 +31,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.TragicRecipes;
 import tragicneko.tragicmc.client.gui.GuiAmuletInventory;
+import tragicneko.tragicmc.compatibility.CompatibilityThaumcraft;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.AchievementEvents;
@@ -75,7 +76,9 @@ public class CommonProxy implements IGuiHandler {
 	public static final int AMULET_GUI_ID = 0;
 	public static File configDir = null;
 
-	public void init(FMLInitializationEvent event){ }
+	public void init(FMLInitializationEvent event){
+		CompatibilityThaumcraft.init();
+	}
 
 	public void postInit(FMLPostInitializationEvent event) {
 		if (TragicConfig.getBoolean("allowRandomWeaponLore") && TragicConfig.getBoolean("allowNonMobItems") && TragicConfig.getBoolean("allowRandomWeaponLore")) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(configDir);
