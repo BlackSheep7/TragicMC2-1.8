@@ -1178,7 +1178,7 @@ public class TragicEntities {
 		if (TragicConfig.getBoolean("allowJetNeko"))
 		{
 			EntityRegistry.registerModEntity(EntityJetNeko.class, "JetNeko", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityJetNeko.class, "TragicMC.JetNeko", id++, 0x000000, 0x000000);
+			TragicEntityList.addMapping(EntityJetNeko.class, "TragicMC.JetNeko", id++, 0x308FAE, 0x363636);
 
 			if (allowVanillaSpawns && TragicConfig.getBoolean("jetNekoSpawnOverride"))
 			{
@@ -1205,7 +1205,7 @@ public class TragicEntities {
 		if (TragicConfig.getBoolean("allowScienceNeko"))
 		{
 			EntityRegistry.registerModEntity(EntityScienceNeko.class, "ScienceNeko", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityScienceNeko.class, "TragicMC.ScienceNeko", id++, 0x000000, 0x000000);
+			TragicEntityList.addMapping(EntityScienceNeko.class, "TragicMC.ScienceNeko", id++, 0xDDDDDD, 0xE0E0E0);
 
 			if (allowVanillaSpawns && TragicConfig.getBoolean("scienceNekoSpawnOverride"))
 			{
@@ -1232,7 +1232,7 @@ public class TragicEntities {
 		if (TragicConfig.getBoolean("allowMechaNeko"))
 		{
 			EntityRegistry.registerModEntity(EntityMechaNeko.class, "MechaNeko", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityMechaNeko.class, "TragicMC.MechaNeko", id++, 0x000000, 0x000000);
+			TragicEntityList.addMapping(EntityMechaNeko.class, "TragicMC.MechaNeko", id++, 0xF6B252, 0xA2673C);
 
 			if (allowVanillaSpawns && TragicConfig.getBoolean("mechaNekoSpawnOverride"))
 			{
@@ -1259,7 +1259,7 @@ public class TragicEntities {
 		if (TragicConfig.getBoolean("allowAssaultNeko"))
 		{
 			EntityRegistry.registerModEntity(EntityAssaultNeko.class, "AssaultNeko", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityAssaultNeko.class, "TragicMC.AssaultNeko", id++, 0x000000, 0x000000);
+			TragicEntityList.addMapping(EntityAssaultNeko.class, "TragicMC.AssaultNeko", id++, 0x789654, 0xD5C385);
 
 			if (allowVanillaSpawns && TragicConfig.getBoolean("assaultNekoSpawnOverride"))
 			{
@@ -1313,7 +1313,7 @@ public class TragicEntities {
 		if (TragicConfig.getBoolean("allowTraderNeko"))
 		{
 			EntityRegistry.registerModEntity(EntityTraderNeko.class, "TraderNeko", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityTraderNeko.class, "TragicMC.TraderNeko", id++, 0x000000, 0x000000);
+			TragicEntityList.addMapping(EntityTraderNeko.class, "TragicMC.TraderNeko", id++, 0x3F1414, 0xA10000);
 
 			if (allowVanillaSpawns && TragicConfig.getBoolean("traderNekoSpawnOverride"))
 			{
@@ -1402,7 +1402,7 @@ public class TragicEntities {
 		if (TragicConfig.getBoolean("allowMechaExo"))
 		{
 			EntityRegistry.registerModEntity(EntityMechaExo.class, "MechaExo", listid++, TragicMC.getInstance(), 80, 3, true);
-			TragicEntityList.addMapping(EntityMechaExo.class, "TragicMC.MechaExo", id++, 0x000000, 0x000000, EnumEggType.PET);
+			TragicEntityList.addMapping(EntityMechaExo.class, "TragicMC.MechaExo", id++, 0x3F0000, 0x6A0000, EnumEggType.PET);
 		}
 
 		//Mini-Bosses
