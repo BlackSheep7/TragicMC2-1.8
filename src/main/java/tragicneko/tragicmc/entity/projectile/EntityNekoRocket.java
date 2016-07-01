@@ -91,23 +91,7 @@ public class EntityNekoRocket extends EntityProjectile {
 			if ((this.ticksWithTarget > 30 || this.ticksWithTarget > f * 10) && f > 3.0) flag = false;
 
 			if (flag)
-			{
-				/*
-				Vec3 vec = WorldHelper.getVecFromEntity(this, 1.5);
-				if (vec != null)
-				{
-					double d0 = this.target.posX - this.posX;
-					double d1 = this.target.posY - this.posY;
-					double d2 = this.target.posZ - this.posZ;
-					double limit = 0.113D;
-					
-					Vec3 vec2 = vec.addVector(d0 * limit, d1 * limit, d2 * limit);
-					
-					this.motionX += vec2.xCoord - this.posX;
-					this.motionY += vec2.yCoord - this.posY;
-					this.motionZ += vec2.zCoord - this.posZ;
-				} */
-				
+			{				
 				double limit = 0.23;
 				double mx = (target.posX - this.posX + target.width / 2) * 0.068;
 				boolean mxf = Math.abs(mx) > 0 && Math.abs(mx) > limit;

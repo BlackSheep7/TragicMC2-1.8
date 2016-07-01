@@ -97,6 +97,7 @@ import tragicneko.tragicmc.client.render.mob.RenderPumpkinhead;
 import tragicneko.tragicmc.client.render.mob.RenderRagr;
 import tragicneko.tragicmc.client.render.mob.RenderStin;
 import tragicneko.tragicmc.client.render.mob.RenderTox;
+import tragicneko.tragicmc.client.render.mob.RenderTrader;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.dimension.NekoHomeworldSkyRenderer;
 import tragicneko.tragicmc.dimension.SynapseSkyRenderer;
@@ -405,9 +406,10 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityJetNeko.class, new RenderFactoryMob(new ModelJetNeko(), 0.295F, "JetNeko", 0.725F));
 		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.825F));
 		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelMechaNeko(), 0.295F, "MechaNeko", 0.915F));
-		registerRender(EntityAssaultNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.245F, "TragicNeko", 1.215F));
-		registerRender(EntityWorkerNeko.class, new RenderFactoryMob(new ModelSimpleNeko(), 0.245F, "TragicNeko", 0.655F));
-		registerRender(EntityTraderNeko.class, new RenderFactoryMob(new ModelSimpleNeko(), 0.245F, "TragicNeko"));
+		registerRender(EntityAssaultNeko.class, new RenderFactoryMob(new ModelSimpleNeko(), 0.245F, "AssaultNeko", 1.215F));
+		registerRender(EntityWorkerNeko.class, new RenderFactoryMob(new ModelSimpleNeko(), 0.245F, "WorkerNeko", 0.655F));
+		registerRender(EntityTraderNeko.class, new IRenderFactory() {
+			@Override public Render createRenderFor(RenderManager manager) { return new RenderTrader(manager); }});
 
 		//Boss renders
 		registerRender(EntityApis.class, new IRenderFactory() {

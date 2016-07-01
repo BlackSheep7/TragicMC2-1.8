@@ -2,6 +2,7 @@ package tragicneko.tragicmc.entity.mob;
 
 import java.util.Random;
 
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityVillager;
@@ -14,12 +15,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 
 public class EntityTraderNeko extends EntityNeko implements IMerchant {
 
@@ -176,9 +177,31 @@ public class EntityTraderNeko extends EntityNeko implements IMerchant {
             recipeList.add(new MerchantRecipe(new ItemStack(this.itemToBuy.getItem(), i, this.itemToBuy.getMetadata()), new ItemStack(TragicItems.Nekite, j, 0)));
         }
 	}
+	
+	public static final int DW_TEXTURE = 25;
 
 	public EntityTraderNeko(World par1World) {
 		super(par1World);
+	}
+	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataWatcher.addObject(DW_TEXTURE, 0);
+	}
+	
+	public int getTextureId() {
+		return this.dataWatcher.getWatchableObjectInt(DW_TEXTURE);
+	}
+	
+	private void setTextureId(int i) {
+		this.dataWatcher.updateObject(DW_TEXTURE, i);
+	}
+	
+	@Override
+	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data) {
+		if (!this.worldObj.isRemote) this.setTextureId(rand.nextInt(7));
+		return super.onInitialSpawn(ins, data);
 	}
 
 	@Override
@@ -296,23 +319,25 @@ public class EntityTraderNeko extends EntityNeko implements IMerchant {
     {
         super.writeEntityToNBT(tagCompound);
         if (this.tradingList != null) tagCompound.setTag("Trades", this.tradingList.getRecipiesAsTags());
+        tagCompound.setInteger("textureID", this.getTextureId());
     }
 
 	@Override
-    public void readEntityFromNBT(NBTTagCompound tagCompund)
+    public void readEntityFromNBT(NBTTagCompound tagCompound)
     {
-        super.readEntityFromNBT(tagCompund);
+        super.readEntityFromNBT(tagCompound);
 
-        if (tagCompund.hasKey("Trades", 10))
+        if (tagCompound.hasKey("Trades", 10))
         {
-            NBTTagCompound nbttagcompound = tagCompund.getCompoundTag("Trades");
+            NBTTagCompound nbttagcompound = tagCompound.getCompoundTag("Trades");
             this.tradingList = new MerchantRecipeList(nbttagcompound);
         }
+        
+        if (tagCompound.hasKey("textureID")) this.setTextureId(tagCompound.getInteger("textureID"));
     }
 
     @Override
-    protected boolean canDespawn()
-    {
+    protected boolean canDespawn() {
         return false;
     }
 }

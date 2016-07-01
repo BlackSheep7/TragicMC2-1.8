@@ -287,7 +287,7 @@ public abstract class EntityNeko extends TragicMob {
 
 		if (this.getAttackTarget() == null)
 		{
-			if (this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0) this.setFlickTime(10);
+			if (this.ticksExisted % 6 == 0 && rand.nextInt(16) == 0) this.setFlickTime(10);
 			this.setFiringTicks(35);
 		}
 
