@@ -23,7 +23,7 @@ public class BlockNekitePlate extends Block {
 	public BlockNekitePlate() {
 		super(Material.iron);
 		this.setCreativeTab(TragicMC.Survival);
-		this.setResistance(45.0F);
+		this.setResistance(50.0F);
 		this.setHardness(17.5F);
 		this.setStepSound(soundTypeMetal);
 		this.setHarvestLevel("pickaxe", 3);
