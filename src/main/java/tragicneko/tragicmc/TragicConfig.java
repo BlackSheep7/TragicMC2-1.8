@@ -281,13 +281,13 @@ public class TragicConfig {
 		registerObject("mechaNekoRidingArmor", true); //should, when the mecha neko is riding an entity, gain very high armor
 		
 		registerObject("allowAssaultNeko", true);
-		registerObject("assaultNekoStats", new MobStat(new double[] {42.0, 0.28, 3.0, 32.0, 0.5}, 8));
+		registerObject("assaultNekoStats", new MobStat(new double[] {42.0, 0.33, 4.0, 32.0, 0.5}, 8));
 		registerObject("assaultNekoGroupSize", new int[] {2, 4});
 		registerObject("assaultNekoSpawnChance", 25);
 		registerObject("assaultNekoSpawnOverride", false);
 		registerObject("assaultNekoSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
 		
-		registerObject("assaultNekoBatteringRamCharge", true); //should the assault neko charge with a battering ram when far away from targets
+		registerObject("assaultNekoBatteringRamCharge", true); //should the assault neko charge like a battering ram when far away from targets
 		registerObject("assaultNekoShield", true); //should the assault neko sometimes get a shield that absorbs all damage
 		registerObject("assaultNekoLaserSword", true); //should the assault neko do armor piercing damage when it uses it's laser sword
 		
