@@ -2,6 +2,7 @@ package tragicneko.tragicmc.entity;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -19,7 +20,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
@@ -28,6 +31,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.util.DamageHelper;
@@ -218,6 +222,11 @@ public class EntityMechaExo extends EntityRidable {
 		}
 		
 		if (this.getAttackTarget() == this.riddenByEntity || this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
+		
+		if (this.getHealth() < this.getMaxHealth() / 3 && this.ticksExisted % 20 == 0)
+		{
+			this.worldObj.playSoundAtEntity(this, "tragicmc:random.beep", 0.2F, 1.6F);
+		}
 	}
 
 	@Override
@@ -401,6 +410,7 @@ public class EntityMechaExo extends EntityRidable {
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float damage)
 	{
+		if (src == DamageSource.fall) return false;
 		if (src.getEntity() != null && src.getEntity() == this.riddenByEntity) return false;
 		if (src.getEntity() instanceof EntityLiving && this.riddenByEntity == null) ((EntityLiving) src.getEntity()).setAttackTarget(null);
 		if (src.getEntity() != this.getAttackTarget() && rand.nextInt(8) == 0 && this.riddenByEntity instanceof EntityLiving && src.getEntity() instanceof EntityLivingBase) ((EntityLiving) this.riddenByEntity).setAttackTarget((EntityLivingBase) src.getEntity());
@@ -430,4 +440,43 @@ public class EntityMechaExo extends EntityRidable {
 		EntityItem item = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, stack);
 		this.worldObj.spawnEntityInWorld(item);
 	}
+	
+	@Override
+	protected void playStepSound(BlockPos pos, Block block)
+	{
+		this.playSound(block.stepSound.getStepSound(), block.stepSound.getVolume() * 0.75F, block.stepSound.getFrequency());
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.exo.wrecked" : super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.exo.hit" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 0.75F + rand.nextFloat() * 0.5F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.9F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	public void addPotionEffect(PotionEffect effect) {}
 }

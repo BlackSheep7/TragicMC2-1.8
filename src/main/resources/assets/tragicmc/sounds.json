@@ -1164,17 +1164,32 @@
     "mob.assaultneko.shield":
     {
         "category": "hostile",
-        "sound": ["mob/assaultneko/shield"]
+        "sounds": ["mob/assaultneko/shield"]
     },
-    "mob.assaultneko.shieldLow":
+    "mob.assaultneko.shieldlow":
     {
         "category": "hostile",
-        "sound": ["mob/assaultneko/shield2"]
+        "sounds": ["mob/assaultneko/shield2"]
     },
     "mob.assaultneko.absorb":
     {
         "category": "hostile",
-        "sound": ["mob/assaultneko/absorb"]
+        "sounds": ["mob/assaultneko/absorb"]
+    },
+    "mob.exo.stomp":
+    {
+        "category": "hostile",
+        "sounds": ["mob/exo/stomp"]
+    },
+    "mob.exo.wrecked":
+    {
+        "category": "hostile",
+        "sounds": ["mob/exo/rekt"]
+    },
+    "mob.exo.hit":
+    {
+        "category": "hostile",
+        "sounds": ["mob/exo/hit", "mob/exo/hit2"]
     },
 	"mob.wisp.fear":
     {

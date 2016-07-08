@@ -7,6 +7,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 
 public class EntityAssaultNeko extends EntityNeko {
 
@@ -18,8 +19,9 @@ public class EntityAssaultNeko extends EntityNeko {
 
 	public EntityAssaultNeko(World par1World) {
 		super(par1World);
-		this.setSize(0.675F * 1.215F, 1.955F * 1.215F);
+		this.setSize(0.675F * 1.145F, 1.955F * 1.145F);
 		this.experienceValue = 50;
+		this.stepHeight = 1.0F;
 	}
 
 	@Override
@@ -81,9 +83,9 @@ public class EntityAssaultNeko extends EntityNeko {
 			this.setShieldTicks(this.getShieldTicks() - 1);
 			this.shieldBuffer = 100;
 			
-			if (this.getShieldTicks() % 40 == 0)
+			if (this.getShieldTicks() % 20 == 0 && TragicConfig.getBoolean("allowMobSounds"))
 			{
-				String s = shieldHealth > 50F ? "tragicmc:mob.assaultenko.shieldLow" : "tragicmc:mob.assaultneko.shield";
+				String s = shieldHealth < 40F || this.getShieldTicks() <= 40 ? "tragicmc:mob.assaultneko.shieldlow" : "tragicmc:mob.assaultneko.shield";
 				this.worldObj.playSoundAtEntity(this, s, 0.6F, 1.0F);
 			}
 		}
@@ -94,24 +96,24 @@ public class EntityAssaultNeko extends EntityNeko {
 		{
 			if (this.getFlickTime() > 0) this.setFlickTime(0); 
 			
-			if (this.ticksExisted % 5 == 0 && this.getChargeTicks() == 0 && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F)
+			if (this.ticksExisted % 5 == 0 && this.getChargeTicks() == 0 && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.onGround && rand.nextInt(8) == 0)
 			{
 				this.setChargeTicks(100);
 			}
 			
-			if (this.ticksExisted % 7 == 0 && this.getShieldTicks() == 0 && this.shieldBuffer == 0 && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && this.getHealth() < this.getMaxHealth())
+			if (this.ticksExisted % 7 == 0 && this.getShieldTicks() == 0 && this.shieldBuffer == 0 && this.getDistanceToEntity(this.getAttackTarget()) < 16.0F && this.getHealth() < this.getMaxHealth())
 			{
 				this.setShieldTicks(120);
 				this.shieldHealth = 100F;
 			}
 			
-			if (this.getChargeTicks() > 0)
+			if (this.getChargeTicks() > 0 && this.onGround)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().posZ - this.posZ;
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-				this.motionX += d0 / f2 * 0.13D * 0.1100000011920929D + this.motionX * 0.1000000298023224D;
-				this.motionZ += d1 / f2 * 0.13D * 0.1100000011920929D + this.motionZ * 0.1000000298023224D;
+				this.motionX += d0 / f2 * 0.14D * 0.1100000011920929D + this.motionX * 0.2400000298023224D;
+				this.motionZ += d1 / f2 * 0.14D * 0.1100000011920929D + this.motionZ * 0.2400000298023224D;
 				this.motionY = -0.1D;
 			}
 		}
@@ -139,6 +141,7 @@ public class EntityAssaultNeko extends EntityNeko {
 			this.shieldHealth -= par2;
 			if (this.shieldHealth > 0)
 			{
+				if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.assaultneko.absorb", 1.0F, 1.0F);
 				return false;
 			}
 			else
@@ -157,15 +160,24 @@ public class EntityAssaultNeko extends EntityNeko {
 		
 		if (this.getChargeTicks() == 0)
 		{
+			this.setAttackTime(10);
 			float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
 			return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this).setDamageBypassesArmor(), f);
 		}
 		else
 		{
 			this.setChargeTicks(0);
+			float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue() * 1.5F;
+			boolean flag = par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), f);
+			
+			if (flag)
+			{
+				par1Entity.motionX += this.motionX;
+				par1Entity.motionZ += this.motionZ;
+			}
+			
+			return flag;
 		}
-		
-		return super.attackEntityAsMob(par1Entity);
 	}
 	
 	@Override

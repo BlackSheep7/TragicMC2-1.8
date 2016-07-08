@@ -51,11 +51,11 @@ import tragicneko.tragicmc.client.model.ModelPsygote;
 import tragicneko.tragicmc.client.model.ModelRanmas;
 import tragicneko.tragicmc.client.model.ModelScienceNeko;
 import tragicneko.tragicmc.client.model.ModelSeeker;
-import tragicneko.tragicmc.client.model.ModelSimpleNeko;
 import tragicneko.tragicmc.client.model.ModelSirv;
 import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.client.model.ModelStinQueen;
 import tragicneko.tragicmc.client.model.ModelTox;
+import tragicneko.tragicmc.client.model.ModelTraderNeko;
 import tragicneko.tragicmc.client.model.ModelTragicNeko;
 import tragicneko.tragicmc.client.model.armor.ModelDarkArmor;
 import tragicneko.tragicmc.client.model.armor.ModelLightArmor;
@@ -87,6 +87,8 @@ import tragicneko.tragicmc.client.render.boss.RenderYeti;
 import tragicneko.tragicmc.client.render.factory.RenderFactoryMob;
 import tragicneko.tragicmc.client.render.factory.RenderFactoryMobTransparent;
 import tragicneko.tragicmc.client.render.factory.RenderFactoryProjectile;
+import tragicneko.tragicmc.client.render.mob.RenderAssaultNeko;
+import tragicneko.tragicmc.client.render.mob.RenderCommonNeko;
 import tragicneko.tragicmc.client.render.mob.RenderCryse;
 import tragicneko.tragicmc.client.render.mob.RenderErkel;
 import tragicneko.tragicmc.client.render.mob.RenderFusea;
@@ -97,7 +99,6 @@ import tragicneko.tragicmc.client.render.mob.RenderPumpkinhead;
 import tragicneko.tragicmc.client.render.mob.RenderRagr;
 import tragicneko.tragicmc.client.render.mob.RenderStin;
 import tragicneko.tragicmc.client.render.mob.RenderTox;
-import tragicneko.tragicmc.client.render.mob.RenderTrader;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.dimension.NekoHomeworldSkyRenderer;
 import tragicneko.tragicmc.dimension.SynapseSkyRenderer;
@@ -404,12 +405,13 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityKurayami.class, new RenderFactoryMob(new ModelKurayami(), 0.645F, "Kurayami", 0.825F));
 		registerRender(EntityAvris.class, new RenderFactoryMob(new ModelAvris(), 0.645F, "Avris"));
 		registerRender(EntityJetNeko.class, new RenderFactoryMob(new ModelJetNeko(), 0.295F, "JetNeko", 0.725F));
-		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.825F));
-		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelMechaNeko(), 0.295F, "MechaNeko", 0.915F));
-		registerRender(EntityAssaultNeko.class, new RenderFactoryMob(new ModelSimpleNeko(), 0.245F, "AssaultNeko", 1.215F));
-		registerRender(EntityWorkerNeko.class, new RenderFactoryMob(new ModelSimpleNeko(), 0.245F, "WorkerNeko", 0.655F));
-		registerRender(EntityTraderNeko.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderTrader(manager); }});
+		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.855F));
+		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelMechaNeko(), 0.295F, "MechaNeko", 0.925F));
+		registerRender(EntityAssaultNeko.class, new IRenderFactory() {
+			@Override public Render createRenderFor(RenderManager manager) { return new RenderAssaultNeko(manager); }});
+		registerRender(EntityTraderNeko.class, new RenderFactoryMob(new ModelTraderNeko(), 0.245F, "TraderNekoActual"));
+		registerRender(EntityWorkerNeko.class, new IRenderFactory() {
+			@Override public Render createRenderFor(RenderManager manager) { return new RenderCommonNeko(manager); }});
 
 		//Boss renders
 		registerRender(EntityApis.class, new IRenderFactory() {

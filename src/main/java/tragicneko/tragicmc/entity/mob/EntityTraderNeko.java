@@ -280,7 +280,7 @@ public class EntityTraderNeko extends EntityNeko implements IMerchant {
 		ItemStack itemstack = player.inventory.getCurrentItem();
 		boolean flag = itemstack != null && (itemstack.getItem() == Items.spawn_egg || itemstack.getItem() == Items.lead);
 
-		if (!flag && this.isEntityAlive() && !player.isSneaking() && this.canTrade())
+		if (!flag && this.isEntityAlive() && !player.isSneaking() && (this.canTrade() || player.capabilities.isCreativeMode))
 		{
 			if (!this.worldObj.isRemote && (this.tradingList == null || this.tradingList.size() > 0))
 			{

@@ -1286,7 +1286,7 @@ public class TragicEntities {
 		if (TragicConfig.getBoolean("allowWorkerNeko"))
 		{
 			EntityRegistry.registerModEntity(EntityWorkerNeko.class, "WorkerNeko", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityWorkerNeko.class, "TragicMC.WorkerNeko", id++, 0x000000, 0x000000);
+			TragicEntityList.addMapping(EntityWorkerNeko.class, "TragicMC.WorkerNeko", id++, 0x3F1414, 0xA10000);
 
 			if (allowVanillaSpawns && TragicConfig.getBoolean("workerNekoSpawnOverride"))
 			{
@@ -1313,7 +1313,7 @@ public class TragicEntities {
 		if (TragicConfig.getBoolean("allowTraderNeko"))
 		{
 			EntityRegistry.registerModEntity(EntityTraderNeko.class, "TraderNeko", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityTraderNeko.class, "TragicMC.TraderNeko", id++, 0x3F1414, 0xA10000);
+			TragicEntityList.addMapping(EntityTraderNeko.class, "TragicMC.TraderNeko", id++, 0xA10000, 0x3F1414);
 
 			if (allowVanillaSpawns && TragicConfig.getBoolean("traderNekoSpawnOverride"))
 			{
