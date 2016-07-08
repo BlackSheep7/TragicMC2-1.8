@@ -77,7 +77,7 @@ public class CommonProxy implements IGuiHandler {
 	public static File configDir = null;
 
 	public void init(FMLInitializationEvent event){
-		CompatibilityThaumcraft.init();
+		//CompatibilityThaumcraft.init();
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {

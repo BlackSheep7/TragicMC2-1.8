@@ -25,7 +25,7 @@ public class CompatibilityThaumcraft {
 
 	@net.minecraftforge.fml.common.Optional.Method(modid="Thaumcraft")
 	public static void registerThaumcraftAspects()
-	{
+	{		
 		if (TragicConfig.getBoolean("allowMobs"))
 		{
 			if (TragicConfig.getBoolean("allowTox")) registerEntityAspects("TragicMC.Tox", getList(new Tuple(Aspect.PLANT, 3)));
