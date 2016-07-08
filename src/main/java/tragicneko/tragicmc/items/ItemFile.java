@@ -28,6 +28,7 @@ public class ItemFile extends ItemRecord {
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced)
     {
 		LoreHelper.splitDesc(tooltip, this.getRecordNameDescLocal(), 28, EnumChatFormatting.GRAY);
+		tooltip.add(EnumChatFormatting.ITALIC + "Use this like a record.");
     }
 
 	@Override
