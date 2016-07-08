@@ -48,12 +48,13 @@ public class EntitySolarBomb extends EntityProjectile {
 	{
 		super.onUpdate();
 
-		if (this.ticksExisted > 0 && this.ticksExisted % 10 == 0  && !this.worldObj.isRemote)
+		if (this.ticksExisted > 0 && this.ticksExisted % 5 == 0  && !this.worldObj.isRemote)
 		{
-			for (int i = 0; i < 4; i++)
+			final byte amt = (byte) (rand.nextInt(4) + 2);
+			for (int i = 0; i < amt; i++)
 			{
 				double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX) - this.posX;
-				double d1 = (MathHelper.getRandomIntegerInRange(rand, - 4, 4) + this.posY) - this.posY;
+				double d1 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posY) - this.posY;
 				double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ) - this.posZ;
 
 				if (this.shootingEntity != null)
