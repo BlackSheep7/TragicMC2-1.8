@@ -255,6 +255,19 @@ public class TragicItems {
 	public static Item NekoLaserSword; //what the assault nekos use, does low armor piercing damage
 	public static Item NekoidsBlaster; //what professor nekoid uses, does very low damage but knocks everything in front of you away
 	
+	public static Item NekoAbsorbShield; //gives you a temporary shield when used that absorbs a set amount of damage and then is gone forever
+	public static Item MechaExoNuclear; //more powerful exo that creates a huge explosion upon death, rapid fire lasers and fires two rockets but replaces thruster with a high jump
+	public static Item MechaExoQuantum; //an exo subtype that can "rewind" back in time and "blink" forward but has mediocre armor
+	public static Item MechaExoDevastator; //fires slow, hugely explosive missiles and can mine blocks with a laser but moves extremely slow and has very high health
+	public static Item NekoFireworkLauncher; //shoots fireworks that explode into many wonderful shapes and colors (creates an actual explosion and firework)
+	public static Item NekoidsMind; //cybernetic brain that lets you control Nekos (basically they become your pet)
+	
+	//Nekoid drops
+	public static Item NekoidAllSpark; //Collects the sparks of Fallen Nekoids
+	public static Item NekoidMatrix; //Allows for the upgrading of Nekoids to a higher level
+	public static Item NekoidJammer;
+	public static Item MechaExoXero; //Mecha with a shield and the ability to fly but otherwise only has a weak gatling gun
+	
 	//Records (Set and file numbers)
 	public static Item Starstruck; //S1F1
 	public static Item Faultless; //S1F2
