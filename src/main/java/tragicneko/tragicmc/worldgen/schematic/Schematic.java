@@ -545,6 +545,7 @@ public abstract class Schematic {
 	public void spawnEntity(World world, BlockPos pos, Entity entity) {
 		if (TragicConfig.getBoolean("allowTickBuilder"))
 		{
+			if (this.entityList == null) this.entityList = new ArrayList<Tuple<BlockPos, Entity>>();
 			this.entityList.add(new Tuple<BlockPos, Entity>(pos, entity));
 		}
 		else

@@ -587,7 +587,7 @@ public class SchematicNekoTower extends Schematic {
 		this.setBlock(world, new BlockPos(x - 2, y, z + 4), NekitePlate.getStateFromMeta(1));
 		
 		this.setBlock(world, new BlockPos(x, y, z), NekitePlate.getStateFromMeta(1));
-		this.setBlock(world, new BlockPos(x - 1, y, z + 1), Blocks.mob_spawner.getStateFromMeta(0), "TragicMC.TragicNeko");
+		this.setBlock(world, new BlockPos(x - 1, y, z + 1), Blocks.mob_spawner.getStateFromMeta(0), rand.nextBoolean() ? "TragicMC.TragicNeko" : "TragicMC.WorkerNeko");
 		this.setBlock(world, new BlockPos(x - 1, y, z), NekitePlate.getStateFromMeta(1));
 		this.setBlock(world, new BlockPos(x, y, z + 1), NekitePlate.getStateFromMeta(1));
 		

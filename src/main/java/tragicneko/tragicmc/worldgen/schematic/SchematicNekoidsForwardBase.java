@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
-import static tragicneko.tragicmc.TragicBlocks.NekiteWire;
 import static tragicneko.tragicmc.TragicBlocks.NekitePlate;
+import static tragicneko.tragicmc.TragicBlocks.NekiteWire;
 
 import java.util.Random;
 
@@ -9,6 +9,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.entity.mob.EntityJetNeko;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicNekoidsForwardBase extends Schematic {
@@ -16,10 +18,10 @@ public class SchematicNekoidsForwardBase extends Schematic {
 	public SchematicNekoWarehouse[] whSchematics = new SchematicNekoWarehouse[2];
 	public SchematicNekoBarracks[] brSchematics = new SchematicNekoBarracks[6];
 	public SchematicNekoidsMansion nmSchematic;
-	
+
 	private static final BlockPos WAREHOUSE_OFFSET = new BlockPos(-11, 0, -4);
 	private static final BlockPos WAREHOUSE2_OFFSET = new BlockPos(-11, 0, 20);
-	
+
 	private static final BlockPos[] BARRACKS_OFFSETS = new BlockPos[] {
 			new BlockPos(6, 0, -8),
 			new BlockPos(6, 0, -24),
@@ -28,12 +30,12 @@ public class SchematicNekoidsForwardBase extends Schematic {
 			new BlockPos(19, 0, -24),
 			new BlockPos(19, 0, -40)
 	};
-	
+
 	private static final BlockPos MANSION_OFFSET = new BlockPos(13, 0, 23); //TODO ensure offsets are correct
 
 	public SchematicNekoidsForwardBase(BlockPos origin, Structure structure, World world) {
 		super(origin, structure, world, 25, 90, 50);
-		
+
 		whSchematics[0] = new SchematicNekoWarehouse(origin.add(WAREHOUSE_OFFSET), structure, world);
 		this.setChild(whSchematics[0]);
 		whSchematics[1] = new SchematicNekoWarehouse(origin.add(WAREHOUSE2_OFFSET), structure, world);
@@ -51,14 +53,14 @@ public class SchematicNekoidsForwardBase extends Schematic {
 		this.setChild(brSchematics[4]);
 		brSchematics[5] = new SchematicNekoBarracks(origin.add(BARRACKS_OFFSETS[5]), structure, world);
 		this.setChild(brSchematics[5]);
-		
+
 		nmSchematic = new SchematicNekoidsMansion(origin.add(MANSION_OFFSET), structure, world);
 		this.setChild(nmSchematic);
 	}
 
 	@Override
 	public Schematic generateStructure(World world, Random rand, int x, int y, int z) {
-		
+
 		for (byte y1 = -1; y1 < 10; y1++)
 		{
 			for (byte z1 = -17; z1 < 39; z1++)
@@ -93,7 +95,7 @@ public class SchematicNekoidsForwardBase extends Schematic {
 				this.setBlock(world, new BlockPos(x + x1, y - 1, z + z1), NekitePlate.getStateFromMeta(5));
 			}
 		}
-		
+
 		for (byte x1 = -2; x1 < 1; x1++) //main road, north-south
 		{
 			for (byte z1 = -45; z1 < 36; z1++)
@@ -101,7 +103,7 @@ public class SchematicNekoidsForwardBase extends Schematic {
 				this.setBlock(world, new BlockPos(x + x1, y - 1, z + z1), NekitePlate.getStateFromMeta(2));
 			}
 		}
-		
+
 		for (byte x1 = -20; x1 < 1; x1++) //main road, east-west
 		{
 			for (byte z1 = 7; z1 < 10; z1++)
@@ -109,25 +111,25 @@ public class SchematicNekoidsForwardBase extends Schematic {
 				this.setBlock(world, new BlockPos(x + x1, y - 1, z + z1), NekitePlate.getStateFromMeta(2));
 			}
 		}
-		
+
 		for (byte x1 = 0; x1 < 25; x1++) //small roads, east-west
 		{
 			for (byte z1 = -1; z1 < 2; z1++)
 			{
 				this.setBlock(world, new BlockPos(x + x1, y - 1, z + z1), NekitePlate.getStateFromMeta(2));
 			}
-			
+
 			for (byte z1 = -17; z1 < -15; z1++)
 			{
 				this.setBlock(world, new BlockPos(x + x1, y - 1, z + z1), NekitePlate.getStateFromMeta(2));
 			}
-			
+
 			for (byte z1 = -33; z1 < -31; z1++)
 			{
 				this.setBlock(world, new BlockPos(x + x1, y - 1, z + z1), NekitePlate.getStateFromMeta(2));
 			}
 		}
-		
+
 		for (byte x1 = -18; x1 < 1; x1++) //small roads, east-west
 		{
 			for (byte z1 = -15; z1 < -13; z1++)
@@ -135,7 +137,7 @@ public class SchematicNekoidsForwardBase extends Schematic {
 				this.setBlock(world, new BlockPos(x + x1, y - 1, z + z1), NekitePlate.getStateFromMeta(2));
 			}
 		}
-		
+
 		for (byte x1 = 12; x1 < 14; x1++) //smaller main road, north-south
 		{
 			for (byte z1 = -48; z1 < 0; z1++)
@@ -184,17 +186,26 @@ public class SchematicNekoidsForwardBase extends Schematic {
 				this.setBlock(world, new BlockPos(x + x1, y + y1, z - 48), state);
 			}
 		}
-		
+
 		for (byte b = 0; b < brSchematics.length; b++) //use the pre-created schematics for the various buildings around the base
 		{
 			BlockPos pos = BARRACKS_OFFSETS[b];
 			brSchematics[b].generateStructure(world, rand, x + pos.getX(), y + pos.getY(), z + pos.getZ());
 		}
-		
+
 		whSchematics[0].generateStructure(world, rand, x + WAREHOUSE_OFFSET.getX(), y + WAREHOUSE_OFFSET.getY(), z + WAREHOUSE_OFFSET.getZ());
 		whSchematics[1].generateStructure(world, rand, x + WAREHOUSE2_OFFSET.getX(), y + WAREHOUSE2_OFFSET.getY(), z + WAREHOUSE2_OFFSET.getZ());
-		
+
 		nmSchematic.generateStructure(world, rand, x + MANSION_OFFSET.getX(), y + MANSION_OFFSET.getY(), z + MANSION_OFFSET.getZ());
+
+		this.spawnEntity(world, new BlockPos(x, y + 7, z), new EntityJetNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 4, y + 7, z - 48), new EntityJetNeko(world));
+		this.spawnEntity(world, new BlockPos(x + 27, y + 7, z - 48), new EntityJetNeko(world));
+		this.spawnEntity(world, new BlockPos(x + 27, y + 7, z + 38), new EntityJetNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 20, y + 7, z + 38), new EntityJetNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 20, y + 7, z - 17), new EntityJetNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 4, y + 7, z - 17), new EntityJetNeko(world));
+		this.spawnEntity(world, new BlockPos(x + 27, y + 7, z), new EntityJetNeko(world));
 
 		return this;
 	}

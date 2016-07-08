@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.entity.mob.EntityMechaNeko;
+import tragicneko.tragicmc.entity.mob.EntityTraderNeko;
 import tragicneko.tragicmc.entity.mob.EntityWorkerNeko;
 import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -311,7 +312,7 @@ public class SchematicNekoVillage extends Schematic {
 			this.setBlockToAir(world, x + INTERNAL_ROTATION_OFFSETS[b][0], y + 6, z + INTERNAL_ROTATION_OFFSETS[b][1]);
 		}
 		
-		this.spawnEntity(world, new BlockPos(x, y, z), new EntityWorkerNeko(world));
+		this.spawnEntity(world, new BlockPos(x, y, z), rand.nextBoolean() ? new EntityWorkerNeko(world) : new EntityTraderNeko(world));
 	}
 
 	public void generateVacantLot(World world, Random rand, int x, int y, int z, byte rotation)
