@@ -4928,16 +4928,25 @@ Added egg colors for (most) Neko subtypes and the Mecha Exo
 Added basic Thaumcraft compatibility, it'll just take a really long time to actually add the proper aspects to each mob, block and item in the mod
 so this'll probably be shelved for now (at least I got it working, right?)
 Fixed compiler issues with adding Thaumcraft compatibility
+Increased frequency and randomness of Solar Bombs shedding fireballs
+Made it so that small structures have a greater chance of having passive Nekos and that walled cities have a good chance to have Trader Nekos
+Added render, model and animations for the Assault Neko
+Fixed Assault Neko's sounds
+Changed name of Worker Neko to Common Neko
+Fixed Common Nekos not saving their texture ID
+Created new texture for Trader Nekos and slightly modified their model to make them easier to spot
+Added ability for the TickBuilder to skip a placement if it matches the block state that it's replacing, tile entities will always replace the block
+Added sounds for Mecha Exo (simple sounds)
+Made it so that Mecha Exos don't take fall damage
+Working on recording the lines for the Nekos (keep getting distracted or bothered, ugh)
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)
 Worker Neko (Living, Hurt, Death)
 Trader Neko (Living, Hurt, Death, Trade Accept, Trade Decline)
 Professor Nekoid (Living, Hurt, Death)
-Mecha Exo (Step, Hurt, Death, Low Health sound)
 
 Side expansion models/textures:
-Worker Neko (New variant textures, add small model variants like hats and backpacks)
 Professor Nekoid (Completely new model based on Tragic Neko, new texture)
 Neko Ray Gun (Item model/texture, based on Science Neko's model weapon)
 Nekoid's Blaster (Item model/texture, based on Nekoid model weapon)
@@ -4954,6 +4963,9 @@ Convert Enchantment events and Potion events into their proper classes using the
 and it makes it difficult to look for and modify certain effects
 Add a canUseAbility method in the superclasses for the mobs and bosses to make it easier to enforce things across all entities, they can override and
 add more parameters for this if need be as well
+Make all entity AI generic so that it'll be easier to use for future mobs/bosses
+DoomsdayManager can be removed in a future update and hooked into the Doom update loop, having the server side update each player and handle effects for them
+rather than having a static thing handle it (it doesn't need to do authority checks so there's no point in having it anymore)
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
