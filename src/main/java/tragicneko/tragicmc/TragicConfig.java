@@ -309,10 +309,15 @@ public class TragicConfig {
 		registerObject("traderNekoReleaseTrading", true); //should the trader neko be released before it can trade
 		
 		registerObject("allowProfessorNekoid", true);
-		registerObject("professorNekoidStats", new MobStat(new double[] {100.0, 0.25, 6.0, 32.0, 0.0}, 0));
+		registerObject("professorNekoidStats", new MobStat(new double[] {200.0, 0.25, 6.0, 32.0, 0.0}, 12));
 		registerObject("professorNekoidSpawnChance", 1);
 		registerObject("professorNekoidSpawnOverride", false);
 		registerObject("professorNekoidSpawnBiomes", new BiomeGenBase[] {BiomeGenBase.ocean});
+		
+		registerObject("professorNekoidBlaster", true); //should it use a blaster
+		registerObject("professorNekoidMecha", true); //should it spawn on an exo
+		registerObject("professorNekoidMechaArmor", true); //should nekoid get armor from riding a mecha
+		registerObject("professorNekoidUseMecha", true); //should nekoid use the exo's various attacks
 		
 		registerObject("debugMode", false); //internal option to randomize settings
 		enchantList = recreateEnchantmentList();
@@ -2684,7 +2689,7 @@ public class TragicConfig {
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
 
 		s = "tragicNekoStats";
-		prop = config.get(cat.getName(), s, new double[] {80.0, 0.335, 6.0, 32.0, 0.0, 0});
+		prop = config.get(cat.getName(), s, new double[] {80.0, 0.335, 4.0, 32.0, 0.0, 0});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
 
 		s = "toxStats";

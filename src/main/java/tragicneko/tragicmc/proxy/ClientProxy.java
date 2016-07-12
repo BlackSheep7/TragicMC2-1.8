@@ -81,6 +81,7 @@ import tragicneko.tragicmc.client.render.boss.RenderEnyvil;
 import tragicneko.tragicmc.client.render.boss.RenderKitsune;
 import tragicneko.tragicmc.client.render.boss.RenderMegaCryse;
 import tragicneko.tragicmc.client.render.boss.RenderPolaris;
+import tragicneko.tragicmc.client.render.boss.RenderProfessorNekoid;
 import tragicneko.tragicmc.client.render.boss.RenderTimeController;
 import tragicneko.tragicmc.client.render.boss.RenderVoxStellarum;
 import tragicneko.tragicmc.client.render.boss.RenderYeti;
@@ -431,7 +432,7 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityClaymation.class, new IRenderFactory() {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderClaymation(manager); }});
 		registerRender(EntityProfessorNekoid.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderKitsune(manager); }});
+			@Override public Render createRenderFor(RenderManager manager) { return new RenderProfessorNekoid(manager); }});
 
 		//Alpha renders
 		registerRender(EntityOverlordCocoon.class, new IRenderFactory() {
