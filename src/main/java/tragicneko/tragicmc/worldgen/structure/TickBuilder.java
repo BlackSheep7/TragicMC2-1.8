@@ -93,12 +93,15 @@ public class TickBuilder {
 					tb.removeSchematic(origin);
 					List<Tuple<BlockPos, Entity>> list = sch.entityList;
 
-					for (Tuple<BlockPos, Entity> tp : list)
+					if (list != null)
 					{
-						Entity e = tp.getRight();
-						BlockPos pos = tp.getLeft();
-						e.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-						tb.theWorld.spawnEntityInWorld(e);
+						for (Tuple<BlockPos, Entity> tp : list)
+						{
+							Entity e = tp.getRight();
+							BlockPos pos = tp.getLeft();
+							e.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+							tb.theWorld.spawnEntityInWorld(e);
+						}
 					}
 					continue;
 				}
@@ -121,7 +124,7 @@ public class TickBuilder {
 								sch.placedBlocks++;
 								continue;
 							}
-							
+
 							sch.setMappedBlock(tb.theWorld, pre);
 							sch.placedBlocks++;
 
@@ -132,18 +135,21 @@ public class TickBuilder {
 							}
 						}
 					}
+
 					if (sch.hasFinished())
 					{
 						tb.removeSchematic(origin);
-						
 						List<Tuple<BlockPos, Entity>> list = sch.entityList;
 
-						for (Tuple<BlockPos, Entity> tp : list)
+						if (list != null)
 						{
-							Entity e = tp.getRight();
-							BlockPos pos = tp.getLeft();
-							e.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-							tb.theWorld.spawnEntityInWorld(e);
+							for (Tuple<BlockPos, Entity> tp : list)
+							{
+								Entity e = tp.getRight();
+								BlockPos pos = tp.getLeft();
+								e.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+								tb.theWorld.spawnEntityInWorld(e);
+							}
 						}
 						continue;
 					}
