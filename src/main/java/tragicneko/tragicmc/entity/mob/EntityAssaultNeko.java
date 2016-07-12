@@ -19,7 +19,7 @@ public class EntityAssaultNeko extends EntityNeko {
 
 	public EntityAssaultNeko(World par1World) {
 		super(par1World);
-		this.setSize(0.675F * 1.145F, 1.955F * 1.145F);
+		this.setSize(0.675F * 1.145F, 1.995F);
 		this.experienceValue = 50;
 		this.stepHeight = 1.0F;
 	}

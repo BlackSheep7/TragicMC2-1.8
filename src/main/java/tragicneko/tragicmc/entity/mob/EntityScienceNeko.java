@@ -36,7 +36,7 @@ public class EntityScienceNeko extends EntityNeko {
 
 	public EntityScienceNeko(World par1World) {
 		super(par1World);
-		this.setSize(0.675F * 0.855F, 1.955F * 0.855F);
+		this.setSize(0.675F * 0.855F, 1.895F * 0.855F);
 		this.experienceValue = 50;
 		if (TragicConfig.getBoolean("scienceNekoTargetsUndead")) this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true, false, undeadTarget));
 	}

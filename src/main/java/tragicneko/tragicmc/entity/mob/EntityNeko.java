@@ -85,7 +85,7 @@ public abstract class EntityNeko extends TragicMob {
 
 	public EntityNeko(World par1World) {
 		super(par1World);
-		this.setSize(0.475F, 1.955F);
+		this.setSize(0.475F, 1.895F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		if (!this.isProperDate()) this.tasks.addTask(0, attackOnCollide);
 		this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -281,6 +281,11 @@ public abstract class EntityNeko extends TragicMob {
 		}
 
 		if (this.isReleased() && this.getAttackTarget() != null && this.getAttackTarget() instanceof EntityPlayer)
+		{
+			this.setAttackTarget(null);
+		}
+		
+		if (!this.isReleased() && this.getAttackTarget() != null && this.getAttackTarget() instanceof EntityProfessorNekoid)
 		{
 			this.setAttackTarget(null);
 		}
