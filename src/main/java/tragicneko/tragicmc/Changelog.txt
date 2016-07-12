@@ -4939,6 +4939,12 @@ Added ability for the TickBuilder to skip a placement if it matches the block st
 Added sounds for Mecha Exo (simple sounds)
 Made it so that Mecha Exos don't take fall damage
 Working on recording the lines for the Nekos (keep getting distracted or bothered, ugh)
+Slight modification done to Neko hitboxes (made slightly shorter)
+Added Professor Nekoid's AI, added a render and basic model for it
+Reduced default attack damage of Tragic Nekos to balance it more with the new subtypes
+Fixed possible crash via the TickBuilder attempting to use the spawned entity list when it doesn't have any entities to spawn
+Looking into adding Fluids for some of the mod's ores for use in Tinkerer's Construct, this won't be implemented during this release either
+Changed some of the OreDictionary names for some of the items and blocks in the mod (partially due to TConstruct compatibility stuff)
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)
@@ -4947,7 +4953,7 @@ Trader Neko (Living, Hurt, Death, Trade Accept, Trade Decline)
 Professor Nekoid (Living, Hurt, Death)
 
 Side expansion models/textures:
-Professor Nekoid (Completely new model based on Tragic Neko, new texture)
+Professor Nekoid (Model & Texture)
 Neko Ray Gun (Item model/texture, based on Science Neko's model weapon)
 Nekoid's Blaster (Item model/texture, based on Nekoid model weapon)
 Neko Laser Sword (Item model/texture, based on Assault Neko's model weapon)
@@ -4963,9 +4969,12 @@ Convert Enchantment events and Potion events into their proper classes using the
 and it makes it difficult to look for and modify certain effects
 Add a canUseAbility method in the superclasses for the mobs and bosses to make it easier to enforce things across all entities, they can override and
 add more parameters for this if need be as well
+Add a setTarget override for some of the mobs and bosses to specifically prevent them from targeting a mob that they shouldn't target at all
 Make all entity AI generic so that it'll be easier to use for future mobs/bosses
 DoomsdayManager can be removed in a future update and hooked into the Doom update loop, having the server side update each player and handle effects for them
 rather than having a static thing handle it (it doesn't need to do authority checks so there's no point in having it anymore)
+DoomsdayStatus would be used for manager purposes, it keeps track of the current active Doomsdays per player so it can be used to activate Combinations and
+other things (also Achievements can be added based on type of Doomsday in use and whatever else is going on)
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
