@@ -31,7 +31,6 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.TragicRecipes;
 import tragicneko.tragicmc.client.gui.GuiAmuletInventory;
-import tragicneko.tragicmc.compatibility.CompatibilityThaumcraft;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.AchievementEvents;
@@ -261,6 +260,8 @@ public class CommonProxy implements IGuiHandler {
 			TragicMC.logWarning("Achievements are enabled in config but are disabled due to certain blocks and items being disabled. This is to prevent game crashes from ocurring.");
 			TragicConfig.overrideObject("allowAchievements", false);
 		}
+		
+		//CompatibilityTConstruct.sendIMC();
 	}
 
 	@Override

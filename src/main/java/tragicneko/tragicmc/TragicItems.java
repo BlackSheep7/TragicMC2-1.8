@@ -1323,18 +1323,23 @@ public class TragicItems {
 		//Load chest hooks for the mod
 		ChestHooks.load();
 
-		OreDictionary.registerOre("gemRuby", Ruby);
-		OreDictionary.registerOre("gemSapphire", Sapphire);
 		OreDictionary.registerOre("cropRice", Rice);
 		OreDictionary.registerOre("foodSushi", Sushi);
 		OreDictionary.registerOre("foodIceCream", IceCream);
 		OreDictionary.registerOre("foodBanana", Banana);
 		OreDictionary.registerOre("foodBananaSplit", BananaSplit);
-		OreDictionary.registerOre("ingotTungsten", Tungsten);
-		OreDictionary.registerOre("ingotMercury", QuicksilverIngot);
+		
+		OreDictionary.registerOre("oreRuby", Ruby);
+		OreDictionary.registerOre("oreSapphire", Sapphire);
+		OreDictionary.registerOre("oreTungsten", Tungsten);
+		OreDictionary.registerOre("oreRedMercury", RedMercury);
+		OreDictionary.registerOre("oreQuicksilver", Quicksilver);
+		OreDictionary.registerOre("ingotQuicksilver", QuicksilverIngot);
+		
+		OreDictionary.registerOre("oreNekite", Nekite);
 
 		//Vanilla entries for my mod
-		for (int i = 0; i < 5; i++) OreDictionary.registerOre("fish", new ItemStack(Items.fish, 1, i));
+		OreDictionary.registerOre("fish", new ItemStack(Items.fish, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("fish", Tentacle);
 
 		OreDictionary.registerOre("oreCharms", RubyCharm);

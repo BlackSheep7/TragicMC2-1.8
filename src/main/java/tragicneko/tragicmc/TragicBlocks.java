@@ -242,7 +242,7 @@ public class TragicBlocks {
 	public static Block Honeydrop;
 
 	public static Block Corsin;
-	
+
 	public static Block NekoGrass;
 	public static Block Nekowood;
 	public static Block NekowoodPlanks;
@@ -250,7 +250,7 @@ public class TragicBlocks {
 	public static Block NekowoodLeaves;
 	public static Block NekoBush;
 	public static Block NekitePlate;
-	
+
 	public static Block NekiteWire;
 
 	public static void load()
@@ -317,7 +317,7 @@ public class TragicBlocks {
 
 		StructureSeed = (new BlockStructureSeed());
 		GameRegistry.registerBlock(StructureSeed, ItemBlockStructureSeeds.class, "structureSeed");
-		
+
 		StructureSeed2 = (new BlockStructureSeed2());
 		GameRegistry.registerBlock(StructureSeed2, ItemBlockStructureSeeds2.class, "structureSeed2");
 
@@ -576,12 +576,12 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(IceSpike, ItemBlock.class, "iceSpike");
 
 		Crystal = new BlockGeneric(Material.iron, "pickaxe", 3) {
-			
+
 			@Override
 			public boolean isOpaqueCube() {
 				return false;
 			}
-			
+
 			@Override
 			@SideOnly(Side.CLIENT)
 			public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
@@ -601,7 +601,7 @@ public class TragicBlocks {
 
 				return super.shouldSideBeRendered(worldIn, pos, side);
 			}
-			
+
 			@Override
 			public EnumWorldBlockLayer getBlockLayer() {
 				return EnumWorldBlockLayer.TRANSLUCENT;
@@ -700,39 +700,38 @@ public class TragicBlocks {
 
 		Corsin = new BlockCorsin().setUnlocalizedName("tragicmc.corsin");
 		GameRegistry.registerBlock(Corsin, TragicItemBlock.class, "corsin", new Object[] {new String[] {"normal", "faded", "brick", "fadedBrick", "circle", "celled", "scarred", "crystal", "crystalWrap"}, "corsin"});
-		
+
 		NekoGrass = new BlockGenericGrass("Neko").setUnlocalizedName("tragicmc.nekoGrass");
 		GameRegistry.registerBlock(NekoGrass, ItemBlock.class, "nekoGrass");
-		
+
 		Nekowood = new BlockGenericLog(3).setUnlocalizedName("tragicmc.nekowood");
 		GameRegistry.registerBlock(Nekowood, ItemBlock.class, "nekowood");
-		
+
 		NekowoodLeaves = new BlockGenericLeaves().setUnlocalizedName("tragicmc.nekowoodLeaves");
 		GameRegistry.registerBlock(NekowoodLeaves, ItemBlock.class, "nekowoodLeaves");
-		
+
 		NekowoodPlanks = new BlockGenericPlanks().setUnlocalizedName("tragicmc.nekowoodPlanks");
 		GameRegistry.registerBlock(NekowoodPlanks, ItemBlock.class, "nekowoodPlanks");
-		
+
 		NekiteOre = new BlockGenericOre(3, true).setUnlocalizedName("tragicmc.nekiteOre");
 		GameRegistry.registerBlock(NekiteOre, ItemBlock.class, "nekiteOre");
-		
+
 		NekoBush = new BlockGenericBush().setUnlocalizedName("tragicmc.nekoBush");
 		GameRegistry.registerBlock(NekoBush, ItemBlock.class, "nekoBush");
-		
+
 		NekitePlate = new BlockNekitePlate().setUnlocalizedName("tragicmc.nekitePlate");
 		GameRegistry.registerBlock(NekitePlate, TragicItemBlock.class, "nekitePlate", new Object[] {new String[] {"compressed", "normal", "smooth", "cross", "marked", "grated", "ironPlate", "ironCross", "ironMarked", "ironGrated"}, "nekitePlate"});
 
 		NekiteWire = new BlockBarbedWire().setUnlocalizedName("tragicmc.nekiteWire").setCreativeTab(TragicMC.Survival).setHardness(25.0F).setResistance(6.0F);
 		GameRegistry.registerBlock(NekiteWire, ItemBlock.class, "nekiteWire");
-		
-		for (byte i = 0; i < 3; i++)
-		{
-			OreDictionary.registerOre("blockQuicksand", new ItemStack(Quicksand, 1, i));
-			OreDictionary.registerOre("cobblestone", new ItemStack(LightCobblestone, 1, i));
-		}
 
-		for (byte i = 0; i < 4; i++) OreDictionary.registerOre("cobblestone", new ItemStack(DarkCobblestone, 1, i));
-		for (byte i = 0; i < 8; i++) OreDictionary.registerOre("stone", new ItemStack(DarkStone, 1, i));
+
+		OreDictionary.registerOre("blockQuicksand", new ItemStack(Quicksand, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("cobblestone", new ItemStack(LightCobblestone, 1, OreDictionary.WILDCARD_VALUE));
+
+
+		OreDictionary.registerOre("cobblestone", new ItemStack(DarkCobblestone, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("stone", new ItemStack(DarkStone, 1, OreDictionary.WILDCARD_VALUE));
 
 		OreDictionary.registerOre("stone", LightStone);
 		OreDictionary.registerOre("stone", ErodedStone);
@@ -741,11 +740,13 @@ public class TragicBlocks {
 		OreDictionary.registerOre("materialVine", Glowvine);
 		OreDictionary.registerOre("materialVine", WickedVine);
 		OreDictionary.registerOre("materialVine", DarkVine);
-
-		OreDictionary.registerOre("oreRuby", RubyOre);
-		OreDictionary.registerOre("oreSapphire", SapphireOre);
-		OreDictionary.registerOre("oreTungsten", TungstenOre);
-		OreDictionary.registerOre("oreMercury", MercuryOre);
+		
+		OreDictionary.registerOre("blockRuby", new ItemStack(CompactOre, 1, 0));
+		OreDictionary.registerOre("blockSapphire", new ItemStack(CompactOre, 1, 1));
+		OreDictionary.registerOre("blockTungsten", new ItemStack(CompactOre, 1, 2));
+		OreDictionary.registerOre("blockRedMercury", new ItemStack(CompactOre, 1, 3));
+		OreDictionary.registerOre("blockQuicksilver", new ItemStack(CompactOre, 1, 4));
+		OreDictionary.registerOre("blockNekite", new ItemStack(NekitePlate, 1, 0));
 
 		OreDictionary.registerOre("cropGiantPotato", PotatoBlock);
 		OreDictionary.registerOre("cropGiantCarrot", CarrotBlock);
@@ -762,17 +763,17 @@ public class TragicBlocks {
 		OreDictionary.registerOre("plankWood", DarkwoodPlanks);
 		OreDictionary.registerOre("logWood", Nekowood);
 		OreDictionary.registerOre("plankWood", NekowoodPlanks);
-		
-		for (int i = 0; i < 16; i++) OreDictionary.registerOre("flowers", new ItemStack(Blocks.red_flower, 1, i));
-		for (int i = 0; i < 6; i++) OreDictionary.registerOre("flowers", new ItemStack(Blocks.double_plant, 1, i));
-		for (int i = 0; i < 16; i++) OreDictionary.registerOre("flowers", new ItemStack(TragicFlower, 1, i));
-		for (int i = 0; i < 16; i++) OreDictionary.registerOre("flowers", new ItemStack(TragicFlower2, 1, i));
+
+		OreDictionary.registerOre("flowers", new ItemStack(Blocks.red_flower, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("flowers", new ItemStack(Blocks.double_plant, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("flowers", new ItemStack(TragicFlower, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("flowers", new ItemStack(TragicFlower2, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("flowers", new ItemStack(Blocks.yellow_flower));
-		
+
 		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.red_mushroom));
 		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.brown_mushroom));
-		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.red_mushroom_block));
-		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.brown_mushroom_block));
+		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.red_mushroom_block, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("mushrooms", new ItemStack(Blocks.brown_mushroom_block, 1, OreDictionary.WILDCARD_VALUE));
 
 		java.util.Set<BiomeGenBase> set = FlowerWorldGen.allowedBiomes;
 		BiomeGenBase[] biomes = set.toArray(new BiomeGenBase[set.size()]);
