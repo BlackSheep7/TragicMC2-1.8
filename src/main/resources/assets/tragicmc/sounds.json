@@ -524,12 +524,6 @@
 			"boss/timecontroller/hurt3", "boss/timecontroller/hurt4",
 			"boss/timecontroller/hurt5", "boss/timecontroller/hurt6"]
     },
-    "mob.mechaexo.thruster":
-    {
-        "category": "ambient",
-            "sounds": [
-                "mob/mechaexo/thruster"]
-    },
 	"mob.abomination.hurt":
     {
 		"category": "hostile",
@@ -1190,6 +1184,12 @@
     {
         "category": "hostile",
         "sounds": ["mob/exo/hit", "mob/exo/hit2"]
+    },
+    "mob.exo.thruster":
+    {
+        "category": "ambient",
+            "sounds": [
+                "mob/exo/thruster"]
     },
     "mob.traderneko.idle":
     {
