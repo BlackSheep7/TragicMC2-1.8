@@ -144,7 +144,7 @@ public class EntityBlist extends TragicMob {
 					if (f > 5.0F) f = 5.0F;
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 1.5F + rand.nextFloat(), this.getMobGriefing());
 					this.setDead();
-					//TODO play death sound here
+					//play death sound here
 				}
 			}
 			this.motionX = this.motions[0] * 0.98;
@@ -208,7 +208,7 @@ public class EntityBlist extends TragicMob {
 		{
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 1.5F + rand.nextFloat(), this.getMobGriefing());
 			this.setDead();
-			//TODO play death sound here
+			//play death sound here
 		}
 		return flag;
 	}

@@ -31,7 +31,7 @@ public class SchematicNekoidsForwardBase extends Schematic {
 			new BlockPos(19, 0, -40)
 	};
 
-	private static final BlockPos MANSION_OFFSET = new BlockPos(13, 0, 23); //TODO ensure offsets are correct
+	private static final BlockPos MANSION_OFFSET = new BlockPos(13, 0, 23);
 
 	public SchematicNekoidsForwardBase(BlockPos origin, Structure structure, World world) {
 		super(origin, structure, world, 25, 90, 50);
