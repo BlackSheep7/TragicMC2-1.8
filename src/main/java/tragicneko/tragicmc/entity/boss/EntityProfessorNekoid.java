@@ -16,7 +16,9 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
@@ -37,10 +39,11 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityProfessorNekoid extends TragicBoss {
 
-	public boolean hasLostMecha = false;
-	public int mechaUseTicks = 100;
-	public int blasterUseTicks = 60;
-	
+	private static final int DW_BLASTER_TICKS = 20;
+	private static final int DW_LOST_MECHA = 21;
+	private static final int DW_MECHA_COMMAND = 22;
+	private static final int DW_TITANFALL = 23;
+
 	public static final Predicate nekoReleasedTarget = new Predicate() {
 		@Override
 		public boolean apply(Object input) {
@@ -51,7 +54,6 @@ public class EntityProfessorNekoid extends TragicBoss {
 			return entity instanceof EntityNeko && ((EntityNeko) entity).isReleased();
 		}
 	};
-	
 
 	public EntityProfessorNekoid(World par1World) {
 		super(par1World);
@@ -66,8 +68,9 @@ public class EntityProfessorNekoid extends TragicBoss {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, null));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityNeko.class, 0, true, false, nekoReleasedTarget));
+		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true, false, null));
 	}
-	
+
 	@Override
 	protected void applyEntityAttributes()
 	{
@@ -86,6 +89,47 @@ public class EntityProfessorNekoid extends TragicBoss {
 	}
 
 	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataWatcher.addObject(DW_BLASTER_TICKS, 100);
+		this.dataWatcher.addObject(DW_LOST_MECHA, (byte) 0);
+		this.dataWatcher.addObject(DW_MECHA_COMMAND, 60);
+		this.dataWatcher.addObject(DW_TITANFALL, 0);
+	}
+
+	public int getBlasterTicks() {
+		return this.dataWatcher.getWatchableObjectInt(DW_BLASTER_TICKS);
+	}
+
+	private void setBlasterTicks(int i) {
+		this.dataWatcher.updateObject(DW_BLASTER_TICKS, i);
+	}
+
+	public int getCommandTicks() {
+		return this.dataWatcher.getWatchableObjectInt(DW_MECHA_COMMAND);
+	}
+
+	private void setCommandTicks(int i) {
+		this.dataWatcher.updateObject(DW_MECHA_COMMAND, i);
+	}
+
+	public boolean hasLostMecha() {
+		return this.dataWatcher.getWatchableObjectByte(DW_LOST_MECHA) == 1;
+	}
+
+	private void setLostMecha(boolean flag) {
+		this.dataWatcher.updateObject(DW_LOST_MECHA, flag ? (byte) 1 : (byte) 0);
+	}
+
+	public int getTitanfallTicks() {
+		return this.dataWatcher.getWatchableObjectInt(DW_TITANFALL);
+	}
+
+	private void setTitanfallTicks(int i) {
+		this.dataWatcher.updateObject(DW_TITANFALL, i);
+	}
+
+	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 
@@ -94,41 +138,61 @@ public class EntityProfessorNekoid extends TragicBoss {
 			return;
 		}
 
-		this.mechaUseTicks--;
-		this.blasterUseTicks--;
+		if (this.getCommandTicks() > 0) this.setCommandTicks(this.getCommandTicks() - 1);
+		if (this.getBlasterTicks() > 0) this.setBlasterTicks(this.getBlasterTicks() - 1);
+		if (this.getTitanfallTicks() > 0) this.setTitanfallTicks(this.getTitanfallTicks() - 1);
 
-		if (this.hasLostMecha && this.ridingEntity == null)
+		if (this.hasLostMecha() && this.ridingEntity == null)
 		{
 			List<EntityMechaExo> list = this.worldObj.getEntitiesWithinAABB(EntityMechaExo.class, this.getEntityBoundingBox().expand(4.0, 4.0, 4.0));
 			for (EntityMechaExo e: list)
 			{
 				if (e.riddenByEntity != null) continue;
 				this.mountEntity(e);
+				this.setLostMecha(false);
 				break;
 			}
 		}
-		
+
 		if (this.getAttackTarget() != null && (this.getAttackTarget() == this.ridingEntity || this.getAttackTarget() instanceof EntityNeko && !((EntityNeko) this.getAttackTarget()).isReleased()))
 		{
 			this.setAttackTarget(null);
 			if (this.ridingEntity instanceof EntityMechaExo) ((EntityLiving) this.ridingEntity).setAttackTarget(null);
 		}
 
-		if (!this.hasLostMecha && (this.ridingEntity == null || this.ridingEntity.isDead && this.ridingEntity instanceof EntityMechaExo))
+		if (!this.hasLostMecha() && (this.ridingEntity == null || this.ridingEntity.isDead && this.ridingEntity instanceof EntityMechaExo))
 		{
-			this.hasLostMecha = true;
+			this.setLostMecha(true);
+			this.setTitanfallTicks(400);
 		}
 
-		if (this.ridingEntity != null && this.ridingEntity instanceof EntityMechaExo && this.getAttackTarget() != null && this.mechaUseTicks == 0)
+		if (this.getTitanfallTicks() == 0 && this.hasLostMecha() && this.onGround)
+		{
+			EntityMechaExo exo = new EntityMechaExo(this.worldObj);
+			double y = this.posY - WorldHelper.getDistanceToGround(this);
+			BlockPos pos = new BlockPos(this.posX, y + 1, this.posZ);
+			if (y + 22 > 256) y = 256;
+			else y += 22;
+			if (this.canAreaSeeSky(pos, 1) || this.canAreaSeeSky(pos.up(), 1) || this.canAreaSeeSky(pos.up(2), 1))
+			{
+				exo.setPosition(this.posX, y, this.posZ);
+				exo.titanfalled = true;
+				this.worldObj.spawnEntityInWorld(exo);
+			}
+			
+			this.setTitanfallTicks(200);
+		}
+
+		if (this.ridingEntity != null && this.ridingEntity instanceof EntityMechaExo && this.getAttackTarget() != null && this.getCommandTicks() == 0)
 		{
 			EntityMechaExo exo = (EntityMechaExo) this.ridingEntity;
 			exo.useAttackViaMob(rand.nextBoolean() ? 1 : 0, this.getAttackTarget());
-			this.mechaUseTicks = 40;
+			this.setCommandTicks(50);
 		}
 
-		if (this.blasterUseTicks == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && !this.isDead)
+		if (this.getBlasterTicks() == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F && rand.nextInt(6) == 0 && this.ticksExisted % 5 == 0 && !this.isDead)
 		{
-			MovingObjectPosition mop = WorldHelper.getMOPFromEntity(this, 16.0);
+			MovingObjectPosition mop = WorldHelper.getMOPFromEntity(this, 10.0);
 
 			float f1 = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch);
 			float f2 = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw);
@@ -139,11 +203,11 @@ public class EntityProfessorNekoid extends TragicBoss {
 			float f6 = MathHelper.sin(-f1 * 0.017453292F);
 			float f7 = f4 * f5;
 			float f8 = f3 * f5;
-			double box = 6.0D;
+			double box = 5.0D;
 
 			AxisAlignedBB bb;
 
-			meow: for (double d = 0.0D; d <= 15.0; d += 0.5D)
+			meow: for (double d = 0.0D; d <= 11.0; d += 0.5D)
 			{
 				Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
 
@@ -165,7 +229,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 					if (e != this && e != this.ridingEntity)
 					{
 						flag = true;
-						float f = this.getDistanceToEntity(e) / 23.0F;
+						float f = this.getDistanceToEntity(e) / 12.0F;
 						if (f <= 0) f = 0.1F;
 						MovingObjectPosition mop2 = WorldHelper.getMOPFromEntity(this, 1 / f);
 
@@ -180,7 +244,8 @@ public class EntityProfessorNekoid extends TragicBoss {
 				if (flag) break;
 			}
 
-			this.blasterUseTicks = 200;
+			this.setBlasterTicks(200);
+			this.worldObj.playSoundAtEntity(this, "tragicmc:random.windblast", 1.4F, 1.0F);
 		}
 
 		if (this.ticksExisted % 40 == 0 && this.getAttackTarget() != null && !this.isDead)
@@ -194,7 +259,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 				if (e.getAttackTarget() == null) e.setAttackTarget(this.getAttackTarget());
 			}
 
-			if (list.size() < 12 && this.getHealth() < this.getMaxHealth() / 2.0F && this.ticksExisted % 120 == 0)
+			if (list.size() < 12 && (this.getHealth() < this.getMaxHealth() / 2.0F || this.hasLostMecha()) && this.ticksExisted % 240 == 0)
 			{
 				EntityNeko neko = new EntityTragicNeko(this.worldObj);
 				if (rand.nextInt(4) == 0)
@@ -232,6 +297,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 									this.worldObj.spawnEntityInWorld(neko);
 									neko.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this.posX + x1, this.posY + y1, this.posZ + z1)), null);
 									if (entitylivingbase != null) neko.setAttackTarget(entitylivingbase);
+									this.worldObj.playSoundAtEntity(this, "tragicmc:random.siren", 1.0F, 1.0F);
 									break meow;
 								}
 							}
@@ -241,22 +307,23 @@ public class EntityProfessorNekoid extends TragicBoss {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean attackEntityAsMob(Entity entity) {
 		if (entity == this.ridingEntity) return false;
 		return super.attackEntityAsMob(entity);
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg) {
-		if (src.getEntity() != null && src.getEntity() == this.ridingEntity) return false;
+		if (src.getEntity() != null && src.getEntity() == this.ridingEntity || src.isExplosion() || src.getEntity() instanceof EntityNeko && !((EntityNeko) src.getEntity()).isReleased()) return false;
 		boolean flag = super.attackEntityFrom(src, dmg);
 		if (flag && this.ridingEntity instanceof EntityMechaExo && src.getEntity() instanceof EntityLivingBase)
 		{
+			if (src.getEntity() instanceof EntityLiving) ((EntityLiving) src.getEntity()).setAttackTarget((EntityMechaExo) this.ridingEntity);
 			((EntityMechaExo) this.ridingEntity).setAttackTarget((EntityLivingBase) src.getEntity());
 		}
-		
+
 		return flag;
 	}
 
@@ -279,14 +346,45 @@ public class EntityProfessorNekoid extends TragicBoss {
 		super.onDeath(src);
 
 		if (this.worldObj.isRemote) return;
-		
+
 		EntityPlayer player = (EntityPlayer) (src.getEntity() instanceof EntityPlayer ? src.getEntity() : null);
 
-		double d = 48.0;
-		List<EntityNeko> list = this.worldObj.getEntitiesWithinAABB(EntityNeko.class, this.getEntityBoundingBox().expand(d, d, d));
+		double d = 64.0;
+		List<EntityNeko> list = this.worldObj.getEntitiesWithinAABB(EntityNeko.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.posX, this.posY, this.posZ).expand(d, d, d));
 
 		for (EntityNeko e : list) {
 			if (!e.isReleased()) e.releaseNeko(player);
 		}
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("blasterTicks")) this.setBlasterTicks(tag.getInteger("blasterTicks"));
+		if (tag.hasKey("hasLostMecha")) this.setLostMecha(tag.getBoolean("hasLostMecha"));
+		if (tag.hasKey("commandTicks")) this.setCommandTicks(tag.getInteger("commandTicks"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("blasterTicks", this.getBlasterTicks());
+		tag.setBoolean("hasLostMecha", this.hasLostMecha());
+		tag.setInteger("commandTicks", this.getCommandTicks());
+	}
+
+	public boolean canAreaSeeSky(BlockPos pos, final int area) {
+		if (!this.worldObj.canBlockSeeSky(pos)) return false;
+
+		for (int x1 = -area; x1 < area + 1; x1++)
+		{
+			for (int z1 = -area; z1 < area + 1; z1++)
+			{
+				if (!this.worldObj.canBlockSeeSky(pos.add(x1, 0, z1))) return false;
+			}
+		}
+
+		return true;
 	}
 }

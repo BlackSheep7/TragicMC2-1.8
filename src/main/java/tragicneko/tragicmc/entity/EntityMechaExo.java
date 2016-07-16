@@ -49,6 +49,8 @@ public class EntityMechaExo extends EntityRidable {
 	public final EntityAIBase moveTowardsTarget = new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F);
 	public final EntityAIBase hurtByTarget = new EntityAIHurtByTarget(this, true);
 	public final EntityAIBase wander = new EntityAIWander(this, 0.65D);
+	
+	public boolean titanfalled = false;
 
 	public EntityMechaExo(World par1World) {
 		super(par1World);
@@ -163,6 +165,10 @@ public class EntityMechaExo extends EntityRidable {
 		if (this.hasFired() && cooldown <= 9) this.setFired(false, 0);
 		if (cooldown > 0) cooldown--;
 		if (this.getAttackTime() > 0) this.setAttackTime(this.getAttackTime() - 1);
+		if (this.riddenByEntity != null && this.getAttackTarget() != ((EntityLiving) this.riddenByEntity).getAttackTarget())
+		{
+			this.setAttackTarget(((EntityLivingBase) this.riddenByEntity).getAITarget());
+		}
 
 		if (this.getThrustTicks() > 0 && this.riddenByEntity != null)
 		{
@@ -226,6 +232,11 @@ public class EntityMechaExo extends EntityRidable {
 		if (this.getHealth() < this.getMaxHealth() / 3 && this.ticksExisted % 20 == 0)
 		{
 			this.worldObj.playSoundAtEntity(this, "tragicmc:random.beep", 0.2F, 1.6F);
+		}
+		
+		if (this.titanfalled)
+		{
+			this.motionY = -2F;
 		}
 	}
 
@@ -413,8 +424,21 @@ public class EntityMechaExo extends EntityRidable {
 		if (src == DamageSource.fall) return false;
 		if (src.getEntity() != null && src.getEntity() == this.riddenByEntity) return false;
 		if (src.getEntity() instanceof EntityLiving && this.riddenByEntity == null) ((EntityLiving) src.getEntity()).setAttackTarget(null);
-		if (src.getEntity() != this.getAttackTarget() && rand.nextInt(8) == 0 && this.riddenByEntity instanceof EntityLiving && src.getEntity() instanceof EntityLivingBase) ((EntityLiving) this.riddenByEntity).setAttackTarget((EntityLivingBase) src.getEntity());
+		if (src.getEntity() != this.getAttackTarget() && rand.nextInt(6) == 0 && this.riddenByEntity instanceof EntityLiving && src.getEntity() instanceof EntityLivingBase && ((EntityLiving) this.riddenByEntity).getAITarget() != src.getEntity())
+			{
+			((EntityLiving) this.riddenByEntity).setAttackTarget((EntityLivingBase) src.getEntity());
+			}
 		return super.attackEntityFrom(src, damage);
+	}
+	
+	@Override
+	public void fall(float dist, float multi)
+	{
+		if (!this.worldObj.isRemote && this.titanfalled && dist > 16.0F)
+		{
+			this.titanfalled = false;
+			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3.5F, false);
+		}
 	}
 	
 	@Override
