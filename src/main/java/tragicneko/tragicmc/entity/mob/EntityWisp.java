@@ -283,4 +283,9 @@ public class EntityWisp extends TragicMob {
 	public boolean getIllumination() {
 		return true;
 	}
+	
+	@Override
+	public boolean isBuffExempt() {
+		return true;
+	}
 }

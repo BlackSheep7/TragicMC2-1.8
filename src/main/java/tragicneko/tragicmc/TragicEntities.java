@@ -2176,7 +2176,7 @@ public class TragicEntities {
 					}
 				}
 			}
-			TragicEntityList.addMapping(EntityProfessorNekoid.class, "TragicMC.ProfessorNekoid", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
+			TragicEntityList.addMapping(EntityProfessorNekoid.class, "TragicMC.ProfessorNekoid", id++, 0xAA2121, 0x361818, EnumEggType.BOSS);
 		}
 
 		//Alphas

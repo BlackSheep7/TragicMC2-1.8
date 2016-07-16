@@ -44,11 +44,7 @@ public class ItemNekoidsBlaster extends Item {
 		}
 		else
 		{
-			if (!par2World.isRemote)
-			{
-				par2World.playSoundAtEntity(par3EntityPlayer, "tragicmc:random.windblast", 0.7F, 1.0F);
-			}
-			else
+			if (par2World.isRemote)
 			{
 				double d0 = mop.hitVec.xCoord - par3EntityPlayer.posX;
 				double d1 = mop.hitVec.yCoord - par3EntityPlayer.posY - par3EntityPlayer.getEyeHeight();
@@ -65,9 +61,10 @@ public class ItemNekoidsBlaster extends Item {
 					}
 				}
 			}
-
-			if (!par2World.isRemote)
+			else
 			{
+				par2World.playSoundAtEntity(par3EntityPlayer, "tragicmc:random.windblast", 0.7F, 1.0F);
+				
 				float f1 = par3EntityPlayer.prevRotationPitch + (par3EntityPlayer.rotationPitch - par3EntityPlayer.prevRotationPitch);
 				float f2 = par3EntityPlayer.prevRotationYaw + (par3EntityPlayer.rotationYaw - par3EntityPlayer.prevRotationYaw);
 				Vec3 vec3 = new Vec3(par3EntityPlayer.posX, par3EntityPlayer.posY, par3EntityPlayer.posZ);
@@ -100,7 +97,7 @@ public class ItemNekoidsBlaster extends Item {
 
 					for (Entity e : list)
 					{		
-						if (!(e instanceof EntityItem) && !(e instanceof EntityXPOrb) && !(e instanceof EntityArrow) && e != par3EntityPlayer && e != par3EntityPlayer.ridingEntity)
+						if (e != par3EntityPlayer && e != par3EntityPlayer.ridingEntity)
 						{
 							flag = true;
 							float f = par3EntityPlayer.getDistanceToEntity(e) / 23.0F;

@@ -118,9 +118,9 @@ public class WorldHelper {
 
 		BlockPos coords;
 
-		for (double x2 = -radius - 0.55D; x2 < radius + 0.55D; x2 += 0.5D)
+		for (double x2 = -radius; x2 < radius + 0.55D; x2 += 0.5D)
 		{
-			for (double z2 = -radius - 0.55D; z2 < radius + 0.55D; z2 += 0.5D)
+			for (double z2 = -radius; z2 < radius + 0.55D; z2 += 0.5D)
 			{
 				if (MathHelper.sqrt_double(x2 * x2 + z2 * z2) <= radius)
 				{
@@ -155,11 +155,11 @@ public class WorldHelper {
 
 		BlockPos coords;
 
-		for (double y1 = -distance; y1 < distance; y1 += 0.5D)
+		for (double y1 = -distance; y1 < distance + 0.55; y1 += 0.5D)
 		{
-			for (double x1 = -distance; x1 < distance; x1 += 0.5D)
+			for (double x1 = -distance; x1 < distance + 0.55; x1 += 0.5D)
 			{
-				for (double z1 = -distance; z1 < distance; z1 += 0.5D)
+				for (double z1 = -distance; z1 < distance + 0.55; z1 += 0.5D)
 				{
 					if (MathHelper.sqrt_double(x1 * x1 + z1 * z1 + y1 * y1) < radius)
 					{

@@ -2,6 +2,7 @@ package tragicneko.tragicmc.entity.projectile;
 
 import java.util.List;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -70,16 +71,23 @@ public class EntityNekoRocket extends EntityProjectile {
 
 		if (this.target == null && this.ticksInAir > 3)
 		{
-			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
-
-			for (int i = 0; i < list.size(); i++)
+			if (this.shootingEntity != null && this.shootingEntity instanceof EntityLiving)
 			{
-				if (list.get(i) != this.shootingEntity && list.get(i) instanceof EntityLivingBase && this.shootingEntity != null && this.shootingEntity.canEntityBeSeen(list.get(i)) &&
-						list.get(i) != this.shootingEntity.ridingEntity && list.get(i) != this.shootingEntity.riddenByEntity && !(list.get(i) instanceof EntityRidable) &&
-						!(list.get(i) instanceof EntityPlayer && ((EntityPlayer) list.get(i)).capabilities.isCreativeMode) && !list.get(i).isDead)
+				this.target = this.shootingEntity.getAITarget();
+			}
+			else
+			{
+				List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(16.0, 16.0, 16.0));
+
+				for (int i = 0; i < list.size(); i++)
 				{
-					if (!((EntityLivingBase) list.get(i)).canEntityBeSeen(this)) continue;
-					if (this.target == null || this.getDistanceToEntity(list.get(i)) < this.getDistanceToEntity(this.target)) this.target = (EntityLivingBase) list.get(i);
+					if (list.get(i) != this.shootingEntity && list.get(i) instanceof EntityLivingBase && this.shootingEntity != null && this.shootingEntity.canEntityBeSeen(list.get(i)) &&
+							list.get(i) != this.shootingEntity.ridingEntity && list.get(i) != this.shootingEntity.riddenByEntity && !(list.get(i) instanceof EntityRidable) &&
+							!(list.get(i) instanceof EntityPlayer && ((EntityPlayer) list.get(i)).capabilities.isCreativeMode) && !list.get(i).isDead)
+					{
+						if (!((EntityLivingBase) list.get(i)).canEntityBeSeen(this)) continue;
+						if (this.target == null || this.getDistanceToEntity(list.get(i)) < this.getDistanceToEntity(this.target)) this.target = (EntityLivingBase) list.get(i);
+					}
 				}
 			}
 		}

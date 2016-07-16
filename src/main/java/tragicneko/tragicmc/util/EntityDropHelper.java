@@ -211,9 +211,6 @@ public class EntityDropHelper {
 			{new EntityDrop(15, TragicItems.GoldenSushi), new EntityDrop(5, new ItemStack(Items.golden_apple, 1, 1), new ItemStack(Items.golden_apple, 1, 0)), new EntityDrop(25, TragicItems.Nekite),
 			new EntityDrop(3, TragicItems.ComplexCircuitry), new EntityDrop(10, TragicItems.NekoMindControlDevice), new EntityDrop(1, TragicItems.NekoLaserSword)}});
 		
-		addToDropList(EntityWorkerNeko.class, new EntityDrop[][] {{new EntityDrop(5, Items.iron_ingot), new EntityDrop(15, TragicItems.Nekite)},
-			{new EntityDrop(1, TragicItems.GoldenSushi), new EntityDrop(25, TragicItems.Nekite), new EntityDrop(10, TragicItems.NekoMindControlDevice)}});
-
 		//Mini-Boss drops
 		addToDropList(EntityJarra.class, new EntityDrop[][] {{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicItems.Thorns), new EntityDrop(5, Items.magma_cream), new EntityDrop(15, TragicItems.InterestingResin)},
 			{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(10, TragicItems.Ectoplasm), new EntityDrop(5, TragicItems.Gloopii)}});
