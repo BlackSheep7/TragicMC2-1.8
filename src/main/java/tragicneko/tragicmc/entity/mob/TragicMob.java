@@ -588,7 +588,7 @@ public abstract class TragicMob extends EntityMob
 		IEntityLivingData sData = super.onInitialSpawn(ins, data);
 		this.updateSize();
 		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.getBoolean("allowRandomSupportMob")) this.setSupport(rand.nextInt(100) == 0);
-		if (!TragicConfig.getBoolean("allowGroupBuffs")) return sData;
+		if (!TragicConfig.getBoolean("allowGroupBuffs") || this.isBuffExempt()) return sData;
 		if (sData == null)
 		{
 			if (rand.nextInt(200) <= TragicConfig.getInt("groupBuffChance"))
@@ -942,5 +942,9 @@ public abstract class TragicMob extends EntityMob
 	 */
 	protected void updateSize() {
 
+	}
+	
+	public boolean isBuffExempt() {
+		return false;
 	}
 }

@@ -14,6 +14,7 @@ public class EntityWorkerNeko extends EntityNeko {
 	public EntityWorkerNeko(World par1World) {
 		super(par1World);
 		this.setSize(0.475F * 0.915F, 1.895F * 0.915F);
+		this.experienceValue = 10;
 	}
 	
 	@Override
@@ -80,4 +81,39 @@ public class EntityWorkerNeko extends EntityNeko {
         super.readEntityFromNBT(tagCompound);
         if (tagCompound.hasKey("textureID")) this.setTextureId(tagCompound.getInteger("textureID"));
     }
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.commonneko.living" : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return super.getHurtSound(); //TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.traderneko.hurt" : super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return null; //TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.traderneko.death" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public boolean isBuffExempt() {
+		return true;
+	}
 }

@@ -37,6 +37,7 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.dimension.NekoHomeworldProvider;
+import tragicneko.tragicmc.entity.EntityMechaExo;
 import tragicneko.tragicmc.entity.boss.EntityProfessorNekoid;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
@@ -238,12 +239,13 @@ public abstract class EntityNeko extends TragicMob {
 					}
 				}
 			}
+			
+			this.setAttackTarget(null);
+			this.setReleased(true);
+			this.updateNekoTasks();
+			
+			if (TragicConfig.getBoolean("allowAchievements") && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.tragicNekoRelease);
 		}
-		this.setAttackTarget(null);
-		this.setReleased(true);
-		this.updateNekoTasks();
-
-		if (TragicConfig.getBoolean("allowAchievements") && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.tragicNekoRelease);
 	}
 
 	@Override
@@ -288,6 +290,16 @@ public abstract class EntityNeko extends TragicMob {
 		if (!this.isReleased() && this.getAttackTarget() != null && this.getAttackTarget() instanceof EntityProfessorNekoid)
 		{
 			this.setAttackTarget(null);
+		}
+		
+		if (!this.isReleased() && this.getAttackTarget() != null && this.getAttackTarget() instanceof EntityNeko && !((EntityNeko) this.getAttackTarget()).isReleased())
+		{
+			this.setAttackTarget(null);
+		}
+		
+		if (this.getAttackTarget() instanceof EntityMechaExo)
+		{
+			if (this.getAttackTarget().riddenByEntity instanceof EntityProfessorNekoid && !this.isReleased()) this.setAttackTarget(null);
 		}
 
 		if (this.getAttackTarget() == null)
@@ -478,7 +490,7 @@ public abstract class EntityNeko extends TragicMob {
 	@Override
 	public int getTalkInterval()
 	{
-		return 320 + rand.nextInt(120);
+		return 380;
 	}
 
 	@Override
@@ -576,5 +588,11 @@ public abstract class EntityNeko extends TragicMob {
 	protected boolean canDespawn()
 	{
 		return TragicConfig.getBoolean("allowStructureGen") && this.worldObj.provider instanceof NekoHomeworldProvider ? false : super.canDespawn();
+	}
+	
+	@Override
+	public void playLivingSound() {
+		super.playLivingSound();
+		if (this.livingSoundTime > this.getTalkInterval() - 60) this.livingSoundTime -= this.getTalkInterval();
 	}
 }

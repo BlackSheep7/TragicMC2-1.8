@@ -1191,6 +1191,48 @@
         "category": "hostile",
         "sounds": ["mob/exo/hit", "mob/exo/hit2"]
     },
+    "mob.traderneko.idle":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/traderneko/idle", "mob/traderneko/idle2",
+            "mob/traderneko/idle3", "mob/traderneko/idle4",
+            "mob/traderneko/idle5", "mob/traderneko/idle6",
+            "mob/traderneko/idle7", "mob/traderneko/idle8",
+            "mob/traderneko/idle9", "mob/traderneko/idle10",
+            "mob/traderneko/idle11", "mob/traderneko/idle12"]
+    },
+    "mob.traderneko.tradeaccept":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/traderneko/tradeaccept", "mob/traderneko/tradeaccept2",
+            "mob/traderneko/tradeaccept3"]
+    },
+    "mob.traderneko.tradedecline":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/traderneko/tradedecline", "mob/traderneko/tradedecline2",
+            "mob/traderneko/tradedecline3"]
+    },
+    "mob.commonneko.living":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/commonneko/living", "mob/commonneko/living2",
+            "mob/commonneko/living3", "mob/commonneko/living4",
+            "mob/commonneko/living5", "mob/commonneko/living6",
+            "mob/commonneko/living7", "mob/commonneko/living8",
+            "mob/commonneko/living9", "mob/commonneko/living10",
+            "mob/commonneko/living11", "mob/commonneko/living12",
+            "mob/commonneko/living13", "mob/commonneko/living14",
+            "mob/commonneko/living15", "mob/commonneko/living16",
+            "mob/commonneko/living17", "mob/commonneko/living18",
+            "mob/commonneko/living19", "mob/commonneko/living20",
+            "mob/commonneko/living21", "mob/commonneko/living22",
+            "mob/commonneko/living23", "mob/commonneko/living24"]
+    },
 	"mob.wisp.fear":
     {
 		"category": "hostile",
