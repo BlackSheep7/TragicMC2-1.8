@@ -293,7 +293,7 @@ public abstract class TragicMob extends EntityMob
 				this.setCorruptionTicks(i);
 			}
 
-			if (this.canChange() && this.getCorruptionTicks() >= 400 && this.rand.nextInt(200) <= TragicConfig.getInt("mobTransformationChance") && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
+			if (this.canChange() && this.getCorruptionTicks() >= 400 && this.rand.nextInt(200) <= TragicConfig.getInt("mobTransformationChance") && this.ticksExisted % 20 == 0)
 			{
 				this.setChanging(true);
 			}
@@ -587,7 +587,7 @@ public abstract class TragicMob extends EntityMob
 	{
 		IEntityLivingData sData = super.onInitialSpawn(ins, data);
 		this.updateSize();
-		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.getBoolean("allowRandomSupportMob")) this.setSupport(rand.nextInt(100) == 0);
+		if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.HARD && TragicConfig.getBoolean("allowRandomSupportMob")) this.setSupport(rand.nextInt(50) == 0);
 		if (!TragicConfig.getBoolean("allowGroupBuffs") || this.isBuffExempt()) return sData;
 		if (sData == null)
 		{
