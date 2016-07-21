@@ -42,7 +42,7 @@ public class VoidPitWorldGen implements IWorldGen {
 
 				for (BlockPos coords : list)
 				{
-					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
+					if (random.nextInt(4) != 0 && !cands.contains(coords)) cands.add(coords);
 				}
 			}
 
@@ -50,7 +50,7 @@ public class VoidPitWorldGen implements IWorldGen {
 
 			for (BlockPos coords : list)
 			{
-				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
+				if (random.nextInt(3) != 0 && !cands.contains(coords)) cands.add(coords);
 			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
@@ -60,7 +60,7 @@ public class VoidPitWorldGen implements IWorldGen {
 				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 			}
 
-			if (size >= 3.0D && random.nextInt(4) == 0) size *= 0.977425D; //reduces size of the void pit randomly, similarly to spikes, but this is to reduce lag
+			if (size >= 3.0D && random.nextInt(3) == 0) size *= 0.977425D; //reduces size of the void pit randomly, similarly to spikes, but this is to reduce lag
 		}
 
 		for (BlockPos coords2 : cands)

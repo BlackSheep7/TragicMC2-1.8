@@ -122,7 +122,7 @@ public class ItemGenerator extends Item {
 					for (int mapping = 0; mapping < list.size(); mapping++)
 					{
 						coords = list.get(mapping);
-						if (random.nextInt(2) != 0 && !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
+						if (random.nextInt(4) != 0 && !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
 					}
 				}
 
@@ -131,7 +131,7 @@ public class ItemGenerator extends Item {
 				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
 					coords = list.get(mapping);
-					if (random.nextInt(2) != 0 && !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
+					if (random.nextInt(3) != 0 && !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
 				}
 
 				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
@@ -139,7 +139,7 @@ public class ItemGenerator extends Item {
 				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
 					coords = list.get(mapping);
-					if (random.nextInt(2) != 0 && !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
+					if (random.nextBoolean() && !filter.contains(world.getBlockState(coords).getBlock())) world.setBlockToAir(coords);
 				}
 			}
 

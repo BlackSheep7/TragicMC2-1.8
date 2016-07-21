@@ -52,7 +52,7 @@ public class PitWorldGen implements IWorldGen {
 
 				for (BlockPos coords : list)
 				{
-					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
+					if (random.nextInt(5) != 0 && !cands.contains(coords)) cands.add(coords);
 				}
 			}
 
@@ -60,7 +60,7 @@ public class PitWorldGen implements IWorldGen {
 
 			for (BlockPos coords : list)
 			{
-				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
+				if (random.nextInt(4) != 0 && !cands.contains(coords)) cands.add(coords);
 			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
