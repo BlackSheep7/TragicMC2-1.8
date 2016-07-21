@@ -4958,12 +4958,16 @@ Reduced chance of Nekos targeting Nekoid while they are not released
 Reduced chance of Mecha Exo targeting unwanted things while being ridden by an AI
 Fixed crash triggered by Nekoid's death when releasing lots of Nekos at once
 Moved all Exo sounds into the same folder
+Added the rest of the Common and Trader Neko's sounds
+Added "Titanfall" sound bit for Nekoid
+Modified Pits and Void Pits to destroy more of the blocks in them (they were destroying way too few)
+Bump version number for test build
+Fixed typo for juniperBush blockstate
+Plague is now buff exempt
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)
-Common Neko (Hurt, Death)
-Trader Neko (Hurt, Death)
-Professor Nekoid (Living, Hurt, Death, Titanfall call-in)
+Professor Nekoid (Living, Hurt, Death)
 
 Side expansion models/textures:
 Professor Nekoid (Model & Texture)
@@ -4986,8 +4990,9 @@ Add a setTarget override for some of the mobs and bosses to specifically prevent
 Make all entity AI generic so that it'll be easier to use for future mobs/bosses
 DoomsdayManager can be removed in a future update and hooked into the Doom update loop, having the server side update each player and handle effects for them
 rather than having a static thing handle it (it doesn't need to do authority checks so there's no point in having it anymore)
-DoomsdayStatus would be used for manager purposes, it keeps track of the current active Doomsdays per player so it can be used to activate Combinations and
-other things (also Achievements can be added based on type of Doomsday in use and whatever else is going on)
+Change all item and block names to fit in with Vanilla formatting (instead of toughLeather it would be tough_leather), do the same with the texture names
+Go through and actually localize all things displayed to the player
+Convert statues to use a deferred renderer to render any and all mobs/bosses as statues
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
