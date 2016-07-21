@@ -361,13 +361,13 @@ public class EntityTraderNeko extends EntityNeko implements IMerchant {
 	@Override
 	public String getHurtSound()
 	{
-		return super.getHurtSound(); //TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.traderneko.hurt" : super.getHurtSound();
+		return TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(4) == 0 ? "tragicmc:mob.traderneko.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return null; //TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.traderneko.death" : null;
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:mob.traderneko.death" : null;
 	}
 
 	@Override

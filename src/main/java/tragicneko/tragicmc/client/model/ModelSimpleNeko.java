@@ -89,15 +89,8 @@ public class ModelSimpleNeko extends ModelBiped
 		EntityNeko neko = (EntityNeko) entity;
 		this.tail.rotateAngleY = 0.275F * this.simplifyAngle(entity.ticksExisted, 15.0F);
 
-		if (neko instanceof EntityScienceNeko && neko.isAboutToFire() && ((EntityScienceNeko) neko).getTargetID() > 0)
-		{
-			bipedRightArm.rotateAngleX = -1.175F;
-		}
-		else
-		{
-			bipedRightArm.rotateAngleX = (-0.2F + 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
-			bipedLeftArm.rotateAngleX = (-0.2F - 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
-		}
+		bipedRightArm.rotateAngleX = (-0.2F + 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
+		bipedLeftArm.rotateAngleX = (-0.2F - 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
 
 		bipedLeftArm.rotateAngleZ = -0.2361433F;
 		bipedRightArm.rotateAngleZ = 0.2361433F;
@@ -117,26 +110,11 @@ public class ModelSimpleNeko extends ModelBiped
 			this.rightEar.offsetY = 0.0F;
 		}
 
-		if (!neko.isProperDate())
-		{
-			if (neko.getThrowingTicks() > 0)
-			{
-				this.bipedLeftArm.rotateAngleX = -0.45F + -1.65F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
-				this.bipedLeftArm.rotateAngleZ = -0.45F + 0.35F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
-			}
-			else if (neko.getAttackTime() > 0)
-			{
-				bipedLeftArm.rotateAngleX = -0.2F + 1.8F * this.simplifyAngle(neko.getAttackTime(), 10.0F);
-			}
-		}
-		else
-		{
-			bipedLeftArm.rotateAngleZ = -0.2361433F;
-			bipedRightArm.rotateAngleZ = 0.2361433F;
+		bipedLeftArm.rotateAngleZ = -0.2361433F;
+		bipedRightArm.rotateAngleZ = 0.2361433F;
 
-			bipedRightArm.rotateAngleX = (-0.2F + 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
-			bipedLeftArm.rotateAngleX = (-0.2F - 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
-		}
+		bipedRightArm.rotateAngleX = (-0.2F + 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
+		bipedLeftArm.rotateAngleX = (-0.2F - 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
 
 		if (this.isRiding)
 		{

@@ -462,6 +462,12 @@
 		"sounds": [
 			"boss/polaris/death"]
     },
+    "boss.professornekoid.titanfall":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/professornekoid/titanfall"]
+    },
 	"boss.skultar.slice":
     {
 		"category": "hostile",
@@ -1216,6 +1222,21 @@
             "mob/traderneko/tradedecline", "mob/traderneko/tradedecline2",
             "mob/traderneko/tradedecline3"]
     },
+    "mob.traderneko.hurt":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/traderneko/hurt", "mob/traderneko/hurt2",
+            "mob/traderneko/hurt3", "mob/traderneko/hurt4"]
+    },
+    "mob.traderneko.death":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/traderneko/death", "mob/traderneko/death2",
+            "mob/traderneko/death3", "mob/traderneko/death4",
+            "mob/traderneko/death5"]
+    },
     "mob.commonneko.living":
     {
         "category": "hostile",
@@ -1232,6 +1253,23 @@
             "mob/commonneko/living19", "mob/commonneko/living20",
             "mob/commonneko/living21", "mob/commonneko/living22",
             "mob/commonneko/living23", "mob/commonneko/living24"]
+    },
+    "mob.commonneko.hurt":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/commonneko/hurt", "mob/commonneko/hurt2",
+            "mob/commonneko/hurt3", "mob/commonneko/hurt4",
+            "mob/commonneko/hurt5", "mob/commonneko/hurt6"]
+    },
+    "mob.commonneko.death":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/commonneko/death", "mob/commonneko/death2",
+            "mob/commonneko/death3", "mob/commonneko/death4",
+            "mob/commonneko/death5", "mob/commonneko/death6",
+            "mob/commonneko/death7", "mob/commonneko/death8"]
     },
 	"mob.wisp.fear":
     {

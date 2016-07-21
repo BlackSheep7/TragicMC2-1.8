@@ -163,7 +163,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 		if (!this.hasLostMecha() && (this.ridingEntity == null || this.ridingEntity.isDead && this.ridingEntity instanceof EntityMechaExo))
 		{
 			this.setLostMecha(true);
-			this.setTitanfallTicks(400);
+			this.setTitanfallTicks(360);
 		}
 
 		if (this.getTitanfallTicks() == 0 && this.hasLostMecha() && this.onGround)
@@ -171,13 +171,14 @@ public class EntityProfessorNekoid extends TragicBoss {
 			EntityMechaExo exo = new EntityMechaExo(this.worldObj);
 			double y = this.posY - WorldHelper.getDistanceToGround(this);
 			BlockPos pos = new BlockPos(this.posX, y + 1, this.posZ);
-			if (y + 22 > 256) y = 256;
-			else y += 22;
-			if (this.canAreaSeeSky(pos, 1) || this.canAreaSeeSky(pos.up(), 1) || this.canAreaSeeSky(pos.up(2), 1))
+			if (y + 50 > 256) y = 256;
+			else y += 50;
+			if (this.canAreaSeeSky(pos.up(2), 1))
 			{
 				exo.setPosition(this.posX, y, this.posZ);
 				exo.titanfalled = true;
 				this.worldObj.spawnEntityInWorld(exo);
+				if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.professornekoid.titanfall", 1.7F, 1.0F);
 			}
 			
 			this.setTitanfallTicks(200);
@@ -188,6 +189,8 @@ public class EntityProfessorNekoid extends TragicBoss {
 			EntityMechaExo exo = (EntityMechaExo) this.ridingEntity;
 			exo.useAttackViaMob(rand.nextBoolean() ? 1 : 0, this.getAttackTarget());
 			this.setCommandTicks(50);
+			
+			if (this.getAttackTarget() != exo.getAITarget()) exo.setAttackTarget(this.getAttackTarget());
 		}
 
 		if (this.getBlasterTicks() == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F && rand.nextInt(6) == 0 && this.ticksExisted % 5 == 0 && !this.isDead)
@@ -349,7 +352,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 
 		EntityPlayer player = (EntityPlayer) (src.getEntity() instanceof EntityPlayer ? src.getEntity() : null);
 
-		double d = 64.0;
+		double d = 48.0;
 		List<EntityNeko> list = this.worldObj.getEntitiesWithinAABB(EntityNeko.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.posX, this.posY, this.posZ).expand(d, d, d));
 
 		for (EntityNeko e : list) {
