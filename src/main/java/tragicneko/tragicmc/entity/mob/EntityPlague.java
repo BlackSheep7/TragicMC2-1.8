@@ -209,4 +209,9 @@ public class EntityPlague extends TragicMob {
 	{
 		return super.getTalkInterval();
 	}
+	
+	@Override
+	public boolean isBuffExempt() {
+		return true;
+	}
 }

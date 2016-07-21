@@ -90,14 +90,13 @@ public class ModelPlague extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		Random rand = entity.worldObj.rand;
 		int j = entity.ticksExisted;
 
 		for (int i = 0; i < this.boxList.size(); i++)
 		{
-			shapeArray[i].rotateAngleX = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle(j - f2, 10.0F);
-			shapeArray[i].rotateAngleY = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle(j - f2, 10.0F);
-			shapeArray[i].rotateAngleZ = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle(j - f2, 10.0F);
+			shapeArray[i].rotateAngleX = this.simplifyAngle(j - f2, 10.0F);
+			shapeArray[i].rotateAngleY = this.simplifyAngle(j - f2, 10.0F);
+			shapeArray[i].rotateAngleZ = this.simplifyAngle(j - f2, 10.0F);
 		}
 	}
 
