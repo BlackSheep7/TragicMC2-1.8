@@ -13,7 +13,7 @@
         "variant=pink_sage": { "model": "tragicmc:pinkSage" },
         "variant=white_sage": { "model": "tragicmc:whiteSage" },
         "variant=bird_of_paradise": { "model": "tragicmc:birdOfParadise" },
-        "variant=juniper_bush": { "model": "tragicmc:juniperbush" },
+        "variant=juniper_bush": { "model": "tragicmc:juniperBush" },
         "variant=stapelia": { "model": "tragicmc:stapelia" },
         "variant=thistle": { "model": "tragicmc:thistle" }
     }
