@@ -10,10 +10,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.ChunkDataEvent;
@@ -100,6 +100,7 @@ public class TickBuilder {
 							Entity e = tp.getRight();
 							BlockPos pos = tp.getLeft();
 							e.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+							if (e instanceof EntityCreature) ((EntityCreature) e).onInitialSpawn(tb.theWorld.getDifficultyForLocation(pos), null);
 							tb.theWorld.spawnEntityInWorld(e);
 						}
 					}
@@ -148,6 +149,7 @@ public class TickBuilder {
 								Entity e = tp.getRight();
 								BlockPos pos = tp.getLeft();
 								e.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+								if (e instanceof EntityCreature) ((EntityCreature) e).onInitialSpawn(tb.theWorld.getDifficultyForLocation(pos), null);
 								tb.theWorld.spawnEntityInWorld(e);
 							}
 						}
