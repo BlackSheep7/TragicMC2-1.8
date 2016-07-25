@@ -4950,7 +4950,7 @@ Removed Common Neko's drops, added xp for Common and Worker Nekos kills (very li
 Added Common Neko's living sounds, still need hurt and death sounds
 Added ability for mobs to be group buff-exempt, meaning they don't spawn in with random buffs regardless of if it is enabled
 
-4.52.3270++ <228> (July 15, 2016)
+4.52.3287 <228> (July 15, 2016)
 Added sounds for Nekoid's abilities, reusing the various item-specific sounds that his abilities are derived from
 Neko Rockets now prioritize their shooter's current target (if fired by a non-Player)
 Added ability for Nekoid to Titanfall a Mecha from the sky after it's lost it's own exo and a large amount of time has passed
@@ -4964,6 +4964,14 @@ Modified Pits and Void Pits to destroy more of the blocks in them (they were des
 Bump version number for test build
 Fixed typo for juniperBush blockstate
 Plague is now buff exempt
+Adjusted Plague animations and increased it's hit-box size
+Fixed typo in some of the Neko achievements
+Fixed TickBuilder entities not getting their initial spawn method called
+Fixed possible crash with the Dimensional Key's tooltip
+Removed extraneous Dimensional Keys from Creative Tabs
+
+4.52.3287++ <229> (July 23, 2016)
+Added super-method for spawning entities nearby
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)

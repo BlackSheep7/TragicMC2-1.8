@@ -55,7 +55,7 @@ public class NekoHomeworldProvider extends WorldProvider {
 	@SideOnly(Side.CLIENT)
 	public boolean isSkyColored()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
