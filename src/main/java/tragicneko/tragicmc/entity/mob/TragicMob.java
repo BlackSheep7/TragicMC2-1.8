@@ -8,6 +8,7 @@ import com.google.common.base.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
@@ -53,7 +54,6 @@ import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.projectile.EntityProjectile;
-import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -945,6 +945,35 @@ public abstract class TragicMob extends EntityMob
 	}
 	
 	public boolean isBuffExempt() {
+		return false;
+	}
+	
+	protected boolean spawnEntityNearby(EntityLiving entity, final int hRange, final int vRange, boolean withTarget)
+	{
+		for (int y1 = -vRange; y1 < vRange + 1; y1++)
+		{
+			for (int z1 = -hRange; z1 < hRange + 1; z1++)
+			{
+				for (int x1 = -vRange; x1 < hRange + 1; x1++)
+				{
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int) this.posX + x1, (int) this.posY + y1 - 1, (int) this.posZ + z1)) && rand.nextBoolean())
+					{
+						entity.setPosition(this.posX + x1, this.posY + y1, this.posZ + z1);
+
+						if (this.worldObj.checkNoEntityCollision(entity.getEntityBoundingBox()) &&
+								this.worldObj.getCollidingBoundingBoxes(entity, entity.getEntityBoundingBox()).isEmpty() &&
+								!this.worldObj.isAnyLiquid(entity.getEntityBoundingBox()))
+						{
+							this.worldObj.spawnEntityInWorld(entity);
+							entity.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this.posX + x1, this.posY + y1, this.posZ + z1)), null);
+							if (withTarget && this.getAttackTarget() != null) entity.setAttackTarget(this.getAttackTarget());
+							this.worldObj.playSoundAtEntity(this, "tragicmc:random.siren", 1.0F, 1.0F);
+							return true;
+						}
+					}
+				}
+			}
+		}
 		return false;
 	}
 }

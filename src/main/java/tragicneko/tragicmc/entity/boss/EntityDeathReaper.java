@@ -446,33 +446,7 @@ public class EntityDeathReaper extends TragicBoss {
 		EntityDeathReaper clone = new EntityDeathReaper(this.worldObj);
 		clone.copyLocationAndAnglesFrom(this);
 		clone.setClone();
-		EntityLivingBase entitylivingbase = this.getAttackTarget();
-
-		for (int y1 = -4; y1 < 5; y1++)
-		{
-			for (int z1 = -3; z1 < 4; z1++)
-			{
-				for (int x1 = -3; x1 < 4; x1++)
-				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int) this.posX + x1, (int) this.posY + y1 - 1, (int) this.posZ + z1)) && rand.nextBoolean())
-					{
-						clone.setPosition(this.posX + x1, this.posY + y1, this.posZ + z1);
-
-						if (this.worldObj.checkNoEntityCollision(clone.getEntityBoundingBox()) &&
-								this.worldObj.getCollidingBoundingBoxes(clone, clone.getEntityBoundingBox()).isEmpty() &&
-								!this.worldObj.isAnyLiquid(clone.getEntityBoundingBox()))
-						{
-							this.worldObj.spawnEntityInWorld(clone);
-							clone.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this.posX + x1, this.posY + y1, this.posZ + z1)), null);
-							if (entitylivingbase != null) clone.setAttackTarget(entitylivingbase);
-							return true;
-						}
-					}
-				}
-			}
-		}
-
-		return false;
+		return this.spawnEntityNearby(clone, 4, 5, true);
 	}
 
 	@Override

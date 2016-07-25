@@ -27,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.DifficultyInstance;
@@ -300,7 +301,7 @@ public class EntityPolaris extends TragicBoss {
 	{
 		if (rand.nextBoolean() && this.getHealth() <= this.getMaxHealth() / 2 && TragicConfig.getBoolean("polarisAfterImage"))
 		{
-			List<EntityPolaris> list = this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
+			List<EntityPolaris> list = this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.posX, this.posY, this.posZ).expand(32.0D, 32.0D, 32.0D));
 			for (int mow = 0; mow < list.size(); mow++)
 			{
 				if (list.get(mow) == this) list.remove(mow);

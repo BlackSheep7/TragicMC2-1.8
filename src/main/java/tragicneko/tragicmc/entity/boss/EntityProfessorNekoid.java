@@ -233,7 +233,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 					{
 						flag = true;
 						float f = this.getDistanceToEntity(e) / 12.0F;
-						if (f <= 0) f = 0.1F;
+						if (f <= 0.2F) f = 0.2F;
 						MovingObjectPosition mop2 = WorldHelper.getMOPFromEntity(this, 1 / f);
 
 						double x = (mop2.hitVec.xCoord - this.posX);
@@ -247,14 +247,14 @@ public class EntityProfessorNekoid extends TragicBoss {
 				if (flag) break;
 			}
 
-			this.setBlasterTicks(200);
+			this.setBlasterTicks(this.ridingEntity != null ? 200 : 120);
 			this.worldObj.playSoundAtEntity(this, "tragicmc:random.windblast", 1.4F, 1.0F);
 		}
 
 		if (this.ticksExisted % 40 == 0 && this.getAttackTarget() != null && !this.isDead)
 		{
-			double d = 16.0 + ((1.0 / (this.getHealth() / this.getMaxHealth())) * 48.0);
-			List<EntityNeko> list = this.worldObj.getEntitiesWithinAABB(EntityNeko.class, this.getEntityBoundingBox().expand(d, d, d));
+			double d = 16.0 + ((this.getHealth() / this.getMaxHealth()) * 48.0);
+			List<EntityNeko> list = this.worldObj.getEntitiesWithinAABB(EntityNeko.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.posX, this.posY, this.posZ).expand(d, d, d));
 
 			for (EntityNeko e : list)
 			{
@@ -262,7 +262,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 				if (e.getAttackTarget() == null) e.setAttackTarget(this.getAttackTarget());
 			}
 
-			if (list.size() < 12 && (this.getHealth() < this.getMaxHealth() / 2.0F || this.hasLostMecha()) && this.ticksExisted % 240 == 0)
+			if (list.size() < 6 && (this.getHealth() < this.getMaxHealth() / 2.0F || this.hasLostMecha()) && this.ticksExisted % 240 == 0)
 			{
 				EntityNeko neko = new EntityTragicNeko(this.worldObj);
 				if (rand.nextInt(4) == 0)
@@ -281,32 +281,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 					}
 				}
 				neko.copyLocationAndAnglesFrom(this);
-				EntityLivingBase entitylivingbase = this.getAttackTarget();
-
-				meow: for (int y1 = -4; y1 < 5; y1++)
-				{
-					for (int z1 = -3; z1 < 4; z1++)
-					{
-						for (int x1 = -3; x1 < 4; x1++)
-						{
-							if (World.doesBlockHaveSolidTopSurface(this.worldObj, new BlockPos((int) this.posX + x1, (int) this.posY + y1 - 1, (int) this.posZ + z1)) && rand.nextBoolean())
-							{
-								neko.setPosition(this.posX + x1, this.posY + y1, this.posZ + z1);
-
-								if (this.worldObj.checkNoEntityCollision(neko.getEntityBoundingBox()) &&
-										this.worldObj.getCollidingBoundingBoxes(neko, neko.getEntityBoundingBox()).isEmpty() &&
-										!this.worldObj.isAnyLiquid(neko.getEntityBoundingBox()))
-								{
-									this.worldObj.spawnEntityInWorld(neko);
-									neko.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this.posX + x1, this.posY + y1, this.posZ + z1)), null);
-									if (entitylivingbase != null) neko.setAttackTarget(entitylivingbase);
-									this.worldObj.playSoundAtEntity(this, "tragicmc:random.siren", 1.0F, 1.0F);
-									break meow;
-								}
-							}
-						}
-					}
-				}
+				this.spawnEntityNearby(neko, 4, 5, true);
 			}
 		}
 	}
