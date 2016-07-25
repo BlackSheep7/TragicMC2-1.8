@@ -1150,11 +1150,9 @@ public class ClientProxy extends CommonProxy {
 				registerItemToMesher(TragicItems.DimensionalKey, ZERO, "dimensionalKey");
 				registerItemToMesher(TragicItems.DimensionalKeyEnd, ZERO, "dimensionalKeyEnd");
 				registerItemToMesher(TragicItems.DimensionalKeyNether, ZERO, "dimensionalKeyNether");
-				registerItemToMesher(TragicItems.DimensionalKeySynapse, ZERO, "dimensionalKeySynapse");
-				registerItemToMesher(TragicItems.DimensionalKeyNekoHomeworld, ZERO, "dimensionalKeyNekoHomeworld");
-				//registerItemToMesher(TragicItems.DimensionalKeyWilds, ZERO, "dimensionalKeyWilds");
 				registerItemToMesher(TragicItems.SynapseLink, ZERO, "synapseLink");
 				registerItemToMesher(TragicItems.WarpDrive, ZERO, "warpDrive");
+				//registerItemToMesher(TragicItems.DimensionalKeyWilds, ZERO, "dimensionalKeyWilds");
 			}
 
 			if (TragicConfig.getBoolean("allowDoomsdays"))

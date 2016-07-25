@@ -46,7 +46,7 @@ public class ItemDimensionalKey extends Item {
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		WorldProvider prov = DimensionManager.getProvider(this.targetDimension);
+		WorldProvider prov = DimensionManager.getWorld(this.targetDimension) != null ? DimensionManager.getProvider(this.targetDimension) : null;
 		String s = prov != null ?  prov.getDimensionName() : "a Dimension";
 		par2List.add(EnumChatFormatting.DARK_RED + "Teleports you to " + s + "!");
 		par2List.add("Hold down right-click for a couple");

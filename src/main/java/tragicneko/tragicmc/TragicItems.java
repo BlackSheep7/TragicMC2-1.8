@@ -304,7 +304,7 @@ public class TragicItems {
 	public static Item DeathglowSeeds;
 	public static Item SkyFruitSeeds;
 
-	public static Item DimensionalKey, DimensionalKeyEnd, DimensionalKeyNether, DimensionalKeySynapse, DimensionalKeyNekoHomeworld, DimensionalKeyWilds;
+	public static Item DimensionalKey, DimensionalKeyEnd, DimensionalKeyNether, DimensionalKeyWilds;
 	public static Item SynapseLink, SynapseCrystal, WarpDrive;
 
 	public static Item BowOfJustice;
@@ -1260,7 +1260,7 @@ public class TragicItems {
 
 		if (TragicConfig.getBoolean("allowDimensions"))
 		{
-			DimensionalKey = (new ItemDimensionalKey(TragicConfig.getInt("collisionID")).setUnlocalizedName("tragicmc.dimensionalKey.collision"));
+			DimensionalKey = (new ItemDimensionalKey(TragicConfig.getInt("collisionID")).setUnlocalizedName("tragicmc.dimensionalKey.collision").setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
 
 			DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
@@ -1269,21 +1269,15 @@ public class TragicItems {
 			DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
 			GameRegistry.registerItem(DimensionalKeyNether, "dimensionalKeyNether");
 
-			DimensionalKeySynapse = (new ItemDimensionalKey(TragicConfig.getInt("synapseID")).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
-			GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
-			
-			DimensionalKeyNekoHomeworld = (new ItemDimensionalKey(TragicConfig.getInt("nekoHomeworldID")).setUnlocalizedName("tragicmc.dimensionalKey.nekoHomeworld").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
-			GameRegistry.registerItem(DimensionalKeyNekoHomeworld, "dimensionalKeyNekoHomeworld");
-			
-			/*
-			DimensionalKeyWilds = (new ItemDimensionalKey(5).setUnlocalizedName("tragicmc.dimensionalKey.wilds").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
-			GameRegistry.registerItem(DimensionalKeyWilds, "dimensionalKeyWilds"); */
-
 			SynapseLink = (new ItemDimensionalKey(TragicConfig.getInt("synapseID")).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(SynapseLink, "synapseLink");
 			
 			WarpDrive = (new ItemDimensionalKey(TragicConfig.getInt("nekoHomeworldID")).setUnlocalizedName("tragicmc.warpDrive").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival));
 			GameRegistry.registerItem(WarpDrive, "warpDrive");
+			
+			/*
+			DimensionalKeyWilds = (new ItemDimensionalKey(5).setUnlocalizedName("tragicmc.dimensionalKey.wilds").setMaxStackSize(1).setCreativeTab(TragicMC.Creative));
+			GameRegistry.registerItem(DimensionalKeyWilds, "dimensionalKeyWilds"); */
 		}
 
 		if (TragicConfig.getBoolean("allowDoomsdays"))
