@@ -34,7 +34,7 @@ public class EntityPlague extends TragicMob {
 
 	public EntityPlague(World par1World) {
 		super(par1World);
-		this.setSize(0.625F, 0.725F);
+		this.setSize(0.925F, 0.925F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 0;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, true));
@@ -44,7 +44,6 @@ public class EntityPlague extends TragicMob {
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, playerTarget));
-		//this.yOffset = 0.425F;
 	}
 
 	@Override
