@@ -42,7 +42,6 @@ import tragicneko.tragicmc.client.model.ModelJetNeko;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelKurayami;
 import tragicneko.tragicmc.client.model.ModelLockbot;
-import tragicneko.tragicmc.client.model.ModelMechaExo;
 import tragicneko.tragicmc.client.model.ModelMechaNeko;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
 import tragicneko.tragicmc.client.model.ModelNanoSwarm;
@@ -92,6 +91,7 @@ import tragicneko.tragicmc.client.render.mob.RenderAssaultNeko;
 import tragicneko.tragicmc.client.render.mob.RenderCommonNeko;
 import tragicneko.tragicmc.client.render.mob.RenderCryse;
 import tragicneko.tragicmc.client.render.mob.RenderErkel;
+import tragicneko.tragicmc.client.render.mob.RenderExo;
 import tragicneko.tragicmc.client.render.mob.RenderFusea;
 import tragicneko.tragicmc.client.render.mob.RenderJabba;
 import tragicneko.tragicmc.client.render.mob.RenderNorVox;
@@ -347,7 +347,8 @@ public class ClientProxy extends CommonProxy {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderDirectedLightning(manager); }});
 		registerRender(EntityNuke.class, new IRenderFactory() {
 			@Override public Render createRenderFor(RenderManager manager) { return new RenderNuke(manager); }});
-		registerRender(EntityMechaExo.class, new RenderFactoryMob(new ModelMechaExo(), 0.665F, "MechaExo", 1.5F));
+		registerRender(EntityMechaExo.class, new IRenderFactory() {
+			@Override public Render createRenderFor(RenderManager manager) { return new RenderExo(manager); }});
 
 		//Mob renders
 		registerRender(EntityJabba.class, new IRenderFactory() {

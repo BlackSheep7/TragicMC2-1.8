@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity;
 
 import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,12 +15,14 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
@@ -44,6 +47,7 @@ public class EntityMechaExo extends EntityRidable {
 	public static final int DW_HAS_FIRED = 21;
 	public static final int DW_THRUST_TICKS = 22;
 	public static final int DW_ATTACK_TIME = 23;
+	public static final int DW_VARIANT = 24;
 
 	public final EntityAIBase attackOnCollide = new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true);
 	public final EntityAIBase moveTowardsTarget = new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F);
@@ -51,6 +55,9 @@ public class EntityMechaExo extends EntityRidable {
 	public final EntityAIBase wander = new EntityAIWander(this, 0.65D);
 	
 	public boolean titanfalled = false;
+	
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8da6d3e6-6d80-4a77-8e15-e1c92892f449"), "exoDamageBoost", 4.0D, 0);
+	private AttributeModifier mod2 = new AttributeModifier(UUID.fromString("0f9522c5-44ad-4f1c-bf12-2efdda7fcdda"), "exoSpeedBoost", 0.1D, 0);
 
 	public EntityMechaExo(World par1World) {
 		super(par1World);
@@ -66,6 +73,7 @@ public class EntityMechaExo extends EntityRidable {
 		this.dataWatcher.addObject(DW_HAS_FIRED, (byte) 0);
 		this.dataWatcher.addObject(DW_THRUST_TICKS, Integer.valueOf(0));
 		this.dataWatcher.addObject(DW_ATTACK_TIME, Integer.valueOf(0));
+		this.dataWatcher.addObject(DW_VARIANT, (byte) 0);
 	}
 
 	public int getTargetID()
@@ -107,6 +115,14 @@ public class EntityMechaExo extends EntityRidable {
 	public void setAttackTime(int i)
 	{
 		this.dataWatcher.updateObject(DW_ATTACK_TIME, i);
+	}
+	
+	public boolean isVariant() {
+		return this.dataWatcher.getWatchableObjectByte(DW_VARIANT) == 1;
+	}
+	
+	public void setVariant(boolean flag) {
+		this.dataWatcher.updateObject(DW_VARIANT, (byte) (flag ? 1 : 0));
 	}
 
 	@Override
@@ -159,13 +175,32 @@ public class EntityMechaExo extends EntityRidable {
 					this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY + this.height, this.posZ, 0.0, 0.0, 0.0);
 				}
 			}
+			
+			final int i = this.getHealth() < this.getMaxHealth() / 3 ? 4 : 16;
+			
+			if (this.getHealth() < (this.getMaxHealth() / 3.0F * 2.0F) && rand.nextInt(i) == 0)
+			{
+				for (byte l = 0; l < 5; l++)
+				{
+					this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (rand.nextDouble() - rand.nextDouble()) * 0.67, this.posY + this.height - this.height * rand.nextDouble(), this.posZ + (rand.nextDouble() - rand.nextDouble()) * 0.67, 0.0, 0.0, 0.0);
+				}
+			}
 			return;
+		}
+		
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(mod);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod2);
+		
+		if (this.isVariant())
+		{
+			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(mod);
+			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod2);
 		}
 
 		if (this.hasFired() && cooldown <= 9) this.setFired(false, 0);
 		if (cooldown > 0) cooldown--;
 		if (this.getAttackTime() > 0) this.setAttackTime(this.getAttackTime() - 1);
-		if (this.riddenByEntity != null && this.getAttackTarget() != ((EntityLiving) this.riddenByEntity).getAttackTarget())
+		if (this.riddenByEntity instanceof EntityLiving && this.getAttackTarget() != ((EntityLiving) this.riddenByEntity).getAttackTarget())
 		{
 			this.setAttackTarget(((EntityLivingBase) this.riddenByEntity).getAITarget());
 		}
@@ -503,4 +538,23 @@ public class EntityMechaExo extends EntityRidable {
 	
 	@Override
 	public void addPotionEffect(PotionEffect effect) {}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("targetID")) this.setTargetID(tag.getInteger("targetID"));
+		if (tag.hasKey("thrustTicks")) this.setThrustTicks(tag.getInteger("thrustTicks"));
+		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+		if (tag.hasKey("variant")) this.setVariant(tag.getBoolean("variant"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		if (this.getTargetID() != 0) tag.setInteger("targetID", this.getTargetID());
+		tag.setInteger("thrustTicks", this.getThrustTicks());
+		tag.setInteger("attackTime", this.getAttackTime());
+		tag.setBoolean("variant", this.isVariant());
+	}
 }

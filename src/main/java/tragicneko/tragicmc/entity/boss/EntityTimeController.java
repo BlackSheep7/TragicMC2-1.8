@@ -255,7 +255,7 @@ public class EntityTimeController extends TragicBoss {
 
 		super.onLivingUpdate();
 
-		if (!this.onGround && this.motionY < 0.0D) this.motionY *= 0.68D;
+		if (!this.onGround && this.motionY < -0.5D) this.motionY = -0.5;
 
 		if (this.getLeapTicks() == 180) this.addEntitiesToTracker(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D)));
 		if (this.getLeapTicks() == 1) this.doQuantumLeap();
