@@ -4972,6 +4972,10 @@ Removed extraneous Dimensional Keys from Creative Tabs
 
 4.52.3287++ <229> (July 23, 2016)
 Added super-method for spawning entities nearby
+Fixed Exos not saving their data to nbt
+Added new texture and render for Exo due to the addition of it's variant
+Added attribute modifiers for Exo when it is a variant
+Fixed crash when a player rides an Exo (due to targeting changes from adding Nekoid)
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)
@@ -5001,6 +5005,8 @@ rather than having a static thing handle it (it doesn't need to do authority che
 Change all item and block names to fit in with Vanilla formatting (instead of toughLeather it would be tough_leather), do the same with the texture names
 Go through and actually localize all things displayed to the player
 Convert statues to use a deferred renderer to render any and all mobs/bosses as statues
+Convert TragicBoss to use TragicMob as a superclass, this'll simplify super methods but some things will need to be updated in TragicBoss, specifically regarding
+things like targeting and datawatcher values
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
