@@ -18,6 +18,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
@@ -27,6 +28,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.EntityMechaExo;
@@ -179,6 +181,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 				exo.titanfalled = true;
 				this.worldObj.spawnEntityInWorld(exo);
 				if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.professornekoid.titanfall", 1.7F, 1.0F);
+				exo.setVariant(true);
 			}
 			
 			this.setTitanfallTicks(200);
@@ -247,7 +250,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 				if (flag) break;
 			}
 
-			this.setBlasterTicks(this.ridingEntity != null ? 200 : 120);
+			this.setBlasterTicks(this.ridingEntity != null ? 220 : 140);
 			this.worldObj.playSoundAtEntity(this, "tragicmc:random.windblast", 1.4F, 1.0F);
 		}
 
@@ -314,6 +317,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 			exo.setPositionAndUpdate(this.posX, this.posY, this.posZ);
 			this.worldObj.spawnEntityInWorld(exo);
 			this.mountEntity(exo);
+			exo.setVariant(true);
 		}
 		return super.onInitialSpawn(ins, data);
 	}
@@ -332,6 +336,10 @@ public class EntityProfessorNekoid extends TragicBoss {
 
 		for (EntityNeko e : list) {
 			if (!e.isReleased()) e.releaseNeko(player);
+		}
+		
+		if (player instanceof EntityPlayerMP && !this.hasLostMecha()) {
+			player.triggerAchievement(TragicAchievements.professorNekoid);
 		}
 	}
 

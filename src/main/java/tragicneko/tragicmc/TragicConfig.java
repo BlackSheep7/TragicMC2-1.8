@@ -4120,7 +4120,7 @@ public class TragicConfig {
 		structureRarity[19] = 5; //warehouse
 		structureRarity[20] = 25; //tower
 		structureRarity[21] = 50; //cottage
-		structureRarity[22] = 3; //village
+		structureRarity[22] = 3; //walled city
 		structureRarity[23] = 1; //Nekoid FOB
 		structureRarity[24] = 0; //Nekoids Mansion
 

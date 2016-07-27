@@ -130,7 +130,7 @@ public class TragicAchievements {
 	public static Achievement professorNekoid = (Achievement) new Achievement("tragicmc.achievement.professorNekoid", "tragicmc.professorNekoid", -6 + offsetX, -8 + offsetY, TragicItems.MechaExo, null).registerStat().initIndependentStat();
 	//public static Achievement slangLeader; //Kill a Slang Leader without it taking your item, "Beat the devil out of it!"
 	//public static Achievement archangel; //Kill an Archangel while it is using it's holy beam on you, "Angel beats"
-	//public static Achievement blist; //Kill a Blist without it suiciding, "Step away from that ledge, my friend"
+	//public static Achievement blist; //Kill a Blist without it suiciding, "Step back from that ledge my friend"
 	//public static Achievement thorg; //Kill a Thorg without being hurt by it's projectiles, "Thorg-a-sborg!"
 	//public static Achievement trapper; //Kill a Trapper without it grabbing you, "Trapper no trapping!"
 	//public static Achievement berserker; //Kill a Berserker after it fully transforms, "Let's go berserk!"
