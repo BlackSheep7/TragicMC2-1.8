@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Set;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.ConfigCategory;
@@ -242,10 +243,15 @@ public class TragicConfig {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		config.load(); 
 		//TODO this is where registered objects will be that aren't in the actual config, for testing or internal purposes only
+		
+		
 		registerObject("debugMode", false); //internal option to randomize settings
+		
 		enchantList = recreateEnchantmentList();
 		EnumConfigType type = getMasterSettings(config);
-		loadViaType(config, getBoolean("debugMode") ? EnumConfigType.DEBUG : type);
+		config = loadViaType(config, getBoolean("debugMode") ? EnumConfigType.DEBUG : type);
+		
+		if (type != EnumConfigType.NORMAL) TragicMC.logInfo("Loaded master config of type: " + type.getName());
 
 		if (config.hasChanged()) config.save();
 
@@ -314,14 +320,25 @@ public class TragicConfig {
 		return EnumConfigType.NORMAL;
 	}
 
-	public static enum EnumConfigType {
-		NORMAL, //load as normal from the normal config
-		MOBS_ONLY, //strips the mod down the the mobs and their essentials
-		HARDCORE, //makes things unforgiving and way harder
-		LIGHTWEIGHT, //makes things forgiving and way easier
-		TRAGICMC, //strips features that the 2nd version introduced
-		TRAGICMC2, //when the third version of the mod is done, this will be the current version's features only
-		DEBUG; //overrides and randomizes most mod options
+	public static enum EnumConfigType implements IStringSerializable {
+		NORMAL("normal"), //load as normal from the normal config
+		MOBS_ONLY("mobs_only"), //strips the mod down the the mobs and their essentials
+		HARDCORE("hardcore"), //makes things unforgiving and way harder
+		LIGHTWEIGHT("lightweight"), //makes things forgiving and way easier
+		TRAGICMC("tragicmc"), //strips features that the 2nd version introduced
+		TRAGICMC2("tragicmc2"), //when the third version of the mod is done, this will be the current version's features only
+		DEBUG("debug"); //overrides and randomizes most options
+		
+		private final String name;
+		
+		private EnumConfigType(String name) {
+			this.name = name;
+		}
+
+		@Override
+		public String getName() {
+			return this.name;
+		}
 	}
 
 	public static Configuration loadViaType(Configuration config, EnumConfigType type) {
@@ -329,6 +346,7 @@ public class TragicConfig {
 		{
 			load(config);
 			randomizeRegistry();
+			return config;
 		}
 		if (type == EnumConfigType.NORMAL) load(config);
 		else if (type == EnumConfigType.MOBS_ONLY) ConfigMobsOnly.load(config = new Configuration(new File(config.getConfigFile().getParentFile(), "TragicMC2/TragicMC-mobsOnly.cfg"), TragicMC.VERSION, true));

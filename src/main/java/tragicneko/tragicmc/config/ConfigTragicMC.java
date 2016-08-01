@@ -4672,7 +4672,7 @@ public class ConfigTragicMC extends TragicConfig {
 		prop.comment = "Should Claymation reflect bad potion effects at it's target?";
 		registerObject(s, prop.getBoolean(true));
 		
-		s = "professorNekoidBlaster"; //TODO Nekoid AI stuff
+		s = "professorNekoidBlaster";
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "Should Professor Nekoid use an Aero-Blaster to knock enemies away?";
 		registerObject(s, prop.getBoolean(true));
