@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.model.ModelFusea;
+import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 
@@ -16,17 +17,15 @@ public class RenderFusea extends RenderLiving {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Fusea.png");
 	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/VolatileFusea.png");
-	private final int fuseaType;
 
-	public RenderFusea(RenderManager rm, int i) {
+	public RenderFusea(RenderManager rm) {
 		super(rm, new ModelFusea(), 0.335F);
-		this.fuseaType = i;
 	}
 
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
-		float scale = this.fuseaType > 0 ? 1.185F : 0.6F;
+		float scale = entity instanceof EntityVolatileFusea ? 1.185F : 0.6F;
 		float s = (scale * (entity.getHealth() / entity.getMaxHealth())) + 0.4F;
 		GlStateManager.scale(s, s, s);
 		
@@ -69,6 +68,6 @@ public class RenderFusea extends RenderLiving {
 
 	private ResourceLocation getEntityTexture(EntityFusea fusea)
 	{
-		return this.fuseaType == 0 ? texture : texture2;
+		return !(fusea instanceof EntityVolatileFusea) ? texture : texture2;
 	}
 }
