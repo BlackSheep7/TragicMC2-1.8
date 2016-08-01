@@ -2381,7 +2381,7 @@ public class TragicConfig {
 		prop.comment = "On death, should Bosses do a custom death effect?";
 		mobConfig[++m] = prop.getBoolean(false);
 		
-		prop = config.get(cat.getName(), "allowRidableEntities", true); //TODO ridable entity configs
+		prop = config.get(cat.getName(), "allowRidableEntities", true);
 		prop.comment = "Should Ridable entities be allowed?";
 		mobConfig[++m] = prop.getBoolean(true);
 		
@@ -2526,7 +2526,7 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "kurayamiAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
 		
-		prop = config.get(cat.getName(), "jetNekoAllow", true); //TODO mecha exo and new nekos allowance
+		prop = config.get(cat.getName(), "jetNekoAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "scienceNekoAllow", true);
@@ -2601,7 +2601,7 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "claymationAllow", true);
 		bossAllow[++m] = prop.getBoolean(true);
 		
-		prop = config.get(cat.getName(), "professorNekoidAllow", true); //TODO nekoid allowance
+		prop = config.get(cat.getName(), "professorNekoidAllow", true);
 		bossAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "overlordAllow", true);
@@ -2787,7 +2787,7 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), s, new double[] {75.0, 0.312, 2.0, 64.0, 0.6, 16});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
 		
-		s = "jetNekoStats"; //TODO new neko and exo stats
+		s = "jetNekoStats";
 		prop = config.get(cat.getName(), s, new double[] {45.0, 0.23, 1.0, 32.0, 1.0, 6});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
 		
@@ -2851,7 +2851,6 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), s, new double[] {150.0, 0.320, 12.0, 32.0, 1.0, 18});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
 		
-		//TODO nekoid stats
 		s = "professorNekoidStats";
 		prop = config.get(cat.getName(), s, new double[] {200.0, 0.25, 6.0, 32.0, 0.0, 12});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
@@ -3043,7 +3042,7 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), s, 5);
 		registerObject(s, clamp(prop.getInt(5), 1, 1000));
 		
-		s = "jetNekoSpawnChance"; //TODO new neko spawn chances
+		s = "jetNekoSpawnChance";
 		prop = config.get(cat.getName(), s, 5);
 		registerObject(s, clamp(prop.getInt(5), 1, 1000));
 		
@@ -3103,7 +3102,7 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), s, 5);
 		registerObject(s, clamp(prop.getInt(5), 1, 1000));
 		
-		s = "professorNekoidSpawnChance"; //TODO nekoid spawn chance
+		s = "professorNekoidSpawnChance";
 		prop = config.get(cat.getName(), s, 1);
 		registerObject(s, clamp(prop.getInt(1), 1, 1000));
 
@@ -3243,7 +3242,7 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), s, new int[] {0, 1});
 		registerObject(s, verifyGS(prop.getIntList()));
 		
-		s = "jetNekoGroupSize"; //TODO new neko group sizes
+		s = "jetNekoGroupSize";
 		prop = config.get(cat.getName(), s, new int[] {0, 0});
 		registerObject(s, verifyGS(prop.getIntList()));
 		
@@ -3574,7 +3573,7 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), s, new int[] {0});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 		
-		s = "jetNekoSpawnOverride"; //TODO new neko spawn overrides and biomes
+		s = "jetNekoSpawnOverride";
 		prop = config.get(cat.getName(), s, false);
 		registerObject(s, prop.getBoolean(false));
 		
@@ -3800,7 +3799,7 @@ public class TragicConfig {
 				BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 		
-		s = "professorNekoidSpawnOverride"; //TODO nekoid spawn override and biomes
+		s = "professorNekoidSpawnOverride";
 		prop = config.get(cat.getName(), s, false);
 		registerObject(s, prop.getBoolean(false));
 
@@ -4215,7 +4214,6 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "outlookRarity", 3);
 		structureRarity[++m] = clamp(prop.getInt(3), 1, 200);
 		
-		//TODO add these to the actual config, for now we'll just test out the numbers
 		prop = config.get(cat.getName(), "nekoBarracksRarity", 10);
 		structureRarity[++m] = clamp(prop.getInt(10), 1, 200);
 		
@@ -4604,8 +4602,7 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "Should Avris' despawn after a preset amount of time?";
 		registerObject(s, prop.getBoolean(true));
-		
-		//TODO add new neko-specific ai configs here
+
 		s = "jetNekoRockets";
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "Should Jet Nekos fire rockets at their target?";
@@ -4981,7 +4978,7 @@ public class TragicConfig {
 		prop.comment = "Should Claymation reflect bad potion effects at it's target?";
 		registerObject(s, prop.getBoolean(true));
 		
-		s = "professorNekoidBlaster"; //TODO Nekoid AI stuff
+		s = "professorNekoidBlaster";
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "Should Professor Nekoid use an Aero-Blaster to knock enemies away?";
 		registerObject(s, prop.getBoolean(true));
