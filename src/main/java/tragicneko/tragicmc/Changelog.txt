@@ -4976,16 +4976,37 @@ Fixed Exos not saving their data to nbt
 Added new texture and render for Exo due to the addition of it's variant
 Added attribute modifiers for Exo when it is a variant
 Fixed crash when a player rides an Exo (due to targeting changes from adding Nekoid)
+Added Nekoid's model and texture, also added some animations for it
+Added particle effect whenever Nekoid fires his blaster
+Added basic json files for the last of the items
+Fixed Exo thruster sounds, adjusted Nekoid's AI so that players have a chance to actually defeat him
+Reduced damage that the Exo's laser does when fired by an AI rider
+Modified reequip animations for the Ray Gun and Blaster
+Refined client registrations of items with custom models
+Capped maximum knockback of Nekoid's Blaster to a lower but still quite high value
+Added item models for the Neko Ray Gun and Nekoid's Aero-Blaster
+Added new ToolMaterial for the Laser Sword to reduce it's damage (ap damage on a sword is a bit too powerful when dealing with exos)
+Slightly increased damage that the Neko Ray Gun does (though it's ranged, it was still way too weak to really have much use)
+Refined client registrations of mobs with custom renders
+Finished model for the Neko Laser Sword
+Modified how Sound Extrapolator reflects sound fields and which string type it stores for mobs that it's extrapolating from
+Fixed broken render for Fusea due to client registration changes
+Ensure that Fusea targets things that fireball it (for the achievement)
+Balance pass was done for Tragic Neko that reduces their max health down to 60 from 80 to put them more in line with the other Nekos
+Added new config stuff to the mob's AI and to the actual configs
+Lightweight mode doesn't allow mobs riding an exo to use it's abilities (they can still attack normally with the Exo, of course)
+Hardcore mode enables support mobs by default now
+TragicMC mode enables spawn override on the nekos and nekoid in the overworld in plains biomes and disables ridable entities, which currently only consists of
+the mecha exo
+Fixed a few minor typos in config
+Added default colors to all of the Neko dimension's structure seeds
+
+Before next release:
+All I have to do is finish recording the sounds, check the new config stuff and do some playtesting now
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)
 Professor Nekoid (Living, Hurt, Death)
-
-Side expansion models/textures:
-Professor Nekoid (Model & Texture)
-Neko Ray Gun (Item model/texture, based on Science Neko's model weapon)
-Nekoid's Blaster (Item model/texture, based on Nekoid model weapon)
-Neko Laser Sword (Item model/texture, based on Assault Neko's model weapon)
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed to Capabilities
