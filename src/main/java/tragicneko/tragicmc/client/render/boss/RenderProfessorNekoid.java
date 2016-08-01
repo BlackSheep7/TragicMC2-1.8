@@ -7,7 +7,7 @@ import tragicneko.tragicmc.client.model.ModelProfessorNekoid;
 
 public class RenderProfessorNekoid extends RenderBoss {
 	
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/TragicNeko.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/ProfessorNekoid.png");
 
 	public RenderProfessorNekoid(RenderManager rm) {
 		super(rm, new ModelProfessorNekoid(), 0.625F);

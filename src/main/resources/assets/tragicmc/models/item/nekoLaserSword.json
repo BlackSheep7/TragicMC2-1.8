@@ -1,0 +1,103 @@
+{
+    "textures": {
+        "light": "tragicmc:weapons/BeastlyClawsLight",
+		"blue" : "tragicmc:weapons/CelestialAegisLight"
+    },
+    "display": {
+        "thirdperson": {
+            "rotation": [ 0, 90, -55 ],
+            "translation": [ 4.25, 2.475, -10.5 ],
+            "scale": [ 1.0, 1.0, 1.0 ]
+        },
+        "firstperson": {
+            "rotation": [ 0, -135, 35 ],
+            "translation": [ 0, 12, -4 ],
+            "scale": [ 1.6, 1.6, 1.6 ]
+        },
+        "gui": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, -2, 4 ],
+            "scale": [ 0.675, 0.675, 0.675 ]
+        }
+    },
+    "elements": [
+        {
+            "from": [-0.5, -8, -0.5],
+            "to": [0.5, -2, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 0 ], "texture": "#light"},
+                "up":    { "uv": [ 0, 0, 0, 0 ], "texture": "#light" },
+                "north": { "uv": [ 0, 0, 0, 5 ], "texture": "#light" },
+                "south": { "uv": [ 0, 0, 0, 5 ], "texture": "#light" },
+                "west":  { "uv": [ 0, 0, 0, 5 ], "texture": "#light" },
+                "east":  { "uv": [ 0, 0, 0, 5 ], "texture": "#light" }
+            },
+            "__comment": "Handle"
+        },
+        {
+            "from": [-1.5, -2, -1.5],
+            "to": [1.5, 10, 1.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 2, 2 ], "texture": "#blue"},
+                "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#blue" },
+                "north": { "uv": [ 0, 0, 2, 11 ], "texture": "#blue" },
+                "south": { "uv": [ 0, 0, 2, 11 ], "texture": "#blue" },
+                "west":  { "uv": [ 0, 0, 2, 11 ], "texture": "#blue" },
+                "east":  { "uv": [ 0, 0, 2, 11 ], "texture": "#blue" }
+            },
+            "__comment": "Shaft"
+        },
+        {
+            "from": [-0.5, 2, -0.5],
+            "to": [2.5, 16, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 1, 2 ], "texture": "#light"},
+                "up":    { "uv": [ 0, 0, 1, 2 ], "texture": "#light" },
+                "north": { "uv": [ 0, 0, 2, 13 ], "texture": "#light" },
+                "south": { "uv": [ 0, 0, 2, 13 ], "texture": "#light" },
+                "west":  { "uv": [ 0, 0, 1, 13 ], "texture": "#light" },
+                "east":  { "uv": [ 0, 0, 1, 13 ], "texture": "#light" }
+            },
+            "__comment": "Middle Shaft"
+        },
+        {
+            "from": [-1, 12, -1],
+            "to": [1, 28, 1],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 1, 1 ], "texture": "#blue"},
+                "up":    { "uv": [ 0, 0, 1, 1 ], "texture": "#blue" },
+                "north": { "uv": [ 0, 0, 1, 15 ], "texture": "#blue" },
+                "south": { "uv": [ 0, 0, 1, 15 ], "texture": "#blue" },
+                "west":  { "uv": [ 0, 0, 1, 15 ], "texture": "#blue" },
+                "east":  { "uv": [ 0, 0, 1, 15 ], "texture": "#blue" }
+            },
+            "__comment": "Upper shaft"
+        },
+        {
+            "from": [1.5, -1, -0.5],
+            "to": [5.5, 0, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 3 ], "texture": "#light"},
+                "up":    { "uv": [ 0, 0, 0, 3 ], "texture": "#light" },
+                "north": { "uv": [ 0, 0, 3, 0 ], "texture": "#light" },
+                "south": { "uv": [ 0, 0, 3, 0 ], "texture": "#light" },
+                "west":  { "uv": [ 0, 0, 0, 0 ], "texture": "#light" },
+                "east":  { "uv": [ 0, 0, 0, 0 ], "texture": "#light" }
+            },
+            "__comment": "Handle splinter"
+        },
+        {
+            "from": [1.5, -2, -0.25],
+            "to": [3.5, -1, 0.25],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 0, 1 ], "texture": "#light"},
+                "up":    { "uv": [ 0, 0, 0, 1 ], "texture": "#light" },
+                "north": { "uv": [ 0, 0, 1, 0 ], "texture": "#light" },
+                "south": { "uv": [ 0, 0, 1, 0 ], "texture": "#light" },
+                "west":  { "uv": [ 0, 0, 0, 0 ], "texture": "#light" },
+                "east":  { "uv": [ 0, 0, 0, 0 ], "texture": "#light" }
+            },
+            "__comment": "Handle spinter, lower bit"
+        }
+    ]
+}

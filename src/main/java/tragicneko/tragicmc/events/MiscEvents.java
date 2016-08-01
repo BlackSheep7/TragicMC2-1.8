@@ -178,9 +178,13 @@ public class MiscEvents {
 			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
 			ItemStack stack = player.getEquipmentInSlot(0);
 
-			if (stack != null && (stack.getItem() == TragicItems.Thardus || stack.getItem() == TragicItems.FrozenLightning || stack.getItem() == TragicItems.NekoLaserSword))
+			if (stack != null && (stack.getItem() == TragicItems.Thardus || stack.getItem() == TragicItems.FrozenLightning))
 			{
 				event.source.setMagicDamage(); //instead of canceling and subbing in magic damage, we can just change the source to act as magic damage
+			}
+			else if (stack != null && stack.getItem() == TragicItems.NekoLaserSword)
+			{
+				event.source.setDamageBypassesArmor();
 			}
 		}
 	}

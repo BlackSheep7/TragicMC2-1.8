@@ -277,7 +277,7 @@ public class EntityMechaExo extends EntityRidable {
 
 	@Override
 	public void useAttack(int attackType) {
-		if (this.riddenByEntity == null) return;
+		if (this.riddenByEntity == null || !TragicConfig.getBoolean("allowRidableEntityAbilities")) return;
 
 		Vec3 vec = WorldHelper.getVecFromEntity(this.riddenByEntity, 30.0);
 		if (vec == null) return;		
@@ -364,13 +364,14 @@ public class EntityMechaExo extends EntityRidable {
 			else
 			{
 				this.setThrustTicks(30);
-				if (TragicConfig.getBoolean("allowMobSounds") && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.mechaexo.thruster", 1.8F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds") && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.exo.thruster", 1.8F, 1.0F);
 			}
 		}
 	}
 
 	@Override
 	public void useAttackViaMob(int attackType, EntityLivingBase target) {
+		if (!TragicConfig.getBoolean("allowRidableEntityAbilitiesViaMob")) return;
 		if (this.riddenByEntity instanceof EntityLivingBase)
 		{
 			EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
@@ -395,13 +396,13 @@ public class EntityMechaExo extends EntityRidable {
 			else if (attackType == 2)
 			{
 				this.setThrustTicks(15);
-				if (TragicConfig.getBoolean("allowMobSounds") && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.mechaexo.thruster", 1.8F, 1.0F);
+				if (TragicConfig.getBoolean("allowMobSounds") && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.exo.thruster", 1.8F, 1.0F);
 			}
 			else
 			{
 				if (this.canEntityBeSeen(target))
 				{
-					target.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
+					target.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue() / 2.0F);
 					this.setFired(true, target.getEntityId());
 					this.cooldown = 10;
 				}

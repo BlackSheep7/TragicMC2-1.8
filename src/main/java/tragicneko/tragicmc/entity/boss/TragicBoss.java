@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -29,7 +30,6 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
@@ -170,7 +170,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (!this.worldObj.isRemote && TragicConfig.getBoolean("bossesDenyFlight"))
 		{
-			List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0));
+			List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.posX, this.posY, this.posZ).expand(64.0, 64.0, 64.0));
 
 			for (EntityPlayerMP mp : list)
 			{
@@ -269,7 +269,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	}
 
 	public int getPlayersNearby() {
-		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.getEntityBoundingBox().expand(64.0, 64.0, 64.0)).size();
+		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.posX, this.posY, this.posZ).expand(64.0, 64.0, 64.0)).size();
 	}
 
 	public int getPlayersNearby(int min, int max)
@@ -279,7 +279,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 	public int getPlayersNearby(double range)
 	{
-		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.getEntityBoundingBox().expand(range, range, range)).size();
+		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.posX, this.posY, this.posZ).expand(range, range, range)).size();
 	}
 
 	public int getPlayersNearby(double range, int min, int max)

@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelSimpleNeko;
-import tragicneko.tragicmc.entity.mob.EntityWorkerNeko;
+import tragicneko.tragicmc.entity.mob.EntityCommonNeko;
 
 public class RenderCommonNeko extends RenderMob {
 
@@ -23,10 +23,10 @@ public class RenderCommonNeko extends RenderMob {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		return getEntityTexture((EntityWorkerNeko) entity);
+		return getEntityTexture((EntityCommonNeko) entity);
 	}
 
-	private ResourceLocation getEntityTexture(EntityWorkerNeko entity) {
+	private ResourceLocation getEntityTexture(EntityCommonNeko entity) {
 		switch(entity.getTextureId())
 		{
 		default:

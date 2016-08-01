@@ -323,6 +323,7 @@ public class TragicItems {
 
 	//Tool Materials
 	private static final ToolMaterial toolBasic = EnumHelper.addToolMaterial("BASIC", 1, 115, 6.0F, 0.0F, 1);
+	private static final ToolMaterial toolLaserSword = EnumHelper.addToolMaterial("LASERSWORD", 3, 142, 0.0F, -1F, 0);
 	private static final ToolMaterial toolScythe = EnumHelper.addToolMaterial("SCYTHE", 1, 110, 10.0F, 0.0F, 6);
 	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 825, 14.0F, 2.0F, 5);
 	private static final ToolMaterial toolGravity = EnumHelper.addToolMaterial("GRAVITY", 1, 220, 0.5F, 0.5F, 10);
@@ -767,7 +768,7 @@ public class TragicItems {
 		NekoRayGun = (new ItemNekoRayGun().setUnlocalizedName("tragicmc.nekoRayGun").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(NekoRayGun, "nekoRayGun");
 		
-		NekoLaserSword = (new ItemNekoLaserSword(toolBasic).setUnlocalizedName("tragicmc.nekoLaserSword").setCreativeTab(TragicMC.Survival));
+		NekoLaserSword = (new ItemNekoLaserSword(toolLaserSword).setUnlocalizedName("tragicmc.nekoLaserSword").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerItem(NekoLaserSword, "nekoLaserSword");
 		
 		NekoidsBlaster = (new ItemNekoidsBlaster().setUnlocalizedName("tragicmc.nekoidsBlaster").setCreativeTab(TragicMC.Survival));

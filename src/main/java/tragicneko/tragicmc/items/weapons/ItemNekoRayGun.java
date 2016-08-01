@@ -2,7 +2,6 @@ package tragicneko.tragicmc.items.weapons;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -12,7 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -106,7 +104,7 @@ public class ItemNekoRayGun extends Item {
 
 						if (!(e instanceof EntityItem) && !(e instanceof EntityXPOrb) && !(e instanceof EntityArrow) && e != par3EntityPlayer)
 						{
-							e.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(par3EntityPlayer), 2F);
+							e.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(par3EntityPlayer), 3F);
 							if (TragicConfig.getBoolean("allowMobSounds")) par2World.playSoundAtEntity(e, "tragicmc:boss.aegar.laser", 0.4F, 1.8F);
 						}
 					}
@@ -120,4 +118,10 @@ public class ItemNekoRayGun extends Item {
 			return par1ItemStack;
 		}
 	}
+	
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
+    {
+		return oldStack == null || !(oldStack.getItem() instanceof ItemNekoRayGun);
+    }
 }

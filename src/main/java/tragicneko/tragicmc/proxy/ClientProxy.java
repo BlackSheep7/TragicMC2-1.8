@@ -50,6 +50,7 @@ import tragicneko.tragicmc.client.model.ModelPsygote;
 import tragicneko.tragicmc.client.model.ModelRanmas;
 import tragicneko.tragicmc.client.model.ModelScienceNeko;
 import tragicneko.tragicmc.client.model.ModelSeeker;
+import tragicneko.tragicmc.client.model.ModelSimpleNeko;
 import tragicneko.tragicmc.client.model.ModelSirv;
 import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.client.model.ModelStinQueen;
@@ -94,6 +95,7 @@ import tragicneko.tragicmc.client.render.mob.RenderErkel;
 import tragicneko.tragicmc.client.render.mob.RenderExo;
 import tragicneko.tragicmc.client.render.mob.RenderFusea;
 import tragicneko.tragicmc.client.render.mob.RenderJabba;
+import tragicneko.tragicmc.client.render.mob.RenderMob;
 import tragicneko.tragicmc.client.render.mob.RenderNorVox;
 import tragicneko.tragicmc.client.render.mob.RenderPirah;
 import tragicneko.tragicmc.client.render.mob.RenderPumpkinhead;
@@ -170,7 +172,7 @@ import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTraderNeko;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
-import tragicneko.tragicmc.entity.mob.EntityWorkerNeko;
+import tragicneko.tragicmc.entity.mob.EntityCommonNeko;
 import tragicneko.tragicmc.entity.projectile.EntityBanana;
 import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
@@ -316,8 +318,7 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntitySpiritCast.class, new RenderFactoryProjectile(item, 10, 1F));
 		registerRender(EntitySpore.class, new RenderFactoryProjectile(item, 11, 1F));
 		registerRender(EntityBanana.class, new RenderFactoryProjectile(item, 12, 1F));
-		registerRender(EntityLargeRock.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderLargeRock(manager); }});
+		registerRender(EntityLargeRock.class, new RenderFactorySimple(RenderLargeRock.class));
 		registerRender(EntityIcicle.class, new RenderFactoryProjectile(item, 14, 1F));
 		registerRender(EntityTimeBomb.class, new RenderFactoryProjectile(item, 15, 1F));
 		registerRender(EntityStarShard.class, new RenderFactoryProjectile(item, 16, 1F));
@@ -331,77 +332,53 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityIreEnergy.class, new RenderFactoryProjectile(item, 24, 1F));
 
 		//Non projectile renders
-		registerRender(EntityStatue.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderStatue(manager); }});
-		registerRender(EntityTimeDisruption.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderTimeDisruption(manager); }});
-		registerRender(EntityDarkCrystal.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderDarkCrystal(manager); }});
-		registerRender(EntityGuardianShield.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderGuardianShield(manager); }});
-		registerRender(EntityDimensionalAnomaly.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderDimensionalAnomaly(manager); }});
-		registerRender(EntityLock.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderLock(manager); }});
-		registerRender(EntityDirectedLightning.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderDirectedLightning(manager); }});
-		registerRender(EntityNuke.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderNuke(manager); }});
-		registerRender(EntityMechaExo.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderExo(manager); }});
+		registerRender(EntityStatue.class, new RenderFactorySimple(RenderStatue.class));
+		registerRender(EntityTimeDisruption.class, new RenderFactorySimple(RenderTimeDisruption.class));
+		registerRender(EntityDarkCrystal.class, new RenderFactorySimple(RenderDarkCrystal.class));
+		registerRender(EntityGuardianShield.class, new RenderFactorySimple(RenderGuardianShield.class));
+		registerRender(EntityDimensionalAnomaly.class, new RenderFactorySimple(RenderDimensionalAnomaly.class));
+		registerRender(EntityLock.class, new RenderFactorySimple(RenderLock.class));
+		registerRender(EntityDirectedLightning.class, new RenderFactorySimple(RenderDirectedLightning.class));
+		registerRender(EntityNuke.class, new RenderFactorySimple(RenderNuke.class));
+		registerRender(EntityMechaExo.class, new RenderFactorySimple(RenderExo.class));
 
 		//Mob renders
-		registerRender(EntityJabba.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderJabba(manager); }});
+		registerRender(EntityJabba.class, new RenderFactorySimple(RenderJabba.class));
 		registerRender(EntityJarra.class, new RenderFactoryMob(new ModelJarra(), 0.655F, "Jarra", 1.585F));
 		registerRender(EntityPlague.class, new RenderFactoryMob(new ModelPlague(), 0.115F, "Plague"));
 		registerRender(EntityGragul.class, new RenderFactoryMob(new ModelGragul(), 0.115F, "Gragul"));
 		registerRender(EntityKragul.class, new RenderFactoryMob(new ModelKragul(), 0.115F, "Kragul", 2.115F));
 		registerRender(EntityMinotaur.class, new RenderFactoryMob(new ModelMinotaur(), 0.337F, "Minotaur"));
-		registerRender(EntityRagr.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderRagr(manager); }});
+		registerRender(EntityRagr.class, new RenderFactorySimple(RenderRagr.class));
 		registerRender(EntityInkling.class, new RenderFactoryMob(new ModelInkling(), 0.175F, "Inkling"));
-		registerRender(EntityPumpkinhead.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderPumpkinhead(manager); }});
+		registerRender(EntityPumpkinhead.class, new RenderFactorySimple(RenderPumpkinhead.class));
 		registerRender(EntityTragicNeko.class, new RenderFactoryMob(new ModelTragicNeko(), 0.295F, "TragicNeko"));
-		registerRender(EntityTox.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderTox(manager); }});
+		registerRender(EntityTox.class, new RenderFactorySimple(RenderTox.class));
 		registerRender(EntityMagmox.class, new RenderFactoryMob(new ModelTox(), 0.565F, "Magmox2", 1.625F));
-		registerRender(EntityCryse.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderCryse(manager); }});
-		registerRender(EntityMegaCryse.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderMegaCryse(manager); }});
-		registerRender(EntityNorVox.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderNorVox(manager); }});
-		registerRender(EntityVoxStellarum.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderVoxStellarum(manager); }});
-		registerRender(EntityPirah.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderPirah(manager); }});
-		registerRender(EntityStin.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderStin(manager); }});
+		registerRender(EntityCryse.class, new RenderFactorySimple(RenderCryse.class));
+		registerRender(EntityMegaCryse.class, new RenderFactorySimple(RenderMegaCryse.class));
+		registerRender(EntityNorVox.class, new RenderFactorySimple(RenderNorVox.class));
+		registerRender(EntityVoxStellarum.class, new RenderFactorySimple(RenderVoxStellarum.class));
+		registerRender(EntityPirah.class, new RenderFactorySimple(RenderPirah.class));
+		registerRender(EntityStin.class, new RenderFactorySimple(RenderStin.class));
 		registerRender(EntityGreaterStin.class, new RenderFactoryMob(new ModelGreaterStin(), 0.675F, "GreaterStin"));
 		registerRender(EntityStinKing.class, new RenderFactoryMob(new ModelStinKing(), 0.675F, "StinKing", 1.625F));
 		registerRender(EntityStinQueen.class, new RenderFactoryMob(new ModelStinQueen(), 0.675F, "StinQueen", 1.225F));
-		registerRender(EntityWisp.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderWisp(manager); }});
+		registerRender(EntityWisp.class, new RenderFactorySimple(RenderWisp.class));
 		registerRender(EntityAbomination.class, new RenderFactoryMob(new ModelAbomination(), 0.475F, "Abomination"));
-		registerRender(EntityErkel.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderErkel(manager); }});
+		registerRender(EntityErkel.class, new RenderFactorySimple(RenderErkel.class));
 		registerRender(EntitySirv.class, new RenderFactoryMob(new ModelSirv(), 0.245F, "Sirv"));
 		registerRender(EntityPsygote.class, new RenderFactoryMob(new ModelPsygote(), 0.565F, "Psygote"));
 		registerRender(EntityNanoSwarm.class, new RenderFactoryMob(new ModelNanoSwarm(), 0.215F, "NanoSwarm", 1.545F));
-		registerRender(EntityAegar.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderAegar(manager); }});
+		registerRender(EntityAegar.class, new RenderFactorySimple(RenderAegar.class));
 		registerRender(EntityHunter.class, new RenderFactoryMob(new ModelHunter(), 0.565F, "Hunter", 1.4F));
 		registerRender(EntityHarvester.class, new RenderFactoryMob(new ModelHarvester(), 0.785F, "Harvester", 1.555F));
 		registerRender(EntityLockbot.class, new RenderFactoryMob(new ModelLockbot(), 0.335F, "Lockbot"));
 		registerRender(EntitySeeker.class, new RenderFactoryMob(new ModelSeeker(), 0.475F, "Seeker"));
 		registerRender(EntityIre.class, new RenderFactoryMobTransparent(new ModelIre(), 0.335F, "Ire", 1.0F, 0.65F));
 		registerRender(EntityArchangel.class, new RenderFactoryMobTransparent(new ModelArchangel(), 0.355F, "Archangel", 1.0F, 0.625F));
-		registerRender(EntityFusea.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderFusea(manager, 0); }});
-		registerRender(EntityVolatileFusea.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderFusea(manager, 1); }});
+		registerRender(EntityFusea.class, new RenderFactorySimple(RenderFusea.class));
+		registerRender(EntityVolatileFusea.class, new RenderFactorySimple(RenderFusea.class));
 		registerRender(EntityRanmas.class, new RenderFactoryMob(new ModelRanmas(), 0.775F, "Ranmas", 1.25F));
 		registerRender(EntityParasmite.class, new RenderFactoryMob(new ModelHunter(), 0.565F, "Parasmite", 1.355F));
 		registerRender(EntityKurayami.class, new RenderFactoryMob(new ModelKurayami(), 0.645F, "Kurayami", 0.825F));
@@ -409,39 +386,25 @@ public class ClientProxy extends CommonProxy {
 		registerRender(EntityJetNeko.class, new RenderFactoryMob(new ModelJetNeko(), 0.295F, "JetNeko", 0.725F));
 		registerRender(EntityScienceNeko.class, new RenderFactoryMob(new ModelScienceNeko(), 0.295F, "ScienceNeko", 0.855F));
 		registerRender(EntityMechaNeko.class, new RenderFactoryMob(new ModelMechaNeko(), 0.295F, "MechaNeko", 0.925F));
-		registerRender(EntityAssaultNeko.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderAssaultNeko(manager); }});
+		registerRender(EntityAssaultNeko.class, new RenderFactorySimple(RenderAssaultNeko.class));
 		registerRender(EntityTraderNeko.class, new RenderFactoryMob(new ModelTraderNeko(), 0.245F, "TraderNekoActual"));
-		registerRender(EntityWorkerNeko.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderCommonNeko(manager); }});
+		registerRender(EntityCommonNeko.class, new RenderFactorySimple(RenderCommonNeko.class));
 
 		//Boss renders
-		registerRender(EntityApis.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderApis(manager); }});
-		registerRender(EntityDeathReaper.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderDeathReaper(manager); }});
-		registerRender(EntityKitsune.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderKitsune(manager); }});
-		registerRender(EntityPolaris.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderPolaris(manager); }});
-		registerRender(EntityYeti.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderYeti(manager); }});
-		registerRender(EntityTimeController.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderTimeController(manager); }});
-		registerRender(EntityEnyvil.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderEnyvil(manager); }});
-		registerRender(EntityClaymation.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderClaymation(manager); }});
-		registerRender(EntityProfessorNekoid.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderProfessorNekoid(manager); }});
+		registerRender(EntityApis.class, new RenderFactorySimple(RenderApis.class));
+		registerRender(EntityDeathReaper.class, new RenderFactorySimple(RenderDeathReaper.class));
+		registerRender(EntityKitsune.class, new RenderFactorySimple(RenderKitsune.class));
+		registerRender(EntityPolaris.class, new RenderFactorySimple(RenderPolaris.class));
+		registerRender(EntityYeti.class, new RenderFactorySimple(RenderYeti.class));
+		registerRender(EntityTimeController.class, new RenderFactorySimple(RenderTimeController.class));
+		registerRender(EntityEnyvil.class, new RenderFactorySimple(RenderEnyvil.class));
+		registerRender(EntityClaymation.class, new RenderFactorySimple(RenderClaymation.class));
+		registerRender(EntityProfessorNekoid.class, new RenderFactorySimple(RenderProfessorNekoid.class));
 
 		//Alpha renders
-		registerRender(EntityOverlordCocoon.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderOverlordCocoon(manager); }});
-		registerRender(EntityOverlordCombat.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderOverlordCombat(manager); }});
-		registerRender(EntityOverlordCore.class, new IRenderFactory() {
-			@Override public Render createRenderFor(RenderManager manager) { return new RenderOverlordCore(manager); }});
+		registerRender(EntityOverlordCocoon.class, new RenderFactorySimple(RenderOverlordCocoon.class));
+		registerRender(EntityOverlordCombat.class, new RenderFactorySimple(RenderOverlordCombat.class));
+		registerRender(EntityOverlordCore.class, new RenderFactorySimple(RenderOverlordCore.class));
 
 		registerBlockToBakery(TragicBlocks.SummonBlock, getPrefixedArray(summonBlock));
 
@@ -547,6 +510,9 @@ public class ClientProxy extends CommonProxy {
 			registerItemToBakery(TragicItems.EverlastingLight, getPrefixedArray(everlastingLight));
 
 			registerWeaponToBakery(TragicItems.IreNetParticleCannon, "ireParticleCannon");
+			registerWeaponToBakery(TragicItems.NekoidsBlaster, "nekoidsBlaster");
+			registerWeaponToBakery(TragicItems.NekoRayGun, "nekoRayGun");
+			registerWeaponToBakery(TragicItems.NekoLaserSword, "nekoLaserSword");
 
 			registerItemToBakery(TragicItems.Starstruck, DOMAIN + "record");
 			registerItemToBakery(TragicItems.Faultless, DOMAIN + "record");
@@ -848,36 +814,13 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.GravitySpike, ZERO, "gravitySpike");
 			registerItemToMesher(TragicItems.HarmonyBell, ZERO, "harmonyBell");
 			registerItemToMesher(TragicItems.MourningStar, ZERO, "mourningStar");
-			registerItemWithCustomDefinition(TragicItems.BeastlyClaws, new ItemMeshDefinition() {
-
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "beastlyClaws" : "beastlyClawsInventory"), "inventory");
-				}
-			});
+			registerItemWithCustomDefinition(TragicItems.BeastlyClaws, new WeaponDefinition("beastlyClaws"));
 			registerItemToMesher(TragicItems.GuiltyThorn, ZERO, "guiltyThorn");
-			registerItemWithCustomDefinition(TragicItems.NekoLauncher, new ItemMeshDefinition() {
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "nekoLauncher" : "nekoLauncherInventory"), "inventory");
-				}
-			});
-			registerItemWithCustomDefinition(TragicItems.ReaperScythe, new ItemMeshDefinition() {
-
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "reaperScythe" : "reaperScytheInventory"), "inventory");
-				}
-			});
+			registerItemWithCustomDefinition(TragicItems.NekoLauncher, new WeaponDefinition("nekoLauncher"));
+			registerItemWithCustomDefinition(TragicItems.ReaperScythe, new WeaponDefinition("reaperScythe"));
 			registerItemToMesher(TragicItems.WitheringAxe, ZERO, "witheringAxe");
 			registerItemToMesher(TragicItems.FrozenLightning, ZERO, "frozenLightning");
-			registerItemWithCustomDefinition(TragicItems.CelestialAegis, new ItemMeshDefinition() {
-
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "celestialAegis" : "celestialAegisInventory"), "inventory");
-				}
-			});
+			registerItemWithCustomDefinition(TragicItems.CelestialAegis, new WeaponDefinition("celestialAegis"));
 
 			registerItemWithCustomDefinition(TragicItems.CelestialLongbow, new ItemMeshDefinition() {
 				@Override
@@ -907,49 +850,14 @@ public class ClientProxy extends CommonProxy {
 			});
 			registerItemToMesher(TragicItems.SilentHellraiser, ZERO, "silentHellraiser");
 
-			registerItemWithCustomDefinition(TragicItems.Titan, new ItemMeshDefinition() {
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "titan" : "titanInventory"), "inventory");
-				}
-			});
-			registerItemWithCustomDefinition(TragicItems.Splinter, new ItemMeshDefinition() {
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "splinter" : "splinterInventory"), "inventory");
-				}
-			});
-			registerItemWithCustomDefinition(TragicItems.Butcher, new ItemMeshDefinition() {
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "butcher" : "butcherInventory"), "inventory");
-				}
-			});
-			registerItemWithCustomDefinition(TragicItems.Thardus, new ItemMeshDefinition() {
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "thardus" : "thardusInventory"), "inventory");
-				}
-			});
-			registerItemWithCustomDefinition(TragicItems.Paranoia, new ItemMeshDefinition() {
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "paranoia" : "paranoiaInventory"), "inventory");
-				}
-			});
-			registerItemWithCustomDefinition(TragicItems.DragonFang, new ItemMeshDefinition() {
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "dragonFang" : "dragonFangInventory"), "inventory");
-				}
-			});
+			registerItemWithCustomDefinition(TragicItems.Titan, new WeaponDefinition("titan"));
+			registerItemWithCustomDefinition(TragicItems.Splinter, new WeaponDefinition("splinter"));
+			registerItemWithCustomDefinition(TragicItems.Butcher, new WeaponDefinition("butcher"));
+			registerItemWithCustomDefinition(TragicItems.Thardus, new WeaponDefinition("thardus"));
+			registerItemWithCustomDefinition(TragicItems.Paranoia, new WeaponDefinition("paranoia"));
+			registerItemWithCustomDefinition(TragicItems.DragonFang, new WeaponDefinition("dragonFang"));
 
-			registerItemWithCustomDefinition(TragicItems.Sentinel, new ItemMeshDefinition() {
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "sentinel" : "sentinelInventory"), "inventory");
-				}
-			});
+			registerItemWithCustomDefinition(TragicItems.Sentinel, new WeaponDefinition("sentinel"));
 
 			registerItemToMesher(TragicItems.Scythe, ZERO, "scythe");
 			registerItemWithCustomDefinition(TragicItems.EverlastingLight, new ItemMeshDefinition() {
@@ -1021,12 +929,7 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.ArchangelFeather, ZERO, "archangelFeather");
 			registerItemToMesher(TragicItems.WingsOfLiberation, ZERO, "wingsOfLiberation");
 			registerItemToMesher(TragicItems.IreNode, ZERO, "ireNode");
-			registerItemWithCustomDefinition(TragicItems.IreNetParticleCannon, new ItemMeshDefinition() {
-				@Override
-				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return  new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? "ireParticleCannon" : "ireParticleCannonInventory"), "inventory");
-				}
-			});
+			registerItemWithCustomDefinition(TragicItems.IreNetParticleCannon, new WeaponDefinition("ireParticleCannon"));
 			registerItemToMesher(TragicItems.CatalyticCompound, ZERO, "catalyticCompound");
 			registerItemToMesher(TragicItems.InterestingResin, ZERO, "interestingResin");
 			registerItemToMesher(TragicItems.Chitin, ZERO, "chitin");
@@ -1040,6 +943,9 @@ public class ClientProxy extends CommonProxy {
 			registerItemToMesher(TragicItems.Nekite, ZERO, "nekite");
 			registerItemToMesher(TragicItems.MechaExo, ZERO, "mechaExo");
 			registerItemToMesher(TragicItems.Wrench, ZERO, "wrench");
+			registerItemWithCustomDefinition(TragicItems.NekoRayGun, new WeaponDefinition("nekoRayGun"));
+			registerItemWithCustomDefinition(TragicItems.NekoLaserSword, new WeaponDefinition("nekoLaserSword"));
+			registerItemWithCustomDefinition(TragicItems.NekoidsBlaster, new WeaponDefinition("nekoidsBlaster"));
 
 			registerItemToMesher(TragicItems.Starstruck, ZERO, "record");
 			registerItemToMesher(TragicItems.Faultless, ZERO, "record");
@@ -1305,5 +1211,40 @@ public class ClientProxy extends CommonProxy {
 	private static void registerRender(Class oclass, IRenderFactory factory)
 	{
 		RenderingRegistry.registerEntityRenderingHandler(oclass, factory);
+	}
+	
+	public static class WeaponDefinition implements ItemMeshDefinition {
+		
+		private final String name;
+		
+		public WeaponDefinition(String s) {
+			this.name = s;
+		}
+
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			return new ModelResourceLocation(DOMAIN + (TragicConfig.getBoolean("allowWeaponModels") ? this.name : this.name + "Inventory"), "inventory");
+		}
+	}
+	
+	public static class RenderFactorySimple implements IRenderFactory {
+		public Class<? extends Render> renderClass;
+		
+		public RenderFactorySimple(Class<? extends Render> render) {
+			this.renderClass = render;
+		}
+		
+		@Override
+		public Render createRenderFor(RenderManager manager) {
+			try
+			{
+				return renderClass.getConstructor(RenderManager.class).newInstance(manager);
+			}
+			catch (Exception e)
+			{
+				return new RenderMob(manager, new ModelSimpleNeko(), 0.625F, "");
+			}
+		}
+		
 	}
 }

@@ -101,7 +101,7 @@ public class ItemNekoidsBlaster extends Item {
 						{
 							flag = true;
 							float f = par3EntityPlayer.getDistanceToEntity(e) / 23.0F;
-							if (f <= 0) f = 0.1F;
+							if (f <= 0.2) f = 0.2F;
 							MovingObjectPosition mop2 = WorldHelper.getMOPFromEntity(par3EntityPlayer, 1 / f);
 							
 							double x = (mop2.hitVec.xCoord - par3EntityPlayer.posX);
@@ -123,4 +123,10 @@ public class ItemNekoidsBlaster extends Item {
 			return par1ItemStack;
 		}
 	}
+	
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
+    {
+		return oldStack == null || !(oldStack.getItem() instanceof ItemNekoidsBlaster);
+    }
 }

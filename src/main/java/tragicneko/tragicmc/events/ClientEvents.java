@@ -93,7 +93,6 @@ public class ClientEvents extends Gui {
 						TragicMC.proxy.net.sendToServer(new MessageUseRidable((byte) 2));
 					}
 				}
-				
 			}
 		}
 

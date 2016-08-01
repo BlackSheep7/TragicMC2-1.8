@@ -1,0 +1,90 @@
+{
+    "textures": {
+	"dark": "tragicmc:weapons/BeastlyClawsDark",
+	"light": "tragicmc:weapons/BeastlyClawsLight"
+    },
+    "display": {
+        "thirdperson": {
+            "rotation": [ 70, 120, -55 ],
+            "translation": [ -3.5, -2.5, -9 ],
+            "scale": [ 1.15, 1.15, 1.15 ]
+        },
+        "firstperson": {
+            "rotation": [ -90, -85, 35 ],
+            "translation": [ 4, 12, -2 ],
+            "scale": [ 1.7, 1.7, 1.7 ]
+        },
+        "gui": {
+            "rotation": [ -35, -165, 0 ],
+            "translation": [ 0, 11, -5 ],
+            "scale": [ 1.275, 1.275, 1.275 ]
+        }
+    },
+    "elements": [
+        {
+            "from": [-1.5, -7, -2],
+            "to": [1.5, 0, 2],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 5, 4 ], "texture": "#light"},
+                "up":    { "uv": [ 0, 0, 5, 4 ], "texture": "#light" },
+                "north": { "uv": [ 0, 0, 5, 7 ], "texture": "#light" },
+                "south": { "uv": [ 0, 0, 5, 7 ], "texture": "#light" },
+                "west":  { "uv": [ 0, 0, 4, 7 ], "texture": "#light" },
+                "east":  { "uv": [ 0, 0, 4, 7 ], "texture": "#light" }
+            },
+            "__comment": "Body"
+        },
+        {
+            "from": [-0.5, 0, -0.5],
+            "to": [0.5, 7, 0.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 3, 3 ], "texture": "#dark"},
+                "up":    { "uv": [ 0, 0, 3, 3 ], "texture": "#dark" },
+                "north": { "uv": [ 0, 0, 3, 8 ], "texture": "#dark" },
+                "south": { "uv": [ 0, 0, 3, 8 ], "texture": "#dark" },
+                "west":  { "uv": [ 0, 0, 3, 8 ], "texture": "#dark" },
+                "east":  { "uv": [ 0, 0, 3, 8 ], "texture": "#dark" }
+            },
+            "__comment": "Needle"
+        },
+        {
+            "from": [-1.5, 6.5, -1.5],
+            "to": [1.5, 7.5, 1.5],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 2, 2 ], "texture": "#light"},
+                "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#light" },
+                "north": { "uv": [ 0, 0, 2, 1 ], "texture": "#light" },
+                "south": { "uv": [ 0, 0, 2, 1 ], "texture": "#light" },
+                "west":  { "uv": [ 0, 0, 2, 1 ], "texture": "#light" },
+                "east":  { "uv": [ 0, 0, 2, 1 ], "texture": "#light" }
+            },
+            "__comment": "Tip"
+        },
+        {
+            "from": [-1, -5.5, 2],
+            "to": [1, -5, 4],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 5, 5 ], "texture": "#dark"},
+                "up":    { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" },
+                "north": { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" },
+                "south": { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" },
+                "west":  { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" },
+                "east":  { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" }
+            },
+            "__comment": "Sight"
+        },
+        {
+            "from": [-1, -9.5, 0],
+            "to": [1, -6.5, 4],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 5, 5 ], "texture": "#dark"},
+                "up":    { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" },
+                "north": { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" },
+                "south": { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" },
+                "west":  { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" },
+                "east":  { "uv": [ 0, 0, 5, 5 ], "texture": "#dark" }
+            },
+            "__comment": "Handle"
+        }
+    ]
+}

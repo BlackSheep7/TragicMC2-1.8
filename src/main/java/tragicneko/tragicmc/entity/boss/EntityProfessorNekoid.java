@@ -23,6 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -57,6 +58,8 @@ public class EntityProfessorNekoid extends TragicBoss {
 		}
 	};
 
+	private boolean lostStartingMech = false;
+
 	public EntityProfessorNekoid(World par1World) {
 		super(par1World);
 		this.setSize(0.475F, 1.895F);
@@ -87,7 +90,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 
 	@Override
 	public int getTotalArmorValue() {
-		return this.ridingEntity instanceof EntityMechaExo ? 24 : TragicConfig.getMobStat("professorNekoidStats").getArmorValue();
+		return this.ridingEntity instanceof EntityMechaExo && TragicConfig.getBoolean("professorNekoidMechaArmor") ? 24 : TragicConfig.getMobStat("professorNekoidStats").getArmorValue();
 	}
 
 	@Override
@@ -137,6 +140,24 @@ public class EntityProfessorNekoid extends TragicBoss {
 
 		if (this.worldObj.isRemote)
 		{
+			if (this.ridingEntity != null && this.getBlasterTicks() == 220 || this.ridingEntity == null && this.getBlasterTicks() == 140)
+			{
+				MovingObjectPosition mop = WorldHelper.getMOPFromEntity(this, 10.0);
+				double d0 = mop.hitVec.xCoord - this.posX;
+				double d1 = mop.hitVec.yCoord - this.posY - this.getEyeHeight();
+				double d2 = mop.hitVec.zCoord - this.posZ;
+
+				for (byte b = 0; b < 16; b++)
+				{
+					for (byte l = 0; l < 8; l++)
+					{
+						double d3 = 0.123D * l + (rand.nextDouble() * 0.125D);
+						this.worldObj.spawnParticle(EnumParticleTypes.CLOUD, this.posX + d0 * d3 + (rand.nextDouble() - rand.nextDouble()) * 4.0,
+								this.posY + d1 * d3 + this.getEyeHeight() + (rand.nextDouble() - rand.nextDouble()) * 2.0,
+								this.posZ + d2 * d3 + (rand.nextDouble() - rand.nextDouble()) * 4.0, 0.0, 0.0, 0.0);
+					}
+				}
+			}
 			return;
 		}
 
@@ -166,9 +187,10 @@ public class EntityProfessorNekoid extends TragicBoss {
 		{
 			this.setLostMecha(true);
 			this.setTitanfallTicks(360);
+			this.lostStartingMech = true;
 		}
 
-		if (this.getTitanfallTicks() == 0 && this.hasLostMecha() && this.onGround)
+		if (this.getTitanfallTicks() == 0 && this.hasLostMecha() && this.onGround && TragicConfig.getBoolean("professorNekoidTitanfall"))
 		{
 			EntityMechaExo exo = new EntityMechaExo(this.worldObj);
 			double y = this.posY - WorldHelper.getDistanceToGround(this);
@@ -183,20 +205,21 @@ public class EntityProfessorNekoid extends TragicBoss {
 				if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.professornekoid.titanfall", 1.7F, 1.0F);
 				exo.setVariant(true);
 			}
-			
+
 			this.setTitanfallTicks(200);
 		}
 
-		if (this.ridingEntity != null && this.ridingEntity instanceof EntityMechaExo && this.getAttackTarget() != null && this.getCommandTicks() == 0)
+		if (this.ridingEntity != null && this.ridingEntity instanceof EntityMechaExo && this.getAttackTarget() != null && this.getCommandTicks() == 0 && TragicConfig.getBoolean("professorNekoidUseMecha"))
 		{
 			EntityMechaExo exo = (EntityMechaExo) this.ridingEntity;
-			exo.useAttackViaMob(rand.nextBoolean() ? 1 : 0, this.getAttackTarget());
-			this.setCommandTicks(50);
-			
+			boolean flag = rand.nextBoolean();
+			exo.useAttackViaMob(flag ? 1 : 0, this.getAttackTarget());
+			this.setCommandTicks(flag ? 100 : 50);
+
 			if (this.getAttackTarget() != exo.getAITarget()) exo.setAttackTarget(this.getAttackTarget());
 		}
 
-		if (this.getBlasterTicks() == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F && rand.nextInt(6) == 0 && this.ticksExisted % 5 == 0 && !this.isDead)
+		if (this.getBlasterTicks() == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F && rand.nextInt(6) == 0 && this.ticksExisted % 5 == 0 && !this.isDead && TragicConfig.getBoolean("professorNekoidBlaster"))
 		{
 			MovingObjectPosition mop = WorldHelper.getMOPFromEntity(this, 10.0);
 
@@ -251,7 +274,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 			}
 
 			this.setBlasterTicks(this.ridingEntity != null ? 220 : 140);
-			this.worldObj.playSoundAtEntity(this, "tragicmc:random.windblast", 1.4F, 1.0F);
+			this.worldObj.playSoundAtEntity(this, "tragicmc:random.windblast", 1.7F, 1.0F);
 		}
 
 		if (this.ticksExisted % 40 == 0 && this.getAttackTarget() != null && !this.isDead)
@@ -265,7 +288,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 				if (e.getAttackTarget() == null) e.setAttackTarget(this.getAttackTarget());
 			}
 
-			if (list.size() < 6 && (this.getHealth() < this.getMaxHealth() / 2.0F || this.hasLostMecha()) && this.ticksExisted % 240 == 0)
+			if (list.size() < 6 && (this.getHealth() < this.getMaxHealth() / 2.0F || this.hasLostMecha()) && this.ticksExisted % 240 == 0 && TragicConfig.getBoolean("professorNekoidReinforcements"))
 			{
 				EntityNeko neko = new EntityTragicNeko(this.worldObj);
 				if (rand.nextInt(4) == 0)
@@ -311,7 +334,7 @@ public class EntityProfessorNekoid extends TragicBoss {
 	@Override
 	public IEntityLivingData onInitialSpawn(DifficultyInstance ins, IEntityLivingData data)
 	{
-		if (!this.worldObj.isRemote && this.ridingEntity == null && TragicConfig.getBoolean("allowMechaExo"))
+		if (!this.worldObj.isRemote && this.ridingEntity == null && TragicConfig.getBoolean("allowMechaExo") && TragicConfig.getBoolean("professorNekoidMechaSpawn"))
 		{
 			EntityMechaExo exo = new EntityMechaExo(this.worldObj);
 			exo.setPositionAndUpdate(this.posX, this.posY, this.posZ);
@@ -331,14 +354,17 @@ public class EntityProfessorNekoid extends TragicBoss {
 
 		EntityPlayer player = (EntityPlayer) (src.getEntity() instanceof EntityPlayer ? src.getEntity() : null);
 
-		double d = 48.0;
-		List<EntityNeko> list = this.worldObj.getEntitiesWithinAABB(EntityNeko.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.posX, this.posY, this.posZ).expand(d, d, d));
+		if (TragicConfig.getBoolean("professorNekoidDeathRelease"))
+		{
+			double d = 48.0;
+			List<EntityNeko> list = this.worldObj.getEntitiesWithinAABB(EntityNeko.class, new AxisAlignedBB(0, 0, 0, 1, 1, 1).offset(this.posX, this.posY, this.posZ).expand(d, d, d));
 
-		for (EntityNeko e : list) {
-			if (!e.isReleased()) e.releaseNeko(player);
+			for (EntityNeko e : list) {
+				if (!e.isReleased()) e.releaseNeko(player);
+			}
 		}
-		
-		if (player instanceof EntityPlayerMP && !this.hasLostMecha()) {
+
+		if (player instanceof EntityPlayerMP && !this.lostStartingMech) {
 			player.triggerAchievement(TragicAchievements.professorNekoid);
 		}
 	}
