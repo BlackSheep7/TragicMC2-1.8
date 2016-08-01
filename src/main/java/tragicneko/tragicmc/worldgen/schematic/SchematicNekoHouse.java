@@ -65,7 +65,7 @@ public class SchematicNekoHouse extends Schematic {
 		this.setBlock(world, new BlockPos(x + 3, y, z + 3), NekitePlate.getStateFromMeta(1));
 		this.setBlock(world, new BlockPos(x + 4, y, z + 3), NekitePlate.getStateFromMeta(2));
 		this.setBlock(world, new BlockPos(x + 2, y, z + 3), Blocks.jukebox.getStateFromMeta(0));
-		this.setBlock(world, new BlockPos(x - 1, y, z + 3), Blocks.mob_spawner.getStateFromMeta(0), rand.nextInt(16) != 0 ? "TragicMC.WorkerNeko" : "TragicMC.TraderNeko");
+		this.setBlock(world, new BlockPos(x - 1, y, z + 3), Blocks.mob_spawner.getStateFromMeta(0), "TragicMC.CommonNeko");
 		this.setBlock(world, new BlockPos(x - 2, y, z + 3), NekitePlate.getStateFromMeta(1));
 		this.setBlock(world, new BlockPos(x - 3, y, z + 3), NekitePlate.getStateFromMeta(2));
 		this.setBlock(world, new BlockPos(x - 4, y, z + 3), NekitePlate.getStateFromMeta(1));
