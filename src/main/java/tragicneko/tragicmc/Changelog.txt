@@ -5000,9 +5000,11 @@ TragicMC mode enables spawn override on the nekos and nekoid in the overworld in
 the mecha exo
 Fixed a few minor typos in config
 Added default colors to all of the Neko dimension's structure seeds
+Removed Trader Nekos from having a chance to have spawners in the Neko structures
+Added a logger message to display when the non-standard config was being used
 
 Before next release:
-All I have to do is finish recording the sounds, check the new config stuff and do some playtesting now
+All I have to do is finish recording the sounds and do some playtesting now
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)
