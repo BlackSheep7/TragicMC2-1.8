@@ -5,6 +5,7 @@ import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicConfig.MobStat;
 
 public class ConfigLightweight extends TragicConfig {
 
@@ -2052,6 +2053,18 @@ public class ConfigLightweight extends TragicConfig {
 		prop = config.get(cat.getName(), "allowCustomBossDeathUpdate", false);
 		prop.comment = "On death, should Bosses do a custom death effect?";
 		mobConfig[++m] = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "allowRidableEntities", true);
+		prop.comment = "Should Ridable entities be allowed?";
+		mobConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowRidableEntityAbilities", true);
+		prop.comment = "Should Ridable entities be able to use their unique abilities when ridden by a player?";
+		mobConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowRidableEntityAbilitiesViaMob", false);
+		prop.comment = "Should Ridable entities be able to use their unique abilities when ridden by other mobs?";
+		mobConfig[++m] = prop.getBoolean(false);
 
 		s = "commonMobDropChance";
 		prop = config.get(cat.getName(), s, 25);
@@ -2185,6 +2198,27 @@ public class ConfigLightweight extends TragicConfig {
 		
 		prop = config.get(cat.getName(), "kurayamiAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "jetNekoAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "scienceNekoAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "mechaNekoAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "assaultNekoAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "commonNekoAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "traderNekoAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "mechaExoAllow", true);
+		ridableAllow[m = 0] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "jarraAllow", true);
 		miniBossAllow[m = 0] = prop.getBoolean(true);
@@ -2239,6 +2273,9 @@ public class ConfigLightweight extends TragicConfig {
 
 		prop = config.get(cat.getName(), "claymationAllow", true);
 		bossAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "professorNekoidAllow", true);
+		bossAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "overlordAllow", true);
 		bossAllow[++m] = prop.getBoolean(true);
@@ -2284,7 +2321,7 @@ public class ConfigLightweight extends TragicConfig {
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
 
 		s = "tragicNekoStats";
-		prop = config.get(cat.getName(), s, new double[] {80.0, 0.335, 6.0, 32.0, 0.0, 0});
+		prop = config.get(cat.getName(), s, new double[] {60.0, 0.335, 4.0, 32.0, 0.0, 0});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
 
 		s = "toxStats";
@@ -2422,6 +2459,34 @@ public class ConfigLightweight extends TragicConfig {
 		s = "avrisStats";
 		prop = config.get(cat.getName(), s, new double[] {75.0, 0.312, 2.0, 64.0, 0.6, 16});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
+		
+		s = "jetNekoStats";
+		prop = config.get(cat.getName(), s, new double[] {45.0, 0.23, 1.0, 32.0, 1.0, 6});
+		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
+		
+		s = "scienceNekoStats";
+		prop = config.get(cat.getName(), s, new double[] {30.0, 0.225, 2.0, 32.0, 0.0, 0});
+		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
+		
+		s = "mechaNekoStats";
+		prop = config.get(cat.getName(), s, new double[] {15.0, 0.27, 4.0, 32.0, 0.0, 0});
+		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
+		
+		s = "assaultNekoStats";
+		prop = config.get(cat.getName(), s, new double[] {42.0, 0.33, 4.0, 32.0, 0.5, 8});
+		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
+		
+		s = "commonNekoStats";
+		prop = config.get(cat.getName(), s, new double[] {20.0, 0.245, 2.0, 32.0, 0.0, 4});
+		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
+		
+		s = "traderNekoStats";
+		prop = config.get(cat.getName(), s, new double[] {30.0, 0.215, 1.0, 16.0, 0.0, 0});
+		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
+		
+		s = "mechaExoStats"; 
+		prop = config.get(cat.getName(), s, new double[] {25.0, 0.19, 5.0, 32.0, 1.0, 24});
+		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
 
 		s = "aegarStats";
 		prop = config.get(cat.getName(), s, new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24});
@@ -2457,6 +2522,10 @@ public class ConfigLightweight extends TragicConfig {
 
 		s = "claymationStats";
 		prop = config.get(cat.getName(), s, new double[] {150.0, 0.320, 12.0, 32.0, 1.0, 18});
+		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
+		
+		s = "professorNekoidStats";
+		prop = config.get(cat.getName(), s, new double[] {200.0, 0.25, 6.0, 32.0, 0.0, 12});
 		registerObject(s, MobStat.verifyMobStat(new MobStat(prop.getDoubleList())));
 
 		s = "overlordCocoonStats";
@@ -2645,6 +2714,30 @@ public class ConfigLightweight extends TragicConfig {
 		s = "avrisSpawnChance";
 		prop = config.get(cat.getName(), s, 5);
 		registerObject(s, clamp(prop.getInt(5), 1, 1000));
+		
+		s = "jetNekoSpawnChance";
+		prop = config.get(cat.getName(), s, 5);
+		registerObject(s, clamp(prop.getInt(5), 1, 1000));
+		
+		s = "scienceNekoSpawnChance";
+		prop = config.get(cat.getName(), s, 25);
+		registerObject(s, clamp(prop.getInt(25), 1, 1000));
+		
+		s = "mechaNekoSpawnChance";
+		prop = config.get(cat.getName(), s, 1);
+		registerObject(s, clamp(prop.getInt(1), 1, 1000));
+		
+		s = "assaultNekoSpawnChance";
+		prop = config.get(cat.getName(), s, 25);
+		registerObject(s, clamp(prop.getInt(25), 1, 1000));
+		
+		s = "commonNekoSpawnChance";
+		prop = config.get(cat.getName(), s, 45);
+		registerObject(s, clamp(prop.getInt(45), 1, 1000));
+		
+		s = "traderNekoSpawnChance";
+		prop = config.get(cat.getName(), s, 1);
+		registerObject(s, clamp(prop.getInt(1), 1, 1000));
 
 		s = "aegarSpawnChance";
 		prop = config.get(cat.getName(), s, 5);
@@ -2681,6 +2774,10 @@ public class ConfigLightweight extends TragicConfig {
 		s = "claymationSpawnChance";
 		prop = config.get(cat.getName(), s, 5);
 		registerObject(s, clamp(prop.getInt(5), 1, 1000));
+		
+		s = "professorNekoidSpawnChance";
+		prop = config.get(cat.getName(), s, 1);
+		registerObject(s, clamp(prop.getInt(1), 1, 1000));
 
 		s = "jabbaGroupSize";
 		prop = config.get(cat.getName(), s, new int[] {0, 2});
@@ -2816,6 +2913,30 @@ public class ConfigLightweight extends TragicConfig {
 
 		s = "avrisGroupSize";
 		prop = config.get(cat.getName(), s, new int[] {0, 1});
+		registerObject(s, verifyGS(prop.getIntList()));
+		
+		s = "jetNekoGroupSize";
+		prop = config.get(cat.getName(), s, new int[] {0, 0});
+		registerObject(s, verifyGS(prop.getIntList()));
+		
+		s = "scienceNekoGroupSize";
+		prop = config.get(cat.getName(), s, new int[] {1, 2});
+		registerObject(s, verifyGS(prop.getIntList()));
+		
+		s = "mechaNekoGroupSize";
+		prop = config.get(cat.getName(), s, new int[] {0, 0});
+		registerObject(s, verifyGS(prop.getIntList()));
+		
+		s = "assaultNekoGroupSize";
+		prop = config.get(cat.getName(), s, new int[] {2, 4});
+		registerObject(s, verifyGS(prop.getIntList()));
+		
+		s = "commonNekoGroupSize";
+		prop = config.get(cat.getName(), s, new int[] {2, 5});
+		registerObject(s, verifyGS(prop.getIntList()));
+		
+		s = "traderNekoGroupSize";
+		prop = config.get(cat.getName(), s, new int[] {0, 0});
 		registerObject(s, verifyGS(prop.getIntList()));
 
 		s = "jarraGroupSize";
@@ -3124,6 +3245,54 @@ public class ConfigLightweight extends TragicConfig {
 		s = "avrisSpawnBiomes";
 		prop = config.get(cat.getName(), s, new int[] {0});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
+		
+		s = "jetNekoSpawnOverride";
+		prop = config.get(cat.getName(), s, false);
+		registerObject(s, prop.getBoolean(false));
+		
+		s = "jetNekoSpawnBiomes";
+		prop = config.get(cat.getName(), s, new int[] {0});
+		registerObject(s, getIntsAsBiome(prop.getIntList()));
+		
+		s = "scienceNekoSpawnOverride";
+		prop = config.get(cat.getName(), s, false);
+		registerObject(s, prop.getBoolean(false));
+		
+		s = "scienceNekoSpawnBiomes";
+		prop = config.get(cat.getName(), s, new int[] {0});
+		registerObject(s, getIntsAsBiome(prop.getIntList()));
+		
+		s = "mechaNekoSpawnOverride";
+		prop = config.get(cat.getName(), s, false);
+		registerObject(s, prop.getBoolean(false));
+		
+		s = "mechaNekoSpawnBiomes";
+		prop = config.get(cat.getName(), s, new int[] {0});
+		registerObject(s, getIntsAsBiome(prop.getIntList()));
+		
+		s = "assaultNekoSpawnOverride";
+		prop = config.get(cat.getName(), s, false);
+		registerObject(s, prop.getBoolean(false));
+		
+		s = "assaultNekoSpawnBiomes";
+		prop = config.get(cat.getName(), s, new int[] {0});
+		registerObject(s, getIntsAsBiome(prop.getIntList()));
+		
+		s = "commonNekoSpawnOverride";
+		prop = config.get(cat.getName(), s, false);
+		registerObject(s, prop.getBoolean(false));
+		
+		s = "commonNekoSpawnBiomes";
+		prop = config.get(cat.getName(), s, new int[] {0});
+		registerObject(s, getIntsAsBiome(prop.getIntList()));
+		
+		s = "traderNekoSpawnOverride";
+		prop = config.get(cat.getName(), s, false);
+		registerObject(s, prop.getBoolean(false));
+		
+		s = "traderNekoSpawnBiomes";
+		prop = config.get(cat.getName(), s, new int[] {0});
+		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		s = "snowGolemSpawnOverride";
 		prop = config.get(cat.getName(), s, false);
@@ -3301,6 +3470,14 @@ public class ConfigLightweight extends TragicConfig {
 		s = "claymationSpawnBiomes";
 		prop = config.get(cat.getName(), s, new int[] {BiomeGenBase.desert.biomeID, BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesa.biomeID,
 				BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID});
+		registerObject(s, getIntsAsBiome(prop.getIntList()));
+		
+		s = "professorNekoidSpawnOverride";
+		prop = config.get(cat.getName(), s, false);
+		registerObject(s, prop.getBoolean(false));
+
+		s = "professorNekoidSpawnBiomes";
+		prop = config.get(cat.getName(), s, new int[] {0});
 		registerObject(s, getIntsAsBiome(prop.getIntList()));
 
 		cat = config.getCategory(CAT_POTION);
@@ -3687,6 +3864,27 @@ public class ConfigLightweight extends TragicConfig {
 
 		prop = config.get(cat.getName(), "outlookRarity", 3);
 		structureRarity[++m] = clamp(prop.getInt(3), 1, 200);
+		
+		prop = config.get(cat.getName(), "nekoBarracksRarity", 10);
+		structureRarity[++m] = clamp(prop.getInt(10), 1, 200);
+		
+		prop = config.get(cat.getName(), "nekoWarehouseRarity", 5);
+		structureRarity[++m] = clamp(prop.getInt(5), 1, 200);
+		
+		prop = config.get(cat.getName(), "nekoGuardTowerRarity", 25);
+		structureRarity[++m] = clamp(prop.getInt(25), 1, 200);
+		
+		prop = config.get(cat.getName(), "nekoShelterRarity", 50);
+		structureRarity[++m] = clamp(prop.getInt(50), 1, 200);
+		
+		prop = config.get(cat.getName(), "nekoWalledCityRarity", 3);
+		structureRarity[++m] = clamp(prop.getInt(3), 1, 200);
+		
+		prop = config.get(cat.getName(), "nekoidsFOBRarity", 1);
+		structureRarity[++m] = clamp(prop.getInt(1), 1, 200);
+		
+		prop = config.get(cat.getName(), "nekoidsMansionRarity", 0);
+		structureRarity[++m] = clamp(prop.getInt(0), 1, 200);
 
 		cat = config.getCategory(CAT_MISC);
 		cat.setComment("Random other options that don't quite fit into other categories.");
@@ -4055,6 +4253,71 @@ public class ConfigLightweight extends TragicConfig {
 		prop = config.get(cat.getName(), "avrisDespawnTime", true);
 		prop.comment = "Should Avris' despawn after a preset amount of time?";
 		registerObject(s, prop.getBoolean(true));
+		
+		s = "jetNekoRockets";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Jet Nekos fire rockets at their target?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "jetNekoHovering";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Jet Nekos stop and hover occasionally?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "scienceNekoLaser";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Science Nekos fire their ray guns at their target?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "scienceNekoPotions";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Science Nekos toss potions at their target?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "scienceNekoTargetsUndead";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Science Nekos seek out Undead creatures to kill?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "mechaNekoCommandExo";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Mecha Nekos command the Exo they are riding to use abilities?";
+		registerObject(s, prop.getBoolean(true)); //should the mecha neko 'command' the Exo to use abilities
+		
+		s = "mechaNekoRidingExo";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Mecha Nekos spawn in riding a Mecha Exo?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "mechaNekoRidingArmor";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Mecha Nekos gain increased armor when riding another entity?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "assaultNekoChargeAttack";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Assault Nekos charge towards their target when far away?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "assaultNekoShield";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Assault Nekos sometimes get a temporary shield that absorbs damage?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "assaultNekoLaserSword";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Assault Nekos do armor piercing damage?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "traderNekoTrading";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Trader Nekos be allowed to trade?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "traderNekoReleaseTrading";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Trader Nekos only be allowed to trade when they are released?";
+		registerObject(s, prop.getBoolean(true));
 
 		s = "kragulSpiritCasts";
 		prop = config.get(cat.getName(), s, true);
@@ -4365,6 +4628,41 @@ public class ConfigLightweight extends TragicConfig {
 		prop = config.get(cat.getName(), s, true);
 		prop.comment = "Should Claymation reflect bad potion effects at it's target?";
 		registerObject(s, prop.getBoolean(true));
+		
+		s = "professorNekoidBlaster";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Professor Nekoid use an Aero-Blaster to knock enemies away?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "professorNekoidMechaSpawn";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Professor Nekoid spawn in riding a Mecha Exo?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "professorNekoidMechaArmor";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Professor Nekoid gain increased armor from riding a Mecha Exo?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "professorNekoidUseMecha";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Professor Nekoid use it's ridden Mecha Exo's abilities?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "professorNekoidReinforcements";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Professor Nekoid summon reinforcements when it's out of it's mech or it's health is low?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "professorNekoidTitanfall";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Professor Nekoid call in a replacement Mecha Exo if it's previous one was destroyed?";
+		registerObject(s, prop.getBoolean(true));
+		
+		s = "professorNekoidDeathRelease";
+		prop = config.get(cat.getName(), s, true);
+		prop.comment = "Should Professor Nekoid send out a release signal upon death that releases Nekos in a huge radius around it?";
+		registerObject(s, prop.getBoolean(true));
 
 		//all overlord forms
 		s = "overlordDivineWeakness";
@@ -4421,7 +4719,7 @@ public class ConfigLightweight extends TragicConfig {
 
 		s = "overlordMegaLeap";
 		prop = config.get(cat.getName(), s, true);
-		prop.comment = "Should the Overlord Combat leap into the air and doing a massive slam onto the ground?";
+		prop.comment = "Should the Overlord Combat leap into the air and do a massive slam onto the ground?";
 		registerObject(s, prop.getBoolean(true));
 
 		s = "overlordSlashAttack";

@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.items.ItemMobEgg;
 import tragicneko.tragicmc.proxy.ClientProxy;
 import tragicneko.tragicmc.util.TragicEntityList;
@@ -28,7 +29,7 @@ public abstract class EntityRidable extends EntityCreature {
 	public abstract void useAttack(int attackType);
 
 	public void useAttackViaMob(int attackType, EntityLivingBase target) {
-
+		
 	}
 
 	public abstract boolean canAttack();
@@ -56,7 +57,7 @@ public abstract class EntityRidable extends EntityCreature {
 		if (itemstack == null && this.riddenByEntity == null) {
 			player.mountEntity(this);
 
-			if (this.worldObj.isRemote) {
+			if (this.worldObj.isRemote && TragicConfig.getBoolean("allowRidableEntityAbilities")) {
 				player.addChatMessage(new ChatComponentText("Hit " + Keyboard.getKeyName(ClientProxy.openAmuletGui.getKeyCode()) + " to use your Primary attack!"));
 				player.addChatMessage(new ChatComponentText("Hit " + Keyboard.getKeyName(ClientProxy.useSpecial.getKeyCode()) + " to use your Secondary attack!"));
 				player.addChatMessage(new ChatComponentText("Hit " + Keyboard.getKeyName(Keyboard.KEY_SPACE) + " to use your Movement ability (if any)!"));

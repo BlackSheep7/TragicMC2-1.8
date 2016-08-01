@@ -96,18 +96,18 @@ public class EntityAssaultNeko extends EntityNeko {
 		{
 			if (this.getFlickTime() > 0) this.setFlickTime(0); 
 			
-			if (this.ticksExisted % 5 == 0 && this.getChargeTicks() == 0 && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.onGround && rand.nextInt(8) == 0)
+			if (this.ticksExisted % 5 == 0 && this.getChargeTicks() == 0 && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.onGround && rand.nextInt(8) == 0 && TragicConfig.getBoolean("assaultNekoChargeAttack"))
 			{
 				this.setChargeTicks(100);
 			}
 			
-			if (this.ticksExisted % 7 == 0 && this.getShieldTicks() == 0 && this.shieldBuffer == 0 && this.getDistanceToEntity(this.getAttackTarget()) < 16.0F && this.getHealth() < this.getMaxHealth())
+			if (this.ticksExisted % 7 == 0 && this.getShieldTicks() == 0 && this.shieldBuffer == 0 && this.getDistanceToEntity(this.getAttackTarget()) < 16.0F && this.getHealth() < this.getMaxHealth() && TragicConfig.getBoolean("assaultNekoShield"))
 			{
 				this.setShieldTicks(120);
 				this.shieldHealth = 100F;
 			}
 			
-			if (this.getChargeTicks() > 0 && this.onGround)
+			if (this.getChargeTicks() > 0 && this.onGround && TragicConfig.getBoolean("assaultNekoChargeAttack"))
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().posZ - this.posZ;
@@ -136,7 +136,7 @@ public class EntityAssaultNeko extends EntityNeko {
 	{
 		if (this.worldObj.isRemote) return false;
 
-		if (this.getShieldTicks() > 0 && this.shieldHealth > 0)
+		if (this.getShieldTicks() > 0 && this.shieldHealth > 0 && TragicConfig.getBoolean("assaultNekoShield"))
 		{
 			this.shieldHealth -= par2;
 			if (this.shieldHealth > 0)
@@ -161,10 +161,13 @@ public class EntityAssaultNeko extends EntityNeko {
 		if (this.getChargeTicks() == 0)
 		{
 			this.setAttackTime(10);
+			if (!TragicConfig.getBoolean("assaultNekoLaserSword")) return super.attackEntityAsMob(par1Entity);
+			
 			float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.shink", 1.4F, 1.9F);
 			return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this).setDamageBypassesArmor(), f);
 		}
-		else
+		else if (TragicConfig.getBoolean("assaultNekoChargeAttack"))
 		{
 			this.setChargeTicks(0);
 			float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue() * 1.5F;
@@ -177,6 +180,10 @@ public class EntityAssaultNeko extends EntityNeko {
 			}
 			
 			return flag;
+		}
+		else
+		{
+			return super.attackEntityAsMob(par1Entity);
 		}
 	}
 	

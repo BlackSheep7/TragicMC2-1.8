@@ -15,7 +15,7 @@ import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.entity.mob.EntityMechaNeko;
 import tragicneko.tragicmc.entity.mob.EntityTraderNeko;
-import tragicneko.tragicmc.entity.mob.EntityWorkerNeko;
+import tragicneko.tragicmc.entity.mob.EntityCommonNeko;
 import tragicneko.tragicmc.util.ChestHooks;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
@@ -312,7 +312,7 @@ public class SchematicNekoVillage extends Schematic {
 			this.setBlockToAir(world, x + INTERNAL_ROTATION_OFFSETS[b][0], y + 6, z + INTERNAL_ROTATION_OFFSETS[b][1]);
 		}
 		
-		this.spawnEntity(world, new BlockPos(x, y, z), rand.nextBoolean() ? new EntityWorkerNeko(world) : new EntityTraderNeko(world));
+		this.spawnEntity(world, new BlockPos(x, y, z), rand.nextBoolean() ? new EntityCommonNeko(world) : new EntityTraderNeko(world));
 	}
 
 	public void generateVacantLot(World world, Random rand, int x, int y, int z, byte rotation)
@@ -501,10 +501,10 @@ public class SchematicNekoVillage extends Schematic {
 			}
 		}
 		
-		this.spawnEntity(world, new BlockPos(x + 1, y, z), new EntityWorkerNeko(world));
-		this.spawnEntity(world, new BlockPos(x - 1, y, z), new EntityWorkerNeko(world));
-		this.spawnEntity(world, new BlockPos(x, y, z + 1), new EntityWorkerNeko(world));
-		this.spawnEntity(world, new BlockPos(x, y, z - 1), new EntityWorkerNeko(world));
+		this.spawnEntity(world, new BlockPos(x + 1, y, z), new EntityCommonNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 1, y, z), new EntityCommonNeko(world));
+		this.spawnEntity(world, new BlockPos(x, y, z + 1), new EntityCommonNeko(world));
+		this.spawnEntity(world, new BlockPos(x, y, z - 1), new EntityCommonNeko(world));
 	}
 
 	public void generateArmsDepot(World world, Random rand, int x, int y, int z, byte block) 
@@ -712,10 +712,10 @@ public class SchematicNekoVillage extends Schematic {
 
 		this.setBlock(world, new BlockPos(x, y + 3, z), Blocks.flowing_water.getStateFromMeta(0));
 		
-		this.spawnEntity(world, new BlockPos(x + 3, y, z + 3), new EntityWorkerNeko(world));
-		this.spawnEntity(world, new BlockPos(x - 3, y, z + 3), new EntityWorkerNeko(world));
-		this.spawnEntity(world, new BlockPos(x + 3, y, z - 3), new EntityWorkerNeko(world));
-		this.spawnEntity(world, new BlockPos(x - 3, y, z - 3), new EntityWorkerNeko(world));
+		this.spawnEntity(world, new BlockPos(x + 3, y, z + 3), new EntityCommonNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 3, y, z + 3), new EntityCommonNeko(world));
+		this.spawnEntity(world, new BlockPos(x + 3, y, z - 3), new EntityCommonNeko(world));
+		this.spawnEntity(world, new BlockPos(x - 3, y, z - 3), new EntityCommonNeko(world));
 	}
 
 	public byte[][] generateBlockComposition(Random rand) { //creates a bytemap overlay for the schematic, these change what generates for each "block"

@@ -43,7 +43,7 @@ public class StructureNekoVillage extends Structure {
 	@Override
 	public int getStructureColor()
 	{
-		return 0x000000;
+		return 0x552323;
 	}
 
 	@Override

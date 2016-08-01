@@ -78,7 +78,7 @@ import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTraderNeko;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
-import tragicneko.tragicmc.entity.mob.EntityWorkerNeko;
+import tragicneko.tragicmc.entity.mob.EntityCommonNeko;
 import tragicneko.tragicmc.entity.projectile.EntityBanana;
 import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
@@ -1283,20 +1283,20 @@ public class TragicEntities {
 			}
 		}
 		
-		if (TragicConfig.getBoolean("allowWorkerNeko"))
+		if (TragicConfig.getBoolean("allowCommonNeko"))
 		{
-			EntityRegistry.registerModEntity(EntityWorkerNeko.class, "WorkerNeko", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityWorkerNeko.class, "TragicMC.WorkerNeko", id++, 0x3F1414, 0xA10000);
+			EntityRegistry.registerModEntity(EntityCommonNeko.class, "CommonNeko", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityCommonNeko.class, "TragicMC.CommonNeko", id++, 0x3F1414, 0xA10000);
 
-			if (allowVanillaSpawns && TragicConfig.getBoolean("workerNekoSpawnOverride"))
+			if (allowVanillaSpawns && TragicConfig.getBoolean("commonNekoSpawnOverride"))
 			{
 				list.clear();
 
-				for (BiomeGenBase b : TragicConfig.getBiomeArray("workerNekoSpawnBiomes"))
+				for (BiomeGenBase b : TragicConfig.getBiomeArray("commonNekoSpawnBiomes"))
 				{
 					if (b != null)
 					{
-						TragicMC.logInfo(b.biomeName + " was added to list of possible spawns for Worker Neko.");
+						TragicMC.logInfo(b.biomeName + " was added to list of possible spawns for Common Neko.");
 						list.add(b);
 					}
 				}
@@ -1304,7 +1304,7 @@ public class TragicEntities {
 				if (!list.isEmpty())
 				{
 					spawns = (BiomeGenBase[]) list.toArray(spawns);
-					EntityRegistry.addSpawn(EntityWorkerNeko.class, TragicConfig.getInt("workerNekoSpawnChance"), TragicConfig.getIntArray("workerNekoGroupSize")[0], TragicConfig.getIntArray("workerNekoGroupSize")[1], EnumCreatureType.MONSTER, spawns);
+					EntityRegistry.addSpawn(EntityCommonNeko.class, TragicConfig.getInt("commonNekoSpawnChance"), TragicConfig.getIntArray("commonNekoGroupSize")[0], TragicConfig.getIntArray("commonNekoGroupSize")[1], EnumCreatureType.MONSTER, spawns);
 					spawns = new BiomeGenBase[1];
 				}
 			}
@@ -1399,6 +1399,7 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityKurayami.class, "TragicMC.Kurayami", id++, 0x2222AA, 0x8888FF, EnumEggType.PET);
 		}
 
+		//Mecha Exo
 		if (TragicConfig.getBoolean("allowMechaExo"))
 		{
 			EntityRegistry.registerModEntity(EntityMechaExo.class, "MechaExo", listid++, TragicMC.getInstance(), 80, 3, true);
