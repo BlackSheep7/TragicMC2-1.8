@@ -4,6 +4,7 @@ import com.google.common.base.Predicate;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -171,6 +172,7 @@ public class EntityFusea extends TragicMob {
 			if (TragicConfig.getBoolean("fuseaExplosiveAttack")) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
 			this.recentlyHit = 60;
 			if (this.getHealth() == 0F) this.onDeath(src);
+			if (this.getAttackTarget() == null && src.getEntity() instanceof EntityLiving) this.setAttackTarget((EntityLivingBase) src.getEntity());
 		}
 
 		return !this.worldObj.isRemote;
