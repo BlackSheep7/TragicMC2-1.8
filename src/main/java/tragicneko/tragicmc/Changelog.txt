@@ -4970,7 +4970,7 @@ Fixed TickBuilder entities not getting their initial spawn method called
 Fixed possible crash with the Dimensional Key's tooltip
 Removed extraneous Dimensional Keys from Creative Tabs
 
-4.52.3287++ <229> (July 23, 2016)
+4.52.3317 <229> (July 23, 2016)
 Added super-method for spawning entities nearby
 Fixed Exos not saving their data to nbt
 Added new texture and render for Exo due to the addition of it's variant
@@ -5002,13 +5002,14 @@ Fixed a few minor typos in config
 Added default colors to all of the Neko dimension's structure seeds
 Removed Trader Nekos from having a chance to have spawners in the Neko structures
 Added a logger message to display when the non-standard config was being used
+Bump for playtesting (will add sounds as I get a chance to record them)
 
 Before next release:
 All I have to do is finish recording the sounds and do some playtesting now
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)
-Professor Nekoid (Living, Hurt, Death)
+Professor Nekoid (Idle, Battle, Hurt, Death)
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed to Capabilities
