@@ -18,7 +18,7 @@ import tragicneko.tragicmc.items.amulet.ItemAmulet.AmuletModifier;
 public class AmuletHelper {
 
 	private static IAttribute[] attributes = new IAttribute[] {AmuletModifier.jumpHeight, AmuletModifier.luck, AmuletModifier.reach, AmuletModifier.resistance,
-		AmuletModifier.knockbackResistance, AmuletModifier.attackDamage, AmuletModifier.maxHealth, AmuletModifier.movementSpeed};
+		SharedMonsterAttributes.knockbackResistance, SharedMonsterAttributes.attackDamage, SharedMonsterAttributes.maxHealth, SharedMonsterAttributes.movementSpeed};
 
 	public static UUID[] uuids = new UUID[] {UUID.fromString("8d325bc1-9b36-457f-a984-50cfed8331ed"), UUID.fromString("1f5a801c-312a-4b26-aa7b-3170e63df540"),
 		UUID.fromString("829ea197-31bf-4360-912e-93f6775fedc1"), UUID.fromString("f1695e8a-87f1-4491-bc02-90f3671d299e"), UUID.fromString("b41f1b8d-a0e7-42ee-acb4-a0f9c198626f"),

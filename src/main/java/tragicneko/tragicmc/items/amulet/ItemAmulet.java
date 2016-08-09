@@ -251,7 +251,7 @@ public class ItemAmulet extends Item {
 		amu.damageStackInSlot(slot, 4 - level);
 	}
 
-	public static class AmuletModifier extends SharedMonsterAttributes {
+	public static class AmuletModifier {
 		public static final IAttribute reach = (new RangedAttribute(null, "tragicmc.reach", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Reach").setShouldWatch(true);
 		public static final IAttribute jumpHeight = (new RangedAttribute(null, "tragicmc.jumpHeight", 1.4, 0.0, Double.MAX_VALUE)).setDescription("Jump Height").setShouldWatch(true);
 		public static final IAttribute resistance = (new RangedAttribute(null, "tragicmc.resistance", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Resistance").setShouldWatch(true);
