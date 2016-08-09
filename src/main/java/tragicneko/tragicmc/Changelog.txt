@@ -5010,13 +5010,12 @@ Fixed typo in localization for Common Nekos
 Adjusted living sound timer so that when an entity freshly spawns it starts out with a full talk interval buffer (to prevent sounds from playing over each other
 when spawned via mob egg)
 Adjusted Poison Break's projectile vectors and fixed Poison Barb entities colliding with each other
-
-Before next release:
-All I have to do is finish recording the sounds
-
-Side expansion sounds:
-Mecha Neko (Living, Hurt, Death, Exo Death)
-Professor Nekoid (Idle, Battle, Hurt, Death)
+Lowered general volume of Neko sounds (their voice lines)
+Finished recording Nekoid's lines, which takes on the form of an egotistical dictator
+Fixed Berserker not properly doing minimum values when used with full Doom
+Added NBT data saving to Mecha Neko
+Added sounds for Mecha Neko
+Release ready now after some more playtesting
 
 Note to self (Future TODOs):
 IExtendedProperties are to be changed to Capabilities
