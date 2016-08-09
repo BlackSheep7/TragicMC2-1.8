@@ -5004,8 +5004,15 @@ Removed Trader Nekos from having a chance to have spawners in the Neko structure
 Added a logger message to display when the non-standard config was being used
 Bump for playtesting (will add sounds as I get a chance to record them)
 
+4.52.3317++ <230> (August 8, 2016)
+Removed unnecessary extension of SharedMonsterAttributes from AmuletModifier class
+Fixed typo in localization for Common Nekos
+Adjusted living sound timer so that when an entity freshly spawns it starts out with a full talk interval buffer (to prevent sounds from playing over each other
+when spawned via mob egg)
+Adjusted Poison Break's projectile vectors and fixed Poison Barb entities colliding with each other
+
 Before next release:
-All I have to do is finish recording the sounds and do some playtesting now
+All I have to do is finish recording the sounds
 
 Side expansion sounds:
 Mecha Neko (Living, Hurt, Death, Exo Death)
@@ -5031,6 +5038,8 @@ Go through and actually localize all things displayed to the player
 Convert statues to use a deferred renderer to render any and all mobs/bosses as statues
 Convert TragicBoss to use TragicMob as a superclass, this'll simplify super methods but some things will need to be updated in TragicBoss, specifically regarding
 things like targeting and datawatcher values
+Adjust anything that uses vectors to use a cleaner method of obtaining it, this is done in the 1.9.4 version but will need to be extended to portions of this one
+that uses it, also use vectors for mobs that charge towards their target
 
 Main Expansion updates:
 Added Pyragr, the fire variant of the Ragr
