@@ -137,6 +137,25 @@ public class TragicConfig {
 		}
 		return biomes;
 	}
+	
+	protected static BiomeGenBase[] getStringAsBiome(String[] array) {
+		BiomeGenBase[] biomes = new BiomeGenBase[array.length];
+		for (int i = 0; i < array.length; i++)
+		{
+			biomes[i] = getBiomeByName(array[i]);
+			if (biomes[i] == BiomeGenBase.ocean && array[i] != "Ocean") TragicMC.logWarning("Biome Array had ocean set, this may be a default value due to not finding a valid biome at the id of " + array[i]);
+		}
+		return biomes;
+	}
+	
+	protected static BiomeGenBase getBiomeByName(String name) {
+		for (int i = 0; i < BiomeGenBase.getBiomeGenArray().length; i++)
+		{
+			if (BiomeGenBase.getBiome(i).biomeName == name) return BiomeGenBase.getBiome(i);
+		}
+		
+		return BiomeGenBase.ocean;
+	}
 
 	public static class ObjectHolder<T> {
 		private final T heldObject;
