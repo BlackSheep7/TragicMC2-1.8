@@ -1130,7 +1130,7 @@ entity.TragicMC.ScienceNeko.name=Science Neko
 entity.TragicMC.MechaNeko.name=Mecha-Neko
 entity.TragicMC.AssaultNeko.name=Assault Neko
 entity.TragicMC.MechaExo.name=Mecha Exo
-entity.TragicMC.WorkerNeko.name=Common Neko
+entity.TragicMC.CommonNeko.name=Common Neko
 entity.TragicMC.TraderNeko.name=Trader Neko
 entity.TragicMC.ProfessorNekoid.name=Professor Nekoid
 
