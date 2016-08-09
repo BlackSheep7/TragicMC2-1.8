@@ -1305,6 +1305,57 @@
             "mob/commonneko/death5", "mob/commonneko/death6",
             "mob/commonneko/death7", "mob/commonneko/death8"]
     },
+    "mob.mechaneko.livingexo":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/mechaneko/livingexo", "mob/mechaneko/livingexo2",
+            "mob/mechaneko/livingexo3", "mob/mechaneko/livingexo4",
+            "mob/mechaneko/livingexo5", "mob/mechaneko/livingexo6"]
+    },
+    "mob.mechaneko.deathexo":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/mechaneko/deathexo", "mob/mechaneko/deathexo2",
+            "mob/mechaneko/deathexo3"]
+    },
+    "mob.mechaneko.hurtexo":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/mechaneko/hurtexo", "mob/mechaneko/hurtexo2",
+            "mob/mechaneko/hurtexo3", "mob/mechaneko/hurtexo4"]
+    },
+    "mob.mechaneko.living":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/mechaneko/living", "mob/mechaneko/living2",
+            "mob/mechaneko/living3", "mob/mechaneko/living4",
+            "mob/mechaneko/living5", "mob/mechaneko/living6"]
+    },
+    "mob.mechaneko.death":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/mechaneko/death", "mob/mechaneko/death2",
+            "mob/mechaneko/death3"]
+    },
+    "mob.mechaneko.hurt":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/mechaneko/hurt", "mob/mechaneko/hurt2",
+            "mob/mechaneko/hurt3"]
+    },
+    "mob.mechaneko.grieve":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/mechaneko/grieve", "mob/mechaneko/grieve2",
+            "mob/mechaneko/grieve3"]
+    },
 	"mob.wisp.fear":
     {
 		"category": "hostile",

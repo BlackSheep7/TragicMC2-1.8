@@ -9,9 +9,11 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityMechaExo;
 import tragicneko.tragicmc.entity.EntityRidable;
 
@@ -30,6 +32,7 @@ public class EntityMechaNeko extends EntityNeko {
 	};
 	
 	public EntityAIBase targetGolems = new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true, false, golemTarget);
+	private boolean hasGrieved = false;
 
 	public EntityMechaNeko(World par1World) {
 		super(par1World);
@@ -99,6 +102,12 @@ public class EntityMechaNeko extends EntityNeko {
 				this.setAttackTarget(null);
 			}
 		}
+		
+		if (this.ridingEntity != null && !this.ridingEntity.isEntityAlive() && !this.hasGrieved)
+		{
+			this.hasGrieved = true;
+			if (TragicConfig.getBoolean("allowMobSounds")) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.mechaneko.grieve", this.getSoundVolume(), this.getSoundPitch());
+		}
 	}
 
 	@Override
@@ -145,5 +154,56 @@ public class EntityMechaNeko extends EntityNeko {
 		{
 			this.targetTasks.removeTask(targetGolems);
 		}
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("commandBuffer")) this.commandBuffer = tag.getInteger("commandBuffer");
+		if (tag.hasKey("hasGrieved")) this.hasGrieved = tag.getBoolean("hasGrieved");
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("commandBuffer", this.commandBuffer);
+		tag.setBoolean("hasGrieved", this.hasGrieved);
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.ridingEntity instanceof EntityMechaExo ? "tragicmc:mob.mechaneko.livingexo" : "tragicmc:mob.mechaneko.living") : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") && rand.nextInt(5) == 0 ? (this.ridingEntity instanceof EntityMechaExo ? "tragicmc:mob.mechaneko.hurtexo" : "tragicmc:mob.mechaneko.hurt") : super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.ridingEntity instanceof EntityMechaExo ? "tragicmc:mob.mechaneko.deathexo" : "tragicmc:mob.mechaneko.death") : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.65F;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return 320;
 	}
 }
