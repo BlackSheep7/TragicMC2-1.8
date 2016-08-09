@@ -3,6 +3,7 @@ package tragicneko.tragicmc.doomsday;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -16,17 +17,17 @@ public class DoomsdayPoisonBreak extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		Vec3 vec = WorldHelper.getVecFromEntity(player);
+		Vec3 vec = WorldHelper.getVecFromEntity(player, 15.0);
 		if (vec == null) return;
 
-		for (int i = 0; i < 4; i ++)
+		for (byte i = 0; i < 4; i ++)
 		{
-			double d0 = vec.xCoord - player.posX;
-			double d1 = vec.yCoord - player.posY;
-			double d2 = vec.zCoord - player.posZ;
+			double d0 = vec.xCoord - player.posX + (rand.nextDouble() - rand.nextDouble()) * 2.35;
+			double d1 = vec.yCoord - player.posY - player.getEyeHeight() + (rand.nextDouble() - rand.nextDouble()) * 1.135;
+			double d2 = vec.zCoord - player.posZ + (rand.nextDouble() - rand.nextDouble()) * 2.35;
 
 			EntityPoisonBarb fireball = new EntityPoisonBarb(player.worldObj, player, d0, d1, d2);
-			fireball.setPosition(player.posX + (d0 * 0.115), player.posY + 0.6, player.posZ + (d2 * 0.115));
+			fireball.setPosition(player.posX, player.posY + player.getEyeHeight(), player.posZ);
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
 	}

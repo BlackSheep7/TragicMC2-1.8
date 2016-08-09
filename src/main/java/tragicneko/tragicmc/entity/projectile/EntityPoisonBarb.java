@@ -36,7 +36,7 @@ public class EntityPoisonBarb extends EntityProjectile {
 		}
 		else
 		{
-			if (mop.entityHit != null && !(mop.entityHit instanceof EntityTox) && !(mop.entityHit instanceof EntityThorg))
+			if (mop.entityHit != null && !(mop.entityHit instanceof EntityTox) && !(mop.entityHit instanceof EntityThorg) && !(mop.entityHit instanceof EntityPoisonBarb))
 			{
 				if (mop.entityHit instanceof EntityLivingBase)
 				{
@@ -48,9 +48,9 @@ public class EntityPoisonBarb extends EntityProjectile {
 						((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 20 + rand.nextInt(40), rand.nextInt(2)));
 					}
 				}
+				
+				this.setDead();
 			}
-
-			if (mop != null) this.setDead();
 		}
 	}
 }
