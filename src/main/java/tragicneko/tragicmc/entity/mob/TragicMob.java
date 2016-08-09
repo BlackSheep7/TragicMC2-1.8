@@ -81,6 +81,7 @@ public abstract class TragicMob extends EntityMob
 
 	public TragicMob(World par1World) {
 		super(par1World);
+		this.livingSoundTime = -this.getTalkInterval();
 	}
 
 	protected boolean canCorrupt()
