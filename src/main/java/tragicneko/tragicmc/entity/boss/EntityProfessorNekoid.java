@@ -385,6 +385,42 @@ public class EntityProfessorNekoid extends TragicBoss {
 		tag.setBoolean("hasLostMecha", this.hasLostMecha());
 		tag.setInteger("commandTicks", this.getCommandTicks());
 	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") ? (this.getAttackTarget() == null ? "tragicmc:boss.professornekoid.idle" : "tragicmc:boss.professornekoid.battle") : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.getBoolean("allowMobSounds") ? "tragicmc:boss.professornekoid.death" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F;
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 260;
+	}
 
 	public boolean canAreaSeeSky(BlockPos pos, final int area) {
 		if (!this.worldObj.canBlockSeeSky(pos)) return false;

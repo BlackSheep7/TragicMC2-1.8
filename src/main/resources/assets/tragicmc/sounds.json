@@ -468,6 +468,40 @@
         "sounds": [
             "boss/professornekoid/titanfall"]
     },
+    "boss.professornekoid.idle":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/professornekoid/idle", "boss/professornekoid/idle2",
+            "boss/professornekoid/idle3", "boss/professornekoid/idle4",
+            "boss/professornekoid/idle5", "boss/professornekoid/idle6",
+            "boss/professornekoid/idle7", "boss/professornekoid/idle8",
+            "boss/professornekoid/idle9", "boss/professornekoid/idle10",
+            "boss/professornekoid/idle11", "boss/professornekoid/idle12",
+            "boss/professornekoid/idle13", "boss/professornekoid/idle14",
+            "boss/professornekoid/idle15", "boss/professornekoid/idle16",
+            "boss/professornekoid/idle17", "boss/professornekoid/idle18",
+            "boss/professornekoid/idle19", "boss/professornekoid/idle20"]
+    },
+    "boss.professornekoid.battle":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/professornekoid/battle", "boss/professornekoid/battle2",
+            "boss/professornekoid/battle3", "boss/professornekoid/battle4",
+            "boss/professornekoid/battle5", "boss/professornekoid/battle6",
+            "boss/professornekoid/battle7", "boss/professornekoid/battle8",
+            "boss/professornekoid/battle9"]
+    },
+    "boss.professornekoid.death":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/professornekoid/death", "boss/professornekoid/death2",
+            "boss/professornekoid/death3", "boss/professornekoid/death4",
+            "boss/professornekoid/death5", "boss/professornekoid/death6",
+            "boss/professornekoid/death7"]
+    },
 	"boss.skultar.slice":
     {
 		"category": "hostile",
