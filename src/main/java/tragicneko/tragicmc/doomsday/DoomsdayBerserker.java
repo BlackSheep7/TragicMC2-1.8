@@ -21,7 +21,7 @@ public class DoomsdayBerserker extends Doomsday {
 		int overflow = this.getOverflow(doom);
 		int a = MathHelper.ceiling_double_int(overflow / 10);
 
-		MathHelper.clamp_int(a, 1, 10);
+		a = MathHelper.clamp_int(a, 1, 10);
 		if (crucMoment) a *= 2;
 
 		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 90 * a, a));
@@ -38,7 +38,7 @@ public class DoomsdayBerserker extends Doomsday {
 		int overflow = this.getOverflow(doom);
 		int a = MathHelper.ceiling_double_int(overflow / 10);
 
-		MathHelper.clamp_int(a, 1, 10);
+		a = MathHelper.clamp_int(a, 1, 10);
 
 		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 30 * a, 0));
 		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 30 * a, 0));
