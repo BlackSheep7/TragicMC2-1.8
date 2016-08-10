@@ -5004,7 +5004,7 @@ Removed Trader Nekos from having a chance to have spawners in the Neko structure
 Added a logger message to display when the non-standard config was being used
 Bump for playtesting (will add sounds as I get a chance to record them)
 
-4.52.3317++ <230> (August 8, 2016)
+4.52.3327 <230> (August 8, 2016)
 Removed unnecessary extension of SharedMonsterAttributes from AmuletModifier class
 Fixed typo in localization for Common Nekos
 Adjusted living sound timer so that when an entity freshly spawns it starts out with a full talk interval buffer (to prevent sounds from playing over each other
