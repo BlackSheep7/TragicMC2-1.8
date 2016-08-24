@@ -4,12 +4,8 @@
     "1.8-latest": "4.52.3327",
     "1.8-recommended": "4.52.3327",
     "1.8.9-latest": "4.52.3327",
-    "1.8.9-recommended": "4.52.3327"
-  },
-  "1.8": {
-    "4.52.3327": "Latest release version which has lots of bug-fixes."
-  },
-  "1.8.9": {
-    "4.52.3327": "Latest release version which has lots of bug-fixes."	
+    "1.8.9-recommended": "4.52.3327",
+    "1.9.4-latest": "0.0.10",
+    "1.9.4-recommended": "0.0.10"
   }
 }
