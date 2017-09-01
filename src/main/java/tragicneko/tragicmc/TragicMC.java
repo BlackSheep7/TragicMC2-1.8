@@ -41,7 +41,7 @@ public class TragicMC
 {
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
-	public static final String VERSION = "4.52.3327";
+	public static final String VERSION = "4.52.3329";
 	public static final String ACCEPTED_VERSION = "[1.8.9]";
 	public static final String VERSION_JSON = "https://raw.githubusercontent.com/TragicNeko/TragicMC2-1.8/master/update.json";
 

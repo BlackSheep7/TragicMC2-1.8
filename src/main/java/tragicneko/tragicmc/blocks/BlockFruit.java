@@ -9,23 +9,31 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 
 public class BlockFruit extends BlockCocoa {
 	
-
 	public BlockFruit()
 	{
 		super();
 		this.setCreativeTab(TragicMC.Creative);
 		this.setStepSound(soundTypeGrass);
 	}
+	
+	@Override
+	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    {
+		return !(worldIn.getBlockState(pos).getBlock() instanceof BlockFruit) ? new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ) : super.getCollisionBoundingBox(worldIn, pos, state);
+    }
 	
 	@Override
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
@@ -45,6 +53,7 @@ public class BlockFruit extends BlockCocoa {
     public java.util.List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         java.util.List<ItemStack> dropped = super.getDrops(world, pos, state, fortune);
+        dropped.clear();
         int j = ((Integer)state.getValue(AGE)).intValue();
         byte b0 = 1;
         if (j >= 2) b0 = 3;
@@ -53,5 +62,11 @@ public class BlockFruit extends BlockCocoa {
             dropped.add(new ItemStack(this.getItemDropped(state, this.RANDOM, fortune), 1, 0));
         
         return dropped;
+    }
+	
+	@SideOnly(Side.CLIENT)
+    public Item getItem(World worldIn, BlockPos pos)
+    {
+		return ((Integer) worldIn.getBlockState(pos).getValue(AGE)).intValue() > 3 ? TragicItems.SkyFruit : TragicItems.SkyFruitSeeds;
     }
 }
