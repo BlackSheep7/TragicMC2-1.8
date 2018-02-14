@@ -1,112 +1,133 @@
-﻿
-itemGroup.tragicMCMain=悲惨MC - 生存
-itemGroup.tragicMCMobs=悲惨MC - 创造
 
-death.attack.suffocation=%1$s肺里的空气被%2$s移除了
-death.attack.modMagic=%1$s被%2$s用魔法谋害了
-death.attack.armorPiercing=%1$s受到%2$s的穿刺伤害而死
-death.attack.armorPiercing.item=%1$s受到%2$s使用%3$s而造成的穿刺伤害而死
+itemGroup.tragicMCSurvival=悲惨世界 - 生存
+itemGroup.tragicMCCreative=悲惨世界 - 创造
 
-command.tragicmc.doom.usage=用法: /doom <player> <int to apply>
-command.tragicmc.doomsday.usage=用法: /doomsday <player> <doomsday id>
+death.attack.suffocation=%1$s 肺部的空气被 %2$s 转移了
+death.attack.modMagic=%1$s 被 %2$s 用魔法杀死了
+death.attack.bleed=%1$s 因失血过多而死
+death.attack.armorPiercing=%1$s 被 %2$s 刺穿了
+death.attack.armorPiercing.item=%1$s 被 %2$s 用 %3$s 刺穿了
+
+command.tragicmc.doom.usage=使用方法: /doom <player> <int to apply>
+command.tragicmc.doomsday.usage=使用方法: /doomsday <player> <doomsday id>
 
 item.tragicmc.mobEgg.name=生成
 
-tile.tragicmc.mercuryOre.name=红色水银矿石
+tile.tragicmc.mercuryOre.name=朱砂矿石
 tile.tragicmc.tungstenOre.name=钨矿石
 tile.tragicmc.rubyOre.name=红宝石矿石
 tile.tragicmc.sapphireOre.name=蓝宝石矿石
+tile.tragicmc.nekiteOre.name=腥红矿石
 
 tile.tragicmc.storageBlock.ruby.name=红宝石块
 tile.tragicmc.storageBlock.sapphire.name=蓝宝石块
 tile.tragicmc.storageBlock.tungsten.name=钨块
-tile.tragicmc.storageBlock.mercury.name=红色水银块
-tile.tragicmc.storageBlock.quicksilver.name=水银块
+tile.tragicmc.storageBlock.mercury.name=朱砂方块
+tile.tragicmc.storageBlock.quicksilver.name=水银方块
 
-tile.tragicmc.wax.name=蜡
+tile.tragicmc.wax.name=蜡块
 tile.tragicmc.light.name=光球
 tile.tragicmc.candle.name=蜡烛
 
 tile.tragicmc.potatoBlock.name=巨型马铃薯
 tile.tragicmc.carrotBlock.name=巨型胡萝卜
 
-tile.tragicmc.summonBlock.apis.name=召唤神牛
-tile.tragicmc.summonBlock.wither.name=召唤凋零
-tile.tragicmc.summonBlock.enderDragon.name=召唤末影龙
-tile.tragicmc.summonBlock.deathReaper.name=召唤骷髅收割者
-tile.tragicmc.summonBlock.kitsune.name=召唤狐妖
-tile.tragicmc.summonBlock.yeti.name=召唤雪人
-tile.tragicmc.summonBlock.polaris.name=召唤北极星
-tile.tragicmc.summonBlock.timeController.name=召唤时间控制者
+tile.tragicmc.spike.name=长钉岩
+
+tile.tragicmc.summonBlock.apis.name=阿匹斯
+tile.tragicmc.summonBlock.wither.name=凋零祭坛
+tile.tragicmc.summonBlock.enderDragon.name=末影龙祭坛
+tile.tragicmc.summonBlock.deathReaper.name=骷髅收割者祭坛
+tile.tragicmc.summonBlock.kitsune.name=火狐妖祭坛
+tile.tragicmc.summonBlock.yeti.name=远古雪怪祭坛
+tile.tragicmc.summonBlock.polaris.name=北极星祭坛
+tile.tragicmc.summonBlock.timeController.name=时间掌控者祭坛
+tile.tragicmc.summonBlock.enyvil.name=恶魔祭坛
+tile.tragicmc.summonBlock.claymation.name=粘土魔偶祭坛
+tile.tragicmc.summonBlock.aegar.name=艾格祭坛
+tile.tragicmc.summonBlock.professorNekoid.name=妮可猫指挥官祭坛
 
 tile.tragicmc.sandstonePressurePlate.name=沙石压力板
 tile.tragicmc.netherBrickPressurePlate.name=地狱砖压力板
 
-tile.tragicmc.disappearingBlock.name=消失方块
-tile.tragicmc.disappearingBlockInvis.name=消失方块(隐形)
+tile.tragicmc.disappearingBlock.name=消逝方块
+tile.tragicmc.disappearingBlockInvis.name=消逝方块(隐形)
 
 tile.tragicmc.quicksand.quicksand.name=流沙
 tile.tragicmc.quicksand.mud.name=泥巴
 tile.tragicmc.quicksand.netherDrudge.name=地狱泥巴
+tile.tragicmc.quicksand.toxicSludge.name=污泥
 
-tile.tragicmc.darkStone.smooth.name=黑石
-tile.tragicmc.darkStone.red.name=红色侵蚀黑石
-tile.tragicmc.darkStone.green.name=绿色侵蚀黑石
-tile.tragicmc.darkStone.blue.name=青色侵蚀黑石
-tile.tragicmc.darkStone.yellow.name=棕色侵蚀黑石
-tile.tragicmc.darkStone.purple.name=紫色侵蚀黑石
-tile.tragicmc.darkStone.navy.name=深蓝侵蚀黑石
-tile.tragicmc.darkStone.beveled.name=斜面黑石
-tile.tragicmc.darkStone.beveledRed.name=红色斜面黑石
-tile.tragicmc.darkStone.beveledGreen.name=绿色斜面黑石
-tile.tragicmc.darkStone.beveledTeal.name=青色斜面黑石
-tile.tragicmc.darkStone.beveledYellow.name=棕色斜面黑石
-tile.tragicmc.darkStone.beveledPurple.name=紫色斜面黑石
-tile.tragicmc.darkStone.beveledNavy.name=深蓝斜面黑石
-tile.tragicmc.darkStone.spike.name=尖锐黑石
+tile.tragicmc.darkStone.smooth.name=暗岩
+tile.tragicmc.darkStone.red.name=红色暗岩
+tile.tragicmc.darkStone.green.name=绿色暗岩
+tile.tragicmc.darkStone.blue.name=青色暗岩
+tile.tragicmc.darkStone.yellow.name=棕色暗岩
+tile.tragicmc.darkStone.purple.name=紫色暗岩
+tile.tragicmc.darkStone.navy.name=蓝色暗岩
+tile.tragicmc.darkStone.beveled.name=磨制暗岩
+tile.tragicmc.darkStone.beveledRed.name=红色磨制暗岩
+tile.tragicmc.darkStone.beveledGreen.name=绿色磨制暗岩
+tile.tragicmc.darkStone.beveledTeal.name=青色磨制暗岩
+tile.tragicmc.darkStone.beveledYellow.name=棕色磨制暗岩
+tile.tragicmc.darkStone.beveledPurple.name=紫色磨制暗岩
+tile.tragicmc.darkStone.beveledNavy.name=蓝色磨制暗岩
+tile.tragicmc.darkStone.spike.name=长钉暗岩
 
 tile.tragicmc.darkCobblestone.normal.name=深色圆石
-tile.tragicmc.darkCobblestone.hot.name=灼热深色圆石
-tile.tragicmc.darkCobblestone.toxic.name=剧毒深色圆石
-tile.tragicmc.darkCobblestone.ashen.name=苍灰深色圆石
+tile.tragicmc.darkCobblestone.hot.name=熔火圆石
+tile.tragicmc.darkCobblestone.toxic.name=剧毒圆石
+tile.tragicmc.darkCobblestone.ashen.name=苍灰圆石
 
-tile.tragicmc.lightCobblestone.normal.name=发光圆石
-tile.tragicmc.lightCobblestone.frozen.name=发光冻圆石
-tile.tragicmc.lightCobblestone.glowing.name=荧光圆石
+tile.tragicmc.lightCobblestone.normal.name=荧光圆石
+tile.tragicmc.lightCobblestone.frozen.name=冰光圆石
+tile.tragicmc.lightCobblestone.glowing.name=黯光圆石
+tile.tragicmc.lightStone.name=荧光石头
+
+tile.tragicmc.frozenNetherrack.name=冰冻地狱岩
 
 tile.tragicmc.tragicObsidian.crying.name=哭泣黑曜石
 tile.tragicmc.tragicObsidian.dying.name=死亡黑曜石
-tile.tragicmc.tragicObsidian.bleeding.name=血色黑曜石
+tile.tragicmc.tragicObsidian.bleeding.name=血腥黑曜石
 
-tile.tragicmc.pulsar.name=脉冲星
-tile.tragicmc.magnetar.name=磁星
-tile.tragicmc.timeDisruptor.name=时间干扰立方
+tile.tragicmc.timeDisruptor.name=时间干扰方块
+tile.tragicmc.soulChest.name=死灵箱
 
-tile.tragicmc.structureSeed.apisTemple.name=神牛神殿种子
-tile.tragicmc.structureSeed.desertTower.name=沙漠之塔种子
-tile.tragicmc.structureSeed.netherTower.name=地狱之塔种子
-tile.tragicmc.structureSeed.forestTower.name=森林之塔种子
-tile.tragicmc.structureSeed.mesaTower.name=粘土之塔种子
-tile.tragicmc.structureSeed.desertRuin.name=沙漠废墟种子
-tile.tragicmc.structureSeed.deathCircle.name=死亡循环种子
-tile.tragicmc.structureSeed.iceTower.name=冰之塔种子
-tile.tragicmc.structureSeed.obsidianCavern.random.name=随机黑曜石洞穴种子
-tile.tragicmc.structureSeed.obsidianCavern.mobSpawners.name=怪物挑战黑曜石洞穴种子
-tile.tragicmc.structureSeed.obsidianCavern.bossChallenge.name=Boss挑战黑曜石洞穴种子
-tile.tragicmc.structureSeed.obsidianCavern.deathTrap.name=死亡陷阱黑曜石洞穴种子
-tile.tragicmc.structureSeed.obsidianCavern.lootStash.name=战利品储藏黑曜石洞穴种子
-tile.tragicmc.structureSeed.kitsuneDen.name=狐妖窝种子
-tile.tragicmc.structureSeed.celestialTemple.name=天空神殿种子
+tile.tragicmc.structureSeed.apisTemple.name=阿匹斯神殿种子
+tile.tragicmc.structureSeed.tower.name=高塔种子
+tile.tragicmc.structureSeed.deathCircle.name=死亡祭坛种子
+tile.tragicmc.structureSeed.obsidianCavern.name=黑曜石洞穴种子
+tile.tragicmc.structureSeed.kitsuneDen.name=火狐巢穴种子
+tile.tragicmc.structureSeed.celestialTemple.name=北极星祭坛种子
 tile.tragicmc.structureSeed.timeAltar.name=时间祭坛种子
+tile.tragicmc.structureSeed.soulTomb.name=死灵墓穴种子
+tile.tragicmc.structureSeed.corruptedSpire.name=战斗高塔种子
+tile.tragicmc.structureSeed.empariahCave.name=雪怪洞穴种子
+tile.tragicmc.structureSeed.claymationRuin.name=粘土人墓穴种子
+tile.tragicmc.structureSeed.darkHut.name=黑魔仙小屋种子
+tile.tragicmc.structureSeed.ragrPit.name=莱格矿井种子
+tile.tragicmc.structureSeed.spiderNest.name=蜘蛛巢穴种子
+tile.tragicmc.structureSeed.memoryCache.name=记忆巢穴种子
+tile.tragicmc.structureSeed.lightSpire.name=弦灯桥种子
+tile.tragicmc.structureSeed.hackerNet.name=寄生蝇巢穴种子
+tile.tragicmc.structureSeed.cubeMaze.name=黑曜石迷宫种子
+tile.tragicmc.structureSeed.outlook.name=通天塔种子
+tile.tragicmc.structureSeed.nekoBarracks.name=妮可猫兵营
+tile.tragicmc.structureSeed.nekoWarehouse.name=妮可猫仓库
+tile.tragicmc.structureSeed.nekoCottage.name=妮可猫帐篷
+tile.tragicmc.structureSeed.nekoGuardTower.name=妮可猫警卫塔
+tile.tragicmc.structureSeed.nekoVillage.name=妮可猫城郭
+tile.tragicmc.structureSeed.nekoidsForwardBase.name=妮可猫的前线作战据点
+tile.tragicmc.structureSeed.nekoidsMansion.name=妮可猫的指挥中心
 
-tile.tragicmc.deadDirt.normal.name=死亡之土
-tile.tragicmc.deadDirt.rugged.name=崎岖之土
-tile.tragicmc.deadDirt.mixed.name=混合土
+tile.tragicmc.deadDirt.normal.name=死亡泥土
+tile.tragicmc.deadDirt.rugged.name=板结泥土
+tile.tragicmc.deadDirt.mixed.name=混合泥土
 
 tile.tragicmc.darkSand.name=深色沙子
 tile.tragicmc.decayingSand.name=腐沙
 
-tile.tragicmc.tragicOres.xp.name=XP矿石
+tile.tragicmc.tragicOres.xp.name=经验Exp矿石
 tile.tragicmc.tragicOres.mercury.name=水银矿石
 tile.tragicmc.tragicOres.tungsten.name=钨矿石
 tile.tragicmc.tragicOres.ruby.name=红宝石矿石
@@ -119,10 +140,10 @@ tile.tragicmc.tragicOres.iron.name=铁矿石
 tile.tragicmc.tragicOres.coal.name=煤矿石
 
 tile.tragicmc.boneBlock.normal.name=骨块
-tile.tragicmc.boneBlock.rotten.name=腐烂骨块
+tile.tragicmc.boneBlock.rotten.name=腐败骨块
 
 tile.tragicmc.fox.normal.name=平滑地狱岩
-tile.tragicmc.fox.beveled.name=斜面地狱岩
+tile.tragicmc.fox.beveled.name=磨制地狱岩
 tile.tragicmc.fox.chiseled.name=錾制地狱岩
 tile.tragicmc.fox.sculpted.name=精雕地狱岩
 tile.tragicmc.fox.foxtail.name=狐尾岩
@@ -130,36 +151,39 @@ tile.tragicmc.fox.molten.name=熔融地狱岩
 
 tile.tragicmc.darkenedQuartz.smooth.name=深色石英
 tile.tragicmc.darkenedQuartz.chiseled.name=錾制深色石英
-tile.tragicmc.darkenedQuartz.pillared.name=深色石英柱
+tile.tragicmc.darkenedQuartz.pillared.name=竖纹深色石英
 
-tile.tragicmc.brushedGrass.name=彩绘草方块
-tile.tragicmc.paintedWood.name=彩绘原木
-tile.tragicmc.paintedPlanks.name=彩绘木板
-tile.tragicmc.paintedLeaves.name=彩绘树叶
-tile.tragicmc.glowvine.name=荧光藤
-tile.tragicmc.paintedTallGrass.name=彩绘高草
+tile.tragicmc.brushedGrass.name=绘色草方块
+tile.tragicmc.paintedWood.name=绘色原木
+tile.tragicmc.paintedPlanks.name=绘色木板
+tile.tragicmc.paintedLeaves.name=绘色树叶
+tile.tragicmc.glowvine.name=绘色藤蔓
+tile.tragicmc.paintedTallGrass.name=绘色高草
 
 tile.tragicmc.ashenGrass.name=苍灰草方块
 tile.tragicmc.ashenWood.name=苍灰原木
 tile.tragicmc.ashenPlanks.name=苍灰木板
 tile.tragicmc.ashenLeaves.name=苍灰树叶
 
-tile.tragicmc.bleachedWood.name=漂白原木
-tile.tragicmc.bleachedPlanks.name=漂白木板
-tile.tragicmc.bleachedLeaves.name=漂白树叶
+tile.tragicmc.bleachedWood.name=星光原木
+tile.tragicmc.bleachedPlanks.name=星光木板
+tile.tragicmc.bleachedLeaves.name=星光树叶
 
 tile.tragicmc.ashenBush.name=苍灰灌木
-tile.tragicmc.deadBush.name=枯死灌木
+tile.tragicmc.deadBush.name=死亡灌木
 
-tile.tragicmc.sapling.painted.name=彩绘树苗
-tile.tragicmc.sapling.bleached.name=漂白树苗
+tile.tragicmc.sapling.painted.name=绘色树苗
+tile.tragicmc.sapling.bleached.name=星光树苗
 tile.tragicmc.sapling.ancient.name=古代树苗
 tile.tragicmc.sapling.lackered.name=瓷漆树苗
 tile.tragicmc.sapling.ashen.name=苍灰树苗
 tile.tragicmc.sapling.cherryBlossom.name=樱花树苗
-tile.tragicmc.sapling.toxic.name=毒树苗
-tile.tragicmc.sapling.dead.name=死树苗
+tile.tragicmc.sapling.toxic.name=剧毒树苗
+tile.tragicmc.sapling.dead.name=死亡树苗
 tile.tragicmc.sapling.corroded.name=腐蚀树苗
+tile.tragicmc.sapling.hallowed.name=神圣树苗
+tile.tragicmc.sapling.darkwood.name=昏暗树苗
+tile.tragicmc.sapling.nekowood.name=妮可树苗
 
 tile.tragicmc.flower.blueSpiranthes.name=蓝色绶草
 tile.tragicmc.flower.pinkSpiranthes.name=粉色绶草
@@ -169,14 +193,35 @@ tile.tragicmc.flower.blueCoral.name=蓝色珊瑚
 tile.tragicmc.flower.redCoral.name=红色珊瑚
 tile.tragicmc.flower.pinkGinger.name=粉姜
 tile.tragicmc.flower.redGinger.name=红姜
-tile.tragicmc.flower.bluebonnet.name=蓝色矢车菊
+tile.tragicmc.flower.bluebonnet.name=矢车菊
 tile.tragicmc.flower.violetSage.name=紫色鼠尾草
 tile.tragicmc.flower.pinkSage.name=粉色鼠尾草
 tile.tragicmc.flower.whiteSage.name=白色鼠尾草
 tile.tragicmc.flower.birdOfParadise.name=天堂鸟
 tile.tragicmc.flower.juniperBush.name=杜松灌木
-tile.tragicmc.flower.stapelia.name=豹皮花
+tile.tragicmc.flower.stapelia.name=五角花
 tile.tragicmc.flower.thistle.name=蓟
+
+tile.tragicmc.flower.bramble.name=荆棘
+tile.tragicmc.flower.tangleweed.name=魅惑草
+tile.tragicmc.flower.deathClaw.name=死神之爪
+tile.tragicmc.flower.fusche.name=弗奇草
+tile.tragicmc.flower.osiris.name=冥草
+tile.tragicmc.flower.thusk.name=塔斯克
+tile.tragicmc.flower.podtail.name=荚尾根
+tile.tragicmc.flower.fanbrush.name=法布拉
+tile.tragicmc.flower.torchweed.name=火炬草
+tile.tragicmc.flower.halon.name=哈龙草
+tile.tragicmc.flower.rizaphora.name=红树根
+tile.tragicmc.flower.blackSpot.name=黑斑蕨
+tile.tragicmc.flower.nannon.name=南龙草
+tile.tragicmc.flower.barbedWire.name=紫忌丝
+tile.tragicmc.flower.kern.name=柯恩草
+tile.tragicmc.flower.flahgrass.name=弗拉草
+
+tile.tragicmc.skyFruit.name=天空果实 (藤)
+tile.tragicmc.deathglow.name=脏葫芦藤 (藤)
+tile.tragicmc.honeydrop.name=蜂蜜滴 (藤)
 
 tile.tragicmc.ashenTallGrass.name=苍灰高草
 tile.tragicmc.driedTallGrass.name=枯高草
@@ -201,17 +246,132 @@ tile.tragicmc.starCrystal.orange.name=橙色星光水晶
 tile.tragicmc.starCrystal.magenta.name=品红色星光水晶
 tile.tragicmc.starCrystal.limeGreen.name=黄绿色星光水晶
 
-tile.tragicmc.erodedStone.smooth.name=侵蚀石头
-tile.tragicmc.erodedStone.carved.name=精雕侵蚀石头
+tile.tragicmc.erodedStone.smooth.name=侵蚀岩
+tile.tragicmc.erodedStone.carved.name=精雕侵蚀岩
+tile.tragicmc.erodedStone.scattered.name=松散的侵蚀岩
 
-tile.tragicmc.luminescence.name=冷光
+tile.tragicmc.luminescence.name=微光
 
-item.tragicmc.redMercury.name=红色水银
-item.tragicmc.mercuryHelm.name=红色水银头盔
-item.tragicmc.mercuryPlate.name=红色水银胸甲
-item.tragicmc.mercuryLegs.name=红色水银护腿
-item.tragicmc.mercuryBoots.name=红色水银靴子
-item.tragicmc.mercuryDagger.name=红色水银匕首
+tile.tragicmc.circuit.live.name=运作的电路块
+tile.tragicmc.circuit.dead.name=废弃的电路块
+tile.tragicmc.circuit.aged.name=老化的电路块
+tile.tragicmc.circuit.damaged.name=受损的电路块
+tile.tragicmc.circuit.veryDamaged.name=严重受损的电路块
+
+tile.tragicmc.conduit.name=电路条
+
+tile.tragicmc.celled.name=纳米方块
+tile.tragicmc.celledLamp.white.name=纳米灯 (白色)
+tile.tragicmc.celledLamp.red.name=纳米灯 (红色)
+tile.tragicmc.celledLamp.cyan.name=纳米灯 (青色)
+tile.tragicmc.celledLamp.orange.name=纳米灯 (橙色)
+tile.tragicmc.celledLamp.black.name=纳米灯 (黑色)
+tile.tragicmc.celledLamp.lightGray.name=纳米灯 (亮灰)
+tile.tragicmc.celledLamp.darkGray.name=纳米灯 (深灰)
+tile.tragicmc.celledLamp.magenta.name=纳米灯 (品红色)
+tile.tragicmc.celledLamp.pink.name=纳米灯 (粉色)
+tile.tragicmc.celledLamp.yellow.name=纳米灯 (黄色)
+tile.tragicmc.celledLamp.brown.name=纳米灯 (棕色)
+tile.tragicmc.celledLamp.blue.name=纳米灯 (蓝色)
+tile.tragicmc.celledLamp.green.name=纳米灯 (绿色)
+tile.tragicmc.celledLamp.lime.name=纳米灯 (黄绿色)
+tile.tragicmc.celledLamp.purple.name=纳米灯 (紫色)
+tile.tragicmc.celledLamp.lightBlue.name=纳米灯 (淡蓝色)
+
+tile.tragicmc.synapseCore.name=神经核心
+tile.tragicmc.overlordBarrier.name=领主壁垒
+
+tile.tragicmc.digitalSea.name=无尽之海
+
+tile.tragicmc.darkSandstone.smooth.name=平滑深色沙石
+tile.tragicmc.darkSandstone.gridded.name=栅格深色沙石
+tile.tragicmc.darkSandstone.bricked.name=深色沙石砖块
+tile.tragicmc.darkSandstone.rough.name=粗糙深色沙石
+tile.tragicmc.darkSandstone.beveled.name=磨制深色沙石
+tile.tragicmc.darkSandstone.chiseled.name=錾制深色沙石
+tile.tragicmc.darkSandstone.carved.name=精雕深色沙石
+
+tile.tragicmc.witheringGas.name=凋零瓦斯
+tile.tragicmc.corruptedGas.name=虚弱瓦斯
+
+tile.tragicmc.aeris.pureAeris.name=纯净的大地之花
+tile.tragicmc.aeris.partiallyCorruptedAeris.name=浑浊的大地之花
+tile.tragicmc.aeris.corruptedAeris.name=受污染的大地之花
+
+tile.tragicmc.geyser.name=间歇喷泉
+tile.tragicmc.steamVent.name=蒸汽口
+tile.tragicmc.moltenRock.name=熔融岩
+tile.tragicmc.scorchedRock.name=焦岩
+
+tile.tragicmc.stringLight.name=弦灯
+tile.tragicmc.fragileLight.name=碎光
+tile.tragicmc.hallowedGrass.name=神圣草方块
+tile.tragicmc.hallowedLeaves.name=神圣树叶
+tile.tragicmc.hallowedLeafTrim.name=圣草
+tile.tragicmc.hallowedWood.name=神圣原木
+tile.tragicmc.hallowedPlanks.name=神圣木板
+
+tile.tragicmc.radiatedGas.name=剧毒瓦斯
+tile.tragicmc.explosiveGas.name=易燃瓦斯
+tile.tragicmc.wickedVine.name=邪恶藤蔓
+tile.tragicmc.corrodedStone.name=腐蚀石头
+
+tile.tragicmc.icedDirt.name=冻泥
+tile.tragicmc.permafrost.normal.name=冻土
+tile.tragicmc.permafrost.cracked.name=裂冻土
+tile.tragicmc.permafrost.mossy.name=苔冻土
+tile.tragicmc.lichen.name=地衣
+tile.tragicmc.moss.name=苔藓
+tile.tragicmc.iceSpike.name=冰刺
+tile.tragicmc.iceSpikeHanging.name=冰钟乳石
+
+tile.tragicmc.crystal.name=水晶
+
+tile.tragicmc.darkGrass.name=昏暗草方块
+tile.tragicmc.darkwood.name=昏暗原木
+tile.tragicmc.darkwoodPlanks.name=昏暗木板
+tile.tragicmc.darkVine.name=死亡藤蔓
+tile.tragicmc.darkLeaves.name=昏暗树叶
+tile.tragicmc.darkGas.name=失明瓦斯
+tile.tragicmc.darkTallGrass.name=昏暗高草
+
+tile.tragicmc.septicGas.name=毒毒瓦斯
+
+tile.tragicmc.corsin.normal.name=贪婪石
+tile.tragicmc.corsin.faded.name=黯淡的贪婪石
+tile.tragicmc.corsin.brick.name=贪婪石砖
+tile.tragicmc.corsin.fadedBrick.name=贪婪石砖 (黯淡)
+tile.tragicmc.corsin.circle.name=回纹贪婪石
+tile.tragicmc.corsin.celled.name=压缩贪婪石
+tile.tragicmc.corsin.scarred.name=裂纹贪婪石
+tile.tragicmc.corsin.wavy.name=波纹贪婪石
+tile.tragicmc.corsin.crystal.name=贪婪晶石
+tile.tragicmc.corsin.crystalWrap.name=贪婪晶石 (未启用)
+
+tile.tragicmc.nekoGrass.name=妮可猫草
+tile.tragicmc.nekowood.name=妮可猫原木
+tile.tragicmc.nekowoodLeaves.name=妮可猫树叶
+tile.tragicmc.nekowoodPlanks.name=妮可猫木板
+tile.tragicmc.nekoBush.name=妮可猫灌木
+tile.tragicmc.nekitePlate.compressed.name=荧光腥红石
+tile.tragicmc.nekitePlate.normal.name=腥红石
+tile.tragicmc.nekitePlate.smooth.name=平滑腥红石
+tile.tragicmc.nekitePlate.cross.name=斜纹腥红石
+tile.tragicmc.nekitePlate.marked.name=标记腥红石
+tile.tragicmc.nekitePlate.grated.name=栅格腥红石
+tile.tragicmc.nekitePlate.ironPlate.name=腥红铁块
+tile.tragicmc.nekitePlate.ironCross.name=斜纹腥红铁块
+tile.tragicmc.nekitePlate.ironMarked.name=标记腥红铁块
+tile.tragicmc.nekitePlate.ironGrated.name=栅格腥红铁块
+
+tile.tragicmc.nekiteWire.name=腥红丝网
+
+item.tragicmc.redMercury.name=朱砂
+item.tragicmc.mercuryHelm.name=朱砂头盔
+item.tragicmc.mercuryPlate.name=朱砂胸甲
+item.tragicmc.mercuryLegs.name=朱砂护腿
+item.tragicmc.mercuryBoots.name=朱砂靴子
+item.tragicmc.mercuryDagger.name=朱砂匕首
 
 item.tragicmc.tungstenHelm.name=钨头盔
 item.tragicmc.tungstenPlate.name=钨胸甲
@@ -222,60 +382,80 @@ item.tragicmc.quicksilver.name=水银
 item.tragicmc.quicksilverIngot.name=固态水银
 
 item.tragicmc.tungsten.name=钨
-item.tragicmc.jack.name=钨制千斤顶 
+item.tragicmc.tungstenJack.name=钨制镰刀
 
-item.tragicmc.lightIngot.name=荧光锭
-item.tragicmc.darkIngot.name=深色锭
+item.tragicmc.lightIngot.name=神圣锭
+item.tragicmc.darkIngot.name=暗黑锭
 
 item.tragicmc.ruby.name=红宝石
 item.tragicmc.sapphire.name=蓝宝石
+
+item.tragicmc.nekite.name=腥红碎片
 
 item.tragicmc.skullHelmet.name=骨制头盔
 item.tragicmc.skullPlate.name=骨制胸甲
 item.tragicmc.skullLegs.name=骨制护腿
 item.tragicmc.skullBoots.name=骨制靴子
-item.tragicmc.scythe.name=镰刀
+item.tragicmc.scythe.name=快镰
 
-item.tragicmc.huntersCap.name=猎帽
-item.tragicmc.huntersTunic.name=猎衣
-item.tragicmc.huntersLegs.name=猎裤
-item.tragicmc.huntersBoots.name=猎靴
+item.tragicmc.jack.name=镰刀
+
+item.tragicmc.huntersCap.name=猎手皮帽
+item.tragicmc.huntersTunic.name=猎手上衣
+item.tragicmc.huntersLegs.name=猎手裤子
+item.tragicmc.huntersBoots.name=猎手长靴
 item.tragicmc.huntersBow.name=猎弓
 
-item.tragicmc.darkHelm.name=深色头盔
-item.tragicmc.darkPlate.name=深色胸甲
-item.tragicmc.darkLegs.name=深色护腿
-item.tragicmc.darkBoots.name=深色靴子
-item.tragicmc.pitchBlack.name=漆黑之球
+item.tragicmc.darkHelm.name=暗黑头盔
+item.tragicmc.darkPlate.name=暗黑胸甲
+item.tragicmc.darkLegs.name=暗黑护腿
+item.tragicmc.darkBoots.name=暗黑靴子
+item.tragicmc.pitchBlack.name=黑暗侵蚀
 
-item.tragicmc.lightHelm.name=荧光头盔
-item.tragicmc.lightPlate.name=荧光胸甲
-item.tragicmc.lightLegs.name=荧光护腿
-item.tragicmc.lightBoots.name=荧光靴子
-item.tragicmc.blindingLight.name=炫目之光
+item.tragicmc.lightHelm.name=神圣头盔
+item.tragicmc.lightPlate.name=神圣胸甲
+item.tragicmc.lightLegs.name=神圣护腿
+item.tragicmc.lightBoots.name=神圣靴子
+item.tragicmc.blindingLight.name=闪耀之光
 item.tragicmc.everlastingLight.name=永恒之光
 
-item.tragicmc.celestialSteel.name=天空之钢
-item.tragicmc.celestialAegis.name=天空羊角盾
+item.tragicmc.celestialSteel.name=天空钢铁
+item.tragicmc.celestialAegis.name=天空护盾
 item.tragicmc.celestialLongbow.name=天空长弓
+item.tragicmc.celestialJack.name=天空之镰
 
-item.tragicmc.titan.name=泰坦之剑
-item.tragicmc.paranoia.name=诞妄之杖
-item.tragicmc.splinter.name=裂空之剑
-item.tragicmc.butcher.name=屠夫之刀
-item.tragicmc.thardus.name=冰霜之杖
-item.tragicmc.dragonFang.name=龙牙剑
+item.tragicmc.silentHellraiser.name=沉默的反叛者
 
-item.tragicmc.gravitySpike.name=重力刺突
-item.tragicmc.mourningStar.name=哀伤之星
-item.tragicmc.harmonyBell.name=和谐之铃
+item.tragicmc.titan.name=泰坦之怒
+item.tragicmc.paranoia.name=妄魇之手
+item.tragicmc.splinter.name=摄魂之手
+item.tragicmc.butcher.name=嗜血狂潮
+item.tragicmc.thardus.name=凛冬将至
+item.tragicmc.dragonFang.name=恶龙之牙
+
+item.tragicmc.overlordHelm.name=领主头盔
+item.tragicmc.overlordPlate.name=领主胸甲
+item.tragicmc.overlordLegs.name=领主护腿
+item.tragicmc.overlordBoots.name=领主靴子
+item.tragicmc.sentinel.name=领主权杖
+item.tragicmc.corruptedEye.name=腐烂的眼珠
+item.tragicmc.corruptedEssence.name=腐烂纤维
+item.tragicmc.nanoBots.name=纳米机器人
+item.tragicmc.corrupted	 .name=损坏的蛋
+item.tragicmc.ireNode.name=愤怒绳结
+
+item.tragicmc.password.name=密码
+
+item.tragicmc.gravitySpike.name=重力穿刺
+item.tragicmc.mourningStar.name=哀悼之星
+item.tragicmc.harmonyBell.name=和谐铃铛
 item.tragicmc.guiltyThorn.name=罪恶荆棘
-item.tragicmc.beastlyClaws.name=野蛮之爪
-item.tragicmc.nekoLauncher.name=猫咪火箭发射器
+item.tragicmc.beastlyClaws.name=野兽之爪
+item.tragicmc.nekoLauncher.name=妮可猫火箭炮
 item.tragicmc.reaperScythe.name=收割者镰刀
-item.tragicmc.enigmaShield.name=谜之盾
-item.tragicmc.witheringAxe.name=凋零之斧
-item.tragicmc.frozenLightning.name=急冻闪电
+item.tragicmc.witheringAxe.name=凋零斧头
+item.tragicmc.frozenLightning.name=急冻光线
+item.tragicmc.ireNetParticleCannon.name=霜冻加农炮
 
 item.tragicmc.diamondCharm.name=钻石魔石
 item.tragicmc.emeraldCharm.name=绿宝石魔石
@@ -284,128 +464,198 @@ item.tragicmc.sapphireCharm.name=蓝宝石魔石
 item.tragicmc.awakeningStone.name=觉醒之石
 item.tragicmc.obsidianOrb.name=黑曜石球
 item.tragicmc.cryingObsidianOrb.name=哭泣黑曜石球
-item.tragicmc.bleedingObsidianOrb.name=血色黑曜石球
+item.tragicmc.bleedingObsidianOrb.name=血腥黑曜石球
 item.tragicmc.dyingObsidianOrb.name=死亡黑曜石球
 
-item.tragicmc.doomConsume.name=厄运消耗
-item.tragicmc.amuletRelease.name=项链释放
+item.tragicmc.doomConsume.name=厄运复现
+item.tragicmc.amuletRelease.name=项链庇护
 item.tragicmc.cooldownDefuse.name=冷却移除
 item.tragicmc.bloodSacrifice.name=血祭
-item.tragicmc.nourishmentSacrifice.name=营养献祭
-item.tragicmc.doomsdayScroll.name=末日卷轴
+item.tragicmc.nourishmentSacrifice.name=斋戒
+item.tragicmc.doomsdayScroll.name=厄运卷轴
 
 item.tragicmc.amuletKitsune.name=狐妖项链
-kitsune4.special=地狱名品
-item.tragicmc.amuletPeace.name=和平项链
-peace1.special=保持和谐
-peace2.special=被爱蒙蔽了双眼
-peace3.special=和平守护者
-item.tragicmc.amuletYeti.name=雪人项链
+kitsune3.special=浴火重生
+item.tragicmc.amuletPeace.name=和谐项链
+peace1.special=和平 和谐
+peace2.special=大爱 大同
+peace3.special=永远和睦相处
+item.tragicmc.amuletYeti.name=雪怪项链
 yeti1.special=野牛般的脾气
-yeti2.special=铅锤般的跺脚
+yeti2.special=铅锤般的弹跳
 yeti3.special=核弹般的威力
-item.tragicmc.amuletClaymation.name=活性粘土人项链
-claymation1.special=不雅的拒绝
+item.tragicmc.amuletClaymation.name=泥人项链
+claymation1.special=粗鲁的拒绝
 claymation2.special=可能的偏差
 claymation3.special=有效的反射
-item.tragicmc.amuletChicken.name=鸡之项链
-chicken1.special=Bawk Bawk
-chicken2.special=我不想做只鸡
-chicken3.special=再也没人叫我鸡了...
+item.tragicmc.amuletChicken.name=小鸡项链
+chicken1.special=小鸡小鸡咕咕day
+chicken2.special=我才不想做只鸡
+chicken3.special=才没人喊我小鸡...
 item.tragicmc.amuletPiercing.name=穿刺项链
-piercing4.special=飞舞若蝶
+piercing3.special=飞舞若蝶
 item.tragicmc.amuletMartyr.name=殉道者项链
-martyr4.special=与吾共苦
+martyr3.special=和我一起痛苦吧
 item.tragicmc.amuletBlacksmith.name=铁匠项链
-blacksmith1.special=我想我已身患黑肺病
-blacksmith2.special=连续敲打
-blacksmith3.special=Minecraft铁匠
-item.tragicmc.amuletApis.name=神牛项链
-apis4.special=破坏专家
-item.tragicmc.amuletCreeper.name=苦力怕项链
-creeper1.special=挖挖挖
-creeper2.special=我们将去挖矿
+blacksmith1.special=污之吾肺
+blacksmith2.special=击其须臾
+blacksmith3.special=世界级铁匠
+item.tragicmc.amuletApis.name=阿匹斯项链
+apis3.special=破坏能手
+item.tragicmc.amuletCreeper.name=爬行者项链
+creeper1.special=挖，挖，挖
+creeper2.special=我们的矿业之路
 creeper3.special=真正的矿工
 item.tragicmc.amuletSkeleton.name=骷髅项链
-skeleton1.special=罗宾汉式风格
-skeleton2.special=莱格拉斯风格
-skeleton3.special=绿箭侠风格
+skeleton1.special=吾乃罗宾汉
+skeleton2.special=莱戈拉斯式
+skeleton3.special=翻版绿箭侠
 item.tragicmc.amuletZombie.name=僵尸项链
-zombie1.special=Braaaaaaaaaains
-zombie2.special=僵尸... 饥饿...
-zombie3.special=令人惊悚
-item.tragicmc.amuletSunken.name=沉没项链
-sunken4.special=继续游
+zombie1.special=大脑...大脑...
+zombie2.special=僵尸... 饿...
+zombie3.special=颤栗！
+item.tragicmc.amuletSunken.name=潜水项链
+sunken3.special=我们会游泳
 item.tragicmc.amuletTime.name=时间项链
-time5.special=时间仍旧流逝
-item.tragicmc.amuletIce.name=冰之项链
-ice1.special=凉快
-ice2.special=冷静!
-ice3.special=结冻!
+time3.special=逝者如斯,盈虚者如彼
+item.tragicmc.amuletIce.name=寒冰项链
+ice1.special=酷！
+ice2.special=嘶...呼...
+ice3.special=冰冻！
 item.tragicmc.amuletSnowGolem.name=雪傀儡项链
-snowgolem1.special=出来,不管你在哪里...
-snowgolem2.special=准备好没,我来了!
-snowgolem3.special=冲我来,怪物们!
+snowgolem1.special=快出来！
+snowgolem2.special=我准备好喽！
+snowgolem3.special=来吧，怪物们！
 item.tragicmc.amuletIronGolem.name=铁傀儡项链
-irongolem1.special=感觉很强大...
-irongolem2.special=感觉不到任何东西!
-irongolem3.special=我是钢铁侠.
+irongolem1.special=感觉强壮了些
+irongolem2.special=没感觉呢
+irongolem3.special=没错，我就是钢铁侠
 item.tragicmc.amuletEnderman.name=末影人项链
-enderman4.special=精准采集
+enderman3.special=可以搬起草方块了
 item.tragicmc.amuletWither.name=凋零项链
-wither5.special=吾以绝望为食.
+wither3.special=我以绝望为食
+item.tragicmc.amuletSpider.name=蜘蛛项链
+spider1.special=啊啊啊蜘蛛！
+spider2.special=我是蛛蛛！
+spider3.special=蜘蛛侠，蜘蛛侠
+item.tragicmc.amuletStin.name=刺怪项链
+stin1.special=闪开！
+stin2.special=快滚！
+stin3.special=走，走，给我火速远离！
+item.tragicmc.amuletPolaris.name=北极星项链
+polaris3.special=黑夜是我的朋友
+item.tragicmc.amuletOverlord.name=领主项链
+overlord3.special=八荒六合，唯我独尊
+item.tragicmc.amuletLightning.name=闪电项链
+lightning3.special=不过是闪电！
+item.tragicmc.amuletConsumption.name=消耗项链
+consumption3.special=赐予我力量吧！
+item.tragicmc.amuletSupernatural.name=超自然项链
+supernatural1.special=巫术！
+supernatural2.special=阿巴拉卡达布拉, 阿拉卡赞姆！
+supernatural3.special=古娜拉黑暗之神--乌呼啦呼--黑魔变身！
+item.tragicmc.amuletUndead.name=不死项链
+undead3.special=我还活着，那只是皮外伤
+item.tragicmc.amuletEnderDragon.name=末影龙项链
+enderdragon3.special=万物因我而生，亦因我而终
+item.tragicmc.amuletFusea.name=弗西项链
+fusea1.special=嘣，瞎卡拉卡！
+fusea2.special=轰隆！轰隆！
+fusea3.special=我要爆炸啦！
+item.tragicmc.amuletEnyvil.name=恶魔项链
+enyvil3.special=我会给你畏惧我的理由
+item.tragicmc.amuletLuck.name=幸运项链
+luck1.special=凑巧啦！
+luck2.special=这是天命！
+luck3.special=刚刚好！
 
-item.tragicmc.ectoplasm.name=外浆
+item.tragicmc.ectoplasm.name=细胞质
 item.tragicmc.ash.name=灰烬
-item.tragicmc.lifeWater.name=生命之水
+item.tragicmc.lifeWater.name=魔法之泪
 item.tragicmc.toughLeather.name=坚硬皮革
-item.tragicmc.wovenSilk.name=编织丝
-item.tragicmc.crushedIce.name=碎冰
+item.tragicmc.wovenSilk.name=细丝
+item.tragicmc.crushedIce.name=冰碎
 item.tragicmc.iceOrb.name=冰球
 item.tragicmc.lightningOrb.name=光球
 item.tragicmc.fireOrb.name=火球
 item.tragicmc.gravityOrb.name=重力球
 item.tragicmc.aquaOrb.name=水球
-item.tragicmc.sap.name=树液
+item.tragicmc.sap.name=Sap
 item.tragicmc.honey.name=蜂蜜
 item.tragicmc.thorns.name=尖刺
 item.tragicmc.spore.name=孢子
-item.tragicmc.lightParticles.name=发光粒子
-item.tragicmc.darkParticles.name=深色粒子
+item.tragicmc.lightParticles.name=光元素
+item.tragicmc.darkParticles.name=暗元素
 item.tragicmc.horn.name=角
 item.tragicmc.glue.name=强力胶
-item.tragicmc.superGlue.name=魔法胶
-item.tragicmc.kitsuneTail.name=狐妖之尾
-item.tragicmc.reaperSkull.name=骷髅收割者头颅
-item.tragicmc.yetiClaw.name=雪人之爪
-item.tragicmc.starPieces.name=星空碎片
+item.tragicmc.superGlue.name=魔力胶
+item.tragicmc.kitsuneTail.name=狐尾
+item.tragicmc.reaperSkull.name=死神降临
+item.tragicmc.yetiClaw.name=雪怪指甲
+item.tragicmc.starPieces.name=星光碎片
 item.tragicmc.celestialDiamond.name=天空钻石
-item.tragicmc.lunarPowder.name=月亮粉末
-item.tragicmc.timeEssence.name=时间源质
-item.tragicmc.wispParticles.name=精灵粒子
-item.tragicmc.icyFur.name=冰冷皮毛
-item.tragicmc.stinHorn.name=锐角
+item.tragicmc.lunarPowder.name=月光粉末
+item.tragicmc.timeEssence.name=时间质子
+item.tragicmc.wispParticles.name=星火碎片
+item.tragicmc.icyFur.name=雪怪皮毛
+item.tragicmc.stinHorn.name=刺怪触角
 item.tragicmc.livingClay.name=活性粘土
-item.tragicmc.pureDarkness.name=纯黑之球
+item.tragicmc.pureDarkness.name=黑暗源质
+item.tragicmc.pureLight.name=光明源质
+item.tragicmc.unstableIsotope.name=弗西源质
+item.tragicmc.archangelFeather.name=大天使羽毛
+item.tragicmc.wingsOfLiberation.name=自由之翼
+item.tragicmc.anomalyAugment.name=异常填充物
+item.tragicmc.nuke.name=核能
+item.tragicmc.catalyticCompound.name=调和剂
+item.tragicmc.interestingResin.name=奇趣树脂
+item.tragicmc.chitin.name=甲壳碎片
+item.tragicmc.soulExcess.name=野魂
+item.tragicmc.etherealDistortion.name=畸变维度
 
-item.tragicmc.dimensionalKey.name=维度钥匙
+item.tragicmc.toxicAmalgation.name=剧毒精华
+item.tragicmc.paradoxicalFormula.name=混沌精华
+item.tragicmc.gloopyMixture.name=果冻泥
+item.tragicmc.radiatedInfusion.name=辐射毒液
+item.tragicmc.impossibleReaction.name=白日梦
+item.tragicmc.infallibleMetal.name=绝对之钢
+item.tragicmc.complexCircuitry.name=复杂电路
+item.tragicmc.nauseatingConcoction.name=呕吐物
+item.tragicmc.creepyIdol.name=受诅咒的人偶
+item.tragicmc.purifiedEnergy.name=纯净源质
+item.tragicmc.shadowskin.name=邪恶皮毛
 
-item.tragicmc.mobStatue.apis.name=神牛雕像
-item.tragicmc.mobStatue.kitsune.name=狐妖雕像
+item.tragicmc.dimensionalKey.collision.name=传送之匙 (悲惨世界)
+item.tragicmc.dimensionalKey.end.name=传送之匙 (末地)
+item.tragicmc.dimensionalKey.nether.name=传送之匙 (地狱)
+item.tragicmc.dimensionalKey.synapse.name=传送之匙 (哀伤世界)
+item.tragicmc.dimensionalKey.nekoHomeworld.name=传送之匙 (妮可猫世界)
+item.tragicmc.dimensionalKey.wilds.name=传送之匙 (荒芜)
+
+item.tragicmc.synapseLink.name=通灵
+item.tragicmc.synapseCrystal.name=通灵水晶
+item.tragicmc.warpDrive.name=传送舵手
+
+item.tragicmc.mobStatue.apis.name=阿匹斯雕像
+item.tragicmc.mobStatue.kitsune.name=火狐妖雕像
 item.tragicmc.mobStatue.deathReaper.name=骷髅收割者雕像
-item.tragicmc.mobStatue.timeController.name=时间控制者雕像
-item.tragicmc.mobStatue.yeti.name=雪人雕像
+item.tragicmc.mobStatue.timeController.name=时间掌控者雕像
+item.tragicmc.mobStatue.yeti.name=远古雪怪雕像
 item.tragicmc.mobStatue.polaris.name=北极星雕像
-item.tragicmc.mobStatue.jarra.name=影蠕虫雕像
-item.tragicmc.mobStatue.kragul.name=魔偶雕像
-item.tragicmc.mobStatue.magmox.name=红色瘟疫草雕像
-item.tragicmc.mobStatue.megaCryse.name=大冰晶怪雕像
+item.tragicmc.mobStatue.jarra.name=贾拉尔雕像
+item.tragicmc.mobStatue.kragul.name=克拉怪雕像
+item.tragicmc.mobStatue.magmox.name=烈焰草雕像
+item.tragicmc.mobStatue.megaCryse.name=三冰晶雕像
 item.tragicmc.mobStatue.stinKing.name=刺王雕像
 item.tragicmc.mobStatue.stinQueen.name=刺后雕像
-item.tragicmc.mobStatue.greaterStin.name=巨刺雕像
-item.tragicmc.mobStatue.voxStellarum.name=声控星象仪雕像
+item.tragicmc.mobStatue.greaterStin.name=刺怪爵士雕像
+item.tragicmc.mobStatue.voxStellarum.name=北极星声纳仪雕像
 item.tragicmc.mobStatue.enyvil.name=恶魔雕像
-item.tragicmc.mobStatue.claymation.name=活性粘土人雕像
+item.tragicmc.mobStatue.claymation.name=粘土魔偶雕像
+item.tragicmc.mobStatue.aegar.name=艾格雕像
+item.tragicmc.mobStatue.overlord.name=领主(甲虫)雕像
+item.tragicmc.mobStatue.overlordCombat.name=领主(战斗)雕像
+item.tragicmc.mobStatue.overlordCocoon.name=领主(茧态)雕像
 
 tragicmc.mobTexture.iron=(铁)
 tragicmc.mobTexture.gold=(金)
@@ -413,7 +663,7 @@ tragicmc.mobTexture.diamond=(钻石)
 tragicmc.mobTexture.stone=(石)
 tragicmc.mobTexture.wood=(木)
 tragicmc.mobTexture.emerald=(绿宝石)
-tragicmc.mobTexture.redMercury=(红色水银)
+tragicmc.mobTexture.leaf=(叶)
 tragicmc.mobTexture.tungsten=(钨)
 tragicmc.mobTexture.ruby=(红宝石)
 tragicmc.mobTexture.sapphire=(蓝宝石)
@@ -421,410 +671,630 @@ tragicmc.mobTexture.redstone=(红石)
 tragicmc.mobTexture.coal=(煤炭)
 tragicmc.mobTexture.lapis=(青金石)
 tragicmc.mobTexture.netherrack=(地狱岩)
-tragicmc.mobTexture.checkered=(动画)
+tragicmc.mobTexture.ender=(末地)
+tragicmc.mobTexture.animated=(活泼的)
 
 item.tragicmc.bowOfJustice.name=正义之弓
 item.tragicmc.swordOfJustice.name=正义之剑
 
-item.tragicmc.voidPitGenerator.name=虚空之井生成器
+item.tragicmc.voidPitGenerator.name=虚空深井生成器
 item.tragicmc.sphereGenerator.name=球体生成器
 item.tragicmc.sphereEraser.name=球体移除器
 item.tragicmc.liquidRemover.name=液体移除器
 item.tragicmc.treeGenerator.name=树木生成器
 item.tragicmc.starCrystalGenerator.name=星光水晶生成器
 item.tragicmc.spikeGenerator.name=尖塔生成器
-item.tragicmc.lightningSummoner.name=闪电召唤器
-item.tragicmc.explosionGenerator.name=爆炸物生成器
-item.tragicmc.nekoNekoWand.name=喵喵魔杖
+item.tragicmc.lightningSummoner.name=闪电释放器
+item.tragicmc.worldGen.directedLightningSummoner.name=指向闪电释放器
+item.tragicmc.worldGen.explosionGenerator.name=爆炸释放器
+item.tragicmc.worldGen.isleGenerator.name=污染空岛生成器
+item.tragicmc.worldGen.pitGenerator.name=矿井生成器
 
-item.tragicmc.gooeyFruit.name=粘稠果实
-item.tragicmc.exoticFruit.name=异域果实
-item.tragicmc.nastyFruit.name=肮脏果实
+item.tragicmc.nekoNekoWand.name=喵喵法杖
+item.tragicmc.soundExtrapolator.name=驱散口哨
+item.tragicmc.nekoMindControlDevice.name=妮可猫控制仪
+item.tragicmc.recaptureSiphon.name=妮可猫解放口风琴
+item.tragicmc.nekoInfluencer.name=妮可猫洗脑仪
+item.tragicmc.nekoidStrain.name=妮可猫基因
+item.tragicmc.wrench.name=扳手
+item.tragicmc.mechaExo.name=妮可机甲
+item.tragicmc.nekoRayGun.name=妮可镭射枪
+item.tragicmc.nekoLaserSword.name=妮可荣耀剑
+item.tragicmc.nekoidsBlaster.name=妮可空气炮
+
+item.tragicmc.starstruck.name=S001F001 Starstruck
+item.record.starstruck.name=Set001 - File001 - Starstruck
+item.record.starstruck.desc=Hard Rock set - Rock riff with electro-industrial sections and an amazing solo
+item.tragicmc.faultless.name=S001F002 Faultless
+item.record.faultless.name=Set001 - File002 - Faultless
+item.record.faultless.desc=Hard Rock set - Rock riff with symbolic synthy lead over top
+item.tragicmc.transmissions.name=S001F003 Transmissions
+item.record.transmissions.name=Set001 - File003 - Transmissions
+item.record.transmissions.desc=Hard Rock set - Simple riff leading into a soaring outro section, with synthesized choir throughout
+
+item.tragicmc.atrophy.name=S002F001 Atrophy
+item.record.atrophy.name=Set002 - File001 - Atrophy
+item.record.atrophy.desc=Progressive set - Multiple hard rock sections with tempo changes and shredding solos
+item.tragicmc.archaic.name=S002F006 Archaic
+item.record.archaic.name=Set002 - File006 - Archaic
+item.record.archaic.desc=Progressive set - Synth-laden hard rock with psychedelic and blues inspired sections
+item.tragicmc.system.name=S002F004 System
+item.record.system.name=Set002 - File004 - System
+item.record.system.desc=Progressive set - Complex and fluctuating time signatures with a hard rock aesthetic
+
+item.tragicmc.mirrors.name=S003F004 Mirrors
+item.record.mirrors.name=Set003 - File004 - Mirrors
+item.record.mirrors.desc=Fragment set - Distorted drum beat with synthesized strings and a heavily delayed guitar
+item.tragicmc.untitled.name=S003F001 Unknown
+item.record.untitled.name=Set003 - File001 - Unknown
+item.record.untitled.desc=Fragment set - MALFORMED SESSION ID - ATTEMPT RECONNECT? Y/N
+item.tragicmc.untitled2.name=S003F002 Unknown
+item.record.untitled2.name=Set003 - File002 - Unknown
+item.record.untitled2.desc=Fragment set - UNAUTHORIZED ACCESS - PLEASE CHECK PASSWORD AND TRY AGAIN
+item.tragicmc.untitled3.name=S003F003 Unknown
+item.record.untitled3.name=Set003 - File003 - Unknown
+item.record.untitled3.desc=Fragment set - ATTEMPTING RECONNECT 1... 2... 3... 4... 5... ACCESS GRANTED
+
+item.tragicmc.gooeyFruit.name=果冻果
+item.tragicmc.exoticFruit.name=蜂蜜滴
+item.tragicmc.honeydropSeeds.name=蜂蜜滴种子
+item.tragicmc.nastyFruit.name=脏葫芦
+item.tragicmc.deathglowSeeds.name=脏葫芦种子
 item.tragicmc.iceCream.name=冰淇淋
-item.tragicmc.rice.name=米
+item.tragicmc.rice.name=米饭
 item.tragicmc.sushi.name=寿司
 item.tragicmc.boneMarrow.name=骨髓
 item.tragicmc.banana.name=香蕉
-item.tragicmc.bananaSplit.name=香蕉圣代
-item.tragicmc.goldenSushi.name=金色寿司
+item.tragicmc.bananaSplit.name=香蕉沙拉
+item.tragicmc.goldenSushi.name=金寿司
 item.tragicmc.skyFruit.name=天空果实
+item.tragicmc.skyFruitSeeds.name=天空果实种子
+item.tragicmc.tentacle.name=鱿鱼酥
 
 item.tragicmc.talisman.name=护身符
-item.tragicmc.synthesisTalisman.name=综合护身符
+item.tragicmc.synthesisTalisman.name=生命护身符
 item.tragicmc.moonlightTalisman.name=月光护身符
-item.tragicmc.lightningRodTalisman.name=避雷护身符
-item.tragicmc.hydrationTalisman.name=水合护身符
-item.tragicmc.sunnyDayTalisman.name=晴空护身符
+item.tragicmc.lightningRodTalisman.name=闪电护身符
+item.tragicmc.hydrationTalisman.name=海水护身符
+item.tragicmc.sunnyDayTalisman.name=晴天护身符
 item.tragicmc.rainDanceTalisman.name=祈雨护身符
 item.tragicmc.thunderstormTalisman.name=雷暴护身符
-item.tragicmc.timeManipulatorTalisman.name=时间操纵护身符
+item.tragicmc.timeManipulatorTalisman.name=时空护身符
 
-item.tragicmc.rock.rock.name=岩石
-item.tragicmc.rock.lavaRock.name=火山石
-item.tragicmc.pumpkinbomb.small.name=小型南瓜炸弹
-item.tragicmc.pumpkinbomb.large.name=大型南瓜炸弹
-item.tragicmc.poisonBarb.name=毒针
-item.tragicmc.nekoClusterBomb.name=猫咪集束炸弹
-item.tragicmc.nekoRocket.name=猫咪火箭
-item.tragicmc.nekoMiniBomb.name=猫咪迷你炸弹
-item.tragicmc.nekoStickyBomb.name=猫咪黏性炸弹
-item.tragicmc.solarBomb.name=太阳能炸弹
-item.tragicmc.spiritCast.name=精神掷弹
+item.tragicmc.projectile.rock.name=石子
+item.tragicmc.projectile.lavaRock.name=岩浆石子
+item.tragicmc.projectile.pumpkinbomb.name=小南瓜炸弹
+item.tragicmc.projectile.largePumpkinbomb.name=大南瓜炸弹
+item.tragicmc.projectile.poisonBarb.name=毒液
+item.tragicmc.projectile.nekoClusterBomb.name=妮可霰弹
+item.tragicmc.projectile.nekoRocket.name=妮可火箭炮
+item.tragicmc.projectile.nekoMiniBomb.name=小妮可炸弹
+item.tragicmc.projectile.nekoStickyBomb.name=妮可网
+item.tragicmc.projectile.solarBomb.name=烈焰弹
+item.tragicmc.projectile.spiritCast.name=精神穿刺
+item.tragicmc.projectile.spore.name=孢子
+item.tragicmc.projectile.banana.name=香蕉
+item.tragicmc.projectile.largeRock.name=巨石
+item.tragicmc.projectile.icicle.name=冰刺
+item.tragicmc.projectile.timeBomb.name=时间炸弹
+item.tragicmc.projectile.starShard.name=陨石碎片
+item.tragicmc.projectile.darkLightning.name=黑暗闪电
+item.tragicmc.projectile.pitchBlack.name=黑暗投掷
+item.tragicmc.projectile.darkEnergy.name=黑暗能量
+item.tragicmc.projectile.darkMortor.name=黑暗之力
+item.tragicmc.projectile.webBomb.name=网弹
+item.tragicmc.projectile.crystalMortor.name=水晶之力
+item.tragicmc.projectile.overlordMortor.name=统治之力
+item.tragicmc.projectile.ireEnergy.name=愤怒之力
 
-item.tragicmc.challengeItem.inactive.name=挑战卷轴(未激活)
-item.tragicmc.challengeItem.inProgress.name=挑战卷轴(激活)
-item.tragicmc.challengeItem.complete.name=挑战卷轴(完成)
+item.tragicmc.challengeItem.inactive.name=挑战卷轴（未激活）
+item.tragicmc.challengeItem.inProgress.name=挑战卷轴（已激活）
+item.tragicmc.challengeItem.complete.name=挑战卷轴（已完成）
 
 challenge.zombieKills.name=杀死僵尸
 challenge.zombieKills.desc=杀死50只僵尸
 challenge.collectWheat.name=收集小麦
 challenge.collectWheat.desc=收集48个小麦
-challenge.stayAlive.name=活下去!
-challenge.stayAlive.desc=存活Minecraft里的完整的1天,睡眠不会跳过一天
-challenge.stayAlive3.name=活下去!(3天)
-challenge.stayAlive3.desc=存活Minecraft里的完整的3天,睡眠不会跳过一天
-challenge.survive.name=生存!
-challenge.survive.desc=到截止之日前一直活着,怪物会更具攻击性!
+challenge.stayAlive.name=活下来
+challenge.stayAlive.desc=在minecraft中生存1整天，睡觉不跳过时间
+challenge.stayAlive3.name=活下来（3天）
+challenge.stayAlive3.desc=在minecraft中生存3天，睡觉不跳过时间
+challenge.survive.name=生存下来
+challenge.survive.desc=在限定时间内生存下来，怪物会更具有攻击性
 challenge.endermanKills.name=杀死末影人
-challenge.endermanKills.desc=杀死30只末影人
-challenge.bossKills.name=杀死悲惨MC里的Bosses!
-challenge.bossKills.desc=杀死10只任意的悲惨MC里的Bosses(i.e.狐妖,北极星,时间控制者)
+challenge.endermanKills.desc=杀死30个末影人
+challenge.bossKills.name=杀死悲惨世界boss
+challenge.bossKills.desc=杀死任意10个悲惨世界boss
 challenge.collectLeather.name=收集皮革
-challenge.collectLeather.desc=收集32个皮革
-challenge.stayAlive7.name=活下去!(7天)
-challenge.stayAlive7.desc=存活Minecraft里的完整的7天,睡眠不会跳过一天
-challenge.witherKill.name=杀死凋零
-challenge.witherKill.desc=杀死1只凋零boss
-challenge.findEmerald.name=寻找绿宝石
-challenge.findEmerald.desc=寻找1颗绿宝石
-challenge.findDiamonds.name=寻找钻石
-challenge.findDiamonds.desc=寻找6颗钻石
+challenge.collectLeather.desc=收集32张皮革
+challenge.stayAlive7.name=活下来（7天）
+challenge.stayAlive7.desc=在minecraft里生存一周，睡觉不跳过时间
+challenge.witherKill.name=杀死女巫
+challenge.witherKill.desc=杀死一只女巫
+challenge.findEmerald.name=发现绿宝石
+challenge.findEmerald.desc=找到一个绿宝石
+challenge.findDiamonds.name=发现钻石
+challenge.findDiamonds.desc=找到6个钻石
 challenge.collectAsh.name=收集灰烬
-challenge.collectAsh.desc=收集1组灰烬
-challenge.miniBossKills.name=杀死迷你Bosses!
-challenge.miniBossKills.desc=杀死25只任意的迷你Bosses (i.e.影蠕虫,瘟疫草, 刺王)
+challenge.collectAsh.desc=收集一组灰烬
+challenge.miniBossKills.name=杀死二级boss
+challenge.miniBossKills.desc=杀死25个任意二级boss
 challenge.stinKills.name=杀死刺怪
-challenge.stinKills.desc=杀死25只刺怪,无变种
-challenge.tragicNekoKills.name=杀死悲惨猫咪
-challenge.tragicNekoKills.desc=杀死10只悲惨MC里的猫咪(不要伤害我<3)
-challenge.collectGoldenApples.name=收集金苹果
-challenge.collectGoldenApples.desc=收集6个金苹果
-challenge.findWisp.name=寻找精灵
-challenge.findWisp.desc=寻找一只精灵
-challenge.findApis.name=寻找神牛
-challenge.findApis.desc=寻找一只神牛boss
-challenge.findIronGolem.name=寻找铁傀儡
-challenge.findIronGolem.desc=寻找一只铁傀儡
-challenge.findSnowBlock.name=寻找雪块
-challenge.findSnowBlock.desc=站在雪块上
-challenge.iceBucketChallenge.name=冰桶挑战!
-challenge.iceBucketChallenge.desc=获得一只桶,然后前往冰雪生物群系
-challenge.findRecord11.name=寻找唱片11
-challenge.findRecord11.desc=寻找一张唱片11
+challenge.stinKills.desc=杀死25个刺怪
+challenge.tragicNekoKills.name=杀死火箭兵妮可
+challenge.tragicNekoKills.desc=杀死10个火箭兵妮可（请...请不要伤害我）
+challenge.collectGoldenApples.name=收集附魔金苹果
+challenge.collectGoldenApples.desc=收集16个附魔金苹果
+challenge.findWisp.name=发现精灵
+challenge.findWisp.desc=发现一只
+challenge.findApis.name=发现阿匹斯
+challenge.findApis.desc=发现神牛阿匹斯
+challenge.findIronGolem.name=发现铁傀儡
+challenge.findIronGolem.desc=发现一只铁傀儡
+challenge.findSnowBlock.name=发现雪方块
+challenge.findSnowBlock.desc=站在雪方块上
+challenge.iceBucketChallenge.name=冰桶挑战！
+challenge.iceBucketChallenge.desc=获得一个铁桶，去往冰原生物群系
+challenge.findRecord11.name=找到11号唱片
+challenge.findRecord11.desc=发现第11号唱片
 challenge.collectFish.name=收集鱼
-challenge.collectFish.desc=收集1整组的生鱼
+challenge.collectFish.desc=收集一组生鱼
 challenge.collectGunpowder.name=收集火药
-challenge.collectGunpowder.desc=收集1整组的火药
-challenge.collectWitherSkulls.name=收集凋零头颅
-challenge.collectWitherSkulls.desc=收集10凋零骷髅头颅
-challenge.bossKill.name=杀死悲惨MC里的Boss
-challenge.bossKill.desc=杀死一只悲惨MC里的Boss(i.e.狐妖,北极星,时间控制者)
-challenge.survive2.name=生存!(x2长度)
-challenge.survive2.desc=到截止之日前一直活着,怪物会更具攻击性!
-challenge.collectCooldownDefuse.name=收集冷却移除
-challenge.collectCooldownDefuse.desc=收集3个冷却移除
-challenge.findStarlitCliffs.name=寻找星光悬崖
-challenge.findStarlitCliffs.desc=寻找一个星光悬崖生物群系
-challenge.findMesa.name=寻找台地
-challenge.findMesa.desc=寻找一个台地生物群系,无变种
-challenge.findMushroomIsland.name=寻找蘑菇岛
-challenge.findMushroomIsland.desc=寻找一个蘑菇岛生物群系
-challenge.findBedrock.name=寻找基岩
-challenge.findBedrock.desc=站在一个基岩上
-challenge.findWater.name=寻找水方块
-challenge.findWater.desc=站/游在一个水方块中
-challenge.findAshenGrass.name=寻找苍灰草方块
-challenge.findAshenGrass.desc=寻找一个苍灰草方块
-challenge.findRedMushroomBlock.name=寻找红蘑姑块
-challenge.findRedMushroomBlock.desc=站在一个红蘑姑块上
-challenge.findSand.name=寻找沙子
-challenge.findSand.desc=站在沙子上
-challenge.findMossyCobblestone.name=寻找苔石
-challenge.findMossyCobblestone.desc=站在苔石上
-challenge.findIronOre.name=寻找铁矿石
-challenge.findIronOre.desc=站在铁矿石上
-challenge.findIceMountains.name=寻找冰山
-challenge.findIceMountains.desc=寻找冰山生物群系,无变种
-challenge.findDeepOcean.name=寻找深海
-challenge.findDeepOcean.desc=寻找一个深海生物群系
-challenge.findNorVox.name=寻找非声控星象仪
-challenge.findNorVox.desc=寻找一只非声控星象仪
+challenge.collectGunpowder.desc=收集火药
+challenge.collectRedSand.name=收集红石
+challenge.collectRedSand.desc=收集一组红沙
+challenge.bossKill.name=杀死悲惨世界boss
+challenge.bossKill.desc=杀死一只悲惨世界boss (例如火狐妖, 北极星, 时间掌控者)
+challenge.survive2.name=活下来（两倍时间）
+challenge.survive2.desc=在限定时间内存活，怪物将更具有攻击性
+challenge.collectCooldownDefuse.name=收集冷却重置
+challenge.collectCooldownDefuse.desc=收集3个冷却时间重置
+challenge.findStarlitCliffs.name=发现星光悬崖
+challenge.findStarlitCliffs.desc=发现星光悬崖生物群系
+challenge.findMesa.name=发现平顶山丘
+challenge.findMesa.desc=发现平顶山生物群系
+challenge.findMushroomIsland.name=发现蘑菇岛
+challenge.findMushroomIsland.desc=发现蘑菇岛生物群系
+challenge.findBedrock.name=发现红石方块
+challenge.findBedrock.desc=站在红石方块上
+challenge.findWater.name=发现水方块
+challenge.findWater.desc=在水里游泳
+challenge.findAshenGrass.name=发现苍灰草
+challenge.findAshenGrass.desc=发现苍灰草
+challenge.findRedMushroomBlock.name=发现红色蘑菇方块
+challenge.findRedMushroomBlock.desc=站在巨型红色蘑菇方块上
+challenge.findSand.name=发现沙方块
+challenge.findSand.desc=站在沙子方块上
+challenge.findMossyCobblestone.name=发现苔石
+challenge.findMossyCobblestone.desc=站在苔石方块上
+challenge.findIronOre.name=发现铁矿石
+challenge.findIronOre.desc=站在铁矿石方块上
+challenge.findIceMountains.name=发现冰山
+challenge.findIceMountains.desc=发现冰山生物群系
+challenge.findDeepOcean.name=发现深海
+challenge.findDeepOcean.desc=发现深海生物群系
+challenge.findNorVox.name=发现 北极星声纳仪
+challenge.findNorVox.desc=发现一只北极星声纳仪
 challenge.killInklings.name=杀死影魔
 challenge.killInklings.desc=杀死50只影魔
-challenge.findHorses.name=寻找马匹
-challenge.findhorses.desc=寻找一只马,驴或者骡
-challenge.killTragicMobs.name=杀死悲惨MC怪物
-challenge.killTragicMobs.desc=杀死100只普通的悲惨MC怪物(i.e. 影魔,火蠕虫)或者迷你Bosses(i.e.影蠕虫,瘟疫草)
-challenge.findOcelots.name=寻找豹猫
-challenge.findOcelots.desc=寻找一只豹猫,猫咪或者小猫
-challenge.findVillagers.name=寻找村民
-challenge.findVillagers.desc=寻找一只任何职业的村民
+challenge.findHorses.name=发现马
+challenge.findHorses.desc=发现一只马或者驴
+challenge.killTragicMobs.name=杀死悲惨世界怪物
+challenge.killTragicMobs.desc=杀死100只普通悲惨世界怪物 (比如影魔, 贾巴尔) 或者二级boss(比如贾拉尔, 烈焰草)
+challenge.findOcelots.name=发现豹猫
+challenge.findOcelots.desc=发现任何豹猫，猫或者小猫
+challenge.findVillagers.name=发现村民
+challenge.findVillagers.desc=发现任意一个村民
 challenge.killGhasts.name=杀死恶魂
 challenge.killGhasts.desc=杀死15只恶魂
-challenge.findSlime.name=寻找史莱姆
-challenge.findSlime.desc=寻找一只史莱姆或岩浆怪
+challenge.findSlime.name=发现史莱姆
+challenge.findSlime.desc=发现一只史莱姆或岩浆怪
 challenge.killZombiePigmen.name=杀死僵尸猪人
 challenge.killZombiePigmen.desc=杀死100只僵尸猪人
-challenge.survive3.name=生存!(x3长度)
-challenge.survive3.desc=到截止之日前一直活着,怪物会更具攻击性!
-challenge.cliffDiamond.name=炫富
-challenge.cliffDiamond.desc=将一颗钻石带到高山生物群系
+challenge.survive3.name=活下来（3倍时间）
+challenge.survive3.desc=在限定时间内活下来，怪物会更具有攻击性
+challenge.cliffDiamond.name=展示你的财富
+challenge.cliffDiamond.desc=带着一个钻石到极限山丘生物群系，为什么？因为你能
 challenge.killVillagers.name=杀死村民
-challenge.killVillagers.desc=杀死5只任何职业的村民
+challenge.killVillagers.desc=杀死任意5个村民
 challenge.collectEmeralds.name=收集绿宝石
-challenge.collectEmeralds.desc=收集16颗绿宝石
-challenge.collectIronBlocks.name=收集铁块
-challenge.collectIronBlocks.desc=收集1整组的铁块
+challenge.collectEmeralds.desc=收集16个绿宝石
+challenge.collectIronBlocks.name=收集铁方块
+challenge.collectIronBlocks.desc=收集一组铁方块
 challenge.killPirah.name=杀死水虎鱼
-challenge.killPirah.desc=杀死25只水虎鱼或者岩浆水虎鱼
+challenge.killPirah.desc=杀死25只水虎鱼或岩浆水虎鱼
 challenge.killSkeletons.name=杀死骷髅
-challenge.killSkeletons.desc=杀死50骷髅或者凋零骷髅
-challenge.findClay.name=寻找粘土块
-challenge.findClay.desc=站在一个粘土块上
-challenge.findLeaves.name=寻找树叶
-challenge.findLeaves.desc=站在一个橡树,桦树,丛林树或云杉树叶上
-challenge.killKitsune.name=杀死狐妖
-challenge.killKitsune.desc=杀死一只狐妖
-challenge.killRagr.name=杀死巨臂怪
-challenge.killRagr.desc=杀死3只巨臂怪
-challenge.killWisps.name=杀死精灵
-challenge.killWisps.desc=杀死10只精灵
-challenge.goFishing.name=钓鱼
-challenge.goFishing.desc=抓着鱼竿,到一个河流生物群系钓鱼
-challenge.goFishing2.name=钓鱼(地点2)
-challenge.goFishing2.desc=抓着鱼竿,到一个沙滩生物群系钓鱼
-challenge.findLightChestplate.name=寻找荧光胸甲
-challenge.findLightChestplate.desc=寻找一个荧光胸甲
-challenge.findAwakeningStone.name=寻找觉醒之石
-challenge.findAwakeningStone.desc=寻找一个觉醒之石
-challenge.findDimensionalKey.name=寻找维度钥匙
-challenge.findDimensionalKey.desc=寻找一个维度钥匙
-challenge.findSavanna.name=寻找热带草原
-challenge.findSavanna.desc=寻找一个热带草原生物群系,无变种
-challenge.collectPotatoes.name=收集马铃薯
-challenge.collectPotatoes.desc=收集1整组的未烤熟的马铃薯
-challenge.collectStatues.name=收集怪物雕像
-challenge.collectStatues.desc=收集10个怪物雕像
-challenge.findAbomination.name=寻找雪怪
-challenge.findAbomination.desc=寻找一只雪怪
-challenge.findPlague.name=寻找瘟疫之源
-challenge.findPlague.desc=寻找一只瘟疫之源
-challenge.findTimeController.name=寻找时间控制者
-challenge.findTimeController.desc=寻找一只时间控制者
-challenge.collectSmoothNetherrack.name=收集平滑地狱岩
-challenge.collectSmoothNetherrack.desc=收集32个平滑地狱岩
-challenge.collectRedFlowers.name=收集红花
-challenge.collectRedFlowers.desc=收集32朵红花
-challenge.goFishing3.name=钓鱼(地点3)
-challenge.goFishing3.desc=抓着鱼竿,到一个冰河生物群系钓鱼
-challenge.findMobStatue.name=寻找怪物雕像
-challenge.findMobStatue.desc=寻找一个怪物雕像
+challenge.killSkeletons.desc=杀死50只骷髅或者凋零骷髅
+challenge.findClay.name=发现粘土方块
+challenge.findClay.desc=站在粘土方块上
+challenge.findLeaves.name=发现树叶方块
+challenge.findLeaves.desc=站在橡树，桦木，云杉或从林木的树叶方块上
+challenge.killKitsune.name=杀死火狐妖
+challenge.killKitsune.desc=杀死一只火狐妖
+challenge.killRagr.name=杀死莱格
+challenge.killRagr.desc=杀死三只莱格
+challenge.killWisps.name=杀死火灵
+challenge.killWisps.desc=杀死10只火灵
+challenge.goFishing.name=去钓鱼
+challenge.goFishing.desc=带着鱼竿去河流生物群系
+challenge.goFishing2.name=去钓鱼（地点2）
+challenge.goFishing2.desc=带着鱼竿去海滩
+challenge.findLightChestplate.name=发现神圣盔甲
+challenge.findLightChestplate.desc=发现一个神圣盔甲
+challenge.findAwakeningStone.name=发现唤醒之石
+challenge.findAwakeningStone.desc=发现一个唤醒之石
+challenge.findDimensionalKey.name=发现传送之匙
+challenge.findDimensionalKey.desc=发现一个传送之匙
+challenge.findSavanna.name=发现热带草原
+challenge.findSavanna.desc=发现热带草原生物群系，非变异体
+challenge.collectPotatoes.name=收集土豆
+challenge.collectPotatoes.desc=收集一组土豆，未烘烤的
+challenge.collectStatues.name=收集怪物雕塑
+challenge.collectStatues.desc=收集10个怪物雕塑
+challenge.findAbomination.name=发现雪怪
+challenge.findAbomination.desc=发现一只雪怪
+challenge.findPlague.name=发现瘟疫之源
+challenge.findPlague.desc=发现一只瘟疫之源
+challenge.findTimeController.name=发现时间掌控者
+challenge.findTimeController.desc=发现一只时间掌控者
+challenge.collectSmoothNetherrack.name=收集平滑末地石
+challenge.collectSmoothNetherrack.desc=收集32个平滑末地石
+challenge.collectRedFlowers.name=收集红色花
+challenge.collectRedFlowers.desc=收集32朵红色花
+challenge.goFishing3.name=去钓鱼 (地点3)
+challenge.goFishing3.desc=抓着一只钓鱼竿去冰冻之河生物群系
+challenge.findMobStatue.name=发现怪物塑像
+challenge.findMobStatue.desc=发现一个怪物塑像
 challenge.collectTNT.name=收集TNT
-challenge.collectTNT.desc=收集1整组的 TNT
+challenge.collectTNT.desc=收集一组TNT
 challenge.collectEnderPearls.name=收集末影珍珠
-challenge.collectEnderPearls.desc=收集1整组的末影珍珠
-challenge.findEpicLore.name=寻找史诗传说
-challenge.findEpicLore.desc=寻找一个具有史诗传说的武器或者装备碎片
-challenge.findRareLore.name=寻找稀有传说
-challenge.findRareLore.desc=寻找一个具有稀有传说的武器或者装备碎片
-challenge.collectEpicLore.name=收集史诗传说
-challenge.collectEpicLore.desc=寻找5个具有史诗传说的武器或者装备碎片
-challenge.collectUncommonLore.name=收集罕见传说
-challenge.collectUncommonLore.desc=寻找10个具有罕见传说的武器或者装备碎片
-challenge.wearDiamondArmor.name=穿戴钻石装备
-challenge.wearDiamondArmor.desc=穿戴全套钻石套装
-challenge.wearPumpkin.name=穿戴南瓜
-challenge.wearPumpkin.desc=穿戴南瓜
-challenge.wearDarkArmor.name=穿戴深色装备
-challenge.wearDarkArmor.desc=穿戴全套深色装备
-challenge.findEverlastingLight.name=寻找永恒之光
-challenge.findEverlastingLight.desc=寻找一个永恒之光
-challenge.collectExoticFruit.name=收集异域果实
-challenge.collectExoticFruit.desc=收集1整组的异域果实
+challenge.collectEnderPearls.desc=收集一组末影珍珠
+challenge.findEpicLore.name=发现史诗级传承
+challenge.findEpicLore.desc=发现一个拥有史诗级传承的武器或装备碎片
+challenge.findRareLore.name=发现稀有传承
+challenge.findRareLore.desc=发现一个拥有稀有传承的武器或装备碎片
+challenge.collectEpicLore.name=收集史诗级传承
+challenge.collectEpicLore.desc=收集5个带有史诗级传承的武器或装备碎片
+challenge.collectUncommonLore.name=收集不同寻常的传承
+challenge.collectUncommonLore.desc=收集10个带有不同寻常传承的武器或装备碎片
+challenge.wearDiamondArmor.name=身着钻石装备
+challenge.wearDiamondArmor.desc=穿戴一整套钻石装备
+challenge.wearPumpkin.name=戴上南瓜头
+challenge.wearPumpkin.desc= 把南瓜戴在头上
+challenge.wearDarkArmor.name=穿戴暗黑装备
+challenge.wearDarkArmor.desc=穿上一整套暗黑装备
+challenge.findEverlastingLight.name=发现长明灯
+challenge.findEverlastingLight.desc=发现一盏长明灯
+challenge.collectExoticFruit.name=收集异国水果
+challenge.collectExoticFruit.desc=收集一组异国水果
 challenge.collectChallengeScrolls.name=收集挑战卷轴
-challenge.collectChallengeScrolls.desc=收集5个挑战卷轴,包括这个
-challenge.findEnderChest.name=寻找末影箱
-challenge.findEnderChest.desc=寻找一个末影箱
+challenge.collectChallengeScrolls.desc=收集5个挑战卷轴，包括这个
+challenge.findEnderChest.name=发现末影箱
+challenge.findEnderChest.desc=发现一个末影箱
 challenge.killBats.name=杀死蝙蝠
 challenge.killBats.desc=杀死15只蝙蝠
-challenge.longTermKilling.name=大屠杀
-challenge.longTermKilling.name=杀死100只生物(i.e.史莱姆,瘟疫草,牛,影蠕虫,凋零,神牛)
+challenge.longTermKilling.name=长期杀戮
+challenge.longTermKilling.desc=杀死任意100只生物
 challenge.killPlayer.name=杀死玩家
-challenge.killPlayer.desc=杀死一名玩家
-challenge.findPlayer.name=寻找玩家
-challenge.findPlayer.desc=寻找一名玩家
-challenge.longTermKilling2.name=大屠杀(延伸I)
-challenge.longTermKilling2.desc=杀死500只生物(i.e.史莱姆,瘟疫草,牛,影蠕虫,凋零,神牛)
-challenge.longTermKilling3.name=大屠杀(延伸II)
-challenge.longTermKilling3.desc=杀死1000只生物(i.e.史莱姆,瘟疫草,牛,影蠕虫,凋零,神牛)
+challenge.killPlayer.desc=杀死一个其他玩家
+challenge.findPlayer.name=发现其他玩家
+challenge.findPlayer.desc=发现一位其他玩家
+challenge.longTermKilling2.name=持久杀戮 （扩展I）
+challenge.longTermKilling2.desc=杀死任何500只生物
+challenge.longTermKilling3.name=长期杀戮（扩展II）
+challenge.longTermKilling3.desc=杀死任意1000只生物
 challenge.killAnimals.name=杀死动物
-challenge.killAnimals.desc=杀死30只动物(i.e.狼,牛,豹猫,猫,猪)
-challenge.findWolf.name=寻找狼
-challenge.findWolf.desc=寻找一只狼
+challenge.killAnimals.desc=杀死任意30只动物 (狼，牛，猪，猫，豹猫等)
+challenge.findWolf.name=发现狼
+challenge.findWolf.desc=发现一只狼
 challenge.collectRedstone.name=收集红石
-challenge.collectRedstone.desc=收集1整组的红石
+challenge.collectRedstone.desc=收集一组红石
 challenge.killEnderDragon.name=杀死末影龙
 challenge.killEnderDragon.desc=杀死一只末影龙
-challenge.travelFar.name=旅途遥遥
-challenge.travelFar.desc=行进至距离(0, 0)1,000格远的地方
-challenge.travelFar2.name=旅途遥遥 (远)
-challenge.travelFar2.desc=行进至距离(0, 0)5,000格远的地方
-challenge.travelFar3.name=旅途遥遥 (较远)
-challenge.travelFar3.desc=行进至距离(0, 0)10,000格远的地方
-challenge.travelFar4.name=旅途遥遥 (超远)
-challenge.travelFar4.desc=行进至距离(0, 0)100,000格远的地方
+challenge.travelFar.name=去远方（远游I）
+challenge.travelFar.desc=自0,0坐标旅行超过1,000m
+challenge.travelFar2.name=在路上（远游II）
+challenge.travelFar2.desc=自0,0坐标旅行超过5,000m
+challenge.travelFar3.name=行万里路（远游III）
+challenge.travelFar3.desc=自0,0坐标旅行超过10,000m
+challenge.travelFar4.name=万水千山（远游IV）
+challenge.travelFar4.desc=自0,0坐标旅行超过过100,000m
+challenge.findScorchedWasteland.name=发现熔岩之地
+challenge.findScorchedWasteland.desc=发现熔岩之地生物群系
+challenge.findIreNetCannon.name=发现怒网粒子加农炮
+challenge.findIreNetCannon.desc=发现一个怒网粒子加农炮
+challenge.findArchangel.name=发现大天使
+challenge.findArchangel.desc=发现一只大天使
+challenge.findRanmas.name=发现乱马
+challenge.findRanmas.desc=发现一只乱马
+challenge.findDarkForest.name=发现暗黑森林
+challenge.findDarkForest.desc=发现暗黑森林生物群系
+challenge.killOverlordCore.name=杀死领主（核心模式）
+challenge.killOverlordCore.desc=杀死一只领主（核心模式）
+challenge.findSynapse.name=发现‘识海’
+challenge.findSynapse.desc=发现识海异世界
+challenge.collectNanoBots.name=收集纳米蝇
+challenge.collectNanoBots.desc=收集一组纳米蝇
+challenge.findWingsOfLiberation.name=发现自由之翼
+challenge.findWingsOfLiberation.desc=发现一只自由之翼
+challenge.killFusea.name=杀死弗西怪
+challenge.killFusea.desc=杀死10个弗西怪
+challenge.findPermafrost.name=发现永冻冰原
+challenge.findPermafrost.desc=站在永冻冰原方块上
+challenge.netherBed.name=在末地设置重生点
+challenge.netherBed.desc=带一张床到末地，并放置在末地
+challenge.darkAeris.name=黑暗的召唤
+challenge.darkAeris.desc=带一朵大地之花到昏暗森林生物群系，而不是变异体
+challenge.findAshenBadlands.name=发现苍灰森林
+challenge.findAshenBadlands.desc=发现苍灰森林生物群系
+challenge.findHallowedHills.name=发现神圣山丘
+challenge.findHallowedHills.desc=发现神圣山丘生物群系
+challenge.findPsygote.name=发现赛格特
+challenge.findPsygote.desc=发现一只赛格特
+challenge.killHarvesters.name=杀死收割者
+challenge.killHarvesters.desc=杀死10个收割者
+challenge.collectConduit.name=收集电路条
+challenge.collectConduit.desc=收集一组电路条
+challenge.findQuicksand.name=发现流沙
+challenge.findQuicksand.desc=站在流沙方块上，别担心，他们并不是真的流沙
+challenge.killHunters.name=杀死狩猎者
+challenge.killHunters.desc=杀死30个狩猎者
+challenge.findSoulChest.name=发现灵魂箱
+challenge.findSoulChest.desc=站在灵魂箱子上面
+challenge.onABoat.name=船上的二傻
+challenge.onABoat.desc=坐船徜徉于深海生物群系中，并开始思考人生
+challenge.collectQuartz.name=收集石英
+challenge.collectQuartz.desc=收集一整组石英方块
+challenge.findGuiltyThorn.name=发现罪恶荆棘
+challenge.findGuiltyThorn.desc=发现单个罪恶荆棘武器
+challenge.chickenMassacre.name=屠夫
+challenge.chickenMassacre.desc=在限定时间内杀死这些鸡
+challenge.thisIsAmazing.name=令人惊奇！
+challenge.thisIsAmazing.desc=短时间内杀死多个生物
+
+attribute.name.tragicmc.reach=延伸
+attribute.name.tragicmc.jumpHeight=跳跃高度
+attribute.name.tragicmc.luck=幸运
+attribute.name.tragicmc.resistance=抗性
 
 entity.TragicMC.Plague.name=瘟疫之源
-entity.TragicMC.Jabba.name=火蠕虫
-entity.TragicMC.Jarra.name=影蠕虫
-entity.TragicMC.Gragul.name=小魔偶
-entity.TragicMC.Kragul.name=魔偶
-entity.TragicMC.Minotaur.name=弥诺牛
-entity.TragicMC.Apis.name=神牛
-entity.TragicMC.Ragr.name=巨臂怪
+entity.TragicMC.Jabba.name=贾巴尔
+entity.TragicMC.Jarra.name=贾拉尔
+entity.TragicMC.Gragul.name=格拉小鬼
+entity.TragicMC.Kragul.name=克拉怪
+entity.TragicMC.Minotaur.name=米诺陶
+entity.TragicMC.Apis.name=阿匹斯
+entity.TragicMC.Ragr.name=莱格
 entity.TragicMC.Inkling.name=影魔
-entity.TragicMC.Pumpkinhead.name=南瓜人
-entity.TragicMC.TragicNeko.name=悲惨猫咪
-entity.TragicMC.Tox.name=绿色瘟疫草
-entity.TragicMC.Magmox.name=红色瘟疫草
+entity.TragicMC.Pumpkinhead.name=南瓜头
+entity.TragicMC.TragicNeko.name=火箭兵妮可
+entity.TragicMC.Tox.name=瘟疫草
+entity.TragicMC.Magmox.name=烈焰草
 entity.TragicMC.Cryse.name=冰晶怪
-entity.TragicMC.MegaCryse.name=大冰晶怪
+entity.TragicMC.MegaCryse.name=三冰晶怪
 entity.TragicMC.DeathReaper.name=骷髅收割者
-entity.TragicMC.DeathReaperClone.name=骷髅收割者
+entity.TragicMC.DeathReaperClone.name=骷髅收割者克隆体
 entity.TragicMC.Pirah.name=水虎鱼
-entity.TragicMC.NorVox.name=非声控星象仪
-entity.TragicMC.Kitsune.name=狐妖
+entity.TragicMC.GoldenPirah.name=黄金水虎鱼
+entity.TragicMC.NorVox.name=北极星声纳仪
+entity.TragicMC.Kitsune.name=火狐妖
 entity.TragicMC.Bangatang.name=Bangatang
 entity.TragicMC.IronGolem.name=铁傀儡
-entity.TragicMC.SnowGolem.name=雪傀儡
+entity.TragicMC.SnowGolem.name=雪人
+entity.TragicMC.GiantZombie.name=巨人僵尸
 entity.TragicMC.Wither.name=凋零
 entity.TragicMC.EnderDragon.name=末影龙
 entity.TragicMC.Erkel.name=奔跑菇
 entity.TragicMC.Sirv.name=粘土人
 entity.TragicMC.Unpause.name=Unpause
-entity.TragicMC.Psygote.name=Psygote
+entity.TragicMC.Psygote.name=赛格特
 entity.TragicMC.Stin.name=刺怪
 entity.TragicMC.StinBaby.name=刺怪幼崽
-entity.TragicMC.GreaterStin.name=巨刺
+entity.TragicMC.GreaterStin.name=刺怪爵士
 entity.TragicMC.StinQueen.name=刺后
 entity.TragicMC.StinKing.name=刺王
 entity.TragicMC.Polaris.name=北极星
-entity.TragicMC.Yeti.name=雪人
-entity.TragicMC.TimeController.name=时间控制者
-entity.TragicMC.Wisp.name=精灵
+entity.TragicMC.Yeti.name=远古雪怪
+entity.TragicMC.TimeController.name=时间掌控者
+entity.TragicMC.Wisp.name=火精灵
 entity.TragicMC.Abomination.name=雪怪
-entity.TragicMC.Janna.name=Janna
-entity.TragicMC.StarCryse.name=星之冰晶怪
-entity.TragicMC.StarVox.name=星之声控星象仪
-entity.TragicMC.VoxStellarum.name=声控星象仪
+entity.TragicMC.Janna.name=贾纳尔
+entity.TragicMC.StarCryse.name=星光冰晶
+entity.TragicMC.StarVox.name=星光声纳仪
+entity.TragicMC.VoxStellarum.name=天文声纳仪
 entity.TragicMC.LavaPirah.name=岩浆水虎鱼
-entity.TragicMC.Pox.name=蓝色瘟疫草
+entity.TragicMC.Pox.name=绘色草
 entity.TragicMC.Enyvil.name=恶魔
-entity.TragicMC.Claymation.name=活性粘土
+entity.TragicMC.Claymation.name=粘土魔偶
+entity.TragicMC.Lockbot.name=束缚之手
+entity.TragicMC.Chainbot.name=锁链之手
+entity.TragicMC.NanoSwarm.name=纳米蝇
+entity.TragicMC.Harvester.name=收割者
+entity.TragicMC.Hunter.name=狩猎者
+entity.TragicMC.Seeker.name=追踪者
+entity.TragicMC.Archangel.name=大天使
+entity.TragicMC.Ire.name=怒气方块
+entity.TragicMC.Fusea.name=弗西
+entity.TragicMC.VolatileFusea.name=愤怒的弗西
+entity.TragicMC.Ranmas.name=乱马
+entity.TragicMC.Aegar.name=艾格
+entity.TragicMC.Parasmite.name=吸血蝇
+entity.TragicMC.OverlordCore.name=领主 (甲虫)
+entity.TragicMC.OverlordCombat.name=领主 (战斗)
+entity.TragicMC.OverlordCocoon.name=领主 (茧)
+entity.TragicMC.Kurayami.name=暗狐妖
+entity.TragicMC.Avris.name=地精
+
+entity.TragicMC.JetNeko.name=机动兵妮可
+entity.TragicMC.ScienceNeko.name=科学家妮可
+entity.TragicMC.MechaNeko.name=机甲兵妮可
+entity.TragicMC.AssaultNeko.name=狂战士妮可
+entity.TragicMC.MechaExo.name=战斗机甲
+entity.TragicMC.CommonNeko.name=妮可猫
+entity.TragicMC.TraderNeko.name=妮可猫商人
+entity.TragicMC.ProfessorNekoid.name=指挥官妮可
+
+entity.TragicMC.Pyragr.name=Pyragr
+entity.TragicMC.Aggro.name=Aggro
+entity.TragicMC.Blist.name=Blist
+entity.TragicMC.Thorg.name=Thorg
+entity.TragicMC.Girsh.name=Girsh
+entity.TragicMC.Lurker.name=Lurker
+entity.TragicMC.Slang.name=Slang
+entity.TragicMC.SlangLeader.name=Slang Leader
+entity.TragicMC.Warden.name=Warden
+entity.TragicMC.Arbiter.name=Arbiter
+entity.TragicMC.Feist.name=Feist
+
+entity.TragicMC.Kitsuneko.name=暗狐妖
+entity.TragicMC.PandaCub.name=Panda Cub
+entity.TragicMC.Bangatang.name=Bangatang
+entity.TragiCMC.Ultho.name=Ultho
+entity.TragicMC.Snapshot.name=Snapshot
 
 enchantment.combustion=燃烧
-enchantment.multiply=增叠
-enchantment.agility=敏捷
-enchantment.damageBoost.decay=腐烂
-enchantment.damageBoost.absolve=赦免
-enchantment.damageBoost.slay=屠杀
-enchantment.damageBoost.runeBreak=符爆
-enchantment.runeWalker=符文步行者
+enchantment.multiply=多变
+enchantment.agility=迷惑
+enchantment.damageBoost.decay=衰弱
+enchantment.damageBoost.absolve=宽恕
+enchantment.damageBoost.slay=统治
+enchantment.damageBoost.runeBreak=符文破除
+enchantment.runeWalker=符文大师
 enchantment.armorExtra.toxicity=剧毒
 enchantment.armorExtra.paralysis=麻痹
-enchantment.armorExtra.deathTouch=死亡之触
+enchantment.armorExtra.deathTouch=死亡触碰
 enchantment.armorExtra.elasticity=弹性
 enchantment.armorExtra.ignition=点火
-enchantment.weaponExtra.vampirism=榨取
-enchantment.weaponExtra.leech=吸血鬼
+enchantment.weaponExtra.vampirism=吸血
+enchantment.weaponExtra.leech=寄生
 enchantment.weaponExtra.consume=消耗
-enchantment.weaponExtra.distract=转移
-enchantment.weaponExtra.rust=锈蚀
-enchantment.reach=范围
-enchantment.unbreakable=耐久
+enchantment.weaponExtra.distract=排斥
+enchantment.weaponExtra.rust=老化
+enchantment.reach=命中
+enchantment.unbreakable=坚不可摧
+enchantment.luminescence=微光
+enchantment.veteran=熟练
 
-potion.corruption=堕落
+potion.corruption=腐蚀
 potion.flight=飞行
-potion.disorientation=迷失
-potion.aquaSuperiority=溶液优势
-potion.stun=昏迷
+potion.disorientation=震荡
+potion.aquaSuperiority=御水
+potion.stun=紧张
 potion.immunity=免疫
 potion.fear=恐惧
-potion.resurrection=复活
+potion.resurrection=回光返照
 potion.harmony=和谐
-potion.cripple=残废
-potion.malnourish=营养不良
-potion.submission=屈服
-potion.invulnerability=无敌
-potion.inhibit=抑制
-potion.clarity=透明
+potion.cripple=残疾
+potion.malnourish=斋戒
+potion.submission=软骨
+potion.invulnerability=铁布衫
+potion.inhibit=负重
+potion.clarity=识破
+potion.leadFoot=禁足
+potion.hacked=侵入
+potion.convergence=汇集
+potion.divinity=圣光眷顾
+potion.burned=燃烧
 
-doomsday.influence.type=影响
-doomsday.overflow.type=充满
-doomsday.worldShaper.type=世界塑造
-doomsday.crisis.type=危机
-doomsday.ultimate.type=终极
-doomsday.combination.type=结合
+doomsday.confirmation=你已经使用过了.
+doomsday.finish=使用结束.
+doomsday.backlash=厄运之力反噬了...
+doomsday.crucial=强化时间!
+doomsday.fail=你需要等待冷却才能再次使用厄运之力!
+doomsday.fail2=厄运值不足!
+doomsday.fail3=你已死亡，不能再使用厄运之力.
+doomsday.fail4=你无法使用该厄运之力!
+doomsday.fail5=你已经关闭了那个厄运之力，如果需要请在配置文件中开启.
+doomsday.noEntities=范围内没有实体目标!
 
-doomsday.decay.name=腐败
-doomsday.huntersInstinct.name=猎户本能
+doomsday.influence.type=感染型
+doomsday.overflow.type=溢流型
+doomsday.worldshaper.type=地形破坏
+doomsday.crisis.type=应急型
+doomsday.ultimate.type=终极型
+doomsday.combination.type=结合型
+
+doomsday.decay.name=衰弱
+doomsday.huntersInstinct.name=猎手本能
 doomsday.toxicity.name=剧毒
-doomsday.berserker.name=狂战士
-doomsday.piercingLight.name=穿刺战斗
+doomsday.berserker.name=狂暴
+doomsday.piercingLight.name=炙热领域
 doomsday.natureDrain.name=自然汲取
-doomsday.poisonBreak.name=毒爆
+doomsday.poisonBreak.name=淬毒
 doomsday.snipe.name=狙击
-doomsday.rapidFire.name=速射
-doomsday.pulse.name=脉冲
-doomsday.lightShove.name=光之猛推
+doomsday.rapidFire.name=连射
+doomsday.pulse.name=脑波
+doomsday.lightShove.name=光之守护
 doomsday.fear.name=恐惧
-doomsday.harmonizer.name=维和者
+doomsday.harmonizer.name=协调
 doomsday.ravage.name=毁灭
 doomsday.torment.name=折磨
-doomsday.beastlyImpulses.name=野兽冲动
-doomsday.suicidalTendencies.name=自杀倾向
-doomsday.reaperLaugh.name=死神之笑
-doomsday.realityAlter.name=真实之变
+doomsday.beastlyImpulses.name=金钟罩
+doomsday.suicidalTendencies.name=自杀轰炸
+doomsday.reaperLaugh.name=死神的嘲讽
+doomsday.realityAlter.name=噩梦成真
 doomsday.skullCrusher.name=头颅粉碎者
-doomsday.minerSkills.name=矿工之技
+doomsday.minerSkills.name=矿工之力
 doomsday.freeze.name=冰冻
-doomsday.moonlightSonata.name=月光奏鸣曲
-doomsday.flightOfTheValkyries.name=女武神之斗
-doomsday.titanfall.name=泰坦陨落
+doomsday.moonlightSonata.name=月光鸣奏曲
+doomsday.flightOfTheValkyries.name=武神之骑
+doomsday.titanfall.name=泰坦降临
 doomsday.bloodlust.name=嗜血
-doomsday.permafrost.name=永冻之土
+doomsday.permafrost.name=永久冻土
 doomsday.purge.name=净化
-doomsday.lightningCrush.name=闪电粉碎
-doomsday.marionette.name=牵线木偶
-doomsday.mindcrack.name=中裂
-doomsday.growthSpurt.name=急速生长
-doomsday.blizzard.name=暴风雪
+doomsday.lightningCrush.name=雷霆万钧
+doomsday.marionette.name=提线木偶
+doomsday.mindcrack.name=精神干扰
+doomsday.growthSpurt.name=自然之力
+doomsday.blizzard.name=吹雪
 doomsday.asphyxiate.name=窒息
-doomsday.fireRain.name=火雨
-doomsday.dragonsRoar.name=龙之怒吼
-doomsday.firestorm.name=火焰风暴
-doomsday.shotgun.name=霰弹
+doomsday.fireRain.name=焰雨
+doomsday.dragonsRoar.name=龙之咆哮
+doomsday.firestorm.name=烈焰风暴
+doomsday.shotgun.name=霰弹枪
+doomsday.guardiansCall.name=守卫者
+doomsday.sharpen.name=磨刀
+doomsday.harden.name=硬化
+doomsday.flash.name=闪电
+doomsday.septics.name=腐毒
+doomsday.kurayami.name=通灵：暗狐妖
+doomsday.lifeShare.name=生命共享
+doomsday.deathMark.name=死神之步
+doomsday.paradigmShift.name=厄运之手
+doomsday.adrenaline.name=肾上腺素
+doomsday.escape.name=闪避
+doomsday.giftOfTheGods.name=神之馈赠
+doomsday.gambler.name=赌徒
+doomsday.soulstealer.name=灵魂窃取
+doomsday.parasite.name=寄生
+doomsday.symbiosis.name=共生
+doomsday.timeCollapse.name=时间枷锁
+doomsday.magnetizer.name=磁导体
+doomsday.ambience.name=闪光
+doomsday.dimentia.name=迟缓
+doomsday.delete.name=清扫
+doomsday.laserCutter.name=镭射切割
+doomsday.radiantLight.name=战神光辉
+doomsday.dangerZone.name=爆炸艺术
+doomsday.support.name=支援
+doomsday.purify.name=归零
+doomsday.recall.name=召回
+doomsday.shuffle.name=易位
+doomsday.blink.name=闪现
+doomsday.evacuation.name=驱逐
+doomsday.medic.name=医生
+doomsday.resurge.name=死灰复燃
 
 tragicmc.paintedForest=彩绘森林
 tragicmc.paintedPlains=彩绘平原
 tragicmc.paintedClearing=彩绘清除
-tragicmc.paintedHills=彩绘高山
+tragicmc.paintedHills=彩绘山脉
 
-tragicmc.ashenHills=苍灰高山
+tragicmc.ashenHills=苍灰山脉
 tragicmc.ashenMountains=苍灰山脉
 tragicmc.ashenBadlands=苍灰荒地
 
-tragicmc.decayingHills=腐败高山
+tragicmc.decayingHills=腐败山脉
 tragicmc.decayingWasteland=腐败荒地
 tragicmc.decayingValley=腐败山谷
 tragicmc.decayingMountains=腐败山脉
@@ -834,8 +1304,322 @@ tragicmc.starlitCliffs=星光悬崖
 tragicmc.starlitLowlands=星光低地
 tragicmc.starlitPlateaus=星光高原
 
-tragicmc.taintedSpikes=腐烂尖塔
-tragicmc.taintedArchipelago=腐烂群岛
-tragicmc.taintedIsles=腐烂岛屿
-tragicmc.taintedRises=腐烂小山
-tragicmc.taintedScarlands=腐烂创伤之地
+tragicmc.taintedSpikes=污染石林
+tragicmc.taintedLowlands=污染低地
+tragicmc.taintedIsles=污染群岛
+tragicmc.taintedRises=污染山丘
+tragicmc.taintedScarlands=污染裂谷
+
+tragicmc.scorchedWastelands=熔岩荒地
+tragicmc.scorchedValley=熔岩山谷
+tragicmc.scorchedScarlands=熔岩裂谷
+
+tragicmc.hallowedHills=神圣山脉
+tragicmc.hallowedForest=神圣森林
+tragicmc.hallowedPrarie=神圣草原
+tragicmc.hallowedCliffs=神圣悬崖
+
+tragicmc.corrodedSteppe=腐败草原
+tragicmc.corrodedVeld=腐败荒漠
+tragicmc.corrodedHeights=腐败高地
+tragicmc.corrodedRunoff=腐败径流
+tragicmc.corrodedFallout=腐败尘埃
+
+tragicmc.frozenTundra=永冻苔原
+tragicmc.frozenDepths=永冻裂谷
+tragicmc.frozenHills=永冻山脉
+
+tragicmc.darkForest=昏暗森林
+tragicmc.darkForestHills=昏暗森林山脉
+tragicmc.darkMarsh=昏暗森林沼泽
+
+tragicmc.crystal=水晶
+
+tragicmc.synapse=哀伤世界
+tragicmc.synapseDead=死亡中枢
+tragicmc.synapseCorrupt=错误区块
+
+achievement.tragicmc.thanks=谢谢！
+achievement.tragicmc.thanks.desc=希望你乐观地能享受这个世界！
+
+achievement.tragicmc.mercury=我想吃些树莓诶！
+achievement.tragicmc.mercury.desc=获得朱砂
+
+achievement.tragicmc.obsidianOrb=神奇的石头
+achievement.tragicmc.obsidianOrb.desc=得到一个黑曜石球(哭泣,死亡,血腥)
+
+achievement.tragicmc.dimensionalKey=你是开锁的吗？
+achievement.tragicmc.dimensionalKey.desc=得到通往悲惨世界的钥匙
+
+achievement.tragicmc.collision=好像有点不对劲...
+achievement.tragicmc.collision.desc=抵达悲惨世界
+
+achievement.tragicmc.aeris=美好的腐化
+achievement.tragicmc.aeris.desc=完全污染一朵大地之花
+
+achievement.tragicmc.synapseLink=通往无限...
+achievement.tragicmc.synapseLink.desc=获得通灵钥匙
+
+achievement.tragicmc.synapse=和永恒!
+achievement.tragicmc.synapse.desc=进入冥界
+
+achievement.tragicmc.overlord=第一回合!
+achievement.tragicmc.overlord.desc=召唤住在冥界的恶魔们
+
+achievement.tragicmc.overlord2=第二回合!
+achievement.tragicmc.overlord2.desc=Crack open the shell and reveal the creature within
+
+achievement.tragicmc.overlord3=第三回合!
+achievement.tragicmc.overlord3.desc=Expose the creature's wicked core and finish it off once and for all
+
+achievement.tragicmc.overlord4=Knockout!
+achievement.tragicmc.overlord4.desc=Put an end to the vile creature's darkness and ease the spread of corruption throughout Minecraft
+
+achievement.tragicmc.tungsten=那是面包屑吗？
+achievement.tragicmc.tungsten.desc=获得钨
+
+achievement.tragicmc.amulet=珍贵的魔法项链
+achievement.tragicmc.amulet.desc=获得项链
+
+achievement.tragicmc.amuletEquip=漂亮的项链才配得上我
+achievement.tragicmc.amuletEquip.desc=成功佩戴项链
+
+achievement.tragicmc.amuletRelease=你是中东来的吧
+achievement.tragicmc.amuletRelease.desc=使用“项链释放”解锁更多的项链空位
+
+achievement.tragicmc.amuletMax=大收藏家
+achievement.tragicmc.amuletMax.desc=获得所有项链 (包括可用的项链空位)
+
+achievement.tragicmc.amuletSpecial=眷顾还是诅咒?
+achievement.tragicmc.amuletSpecial.desc=获得史诗级或被诅咒的项链
+
+achievement.tragicmc.doom=这是魔法的力量吗?
+achievement.tragicmc.doom.desc=完全蓄满厄运能量槽
+
+achievement.tragicmc.doomsday=你能感受到魔法吗?
+achievement.tragicmc.doomsday.desc=使用武器或盔甲的厄运之力
+
+achievement.tragicmc.doomsdayCombo=给我你的力量吧！
+achievement.tragicmc.doomsdayCombo.desc=Use a Combination Doomsday
+
+achievement.tragicmc.doomCooldown=尽你所能, 肆意散发厄运吧!
+achievement.tragicmc.doomCooldown.desc=Use a Cooldown Defuse to remove global cooldown
+
+achievement.tragicmc.doomConsume=不够...还要更多!
+achievement.tragicmc.doomConsume.desc=使用厄运复现提升厄运值上限
+
+achievement.tragicmc.doomCritical=暴击!
+achievement.tragicmc.doomCritical.desc=Trigger a Crucial Moment on a Doomsday
+
+achievement.tragicmc.weapon=以牙还牙!
+achievement.tragicmc.weapon.desc=获得厄运武器
+
+achievement.tragicmc.kill=复仇...
+achievement.tragicmc.kill.desc=杀死一个悲惨生物
+
+achievement.tragicmc.killMiniBoss=真的是第一次呢...
+achievement.tragicmc.killMiniBoss.desc=杀死一个二级Boss
+
+achievement.tragicmc.killBoss=是你自找的!
+achievement.tragicmc.killBoss.desc=杀死一个一级Boss
+
+achievement.tragicmc.enchant=效果拨群!
+achievement.tragicmc.enchant.desc=Do extra damage to a mob via a Weapon enchantment
+
+achievement.tragicmc.reach=Ten-foot pole!
+achievement.tragicmc.reach.desc=Hit a mob that would normally be out of range with Reach
+
+achievement.tragicmc.enchantArmor=好戏开始了吗!
+achievement.tragicmc.enchantArmor.desc=Have an Armor enchantment activate on an incoming attack
+
+achievement.tragicmc.fullSuit=Every girl's crazy 'bout that sharp-dressed man!
+achievement.tragicmc.fullSuit.desc=Wear a full set of any Tragic Armor
+
+achievement.tragicmc.haxEngage=H4x 3ng4g3
+achievement.tragicmc.haxEngage.desc=Wear a full set of Alpha Armor
+
+achievement.tragicmc.jack=...of all trades...
+achievement.tragicmc.jack.desc=获得一把镰刀
+
+achievement.tragicmc.luminescence=我看见了！
+achievement.tragicmc.luminescence.desc=Use Luminescence on a tool while you are mining
+
+achievement.tragicmc.combustion=Ores Ready to Use!
+achievement.tragicmc.combustion.desc=Use Combustion on a tool while you are mining
+
+achievement.tragicmc.veteran=Too MLG for this
+achievement.tragicmc.veteran.desc=Use Veteran on a tool while you are mining
+
+achievement.tragicmc.talisman=拿着就好了吧？
+achievement.tragicmc.talisman.desc=获得一个护身符
+
+achievement.tragicmc.talismanSpecial=与众不同!
+achievement.tragicmc.talismanSpecial.desc=Obtain a specialized Talisman and have it's effects active
+
+achievement.tragicmc.talismanFull=Bold strategy
+achievement.tragicmc.talismanFull.desc=Have every specialized Talisman equipped at once
+
+achievement.tragicmc.goldenSushi=好吃好吃!
+achievement.tragicmc.goldenSushi.desc=Dine on some exotic Golden Sushi
+
+achievement.tragicmc.flight=想飞上天，和太阳肩并肩!
+achievement.tragicmc.flight.desc=获得飞天BUFF
+
+achievement.tragicmc.disorientation=好像很嗨哦...
+achievement.tragicmc.disorientation.desc=获得迷失BUFF
+
+achievement.tragicmc.mobStatue=I've got a chest full of these at home!
+achievement.tragicmc.mobStatue.desc=获得一个怪物雕像
+
+achievement.tragicmc.challengeScroll=接受挑战
+achievement.tragicmc.challengeScroll.desc=Start a Challenge via a Challenge Scroll
+
+achievement.tragicmc.doomsdayScroll=Bippity-boppity boo!
+achievement.tragicmc.doomsdayScroll.desc=Use a Doomsday Scroll
+
+achievement.tragicmc.mineXP=It's ore made out of XP, how awesome is that?
+achievement.tragicmc.mineXP.desc=Mine some XP ore
+
+achievement.tragicmc.loot=不过是其中一种
+achievement.tragicmc.loot.desc=Obtain Tragic Weapons or Armor that have a rarity of Uncommon or better
+
+achievement.tragicmc.loot2=All your loots are belong to us
+achievement.tragicmc.loot2.desc=Obtain Tragic Weapons or Armor that have a rarity of Epic
+
+achievement.tragicmc.systemCrash=BSOD
+achievement.tragicmc.systemCrash.desc=Kill a mob while the Hacked potion effect is active
+
+achievement.tragicmc.divinity=我才是你的主子！
+achievement.tragicmc.divinity.desc=Kill a mob while the Divinity potion effect is active
+
+achievement.tragicmc.useOrb=Spawn shenanigans
+achievement.tragicmc.useOrb.desc=Use a special obsidian orb's ability
+
+achievement.tragicmc.tragicNeko=我们才不是塑料花的友情！
+achievement.tragicmc.tragicNeko.desc=在妮可猫的生日上送她礼物
+
+achievement.tragicmc.pumpkinhead=Feeling charitable?
+achievement.tragicmc.pumpkinhead.desc=Give a Pumpkinhead a home
+
+achievement.tragicmc.norVox=That thing that you're doing, stop that.
+achievement.tragicmc.norVox.desc=Stun a Nor-Vox mid-attack
+
+achievement.tragicmc.psygote=Not this time!
+achievement.tragicmc.psygote.desc=Kill a Psygote before it can teleport you
+
+achievement.tragicmc.sirv=I'm not even breaking a sweat!
+achievement.tragicmc.sirv.desc=Kill a Sirv with over 30 damage in one hit
+
+achievement.tragicmc.ragr=唱一首“火烧莱格”吧？
+achievement.tragicmc.ragr.desc=在莱格着火时击杀他
+
+achievement.tragicmc.kurayami=David & Goliath
+achievement.tragicmc.kurayami.desc=Force a Kurayami to fight a Kitsunakuma
+
+achievement.tragicmc.cantTouchThis=Can't touch this!
+achievement.tragicmc.cantTouchThis.desc=Kill a Tragic Boss without being attacked by it
+
+achievement.tragicmc.rewind=抓住，时光倒流
+achievement.tragicmc.rewind.desc=Get caught up in a Time Controller's Quantum Leap
+
+achievement.tragicmc.aegar=快，准，狠！
+achievement.tragicmc.aegar.desc=Kill an Aegar without it entering Hypermode
+
+achievement.tragicmc.claymation2in1=你到底是谁？
+achievement.tragicmc.claymation2in1.desc=在粘土魔偶变身其他悲惨世界BOSS时击杀他
+
+achievement.tragicmc.skultarImmune=拿到了！
+achievement.tragicmc.skultarImmune.desc=Face off with a Skultar while you have both Immunity and Clarity active
+
+achievement.tragicmc.minotaurSummon=I summon thee!
+achievement.tragicmc.minotaurSummon.desc=Strike a Cow with Lightning
+
+achievement.tragicmc.seeker=Didn't even see it coming...
+achievement.tragicmc.seeker.desc=Kill a Seeker without being burned by it's gaze
+
+achievement.tragicmc.harvester=Autonomous Drone
+achievement.tragicmc.harvester.desc=Kill a Harvester without being under it's debuff
+
+achievement.tragicmc.lockbot=动弹不得
+achievement.tragicmc.lockbot.desc=Kill a mob while being locked down by a Lockbot
+
+achievement.tragicmc.fusea=Kill it with fire!
+achievement.tragicmc.fusea.desc=Kill a Fusea without being hurt by it and by lighting it on fire
+
+achievement.tragicmc.ire=看看谁火气比较大！
+achievement.tragicmc.ire.desc=Kill an Ire by using an IreNet Particle Cannon
+
+achievement.tragicmc.avris=你的鞋子看起来很值钱！
+achievement.tragicmc.avris.desc=在地精逃跑前杀死他
+
+achievement.tragicmc.tragicNekoDevice=这是什么？
+achievement.tragicmc.tragicNekoDevice.desc=获得妮可猫的特殊掉落物
+
+achievement.tragicmc.tragicNekoRelease=大慈善家
+achievement.tragicmc.tragicNekoRelease.desc=解救一个悲惨的妮可猫，你真是个好人，对，就是你！
+
+achievement.tragicmc.tragicNekoWarpDrive=嘿！我有时光机哦！
+achievement.tragicmc.tragicNekoWarpDrive.desc=建造一个奇妙的装置，让你可以穿越时空去旅行...
+
+achievement.tragicmc.tragicNekoHomeworld=深入敌后...
+achievement.tragicmc.tragicNekoHomeworld.desc=在妮可猫城郭以某种方式死亡，并发现妮可们悲惨的命运
+
+achievement.tragicmc.tragicNekoSiphon=This looks like a job for... Reverse Engineer!
+achievement.tragicmc.tragicNekoSiphon.desc=Craft a Recapture Siphon to open up new Neko-related technology
+
+achievement.tragicmc.tragicNeko100Release=我有九十九个问题要搞定，但这个不算！
+achievement.tragicmc.tragicNeko100Release.desc=把100个妮可猫从苦难中解救出来
+
+achievement.tragicmc.tragicNekoInfluence=革命广播电台！这里是革命广播电台！
+achievement.tragicmc.tragicNekoInfluence.desc=建造妮可影响器并使用它释放妮可军团！
+
+achievement.tragicmc.tragicNekoFile=没有满足条件的搜索结果
+achievement.tragicmc.tragicNekoFile.desc=因释放妮可猫而获得一个音乐文件
+
+achievement.tragicmc.tragicNekoAllFiles=音乐发烧友
+achievement.tragicmc.tragicNekoAllFiles.desc=获得妮可猫丢弃的所有唱片
+
+achievement.tragicmc.tragicNekoTrader=嘿，“奸”商
+achievement.tragicmc.tragicNekoTrader.desc=与被解放的商人妮可完成一次交易
+
+achievement.tragicmc.tragicNekoNekite=小心这些带刺的家伙
+achievement.tragicmc.tragicNekoNekite.desc=获得腥红碎片
+
+achievement.tragicmc.tragicNekoSwordAndGun=左手激光剑，右手射线枪！
+achievement.tragicmc.tragicNekoSwordAndGun=获得妮可的激光剑和射线枪
+
+achievement.tragicmc.tragicNekoLauncher=易燃易爆炸！
+achievement.tragicmc.tragicNekoLauncher.desc=打败火箭兵妮可
+
+achievement.tragicmc.tragicNekoDefeatNekoid=...我还能要你的签名吗？
+achievement.tragicmc.tragicNekoDefeatNekoid.desc=打败妮可指挥官
+
+achievement.tragicmc.tragicNekoNekoidBlaster=看起来这只妮可又爆炸了
+achievement.tragicmc.tragicNekoNekoidBlaster.desc=战胜爆破兵妮可
+
+achievement.tragicmc.professorNekoid=机甲留给我吧
+achievement.tragicmc.professorNekoid.desc=打败妮可指挥官本体不损伤机甲
+
+achievement.tragicmc.apis=神牛阿匹斯在召唤
+achievement.tragicmc.apis.desc=打败神牛阿匹斯
+
+achievement.tragicmc.skultar=只剩下了骷髅！
+achievement.tragicmc.skultar.desc=打败骷髅收割者
+
+achievement.tragicmc.kitsunakuma=这么多狐狸尾巴...很容易被发现哦！
+achievement.tragicmc.kitsunakuma.desc=打败火狐妖
+
+achievement.tragicmc.polaris=夜空中最亮的星
+achievement.tragicmc.polaris.desc=打败北极星
+
+achievement.tragicmc.empariah=成为远古雪山的山大王
+achievement.tragicmc.empariah.desc=打败远古雪怪
+
+achievement.tragicmc.timeController=哔，哔哔，哔哔哔！
+achievement.tragicmc.timeController.desc=打败时间掌控者
+
+achievement.tragicmc.enyvil=天降正义！
+achievement.tragicmc.enyvil.desc=打败恶魔
+
+achievement.tragicmc.claymation=别抄袭我！
+achievement.tragicmc.claymation.desc=打败粘土魔偶
